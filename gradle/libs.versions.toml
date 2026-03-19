@@ -1,5 +1,6 @@
 [versions]
 kotlin = "2.0.21"
+ksp = "2.0.21-1.0.28"
 agp = "8.7.3"
 compose-bom = "2024.12.01"
 navigation-compose = "2.8.5"
@@ -14,9 +15,8 @@ workmanager = "2.10.0"
 coil = "3.0.4"
 datastore = "1.1.1"
 security-crypto = "1.1.0-alpha06"
-compose-markdown = "0.5.4"
+compose-markdown = "0.31.0"
 lifecycle = "2.8.7"
-ksp = "2.0.21-1.0.28"
 desugar-jdk = "2.1.4"
 
 [libraries]
@@ -75,7 +75,7 @@ datastore-preferences       = { module = "androidx.datastore:datastore-preferenc
 security-crypto             = { module = "androidx.security:security-crypto",         version.ref = "security-crypto" }
 
 # Markdown
-compose-markdown            = { module = "com.mikepenz:multiplatform-markdown-renderer-m3", version.ref = "compose-markdown" }
+compose-markdown = { module = "com.mikepenz:multiplatform-markdown-renderer-m3-android", version.ref = "compose-markdown" }
 
 # Lifecycle
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
