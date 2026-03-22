@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">مساحة عملك. موحّدة.</string>
+    <string name="app_description">ملاحظات ومهام وتقويم ومؤقت تركيز وذكاء اصطناعي — كل شيء في مكان واحد.</string>
+
+    <string name="onboarding_skip">تخطي</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_get_started">ابدأ الآن</string>
+    <string name="onboarding_page1_title">كل شيء في مكان واحد</string>
+    <string name="onboarding_page1_body">الملاحظات والمهام والتقويم مترابطة في مساحة عمل واحدة.</string>
+    <string name="onboarding_page2_title">ابقَ في إيقاعك</string>
+    <string name="onboarding_page2_body">مؤقت بومودورو يعرف ما تعمل عليه ويتتبع وقتك تلقائيًا.</string>
+    <string name="onboarding_page3_title">ذكاء اصطناعي يفهمك</string>
+    <string name="onboarding_page3_body">مساعدك يرى مهامك النشطة وأحداثك القادمة وملاحظاتك الأخيرة قبل أن يجيبك.</string>
+
+    <string name="auth_email">البريد الإلكتروني</string>
+    <string name="auth_email_placeholder">you@example.com</string>
+    <string name="auth_username">اسم المستخدم</string>
+    <string name="auth_phone">رقم الهاتف</string>
+    <string name="auth_password">كلمة المرور</string>
+    <string name="auth_confirm_password">تأكيد كلمة المرور</string>
+    <string name="auth_first_name">الاسم الأول</string>
+    <string name="auth_last_name">الاسم الأخير</string>
+    <string name="auth_identifier">البريد أو اسم المستخدم أو الهاتف</string>
+    <string name="auth_remember_me">تذكّرني</string>
+    <string name="auth_show_password">إظهار كلمة المرور</string>
+    <string name="auth_hide_password">إخفاء كلمة المرور</string>
+
+    <string name="login_title">مرحبًا بعودتك</string>
+    <string name="login_subtitle">سجّل الدخول إلى مساحة عملك</string>
+    <string name="login_button">تسجيل الدخول</string>
+    <string name="login_forgot_password">هل نسيت كلمة المرور؟</string>
+    <string name="login_no_account">ليس لديك حساب؟</string>
+    <string name="login_sign_up">إنشاء حساب</string>
+    <string name="login_error_invalid_credentials">بيانات الاعتماد غير صحيحة. حاول مجددًا.</string>
+    <string name="login_error_account_locked">الحساب مقفل. حاول بعد %1$s دقائق.</string>
+    <string name="login_error_email_not_verified">يرجى التحقق من بريدك الإلكتروني قبل تسجيل الدخول.</string>
+    <string name="login_error_account_inactive">تم تعطيل هذا الحساب.</string>
+
+    <string name="register_title">إنشاء حساب</string>
+    <string name="register_subtitle">ابدأ رحلتك نحو الإنتاجية</string>
+    <string name="register_button">إنشاء حساب</string>
+    <string name="register_has_account">لديك حساب بالفعل؟</string>
+    <string name="register_sign_in">تسجيل الدخول</string>
+    <string name="register_step_account">الحساب</string>
+    <string name="register_step_profile">الملف الشخصي</string>
+    <string name="register_step_preferences">التفضيلات</string>
+    <string name="register_step_verify">التحقق</string>
+    <string name="register_error_email_taken">هذا البريد مسجّل مسبقًا.</string>
+    <string name="register_error_username_taken">اسم المستخدم هذا مأخوذ.</string>
+    <string name="register_error_weak_password">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل مع أحرف كبيرة وصغيرة وأرقام وأحرف خاصة.</string>
+    <string name="register_error_passwords_mismatch">كلمتا المرور غير متطابقتين.</string>
+    <string name="register_success">تم إنشاء الحساب! تحقق من بريدك للتفعيل.</string>
+
+    <string name="verify_email_title">تحقق من بريدك</string>
+    <string name="verify_email_subtitle">أرسلنا رمزًا مكونًا من 6 أرقام إلى %1$s</string>
+    <string name="verify_email_resend">إعادة إرسال الرمز</string>
+    <string name="verify_email_resend_in">إعادة الإرسال خلال %1$s</string>
+    <string name="verify_email_button">تحقق من البريد</string>
+    <string name="verify_email_success">تم التحقق من البريد! مرحبًا بك في ProductivityX.</string>
+    <string name="verify_email_error_invalid">رمز غير صالح أو منتهي الصلاحية. حاول مجددًا.</string>
+    <string name="verify_email_resent">تم إرسال رمز جديد إلى بريدك.</string>
+
+    <string name="forgot_password_title">هل نسيت كلمة المرور؟</string>
+    <string name="forgot_password_subtitle">أدخل بريدك وسنرسل لك رابط إعادة التعيين.</string>
+    <string name="forgot_password_button">إرسال الرابط</string>
+    <string name="forgot_password_back_to_login">العودة لتسجيل الدخول</string>
+    <string name="forgot_password_sent">إذا كان هذا البريد موجودًا، فالرابط في الطريق.</string>
+
+    <string name="reset_password_title">تعيين كلمة مرور جديدة</string>
+    <string name="reset_password_new">كلمة المرور الجديدة</string>
+    <string name="reset_password_confirm">تأكيد كلمة المرور الجديدة</string>
+    <string name="reset_password_button">إعادة تعيين كلمة المرور</string>
+    <string name="reset_password_success">تم إعادة تعيين كلمة المرور. يمكنك الدخول الآن.</string>
+
+    <string name="change_password_title">تغيير كلمة المرور</string>
+    <string name="change_password_current">كلمة المرور الحالية</string>
+    <string name="change_password_new">كلمة المرور الجديدة</string>
+    <string name="change_password_confirm">تأكيد كلمة المرور الجديدة</string>
+    <string name="change_password_button">تحديث كلمة المرور</string>
+    <string name="change_password_success">تم تحديث كلمة المرور بنجاح.</string>
+    <string name="change_password_error_wrong_current">كلمة المرور الحالية غير صحيحة.</string>
+
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_notes">الملاحظات</string>
+    <string name="nav_tasks">المهام</string>
+    <string name="nav_calendar">التقويم</string>
+    <string name="nav_ai">الذكاء الاصطناعي</string>
+    <string name="nav_pomodoro">التركيز</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_search">بحث</string>
+
+    <string name="home_greeting_morning">صباح الخير، %1$s 👋</string>
+    <string name="home_greeting_afternoon">مساء الخير، %1$s 👋</string>
+    <string name="home_greeting_evening">مساء النور، %1$s 👋</string>
+    <string name="home_due_today">مستحقة اليوم</string>
+    <string name="home_overdue">متأخرة</string>
+    <string name="home_this_week">هذا الأسبوع</string>
+    <string name="home_total_notes">إجمالي الملاحظات</string>
+    <string name="home_todays_focus">تركيز اليوم</string>
+    <string name="home_upcoming_events">الأحداث القادمة</string>
+    <string name="home_recent_notes">الملاحظات الأخيرة</string>
+    <string name="home_see_all">عرض الكل</string>
+    <string name="home_quick_add">إضافة سريعة</string>
+
+    <string name="notes_title">الملاحظات</string>
+    <string name="notes_new">ملاحظة جديدة</string>
+    <string name="notes_filter_all">الكل</string>
+    <string name="notes_filter_pinned">المثبتة</string>
+    <string name="notes_search_placeholder">ابحث في الملاحظات…</string>
+    <string name="notes_empty_title">لا ملاحظات بعد</string>
+    <string name="notes_empty_subtitle">اضغط + لكتابة أول ملاحظة.</string>
+    <string name="notes_untitled">بدون عنوان</string>
+    <string name="notes_content_placeholder">ابدأ الكتابة…</string>
+    <string name="notes_pin">تثبيت الملاحظة</string>
+    <string name="notes_unpin">إلغاء التثبيت</string>
+    <string name="notes_delete">نقل إلى المهملات</string>
+    <string name="notes_restore">استعادة</string>
+    <string name="notes_delete_permanently">حذف نهائي</string>
+    <string name="notes_trash_title">المهملات</string>
+    <string name="notes_saved">تم حفظ الملاحظة</string>
+    <string name="notes_deleted">تم نقل الملاحظة إلى المهملات</string>
+
+    <string name="tasks_title">المهام</string>
+    <string name="tasks_new">مهمة جديدة</string>
+    <string name="tasks_filter_all">الكل</string>
+    <string name="tasks_filter_today">اليوم</string>
+    <string name="tasks_filter_upcoming">القادمة</string>
+    <string name="tasks_filter_completed">المكتملة</string>
+    <string name="tasks_view_list">عرض قائمة</string>
+    <string name="tasks_view_kanban">عرض كانبان</string>
+    <string name="tasks_empty_title">لا مهام بعد</string>
+    <string name="tasks_empty_subtitle">أضف أول مهمة للبدء.</string>
+    <string name="tasks_title_placeholder">عنوان المهمة…</string>
+    <string name="tasks_priority">الأولوية</string>
+    <string name="tasks_due_date">تاريخ الاستحقاق</string>
+    <string name="tasks_reminder">تذكير</string>
+    <string name="task_status_todo">للتنفيذ</string>
+    <string name="task_status_in_progress">قيد التنفيذ</string>
+    <string name="task_status_on_hold">معلّقة</string>
+    <string name="task_status_done">مكتملة</string>
+    <string name="task_status_cancelled">ملغاة</string>
+    <string name="task_priority_low">منخفضة</string>
+    <string name="task_priority_medium">متوسطة</string>
+    <string name="task_priority_high">عالية</string>
+    <string name="task_priority_urgent">عاجلة</string>
+    <string name="tasks_save">حفظ المهمة</string>
+    <string name="tasks_delete">حذف المهمة</string>
+    <string name="tasks_created">تم إنشاء المهمة</string>
+    <string name="tasks_updated">تم تحديث المهمة</string>
+    <string name="tasks_completed">تمت المهمة! 🎉</string>
+    <string name="tasks_overdue_label">متأخرة</string>
+
+    <string name="calendar_title">التقويم</string>
+    <string name="calendar_today">اليوم</string>
+    <string name="calendar_view_week">أسبوع</string>
+    <string name="calendar_view_month">شهر</string>
+    <string name="calendar_new_event">حدث جديد</string>
+    <string name="calendar_all_day">طوال اليوم</string>
+    <string name="event_title_placeholder">عنوان الحدث…</string>
+    <string name="event_start_time">يبدأ</string>
+    <string name="event_end_time">ينتهي</string>
+    <string name="event_recurrence">تكرار</string>
+    <string name="recurrence_none">لا يتكرر</string>
+    <string name="recurrence_daily">يوميًا</string>
+    <string name="recurrence_weekly">أسبوعيًا</string>
+    <string name="recurrence_monthly">شهريًا</string>
+    <string name="recurrence_yearly">سنويًا</string>
+    <string name="reminder_none">بدون تذكير</string>
+    <string name="reminder_30_min">قبل 30 دقيقة</string>
+    <string name="reminder_1_hour">قبل ساعة</string>
+    <string name="reminder_1_day">قبل يوم</string>
+    <string name="event_save">حفظ الحدث</string>
+    <string name="event_delete">حذف الحدث</string>
+    <string name="event_created">تم إنشاء الحدث</string>
+    <string name="event_updated">تم تحديث الحدث</string>
+
+    <string name="pomodoro_title">التركيز</string>
+    <string name="pomodoro_session_focus">جلسة تركيز</string>
+    <string name="pomodoro_session_short_break">استراحة قصيرة</string>
+    <string name="pomodoro_session_long_break">استراحة طويلة</string>
+    <string name="pomodoro_start">ابدأ</string>
+    <string name="pomodoro_pause">إيقاف مؤقت</string>
+    <string name="pomodoro_resume">استئناف</string>
+    <string name="pomodoro_skip">تخطي</string>
+    <string name="pomodoro_link_task_hint">اضغط لربط مهمة</string>
+    <string name="pomodoro_session_complete">اكتملت الجلسة! 🍅</string>
+    <string name="pomodoro_history_empty_title">لا جلسات بعد</string>
+
+    <string name="ai_title">مساعد الذكاء الاصطناعي</string>
+    <string name="ai_welcome_title">كيف يمكنني مساعدتك؟</string>
+    <string name="ai_welcome_subtitle">يمكنني رؤية مهامك وأحداثك وملاحظاتك لتقديم إجابات في السياق الصحيح.</string>
+    <string name="ai_message_placeholder">اكتب رسالة…</string>
+    <string name="ai_send">إرسال</string>
+    <string name="ai_typing">يكتب…</string>
+
+    <string name="search_placeholder">ابحث في الملاحظات والمهام والأحداث…</string>
+    <string name="search_empty_title">لا نتائج لـ"%1$s"</string>
+
+    <string name="profile_title">الملف الشخصي</string>
+    <string name="profile_edit">تعديل الملف</string>
+    <string name="profile_save">حفظ</string>
+    <string name="profile_change_photo">تغيير الصورة</string>
+    <string name="profile_sign_out">تسجيل الخروج</string>
+    <string name="profile_confirm_sign_out">تسجيل الخروج؟</string>
+    <string name="profile_updated">تم تحديث الملف</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_system">النظام</string>
+
+    <string name="preferences_title">التفضيلات</string>
+    <string name="pref_pomodoro_focus_duration">مدة التركيز</string>
+    <string name="pref_pomodoro_short_break">الاستراحة القصيرة</string>
+    <string name="pref_pomodoro_long_break">الاستراحة الطويلة</string>
+    <string name="pref_notify_task_reminders">تذكيرات المهام</string>
+    <string name="pref_notify_event_reminders">تذكيرات الأحداث</string>
+    <string name="pref_ai_context_enabled">سياق مساحة العمل</string>
+
+    <string name="sync_status_synced">تمت المزامنة</string>
+    <string name="sync_status_syncing">جارٍ المزامنة…</string>
+    <string name="sync_offline_banner">أنت غير متصل — ستتم مزامنة التغييرات عند الاتصال.</string>
+
+    <string name="action_save">حفظ</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_confirm">تأكيد</string>
+    <string name="action_dismiss">رفض</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_back">رجوع</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_done">تم</string>
+    <string name="action_ok">موافق</string>
+    <string name="state_loading">جارٍ التحميل…</string>
+    <string name="state_error_generic">حدث خطأ ما. حاول مجددًا.</string>
+    <string name="state_error_no_internet">لا يوجد اتصال بالإنترنت.</string>
+    <string name="time_just_now">الآن</string>
+    <string name="time_minutes_ago">منذ %1$d دقيقة</string>
+    <string name="time_hours_ago">منذ %1$d ساعة</string>
+    <string name="time_yesterday">أمس</string>
+    <string name="date_today">اليوم</string>
+    <string name="date_tomorrow">غدًا</string>
+
+</resources>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">您的工作空间，一体化。</string>
+    <string name="app_description">笔记、任务、日历、专注计时器和 AI——尽在一处。</string>
+
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_get_started">开始使用</string>
+    <string name="onboarding_page1_title">一切尽在掌握</string>
+    <string name="onboarding_page1_body">笔记、任务和日历在单一工作空间中紧密相连。</string>
+    <string name="onboarding_page2_title">保持专注状态</string>
+    <string name="onboarding_page2_body">番茄计时器了解您正在做什么，并自动追踪您的时间。</string>
+    <string name="onboarding_page3_title">真正懂您的 AI</string>
+    <string name="onboarding_page3_body">助手在回复之前，会查看您的活跃任务、即将到来的事件和最近的笔记。</string>
+
+    <string name="auth_email">电子邮件地址</string>
+    <string name="auth_email_placeholder">you@example.com</string>
+    <string name="auth_username">用户名</string>
+    <string name="auth_username_placeholder">your_username</string>
+    <string name="auth_phone">手机号码</string>
+    <string name="auth_password">密码</string>
+    <string name="auth_confirm_password">确认密码</string>
+    <string name="auth_first_name">名</string>
+    <string name="auth_last_name">姓</string>
+    <string name="auth_identifier">电子邮件、用户名或手机号</string>
+    <string name="auth_remember_me">记住我</string>
+    <string name="auth_show_password">显示密码</string>
+    <string name="auth_hide_password">隐藏密码</string>
+
+    <string name="login_title">欢迎回来</string>
+    <string name="login_subtitle">登录您的工作空间</string>
+    <string name="login_button">登录</string>
+    <string name="login_forgot_password">忘记密码？</string>
+    <string name="login_no_account">还没有账户？</string>
+    <string name="login_sign_up">注册</string>
+    <string name="login_error_invalid_credentials">凭据无效，请重试。</string>
+    <string name="login_error_account_locked">账户已锁定，请在 %1$s 分钟后重试。</string>
+    <string name="login_error_email_not_verified">请先验证您的电子邮件后再登录。</string>
+    <string name="login_error_account_inactive">此账户已被停用。</string>
+
+    <string name="register_title">创建账户</string>
+    <string name="register_subtitle">开启您的效率之旅</string>
+    <string name="register_button">创建账户</string>
+    <string name="register_has_account">已有账户？</string>
+    <string name="register_sign_in">登录</string>
+    <string name="register_step_account">账户</string>
+    <string name="register_step_profile">个人资料</string>
+    <string name="register_step_preferences">偏好设置</string>
+    <string name="register_step_verify">验证</string>
+    <string name="register_error_email_taken">此电子邮件已被注册。</string>
+    <string name="register_error_username_taken">此用户名已被占用。</string>
+    <string name="register_error_weak_password">密码至少 8 个字符，需包含大写字母、小写字母、数字和特殊字符。</string>
+    <string name="register_error_passwords_mismatch">两次密码不一致。</string>
+    <string name="register_success">账户已创建！请检查您的电子邮件以完成验证。</string>
+
+    <string name="verify_email_title">查看您的邮件</string>
+    <string name="verify_email_subtitle">我们已向 %1$s 发送了一个 6 位验证码</string>
+    <string name="verify_email_resend">重新发送验证码</string>
+    <string name="verify_email_resend_in">%1$s 后重新发送</string>
+    <string name="verify_email_button">验证邮件</string>
+    <string name="verify_email_success">邮件已验证！欢迎使用 ProductivityX。</string>
+    <string name="verify_email_error_invalid">验证码无效或已过期，请重试。</string>
+    <string name="verify_email_resent">新验证码已发送至您的邮件。</string>
+
+    <string name="forgot_password_title">忘记密码？</string>
+    <string name="forgot_password_subtitle">输入您的电子邮件，我们将发送重置链接。</string>
+    <string name="forgot_password_button">发送重置链接</string>
+    <string name="forgot_password_back_to_login">返回登录</string>
+    <string name="forgot_password_sent">如果该邮件存在，重置链接已发送。</string>
+
+    <string name="reset_password_title">设置新密码</string>
+    <string name="reset_password_new">新密码</string>
+    <string name="reset_password_confirm">确认新密码</string>
+    <string name="reset_password_button">重置密码</string>
+    <string name="reset_password_success">密码已重置，您可以登录了。</string>
+
+    <string name="change_password_title">修改密码</string>
+    <string name="change_password_current">当前密码</string>
+    <string name="change_password_new">新密码</string>
+    <string name="change_password_confirm">确认新密码</string>
+    <string name="change_password_button">更新密码</string>
+    <string name="change_password_success">密码更新成功。</string>
+    <string name="change_password_error_wrong_current">当前密码不正确。</string>
+
+    <string name="nav_home">首页</string>
+    <string name="nav_notes">笔记</string>
+    <string name="nav_tasks">任务</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">专注</string>
+    <string name="nav_profile">个人</string>
+    <string name="nav_search">搜索</string>
+
+    <string name="home_greeting_morning">早上好，%1$s 👋</string>
+    <string name="home_greeting_afternoon">下午好，%1$s 👋</string>
+    <string name="home_greeting_evening">晚上好，%1$s 👋</string>
+    <string name="home_due_today">今日到期</string>
+    <string name="home_overdue">已逾期</string>
+    <string name="home_this_week">本周</string>
+    <string name="home_total_notes">笔记总数</string>
+    <string name="home_todays_focus">今日专注</string>
+    <string name="home_upcoming_events">即将到来的事件</string>
+    <string name="home_recent_notes">最近笔记</string>
+    <string name="home_see_all">查看全部</string>
+    <string name="home_quick_add">快速添加</string>
+
+    <string name="notes_title">笔记</string>
+    <string name="notes_new">新建笔记</string>
+    <string name="notes_filter_all">全部</string>
+    <string name="notes_filter_pinned">已置顶</string>
+    <string name="notes_search_placeholder">搜索笔记…</string>
+    <string name="notes_empty_title">暂无笔记</string>
+    <string name="notes_empty_subtitle">点击 + 写下您的第一篇笔记。</string>
+    <string name="notes_untitled">无标题</string>
+    <string name="notes_content_placeholder">开始写作…</string>
+    <string name="notes_pin">置顶笔记</string>
+    <string name="notes_unpin">取消置顶</string>
+    <string name="notes_delete">移至回收站</string>
+    <string name="notes_restore">恢复</string>
+    <string name="notes_delete_permanently">永久删除</string>
+    <string name="notes_trash_title">回收站</string>
+    <string name="notes_saved">笔记已保存</string>
+    <string name="notes_deleted">笔记已移至回收站</string>
+
+    <string name="tasks_title">任务</string>
+    <string name="tasks_new">新建任务</string>
+    <string name="tasks_filter_all">全部</string>
+    <string name="tasks_filter_today">今天</string>
+    <string name="tasks_filter_upcoming">即将到来</string>
+    <string name="tasks_filter_completed">已完成</string>
+    <string name="tasks_view_list">列表视图</string>
+    <string name="tasks_view_kanban">看板视图</string>
+    <string name="tasks_empty_title">暂无任务</string>
+    <string name="tasks_empty_subtitle">添加您的第一个任务开始使用。</string>
+    <string name="tasks_title_placeholder">任务标题…</string>
+    <string name="tasks_priority">优先级</string>
+    <string name="tasks_due_date">截止日期</string>
+    <string name="tasks_due_time">截止时间</string>
+    <string name="tasks_reminder">提醒</string>
+    <string name="task_status_todo">待办</string>
+    <string name="task_status_in_progress">进行中</string>
+    <string name="task_status_on_hold">暂停</string>
+    <string name="task_status_done">已完成</string>
+    <string name="task_status_cancelled">已取消</string>
+    <string name="task_priority_low">低</string>
+    <string name="task_priority_medium">中</string>
+    <string name="task_priority_high">高</string>
+    <string name="task_priority_urgent">紧急</string>
+    <string name="tasks_save">保存任务</string>
+    <string name="tasks_delete">删除任务</string>
+    <string name="tasks_created">任务已创建</string>
+    <string name="tasks_updated">任务已更新</string>
+    <string name="tasks_completed">任务已完成 🎉</string>
+    <string name="tasks_overdue_label">已逾期</string>
+
+    <string name="calendar_title">日历</string>
+    <string name="calendar_today">今天</string>
+    <string name="calendar_view_week">周视图</string>
+    <string name="calendar_view_month">月视图</string>
+    <string name="calendar_new_event">新建事件</string>
+    <string name="calendar_all_day">全天</string>
+    <string name="event_title_placeholder">事件标题…</string>
+    <string name="event_start_time">开始时间</string>
+    <string name="event_end_time">结束时间</string>
+    <string name="event_recurrence">重复</string>
+    <string name="recurrence_none">不重复</string>
+    <string name="recurrence_daily">每天</string>
+    <string name="recurrence_weekly">每周</string>
+    <string name="recurrence_monthly">每月</string>
+    <string name="recurrence_yearly">每年</string>
+    <string name="reminder_none">无提醒</string>
+    <string name="reminder_30_min">提前 30 分钟</string>
+    <string name="reminder_1_hour">提前 1 小时</string>
+    <string name="reminder_1_day">提前 1 天</string>
+    <string name="event_save">保存事件</string>
+    <string name="event_delete">删除事件</string>
+    <string name="event_created">事件已创建</string>
+    <string name="event_updated">事件已更新</string>
+
+    <string name="pomodoro_title">专注</string>
+    <string name="pomodoro_session_focus">专注</string>
+    <string name="pomodoro_session_short_break">短休息</string>
+    <string name="pomodoro_session_long_break">长休息</string>
+    <string name="pomodoro_start">开始</string>
+    <string name="pomodoro_pause">暂停</string>
+    <string name="pomodoro_resume">继续</string>
+    <string name="pomodoro_skip">跳过</string>
+    <string name="pomodoro_link_task_hint">点击关联一个任务</string>
+    <string name="pomodoro_session_complete">专注完成！🍅</string>
+    <string name="pomodoro_history_empty_title">暂无记录</string>
+
+    <string name="ai_title">AI 助手</string>
+    <string name="ai_welcome_title">我能帮您什么？</string>
+    <string name="ai_welcome_subtitle">我可以查看您的任务、事件和笔记，为您提供有针对性的回答。</string>
+    <string name="ai_message_placeholder">发消息…</string>
+    <string name="ai_send">发送</string>
+    <string name="ai_typing">正在输入…</string>
+
+    <string name="search_placeholder">搜索笔记、任务、事件…</string>
+    <string name="search_empty_title">未找到"%1$s"的结果</string>
+
+    <string name="profile_title">个人资料</string>
+    <string name="profile_edit">编辑资料</string>
+    <string name="profile_save">保存</string>
+    <string name="profile_change_photo">更换头像</string>
+    <string name="profile_sign_out">退出登录</string>
+    <string name="profile_confirm_sign_out">确定退出？</string>
+    <string name="profile_updated">资料已更新</string>
+    <string name="theme_dark">深色</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_system">跟随系统</string>
+
+    <string name="preferences_title">偏好设置</string>
+    <string name="pref_pomodoro_focus_duration">专注时长</string>
+    <string name="pref_pomodoro_short_break">短休息</string>
+    <string name="pref_pomodoro_long_break">长休息</string>
+    <string name="pref_notify_task_reminders">任务提醒</string>
+    <string name="pref_notify_event_reminders">事件提醒</string>
+    <string name="pref_ai_context_enabled">工作空间上下文</string>
+
+    <string name="sync_status_synced">已同步</string>
+    <string name="sync_status_syncing">同步中…</string>
+    <string name="sync_offline_banner">您已离线——重新连接后将自动同步。</string>
+
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_delete">删除</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_confirm">确认</string>
+    <string name="action_dismiss">忽略</string>
+    <string name="action_close">关闭</string>
+    <string name="action_back">返回</string>
+    <string name="action_retry">重试</string>
+    <string name="action_done">完成</string>
+    <string name="action_ok">确定</string>
+    <string name="state_loading">加载中…</string>
+    <string name="state_error_generic">出现错误，请重试。</string>
+    <string name="state_error_no_internet">无网络连接。</string>
+    <string name="time_just_now">刚刚</string>
+    <string name="time_minutes_ago">%1$d 分钟前</string>
+    <string name="time_hours_ago">%1$d 小时前</string>
+    <string name="time_yesterday">昨天</string>
+    <string name="date_today">今天</string>
+    <string name="date_tomorrow">明天</string>
+
+</resources>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Seu espaço de trabalho. Unificado.</string>
+    <string name="app_description">Notas, tarefas, calendário, temporizador de foco e IA — tudo em um só lugar.</string>
+
+    <string name="onboarding_skip">Pular</string>
+    <string name="onboarding_next">Próximo</string>
+    <string name="onboarding_get_started">Começar</string>
+    <string name="onboarding_page1_title">Tudo em um só lugar</string>
+    <string name="onboarding_page1_body">Notas, tarefas e seu calendário conectados em um único espaço de trabalho.</string>
+    <string name="onboarding_page2_title">Mantenha seu ritmo</string>
+    <string name="onboarding_page2_body">O temporizador Pomodoro sabe no que você está trabalhando e registra seu tempo automaticamente.</string>
+    <string name="onboarding_page3_title">Uma IA que entende você</string>
+    <string name="onboarding_page3_body">Seu assistente vê suas tarefas ativas, eventos futuros e notas recentes antes de responder.</string>
+
+    <string name="auth_email">Endereço de e-mail</string>
+    <string name="auth_email_placeholder">voce@exemplo.com</string>
+    <string name="auth_username">Nome de usuário</string>
+    <string name="auth_phone">Número de telefone</string>
+    <string name="auth_password">Senha</string>
+    <string name="auth_confirm_password">Confirmar senha</string>
+    <string name="auth_first_name">Nome</string>
+    <string name="auth_last_name">Sobrenome</string>
+    <string name="auth_identifier">E-mail, nome de usuário ou telefone</string>
+    <string name="auth_remember_me">Lembrar de mim</string>
+    <string name="auth_show_password">Mostrar senha</string>
+    <string name="auth_hide_password">Ocultar senha</string>
+
+    <string name="login_title">Bem-vindo de volta</string>
+    <string name="login_subtitle">Entre no seu espaço de trabalho</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_forgot_password">Esqueceu a senha?</string>
+    <string name="login_no_account">Não tem uma conta?</string>
+    <string name="login_sign_up">Cadastrar-se</string>
+    <string name="login_error_invalid_credentials">Credenciais inválidas. Tente novamente.</string>
+    <string name="login_error_account_locked">Conta bloqueada. Tente em %1$s minutos.</string>
+    <string name="login_error_email_not_verified">Verifique seu e-mail antes de entrar.</string>
+    <string name="login_error_account_inactive">Esta conta foi desativada.</string>
+
+    <string name="register_title">Criar conta</string>
+    <string name="register_subtitle">Comece sua jornada de produtividade</string>
+    <string name="register_button">Criar conta</string>
+    <string name="register_has_account">Já tem uma conta?</string>
+    <string name="register_sign_in">Entrar</string>
+    <string name="register_step_account">Conta</string>
+    <string name="register_step_profile">Perfil</string>
+    <string name="register_step_preferences">Preferências</string>
+    <string name="register_step_verify">Verificar</string>
+    <string name="register_error_email_taken">Este e-mail já está registrado.</string>
+    <string name="register_error_username_taken">Este nome de usuário já está em uso.</string>
+    <string name="register_error_weak_password">A senha deve ter pelo menos 8 caracteres com maiúsculas, minúsculas, número e caractere especial.</string>
+    <string name="register_error_passwords_mismatch">As senhas não coincidem.</string>
+    <string name="register_success">Conta criada! Verifique seu e-mail para confirmar.</string>
+
+    <string name="verify_email_title">Verifique seu e-mail</string>
+    <string name="verify_email_subtitle">Enviamos um código de 6 dígitos para %1$s</string>
+    <string name="verify_email_resend">Reenviar código</string>
+    <string name="verify_email_resend_in">Reenviar em %1$s</string>
+    <string name="verify_email_button">Verificar e-mail</string>
+    <string name="verify_email_success">E-mail verificado! Bem-vindo ao ProductivityX.</string>
+    <string name="verify_email_error_invalid">Código inválido ou expirado. Tente novamente.</string>
+    <string name="verify_email_resent">Um novo código foi enviado para seu e-mail.</string>
+
+    <string name="forgot_password_title">Esqueceu a senha?</string>
+    <string name="forgot_password_subtitle">Informe seu e-mail e enviaremos um link de redefinição.</string>
+    <string name="forgot_password_button">Enviar link</string>
+    <string name="forgot_password_back_to_login">Voltar ao login</string>
+    <string name="forgot_password_sent">Se esse e-mail existir, o link está a caminho.</string>
+
+    <string name="reset_password_title">Definir nova senha</string>
+    <string name="reset_password_new">Nova senha</string>
+    <string name="reset_password_confirm">Confirmar nova senha</string>
+    <string name="reset_password_button">Redefinir senha</string>
+    <string name="reset_password_success">Senha redefinida com sucesso. Você já pode entrar.</string>
+
+    <string name="change_password_title">Alterar senha</string>
+    <string name="change_password_current">Senha atual</string>
+    <string name="change_password_new">Nova senha</string>
+    <string name="change_password_confirm">Confirmar nova senha</string>
+    <string name="change_password_button">Atualizar senha</string>
+    <string name="change_password_success">Senha atualizada com sucesso.</string>
+    <string name="change_password_error_wrong_current">A senha atual está incorreta.</string>
+
+    <string name="nav_home">Início</string>
+    <string name="nav_notes">Notas</string>
+    <string name="nav_tasks">Tarefas</string>
+    <string name="nav_calendar">Calendário</string>
+    <string name="nav_ai">IA</string>
+    <string name="nav_pomodoro">Foco</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_search">Pesquisar</string>
+
+    <string name="home_greeting_morning">Bom dia, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Boa tarde, %1$s 👋</string>
+    <string name="home_greeting_evening">Boa noite, %1$s 👋</string>
+    <string name="home_due_today">Para hoje</string>
+    <string name="home_overdue">Atrasadas</string>
+    <string name="home_this_week">Esta semana</string>
+    <string name="home_total_notes">Total de notas</string>
+    <string name="home_todays_focus">Foco de hoje</string>
+    <string name="home_upcoming_events">Próximos eventos</string>
+    <string name="home_recent_notes">Notas recentes</string>
+    <string name="home_see_all">Ver tudo</string>
+    <string name="home_quick_add">Adicionar rápido</string>
+
+    <string name="notes_title">Notas</string>
+    <string name="notes_new">Nova nota</string>
+    <string name="notes_filter_all">Todas</string>
+    <string name="notes_filter_pinned">Fixadas</string>
+    <string name="notes_search_placeholder">Pesquisar notas…</string>
+    <string name="notes_empty_title">Nenhuma nota ainda</string>
+    <string name="notes_empty_subtitle">Toque em + para escrever sua primeira nota.</string>
+    <string name="notes_untitled">Sem título</string>
+    <string name="notes_content_placeholder">Comece a escrever…</string>
+    <string name="notes_pin">Fixar nota</string>
+    <string name="notes_unpin">Desafixar nota</string>
+    <string name="notes_delete">Mover para lixeira</string>
+    <string name="notes_restore">Restaurar</string>
+    <string name="notes_delete_permanently">Excluir permanentemente</string>
+    <string name="notes_trash_title">Lixeira</string>
+    <string name="notes_saved">Nota salva</string>
+    <string name="notes_deleted">Nota movida para a lixeira</string>
+
+    <string name="tasks_title">Tarefas</string>
+    <string name="tasks_new">Nova tarefa</string>
+    <string name="tasks_filter_all">Todas</string>
+    <string name="tasks_filter_today">Hoje</string>
+    <string name="tasks_filter_upcoming">Próximas</string>
+    <string name="tasks_filter_completed">Concluídas</string>
+    <string name="tasks_view_list">Visualização em lista</string>
+    <string name="tasks_view_kanban">Visualização kanban</string>
+    <string name="tasks_empty_title">Nenhuma tarefa ainda</string>
+    <string name="tasks_empty_subtitle">Adicione sua primeira tarefa para começar.</string>
+    <string name="tasks_title_placeholder">Título da tarefa…</string>
+    <string name="tasks_priority">Prioridade</string>
+    <string name="tasks_due_date">Data limite</string>
+    <string name="tasks_reminder">Lembrete</string>
+    <string name="task_status_todo">A fazer</string>
+    <string name="task_status_in_progress">Em andamento</string>
+    <string name="task_status_on_hold">Em espera</string>
+    <string name="task_status_done">Concluído</string>
+    <string name="task_status_cancelled">Cancelado</string>
+    <string name="task_priority_low">Baixa</string>
+    <string name="task_priority_medium">Média</string>
+    <string name="task_priority_high">Alta</string>
+    <string name="task_priority_urgent">Urgente</string>
+    <string name="tasks_save">Salvar tarefa</string>
+    <string name="tasks_delete">Excluir tarefa</string>
+    <string name="tasks_created">Tarefa criada</string>
+    <string name="tasks_updated">Tarefa atualizada</string>
+    <string name="tasks_completed">Tarefa concluída! 🎉</string>
+    <string name="tasks_overdue_label">Atrasada</string>
+
+    <string name="calendar_title">Calendário</string>
+    <string name="calendar_today">Hoje</string>
+    <string name="calendar_view_week">Semana</string>
+    <string name="calendar_view_month">Mês</string>
+    <string name="calendar_new_event">Novo evento</string>
+    <string name="calendar_all_day">Dia todo</string>
+    <string name="event_title_placeholder">Título do evento…</string>
+    <string name="event_start_time">Início</string>
+    <string name="event_end_time">Fim</string>
+    <string name="event_recurrence">Repetir</string>
+    <string name="recurrence_none">Não repetir</string>
+    <string name="recurrence_daily">Diariamente</string>
+    <string name="recurrence_weekly">Semanalmente</string>
+    <string name="recurrence_monthly">Mensalmente</string>
+    <string name="recurrence_yearly">Anualmente</string>
+    <string name="reminder_none">Sem lembrete</string>
+    <string name="reminder_30_min">30 minutos antes</string>
+    <string name="reminder_1_hour">1 hora antes</string>
+    <string name="reminder_1_day">1 dia antes</string>
+    <string name="event_save">Salvar evento</string>
+    <string name="event_delete">Excluir evento</string>
+    <string name="event_created">Evento criado</string>
+    <string name="event_updated">Evento atualizado</string>
+
+    <string name="pomodoro_title">Foco</string>
+    <string name="pomodoro_session_focus">Sessão de foco</string>
+    <string name="pomodoro_session_short_break">Pausa curta</string>
+    <string name="pomodoro_session_long_break">Pausa longa</string>
+    <string name="pomodoro_start">Iniciar</string>
+    <string name="pomodoro_pause">Pausar</string>
+    <string name="pomodoro_resume">Retomar</string>
+    <string name="pomodoro_skip">Pular</string>
+    <string name="pomodoro_link_task_hint">Toque para vincular uma tarefa</string>
+    <string name="pomodoro_session_complete">Sessão concluída! 🍅</string>
+    <string name="pomodoro_history_empty_title">Nenhuma sessão ainda</string>
+
+    <string name="ai_title">Assistente IA</string>
+    <string name="ai_welcome_title">Como posso ajudar?</string>
+    <string name="ai_welcome_subtitle">Posso ver suas tarefas, eventos e notas para dar respostas contextualizadas.</string>
+    <string name="ai_message_placeholder">Mensagem…</string>
+    <string name="ai_send">Enviar</string>
+    <string name="ai_typing">Digitando…</string>
+
+    <string name="search_placeholder">Pesquisar notas, tarefas, eventos…</string>
+    <string name="search_empty_title">Nenhum resultado para "%1$s"</string>
+
+    <string name="profile_title">Perfil</string>
+    <string name="profile_edit">Editar perfil</string>
+    <string name="profile_save">Salvar</string>
+    <string name="profile_change_photo">Alterar foto</string>
+    <string name="profile_sign_out">Sair</string>
+    <string name="profile_confirm_sign_out">Sair da conta?</string>
+    <string name="profile_updated">Perfil atualizado</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_system">Sistema</string>
+
+    <string name="preferences_title">Preferências</string>
+    <string name="pref_pomodoro_focus_duration">Duração do foco</string>
+    <string name="pref_pomodoro_short_break">Pausa curta</string>
+    <string name="pref_pomodoro_long_break">Pausa longa</string>
+    <string name="pref_notify_task_reminders">Lembretes de tarefas</string>
+    <string name="pref_notify_event_reminders">Lembretes de eventos</string>
+    <string name="pref_ai_context_enabled">Contexto do espaço de trabalho</string>
+
+    <string name="sync_status_synced">Sincronizado</string>
+    <string name="sync_status_syncing">Sincronizando…</string>
+    <string name="sync_offline_banner">Você está offline — as alterações serão sincronizadas ao reconectar.</string>
+
+    <string name="action_save">Salvar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_confirm">Confirmar</string>
+    <string name="action_dismiss">Dispensar</string>
+    <string name="action_close">Fechar</string>
+    <string name="action_back">Voltar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_done">Concluído</string>
+    <string name="action_ok">OK</string>
+    <string name="state_loading">Carregando…</string>
+    <string name="state_error_generic">Algo deu errado. Tente novamente.</string>
+    <string name="state_error_no_internet">Sem conexão com a internet.</string>
+    <string name="time_just_now">Agora mesmo</string>
+    <string name="time_minutes_ago">Há %1$d min</string>
+    <string name="time_hours_ago">Há %1$dh</string>
+    <string name="time_yesterday">Ontem</string>
+    <string name="date_today">Hoje</string>
+    <string name="date_tomorrow">Amanhã</string>
+
+</resources>
