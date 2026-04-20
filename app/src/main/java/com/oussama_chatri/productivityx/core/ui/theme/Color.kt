@@ -1,0 +1,210 @@
+package com.oussama_chatri.productivityx.core.ui.theme
+
+import androidx.compose.ui.graphics.Color
+import com.oussama_chatri.productivityx.core.enums.AppTheme
+
+object PriorityColors {
+    val Low    = Color(0xFF6B7280)
+    val Medium = Color(0xFF3B82F6)
+    val High   = Color(0xFFF59E0B)
+    val Urgent = Color(0xFFEF4444)
+}
+
+data class PxColorScheme(
+    val Primary:        Color,
+    val PrimaryVariant: Color,
+    val Secondary:      Color,
+    val Background:     Color,
+    val Surface:        Color,
+    val SurfaceVariant: Color,
+    val OnPrimary:      Color,
+    val OnBackground:   Color,
+    val OnSurface:      Color,
+    val OnSurfaceDim:   Color,
+    val Outline:        Color,
+    val Error:          Color,
+    val ErrorVariant:   Color,
+    val Success:        Color,
+    val SuccessVariant: Color,
+    val Warning:        Color,
+    val WarningVariant: Color,
+    val Info:           Color,
+)
+
+private val DarkScheme = PxColorScheme(
+    Primary        = Color(0xFF6366F1),
+    PrimaryVariant = Color(0xFF4F46E5),
+    Secondary      = Color(0xFF8B5CF6),
+    Background     = Color(0xFF0F0F14),
+    Surface        = Color(0xFF1A1A24),
+    SurfaceVariant = Color(0xFF252533),
+    OnPrimary      = Color(0xFFFFFFFF),
+    OnBackground   = Color(0xFFEEEEF5),
+    OnSurface      = Color(0xFFCCCCD8),
+    OnSurfaceDim   = Color(0xFF888899),
+    Outline        = Color(0xFF3A3A50),
+    Error          = Color(0xFFEF4444),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF22C55E),
+    SuccessVariant = Color(0xFF14532D),
+    Warning        = Color(0xFFF59E0B),
+    WarningVariant = Color(0xFF78350F),
+    Info           = Color(0xFF3B82F6),
+)
+
+private val LightScheme = PxColorScheme(
+    Primary        = Color(0xFF4F46E5),
+    PrimaryVariant = Color(0xFF3730A3),
+    Secondary      = Color(0xFF7C3AED),
+    Background     = Color(0xFFF4F4F8),
+    Surface        = Color(0xFFFFFFFF),
+    SurfaceVariant = Color(0xFFEEEEF4),
+    OnPrimary      = Color(0xFFFFFFFF),
+    OnBackground   = Color(0xFF111118),
+    OnSurface      = Color(0xFF333340),
+    OnSurfaceDim   = Color(0xFF888899),
+    Outline        = Color(0xFFD0D0E0),
+    Error          = Color(0xFFDC2626),
+    ErrorVariant   = Color(0xFFFEE2E2),
+    Success        = Color(0xFF16A34A),
+    SuccessVariant = Color(0xFFDCFCE7),
+    Warning        = Color(0xFFD97706),
+    WarningVariant = Color(0xFFFEF3C7),
+    Info           = Color(0xFF2563EB),
+)
+
+private val OceanScheme = PxColorScheme(
+    Primary        = Color(0xFF06B6D4), // Cyan-500
+    PrimaryVariant = Color(0xFF0891B2), // Cyan-600
+    Secondary      = Color(0xFF38BDF8), // Sky-400
+    Background     = Color(0xFF060D14),
+    Surface        = Color(0xFF0C1A26),
+    SurfaceVariant = Color(0xFF152433),
+    OnPrimary      = Color(0xFF000D14),
+    OnBackground   = Color(0xFFE0F2FE),
+    OnSurface      = Color(0xFFBAE6FD),
+    OnSurfaceDim   = Color(0xFF5CA7C4),
+    Outline        = Color(0xFF1E3A4F),
+    Error          = Color(0xFFEF4444),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF10B981),
+    SuccessVariant = Color(0xFF064E3B),
+    Warning        = Color(0xFFF59E0B),
+    WarningVariant = Color(0xFF78350F),
+    Info           = Color(0xFF818CF8),
+)
+
+private val AmberScheme = PxColorScheme(
+    Primary        = Color(0xFFF59E0B), // Amber-500
+    PrimaryVariant = Color(0xFFD97706), // Amber-600
+    Secondary      = Color(0xFFFBBF24), // Amber-400
+    Background     = Color(0xFF100C00),
+    Surface        = Color(0xFF1A1400),
+    SurfaceVariant = Color(0xFF261E00),
+    OnPrimary      = Color(0xFF100C00),
+    OnBackground   = Color(0xFFFEF3C7),
+    OnSurface      = Color(0xFFFDE68A),
+    OnSurfaceDim   = Color(0xFFB8962A),
+    Outline        = Color(0xFF3D3000),
+    Error          = Color(0xFFEF4444),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF22C55E),
+    SuccessVariant = Color(0xFF14532D),
+    Warning        = Color(0xFFFCA5A5),
+    WarningVariant = Color(0xFF7F1D1D),
+    Info           = Color(0xFF60A5FA),
+)
+
+private val ForestScheme = PxColorScheme(
+    Primary        = Color(0xFF22C55E), // Green-500
+    PrimaryVariant = Color(0xFF16A34A), // Green-600
+    Secondary      = Color(0xFF4ADE80), // Green-400
+    Background     = Color(0xFF060E08),
+    Surface        = Color(0xFF0D1A10),
+    SurfaceVariant = Color(0xFF142419),
+    OnPrimary      = Color(0xFF060E08),
+    OnBackground   = Color(0xFFDCFCE7),
+    OnSurface      = Color(0xFFBBF7D0),
+    OnSurfaceDim   = Color(0xFF4D9B67),
+    Outline        = Color(0xFF1C3D24),
+    Error          = Color(0xFFEF4444),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF86EFAC),
+    SuccessVariant = Color(0xFF14532D),
+    Warning        = Color(0xFFF59E0B),
+    WarningVariant = Color(0xFF78350F),
+    Info           = Color(0xFF38BDF8),
+)
+
+private val RoseScheme = PxColorScheme(
+    Primary        = Color(0xFFF43F5E), // Rose-500
+    PrimaryVariant = Color(0xFFE11D48), // Rose-600
+    Secondary      = Color(0xFFFB7185), // Rose-400
+    Background     = Color(0xFF100509),
+    Surface        = Color(0xFF1C0A10),
+    SurfaceVariant = Color(0xFF280F17),
+    OnPrimary      = Color(0xFFFFFFFF),
+    OnBackground   = Color(0xFFFFE4E6),
+    OnSurface      = Color(0xFFFECDD3),
+    OnSurfaceDim   = Color(0xFFA85068),
+    Outline        = Color(0xFF3D1522),
+    Error          = Color(0xFFFF6B6B),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF22C55E),
+    SuccessVariant = Color(0xFF14532D),
+    Warning        = Color(0xFFF59E0B),
+    WarningVariant = Color(0xFF78350F),
+    Info           = Color(0xFF60A5FA),
+)
+
+fun appColorScheme(theme: AppTheme, isSystemInDarkTheme: Boolean): PxColorScheme = when (theme) {
+    AppTheme.DARK   -> DarkScheme
+    AppTheme.LIGHT  -> LightScheme
+    AppTheme.SYSTEM -> if (isSystemInDarkTheme) DarkScheme else LightScheme
+    AppTheme.OCEAN  -> OceanScheme
+    AppTheme.AMBER  -> AmberScheme
+    AppTheme.FOREST -> ForestScheme
+    AppTheme.ROSE   -> RoseScheme
+}
+
+object PxColors {
+    var Primary:        Color = DarkScheme.Primary;        internal set
+    var PrimaryVariant: Color = DarkScheme.PrimaryVariant; internal set
+    var Secondary:      Color = DarkScheme.Secondary;      internal set
+    var Background:     Color = DarkScheme.Background;     internal set
+    var Surface:        Color = DarkScheme.Surface;        internal set
+    var SurfaceVariant: Color = DarkScheme.SurfaceVariant; internal set
+    var OnPrimary:      Color = DarkScheme.OnPrimary;      internal set
+    var OnBackground:   Color = DarkScheme.OnBackground;   internal set
+    var OnSurface:      Color = DarkScheme.OnSurface;      internal set
+    var OnSurfaceDim:   Color = DarkScheme.OnSurfaceDim;   internal set
+    var Outline:        Color = DarkScheme.Outline;        internal set
+    var Error:          Color = DarkScheme.Error;          internal set
+    var ErrorVariant:   Color = DarkScheme.ErrorVariant;   internal set
+    var Success:        Color = DarkScheme.Success;        internal set
+    var SuccessVariant: Color = DarkScheme.SuccessVariant; internal set
+    var Warning:        Color = DarkScheme.Warning;        internal set
+    var WarningVariant: Color = DarkScheme.WarningVariant; internal set
+    var Info:           Color = DarkScheme.Info;           internal set
+
+    internal fun applyScheme(scheme: PxColorScheme) {
+        Primary        = scheme.Primary
+        PrimaryVariant = scheme.PrimaryVariant
+        Secondary      = scheme.Secondary
+        Background     = scheme.Background
+        Surface        = scheme.Surface
+        SurfaceVariant = scheme.SurfaceVariant
+        OnPrimary      = scheme.OnPrimary
+        OnBackground   = scheme.OnBackground
+        OnSurface      = scheme.OnSurface
+        OnSurfaceDim   = scheme.OnSurfaceDim
+        Outline        = scheme.Outline
+        Error          = scheme.Error
+        ErrorVariant   = scheme.ErrorVariant
+        Success        = scheme.Success
+        SuccessVariant = scheme.SuccessVariant
+        Warning        = scheme.Warning
+        WarningVariant = scheme.WarningVariant
+        Info           = scheme.Info
+    }
+}
