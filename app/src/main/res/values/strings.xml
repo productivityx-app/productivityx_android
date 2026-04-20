@@ -94,6 +94,9 @@
     <string name="connect">Connect</string>
     <string name="disconnect">Disconnect</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="error_generic">Something went wrong. Please try again.</string>
     <string name="error_network">No internet connection. Check your network and try again.</string>
     <string name="error_timeout">The request timed out. Please try again.</string>
@@ -110,6 +113,9 @@
     <string name="error_offline_action">This action requires an internet connection.</string>
     <string name="error_conflict">A conflict occurred. Please refresh and try again.</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="onboarding_page1_title">Everything in one place</string>
     <string name="onboarding_page1_body">Notes, tasks, and your calendar connected in a single workspace.</string>
     <string name="onboarding_page2_title">Stay in your flow</string>
@@ -120,6 +126,9 @@
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="auth_sign_in">Sign in</string>
     <string name="auth_sign_up">Sign up</string>
     <string name="auth_sign_out">Sign out</string>
@@ -132,6 +141,29 @@
     <string name="auth_create_your_account">Create your account</string>
     <string name="auth_join_productivityx">Join ProductivityX</string>
 
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Forgot password?</string>
+    <string name="auth_forgot_password_title">Forgot your password?</string>
+    <string name="auth_forgot_password_body">Enter your email address and we\'ll send you a link to reset your password.</string>
+    <string name="auth_forgot_password_success_title">Reset link sent</string>
+    <string name="auth_forgot_password_success_body">If that email exists, a reset link has been sent. Check your inbox.</string>
+
+    <string name="auth_reset_password_title">Reset your password</string>
+    <string name="auth_reset_password_body">Enter a new password for your account.</string>
+    <string name="auth_reset_password_action">Reset password</string>
+    <string name="auth_reset_password_success_title">Password reset!</string>
+    <string name="auth_reset_password_success_body">Your password has been changed. Sign in with your new password.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">Check your email</string>
+    <string name="auth_verify_email_body">We sent a 6-digit code to %1$s</string>
+    <string name="auth_verify">Verify</string>
+    <string name="auth_resend_code">Resend code</string>
+    <string name="auth_resend_cooldown">Resend in %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="field_email">Email address</string>
     <string name="field_email_hint">Enter your email</string>
     <string name="field_password">Password</string>
@@ -162,6 +194,9 @@
     <string name="field_theme">Theme</string>
     <string name="field_avatar">Profile photo</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="password_show">Show password</string>
     <string name="password_hide">Hide password</string>
     <string name="password_strength_weak">Weak</string>
@@ -178,6 +213,9 @@
     <string name="password_change">Change password</string>
     <string name="password_mismatch">Passwords do not match.</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="register_step_account">Account</string>
     <string name="register_step_profile">Profile</string>
     <string name="register_step_preferences">Preferences</string>
@@ -186,60 +224,25 @@
     <string name="register_change_photo">Change photo</string>
     <string name="register_preferences_caption">You can change these anytime in settings.</string>
 
-    <string name="gender_male">Male</string>
-    <string name="gender_female">Female</string>
-    <string name="gender_prefer_not_to_say">Prefer not to say</string>
-
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="theme_dark">Dark</string>
     <string name="theme_light">Light</string>
     <string name="theme_system">System</string>
 
-    <string name="verify_email_title">Check your email</string>
-    <string name="verify_email_body">We sent a 6-digit code to %1$s</string>
-    <string name="verify_email_otp_hint">Enter 6-digit code</string>
-    <string name="verify_email_resend">Resend code</string>
-    <string name="verify_email_resend_countdown">Resend in %1$s</string>
-    <string name="verify_email_success">Email verified.</string>
-    <string name="verify_email_invalid_code">Invalid or expired code. Please try again.</string>
-    <string name="verify_email_expired">This verification link has expired. Please request a new one.</string>
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">Theme</string>
+    <string name="profile_theme_hint">You can change this anytime in settings.</string>
 
-    <string name="forgot_password_title">Forgot your password?</string>
-    <string name="forgot_password_body">Enter your email address and we\'ll send you a link to reset your password.</string>
-    <string name="forgot_password_send">Send reset link</string>
-    <string name="forgot_password_sent_title">Reset link sent</string>
-    <string name="forgot_password_sent_body">If that email exists, a reset link has been sent. Check your inbox.</string>
-    <string name="forgot_password_back_to_login">Back to sign in</string>
+    <!-- Gender -->
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_prefer_not_to_say">Prefer not to say</string>
 
-    <string name="reset_password_title">Reset your password</string>
-    <string name="reset_password_body">Enter a new password for your account.</string>
-    <string name="reset_password_success">Password reset. Please sign in with your new password.</string>
-    <string name="reset_password_invalid_token">This reset link is invalid or has expired.</string>
-
-    <string name="change_password_title">Change password</string>
-    <string name="change_password_success">Password changed successfully.</string>
-    <string name="change_password_current_incorrect">Current password is incorrect.</string>
-
-    <string name="login_success">Welcome back!</string>
-    <string name="login_invalid_credentials">Invalid email or password. Please try again.</string>
-    <string name="login_account_locked">Your account is temporarily locked due to too many failed attempts. Try again later.</string>
-    <string name="login_account_inactive">This account has been deactivated.</string>
-    <string name="login_email_not_verified">Please verify your email before signing in.</string>
-    <string name="login_remember_me">Remember me</string>
-
-    <string name="logout_confirm_title">Sign out</string>
-    <string name="logout_confirm_body">Are you sure you want to sign out?</string>
-    <string name="logout_success">You\'ve been signed out.</string>
-
-    <string name="register_success">Account created! Check your email to verify your account.</string>
-    <string name="register_duplicate_email">An account with this email already exists.</string>
-    <string name="register_duplicate_username">This username is already taken.</string>
-    <string name="register_duplicate_phone">An account with this phone number already exists.</string>
-    <string name="register_underage">You must be at least 13 years old to register.</string>
-    <string name="register_invalid_email">Please enter a valid email address.</string>
-    <string name="register_weak_password">Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character.</string>
-    <string name="register_invalid_phone">Please enter a valid phone number.</string>
-    <string name="register_invalid_username">Username must be 3–30 characters, using only letters, numbers, and underscores.</string>
-
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="nav_home">Home</string>
     <string name="nav_notes">Notes</string>
     <string name="nav_tasks">Tasks</string>
@@ -252,6 +255,9 @@
     <string name="nav_trash">Trash</string>
     <string name="nav_history">History</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="home_greeting_morning">Good morning, %1$s 👋</string>
     <string name="home_greeting_afternoon">Good afternoon, %1$s 👋</string>
     <string name="home_greeting_evening">Good evening, %1$s 👋</string>
@@ -274,6 +280,9 @@
     <string name="home_tasks_completed">tasks completed</string>
     <string name="home_events_upcoming">events upcoming</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="notes_title">Notes</string>
     <string name="notes_new">New note</string>
     <string name="notes_search_hint">Search notes…</string>
@@ -317,6 +326,9 @@
     <string name="notes_in_trash">%1$d note in trash</string>
     <string name="notes_in_trash_plural">%1$d notes in trash</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="editor_format_bold">Bold</string>
     <string name="editor_format_italic">Italic</string>
     <string name="editor_format_heading">Heading</string>
@@ -329,6 +341,9 @@
     <string name="editor_insert_link_url_hint">URL</string>
     <string name="editor_insert_link_text_hint">Display text</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="tags_title">Tags</string>
     <string name="tags_new">New tag</string>
     <string name="tags_name_hint">Tag name</string>
@@ -342,6 +357,9 @@
     <string name="tags_empty_title">No tags yet</string>
     <string name="tags_empty_body">Create tags to organise your notes.</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="tasks_title">Tasks</string>
     <string name="tasks_new">New task</string>
     <string name="tasks_search_hint">Search tasks…</string>
@@ -404,6 +422,7 @@
     <string name="tasks_due_today_label">Due today</string>
     <string name="tasks_due_tomorrow_label">Due tomorrow</string>
 
+    <!-- Priority / Status -->
     <string name="priority_low">Low</string>
     <string name="priority_medium">Medium</string>
     <string name="priority_high">High</string>
@@ -415,6 +434,7 @@
     <string name="status_done">Done</string>
     <string name="status_cancelled">Cancelled</string>
 
+    <!-- Kanban -->
     <string name="kanban_column_todo">To Do</string>
     <string name="kanban_column_in_progress">In Progress</string>
     <string name="kanban_column_on_hold">On Hold</string>
@@ -423,6 +443,9 @@
     <string name="kanban_drag_hint">Hold and drag to move</string>
     <string name="kanban_column_empty">No tasks here</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="calendar_title">Calendar</string>
     <string name="calendar_view_week">Week</string>
     <string name="calendar_view_month">Month</string>
@@ -436,6 +459,9 @@
     <string name="calendar_more_events">+%1$d more</string>
     <string name="calendar_week_header">Week of %1$s</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="event_new_title">New Event</string>
     <string name="event_edit_title">Edit Event</string>
     <string name="event_field_title">Event title</string>
@@ -483,6 +509,9 @@
     <string name="event_location_open_maps">Open in Maps</string>
     <string name="event_time_range">%1$s – %2$s</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="pomodoro_title">Focus</string>
     <string name="pomodoro_focus">Focus</string>
     <string name="pomodoro_short_break">Short Break</string>
@@ -535,6 +564,9 @@
     <string name="pomodoro_until_long_break">%1$d session until long break</string>
     <string name="pomodoro_until_long_break_plural">%1$d sessions until long break</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="ai_title">AI Assistant</string>
     <string name="ai_welcome_title">How can I help?</string>
     <string name="ai_welcome_body">I can see your workspace — tasks, events, and notes — to give you context-aware answers.</string>
@@ -579,6 +611,9 @@
     <string name="ai_you">You</string>
     <string name="ai_assistant">Assistant</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="search_title">Search</string>
     <string name="search_hint">Search notes, tasks, events…</string>
     <string name="search_results_notes">Notes</string>
@@ -596,6 +631,9 @@
     <string name="search_offline_notice">Searching locally. Connect to the internet for full results.</string>
     <string name="search_loading">Searching…</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="profile_title">Profile</string>
     <string name="profile_edit_title">Edit Profile</string>
     <string name="profile_change_photo">Change photo</string>
@@ -619,6 +657,9 @@
     <string name="profile_section_data">Data &amp; Sync</string>
     <string name="profile_section_about">About</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="preferences_title">Preferences</string>
     <string name="preferences_update_success">Preferences saved.</string>
     <string name="preferences_pomodoro_focus">Focus duration</string>
@@ -659,6 +700,9 @@
     <string name="preferences_compact_mode_desc">Use a denser layout to show more content</string>
     <string name="preferences_minutes_format">%1$d min</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="sync_status_synced">Synced</string>
     <string name="sync_status_pending">Pending sync</string>
     <string name="sync_status_syncing">Syncing…</string>
@@ -677,6 +721,9 @@
     <string name="sync_reconnected">Back online. Syncing…</string>
     <string name="sync_complete">All changes synced.</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="notification_channel_reminders_name">Reminders</string>
     <string name="notification_channel_reminders_desc">Task and event reminder notifications.</string>
     <string name="notification_channel_sync_name">Sync</string>
@@ -692,6 +739,9 @@
     <string name="notification_permission_allow">Allow</string>
     <string name="notification_permission_deny">Not now</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="permission_camera_title">Camera access</string>
     <string name="permission_camera_body">ProductivityX needs camera access to let you take a profile photo.</string>
     <string name="permission_storage_title">Storage access</string>
@@ -702,16 +752,9 @@
     <string name="permission_denied_body">This feature requires permission. Please enable it in settings.</string>
     <string name="permission_go_to_settings">Open settings</string>
 
-    <string name="about_version">Version %1$s</string>
-    <string name="about_build">Build %1$s</string>
-    <string name="about_privacy_policy">Privacy Policy</string>
-    <string name="about_terms_of_service">Terms of Service</string>
-    <string name="about_open_source_licenses">Open source licences</string>
-    <string name="about_rate_app">Rate the app</string>
-    <string name="about_send_feedback">Send feedback</string>
-    <string name="about_built_by">Built by Oussama Chatri</string>
-    <string name="about_copyright">© 2026 ProductivityX</string>
-
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="time_just_now">Just now</string>
     <string name="time_minutes_ago">%1$d min ago</string>
     <string name="time_hours_ago">%1$dh ago</string>
@@ -734,6 +777,7 @@
     <string name="time_minute_singular">%1$d minute</string>
     <string name="time_minute_plural">%1$d minutes</string>
 
+    <!-- Days / Months -->
     <string name="day_monday_short">Mon</string>
     <string name="day_tuesday_short">Tue</string>
     <string name="day_wednesday_short">Wed</string>
@@ -762,6 +806,9 @@
     <string name="month_november">November</string>
     <string name="month_december">December</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="empty_state_generic_title">Nothing here yet</string>
     <string name="empty_state_generic_body">Get started by creating something new.</string>
     <string name="empty_state_no_results_title">No results found</string>
@@ -772,6 +819,9 @@
     <string name="empty_state_error_body">Pull down to refresh, or tap the button below.</string>
     <string name="empty_state_retry">Try again</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="cd_back">Navigate back</string>
     <string name="cd_close">Close</string>
     <string name="cd_more_options">More options</string>
@@ -796,6 +846,9 @@
     <string name="cd_clear_input">Clear input</string>
     <string name="cd_notification">Notification</string>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
     <string name="splash_checking_session">Checking your session…</string>
     <string name="splash_loading">Loading…</string>
 
@@ -812,24 +865,25 @@
 
     <string name="task_view_list">List</string>
     <string name="task_view_kanban">Board</string>
-    <string name="calendar_view_week">Week</string>
-    <string name="calendar_view_month">Month</string>
 
-    <string name="language_en">English</string>
-    <string name="language_fr">French</string>
-    <string name="language_ar">Arabic</string>
-    <string name="language_es">Spanish</string>
-    <string name="language_de">German</string>
-    <string name="language_pt">Portuguese</string>
-    <string name="language_zh">Chinese</string>
-    <string name="language_ja">Japanese</string>
-    <string name="language_ko">Korean</string>
-    <string name="language_ru">Russian</string>
-    <string name="language_tr">Turkish</string>
-    <string name="language_it">Italian</string>
-    <string name="language_hi">Hindi</string>
-    <string name="language_id">Indonesian</string>
-    <string name="language_nl">Dutch</string>
+    <string name="snackbar_undo">Undo</string>
+    <string name="snackbar_note_deleted">Note deleted</string>
+    <string name="snackbar_task_deleted">Task deleted</string>
+    <string name="snackbar_event_deleted">Event deleted</string>
+    <string name="snackbar_tag_deleted">Tag deleted</string>
+    <string name="snackbar_copied">Copied to clipboard</string>
+    <string name="snackbar_no_internet">No internet connection</string>
+    <string name="snackbar_changes_saved">Changes saved</string>
+
+    <string name="about_version">Version %1$s</string>
+    <string name="about_build">Build %1$s</string>
+    <string name="about_privacy_policy">Privacy Policy</string>
+    <string name="about_terms_of_service">Terms of Service</string>
+    <string name="about_open_source_licenses">Open source licences</string>
+    <string name="about_rate_app">Rate the app</string>
+    <string name="about_send_feedback">Send feedback</string>
+    <string name="about_built_by">Built by Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
 
     <string name="data_export_title">Export data</string>
     <string name="data_export_body">Download all your notes, tasks, and events as a file.</string>
@@ -848,13 +902,23 @@
     <string name="update_now">Update now</string>
     <string name="update_later">Later</string>
 
-    <string name="snackbar_undo">Undo</string>
-    <string name="snackbar_note_deleted">Note deleted</string>
-    <string name="snackbar_task_deleted">Task deleted</string>
-    <string name="snackbar_event_deleted">Event deleted</string>
-    <string name="snackbar_tag_deleted">Tag deleted</string>
-    <string name="snackbar_copied">Copied to clipboard</string>
-    <string name="snackbar_no_internet">No internet connection</string>
-    <string name="snackbar_changes_saved">Changes saved</string>
+    <string name="auth_check_your_email">Check your email</string>
+    <string name="auth_otp_sent_body">We sent a 6-digit code to %s</string>
+
+    <string name="language_en">English</string>
+    <string name="language_fr">French</string>
+    <string name="language_ar">Arabic</string>
+    <string name="language_es">Spanish</string>
+    <string name="language_de">German</string>
+    <string name="language_pt">Portuguese</string>
+    <string name="language_zh">Chinese</string>
+    <string name="language_ja">Japanese</string>
+    <string name="language_ko">Korean</string>
+    <string name="language_ru">Russian</string>
+    <string name="language_tr">Turkish</string>
+    <string name="language_it">Italian</string>
+    <string name="language_hi">Hindi</string>
+    <string name="language_id">Indonesian</string>
+    <string name="language_nl">Dutch</string>
 
 </resources>
