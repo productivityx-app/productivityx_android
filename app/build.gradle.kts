@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId = "com.oussama_chatri.productivityx"
-        minSdk = 26
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
@@ -36,6 +36,8 @@ android {
             isDebuggable = true
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8080/\"")
+            buildConfigField("String", "WS_URL",   "\"ws://10.0.2.2:8080/\"")
         }
         release {
             isMinifyEnabled = true
@@ -44,6 +46,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"https://api.yourproduction.com/\"")
+            buildConfigField("String", "WS_URL",   "\"wss://api.yourproduction.com/\"")
         }
     }
 
@@ -143,6 +147,11 @@ dependencies {
 
     // Markdown
     implementation(libs.compose.markdown)
+
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
+
+    implementation("com.squareup.moshi:moshi:1.15.1")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
 
     // Testing
     testImplementation(libs.junit)
