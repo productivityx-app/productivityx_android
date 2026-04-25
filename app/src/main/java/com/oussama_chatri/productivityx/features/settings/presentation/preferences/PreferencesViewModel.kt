@@ -1,0 +1,170 @@
+package com.oussama_chatri.productivityx.features.profile.presentation.preferences
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.util.Resource
+import com.oussama_chatri.productivityx.features.profile.domain.repository.UpdatePreferencesParams
+import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetPreferencesUseCase
+import com.oussama_chatri.productivityx.features.profile.domain.usecase.UpdatePreferencesUseCase
+import com.oussama_chatri.productivityx.features.profile.presentation.preferences.event.PreferencesUiEvent
+import com.oussama_chatri.productivityx.features.profile.presentation.preferences.state.PreferencesUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class PreferencesViewModel @Inject constructor(
+    private val getPreferencesUseCase: GetPreferencesUseCase,
+    private val updatePreferencesUseCase: UpdatePreferencesUseCase
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(PreferencesUiState(isLoading = true))
+    val uiState: StateFlow<PreferencesUiState> = _uiState.asStateFlow()
+
+    private var debounceJob: Job? = null
+
+    init {
+        load()
+    }
+
+    fun onEvent(event: PreferencesUiEvent) {
+        when (event) {
+            is PreferencesUiEvent.FocusMinutesChanged ->
+                mutate { it.copy(pomodoroFocusMinutes = event.value.coerceIn(1, 120)) }
+            is PreferencesUiEvent.ShortBreakMinutesChanged ->
+                mutate { it.copy(pomodoroShortBreakMinutes = event.value.coerceIn(1, 60)) }
+            is PreferencesUiEvent.LongBreakMinutesChanged ->
+                mutate { it.copy(pomodoroLongBreakMinutes = event.value.coerceIn(1, 60)) }
+            is PreferencesUiEvent.CyclesChanged ->
+                mutate { it.copy(pomodoroCyclesBeforeLongBreak = event.value.coerceIn(1, 10)) }
+            is PreferencesUiEvent.AutoStartBreaksChanged ->
+                mutate { it.copy(pomodoroAutoStartBreaks = event.value) }
+            is PreferencesUiEvent.AutoStartFocusChanged ->
+                mutate { it.copy(pomodoroAutoStartFocus = event.value) }
+            is PreferencesUiEvent.SoundEnabledChanged ->
+                mutate { it.copy(pomodoroSoundEnabled = event.value) }
+            is PreferencesUiEvent.NotifyTaskRemindersChanged ->
+                mutate { it.copy(notifyTaskReminders = event.value) }
+            is PreferencesUiEvent.NotifyEventRemindersChanged ->
+                mutate { it.copy(notifyEventReminders = event.value) }
+            is PreferencesUiEvent.NotifyPomodoroEndChanged ->
+                mutate { it.copy(notifyPomodoroEnd = event.value) }
+            is PreferencesUiEvent.NotifyDailySummaryChanged ->
+                mutate { it.copy(notifyDailySummary = event.value) }
+            is PreferencesUiEvent.DefaultTaskViewChanged ->
+                mutate { it.copy(defaultTaskView = event.value) }
+            is PreferencesUiEvent.DefaultTaskSortChanged ->
+                mutate { it.copy(defaultTaskSort = event.value) }
+            is PreferencesUiEvent.ShowCompletedTasksChanged ->
+                mutate { it.copy(showCompletedTasks = event.value) }
+            is PreferencesUiEvent.DefaultCalendarViewChanged ->
+                mutate { it.copy(defaultCalendarView = event.value) }
+            is PreferencesUiEvent.WeekStartsOnChanged ->
+                mutate { it.copy(weekStartsOn = event.value) }
+            is PreferencesUiEvent.AiContextEnabledChanged ->
+                mutate { it.copy(aiContextEnabled = event.value) }
+            is PreferencesUiEvent.AiModelChanged ->
+                mutate { it.copy(aiModel = event.value) }
+            is PreferencesUiEvent.CompactModeChanged ->
+                mutate { it.copy(compactMode = event.value) }
+            PreferencesUiEvent.DismissError ->
+                _uiState.update { it.copy(errorMessage = null) }
+            PreferencesUiEvent.DismissSuccess ->
+                _uiState.update { it.copy(successMessage = null) }
+        }
+    }
+
+    private fun mutate(transform: (PreferencesUiState) -> PreferencesUiState) {
+        _uiState.update(transform)
+        scheduleSave()
+    }
+
+    private fun scheduleSave() {
+        debounceJob?.cancel()
+        debounceJob = viewModelScope.launch {
+            delay(600)
+            save()
+        }
+    }
+
+    private fun load() {
+        viewModelScope.launch {
+            when (val result = getPreferencesUseCase()) {
+                is Resource.Success -> {
+                    val d = result.data
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            pomodoroFocusMinutes = d.pomodoroFocusMinutes,
+                            pomodoroShortBreakMinutes = d.pomodoroShortBreakMinutes,
+                            pomodoroLongBreakMinutes = d.pomodoroLongBreakMinutes,
+                            pomodoroCyclesBeforeLongBreak = d.pomodoroCyclesBeforeLongBreak,
+                            pomodoroAutoStartBreaks = d.pomodoroAutoStartBreaks,
+                            pomodoroAutoStartFocus = d.pomodoroAutoStartFocus,
+                            pomodoroSoundEnabled = d.pomodoroSoundEnabled,
+                            notifyTaskReminders = d.notifyTaskReminders,
+                            notifyEventReminders = d.notifyEventReminders,
+                            notifyPomodoroEnd = d.notifyPomodoroEnd,
+                            notifyDailySummary = d.notifyDailySummary,
+                            defaultTaskView = d.defaultTaskView,
+                            defaultTaskSort = d.defaultTaskSort,
+                            showCompletedTasks = d.showCompletedTasks,
+                            defaultCalendarView = d.defaultCalendarView,
+                            weekStartsOn = d.weekStartsOn,
+                            aiContextEnabled = d.aiContextEnabled,
+                            aiModel = d.aiModel,
+                            compactMode = d.compactMode
+                        )
+                    }
+                }
+                is Resource.Error -> _uiState.update {
+                    it.copy(isLoading = false, errorMessage = result.message)
+                }
+                Resource.Loading -> Unit
+            }
+        }
+    }
+
+    private suspend fun save() {
+        val s = _uiState.value
+        _uiState.update { it.copy(isSaving = true) }
+
+        val result = updatePreferencesUseCase(
+            UpdatePreferencesParams(
+                pomodoroFocusMinutes = s.pomodoroFocusMinutes,
+                pomodoroShortBreakMinutes = s.pomodoroShortBreakMinutes,
+                pomodoroLongBreakMinutes = s.pomodoroLongBreakMinutes,
+                pomodoroCyclesBeforeLongBreak = s.pomodoroCyclesBeforeLongBreak,
+                pomodoroAutoStartBreaks = s.pomodoroAutoStartBreaks,
+                pomodoroAutoStartFocus = s.pomodoroAutoStartFocus,
+                pomodoroSoundEnabled = s.pomodoroSoundEnabled,
+                notifyTaskReminders = s.notifyTaskReminders,
+                notifyEventReminders = s.notifyEventReminders,
+                notifyPomodoroEnd = s.notifyPomodoroEnd,
+                notifyDailySummary = s.notifyDailySummary,
+                defaultTaskView = s.defaultTaskView,
+                defaultTaskSort = s.defaultTaskSort,
+                showCompletedTasks = s.showCompletedTasks,
+                defaultCalendarView = s.defaultCalendarView,
+                weekStartsOn = s.weekStartsOn,
+                aiContextEnabled = s.aiContextEnabled,
+                aiModel = s.aiModel,
+                compactMode = s.compactMode
+            )
+        )
+
+        _uiState.update {
+            when (result) {
+                is Resource.Success -> it.copy(isSaving = false, successMessage = "Saved")
+                is Resource.Error -> it.copy(isSaving = false, errorMessage = result.message)
+                Resource.Loading -> it.copy(isSaving = false)
+            }
+        }
+    }
+}

@@ -1,32 +1,42 @@
 package com.oussama_chatri.productivityx.core.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.StickyNote2
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.oussama_chatri.productivityx.core.ui.navigation.MainRoute
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
@@ -42,7 +52,8 @@ private val navItems = listOf(
     NavItem("Notes",    Icons.Outlined.StickyNote2,   MainRoute.Notes),
     NavItem("Tasks",    Icons.Outlined.CheckCircle,   MainRoute.Tasks),
     NavItem("Calendar", Icons.Outlined.CalendarMonth, MainRoute.Calendar),
-    NavItem("AI",       Icons.Outlined.AutoAwesome,   MainRoute.Ai)
+    NavItem("AI",       Icons.Outlined.AutoAwesome,   MainRoute.Ai),
+    NavItem("Profile",  Icons.Outlined.Person,        MainRoute.Profile)
 )
 
 @Composable
@@ -51,8 +62,19 @@ fun PxBottomNavBar(
     onNavItemClick: (MainRoute) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val accentColor = PxColors.Primary.copy(alpha = 0.25f)
+
     NavigationBar(
-        modifier = modifier.height(80.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(72.dp)
+            .drawBehind {
+                drawRoundRect(
+                    color        = accentColor,
+                    size         = size.copy(height = 1.dp.toPx()),
+                    cornerRadius = CornerRadius.Zero
+                )
+            },
         containerColor = PxColors.Surface,
         tonalElevation = 0.dp
     ) {
@@ -60,40 +82,54 @@ fun PxBottomNavBar(
             val isSelected = currentRoute == item.route::class.qualifiedName
 
             val iconTint by animateColorAsState(
-                targetValue = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
+                targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
+                animationSpec = tween(200, easing = FastOutSlowInEasing),
+                label         = "navIconTint_${item.label}"
+            )
+
+            val labelColor by animateColorAsState(
+                targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                 animationSpec = tween(200),
-                label = "navIconTint"
+                label         = "navLabelColor_${item.label}"
+            )
+
+            val pillAlpha by animateColorAsState(
+                targetValue   = if (isSelected) PxColors.Primary.copy(alpha = 0.14f) else Color.Transparent,
+                animationSpec = spring(),
+                label         = "navPill_${item.label}"
             )
 
             NavigationBarItem(
                 selected = isSelected,
-                onClick = { onNavItemClick(item.route) },
-                icon = {
-                    Box(
-                        modifier = Modifier
-                            .clip(MaterialTheme.shapes.large)
-                            .background(
-                                if (isSelected) PxColors.Primary.copy(alpha = 0.15f) else Color.Transparent
+                onClick  = { onNavItemClick(item.route) },
+                icon     = {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier         = Modifier
+                                .clip(RoundedCornerShape(50.dp))
+                                .background(pillAlpha)
+                                .padding(horizontal = 14.dp, vertical = 3.dp)
+                        ) {
+                            Icon(
+                                imageVector        = item.icon,
+                                contentDescription = item.label,
+                                tint               = iconTint,
+                                modifier           = Modifier.size(22.dp)
                             )
-                            .padding(horizontal = 16.dp, vertical = 4.dp)
-                    ) {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.label,
-                            tint = iconTint,
-                            modifier = Modifier.size(22.dp)
-                        )
+                        }
                     }
                 },
                 label = {
                     Text(
-                        text = item.label,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = iconTint
+                        text       = item.label,
+                        fontSize   = 10.sp,
+                        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                        color      = labelColor
                     )
                 },
                 alwaysShowLabel = true,
-                colors = NavigationBarItemDefaults.colors(
+                colors          = NavigationBarItemDefaults.colors(
                     indicatorColor = Color.Transparent
                 )
             )
@@ -106,7 +142,7 @@ fun PxBottomNavBar(
 private fun PxBottomNavBarPreview() {
     ProductivityXTheme {
         PxBottomNavBar(
-            currentRoute = MainRoute.Home::class.qualifiedName,
+            currentRoute   = MainRoute.Profile::class.qualifiedName,
             onNavItemClick = {}
         )
     }

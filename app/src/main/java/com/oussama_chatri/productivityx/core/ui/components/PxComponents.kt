@@ -21,7 +21,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
@@ -31,9 +30,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -115,45 +111,6 @@ fun PxChip(
             selected = isSelected,
             borderColor = borderColor,
             selectedBorderColor = borderColor
-        )
-    )
-}
-
-// PxTopBar
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PxTopBar(
-    title: String,
-    modifier: Modifier = Modifier,
-    subtitle: String? = null,
-    navigationIcon: @Composable (() -> Unit)? = null,
-    actions: @Composable () -> Unit = {},
-    scrollBehavior: TopAppBarScrollBehavior? = null
-) {
-    TopAppBar(
-        title = {
-            Column {
-                Text(text = title, style = MaterialTheme.typography.titleLarge)
-                if (subtitle != null) {
-                    Text(
-                        text = subtitle,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = PxColors.OnSurfaceDim
-                    )
-                }
-            }
-        },
-        modifier = modifier,
-        navigationIcon = navigationIcon ?: {},
-        actions = { actions() },
-        scrollBehavior = scrollBehavior,
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = PxColors.Background,
-            scrolledContainerColor = PxColors.Background,
-            titleContentColor = PxColors.OnBackground,
-            actionIconContentColor = PxColors.OnSurface,
-            navigationIconContentColor = PxColors.OnSurface
         )
     )
 }

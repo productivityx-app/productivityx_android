@@ -27,8 +27,6 @@ enum class Gender { MALE, FEMALE }
 
 enum class TaskView { LIST, KANBAN }
 
-enum class CalendarView { WEEK, MONTH }
-
 enum class TaskSort { DUE_DATE, PRIORITY, CREATED_AT, TITLE }
 
 enum class WeekStartDay { MON, SUN, SAT }
