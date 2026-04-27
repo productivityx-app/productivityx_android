@@ -63,4 +63,16 @@ interface EventDao {
     """
     )
     suspend fun getEventsInRange(userId: String, fromMs: Long, toMs: Long): List<EventEntity>
+
+    // Returns the count of non-deleted events starting between now and end of the current week (AI context)
+    @Query(
+        """
+        SELECT COUNT(*) FROM events
+        WHERE userId = :userId
+          AND isDeleted = 0
+          AND startAt >= :weekStartMs
+          AND startAt < :weekEndMs
+    """
+    )
+    suspend fun countUpcomingThisWeek(userId: String, weekStartMs: Long, weekEndMs: Long): Int
 }

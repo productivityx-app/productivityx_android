@@ -1,7 +1,5 @@
 package com.oussama_chatri.productivityx.core.ui.navigation
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -19,18 +17,22 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
+import com.oussama_chatri.productivityx.features.ai.presentation.navigation.aiNavGraph
 import com.oussama_chatri.productivityx.features.events.presentation.navigation.eventsNavGraph
 import com.oussama_chatri.productivityx.features.notes.presentation.NotesRoute
 import com.oussama_chatri.productivityx.features.notes.presentation.editor.NoteEditorScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.list.NotesScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.trash.TrashScreen
+import com.oussama_chatri.productivityx.features.pomodoro.navigation.PomodoroRoute
+import com.oussama_chatri.productivityx.features.pomodoro.navigation.pomodoroNavGraph
+import com.oussama_chatri.productivityx.features.tasks.navigation.TaskRoutes
 import com.oussama_chatri.productivityx.features.tasks.navigation.tasksNavGraph
 
 fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
     navigation<MainGraph>(startDestination = MainRoute.Home) {
 
         composable<MainRoute.Home> {
-            MainShell(rootNavController, startDestination = "home")
+            HomeTab(rootNavController)
         }
 
         composable<MainRoute.Notes> {
@@ -41,67 +43,96 @@ fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
             TasksTab(rootNavController)
         }
 
-        composable<MainRoute.Calendar> {
-            CalendarTab(rootNavController)
-        }
-
         composable<MainRoute.Pomodoro> {
-            MainShell(rootNavController, startDestination = "pomodoro")
+            PomodoroTab(rootNavController)
         }
 
         composable<MainRoute.Ai> {
-            MainShell(rootNavController, startDestination = "ai")
+            AiTab(rootNavController)
         }
 
-        composable<MainRoute.Search> {
-            MainShell(rootNavController, startDestination = "search")
-        }
-
-        // Profile tab — replaced MainShell placeholder with real nested nav
+        // Profile is not a bottom-nav tab — reached via HomeTab's avatar button
         composable<MainRoute.Profile> {
             ProfileTab(rootNavController)
         }
     }
 }
 
-// Notes uses its own nested NavHost so the bottom bar persists on the list screen
-// but hides on editor / trash
+// Shared bottom-bar nav helper
+
+private fun NavHostController.navigateToTab(route: MainRoute) {
+    navigate(route) {
+        popUpTo(MainRoute.Home) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState    = true
+    }
+}
+
+// ── Home Tab ──────────────────────────────────────────────────────────────────
+
+@Composable
+private fun HomeTab(rootNavController: NavHostController) {
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
+
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
+        bottomBar = {
+            PxBottomNavBar(
+                currentRoute   = currentRoute,
+                onNavItemClick = { rootNavController.navigateToTab(it) },
+                modifier       = Modifier.navigationBarsPadding(),
+            )
+        },
+    ) { innerPadding ->
+        // TODO: replace with real HomeScreen once implemented
+        // HomeScreen(
+        //     onNavigateToProfile = { rootNavController.navigate(MainRoute.Profile) },
+        //     modifier = Modifier.padding(innerPadding),
+        // )
+        androidx.compose.foundation.layout.Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        )
+    }
+}
+
+// Notes Tab
+
 @Composable
 private fun NotesTab(rootNavController: NavHostController) {
     val notesNavController = rememberNavController()
-    val backStackEntry     by notesNavController.currentBackStackEntryAsState()
-    val currentRoute       = backStackEntry?.destination?.route
+    val notesBackStack     by notesNavController.currentBackStackEntryAsState()
+    val notesRoute         = notesBackStack?.destination?.route
 
-    val isTopLevel = currentRoute?.contains("NoteEditor") == false &&
-            currentRoute?.contains("Trash") == false
+    // Bottom bar visible only on the notes list, not inside editor/trash
+    val isTopLevel = notesRoute?.contains("NoteEditor") == false &&
+            notesRoute?.contains("Trash") == false
 
-    val rootBackStackEntry by rootNavController.currentBackStackEntryAsState()
-    val rootRoute          = rootBackStackEntry?.destination
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             if (isTopLevel) {
                 PxBottomNavBar(
-                    currentRoute   = rootRoute?.route,
-                    onNavItemClick = { route ->
-                        rootNavController.navigate(route) {
-                            popUpTo(MainRoute.Home) { saveState = true }
-                            launchSingleTop = true
-                            restoreState    = true
-                        }
-                    },
-                    modifier = Modifier.navigationBarsPadding()
+                    currentRoute   = currentRoute,
+                    onNavItemClick = { rootNavController.navigateToTab(it) },
+                    modifier       = Modifier.navigationBarsPadding(),
                 )
             }
-        }
+        },
     ) { innerPadding ->
         NavHost(
             navController    = notesNavController,
             startDestination = NotesRoute.NotesList,
             modifier         = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(innerPadding),
         ) {
             composable<NotesRoute.NotesList> {
                 NotesScreen(
@@ -113,153 +144,203 @@ private fun NotesTab(rootNavController: NavHostController) {
                     },
                     onNavigateToTrash = {
                         notesNavController.navigate(NotesRoute.Trash)
-                    }
+                    },
                 )
             }
 
-            composable<NotesRoute.NoteEditor> { backStackEntry ->
-                val route = backStackEntry.toRoute<NotesRoute.NoteEditor>()
+            composable<NotesRoute.NoteEditor> { entry ->
+                val route = entry.toRoute<NotesRoute.NoteEditor>()
                 NoteEditorScreen(
                     noteId         = route.noteId,
-                    onNavigateBack = { notesNavController.navigateUp() }
+                    onNavigateBack = { notesNavController.navigateUp() },
                 )
             }
 
             composable<NotesRoute.Trash> {
                 TrashScreen(
-                    onNavigateBack = { notesNavController.navigateUp() }
+                    onNavigateBack = { notesNavController.navigateUp() },
                 )
             }
         }
     }
 }
 
-// Tasks uses its own nested NavHost — bottom bar persists on the list, hides on detail/add
+// Tasks Tab
+
 @Composable
 private fun TasksTab(rootNavController: NavHostController) {
     val tasksNavController = rememberNavController()
-    val backStackEntry     by tasksNavController.currentBackStackEntryAsState()
-    val currentRoute       = backStackEntry?.destination?.route
+    val tasksBackStack     by tasksNavController.currentBackStackEntryAsState()
+    val tasksRoute         = tasksBackStack?.destination?.route
 
-    val isTopLevel = currentRoute == com.oussama_chatri.productivityx.features.tasks.navigation.TaskRoutes.TASKS
+    val isTopLevel = tasksRoute == TaskRoutes.TASKS
 
-    val rootBackStackEntry by rootNavController.currentBackStackEntryAsState()
-    val rootRoute          = rootBackStackEntry?.destination
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             if (isTopLevel) {
                 PxBottomNavBar(
-                    currentRoute   = rootRoute?.route,
-                    onNavItemClick = { route ->
-                        rootNavController.navigate(route) {
-                            popUpTo(MainRoute.Home) { saveState = true }
-                            launchSingleTop = true
-                            restoreState    = true
-                        }
-                    },
-                    modifier = Modifier.navigationBarsPadding()
+                    currentRoute   = currentRoute,
+                    onNavItemClick = { rootNavController.navigateToTab(it) },
+                    modifier       = Modifier.navigationBarsPadding(),
                 )
             }
-        }
+        },
     ) { innerPadding ->
         NavHost(
             navController    = tasksNavController,
-            startDestination = com.oussama_chatri.productivityx.features.tasks.navigation.TaskRoutes.TASKS,
+            startDestination = TaskRoutes.TASKS,
             modifier         = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(innerPadding),
         ) {
             tasksNavGraph(tasksNavController)
         }
     }
 }
 
-// Calendar uses its own nested NavHost — bottom bar persists on calendar, hides on event detail
+// Pomodoro Tab
+
 @Composable
-private fun CalendarTab(rootNavController: NavHostController) {
-    val calendarNavController = rememberNavController()
-    val backStackEntry        by calendarNavController.currentBackStackEntryAsState()
-    val currentRoute          = backStackEntry?.destination?.route
+private fun PomodoroTab(rootNavController: NavHostController) {
+    val pomodoroNavController = rememberNavController()
+    val pomodoroBackStack     by pomodoroNavController.currentBackStackEntryAsState()
+    val pomodoroRoute         = pomodoroBackStack?.destination?.route
 
-    val isTopLevel = currentRoute?.contains("EventDetail") == false
+    // Bottom bar visible on the timer screen, not on session history
+    val isTopLevel = pomodoroRoute?.contains("History") == false
 
-    val rootBackStackEntry by rootNavController.currentBackStackEntryAsState()
-    val rootRoute          = rootBackStackEntry?.destination
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             if (isTopLevel) {
                 PxBottomNavBar(
-                    currentRoute   = rootRoute?.route,
-                    onNavItemClick = { route ->
-                        rootNavController.navigate(route) {
-                            popUpTo(MainRoute.Home) { saveState = true }
-                            launchSingleTop = true
-                            restoreState    = true
-                        }
-                    },
-                    modifier = Modifier.navigationBarsPadding()
+                    currentRoute   = currentRoute,
+                    onNavItemClick = { rootNavController.navigateToTab(it) },
+                    modifier       = Modifier.navigationBarsPadding(),
                 )
             }
+        },
+    ) { innerPadding ->
+        NavHost(
+            navController    = pomodoroNavController,
+            startDestination = PomodoroRoute.Timer,
+            modifier         = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        ) {
+            pomodoroNavGraph(pomodoroNavController)
         }
+    }
+}
+
+// AI Tab
+
+@Composable
+private fun AiTab(rootNavController: NavHostController) {
+    val aiNavController = rememberNavController()
+    val aiBackStack     by aiNavController.currentBackStackEntryAsState()
+    val aiRoute         = aiBackStack?.destination?.route
+
+    // Bottom bar hidden when viewing conversation list (it's a full-screen overlay)
+    val isTopLevel = aiRoute?.contains("ConversationList") == false
+
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
+
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
+        bottomBar = {
+            if (isTopLevel) {
+                PxBottomNavBar(
+                    currentRoute   = currentRoute,
+                    onNavItemClick = { rootNavController.navigateToTab(it) },
+                    modifier       = Modifier.navigationBarsPadding(),
+                )
+            }
+        },
+    ) { innerPadding ->
+        NavHost(
+            navController    = aiNavController,
+            startDestination = Routes.AiChat,
+            modifier         = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        ) {
+            aiNavGraph(aiNavController)
+        }
+    }
+}
+
+// Calendar Tab
+// Kept as a utility — Calendar is reachable from Home dashboard cards and task links
+// without its own bottom-nav tab. If you want it as a tab, add it to PxBottomNavBar.
+
+@Composable
+private fun CalendarTab(rootNavController: NavHostController) {
+    val calendarNavController = rememberNavController()
+    val calendarBackStack     by calendarNavController.currentBackStackEntryAsState()
+    val calendarRoute         = calendarBackStack?.destination?.route
+
+    val isTopLevel = calendarRoute?.contains("EventDetail") == false
+
+    val rootBackStack by rootNavController.currentBackStackEntryAsState()
+    val currentRoute  = rootBackStack?.destination?.route
+
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
+        bottomBar = {
+            if (isTopLevel) {
+                PxBottomNavBar(
+                    currentRoute   = currentRoute,
+                    onNavItemClick = { rootNavController.navigateToTab(it) },
+                    modifier       = Modifier.navigationBarsPadding(),
+                )
+            }
+        },
     ) { innerPadding ->
         NavHost(
             navController    = calendarNavController,
             startDestination = Routes.Calendar,
             modifier         = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(innerPadding),
         ) {
             eventsNavGraph(calendarNavController)
         }
     }
 }
 
-// Profile tab — nested NavHost so bottom bar stays on ProfileScreen
-// but disappears on EditProfile / Preferences / ChangePassword sub-screens
+// Profile Tab
+// Not in bottom nav — opened via avatar tap on the Home top bar.
+
 @Composable
 private fun ProfileTab(rootNavController: NavHostController) {
     val profileNavController = rememberNavController()
-    val backStackEntry       by profileNavController.currentBackStackEntryAsState()
-    val currentRoute         = backStackEntry?.destination?.route
+    val profileBackStack     by profileNavController.currentBackStackEntryAsState()
+    val profileRoute         = profileNavController.currentBackStackEntryAsState().value?.destination?.route
 
-    // Bottom bar only visible on the root profile screen
-    val isTopLevel = currentRoute?.let {
+    val isTopLevel = profileRoute?.let {
         !it.contains("EditProfile") &&
-        !it.contains("Preferences") &&
-        !it.contains("ChangePassword")
+                !it.contains("Preferences") &&
+                !it.contains("ChangePassword")
     } ?: true
-
-    val rootBackStackEntry by rootNavController.currentBackStackEntryAsState()
-    val rootRoute          = rootBackStackEntry?.destination
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
-        bottomBar = {
-            if (isTopLevel) {
-                PxBottomNavBar(
-                    currentRoute   = rootRoute?.route,
-                    onNavItemClick = { route ->
-                        rootNavController.navigate(route) {
-                            popUpTo(MainRoute.Home) { saveState = true }
-                            launchSingleTop = true
-                            restoreState    = true
-                        }
-                    },
-                    modifier = Modifier.navigationBarsPadding()
-                )
-            }
-        }
     ) { innerPadding ->
         NavHost(
             navController    = profileNavController,
             startDestination = SettingsRoute.Profile,
             modifier         = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(innerPadding),
         ) {
             settingsNavGraph(
                 navController = profileNavController,
@@ -267,39 +348,8 @@ private fun ProfileTab(rootNavController: NavHostController) {
                     rootNavController.navigate(AuthRoute.Login) {
                         popUpTo(0) { inclusive = true }
                     }
-                }
-            )
-        }
-    }
-}
-
-// Generic shell for sections not yet fully implemented
-@Composable
-private fun MainShell(navController: NavHostController, startDestination: String) {
-    val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute   = backStackEntry?.destination
-
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
-        bottomBar = {
-            PxBottomNavBar(
-                currentRoute   = currentRoute?.route,
-                onNavItemClick = { route ->
-                    navController.navigate(route) {
-                        popUpTo(MainRoute.Home) { saveState = true }
-                        launchSingleTop = true
-                        restoreState    = true
-                    }
                 },
-                modifier = Modifier.navigationBarsPadding()
             )
         }
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-                .padding(paddingValues)
-        )
     }
 }

@@ -14,11 +14,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
-import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.StickyNote2
+import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -42,41 +41,43 @@ import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private data class NavItem(
-    val label: String,
-    val icon: ImageVector,
-    val route: MainRoute
+    val label : String,
+    val icon  : ImageVector,
+    val route : MainRoute,
 )
 
+// 5 tabs per project spec: Home · Notes · Tasks · Pomodoro · AI
+// Profile is reached via the avatar button in the Home top bar.
 private val navItems = listOf(
-    NavItem("Home",     Icons.Outlined.Home,          MainRoute.Home),
-    NavItem("Notes",    Icons.Outlined.StickyNote2,   MainRoute.Notes),
-    NavItem("Tasks",    Icons.Outlined.CheckCircle,   MainRoute.Tasks),
-    NavItem("Calendar", Icons.Outlined.CalendarMonth, MainRoute.Calendar),
-    NavItem("AI",       Icons.Outlined.AutoAwesome,   MainRoute.Ai),
-    NavItem("Profile",  Icons.Outlined.Person,        MainRoute.Profile)
+    NavItem("Home",     Icons.Outlined.Home,        MainRoute.Home),
+    NavItem("Notes",    Icons.Outlined.StickyNote2, MainRoute.Notes),
+    NavItem("Tasks",    Icons.Outlined.CheckCircle, MainRoute.Tasks),
+    NavItem("Pomodoro", Icons.Outlined.Timer,       MainRoute.Pomodoro),
+    NavItem("AI",       Icons.Outlined.AutoAwesome, MainRoute.Ai),
 )
 
 @Composable
 fun PxBottomNavBar(
-    currentRoute: String?,
-    onNavItemClick: (MainRoute) -> Unit,
-    modifier: Modifier = Modifier
+    currentRoute   : String?,
+    onNavItemClick : (MainRoute) -> Unit,
+    modifier       : Modifier = Modifier,
 ) {
-    val accentColor = PxColors.Primary.copy(alpha = 0.25f)
+    val topBorderColor = PxColors.Primary.copy(alpha = 0.18f)
 
     NavigationBar(
         modifier = modifier
             .fillMaxWidth()
             .height(72.dp)
             .drawBehind {
+                // 1dp top accent line instead of a shadow
                 drawRoundRect(
-                    color        = accentColor,
+                    color        = topBorderColor,
                     size         = size.copy(height = 1.dp.toPx()),
-                    cornerRadius = CornerRadius.Zero
+                    cornerRadius = CornerRadius.Zero,
                 )
             },
         containerColor = PxColors.Surface,
-        tonalElevation = 0.dp
+        tonalElevation = 0.dp,
     ) {
         navItems.forEach { item ->
             val isSelected = currentRoute == item.route::class.qualifiedName
@@ -84,19 +85,19 @@ fun PxBottomNavBar(
             val iconTint by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                 animationSpec = tween(200, easing = FastOutSlowInEasing),
-                label         = "navIconTint_${item.label}"
+                label         = "navIcon_${item.label}",
             )
 
             val labelColor by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                 animationSpec = tween(200),
-                label         = "navLabelColor_${item.label}"
+                label         = "navLabel_${item.label}",
             )
 
-            val pillAlpha by animateColorAsState(
+            val pillBg by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary.copy(alpha = 0.14f) else Color.Transparent,
                 animationSpec = spring(),
-                label         = "navPill_${item.label}"
+                label         = "navPill_${item.label}",
             )
 
             NavigationBarItem(
@@ -108,14 +109,14 @@ fun PxBottomNavBar(
                             contentAlignment = Alignment.Center,
                             modifier         = Modifier
                                 .clip(RoundedCornerShape(50.dp))
-                                .background(pillAlpha)
-                                .padding(horizontal = 14.dp, vertical = 3.dp)
+                                .background(pillBg)
+                                .padding(horizontal = 14.dp, vertical = 3.dp),
                         ) {
                             Icon(
                                 imageVector        = item.icon,
                                 contentDescription = item.label,
                                 tint               = iconTint,
-                                modifier           = Modifier.size(22.dp)
+                                modifier           = Modifier.size(22.dp),
                             )
                         }
                     }
@@ -125,13 +126,13 @@ fun PxBottomNavBar(
                         text       = item.label,
                         fontSize   = 10.sp,
                         fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-                        color      = labelColor
+                        color      = labelColor,
                     )
                 },
                 alwaysShowLabel = true,
                 colors          = NavigationBarItemDefaults.colors(
-                    indicatorColor = Color.Transparent
-                )
+                    indicatorColor = Color.Transparent,
+                ),
             )
         }
     }
@@ -142,8 +143,8 @@ fun PxBottomNavBar(
 private fun PxBottomNavBarPreview() {
     ProductivityXTheme {
         PxBottomNavBar(
-            currentRoute   = MainRoute.Profile::class.qualifiedName,
-            onNavItemClick = {}
+            currentRoute   = MainRoute.Pomodoro::class.qualifiedName,
+            onNavItemClick = {},
         )
     }
 }

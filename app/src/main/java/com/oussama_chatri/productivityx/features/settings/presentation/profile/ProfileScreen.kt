@@ -158,7 +158,7 @@ fun ProfileScreen(
                 }
                 if (!avatarUrl.isNullOrBlank()) {
                     AsyncImage(
-                        model = avatarUrl,
+                        model = "avatarUrl",
                         contentDescription = "Avatar",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.size(80.dp).clip(CircleShape)
