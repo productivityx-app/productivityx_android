@@ -39,9 +39,9 @@ class AiViewModel @Inject constructor(
     private val _events = Channel<UiEvent>(Channel.BUFFERED)
     val events          = _events.receiveAsFlow()
 
-    private var messagesJob       : Job? = null
-    private var streamJob         : Job? = null
-    private var createConvJob     : Job? = null
+    private var messagesJob   : Job? = null
+    private var streamJob     : Job? = null
+    private var createConvJob : Job? = null
 
     init {
         loadContext()
@@ -51,6 +51,7 @@ class AiViewModel @Inject constructor(
         when (event) {
             is AiUiEvent.InputChanged     -> _state.update { it.copy(inputText = event.text) }
             is AiUiEvent.SendMessage      -> handleSend()
+            is AiUiEvent.SendSuggestion   -> handleSuggestion(event.text)
             is AiUiEvent.NewConversation  -> startNewConversation()
             is AiUiEvent.OpenConversation -> loadConversation(event.id)
             is AiUiEvent.DismissError     -> _state.update { it.copy(error = null) }
@@ -64,9 +65,8 @@ class AiViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isContextLoading = true) }
             runCatching { buildContext() }
-                .onSuccess  { ctx -> _state.update { it.copy(context = ctx, isContextLoading = false) } }
-                // FIX: on failure fall back to an empty context so sends still work
-                .onFailure  { _state.update { it.copy(context = emptyContext(), isContextLoading = false) } }
+                .onSuccess { ctx -> _state.update { it.copy(context = ctx, isContextLoading = false) } }
+                .onFailure { _state.update { it.copy(context = emptyContext(), isContextLoading = false) } }
         }
     }
 
@@ -81,7 +81,6 @@ class AiViewModel @Inject constructor(
     fun loadConversation(conversationId: UUID) {
         messagesJob?.cancel()
         _state.update { it.copy(conversationId = conversationId, messages = emptyList()) }
-
         messagesJob = viewModelScope.launch {
             observeMessages(conversationId).collect { msgs ->
                 _state.update { it.copy(messages = msgs) }
@@ -89,15 +88,22 @@ class AiViewModel @Inject constructor(
         }
     }
 
+    // Collapses InputChanged + SendMessage into one call — no recomposition gap between them
+    private fun handleSuggestion(text: String) {
+        _state.update { it.copy(inputText = text) }
+        handleSend()
+    }
+
     private fun handleSend() {
         val currentState = _state.value
         val content      = currentState.inputText.trim()
-        if (content.isBlank() || currentState.isStreaming) return
+
+        if (content.isBlank()) return
+        if (currentState.isStreaming) return
+        if (createConvJob?.isActive == true) return
 
         val conversationId = currentState.conversationId
         if (conversationId == null) {
-            if (createConvJob?.isActive == true) return
-
             createConvJob = viewModelScope.launch {
                 runCatching { createConversation(content.take(50)) }
                     .onSuccess { conv ->

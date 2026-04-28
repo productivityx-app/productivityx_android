@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.util.rememberDebouncedClick
 
 @Composable
 fun MessageInputBar(
@@ -80,7 +81,7 @@ fun MessageInputBar(
         Spacer(Modifier.width(10.dp))
 
         IconButton(
-            onClick  = onSend,
+            onClick  = rememberDebouncedClick(onClick = onSend),
             enabled  = canSend,
             modifier = Modifier
                 .size(44.dp)

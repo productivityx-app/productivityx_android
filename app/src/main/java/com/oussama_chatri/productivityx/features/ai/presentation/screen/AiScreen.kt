@@ -1,7 +1,6 @@
 package com.oussama_chatri.productivityx.features.ai.presentation.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -15,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FormatListBulleted
 import androidx.compose.material.icons.outlined.Refresh
@@ -39,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.util.UiEvent
-import com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ActionCard
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ChatBubble
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ContextPanel
@@ -127,8 +124,7 @@ fun AiScreen(
             Column(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
                 WelcomeState(
                     onSuggestionClick = { text ->
-                        viewModel.onEvent(AiUiEvent.InputChanged(text))
-                        viewModel.onEvent(AiUiEvent.SendMessage)
+                        viewModel.onEvent(AiUiEvent.SendSuggestion(text))
                     },
                     modifier = Modifier.weight(1f),
                 )
