@@ -1,14 +1,11 @@
 package com.oussama_chatri.productivityx.features.ai.data.repository
 
 import com.oussama_chatri.productivityx.core.enums.MessageRole
-import com.oussama_chatri.productivityx.core.network.AuthInterceptor
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.ConversationDao
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.MessageDao
-import com.oussama_chatri.productivityx.features.ai.data.local.entity.ConversationEntity
 import com.oussama_chatri.productivityx.features.ai.data.local.entity.MessageEntity
 import com.oussama_chatri.productivityx.features.ai.data.local.mapper.toDomain
-import com.oussama_chatri.productivityx.features.ai.data.local.mapper.toEntity
 import com.oussama_chatri.productivityx.features.ai.data.remote.api.AiApiService
 import com.oussama_chatri.productivityx.features.ai.data.remote.dto.request.AiContextRequest
 import com.oussama_chatri.productivityx.features.ai.data.remote.dto.request.CreateConversationRequest
@@ -19,11 +16,10 @@ import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
 import com.oussama_chatri.productivityx.features.ai.domain.model.Message
 import com.oussama_chatri.productivityx.features.ai.domain.repository.AiRepository
 import com.oussama_chatri.productivityx.features.ai.domain.repository.StreamChunk
-// Correct packages — DAOs live in .data.local, not .data.local.dao sub-package
-import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
-import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import com.oussama_chatri.productivityx.features.events.data.local.EventDao
+import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.dao.PomodoroSessionDao
+import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -49,18 +45,22 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class AiRepositoryImpl @Inject constructor(
-    private val conversationDao    : ConversationDao,
-    private val messageDao         : MessageDao,
-    private val noteDao            : NoteDao,
-    private val taskDao            : TaskDao,
-    private val eventDao           : EventDao,
-    private val pomodoroDao        : PomodoroSessionDao,
-    private val apiService         : AiApiService,
-    private val okHttpClient       : OkHttpClient,
-    @Named("base_url") private val baseUrl: String,
-    private val json               : Json,
+    private val conversationDao     : ConversationDao,
+    private val messageDao          : MessageDao,
+    private val noteDao             : NoteDao,
+    private val taskDao             : TaskDao,
+    private val eventDao            : EventDao,
+    private val pomodoroDao         : PomodoroSessionDao,
+    private val apiService          : AiApiService,
+    @Named("sse") private val okHttpClient : OkHttpClient,   // ← after
+    @Named("base_url") baseUrl      : String,
+    private val json                : Json,
     private val preferencesDataStore: PreferencesDataStore,
-) : AiRepository {
+) : AiRepository{
+
+    // Normalised once — strips the trailing slash that Retrofit requires but manual URL
+    // construction must not duplicate when appending a path that starts with '/'
+    private val baseUrl = baseUrl.trimEnd('/')
 
     // Conversations
 
@@ -72,24 +72,10 @@ class AiRepositoryImpl @Inject constructor(
 
     override suspend fun createConversation(title: String?): Conversation =
         withContext(Dispatchers.IO) {
-            val now    = Instant.now()
-            val newId  = UUID.randomUUID()
-            val entity = ConversationEntity(
-                id           = newId,
-                title        = title,
-                isArchived   = false,
-                lastMessage  = null,
-                messageCount = 0,
-                createdAt    = now,
-                updatedAt    = now,
-            )
-            conversationDao.insert(entity)
-
-            runCatching {
-                val remote = apiService.createConversation(CreateConversationRequest(title))
-                conversationDao.insert(remote.toEntity())
-                conversationDao.findById(UUID.fromString(remote.id))?.toDomain() ?: entity.toDomain()
-            }.getOrElse { entity.toDomain() }
+            val remote       = apiService.createConversation(CreateConversationRequest(title))
+            val remoteEntity = remote.toEntity()
+            conversationDao.insert(remoteEntity)
+            remoteEntity.toDomain()
         }
 
     override suspend fun deleteConversation(id: UUID): Unit = withContext(Dispatchers.IO) {
@@ -147,14 +133,15 @@ class AiRepositoryImpl @Inject constructor(
             )
         ).toRequestBody("application/json".toMediaType())
 
+        // baseUrl already has its trailing slash stripped — no double slash
         val request = Request.Builder()
             .url("$baseUrl/api/v1/ai/conversations/$conversationId/messages")
             .post(requestBody)
             .addHeader("Accept", "text/event-stream")
             .build()
 
-        val tokenBuffer    = StringBuilder()
-        var actionBlockJson: String? = null
+        val tokenBuffer     = StringBuilder()
+        var actionBlockJson : String? = null
 
         val listener = object : EventSourceListener() {
             override fun onEvent(
@@ -172,8 +159,8 @@ class AiRepositoryImpl @Inject constructor(
                         actionBlockJson = data
                     }
                     "done"   -> {
-                        val now           = Instant.now()
-                        val fullContent   = tokenBuffer.toString()
+                        val now            = Instant.now()
+                        val fullContent    = tokenBuffer.toString()
                         val assistantMsgId = try {
                             JSONObject(data).getString("message_id").let(UUID::fromString)
                         } catch (_: Exception) {
@@ -216,8 +203,8 @@ class AiRepositoryImpl @Inject constructor(
     override suspend fun buildContext(): AiContext = withContext(Dispatchers.IO) {
         val userId = preferencesDataStore.cachedUserId.first() ?: return@withContext emptyContext()
 
-        val today     = LocalDate.now()
-        val zone      = ZoneId.systemDefault()
+        val today      = LocalDate.now()
+        val zone       = ZoneId.systemDefault()
         val todayStart = today.atStartOfDay(zone).toInstant().toEpochMilli()
         val todayEnd   = today.plusDays(1).atStartOfDay(zone).toInstant().toEpochMilli()
         val weekEnd    = today.plusDays(7).atStartOfDay(zone).toInstant().toEpochMilli()

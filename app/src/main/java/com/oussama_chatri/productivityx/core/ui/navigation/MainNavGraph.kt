@@ -18,7 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
 import com.oussama_chatri.productivityx.features.ai.presentation.navigation.aiNavGraph
-import com.oussama_chatri.productivityx.features.events.presentation.navigation.eventsNavGraph
+import com.oussama_chatri.productivityx.features.home.presentation.HomeScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.NotesRoute
 import com.oussama_chatri.productivityx.features.notes.presentation.editor.NoteEditorScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.list.NotesScreen
@@ -60,7 +60,7 @@ fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
 
 // Shared bottom-bar nav helper
 
-private fun NavHostController.navigateToTab(route: MainRoute) {
+internal fun NavHostController.navigateToTab(route: MainRoute) {
     navigate(route) {
         popUpTo(MainRoute.Home) {
             saveState = true
@@ -70,7 +70,7 @@ private fun NavHostController.navigateToTab(route: MainRoute) {
     }
 }
 
-// ── Home Tab ──────────────────────────────────────────────────────────────────
+// Home Tab
 
 @Composable
 private fun HomeTab(rootNavController: NavHostController) {
@@ -87,13 +87,12 @@ private fun HomeTab(rootNavController: NavHostController) {
             )
         },
     ) { innerPadding ->
-        // TODO: replace with real HomeScreen once implemented
-        // HomeScreen(
-        //     onNavigateToProfile = { rootNavController.navigate(MainRoute.Profile) },
-        //     modifier = Modifier.padding(innerPadding),
-        // )
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier
+        HomeScreen(
+            onNavigateToProfile  = { rootNavController.navigate(MainRoute.Profile) },
+            onNavigateToNotes    = { rootNavController.navigateToTab(MainRoute.Notes) },
+            onNavigateToTasks    = { rootNavController.navigateToTab(MainRoute.Tasks) },
+            onNavigateToCalendar = { rootNavController.navigateToTab(MainRoute.Ai) },
+            modifier             = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
         )
@@ -278,59 +277,11 @@ private fun AiTab(rootNavController: NavHostController) {
     }
 }
 
-// Calendar Tab
-// Kept as a utility — Calendar is reachable from Home dashboard cards and task links
-// without its own bottom-nav tab. If you want it as a tab, add it to PxBottomNavBar.
-
-@Composable
-private fun CalendarTab(rootNavController: NavHostController) {
-    val calendarNavController = rememberNavController()
-    val calendarBackStack     by calendarNavController.currentBackStackEntryAsState()
-    val calendarRoute         = calendarBackStack?.destination?.route
-
-    val isTopLevel = calendarRoute?.contains("EventDetail") == false
-
-    val rootBackStack by rootNavController.currentBackStackEntryAsState()
-    val currentRoute  = rootBackStack?.destination?.route
-
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
-        bottomBar = {
-            if (isTopLevel) {
-                PxBottomNavBar(
-                    currentRoute   = currentRoute,
-                    onNavItemClick = { rootNavController.navigateToTab(it) },
-                    modifier       = Modifier.navigationBarsPadding(),
-                )
-            }
-        },
-    ) { innerPadding ->
-        NavHost(
-            navController    = calendarNavController,
-            startDestination = Routes.Calendar,
-            modifier         = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-        ) {
-            eventsNavGraph(calendarNavController)
-        }
-    }
-}
-
-// Profile Tab
-// Not in bottom nav — opened via avatar tap on the Home top bar.
+// Profile Tab — reached via avatar tap on Home, not a bottom-nav item
 
 @Composable
 private fun ProfileTab(rootNavController: NavHostController) {
     val profileNavController = rememberNavController()
-    val profileBackStack     by profileNavController.currentBackStackEntryAsState()
-    val profileRoute         = profileNavController.currentBackStackEntryAsState().value?.destination?.route
-
-    val isTopLevel = profileRoute?.let {
-        !it.contains("EditProfile") &&
-                !it.contains("Preferences") &&
-                !it.contains("ChangePassword")
-    } ?: true
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,

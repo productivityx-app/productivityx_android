@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
+import com.oussama_chatri.productivityx.features.ai.domain.model.AiContext
 import com.oussama_chatri.productivityx.features.ai.domain.repository.StreamChunk
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.BuildAiContextUseCase
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.CreateConversationUseCase
@@ -26,20 +27,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AiViewModel @Inject constructor(
-    private val observeMessages      : ObserveMessagesUseCase,
-    private val sendMessage          : SendMessageUseCase,
-    private val createConversation   : CreateConversationUseCase,
-    private val buildContext         : BuildAiContextUseCase,
+    private val observeMessages    : ObserveMessagesUseCase,
+    private val sendMessage        : SendMessageUseCase,
+    private val createConversation : CreateConversationUseCase,
+    private val buildContext       : BuildAiContextUseCase,
 ) : ViewModel() {
 
-    private val _state   = MutableStateFlow(AiUiState())
+    private val _state  = MutableStateFlow(AiUiState())
     val state: StateFlow<AiUiState> = _state.asStateFlow()
 
-    private val _events  = Channel<UiEvent>(Channel.BUFFERED)
-    val events           = _events.receiveAsFlow()
+    private val _events = Channel<UiEvent>(Channel.BUFFERED)
+    val events          = _events.receiveAsFlow()
 
-    private var messagesJob   : Job? = null
-    private var streamJob     : Job? = null
+    private var messagesJob       : Job? = null
+    private var streamJob         : Job? = null
+    private var createConvJob     : Job? = null
 
     init {
         loadContext()
@@ -47,14 +49,14 @@ class AiViewModel @Inject constructor(
 
     fun onEvent(event: AiUiEvent) {
         when (event) {
-            is AiUiEvent.InputChanged      -> _state.update { it.copy(inputText = event.text) }
-            is AiUiEvent.SendMessage       -> handleSend()
-            is AiUiEvent.NewConversation   -> startNewConversation()
-            is AiUiEvent.OpenConversation  -> loadConversation(event.id)
-            is AiUiEvent.DismissError      -> _state.update { it.copy(error = null) }
-            is AiUiEvent.RefreshContext    -> loadContext()
-            is AiUiEvent.ConfirmAction     -> executeAction(event.action)
-            is AiUiEvent.DismissAction     -> _state.update { it.copy(pendingAction = null) }
+            is AiUiEvent.InputChanged     -> _state.update { it.copy(inputText = event.text) }
+            is AiUiEvent.SendMessage      -> handleSend()
+            is AiUiEvent.NewConversation  -> startNewConversation()
+            is AiUiEvent.OpenConversation -> loadConversation(event.id)
+            is AiUiEvent.DismissError     -> _state.update { it.copy(error = null) }
+            is AiUiEvent.RefreshContext   -> loadContext()
+            is AiUiEvent.ConfirmAction    -> executeAction(event.action)
+            is AiUiEvent.DismissAction    -> _state.update { it.copy(pendingAction = null) }
         }
     }
 
@@ -63,7 +65,8 @@ class AiViewModel @Inject constructor(
             _state.update { it.copy(isContextLoading = true) }
             runCatching { buildContext() }
                 .onSuccess  { ctx -> _state.update { it.copy(context = ctx, isContextLoading = false) } }
-                .onFailure  { _state.update { it.copy(isContextLoading = false) } }
+                // FIX: on failure fall back to an empty context so sends still work
+                .onFailure  { _state.update { it.copy(context = emptyContext(), isContextLoading = false) } }
         }
     }
 
@@ -71,7 +74,7 @@ class AiViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching { createConversation() }
                 .onSuccess { conv -> loadConversation(conv.id) }
-                .onFailure { e -> _state.update { it.copy(error = e.message) } }
+                .onFailure { e   -> _state.update { it.copy(error = e.message) } }
         }
     }
 
@@ -93,8 +96,9 @@ class AiViewModel @Inject constructor(
 
         val conversationId = currentState.conversationId
         if (conversationId == null) {
-            // Auto-create a conversation on first message
-            viewModelScope.launch {
+            if (createConvJob?.isActive == true) return
+
+            createConvJob = viewModelScope.launch {
                 runCatching { createConversation(content.take(50)) }
                     .onSuccess { conv ->
                         loadConversation(conv.id)
@@ -109,7 +113,7 @@ class AiViewModel @Inject constructor(
     }
 
     private fun doSendMessage(conversationId: UUID, content: String) {
-        val ctx = _state.value.context ?: return
+        val ctx = _state.value.context ?: emptyContext()
 
         _state.update { it.copy(inputText = "", isStreaming = true, streamingContent = "") }
 
@@ -138,10 +142,19 @@ class AiViewModel @Inject constructor(
     }
 
     private fun executeAction(action: AiActionBlock) {
-        // Delegate action execution to the respective feature ViewModels via events
         viewModelScope.launch {
             _events.send(UiEvent.ShowSnackbar("Action queued — check your workspace"))
             _state.update { it.copy(pendingAction = null) }
         }
     }
+
+    private fun emptyContext() = AiContext(
+        tasksDueToday          = 0,
+        tasksOverdue           = 0,
+        totalActiveTasks       = 0,
+        upcomingEventsThisWeek = 0,
+        lastEditedNoteTitle    = null,
+        currentPomodoroTask    = null,
+        todayFocusMinutes      = 0,
+    )
 }

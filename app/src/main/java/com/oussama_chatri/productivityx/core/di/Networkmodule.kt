@@ -17,6 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Provider
 import javax.inject.Singleton
 
@@ -66,10 +67,26 @@ object NetworkModule {
         .readTimeout(ApiConstants.READ_TIMEOUT_SEC, TimeUnit.SECONDS)
         .writeTimeout(ApiConstants.WRITE_TIMEOUT_SEC, TimeUnit.SECONDS)
         .addInterceptor(retryInterceptor)
-        .addInterceptor(refreshCookieInterceptor)   // extracts/injects refresh cookie
-        .addInterceptor(authInterceptor)             // injects Bearer access token
+        .addInterceptor(refreshCookieInterceptor)
+        .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
-        .authenticator(tokenRefreshInterceptor)      // handles 401 → refresh → retry
+        .authenticator(tokenRefreshInterceptor)
+        .build()
+
+    @Provides
+    @Singleton
+    @Named("sse")
+    fun provideSseOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AuthInterceptor,
+        refreshCookieInterceptor: RefreshCookieInterceptor,
+    ): OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(ApiConstants.CONNECT_TIMEOUT_SEC, TimeUnit.SECONDS)
+        .readTimeout(0, TimeUnit.SECONDS)
+        .writeTimeout(ApiConstants.WRITE_TIMEOUT_SEC, TimeUnit.SECONDS)
+        .addInterceptor(refreshCookieInterceptor)
+        .addInterceptor(authInterceptor)
+        .addInterceptor(loggingInterceptor)
         .build()
 
     @Provides
@@ -84,5 +101,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideSseClient(okHttpClient: OkHttpClient): SseClient = SseClient(okHttpClient)
+    fun provideSseClient(@Named("sse") okHttpClient: OkHttpClient): SseClient =
+        SseClient(okHttpClient)
 }
