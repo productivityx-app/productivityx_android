@@ -119,7 +119,15 @@ class AiViewModel @Inject constructor(
     }
 
     private fun doSendMessage(conversationId: UUID, content: String) {
-        val ctx = _state.value.context ?: emptyContext()
+        val ctx = _state.value.context ?: AiContext(
+            tasksDueToday         = 0,
+            tasksOverdue          = 0,
+            totalActiveTasks      = 0,
+            upcomingEventsThisWeek = 0,
+            lastEditedNoteTitle   = null,
+            currentPomodoroTask   = null,
+            todayFocusMinutes     = 0,
+        )
 
         _state.update { it.copy(inputText = "", isStreaming = true, streamingContent = "") }
 

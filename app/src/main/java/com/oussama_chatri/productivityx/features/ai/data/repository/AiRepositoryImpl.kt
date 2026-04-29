@@ -41,6 +41,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -52,14 +53,12 @@ class AiRepositoryImpl @Inject constructor(
     private val eventDao            : EventDao,
     private val pomodoroDao         : PomodoroSessionDao,
     private val apiService          : AiApiService,
-    @Named("sse") private val okHttpClient : OkHttpClient,   // ← after
+    private val okHttpClient        : OkHttpClient,
     @Named("base_url") baseUrl      : String,
     private val json                : Json,
     private val preferencesDataStore: PreferencesDataStore,
-) : AiRepository{
+) : AiRepository {
 
-    // Normalised once — strips the trailing slash that Retrofit requires but manual URL
-    // construction must not duplicate when appending a path that starts with '/'
     private val baseUrl = baseUrl.trimEnd('/')
 
     // Conversations
@@ -105,9 +104,8 @@ class AiRepositoryImpl @Inject constructor(
         context: AiContext,
     ): Flow<StreamChunk> = callbackFlow {
 
-        val userMessageId = UUID.randomUUID()
         val userEntity = MessageEntity(
-            id              = userMessageId,
+            id              = UUID.randomUUID(),
             conversationId  = conversationId,
             role            = MessageRole.USER,
             content         = content,
@@ -133,7 +131,6 @@ class AiRepositoryImpl @Inject constructor(
             )
         ).toRequestBody("application/json".toMediaType())
 
-        // baseUrl already has its trailing slash stripped — no double slash
         val request = Request.Builder()
             .url("$baseUrl/api/v1/ai/conversations/$conversationId/messages")
             .post(requestBody)
@@ -143,6 +140,12 @@ class AiRepositoryImpl @Inject constructor(
         val tokenBuffer     = StringBuilder()
         var actionBlockJson : String? = null
 
+        // SSE needs no read timeout — connection stays open until stream ends.
+        // newBuilder() inherits all interceptors (auth, logging) from the parent client.
+        val sseClient = okHttpClient.newBuilder()
+            .readTimeout(0, TimeUnit.MILLISECONDS)
+            .build()
+
         val listener = object : EventSourceListener() {
             override fun onEvent(
                 eventSource: EventSource,
@@ -151,14 +154,14 @@ class AiRepositoryImpl @Inject constructor(
                 data: String,
             ) {
                 when (type) {
-                    "token"  -> {
+                    "token" -> {
                         tokenBuffer.append(data)
                         trySend(StreamChunk.Token(data))
                     }
                     "action" -> {
                         actionBlockJson = data
                     }
-                    "done"   -> {
+                    "done" -> {
                         val now            = Instant.now()
                         val fullContent    = tokenBuffer.toString()
                         val assistantMsgId = try {
@@ -186,13 +189,18 @@ class AiRepositoryImpl @Inject constructor(
                 }
             }
 
-            override fun onFailure(eventSource: EventSource, t: Throwable?, response: okhttp3.Response?) {
-                trySend(StreamChunk.Error(t ?: Exception("SSE stream failed: ${response?.code}")))
+            override fun onFailure(
+                eventSource: EventSource,
+                t: Throwable?,
+                response: okhttp3.Response?,
+            ) {
+                val error = t ?: Exception("SSE failed — HTTP ${response?.code}")
+                trySend(StreamChunk.Error(error))
                 close()
             }
         }
 
-        val eventSource = EventSources.createFactory(okHttpClient)
+        val eventSource = EventSources.createFactory(sseClient)
             .newEventSource(request, listener)
 
         awaitClose { eventSource.cancel() }
