@@ -227,13 +227,6 @@ fun ProfileScreen(
             )
         }
     ) { innerPadding ->
-        if (state.isLoading && state.profile == null) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
-            }
-            return@Scaffold
-        }
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -246,6 +239,15 @@ fun ProfileScreen(
 
             if (state.isLocalOnly) {
                 LocalOnlyHero(onNavigateToLogin = onSignedOut)
+            } else if (state.isLoading && state.profile == null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                }
             } else {
                 ProfileHeader(
                     profile = state.profile,

@@ -346,7 +346,7 @@ private fun TasksTab(rootNavController: NavHostController) {
         onNavigateToProfile = { rootNavController.navigate(MainRoute.Profile) },
         onNavigateToSearch  = { rootNavController.navigate(MainRoute.Search) },
         onNavigateToAi      = { rootNavController.navigateToTab(MainRoute.Ai) },
-        onFabAdd            = { /* TODO: open add task sheet */ },
+        onFabAdd            = { tasksNavController.navigate(TaskRoutes.ADD_TASK) },
         bottomNavCurrentRoute = rootBackStack?.destination?.route,
         onNavItemClick      = { rootNavController.navigateToTab(it) },
         showBottomBar       = isTopLevel,
