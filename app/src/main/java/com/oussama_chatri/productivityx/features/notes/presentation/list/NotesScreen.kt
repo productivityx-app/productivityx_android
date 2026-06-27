@@ -36,10 +36,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.FilterTagChip
@@ -101,7 +103,7 @@ fun NotesScreen(
                     if (pinnedNotes.isNotEmpty() && uiState.selectedTagId == null && !uiState.showPinnedOnly) {
                         item(span = StaggeredGridItemSpan.FullLine) {
                             Text(
-                                text     = "Pinned",
+                                text     = stringResource(R.string.notes_pinned_section),
                                 style    = MaterialTheme.typography.labelMedium,
                                 color    = Color(0xFF888899),
                                 modifier = Modifier.padding(top = 4.dp, bottom = 2.dp)
@@ -118,7 +120,7 @@ fun NotesScreen(
                         if (otherNotes.isNotEmpty()) {
                             item(span = StaggeredGridItemSpan.FullLine) {
                                 Text(
-                                    text     = "Others",
+                                    text     = stringResource(R.string.notes_all_section),
                                     style    = MaterialTheme.typography.labelMedium,
                                     color    = Color(0xFF888899),
                                     modifier = Modifier.padding(top = 8.dp, bottom = 2.dp)
@@ -165,14 +167,14 @@ private fun FilterChipsRow(
     ) {
         item {
             FilterTagChip(
-                label      = "All",
+                label      = stringResource(R.string.notes_filter_all),
                 isSelected = selectedTagId == null && !showPinnedOnly,
                 onClick    = { onTagSelected(null) }
             )
         }
         item {
             FilterTagChip(
-                label      = "Pinned",
+                label      = stringResource(R.string.notes_filter_pinned),
                 isSelected = showPinnedOnly,
                 onClick    = onPinnedToggle
             )
@@ -202,14 +204,14 @@ private fun NotesEmptyState(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text      = "No notes yet",
+            text      = stringResource(R.string.notes_empty_title),
             style     = MaterialTheme.typography.bodyLarge,
             color     = Color(0xFFCCCCD8),
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text      = "Tap + to start writing",
+            text      = stringResource(R.string.notes_empty_body),
             style     = MaterialTheme.typography.bodyMedium,
             color     = Color(0xFF888899),
             textAlign = TextAlign.Center

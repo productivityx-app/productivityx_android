@@ -39,6 +39,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.CalendarView
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.events.presentation.components.AddEditEventSheet
@@ -193,19 +195,19 @@ private fun CalendarTopBar(
         TextButton(onClick = onToday) {
             Icon(Icons.Outlined.Today, null, tint = Color(0xFF6366F1), modifier = Modifier.size(16.dp))
             Spacer(Modifier.width(4.dp))
-            Text("Today", color = Color(0xFF6366F1), style = MaterialTheme.typography.labelMedium)
+            Text(stringResource(R.string.calendar_today), color = Color(0xFF6366F1), style = MaterialTheme.typography.labelMedium)
         }
 
         IconButton(onClick = onPrevious) {
-            Icon(Icons.Outlined.ChevronLeft, "Previous", tint = Color(0xFFCCCCD8))
+            Icon(Icons.Outlined.ChevronLeft, stringResource(R.string.previous), tint = Color(0xFFCCCCD8))
         }
         IconButton(onClick = onNext) {
-            Icon(Icons.Outlined.ChevronRight, "Next", tint = Color(0xFFCCCCD8))
+            Icon(Icons.Outlined.ChevronRight, stringResource(R.string.next), tint = Color(0xFFCCCCD8))
         }
         IconButton(onClick = onToggleView) {
             Icon(
                 imageVector        = if (view == CalendarView.WEEK) Icons.Outlined.CalendarViewMonth else Icons.Outlined.CalendarViewDay,
-                contentDescription = "Toggle view",
+                contentDescription = if (view == CalendarView.WEEK) stringResource(R.string.calendar_view_month) else stringResource(R.string.calendar_view_week),
                 tint               = Color(0xFFCCCCD8)
             )
         }

@@ -57,8 +57,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import com.oussama_chatri.productivityx.R
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.theme.PriorityColors
@@ -132,7 +134,7 @@ private fun HomeContent(
 
         // Due Today
         item {
-            SectionHeader(title = "Due Today", actionLabel = "See all", onAction = onSeeAllTasks)
+            SectionHeader(title = stringResource(R.string.home_due_today), actionLabel = stringResource(R.string.see_all), onAction = onSeeAllTasks)
             Spacer(Modifier.height(4.dp))
         }
 
@@ -142,14 +144,14 @@ private fun HomeContent(
                 Spacer(Modifier.height(4.dp))
             }
         } else {
-            item { EmptySection(label = "No tasks due today. Enjoy your day!") }
+            item { EmptySection(label = stringResource(R.string.home_no_tasks_today)) }
         }
 
         item { Spacer(Modifier.height(24.dp)) }
 
         // Upcoming Events
         item {
-            SectionHeader(title = "Upcoming Events", actionLabel = "See all", onAction = onSeeAllEvents)
+            SectionHeader(title = stringResource(R.string.home_upcoming_events), actionLabel = stringResource(R.string.see_all), onAction = onSeeAllEvents)
             Spacer(Modifier.height(4.dp))
         }
 
@@ -159,14 +161,14 @@ private fun HomeContent(
                 Spacer(Modifier.height(4.dp))
             }
         } else {
-            item { EmptySection(label = "No upcoming events.") }
+            item { EmptySection(label = stringResource(R.string.home_no_events)) }
         }
 
         item { Spacer(Modifier.height(24.dp)) }
 
         // Recent Notes
         item {
-            SectionHeader(title = "Recent Notes", actionLabel = "See all", onAction = onSeeAllNotes)
+            SectionHeader(title = stringResource(R.string.home_recent_notes), actionLabel = stringResource(R.string.see_all), onAction = onSeeAllNotes)
             Spacer(Modifier.height(8.dp))
         }
 
@@ -174,7 +176,7 @@ private fun HomeContent(
             if (summary.recentNotes.isNotEmpty()) {
                 RecentNotesRow(notes = summary.recentNotes)
             } else {
-                EmptySection(label = "No notes yet. Start writing!")
+                EmptySection(label = stringResource(R.string.home_no_notes))
             }
         }
     }
@@ -193,7 +195,7 @@ private fun SummaryCardsRow(summary: DashboardSummary) {
                 icon  = Icons.Outlined.CheckCircle,
                 tint  = PxColors.Primary,
                 count = summary.tasksDueToday.toString(),
-                label = "Due today",
+                label = stringResource(R.string.home_due_today),
             )
         }
         item {
@@ -201,7 +203,7 @@ private fun SummaryCardsRow(summary: DashboardSummary) {
                 icon  = Icons.Outlined.AccessAlarm,
                 tint  = PxColors.Error,
                 count = summary.tasksOverdue.toString(),
-                label = "Overdue",
+                label = stringResource(R.string.home_overdue),
             )
         }
         item {
@@ -209,7 +211,7 @@ private fun SummaryCardsRow(summary: DashboardSummary) {
                 icon  = Icons.Outlined.CalendarMonth,
                 tint  = PxColors.Secondary,
                 count = summary.upcomingEvents.size.toString(),
-                label = "Events",
+                label = stringResource(R.string.home_upcoming_events),
             )
         }
         item {
@@ -217,7 +219,7 @@ private fun SummaryCardsRow(summary: DashboardSummary) {
                 icon  = Icons.Outlined.StickyNote2,
                 tint  = PxColors.Info,
                 count = summary.totalActiveNotes.toString(),
-                label = "Notes",
+                label = stringResource(R.string.home_total_notes),
             )
         }
     }
@@ -283,7 +285,7 @@ private fun FocusStrip(focusMinutes: Int, onOpenPomodoro: () -> Unit = {}) {
         Spacer(Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text  = "Today's focus",
+                text  = stringResource(R.string.home_focus_time),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -390,7 +392,7 @@ private fun TaskRow(task: Task) {
                         .atZone(ZoneId.systemDefault())
                         .toInstant()
                 )
-            } ?: "Today"
+            } ?: stringResource(R.string.today)
             Text(
                 text  = timeLabel,
                 style = MaterialTheme.typography.labelSmall,
@@ -512,7 +514,7 @@ private fun NoteCard(note: Note) {
             .padding(12.dp),
     ) {
         Text(
-            text     = note.title.ifBlank { "Untitled" },
+            text     = note.title.ifBlank { stringResource(R.string.notes_untitled) },
             style    = MaterialTheme.typography.titleMedium,
             color    = MaterialTheme.colorScheme.onBackground,
             maxLines = 1,
@@ -600,7 +602,7 @@ private fun HomeErrorState(message: String) {
             )
             Spacer(Modifier.height(16.dp))
             Text(
-                text      = "Something went wrong",
+                text      = stringResource(R.string.empty_state_error_title),
                 style     = MaterialTheme.typography.titleMedium,
                 color     = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,

@@ -75,6 +75,8 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.state.TasksU
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.displayLabel
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.label
 import com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel.TasksViewModel
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 
 @Composable
 fun TasksScreen(
@@ -164,14 +166,14 @@ private fun TaskViewToggle(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = {}) {
-            Icon(Icons.Outlined.FilterList, contentDescription = "Filter", tint = Color(0xFF888899))
+            Icon(Icons.Outlined.FilterList, contentDescription = stringResource(R.string.cd_filter), tint = Color(0xFF888899))
         }
         IconButton(onClick = {
             onToggleView(if (viewMode == TaskView.LIST) TaskView.KANBAN else TaskView.LIST)
         }) {
             Icon(
                 imageVector = if (viewMode == TaskView.LIST) Icons.Outlined.ViewKanban else Icons.Outlined.ViewList,
-                contentDescription = "Toggle view",
+                contentDescription = if (viewMode == TaskView.LIST) stringResource(R.string.tasks_view_kanban) else stringResource(R.string.tasks_view_list),
                 tint = Color(0xFF6366F1)
             )
         }
@@ -210,7 +212,12 @@ private fun TaskTabRow(
                     .padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
                 Text(
-                    text = tab.label,
+                    text = when (tab) {
+                        TaskTab.ALL -> stringResource(R.string.tasks_tab_all)
+                        TaskTab.TODAY -> stringResource(R.string.tasks_tab_today)
+                        TaskTab.UPCOMING -> stringResource(R.string.tasks_tab_upcoming)
+                        TaskTab.COMPLETED -> stringResource(R.string.tasks_tab_completed)
+                    },
                     color = textColor,
                     fontSize = 13.sp,
                     fontWeight = if (isActive) FontWeight.SemiBold else FontWeight.Normal
@@ -232,11 +239,16 @@ private fun TaskListView(
     onDelete: (String) -> Unit
 ) {
     if (tasks.isEmpty()) {
-        PxEmptyState(
-            icon = Icons.Outlined.CheckCircle,
-            title = "No tasks here",
-            subtitle = "Create your first task to get started."
-        )
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            PxEmptyState(
+                icon = Icons.Outlined.CheckCircle,
+                title = stringResource(R.string.tasks_empty_title),
+                subtitle = stringResource(R.string.tasks_empty_body)
+            )
+        }
         return
     }
 
@@ -387,7 +399,7 @@ private fun KanbanColumn(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    "No tasks here",
+                    stringResource(R.string.kanban_column_empty),
                     color = Color(0xFF888899),
                     fontSize = 13.sp
                 )
@@ -415,7 +427,7 @@ private fun KanbanColumn(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(Icons.Outlined.Add, contentDescription = null, tint = Color(0xFF6366F1), modifier = Modifier.size(16.dp))
-                Text("Add task", color = Color(0xFF6366F1), fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                Text(stringResource(R.string.kanban_add_task), color = Color(0xFF6366F1), fontSize = 13.sp, fontWeight = FontWeight.Medium)
             }
         }
     }

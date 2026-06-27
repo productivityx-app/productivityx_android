@@ -44,8 +44,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.features.profile.presentation.components.MinuteStepper
 import com.oussama_chatri.productivityx.features.profile.presentation.components.SelectionChipRow
@@ -79,10 +81,10 @@ fun PreferencesScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Preferences") },
+                title = { Text(stringResource(R.string.preferences_title)) },
                 actions = {
                     if (state.isSaving) {
                         CircularProgressIndicator(
@@ -116,11 +118,11 @@ fun PreferencesScreen(
                 .navigationBarsPadding()
         ) {
             // ── Pomodoro ──────────────────────────────────────────────
-            SettingsSectionHeader("Pomodoro")
+            SettingsSectionHeader(stringResource(R.string.profile_section_pomodoro))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.Timer,
-                    label = "Focus duration",
+                    label = stringResource(R.string.preferences_pomodoro_focus),
                     showDivider = true,
                     trailing = {
                         MinuteStepper(
@@ -140,7 +142,7 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.Coffee,
-                    label = "Short break",
+                    label = stringResource(R.string.preferences_pomodoro_short_break),
                     showDivider = true,
                     trailing = {
                         MinuteStepper(
@@ -160,7 +162,7 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.HotelClass,
-                    label = "Long break",
+                    label = stringResource(R.string.preferences_pomodoro_long_break),
                     showDivider = true,
                     trailing = {
                         MinuteStepper(
@@ -180,7 +182,7 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.Loop,
-                    label = "Cycles before long break",
+                    label = stringResource(R.string.preferences_pomodoro_cycles),
                     showDivider = true,
                     trailing = {
                         MinuteStepper(
@@ -201,7 +203,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.PlayCircle,
-                    label = "Auto-start breaks",
+                    label = stringResource(R.string.preferences_pomodoro_auto_start_breaks),
                     checked = state.pomodoroAutoStartBreaks,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.AutoStartBreaksChanged(it))
@@ -209,7 +211,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.PlayCircle,
-                    label = "Auto-start focus",
+                    label = stringResource(R.string.preferences_pomodoro_auto_start_focus),
                     checked = state.pomodoroAutoStartFocus,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.AutoStartFocusChanged(it))
@@ -217,7 +219,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.Notifications,
-                    label = "Session end sound",
+                    label = stringResource(R.string.preferences_pomodoro_sound),
                     checked = state.pomodoroSoundEnabled,
                     showDivider = false,
                     onCheckedChange = {
@@ -227,11 +229,11 @@ fun PreferencesScreen(
             }
 
             // ── Notifications ──────────────────────────────────────────
-            SettingsSectionHeader("Notifications")
+            SettingsSectionHeader(stringResource(R.string.profile_section_notifications))
             SettingsSectionCard {
                 SettingRowSwitch(
                     icon = Icons.Outlined.NotificationsActive,
-                    label = "Task reminders",
+                    label = stringResource(R.string.preferences_notify_task_reminders),
                     checked = state.notifyTaskReminders,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.NotifyTaskRemindersChanged(it))
@@ -239,7 +241,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.CalendarMonth,
-                    label = "Event reminders",
+                    label = stringResource(R.string.preferences_notify_event_reminders),
                     checked = state.notifyEventReminders,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.NotifyEventRemindersChanged(it))
@@ -247,7 +249,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.Timer,
-                    label = "Pomodoro end",
+                    label = stringResource(R.string.preferences_notify_pomodoro_end),
                     checked = state.notifyPomodoroEnd,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.NotifyPomodoroEndChanged(it))
@@ -255,7 +257,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.WbSunny,
-                    label = "Daily summary",
+                    label = stringResource(R.string.preferences_notify_daily_summary),
                     checked = state.notifyDailySummary,
                     showDivider = false,
                     onCheckedChange = {
@@ -265,15 +267,15 @@ fun PreferencesScreen(
             }
 
             // ── Tasks ──────────────────────────────────────────────────
-            SettingsSectionHeader("Tasks")
+            SettingsSectionHeader(stringResource(R.string.nav_tasks))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.AutoMirrored.Outlined.ViewList,  // fixed: was Outlined.ViewList
-                    label = "Default view",
+                    label = stringResource(R.string.preferences_default_task_view),
                     showDivider = true,
                     trailing = {
                         SelectionChipRow(
-                            options = listOf("LIST" to "List", "KANBAN" to "Kanban"),
+                            options = listOf("LIST" to stringResource(R.string.task_view_list), "KANBAN" to stringResource(R.string.task_view_kanban)),
                             selected = state.defaultTaskView,
                             onSelect = {
                                 viewModel.onEvent(PreferencesUiEvent.DefaultTaskViewChanged(it))
@@ -283,14 +285,14 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.AutoMirrored.Outlined.Sort,  // fixed: was Outlined.Sort
-                    label = "Default sort",
+                    label = stringResource(R.string.preferences_default_task_sort),
                     showDivider = true,
                     trailing = {
                         SelectionChipRow(
                             options = listOf(
-                                "DUE_DATE" to "Due date",
-                                "PRIORITY" to "Priority",
-                                "CREATED" to "Created"
+                                "DUE_DATE" to stringResource(R.string.tasks_sort_due_date),
+                                "PRIORITY" to stringResource(R.string.tasks_sort_priority),
+                                "CREATED" to stringResource(R.string.tasks_sort_created)
                             ),
                             selected = state.defaultTaskSort,
                             onSelect = {
@@ -301,7 +303,7 @@ fun PreferencesScreen(
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.CheckCircle,
-                    label = "Show completed tasks",
+                    label = stringResource(R.string.preferences_show_completed_tasks),
                     checked = state.showCompletedTasks,
                     showDivider = false,
                     onCheckedChange = {
@@ -311,15 +313,15 @@ fun PreferencesScreen(
             }
 
             // ── Calendar ───────────────────────────────────────────────
-            SettingsSectionHeader("Calendar")
+            SettingsSectionHeader(stringResource(R.string.nav_calendar))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.CalendarMonth,
-                    label = "Default view",
+                    label = stringResource(R.string.preferences_default_calendar_view),
                     showDivider = true,
                     trailing = {
                         SelectionChipRow(
-                            options = listOf("WEEK" to "Week", "MONTH" to "Month"),
+                            options = listOf("WEEK" to stringResource(R.string.calendar_view_week), "MONTH" to stringResource(R.string.calendar_view_month)),
                             selected = state.defaultCalendarView,
                             onSelect = {
                                 viewModel.onEvent(PreferencesUiEvent.DefaultCalendarViewChanged(it))
@@ -329,11 +331,11 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.ViewWeek,
-                    label = "Week starts on",
+                    label = stringResource(R.string.preferences_week_starts_on),
                     showDivider = false,
                     trailing = {
                         SelectionChipRow(
-                            options = listOf("MON" to "Mon", "SUN" to "Sun", "SAT" to "Sat"),
+                            options = listOf("MON" to stringResource(R.string.day_monday_short), "SUN" to stringResource(R.string.day_sunday_short), "SAT" to stringResource(R.string.day_saturday_short)),
                             selected = state.weekStartsOn,
                             onSelect = {
                                 viewModel.onEvent(PreferencesUiEvent.WeekStartsOnChanged(it))
@@ -344,12 +346,12 @@ fun PreferencesScreen(
             }
 
             // ── AI ─────────────────────────────────────────────────────
-            SettingsSectionHeader("AI")
+            SettingsSectionHeader(stringResource(R.string.profile_section_ai))
             SettingsSectionCard {
                 SettingRowSwitch(
                     icon = Icons.Outlined.AutoAwesome,
-                    label = "Workspace context",
-                    subtitle = "Share tasks, events, and notes with AI",
+                    label = stringResource(R.string.preferences_ai_context),
+                    subtitle = stringResource(R.string.preferences_ai_context_desc),
                     checked = state.aiContextEnabled,
                     onCheckedChange = {
                         viewModel.onEvent(PreferencesUiEvent.AiContextEnabledChanged(it))
@@ -357,7 +359,7 @@ fun PreferencesScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.SmartToy,
-                    label = "AI Model",
+                    label = stringResource(R.string.preferences_ai_model),
                     showDivider = false,
                     trailing = {
                         SelectionChipRow(

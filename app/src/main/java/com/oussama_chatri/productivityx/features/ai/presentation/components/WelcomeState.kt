@@ -31,14 +31,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-
-private val SUGGESTIONS = listOf(
-    "What's due today?",
-    "Summarize my overdue tasks",
-    "Start a focus session",
-    "Draft a meeting agenda",
-)
+import com.oussama_chatri.productivityx.R
 
 @Composable
 fun WelcomeState(
@@ -84,7 +79,7 @@ fun WelcomeState(
         Spacer(Modifier.height(20.dp))
 
         Text(
-            text      = "How can I help?",
+            text      = stringResource(R.string.ai_welcome_title),
             style     = MaterialTheme.typography.headlineMedium,
             color     = Color(0xFFEEEEF5),
             textAlign = TextAlign.Center,
@@ -93,7 +88,7 @@ fun WelcomeState(
         Spacer(Modifier.height(8.dp))
 
         Text(
-            text      = "I can see your workspace — tasks, events, and notes — to give you context-aware answers.",
+            text      = stringResource(R.string.ai_welcome_body),
             style     = MaterialTheme.typography.bodyMedium,
             color     = Color(0xFF888899),
             textAlign = TextAlign.Center,
@@ -102,8 +97,14 @@ fun WelcomeState(
         Spacer(Modifier.height(32.dp))
 
         // 2×2 suggestion grid
+        val suggestions = listOf(
+            stringResource(R.string.ai_suggestion_due_today),
+            stringResource(R.string.ai_suggestion_overdue),
+            stringResource(R.string.ai_suggestion_start_focus),
+            stringResource(R.string.ai_suggestion_meeting_agenda),
+        )
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            SUGGESTIONS.chunked(2).forEach { row ->
+            suggestions.chunked(2).forEach { row ->
                 Row(
                     modifier              = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),

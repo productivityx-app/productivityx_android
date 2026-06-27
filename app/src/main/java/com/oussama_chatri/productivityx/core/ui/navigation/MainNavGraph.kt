@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
@@ -38,6 +39,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
 import com.oussama_chatri.productivityx.features.ai.presentation.navigation.aiNavGraph
 import com.oussama_chatri.productivityx.features.events.presentation.navigation.eventsNavGraph
@@ -53,18 +55,18 @@ import com.oussama_chatri.productivityx.features.tasks.navigation.TaskRoutes
 import com.oussama_chatri.productivityx.features.tasks.navigation.tasksNavGraph
 
 private data class TabConfig(
-    val title: String,
-    val description: String = "",
+    val titleRes: Int,
+    val descriptionRes: Int? = null,
     val fabAdd: Boolean = true,
     val fabAi: Boolean = true,
 )
 
 private val tabConfigs = mapOf(
-    MainRoute.Home::class.qualifiedName    to TabConfig("Dashboard",  "Overview of your day",         fabAdd = true,  fabAi = false),
-    MainRoute.Notes::class.qualifiedName   to TabConfig("Notes",      "Capture your thoughts",         fabAdd = true,  fabAi = true),
-    MainRoute.Tasks::class.qualifiedName   to TabConfig("Tasks",      "Get things done",               fabAdd = true,  fabAi = true),
-    MainRoute.Calendar::class.qualifiedName to TabConfig("Events",    "Your schedule at a glance",     fabAdd = true,  fabAi = true),
-    MainRoute.Pomodoro::class.qualifiedName to TabConfig("Pomodoro",  "Stay in the flow",              fabAdd = false, fabAi = true),
+    MainRoute.Home::class.qualifiedName    to TabConfig(R.string.tab_dashboard,  R.string.tab_dashboard_desc,       fabAdd = true,  fabAi = false),
+    MainRoute.Notes::class.qualifiedName   to TabConfig(R.string.nav_notes,      R.string.tab_notes_desc,          fabAdd = true,  fabAi = true),
+    MainRoute.Tasks::class.qualifiedName   to TabConfig(R.string.nav_tasks,      R.string.tab_tasks_desc,          fabAdd = true,  fabAi = true),
+    MainRoute.Calendar::class.qualifiedName to TabConfig(R.string.tab_events,    R.string.tab_events_desc,         fabAdd = true,  fabAi = true),
+    MainRoute.Pomodoro::class.qualifiedName to TabConfig(R.string.nav_pomodoro,  R.string.tab_pomodoro_desc,       fabAdd = false, fabAi = true),
 )
 
 fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
@@ -136,13 +138,13 @@ private fun TabScaffold(
                 title = {
                     Column {
                         Text(
-                            text       = config.title,
+                            text       = stringResource(config.titleRes),
                             style      = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold,
                         )
-                        if (config.description.isNotBlank()) {
+                        if (config.descriptionRes != null) {
                             Text(
-                                text       = config.description,
+                                text       = stringResource(config.descriptionRes),
                                 style      = MaterialTheme.typography.bodyMedium,
                                 color      = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -153,13 +155,13 @@ private fun TabScaffold(
                     // Screen-specific actions (e.g. trash, filter) inserted here
                     additionalActions?.invoke()
                     IconButton(onClick = onNavigateToProfile) {
-                        Icon(Icons.Outlined.Person, contentDescription = "Profile")
+                        Icon(Icons.Outlined.Person, contentDescription = stringResource(R.string.nav_profile))
                     }
                     IconButton(onClick = onNavigateToSearch) {
-                        Icon(Icons.Outlined.Search, contentDescription = "Search")
+                        Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
                     }
                     IconButton(onClick = { /* TODO: notifications */ }) {
-                        Icon(Icons.Outlined.Notifications, contentDescription = "Notifications")
+                        Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -203,14 +205,14 @@ private fun FabStack(
                 onClick      = onFabAi,
                 containerColor = MaterialTheme.colorScheme.primary,
             ) {
-                Icon(Icons.Outlined.AutoAwesome, contentDescription = "AI", tint = Color.White)
+                Icon(Icons.Outlined.AutoAwesome, contentDescription = stringResource(R.string.nav_ai), tint = Color.White)
             }
             if (onFabAdd != null) {
                 FloatingActionButton(
                     onClick      = onFabAdd,
                     containerColor = MaterialTheme.colorScheme.primary,
                 ) {
-                    Icon(Icons.Outlined.Add, contentDescription = "Add", tint = Color.White)
+                    Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.cd_add), tint = Color.White)
                 }
             }
         }
@@ -285,7 +287,7 @@ private fun NotesTab(rootNavController: NavHostController) {
         showBottomBar       = isTopLevel,
         additionalActions   = {
             IconButton(onClick = { notesNavController.navigate(NotesRoute.Trash) }) {
-                Icon(Icons.Outlined.DeleteOutline, contentDescription = "Trash", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.DeleteOutline, contentDescription = stringResource(R.string.nav_trash), tint = Color(0xFFCCCCD8))
             }
         },
     ) { modifier ->
@@ -384,7 +386,7 @@ private fun PomodoroTab(rootNavController: NavHostController) {
         showBottomBar       = isTopLevel,
         additionalActions   = {
             IconButton(onClick = { pomodoroNavController.navigate(PomodoroRoute.History) }) {
-                Icon(Icons.Outlined.History, contentDescription = "History", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.History, contentDescription = stringResource(R.string.nav_history), tint = Color(0xFFCCCCD8))
             }
         },
     ) { modifier ->

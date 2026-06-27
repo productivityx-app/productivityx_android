@@ -70,6 +70,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -80,6 +81,7 @@ import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroStats
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.TimerState
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.event.PomodoroUiEvent
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.state.PomodoroUiState
@@ -202,21 +204,31 @@ private fun SessionTypeSelector(
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         val types = listOf(
-            PomodoroType.FOCUS       to "Focus",
-            PomodoroType.SHORT_BREAK to "Short Break",
-            PomodoroType.LONG_BREAK  to "Long Break"
+            PomodoroType.FOCUS,
+            PomodoroType.SHORT_BREAK,
+            PomodoroType.LONG_BREAK
         )
-        types.forEach { (type, label) ->
+        types.forEach { type ->
+            val animLabel = when (type) {
+                PomodoroType.FOCUS       -> "Focus"
+                PomodoroType.SHORT_BREAK -> "Short Break"
+                PomodoroType.LONG_BREAK  -> "Long Break"
+            }
+            val typeText = when (type) {
+                PomodoroType.FOCUS       -> stringResource(R.string.pomodoro_focus)
+                PomodoroType.SHORT_BREAK -> stringResource(R.string.pomodoro_short_break)
+                PomodoroType.LONG_BREAK  -> stringResource(R.string.pomodoro_long_break)
+            }
             val isSelected = selected == type
             val bgColor by animateColorAsState(
                 targetValue   = if (isSelected) typeColor(type) else Color.Transparent,
                 animationSpec = tween(200),
-                label         = "chipBg_$label"
+                label         = "chipBg_$animLabel"
             )
             val textColor by animateColorAsState(
                 targetValue   = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                 animationSpec = tween(200),
-                label         = "chipText_$label"
+                label         = "chipText_$animLabel"
             )
 
             Box(
@@ -228,7 +240,7 @@ private fun SessionTypeSelector(
                     .padding(horizontal = 14.dp, vertical = 8.dp)
             ) {
                 Text(
-                    text     = label,
+                    text     = typeText,
                     style    = MaterialTheme.typography.labelMedium,
                     color    = textColor,
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
@@ -444,7 +456,7 @@ private fun LinkedTaskCard(
                     ) {
                         Icon(
                             imageVector        = Icons.Outlined.Close,
-                            contentDescription = "Unlink task",
+                            contentDescription = stringResource(R.string.unlink),
                             tint               = PxColors.OnSurfaceDim,
                             modifier           = Modifier.size(16.dp)
                         )
@@ -465,7 +477,7 @@ private fun LinkedTaskCard(
                 )
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text  = "Link a task to track focus time",
+                    text  = stringResource(R.string.pomodoro_link_task),
                     style = MaterialTheme.typography.bodySmall,
                     color = PxColors.OnSurfaceDim
                 )
@@ -494,7 +506,7 @@ private fun TimerControls(
             ) {
                 Icon(
                     imageVector        = Icons.Outlined.Stop,
-                    contentDescription = "Stop",
+                    contentDescription = stringResource(R.string.cd_stop_session),
                     tint               = PxColors.Error,
                     modifier           = Modifier.size(22.dp)
                 )
@@ -520,7 +532,7 @@ private fun TimerControls(
             }
             Icon(
                 imageVector        = icon,
-                contentDescription = if (state.isRunning) "Pause" else "Play",
+                contentDescription = stringResource(R.string.cd_play_pause),
                 tint               = Color.White,
                 modifier           = Modifier.size(36.dp)
             )
@@ -534,7 +546,7 @@ private fun TimerControls(
             ) {
                 Icon(
                     imageVector        = Icons.Outlined.SkipNext,
-                    contentDescription = "Skip",
+                    contentDescription = stringResource(R.string.cd_skip_session),
                     tint               = PxColors.OnSurface,
                     modifier           = Modifier.size(22.dp)
                 )
@@ -699,7 +711,7 @@ private fun InterruptDialog(
         },
         dismissButton     = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )
@@ -713,10 +725,11 @@ fun typeColor(type: PomodoroType): Color = when (type) {
     PomodoroType.LONG_BREAK  -> PxColors.Info
 }
 
+@Composable
 fun typeLabel(type: PomodoroType): String = when (type) {
-    PomodoroType.FOCUS       -> "Focus Session"
-    PomodoroType.SHORT_BREAK -> "Short Break"
-    PomodoroType.LONG_BREAK  -> "Long Break"
+    PomodoroType.FOCUS       -> stringResource(R.string.pomodoro_session_focus)
+    PomodoroType.SHORT_BREAK -> stringResource(R.string.pomodoro_session_short_break)
+    PomodoroType.LONG_BREAK  -> stringResource(R.string.pomodoro_session_long_break)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0F0F14)

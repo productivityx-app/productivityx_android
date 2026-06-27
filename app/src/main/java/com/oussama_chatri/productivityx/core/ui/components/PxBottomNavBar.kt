@@ -32,26 +32,28 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.navigation.MainRoute
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private data class NavItem(
-    val label : String,
-    val icon  : ImageVector,
-    val route : MainRoute,
+    val labelRes : Int,
+    val icon     : ImageVector,
+    val route    : MainRoute,
 )
 
 private val navItems = listOf(
-    NavItem("Home",     Icons.Outlined.Home,          MainRoute.Home),
-    NavItem("Notes",    Icons.Outlined.StickyNote2,   MainRoute.Notes),
-    NavItem("Tasks",    Icons.Outlined.CheckCircle,   MainRoute.Tasks),
-    NavItem("Events",   Icons.Outlined.CalendarMonth, MainRoute.Calendar),
-    NavItem("Pomodoro", Icons.Outlined.Timer,         MainRoute.Pomodoro),
+    NavItem(R.string.nav_home,     Icons.Outlined.Home,          MainRoute.Home),
+    NavItem(R.string.nav_notes,    Icons.Outlined.StickyNote2,   MainRoute.Notes),
+    NavItem(R.string.nav_tasks,    Icons.Outlined.CheckCircle,   MainRoute.Tasks),
+    NavItem(R.string.nav_events,   Icons.Outlined.CalendarMonth, MainRoute.Calendar),
+    NavItem(R.string.nav_pomodoro, Icons.Outlined.Timer,         MainRoute.Pomodoro),
 )
 
 @Composable
@@ -83,19 +85,19 @@ fun PxBottomNavBar(
             val iconTint by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                 animationSpec = tween(200, easing = FastOutSlowInEasing),
-                label         = "navIcon_${item.label}",
+                label         = "navIcon",
             )
 
             val labelColor by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                 animationSpec = tween(200),
-                label         = "navLabel_${item.label}",
+                label         = "navLabel",
             )
 
             val pillBg by animateColorAsState(
                 targetValue   = if (isSelected) PxColors.Primary.copy(alpha = 0.14f) else Color.Transparent,
                 animationSpec = spring(),
-                label         = "navPill_${item.label}",
+                label         = "navPill",
             )
 
             NavigationBarItem(
@@ -112,7 +114,7 @@ fun PxBottomNavBar(
                         ) {
                             Icon(
                                 imageVector        = item.icon,
-                                contentDescription = item.label,
+                                contentDescription = stringResource(item.labelRes),
                                 tint               = iconTint,
                                 modifier           = Modifier.size(22.dp),
                             )
@@ -121,7 +123,7 @@ fun PxBottomNavBar(
                 },
                 label = {
                     Text(
-                        text       = item.label,
+                        text       = stringResource(item.labelRes),
                         fontSize   = 10.sp,
                         fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                         color      = labelColor,

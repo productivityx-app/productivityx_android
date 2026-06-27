@@ -27,7 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.util.rememberDebouncedClick
 
 @Composable
@@ -58,7 +60,7 @@ fun MessageInputBar(
         ) {
             if (value.isEmpty()) {
                 Text(
-                    text  = "Message…",
+                    text  = stringResource(R.string.ai_message_hint),
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF888899),
                 )
@@ -90,7 +92,7 @@ fun MessageInputBar(
         ) {
             Icon(
                 imageVector        = Icons.Outlined.Send,
-                contentDescription = "Send",
+                contentDescription = stringResource(R.string.cd_send_message),
                 tint               = if (canSend) Color.White else Color(0xFF888899),
                 modifier           = Modifier.size(20.dp),
             )

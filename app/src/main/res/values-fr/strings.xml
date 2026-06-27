@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Votre espace de travail. Unifié.</string>
+    <string name="app_description">Notes, tâches, calendrier, minuteur de concentration et un assistant IA qui comprend réellement votre journée.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+    <string name="delete">Supprimer</string>
+    <string name="edit">Modifier</string>
+    <string name="done">Terminé</string>
+    <string name="back">Retour</string>
+    <string name="close">Fermer</string>
+    <string name="confirm">Confirmer</string>
+    <string name="discard">Ignorer</string>
+    <string name="retry">Réessayer</string>
+    <string name="skip">Passer</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+    <string name="continue_action">Continuer</string>
+    <string name="finish">Terminer</string>
+    <string name="apply">Appliquer</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="clear">Effacer</string>
+    <string name="search">Rechercher</string>
+    <string name="filter">Filtrer</string>
+    <string name="sort">Trier</string>
+    <string name="share">Partager</string>
+    <string name="copy">Copier</string>
+    <string name="paste">Coller</string>
+    <string name="undo">Annuler</string>
+    <string name="redo">Rétablir</string>
+    <string name="select_all">Tout sélectionner</string>
+    <string name="deselect_all">Tout désélectionner</string>
+    <string name="more_options">Plus d\'options</string>
+    <string name="settings">Paramètres</string>
+    <string name="help">Aide</string>
+    <string name="feedback">Commentaires</string>
+    <string name="loading">Chargement…</string>
+    <string name="refreshing">Actualisation…</string>
+    <string name="saving">Enregistrement…</string>
+    <string name="deleting">Suppression…</string>
+    <string name="please_wait">Veuillez patienter…</string>
+    <string name="see_all">Voir tout</string>
+    <string name="show_less">Afficher moins</string>
+    <string name="show_more">Afficher plus</string>
+    <string name="optional">Optionnel</string>
+    <string name="required">Requis</string>
+    <string name="none">Aucun</string>
+    <string name="unknown">Inconnu</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="yesterday">Hier</string>
+    <string name="tomorrow">Demain</string>
+    <string name="this_week">Cette semaine</string>
+    <string name="last_week">Semaine dernière</string>
+    <string name="next_week">Semaine prochaine</string>
+    <string name="this_month">Ce mois</string>
+    <string name="all">Tout</string>
+    <string name="new_action">Nouveau</string>
+    <string name="add">Ajouter</string>
+    <string name="remove">Retirer</string>
+    <string name="create">Créer</string>
+    <string name="update">Mettre à jour</string>
+    <string name="restore">Restaurer</string>
+    <string name="archive">Archiver</string>
+    <string name="unarchive">Désarchiver</string>
+    <string name="pin">Épingler</string>
+    <string name="unpin">Désépingler</string>
+    <string name="move">Déplacer</string>
+    <string name="rename">Renommer</string>
+    <string name="duplicate">Dupliquer</string>
+    <string name="open">Ouvrir</string>
+    <string name="view">Voir</string>
+    <string name="preview">Aperçu</string>
+    <string name="expand">Développer</string>
+    <string name="collapse">Réduire</string>
+    <string name="enable">Activer</string>
+    <string name="disable">Désactiver</string>
+    <string name="turn_on">Allumer</string>
+    <string name="turn_off">Éteindre</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="not_now">Pas maintenant</string>
+    <string name="got_it">Compris</string>
+    <string name="learn_more">En savoir plus</string>
+    <string name="send">Envoyer</string>
+    <string name="submit">Soumettre</string>
+    <string name="upload">Télécharger</string>
+    <string name="download">Télécharger</string>
+    <string name="link">Lier</string>
+    <string name="unlink">Délier</string>
+    <string name="connect">Connecter</string>
+    <string name="disconnect">Déconnecter</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Une erreur s\'est produite. Veuillez réessayer.</string>
+    <string name="error_network">Pas de connexion Internet. Vérifiez votre réseau et réessayez.</string>
+    <string name="error_timeout">La demande a expiré. Veuillez réessayer.</string>
+    <string name="error_server">Erreur serveur. Veuillez réessayer plus tard.</string>
+    <string name="error_not_found">L\'élément demandé est introuvable.</string>
+    <string name="error_unauthorized">Votre session a expiré. Veuillez vous reconnecter.</string>
+    <string name="error_forbidden">Vous n\'avez pas la permission d\'effectuer cette action.</string>
+    <string name="error_validation">Veuillez vérifier le formulaire et corriger les erreurs.</string>
+    <string name="error_unknown">Une erreur inattendue s\'est produite.</string>
+    <string name="error_loading">Échec du chargement. Appuyez pour réessayer.</string>
+    <string name="error_saving">Échec de l\'enregistrement. Veuillez réessayer.</string>
+    <string name="error_deleting">Échec de la suppression. Veuillez réessayer.</string>
+    <string name="error_no_data">Aucune donnée disponible.</string>
+    <string name="error_offline_action">Cette action nécessite une connexion Internet.</string>
+    <string name="error_conflict">Un conflit est survenu. Veuillez actualiser et réessayer.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Tout en un seul endroit</string>
+    <string name="onboarding_page1_body">Notes, tâches et calendrier connectés dans un espace de travail unique.</string>
+    <string name="onboarding_page2_title">Restez dans votre flux</string>
+    <string name="onboarding_page2_body">Le minuteur Pomodoro sait sur quoi vous travaillez et suit votre temps automatiquement.</string>
+    <string name="onboarding_page3_title">Une IA qui vous comprend</string>
+    <string name="onboarding_page3_body">Votre assistant voit vos tâches actives, vos événements à venir et vos notes récentes avant de répondre.</string>
+    <string name="onboarding_get_started">Commencer</string>
+    <string name="onboarding_skip">Passer</string>
+    <string name="onboarding_next">Suivant</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Se connecter</string>
+    <string name="auth_sign_up">S\'inscrire</string>
+    <string name="auth_sign_out">Se déconnecter</string>
+    <string name="auth_log_in">Connexion</string>
+    <string name="auth_log_out">Déconnexion</string>
+    <string name="auth_create_account">Créer un compte</string>
+    <string name="auth_already_have_account">Vous avez déjà un compte ?</string>
+    <string name="auth_skip_login">Continuer sans compte</string>
+    <string name="auth_dont_have_account">Vous n\'avez pas de compte ?</string>
+    <string name="auth_welcome_back">Bon retour</string>
+    <string name="auth_create_your_account">Créez votre compte</string>
+    <string name="auth_join_productivityx">Rejoignez ProductivityX</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Mot de passe oublié ?</string>
+    <string name="auth_forgot_password_title">Mot de passe oublié ?</string>
+    <string name="auth_forgot_password_body">Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.</string>
+    <string name="auth_forgot_password_success_title">Lien de réinitialisation envoyé</string>
+    <string name="auth_forgot_password_success_body">Si cet e-mail existe, un lien de réinitialisation a été envoyé. Vérifiez votre boîte de réception.</string>
+
+    <string name="auth_reset_password_title">Réinitialisez votre mot de passe</string>
+    <string name="auth_reset_password_body">Entrez un nouveau mot de passe pour votre compte.</string>
+    <string name="auth_reset_password_action">Réinitialiser le mot de passe</string>
+    <string name="auth_reset_password_success_title">Mot de passe réinitialisé !</string>
+    <string name="auth_reset_password_success_body">Votre mot de passe a été changé. Connectez-vous avec votre nouveau mot de passe.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">Vérifiez votre e-mail</string>
+    <string name="auth_verify_email_body">Nous avons envoyé un code à 6 chiffres à %1$s</string>
+    <string name="auth_verify">Vérifier</string>
+    <string name="auth_resend_code">Renvoyer le code</string>
+    <string name="auth_resend_cooldown">Renvoyer dans %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">Adresse e-mail</string>
+    <string name="field_email_hint">Entrez votre e-mail</string>
+    <string name="field_password">Mot de passe</string>
+    <string name="field_password_hint">Entrez votre mot de passe</string>
+    <string name="field_password_new">Nouveau mot de passe</string>
+    <string name="field_password_new_hint">Entrez le nouveau mot de passe</string>
+    <string name="field_password_confirm">Confirmer le mot de passe</string>
+    <string name="field_password_confirm_hint">Ressaisissez votre mot de passe</string>
+    <string name="field_password_current">Mot de passe actuel</string>
+    <string name="field_password_current_hint">Entrez votre mot de passe actuel</string>
+    <string name="field_username">Nom d\'utilisateur</string>
+    <string name="field_username_hint">Choisissez un nom d\'utilisateur</string>
+    <string name="field_first_name">Prénom</string>
+    <string name="field_first_name_hint">Entrez votre prénom</string>
+    <string name="field_last_name">Nom de famille</string>
+    <string name="field_last_name_hint">Entrez votre nom de famille</string>
+    <string name="field_phone">Numéro de téléphone</string>
+    <string name="field_phone_hint">Entrez votre numéro de téléphone</string>
+    <string name="field_birth_date">Date de naissance</string>
+    <string name="field_birth_date_hint">Sélectionnez votre date de naissance</string>
+    <string name="field_identifier">E-mail, nom d\'utilisateur ou téléphone</string>
+    <string name="field_identifier_hint">Entrez e-mail, nom d\'utilisateur ou téléphone</string>
+    <string name="field_gender">Genre</string>
+    <string name="field_bio">Bio</string>
+    <string name="field_bio_hint">Parlez-nous un peu de vous</string>
+    <string name="field_timezone">Fuseau horaire</string>
+    <string name="field_language">Langue</string>
+    <string name="field_theme">Thème</string>
+    <string name="field_avatar">Photo de profil</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Afficher le mot de passe</string>
+    <string name="password_hide">Masquer le mot de passe</string>
+    <string name="password_strength_weak">Faible</string>
+    <string name="password_strength_fair">Moyen</string>
+    <string name="password_strength_good">Bon</string>
+    <string name="password_strength_strong">Fort</string>
+    <string name="password_requirement_length">Au moins 8 caractères</string>
+    <string name="password_requirement_uppercase">Une lettre majuscule</string>
+    <string name="password_requirement_lowercase">Une lettre minuscule</string>
+    <string name="password_requirement_number">Un chiffre</string>
+    <string name="password_requirement_special">Un caractère spécial</string>
+    <string name="password_forgot">Mot de passe oublié ?</string>
+    <string name="password_reset">Réinitialiser le mot de passe</string>
+    <string name="password_change">Changer le mot de passe</string>
+    <string name="password_mismatch">Les mots de passe ne correspondent pas.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Compte</string>
+    <string name="register_step_profile">Profil</string>
+    <string name="register_step_preferences">Préférences</string>
+    <string name="register_step_verify">Vérification</string>
+    <string name="register_step_indicator">Étape %1$d sur %2$d</string>
+    <string name="register_change_photo">Changer la photo</string>
+    <string name="register_preferences_caption">Vous pouvez modifier cela à tout moment dans les paramètres.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_system">Système</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">Thème</string>
+    <string name="profile_theme_hint">Vous pouvez modifier cela à tout moment dans les paramètres.</string>
+
+    <!-- Gender -->
+    <string name="gender_male">Masculin</string>
+    <string name="gender_female">Féminin</string>
+    <string name="gender_prefer_not_to_say">Préfère ne pas répondre</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_notes">Notes</string>
+    <string name="nav_tasks">Tâches</string>
+    <string name="nav_calendar">Calendrier</string>
+    <string name="nav_ai">IA</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Recherche</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Paramètres</string>
+    <string name="nav_trash">Corbeille</string>
+    <string name="nav_history">Historique</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Bonjour, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Bon après-midi, %1$s 👋</string>
+    <string name="home_greeting_evening">Bonsoir, %1$s 👋</string>
+    <string name="home_greeting_night">Bonne nuit, %1$s 👋</string>
+    <string name="home_quick_add">Ajout rapide</string>
+    <string name="home_due_today">À faire aujourd\'hui</string>
+    <string name="home_overdue">En retard</string>
+    <string name="home_this_week">Cette semaine</string>
+    <string name="home_total_notes">Total des notes</string>
+    <string name="home_focus_time">Concentration du jour</string>
+    <string name="home_upcoming_events">Événements à venir</string>
+    <string name="home_recent_notes">Notes récentes</string>
+    <string name="home_no_tasks_today">Aucune tâche à faire aujourd\'hui.</string>
+    <string name="home_no_events">Aucun événement à venir.</string>
+    <string name="home_no_notes">Aucune note récente.</string>
+    <string name="home_sessions_today">Séances aujourd\'hui</string>
+    <string name="home_focus_minutes">Temps de concentration</string>
+    <string name="home_completed_tasks">Tâches terminées</string>
+    <string name="home_start_focus">Commencer la concentration</string>
+    <string name="home_tasks_completed">tâches terminées</string>
+    <string name="home_events_upcoming">événements à venir</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Notes</string>
+    <string name="notes_new">Nouvelle note</string>
+    <string name="notes_search_hint">Rechercher des notes…</string>
+    <string name="notes_filter_all">Tout</string>
+    <string name="notes_filter_pinned">Épinglées</string>
+    <string name="notes_empty_title">Pas encore de notes</string>
+    <string name="notes_empty_body">Commencez à écrire votre première note.</string>
+    <string name="notes_empty_action">Créer une note</string>
+    <string name="notes_pinned_section">Épinglées</string>
+    <string name="notes_all_section">Toutes les notes</string>
+    <string name="notes_untitled">Sans titre</string>
+    <string name="notes_word_count">%1$d mots</string>
+    <string name="notes_reading_time">%1$d min de lecture</string>
+    <string name="notes_pin_success">Note épinglée.</string>
+    <string name="notes_unpin_success">Note désépinglée.</string>
+    <string name="notes_delete_confirm_title">Déplacer vers la corbeille ?</string>
+    <string name="notes_delete_confirm_body">Cette note sera déplacée vers la corbeille et définitivement supprimée après 30 jours.</string>
+    <string name="notes_delete_success">Note déplacée vers la corbeille.</string>
+    <string name="notes_restore_success">Note restaurée.</string>
+    <string name="notes_hard_delete_confirm_title">Supprimer définitivement ?</string>
+    <string name="notes_hard_delete_confirm_body">Cette note sera définitivement supprimée et ne pourra pas être récupérée.</string>
+    <string name="notes_hard_delete_success">Note définitivement supprimée.</string>
+    <string name="notes_create_success">Note créée.</string>
+    <string name="notes_update_success">Note enregistrée.</string>
+    <string name="notes_autosave">Enregistrée automatiquement</string>
+    <string name="notes_saving">Enregistrement…</string>
+    <string name="notes_copy_link">Copier le lien</string>
+    <string name="notes_link_copied">Lien copié.</string>
+    <string name="notes_link_task">Lier une tâche</string>
+    <string name="notes_unlink_task">Délier la tâche</string>
+    <string name="notes_task_linked">Liée à : %1$s</string>
+    <string name="notes_add_tag">Ajouter une étiquette</string>
+    <string name="notes_no_tags">Aucune étiquette</string>
+    <string name="notes_start_writing">Commencez à écrire…</string>
+    <string name="notes_title_hint">Titre</string>
+    <string name="notes_trash_empty_title">La corbeille est vide</string>
+    <string name="notes_trash_empty_body">Les notes dans la corbeille sont définitivement supprimées après 30 jours.</string>
+    <string name="notes_trash_empty_all">Vider la corbeille</string>
+    <string name="notes_trash_empty_all_confirm_title">Vider la corbeille ?</string>
+    <string name="notes_trash_empty_all_confirm_body">Toutes les notes dans la corbeille seront définitivement supprimées.</string>
+    <string name="notes_in_trash">%1$d note dans la corbeille</string>
+    <string name="notes_in_trash_plural">%1$d notes dans la corbeille</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Gras</string>
+    <string name="editor_format_italic">Italique</string>
+    <string name="editor_format_heading">Titre</string>
+    <string name="editor_format_list_bullet">Liste à puces</string>
+    <string name="editor_format_list_numbered">Liste numérotée</string>
+    <string name="editor_format_code">Code</string>
+    <string name="editor_format_quote">Citation</string>
+    <string name="editor_format_link">Insérer un lien</string>
+    <string name="editor_insert_link_title">Insérer un lien</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Texte à afficher</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Étiquettes</string>
+    <string name="tags_new">Nouvelle étiquette</string>
+    <string name="tags_name_hint">Nom de l\'étiquette</string>
+    <string name="tags_color">Couleur</string>
+    <string name="tags_create_success">Étiquette créée.</string>
+    <string name="tags_update_success">Étiquette mise à jour.</string>
+    <string name="tags_delete_success">Étiquette supprimée.</string>
+    <string name="tags_delete_confirm_title">Supprimer l\'étiquette ?</string>
+    <string name="tags_delete_confirm_body">Cette étiquette sera retirée de toutes les notes qui l\'utilisent.</string>
+    <string name="tags_already_exists">Une étiquette avec ce nom existe déjà.</string>
+    <string name="tags_empty_title">Pas encore d\'étiquettes</string>
+    <string name="tags_empty_body">Créez des étiquettes pour organiser vos notes.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Tâches</string>
+    <string name="tasks_new">Nouvelle tâche</string>
+    <string name="tasks_search_hint">Rechercher des tâches…</string>
+    <string name="tasks_tab_all">Tout</string>
+    <string name="tasks_tab_today">Aujourd\'hui</string>
+    <string name="tasks_tab_upcoming">À venir</string>
+    <string name="tasks_tab_completed">Terminées</string>
+    <string name="tasks_view_list">Vue liste</string>
+    <string name="tasks_view_kanban">Vue tableau</string>
+    <string name="tasks_empty_title">Aucune tâche ici</string>
+    <string name="tasks_empty_body">Créez votre première tâche pour commencer.</string>
+    <string name="tasks_empty_action">Créer une tâche</string>
+    <string name="tasks_empty_today">Aucune tâche à faire aujourd\'hui. Profitez de votre journée !</string>
+    <string name="tasks_empty_upcoming">Aucune tâche à venir.</string>
+    <string name="tasks_empty_completed">Aucune tâche terminée pour l\'instant.</string>
+    <string name="tasks_empty_filter">Aucune tâche ne correspond à ce filtre.</string>
+    <string name="tasks_field_title">Titre de la tâche</string>
+    <string name="tasks_field_title_hint">Que faut-il faire ?</string>
+    <string name="tasks_field_description">Description</string>
+    <string name="tasks_field_description_hint">Ajoutez plus de détails…</string>
+    <string name="tasks_field_due_date">Date d\'échéance</string>
+    <string name="tasks_field_due_time">Heure d\'échéance</string>
+    <string name="tasks_field_priority">Priorité</string>
+    <string name="tasks_field_status">Statut</string>
+    <string name="tasks_field_reminder">Rappel</string>
+    <string name="tasks_field_estimated_time">Temps estimé</string>
+    <string name="tasks_field_actual_time">Temps réel</string>
+    <string name="tasks_field_link_event">Lier un événement</string>
+    <string name="tasks_field_subtasks">Sous-tâches</string>
+    <string name="tasks_add_subtask">Ajouter une sous-tâche</string>
+    <string name="tasks_subtask_count">%1$d sous-tâche</string>
+    <string name="tasks_subtask_count_plural">%1$d sous-tâches</string>
+    <string name="tasks_subtask_completed">%1$d sur %2$d terminée(s)</string>
+    <string name="tasks_pomodoro_sessions">Séances de concentration</string>
+    <string name="tasks_no_due_date">Pas de date d\'échéance</string>
+    <string name="tasks_no_due_time">Pas d\'heure définie</string>
+    <string name="tasks_no_reminder">Aucun rappel</string>
+    <string name="tasks_no_estimated">Aucune estimation</string>
+    <string name="tasks_create_success">Tâche créée.</string>
+    <string name="tasks_update_success">Tâche mise à jour.</string>
+    <string name="tasks_delete_success">Tâche supprimée.</string>
+    <string name="tasks_restore_success">Tâche restaurée.</string>
+    <string name="tasks_complete_success">Tâche terminée.</string>
+    <string name="tasks_reorder_success">Tâches réorganisées.</string>
+    <string name="tasks_status_updated">Statut mis à jour.</string>
+    <string name="tasks_delete_confirm_title">Supprimer la tâche ?</string>
+    <string name="tasks_delete_confirm_body">Cette tâche sera supprimée.</string>
+    <string name="tasks_minutes">%1$d min</string>
+    <string name="tasks_hours_minutes">%1$dh %2$dm</string>
+    <string name="tasks_swipe_complete">Terminer</string>
+    <string name="tasks_swipe_delete">Supprimer</string>
+    <string name="tasks_sort_due_date">Date d\'échéance</string>
+    <string name="tasks_sort_priority">Priorité</string>
+    <string name="tasks_sort_created">Date de création</string>
+    <string name="tasks_sort_title">Titre</string>
+    <string name="tasks_filter_priority">Filtrer par priorité</string>
+    <string name="tasks_filter_status">Filtrer par statut</string>
+    <string name="tasks_filter_due">Filtrer par date d\'échéance</string>
+    <string name="tasks_overdue_label">En retard</string>
+    <string name="tasks_due_today_label">À faire aujourd\'hui</string>
+    <string name="tasks_due_tomorrow_label">À faire demain</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">Faible</string>
+    <string name="priority_medium">Moyenne</string>
+    <string name="priority_high">Haute</string>
+    <string name="priority_urgent">Urgente</string>
+
+    <string name="status_todo">À faire</string>
+    <string name="status_in_progress">En cours</string>
+    <string name="status_on_hold">En attente</string>
+    <string name="status_done">Terminé</string>
+    <string name="status_cancelled">Annulé</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">À faire</string>
+    <string name="kanban_column_in_progress">En cours</string>
+    <string name="kanban_column_on_hold">En attente</string>
+    <string name="kanban_column_done">Terminé</string>
+    <string name="kanban_add_task">Ajouter une tâche</string>
+    <string name="kanban_drag_hint">Maintenez et faites glisser pour déplacer</string>
+    <string name="kanban_column_empty">Aucune tâche ici</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Calendrier</string>
+    <string name="calendar_view_week">Semaine</string>
+    <string name="calendar_view_month">Mois</string>
+    <string name="calendar_today">Aujourd\'hui</string>
+    <string name="calendar_new_event">Nouvel événement</string>
+    <string name="calendar_no_events">Aucun événement</string>
+    <string name="calendar_all_day">Toute la journée</string>
+    <string name="calendar_recurring">Récurrent</string>
+    <string name="calendar_events_count">%1$d événement</string>
+    <string name="calendar_events_count_plural">%1$d événements</string>
+    <string name="calendar_more_events">+%1$d autre(s)</string>
+    <string name="calendar_week_header">Semaine du %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Nouvel événement</string>
+    <string name="event_edit_title">Modifier l\'événement</string>
+    <string name="event_field_title">Titre de l\'événement</string>
+    <string name="event_field_title_hint">Quel est l\'événement ?</string>
+    <string name="event_field_description">Description</string>
+    <string name="event_field_description_hint">Ajoutez des notes sur cet événement…</string>
+    <string name="event_field_location">Lieu</string>
+    <string name="event_field_location_hint">Ajouter un lieu</string>
+    <string name="event_field_start">Début</string>
+    <string name="event_field_end">Fin</string>
+    <string name="event_field_all_day">Événement toute la journée</string>
+    <string name="event_field_color">Couleur</string>
+    <string name="event_field_recurrence">Récurrence</string>
+    <string name="event_field_reminder">Rappel</string>
+    <string name="event_field_link_task">Lier une tâche</string>
+    <string name="event_recurrence_none">Ne se répète pas</string>
+    <string name="event_recurrence_daily">Quotidien</string>
+    <string name="event_recurrence_weekly">Hebdomadaire</string>
+    <string name="event_recurrence_monthly">Mensuel</string>
+    <string name="event_recurrence_yearly">Annuel</string>
+    <string name="event_recurrence_custom">Personnalisé</string>
+    <string name="event_recurrence_weekdays">Chaque jour de la semaine (lun–ven)</string>
+    <string name="event_recurrence_end_date">Se termine le</string>
+    <string name="event_recurrence_end_never">Jamais</string>
+    <string name="event_recurrence_label">Répétition : %1$s</string>
+    <string name="event_reminder_none">Aucun rappel</string>
+    <string name="event_reminder_at_time">Au moment de l\'événement</string>
+    <string name="event_reminder_5_min">5 minutes avant</string>
+    <string name="event_reminder_10_min">10 minutes avant</string>
+    <string name="event_reminder_15_min">15 minutes avant</string>
+    <string name="event_reminder_30_min">30 minutes avant</string>
+    <string name="event_reminder_1_hour">1 heure avant</string>
+    <string name="event_reminder_1_day">1 jour avant</string>
+    <string name="event_create_success">Événement créé.</string>
+    <string name="event_update_success">Événement mis à jour.</string>
+    <string name="event_delete_success">Événement supprimé.</string>
+    <string name="event_restore_success">Événement restauré.</string>
+    <string name="event_delete_confirm_title">Supprimer l\'événement ?</string>
+    <string name="event_delete_confirm_body">Cet événement sera supprimé.</string>
+    <string name="event_delete_recurring_title">Supprimer un événement récurrent</string>
+    <string name="event_delete_recurring_body">Supprimer cet événement ou tous les événements de la série ?</string>
+    <string name="event_delete_this_only">Cet événement uniquement</string>
+    <string name="event_delete_all_in_series">Tous les événements de la série</string>
+    <string name="event_end_before_start">L\'heure de fin doit être postérieure à l\'heure de début.</string>
+    <string name="event_location_open_maps">Ouvrir dans Maps</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Concentration</string>
+    <string name="pomodoro_focus">Concentration</string>
+    <string name="pomodoro_short_break">Pause courte</string>
+    <string name="pomodoro_long_break">Pause longue</string>
+    <string name="pomodoro_session_focus">Séance de concentration</string>
+    <string name="pomodoro_session_short_break">Pause courte</string>
+    <string name="pomodoro_session_long_break">Pause longue</string>
+    <string name="pomodoro_start">Démarrer</string>
+    <string name="pomodoro_pause">Pause</string>
+    <string name="pomodoro_resume">Reprendre</string>
+    <string name="pomodoro_skip">Passer</string>
+    <string name="pomodoro_stop">Arrêter</string>
+    <string name="pomodoro_reset">Réinitialiser</string>
+    <string name="pomodoro_link_task">Lier une tâche</string>
+    <string name="pomodoro_link_task_hint">Appuyez pour lier une tâche</string>
+    <string name="pomodoro_linked_task">Concentration sur : %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d séance aujourd\'hui</string>
+    <string name="pomodoro_sessions_today_plural">%1$d séances aujourd\'hui</string>
+    <string name="pomodoro_focus_time_today">%1$s de concentration aujourd\'hui</string>
+    <string name="pomodoro_completed_today">Terminé aujourd\'hui</string>
+    <string name="pomodoro_no_active_session">Aucune séance active</string>
+    <string name="pomodoro_session_complete_title">Séance terminée ! 🎉</string>
+    <string name="pomodoro_session_complete_body">Excellent travail. Faites une pause !</string>
+    <string name="pomodoro_break_complete_title">Pause terminée</string>
+    <string name="pomodoro_break_complete_body">Prêt à vous concentrer à nouveau ?</string>
+    <string name="pomodoro_start_success">Séance démarrée.</string>
+    <string name="pomodoro_end_success">Séance terminée.</string>
+    <string name="pomodoro_interrupt_success">Séance interrompue.</string>
+    <string name="pomodoro_interrupt_reason_hint">Pourquoi arrêtez-vous ? (optionnel)</string>
+    <string name="pomodoro_interrupt_confirm_title">Arrêter la séance ?</string>
+    <string name="pomodoro_interrupt_confirm_body">Votre progression sera sauvegardée mais la séance sera marquée comme interrompue.</string>
+    <string name="pomodoro_already_active">Vous avez déjà une séance active. Terminez-la avant d\'en commencer une nouvelle.</string>
+    <string name="pomodoro_stats_title">Statistiques du jour</string>
+    <string name="pomodoro_history_title">Historique des séances</string>
+    <string name="pomodoro_history_empty_title">Pas encore de séances</string>
+    <string name="pomodoro_history_empty_body">Démarrez une séance de concentration pour voir votre historique ici.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Interrompue</string>
+    <string name="pomodoro_session_completed">Terminée</string>
+    <string name="pomodoro_dot_current">Séance en cours</string>
+    <string name="pomodoro_dot_completed">Séance terminée</string>
+    <string name="pomodoro_dot_upcoming">Séance à venir</string>
+    <string name="pomodoro_notification_channel_name">Minuteur Pomodoro</string>
+    <string name="pomodoro_notification_channel_desc">Mises à jour en direct du minuteur et notifications de séance.</string>
+    <string name="pomodoro_notification_running">%1$s restant — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Pause</string>
+    <string name="pomodoro_notification_action_skip">Passer</string>
+    <string name="pomodoro_notification_action_stop">Arrêter</string>
+    <string name="pomodoro_cycle_count">Cycle %1$d sur %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d séance avant la pause longue</string>
+    <string name="pomodoro_until_long_break_plural">%1$d séances avant la pause longue</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">Assistant IA</string>
+    <string name="ai_welcome_title">Comment puis-je vous aider ?</string>
+    <string name="ai_welcome_body">Je peux voir votre espace de travail — tâches, événements et notes — pour vous fournir des réponses contextualisées.</string>
+    <string name="ai_message_hint">Message…</string>
+    <string name="ai_send">Envoyer</string>
+    <string name="ai_new_conversation">Nouvelle conversation</string>
+    <string name="ai_conversations_title">Conversations</string>
+    <string name="ai_conversation_empty">Aucun message pour l\'instant</string>
+    <string name="ai_conversations_empty_title">Aucune conversation pour l\'instant</string>
+    <string name="ai_conversations_empty_body">Commencez une nouvelle conversation pour obtenir de l\'aide sur votre espace de travail.</string>
+    <string name="ai_delete_conversation_title">Supprimer la conversation ?</string>
+    <string name="ai_delete_conversation_body">Cette conversation et tous ses messages seront définitivement supprimés.</string>
+    <string name="ai_delete_conversation_success">Conversation supprimée.</string>
+    <string name="ai_clear_conversation_title">Effacer la conversation ?</string>
+    <string name="ai_clear_conversation_body">Tous les messages de cette conversation seront effacés.</string>
+    <string name="ai_suggestion_due_today">Qu\'est-ce qui est à faire aujourd\'hui ?</string>
+    <string name="ai_suggestion_overdue">Résumer mes tâches en retard</string>
+    <string name="ai_suggestion_start_focus">Démarrer une séance de concentration</string>
+    <string name="ai_suggestion_meeting_agenda">Rédiger un ordre du jour</string>
+    <string name="ai_context_title">Votre espace de travail</string>
+    <string name="ai_context_active_tasks">Tâches actives</string>
+    <string name="ai_context_events_week">Événements cette semaine</string>
+    <string name="ai_context_last_note">Dernière note</string>
+    <string name="ai_context_focus_today">Concentration aujourd\'hui</string>
+    <string name="ai_context_overdue">en retard</string>
+    <string name="ai_context_caption">Ce contexte est envoyé à l\'IA avec chaque message.</string>
+    <string name="ai_context_refresh">Actualiser le contexte</string>
+    <string name="ai_typing">L\'IA réfléchit…</string>
+    <string name="ai_streaming">Génération de la réponse…</string>
+    <string name="ai_error_unavailable">L\'assistant IA est actuellement indisponible. Veuillez réessayer plus tard.</string>
+    <string name="ai_error_stream">Une erreur s\'est produite lors de la génération de la réponse.</string>
+    <string name="ai_action_create_task">Créer une tâche</string>
+    <string name="ai_action_create_note">Créer une note</string>
+    <string name="ai_action_add_event">Ajouter un événement</string>
+    <string name="ai_action_confirm">Confirmer</string>
+    <string name="ai_action_dismiss">Ignorer</string>
+    <string name="ai_action_executed">Terminé ! Élément créé.</string>
+    <string name="ai_action_dismissed">Ignoré.</string>
+    <string name="ai_copy_message">Copier le message</string>
+    <string name="ai_message_copied">Message copié.</string>
+    <string name="ai_regenerate">Régénérer la réponse</string>
+    <string name="ai_you">Vous</string>
+    <string name="ai_assistant">Assistant</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Recherche</string>
+    <string name="search_hint">Rechercher notes, tâches, événements…</string>
+    <string name="search_results_notes">Notes</string>
+    <string name="search_results_tasks">Tâches</string>
+    <string name="search_results_events">Événements</string>
+    <string name="search_recent">Recherches récentes</string>
+    <string name="search_clear_recent">Effacer</string>
+    <string name="search_empty_title">Aucun résultat pour \'%1$s\'</string>
+    <string name="search_empty_body">Essayez différents mots-clés ou vérifiez votre orthographe.</string>
+    <string name="search_results_count">%1$d résultat</string>
+    <string name="search_results_count_plural">%1$d résultats</string>
+    <string name="search_type_note">Note</string>
+    <string name="search_type_task">Tâche</string>
+    <string name="search_type_event">Événement</string>
+    <string name="search_offline_notice">Recherche locale. Connectez-vous à Internet pour des résultats complets.</string>
+    <string name="search_loading">Recherche…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Profil</string>
+    <string name="profile_edit_title">Modifier le profil</string>
+    <string name="profile_change_photo">Changer la photo</string>
+    <string name="profile_remove_photo">Supprimer la photo</string>
+    <string name="profile_photo_updated">Photo de profil mise à jour.</string>
+    <string name="profile_photo_removed">Photo de profil supprimée.</string>
+    <string name="profile_photo_pick">Choisir dans la galerie</string>
+    <string name="profile_photo_camera">Prendre une photo</string>
+    <string name="profile_update_success">Profil mis à jour.</string>
+    <string name="profile_stats_notes">Notes</string>
+    <string name="profile_stats_tasks_completed">Tâches terminées</string>
+    <string name="profile_stats_focus_this_week">Concentration cette semaine</string>
+    <string name="profile_member_since">Membre depuis %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Pas encore de bio.</string>
+    <string name="profile_section_account">Compte</string>
+    <string name="profile_section_appearance">Apparence</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Notifications</string>
+    <string name="profile_section_ai">Assistant IA</string>
+    <string name="profile_section_data">Données &amp; Synchronisation</string>
+    <string name="profile_section_about">À propos</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Préférences</string>
+    <string name="preferences_update_success">Préférences enregistrées.</string>
+    <string name="preferences_pomodoro_focus">Durée de concentration</string>
+    <string name="preferences_pomodoro_focus_desc">Durée de chaque séance de concentration</string>
+    <string name="preferences_pomodoro_short_break">Pause courte</string>
+    <string name="preferences_pomodoro_short_break_desc">Durée des pauses courtes entre les séances</string>
+    <string name="preferences_pomodoro_long_break">Pause longue</string>
+    <string name="preferences_pomodoro_long_break_desc">Durée des pauses longues après un cycle complet</string>
+    <string name="preferences_pomodoro_cycles">Séances avant la pause longue</string>
+    <string name="preferences_pomodoro_cycles_desc">Nombre de séances de concentration avant une pause longue</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Démarrer les pauses automatiquement</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Commencer automatiquement les pauses lorsqu\'une séance se termine</string>
+    <string name="preferences_pomodoro_auto_start_focus">Démarrer la concentration automatiquement</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Commencer automatiquement la séance suivante après une pause</string>
+    <string name="preferences_pomodoro_sound">Son</string>
+    <string name="preferences_pomodoro_sound_desc">Jouer un son lorsqu\'une séance se termine</string>
+    <string name="preferences_notify_task_reminders">Rappels de tâches</string>
+    <string name="preferences_notify_task_reminders_desc">Être notifié quand un rappel de tâche est dû</string>
+    <string name="preferences_notify_event_reminders">Rappels d\'événements</string>
+    <string name="preferences_notify_event_reminders_desc">Être notifié avant les événements du calendrier</string>
+    <string name="preferences_notify_pomodoro_end">Fin du Pomodoro</string>
+    <string name="preferences_notify_pomodoro_end_desc">Être notifié quand une séance Pomodoro se termine</string>
+    <string name="preferences_notify_daily_summary">Résumé quotidien</string>
+    <string name="preferences_notify_daily_summary_desc">Recevoir un résumé matinal de votre journée</string>
+    <string name="preferences_default_task_view">Vue par défaut des tâches</string>
+    <string name="preferences_default_task_sort">Tri par défaut des tâches</string>
+    <string name="preferences_show_completed_tasks">Afficher les tâches terminées</string>
+    <string name="preferences_show_completed_tasks_desc">Inclure les tâches terminées dans la liste des tâches</string>
+    <string name="preferences_default_calendar_view">Vue par défaut du calendrier</string>
+    <string name="preferences_week_starts_on">La semaine commence le</string>
+    <string name="preferences_week_starts_monday">Lundi</string>
+    <string name="preferences_week_starts_sunday">Dimanche</string>
+    <string name="preferences_ai_context">Contexte de l\'espace de travail</string>
+    <string name="preferences_ai_context_desc">Partager vos tâches, événements et notes avec l\'assistant IA</string>
+    <string name="preferences_ai_model">Modèle IA</string>
+    <string name="preferences_ai_model_desc">Choisir le modèle IA pour l\'assistant</string>
+    <string name="preferences_compact_mode">Mode compact</string>
+    <string name="preferences_compact_mode_desc">Utiliser une disposition plus dense pour afficher plus de contenu</string>
+    <string name="preferences_minutes_format">%1$d min</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Synchronisé</string>
+    <string name="sync_status_pending">En attente de synchronisation</string>
+    <string name="sync_status_syncing">Synchronisation…</string>
+    <string name="sync_status_conflict">Conflit de synchronisation</string>
+    <string name="sync_status_error">Erreur de synchronisation</string>
+    <string name="sync_last_synced">Dernière synchronisation : %1$s</string>
+    <string name="sync_never_synced">Jamais synchronisé</string>
+    <string name="sync_conflict_title">Conflit de synchronisation</string>
+    <string name="sync_conflict_body">Un conflit a été détecté pour \'%1$s\'. Quelle version souhaitez-vous conserver ?</string>
+    <string name="sync_conflict_keep_local">Conserver la version locale</string>
+    <string name="sync_conflict_keep_server">Conserver la version serveur</string>
+    <string name="sync_conflict_resolved">Conflit résolu.</string>
+    <string name="sync_pending_count">%1$d modification en attente</string>
+    <string name="sync_pending_count_plural">%1$d modifications en attente</string>
+    <string name="sync_offline_banner">Vous êtes hors ligne. Les modifications seront synchronisées lorsque vous vous reconnecterez.</string>
+    <string name="sync_reconnected">De retour en ligne. Synchronisation…</string>
+    <string name="sync_complete">Toutes les modifications sont synchronisées.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Rappels</string>
+    <string name="notification_channel_reminders_desc">Notifications de rappels de tâches et d\'événements.</string>
+    <string name="notification_channel_sync_name">Synchronisation</string>
+    <string name="notification_channel_sync_desc">Notifications de statut de synchronisation en arrière-plan.</string>
+    <string name="notification_task_reminder_title">Rappel de tâche</string>
+    <string name="notification_task_reminder_body">%1$s est bientôt à faire.</string>
+    <string name="notification_event_reminder_title">Événement à venir</string>
+    <string name="notification_event_reminder_body">%1$s commence dans %2$s.</string>
+    <string name="notification_daily_summary_title">Votre journée en un coup d\'œil</string>
+    <string name="notification_daily_summary_body">%1$d tâche(s) à faire aujourd\'hui, %2$d événement(s) à venir.</string>
+    <string name="notification_permission_title">Activer les notifications</string>
+    <string name="notification_permission_body">Restez informé des rappels, des séances de concentration et des résumés quotidiens.</string>
+    <string name="notification_permission_allow">Autoriser</string>
+    <string name="notification_permission_deny">Pas maintenant</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Accès à l\'appareil photo</string>
+    <string name="permission_camera_body">ProductivityX a besoin d\'accéder à l\'appareil photo pour vous permettre de prendre une photo de profil.</string>
+    <string name="permission_storage_title">Accès au stockage</string>
+    <string name="permission_storage_body">ProductivityX a besoin d\'accéder au stockage pour vous permettre de choisir une photo de profil.</string>
+    <string name="permission_notification_title">Accès aux notifications</string>
+    <string name="permission_notification_body">Autorisez les notifications pour recevoir des rappels de tâches et des alertes Pomodoro.</string>
+    <string name="permission_denied_title">Permission requise</string>
+    <string name="permission_denied_body">Cette fonctionnalité nécessite une permission. Veuillez l\'activer dans les paramètres.</string>
+    <string name="permission_go_to_settings">Ouvrir les paramètres</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">À l\'instant</string>
+    <string name="time_minutes_ago">Il y a %1$d min</string>
+    <string name="time_hours_ago">Il y a %1$dh</string>
+    <string name="time_yesterday">Hier</string>
+    <string name="time_days_ago">Il y a %1$d jours</string>
+    <string name="time_weeks_ago">Il y a %1$d semaine</string>
+    <string name="time_weeks_ago_plural">Il y a %1$d semaines</string>
+    <string name="time_months_ago">Il y a %1$d mois</string>
+    <string name="time_months_ago_plural">Il y a %1$d mois</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">HH:mm</string>
+    <string name="time_format_datetime">d MMM \'à\' HH:mm</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE d MMMM yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">%1$d heure</string>
+    <string name="time_hour_plural">%1$d heures</string>
+    <string name="time_minute_singular">%1$d minute</string>
+    <string name="time_minute_plural">%1$d minutes</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">Lun</string>
+    <string name="day_tuesday_short">Mar</string>
+    <string name="day_wednesday_short">Mer</string>
+    <string name="day_thursday_short">Jeu</string>
+    <string name="day_friday_short">Ven</string>
+    <string name="day_saturday_short">Sam</string>
+    <string name="day_sunday_short">Dim</string>
+    <string name="day_monday">Lundi</string>
+    <string name="day_tuesday">Mardi</string>
+    <string name="day_wednesday">Mercredi</string>
+    <string name="day_thursday">Jeudi</string>
+    <string name="day_friday">Vendredi</string>
+    <string name="day_saturday">Samedi</string>
+    <string name="day_sunday">Dimanche</string>
+
+    <string name="month_january">Janvier</string>
+    <string name="month_february">Février</string>
+    <string name="month_march">Mars</string>
+    <string name="month_april">Avril</string>
+    <string name="month_may">Mai</string>
+    <string name="month_june">Juin</string>
+    <string name="month_july">Juillet</string>
+    <string name="month_august">Août</string>
+    <string name="month_september">Septembre</string>
+    <string name="month_october">Octobre</string>
+    <string name="month_november">Novembre</string>
+    <string name="month_december">Décembre</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Rien ici pour l\'instant</string>
+    <string name="empty_state_generic_body">Commencez par créer quelque chose de nouveau.</string>
+    <string name="empty_state_no_results_title">Aucun résultat trouvé</string>
+    <string name="empty_state_no_results_body">Essayez une autre recherche ou un autre filtre.</string>
+    <string name="empty_state_offline_title">Vous êtes hors ligne</string>
+    <string name="empty_state_offline_body">Connectez-vous à Internet pour charger votre contenu.</string>
+    <string name="empty_state_error_title">Une erreur s\'est produite</string>
+    <string name="empty_state_error_body">Tirez vers le bas pour actualiser, ou appuyez sur le bouton ci-dessous.</string>
+    <string name="empty_state_retry">Réessayer</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Naviguer en arrière</string>
+    <string name="cd_close">Fermer</string>
+    <string name="cd_more_options">Plus d\'options</string>
+    <string name="cd_search">Rechercher</string>
+    <string name="cd_filter">Filtrer</string>
+    <string name="cd_sort">Trier</string>
+    <string name="cd_add">Ajouter</string>
+    <string name="cd_delete">Supprimer</string>
+    <string name="cd_edit">Modifier</string>
+    <string name="cd_restore">Restaurer</string>
+    <string name="cd_pin">Épingler la note</string>
+    <string name="cd_unpin">Désépingler la note</string>
+    <string name="cd_check_task">Marquer la tâche comme terminée</string>
+    <string name="cd_uncheck_task">Marquer la tâche comme non terminée</string>
+    <string name="cd_profile_picture">Photo de profil</string>
+    <string name="cd_send_message">Envoyer le message</string>
+    <string name="cd_play_pause">Lire ou mettre en pause le minuteur</string>
+    <string name="cd_skip_session">Passer la séance</string>
+    <string name="cd_stop_session">Arrêter la séance</string>
+    <string name="cd_sync_status">Statut de synchronisation : %1$s</string>
+    <string name="cd_password_toggle">Afficher/masquer le mot de passe</string>
+    <string name="cd_clear_input">Effacer la saisie</string>
+    <string name="cd_notification">Notification</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Vérification de votre session…</string>
+    <string name="splash_loading">Chargement…</string>
+
+    <string name="dialog_unsaved_changes_title">Modifications non enregistrées</string>
+    <string name="dialog_unsaved_changes_body">Vous avez des modifications non enregistrées. Voulez-vous les ignorer ?</string>
+    <string name="dialog_unsaved_changes_save">Enregistrer</string>
+    <string name="dialog_unsaved_changes_discard">Ignorer</string>
+    <string name="dialog_date_picker_title">Sélectionner une date</string>
+    <string name="dialog_time_picker_title">Sélectionner une heure</string>
+    <string name="dialog_color_picker_title">Choisir une couleur</string>
+    <string name="dialog_task_picker_title">Lier une tâche</string>
+    <string name="dialog_event_picker_title">Lier un événement</string>
+    <string name="dialog_tag_manager_title">Gérer les étiquettes</string>
+
+    <string name="task_view_list">Liste</string>
+    <string name="task_view_kanban">Tableau</string>
+
+    <string name="snackbar_undo">Annuler</string>
+    <string name="snackbar_note_deleted">Note supprimée</string>
+    <string name="snackbar_task_deleted">Tâche supprimée</string>
+    <string name="snackbar_event_deleted">Événement supprimé</string>
+    <string name="snackbar_tag_deleted">Étiquette supprimée</string>
+    <string name="snackbar_copied">Copié dans le presse-papiers</string>
+    <string name="snackbar_no_internet">Pas de connexion Internet</string>
+    <string name="snackbar_changes_saved">Modifications enregistrées</string>
+
+    <string name="about_version">Version %1$s</string>
+    <string name="about_build">Build %1$s</string>
+    <string name="about_privacy_policy">Politique de confidentialité</string>
+    <string name="about_terms_of_service">Conditions d\'utilisation</string>
+    <string name="about_open_source_licenses">Licences open source</string>
+    <string name="about_rate_app">Noter l\'application</string>
+    <string name="about_send_feedback">Envoyer un commentaire</string>
+    <string name="about_built_by">Développé par Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Exporter les données</string>
+    <string name="data_export_body">Téléchargez toutes vos notes, tâches et événements dans un fichier.</string>
+    <string name="data_export_action">Exporter</string>
+    <string name="data_export_success">Votre export de données est prêt.</string>
+    <string name="data_delete_account_title">Supprimer le compte</string>
+    <string name="data_delete_account_body">Supprimez définitivement votre compte et toutes les données associées. Cette action est irréversible.</string>
+    <string name="data_delete_account_action">Supprimer le compte</string>
+    <string name="data_delete_account_confirm_title">Supprimer votre compte ?</string>
+    <string name="data_delete_account_confirm_body">Toutes vos notes, tâches, événements et conversations seront définitivement supprimés. Cette action ne peut pas être annulée.</string>
+    <string name="data_delete_account_type_confirm">Tapez SUPPRIMER pour confirmer</string>
+    <string name="data_delete_account_confirm_word">SUPPRIMER</string>
+
+    <string name="update_available_title">Mise à jour disponible</string>
+    <string name="update_available_body">Une nouvelle version de ProductivityX est disponible. Mettez à jour maintenant pour profiter des dernières fonctionnalités et correctifs.</string>
+    <string name="update_now">Mettre à jour</string>
+    <string name="update_later">Plus tard</string>
+
+    <string name="auth_check_your_email">Vérifiez votre e-mail</string>
+    <string name="auth_otp_sent_body">Nous avons envoyé un code à 6 chiffres à %s</string>
+
+    <string name="language_en">Anglais</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">Arabe</string>
+    <string name="language_es">Espagnol</string>
+    <string name="language_de">Allemand</string>
+    <string name="language_pt">Portugais</string>
+    <string name="language_zh">Chinois</string>
+    <string name="language_ja">Japonais</string>
+    <string name="language_ko">Coréen</string>
+    <string name="language_ru">Russe</string>
+    <string name="language_tr">Turc</string>
+    <string name="language_it">Italien</string>
+    <string name="language_hi">Hindi</string>
+    <string name="language_id">Indonésien</string>
+    <string name="language_nl">Néerlandais</string>
+
+    <string name="nav_events">Événements</string>
+    <string name="tab_dashboard">Tableau de bord</string>
+    <string name="tab_events">Événements</string>
+    <string name="tab_dashboard_desc">Aperçu de votre journée</string>
+    <string name="tab_notes_desc">Capturez vos pensées</string>
+    <string name="tab_tasks_desc">Faites avancer les choses</string>
+    <string name="tab_events_desc">Votre emploi du temps en un coup d\'œil</string>
+    <string name="tab_pomodoro_desc">Restez dans le flow</string>
+    <string name="cd_notifications">Notifications</string>
+
+</resources>

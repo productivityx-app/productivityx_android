@@ -60,6 +60,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxButton
 import com.oussama_chatri.productivityx.core.ui.components.PxTextField
 import com.oussama_chatri.productivityx.core.util.UiEvent
@@ -150,7 +152,7 @@ private fun AddEditEventSheetContent(
         PxTextField(
             value         = state.title,
             onValueChange = { onEvent(AddEditEventUiEvent.TitleChanged(it)) },
-            placeholder   = "Event title",
+            placeholder   = stringResource(R.string.event_field_title),
             isError       = state.titleError != null,
             errorMessage  = state.titleError,
             modifier      = Modifier.fillMaxWidth()
@@ -158,7 +160,7 @@ private fun AddEditEventSheetContent(
 
         Spacer(Modifier.height(16.dp))
 
-        SheetRow(icon = Icons.Outlined.Palette, label = "Color") {
+        SheetRow(icon = Icons.Outlined.Palette, label = stringResource(R.string.event_field_color)) {
             EventColorPicker(
                 selectedHex     = state.color,
                 onColorSelected = { onEvent(AddEditEventUiEvent.ColorSelected(it)) }
@@ -169,7 +171,7 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.CalendarMonth,
-            label   = "Start",
+            label   = stringResource(R.string.event_field_start),
             onClick = { showStartDatePicker = true }
         ) {
             Row(
@@ -195,7 +197,7 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.AccessTime,
-            label   = "End",
+            label   = stringResource(R.string.event_field_end),
             onClick = { showEndDatePicker = true }
         ) {
             Row(
@@ -219,7 +221,7 @@ private fun AddEditEventSheetContent(
             }
         }
 
-        SheetRow(icon = Icons.Outlined.WbSunny, label = "All day") {
+        SheetRow(icon = Icons.Outlined.WbSunny, label = stringResource(R.string.event_field_all_day)) {
             Switch(
                 checked         = state.isAllDay,
                 onCheckedChange = { onEvent(AddEditEventUiEvent.AllDayToggled(it)) },
@@ -236,14 +238,14 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.LocationOn,
-            label   = "Location",
+            label   = stringResource(R.string.event_field_location),
             onClick = {
                 locationDraft = state.location
                 showLocationDialog = true
             }
         ) {
             Text(
-                text  = state.location.ifBlank { "Add location" },
+                text  = state.location.ifBlank { stringResource(R.string.event_field_location_hint) },
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.location.isBlank()) Color(0xFF888899) else Color(0xFFEEEEF5)
             )
@@ -251,14 +253,14 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.Notes,
-            label   = "Description",
+            label   = stringResource(R.string.event_field_description),
             onClick = {
                 descriptionDraft = state.description
                 showDescriptionDialog = true
             }
         ) {
             Text(
-                text  = state.description.ifBlank { "Add description" },
+                text  = state.description.ifBlank { stringResource(R.string.event_field_description_hint) },
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.description.isBlank()) Color(0xFF888899) else Color(0xFFEEEEF5)
             )
@@ -268,7 +270,7 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.Repeat,
-            label   = "Repeat",
+            label   = stringResource(R.string.event_field_recurrence),
             onClick = { showRecurrencePicker = !showRecurrencePicker }
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -293,7 +295,7 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon    = Icons.Outlined.NotificationsActive,
-            label   = "Reminder",
+            label   = stringResource(R.string.event_field_reminder),
             onClick = { showReminderPicker = !showReminderPicker }
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -341,14 +343,14 @@ private fun AddEditEventSheetContent(
                         modifier           = Modifier.size(18.dp)
                     )
                     Spacer(Modifier.width(4.dp))
-                    Text("Delete", color = Color(0xFFEF4444), style = MaterialTheme.typography.labelMedium)
+                    Text(stringResource(R.string.delete), color = Color(0xFFEF4444), style = MaterialTheme.typography.labelMedium)
                 }
             } else {
                 Spacer(Modifier.weight(1f))
             }
 
             PxButton(
-                text      = if (state.eventId == null) "Create" else "Save",
+                text      = if (state.eventId == null) stringResource(R.string.create) else stringResource(R.string.save),
                 onClick   = { onEvent(AddEditEventUiEvent.Save) },
                 isLoading = state.isLoading
             )
@@ -365,10 +367,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     showStartDatePicker = false
                     if (!state.isAllDay) showStartTimePicker = true
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showStartDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showStartDatePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         ) {
             val datePickerState = rememberDatePickerState(
@@ -399,7 +401,7 @@ private fun AddEditEventSheetContent(
         )
         AlertDialog(
             onDismissRequest = { showStartTimePicker = false },
-            title = { Text("Select time", color = Color.White) },
+            title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
             text = { TimePicker(state = timePickerState) },
             containerColor = Color(0xFF1A1A24),
             confirmButton = {
@@ -409,10 +411,10 @@ private fun AddEditEventSheetContent(
                     val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
                     onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
                     showStartTimePicker = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showStartTimePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showStartTimePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -425,10 +427,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     showEndDatePicker = false
                     if (!state.isAllDay) showEndTimePicker = true
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showEndDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showEndDatePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         ) {
             val datePickerState = rememberDatePickerState(
@@ -459,7 +461,7 @@ private fun AddEditEventSheetContent(
         )
         AlertDialog(
             onDismissRequest = { showEndTimePicker = false },
-            title = { Text("Select time", color = Color.White) },
+            title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
             text = { TimePicker(state = timePickerState) },
             containerColor = Color(0xFF1A1A24),
             confirmButton = {
@@ -469,10 +471,10 @@ private fun AddEditEventSheetContent(
                     val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
                     onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
                     showEndTimePicker = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showEndTimePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showEndTimePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -481,12 +483,12 @@ private fun AddEditEventSheetContent(
     if (showLocationDialog) {
         AlertDialog(
             onDismissRequest = { showLocationDialog = false },
-            title = { Text("Location", color = Color.White) },
+            title = { Text(stringResource(R.string.event_field_location), color = Color.White) },
             text = {
                 TextField(
                     value       = locationDraft,
                     onValueChange = { locationDraft = it },
-                    placeholder  = { Text("Enter location") },
+                    placeholder  = { Text(stringResource(R.string.event_field_location_hint)) },
                     singleLine   = true
                 )
             },
@@ -495,10 +497,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.LocationChanged(locationDraft))
                     showLocationDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showLocationDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showLocationDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -507,12 +509,12 @@ private fun AddEditEventSheetContent(
     if (showDescriptionDialog) {
         AlertDialog(
             onDismissRequest = { showDescriptionDialog = false },
-            title = { Text("Description", color = Color.White) },
+            title = { Text(stringResource(R.string.event_field_description), color = Color.White) },
             text = {
                 TextField(
                     value       = descriptionDraft,
                     onValueChange = { descriptionDraft = it },
-                    placeholder  = { Text("Enter description") }
+                    placeholder  = { Text(stringResource(R.string.event_field_description_hint)) }
                 )
             },
             containerColor = Color(0xFF1A1A24),
@@ -520,10 +522,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.DescriptionChanged(descriptionDraft))
                     showDescriptionDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDescriptionDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showDescriptionDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -566,10 +568,10 @@ private fun RecurrencePickerRow(
     onSelect: (String?) -> Unit
 ) {
     val options = listOf(
-        null           to "None",
-        "FREQ=DAILY"   to "Daily",
-        "FREQ=WEEKLY"  to "Weekly",
-        "FREQ=MONTHLY" to "Monthly"
+        null           to stringResource(R.string.none),
+        "FREQ=DAILY"   to stringResource(R.string.event_recurrence_daily),
+        "FREQ=WEEKLY"  to stringResource(R.string.event_recurrence_weekly),
+        "FREQ=MONTHLY" to stringResource(R.string.event_recurrence_monthly)
     )
     Row(
         modifier              = Modifier
@@ -593,7 +595,13 @@ private fun ReminderPickerRow(
     current: Int?,
     onSelect: (Int?) -> Unit
 ) {
-    val options = listOf(null to "None", 5 to "5 min", 10 to "10 min", 30 to "30 min", 60 to "1 hour")
+    val options = listOf(
+        null to stringResource(R.string.none),
+        5    to stringResource(R.string.event_reminder_5_min),
+        10   to stringResource(R.string.event_reminder_10_min),
+        30   to stringResource(R.string.event_reminder_30_min),
+        60   to stringResource(R.string.event_reminder_1_hour)
+    )
     Row(
         modifier              = Modifier
             .fillMaxWidth()
@@ -611,19 +619,21 @@ private fun ReminderPickerRow(
     }
 }
 
+@Composable
 private fun recurrenceLabel(rule: String?) = when (rule) {
-    null           -> "Does not repeat"
-    "FREQ=DAILY"   -> "Daily"
-    "FREQ=WEEKLY"  -> "Weekly"
-    "FREQ=MONTHLY" -> "Monthly"
-    else           -> "Custom"
+    null           -> stringResource(R.string.event_recurrence_none)
+    "FREQ=DAILY"   -> stringResource(R.string.event_recurrence_daily)
+    "FREQ=WEEKLY"  -> stringResource(R.string.event_recurrence_weekly)
+    "FREQ=MONTHLY" -> stringResource(R.string.event_recurrence_monthly)
+    else           -> stringResource(R.string.event_recurrence_custom)
 }
 
+@Composable
 private fun reminderLabel(minutes: Int?) = when (minutes) {
-    null -> "None"
-    5    -> "5 min before"
-    10   -> "10 min before"
-    30   -> "30 min before"
-    60   -> "1 hour before"
-    else -> "$minutes min before"
+    null -> stringResource(R.string.none)
+    5    -> stringResource(R.string.event_reminder_5_min)
+    10   -> stringResource(R.string.event_reminder_10_min)
+    30   -> stringResource(R.string.event_reminder_30_min)
+    60   -> stringResource(R.string.event_reminder_1_hour)
+    else -> stringResource(R.string.none)
 }

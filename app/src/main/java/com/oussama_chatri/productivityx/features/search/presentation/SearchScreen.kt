@@ -16,8 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResult
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResultType
 
@@ -36,12 +38,12 @@ fun SearchScreen(
         containerColor = Color(0xFF0F0F14),
         topBar = {
             TopAppBar(
-                title = { Text("Search", color = Color(0xFFEEEEF5)) },
+                title = { Text(stringResource(R.string.search_title), color = Color(0xFFEEEEF5)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.cd_back),
                             tint = Color(0xFFCCCCD8)
                         )
                     }
@@ -60,14 +62,14 @@ fun SearchScreen(
                 value = state.query,
                 onValueChange = viewModel::onQueryChanged,
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Search notes, tasks, events...", color = Color(0xFF888899)) },
+                placeholder = { Text(stringResource(R.string.search_hint), color = Color(0xFF888899)) },
                 leadingIcon = {
                     Icon(Icons.Outlined.Search, contentDescription = null, tint = Color(0xFF888899))
                 },
                 trailingIcon = {
                     if (state.query.isNotEmpty()) {
                         IconButton(onClick = { viewModel.onQueryChanged("") }) {
-                            Icon(Icons.Outlined.Close, contentDescription = "Clear", tint = Color(0xFF888899))
+                            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.cd_clear_input), tint = Color(0xFF888899))
                         }
                     }
                 },
@@ -106,17 +108,15 @@ fun SearchScreen(
                                 modifier = Modifier.size(48.dp)
                             )
                             Spacer(Modifier.height(8.dp))
-                            Text("No results found", color = Color(0xFF888899))
+                            Text(stringResource(R.string.search_empty_title, state.query), color = Color(0xFF888899))
                         }
                     }
                 }
                 else -> {
-                    val typeLabel = { type: SearchResultType ->
-                        when (type) {
-                            SearchResultType.NOTE -> "Note"
-                            SearchResultType.TASK -> "Task"
-                            SearchResultType.EVENT -> "Event"
-                        }
+                    @Composable fun typeLabel(type: SearchResultType): String = when (type) {
+                        SearchResultType.NOTE -> stringResource(R.string.search_type_note)
+                        SearchResultType.TASK -> stringResource(R.string.search_type_task)
+                        SearchResultType.EVENT -> stringResource(R.string.search_type_event)
                     }
                     val typeIcon = { type: SearchResultType ->
                         when (type) {

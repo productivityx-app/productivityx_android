@@ -39,7 +39,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.Dimensions
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
@@ -203,8 +205,8 @@ fun PxDialog(
     message: String,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
-    confirmLabel: String = "Confirm",
-    dismissLabel: String = "Cancel",
+    confirmLabel: String = stringResource(R.string.confirm),
+    dismissLabel: String = stringResource(R.string.cancel),
     onConfirm: (() -> Unit)? = null,
     isDestructive: Boolean = false
 ) {

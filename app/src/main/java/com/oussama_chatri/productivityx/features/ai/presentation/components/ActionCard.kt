@@ -27,7 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
 
 @Composable
@@ -84,14 +86,14 @@ fun ActionCard(
                 ) {
                     Icon(Icons.Outlined.Add, null, modifier = Modifier.size(16.dp))
                     Spacer(Modifier.width(4.dp))
-                    Text("Confirm", style = MaterialTheme.typography.labelMedium)
+                    Text(stringResource(R.string.ai_action_confirm), style = MaterialTheme.typography.labelMedium)
                 }
 
                 Spacer(Modifier.width(8.dp))
 
                 TextButton(onClick = onDismiss) {
                     Text(
-                        text  = "Dismiss",
+                        text  = stringResource(R.string.ai_action_dismiss),
                         style = MaterialTheme.typography.labelMedium,
                         color = Color(0xFF888899),
                     )
@@ -107,10 +109,11 @@ private data class ActionDisplayInfo(
     val description : String,
 )
 
+@Composable
 private fun AiActionBlock.toDisplayInfo(): ActionDisplayInfo = when (this) {
     is AiActionBlock.CreateTask -> ActionDisplayInfo(
         icon        = Icons.Outlined.CheckCircle,
-        label       = "Create Task",
+        label       = stringResource(R.string.ai_action_create_task),
         description = buildString {
             append(title)
             priority?.let { append(" · ${it.name}") }
@@ -119,12 +122,12 @@ private fun AiActionBlock.toDisplayInfo(): ActionDisplayInfo = when (this) {
     )
     is AiActionBlock.CreateNote -> ActionDisplayInfo(
         icon        = Icons.Outlined.StickyNote2,
-        label       = "Create Note",
+        label       = stringResource(R.string.ai_action_create_note),
         description = title,
     )
     is AiActionBlock.AddEvent   -> ActionDisplayInfo(
         icon        = Icons.Outlined.CalendarMonth,
-        label       = "Add Event",
+        label       = stringResource(R.string.ai_action_add_event),
         description = buildString {
             append(title)
             durationMinutes?.let { append(" · ${it}min") }

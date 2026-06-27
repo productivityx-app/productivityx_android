@@ -33,8 +33,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ActionCard
@@ -86,21 +88,21 @@ fun AiScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text  = "AI Assistant",
+                        text  = stringResource(R.string.ai_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = Color(0xFFEEEEF5),
                     )
                 },
                 actions = {
                     IconButton(onClick = onNavigateToHistory) {
-                        Icon(Icons.Outlined.FormatListBulleted, "Conversation history", tint = Color(0xFF888899))
+                        Icon(Icons.Outlined.FormatListBulleted, stringResource(R.string.ai_conversations_title), tint = Color(0xFF888899))
                     }
                     IconButton(onClick = { viewModel.onEvent(AiUiEvent.NewConversation) }) {
-                        Icon(Icons.Outlined.Refresh, "New conversation", tint = Color(0xFF888899))
+                        Icon(Icons.Outlined.Refresh, stringResource(R.string.ai_new_conversation), tint = Color(0xFF888899))
                     }
                     if (state.conversationId != null) {
                         IconButton(onClick = { /* confirm delete then delete */ }) {
-                            Icon(Icons.Outlined.Delete, "Delete conversation", tint = Color(0xFF888899))
+                            Icon(Icons.Outlined.Delete, stringResource(R.string.ai_delete_conversation_title), tint = Color(0xFF888899))
                         }
                     }
                 },

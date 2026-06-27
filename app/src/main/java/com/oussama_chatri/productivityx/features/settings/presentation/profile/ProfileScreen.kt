@@ -70,8 +70,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.profile.presentation.components.AvatarInitials
@@ -156,18 +158,18 @@ fun ProfileScreen(
     if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
-            title = { Text("Sign out?") },
+            title = { Text(stringResource(R.string.auth_sign_out)) },
             text = { Text("You'll need to sign in again to access your workspace.") },
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
                     viewModel.onEvent(ProfileUiEvent.SignOutConfirmed)
                 }) {
-                    Text("Sign out", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.auth_sign_out), color = MaterialTheme.colorScheme.error)
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showSignOutDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showSignOutDialog = false }) { Text(stringResource(R.string.cancel)) }
             },
             containerColor = MaterialTheme.colorScheme.surface,
             shape = RoundedCornerShape(16.dp)
@@ -203,7 +205,7 @@ fun ProfileScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "Profile",
+                        stringResource(R.string.profile_title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                     )
@@ -211,11 +213,11 @@ fun ProfileScreen(
                 actions = {
                     if (!state.isLocalOnly && state.profile != null) {
                         IconButton(onClick = onNavigateToEditProfile) {
-                            Icon(Icons.Outlined.Edit, contentDescription = "Edit profile")
+                            Icon(Icons.Outlined.Edit, contentDescription = stringResource(R.string.cd_edit))
                         }
                     }
                     IconButton(onClick = onNavigateToPreferences) {
-                        Icon(Icons.Outlined.Settings, contentDescription = "Settings")
+                        Icon(Icons.Outlined.Settings, contentDescription = stringResource(R.string.settings))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -253,11 +255,11 @@ fun ProfileScreen(
 
             Spacer(Modifier.height(24.dp))
 
-            SettingsSectionHeader("Appearance")
+            SettingsSectionHeader(stringResource(R.string.profile_section_appearance))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.Palette,
-                    label = "Theme",
+                    label = stringResource(R.string.profile_theme),
                     subtitle = themeDisplayName(state.currentTheme),
                     onClick = { showThemePicker = true },
                     trailing = {
@@ -271,7 +273,7 @@ fun ProfileScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.Language,
-                    label = "Language",
+                    label = stringResource(R.string.field_language),
                     subtitle = languageDisplayName(state.currentLanguage),
                     showDivider = false,
                     onClick = { showLanguagePicker = true },
@@ -285,11 +287,11 @@ fun ProfileScreen(
                 )
             }
 
-            SettingsSectionHeader("Pomodoro")
+            SettingsSectionHeader(stringResource(R.string.profile_section_pomodoro))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.Timer,
-                    label = "Pomodoro settings",
+                    label = stringResource(R.string.profile_section_pomodoro),
                     subtitle = state.preferences?.let {
                         "${it.pomodoroFocusMinutes}m focus · ${it.pomodoroShortBreakMinutes}m short · ${it.pomodoroLongBreakMinutes}m long"
                     },
@@ -298,41 +300,41 @@ fun ProfileScreen(
                 )
             }
 
-            SettingsSectionHeader("Notifications")
+            SettingsSectionHeader(stringResource(R.string.profile_section_notifications))
             SettingsSectionCard {
                 SettingRowSwitch(
                     icon = Icons.Outlined.NotificationsActive,
-                    label = "Task reminders",
+                    label = stringResource(R.string.preferences_notify_task_reminders),
                     checked = state.preferences?.notifyTaskReminders ?: true,
                     onCheckedChange = { }
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.CalendarMonth,
-                    label = "Event reminders",
+                    label = stringResource(R.string.preferences_notify_event_reminders),
                     checked = state.preferences?.notifyEventReminders ?: true,
                     onCheckedChange = { }
                 )
                 SettingRowSwitch(
                     icon = Icons.Outlined.Timer,
-                    label = "Session end sound",
+                    label = stringResource(R.string.preferences_pomodoro_sound),
                     checked = state.preferences?.notifyPomodoroEnd ?: true,
                     showDivider = false,
                     onCheckedChange = { }
                 )
             }
 
-            SettingsSectionHeader("AI")
+            SettingsSectionHeader(stringResource(R.string.profile_section_ai))
             SettingsSectionCard {
                 SettingRowSwitch(
                     icon = Icons.Outlined.AutoAwesome,
-                    label = "Workspace context",
-                    subtitle = "Share tasks, events, and notes with AI",
+                    label = stringResource(R.string.preferences_ai_context),
+                    subtitle = stringResource(R.string.preferences_ai_context_desc),
                     checked = state.preferences?.aiContextEnabled ?: true,
                     onCheckedChange = { }
                 )
                 SettingRow(
                     icon = Icons.Outlined.SmartToy,
-                    label = "AI Model",
+                    label = stringResource(R.string.preferences_ai_model),
                     showDivider = false,
                     trailing = {
                         Text(
@@ -345,12 +347,12 @@ fun ProfileScreen(
                 )
             }
 
-            SettingsSectionHeader("Data")
+            SettingsSectionHeader(stringResource(R.string.profile_section_data))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.Upload,
-                    label = "Export data",
-                    subtitle = "Save all data to an encrypted file",
+                    label = stringResource(R.string.data_export_title),
+                    subtitle = stringResource(R.string.data_export_body),
                     showDivider = true,
                     onClick = { exportLauncher.launch("productivityx_backup.px") },
                     trailing = {
@@ -380,16 +382,16 @@ fun ProfileScreen(
             }
 
             if (!state.isLocalOnly) {
-                SettingsSectionHeader("Account")
+                SettingsSectionHeader(stringResource(R.string.profile_section_account))
                 SettingsSectionCard {
                     SettingRow(
                         icon = Icons.Outlined.Lock,
-                        label = "Change password",
+                        label = stringResource(R.string.password_change),
                         onClick = onNavigateToChangePassword
                     )
                     SettingRow(
                         icon = Icons.AutoMirrored.Outlined.Logout,
-                        label = "Sign out",
+                        label = stringResource(R.string.auth_sign_out),
                         iconTint = MaterialTheme.colorScheme.error,
                         showDivider = false,
                         onClick = { showSignOutDialog = true },
@@ -467,7 +469,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
                 .height(50.dp),
         ) {
             Text(
-                "Sign In",
+                stringResource(R.string.auth_sign_in),
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
             )
         }
@@ -482,7 +484,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
                 .height(50.dp),
         ) {
             Text(
-                "Create Account",
+                stringResource(R.string.auth_create_account),
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
             )
         }
@@ -511,7 +513,7 @@ private fun ProfileHeader(
         if (!avatarUrl.isNullOrBlank()) {
             AsyncImage(
                 model = avatarUrl,
-                contentDescription = "Avatar",
+                contentDescription = stringResource(R.string.cd_profile_picture),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(88.dp)
@@ -552,9 +554,9 @@ private fun ProfileHeader(
                 .padding(vertical = 14.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            StatItem(value = "—", label = "Notes")
-            StatItem(value = "—", label = "Tasks done")
-            StatItem(value = "—", label = "Focus hrs")
+            StatItem(value = "—", label = stringResource(R.string.profile_stats_notes))
+            StatItem(value = "—", label = stringResource(R.string.profile_stats_tasks_completed))
+            StatItem(value = "—", label = stringResource(R.string.profile_stats_focus_this_week))
         }
     }
 }
@@ -576,14 +578,16 @@ private fun StatItem(value: String, label: String) {
     }
 }
 
-private val languageEntries = listOf(
-    "en" to "English",
-    "fr" to "Français",
-    "ar" to "العربية",
+@Composable
+private fun languageEntries(): List<Pair<String, String>> = listOf(
+    "en" to stringResource(R.string.language_en),
+    "fr" to stringResource(R.string.language_fr),
+    "ar" to stringResource(R.string.language_ar),
 )
 
+@Composable
 private fun languageDisplayName(code: String): String =
-    languageEntries.firstOrNull { it.first == code }?.second ?: code
+    languageEntries().firstOrNull { it.first == code }?.second ?: code
 
 private val allThemeEntries = listOf(
     "DARK"    to "Dark",
@@ -623,7 +627,7 @@ fun ThemePickerDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                "Choose Theme",
+                stringResource(R.string.profile_theme),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
             )
@@ -683,7 +687,7 @@ fun ThemePickerDialog(
                         if (isSelected) {
                             Icon(
                                 Icons.Outlined.CheckCircle,
-                                contentDescription = "Selected",
+                                contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(24.dp),
                             )
@@ -693,7 +697,7 @@ fun ThemePickerDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text("Done") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) }
         },
         containerColor = MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(20.dp),
@@ -710,14 +714,14 @@ fun LanguagePickerDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                "Choose Language",
+                stringResource(R.string.field_language),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
             )
         },
         text = {
             Column {
-                languageEntries.forEach { (code, label) ->
+                languageEntries().forEach { (code, label) ->
                     val isSelected = code == currentLanguage
 
                     Row(
@@ -738,7 +742,7 @@ fun LanguagePickerDialog(
                         if (isSelected) {
                             Icon(
                                 Icons.Outlined.CheckCircle,
-                                contentDescription = "Selected",
+                                contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(24.dp),
                             )
@@ -748,7 +752,7 @@ fun LanguagePickerDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text("Done") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) }
         },
         containerColor = MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(20.dp),
