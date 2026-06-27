@@ -3,18 +3,6 @@ package com.oussama_chatri.productivityx.features.auth.data.remote.dto.response
 import com.google.gson.annotations.SerializedName
 
 /**
- * Wrapper envelope used by every endpoint.
- * Backend: ApiResponse<T> { success, data, message, errorCode, timestamp }
- */
-data class ApiResponse<T>(
-    @SerializedName("success")   val success: Boolean,
-    @SerializedName("data")      val data: T? = null,
-    @SerializedName("message")   val message: String? = null,
-    @SerializedName("errorCode") val errorCode: String? = null,
-    @SerializedName("timestamp") val timestamp: String? = null
-)
-
-/**
  * POST /api/v1/auth/login  →  ApiResponse<AuthResponse>
  * POST /api/v1/auth/verify-otp  →  ApiResponse<AuthResponse>
  * POST /api/v1/auth/refresh  →  ApiResponse<AuthResponse>

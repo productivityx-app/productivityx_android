@@ -2,8 +2,8 @@ package com.oussama_chatri.productivityx.core.network
 
 object ApiConstants {
 
-    const val BASE_URL = "https://productivityx-backend.up.railway.app/"
-    const val BASE_URL_DEV = "http://10.0.2.2:8080/"
+    const val BASE_URL = "https://productivityx-backend.onrender.com/"
+    const val BASE_URL_DEV = "https://productivityx-backend.onrender.com/"
 
     const val CONNECT_TIMEOUT_SEC = 30L
     const val READ_TIMEOUT_SEC = 60L
@@ -29,7 +29,7 @@ object ApiConstants {
         const val RESET_PASSWORD = "api/v1/auth/reset-password"
         const val CHANGE_PASSWORD = "api/v1/auth/change-password"
         const val ME = "api/v1/auth/me"
-        const val DELETE_ACCOUNT = "api/v1/auth/delete-account"
+        const val DELETE_ACCOUNT = "api/v1/auth/account"
     }
 
     object Profile {

@@ -15,11 +15,7 @@ sealed class PomodoroRoute {
 fun NavGraphBuilder.pomodoroNavGraph(navController: NavHostController) {
 
     composable<PomodoroRoute.Timer> {
-        PomodoroScreen(
-            onNavigateToHistory = {
-                navController.navigate(PomodoroRoute.History)
-            }
-        )
+        PomodoroScreen()
     }
 
     composable<PomodoroRoute.History> {

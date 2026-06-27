@@ -9,7 +9,7 @@ import com.oussama_chatri.productivityx.features.auth.data.remote.dto.request.Re
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.request.ResetPasswordRequest
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.request.VerifyForgotPasswordOtpRequest
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.request.VerifyOtpRequest
-import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.AuthResponse
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ForgotPasswordOtpVerifiedResponse
 import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.UserResponse
@@ -87,6 +87,6 @@ interface AuthApi {
     suspend fun me(): Response<ApiResponse<UserResponse>>
 
     /** 200 — permanently deletes the account. Requires auth + password confirmation. */
-    @DELETE("api/v1/auth/delete-account")
+    @DELETE("api/v1/auth/account")
     suspend fun deleteAccount(@Body request: DeleteAccountRequest): Response<ApiResponse<Void>>
 }

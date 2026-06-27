@@ -25,6 +25,8 @@ sealed class PreferencesUiEvent {
     data class AiModelChanged(val value: String) : PreferencesUiEvent()
     // Display
     data class CompactModeChanged(val value: Boolean) : PreferencesUiEvent()
+    // Privacy
+    data class LocalOnlyModeChanged(val value: Boolean) : PreferencesUiEvent()
     // Actions
     data object DismissError : PreferencesUiEvent()
     data object DismissSuccess : PreferencesUiEvent()

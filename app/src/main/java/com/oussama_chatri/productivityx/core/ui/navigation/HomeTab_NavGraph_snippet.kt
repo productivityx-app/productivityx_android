@@ -28,11 +28,12 @@ private fun HomeTab(rootNavController: NavHostController) {
         },
     ) { innerPadding ->
         HomeScreen(
-            onNavigateToProfile  = { rootNavController.navigate(MainRoute.Profile) },
-            onNavigateToNotes    = { rootNavController.navigateToTab(MainRoute.Notes) },
-            onNavigateToTasks    = { rootNavController.navigateToTab(MainRoute.Tasks) },
-            onNavigateToCalendar = { rootNavController.navigateToTab(MainRoute.Pomodoro) },
-            modifier             = Modifier.padding(innerPadding),
+            onNavigateToProfile   = { rootNavController.navigate(MainRoute.Profile) },
+            onNavigateToNotes     = { rootNavController.navigateToTab(MainRoute.Notes) },
+            onNavigateToTasks     = { rootNavController.navigateToTab(MainRoute.Tasks) },
+            onNavigateToCalendar  = { rootNavController.navigateToTab(MainRoute.Calendar) },
+            onNavigateToPomodoro  = { rootNavController.navigateToTab(MainRoute.Pomodoro) },
+            modifier              = Modifier.padding(innerPadding),
         )
     }
 }

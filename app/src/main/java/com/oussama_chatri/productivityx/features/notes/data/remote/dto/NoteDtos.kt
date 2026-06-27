@@ -3,10 +3,12 @@ package com.oussama_chatri.productivityx.features.notes.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class NoteRequestDto(
-    @SerializedName("title")   val title: String?       = null,
-    @SerializedName("content") val content: String?     = null,
-    @SerializedName("tagIds")  val tagIds: Set<String>? = null,
-    @SerializedName("pinned")  val pinned: Boolean?     = null
+    @SerializedName("title")           val title: String?       = null,
+    @SerializedName("content")         val content: String?     = null,
+    @SerializedName("tagIds")          val tagIds: Set<String>? = null,
+    @SerializedName("pinned")          val pinned: Boolean?     = null,
+    @SerializedName("knownVersion")    val knownVersion: Int?   = null,
+    @SerializedName("clientUpdatedAt") val clientUpdatedAt: String? = null
 )
 
 data class AddTagToNoteRequestDto(

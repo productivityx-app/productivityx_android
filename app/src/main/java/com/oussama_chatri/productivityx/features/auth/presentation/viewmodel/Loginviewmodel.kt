@@ -2,6 +2,7 @@ package com.oussama_chatri.productivityx.features.auth.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.auth.domain.model.AuthResult
 import com.oussama_chatri.productivityx.features.auth.domain.usecase.LoginUseCase
@@ -15,11 +16,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val prefs: PreferencesDataStore
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -40,6 +43,18 @@ class LoginViewModel @Inject constructor(
                 it.copy(isPasswordVisible = !it.isPasswordVisible)
             }
             LoginUiEvent.Submit -> submit()
+            LoginUiEvent.SkipLogin -> skipLogin()
+        }
+    }
+
+    fun skipLogin() {
+        viewModelScope.launch {
+            val localId = UUID.randomUUID().toString()
+            prefs.cacheUser(id = localId, firstName = "Local", email = "local@local")
+            prefs.setLocalOnlyMode(true)
+            prefs.setOnboardingCompleted(true)
+            prefs.setAuthSkipCompleted(true)
+            _events.send(UiEvent.Navigate(com.oussama_chatri.productivityx.core.ui.navigation.MainRoute.Home))
         }
     }
 
@@ -62,6 +77,7 @@ class LoginViewModel @Inject constructor(
             try {
                 when (val result = loginUseCase(state.identifier.trim(), state.password)) {
                     is AuthResult.Success -> {
+                        prefs.setLocalOnlyMode(false)
                         _uiState.update { it.copy(isLoading = false) }
                         _events.send(UiEvent.Navigate(com.oussama_chatri.productivityx.core.ui.navigation.MainRoute.Home))
                     }

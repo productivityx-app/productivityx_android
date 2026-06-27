@@ -10,11 +10,13 @@ import com.oussama_chatri.productivityx.features.events.presentation.screen.Even
 
 fun NavGraphBuilder.eventsNavGraph(navController: NavHostController) {
 
-    composable<Routes.Calendar> {
+    composable<Routes.Calendar> { backStackEntry ->
+        val route: Routes.Calendar = backStackEntry.toRoute()
         CalendarScreen(
             onNavigateToEventDetail = { eventId ->
                 navController.navigate(Routes.EventDetail(eventId))
-            }
+            },
+            showAddEvent = route.showAddEvent,
         )
     }
 

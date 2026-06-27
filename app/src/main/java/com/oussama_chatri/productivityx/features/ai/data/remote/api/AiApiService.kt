@@ -26,11 +26,7 @@ interface AiApiService {
     @DELETE("api/v1/ai/conversations/{id}")
     suspend fun deleteConversation(@Path("id") id: String)
 
-    @GET("api/v1/ai/conversations/{id}/messages")
-    suspend fun getMessages(@Path("id") conversationId: String): List<MessageResponse>
-
-    // SSE streaming endpoint — called via OkHttp EventSource, not Retrofit
-    // This plain URL builder is kept here for discoverability
-    fun streamUrl(conversationId: String): String =
-        "api/v1/ai/conversations/$conversationId/messages"
+    // Message history is nested inside the ConversationResponse returned by getConversation().
+    // No separate GET endpoint exists — messages are loaded from the conversation object.
+    // SSE streaming is built raw via OkHttp + EventSource (see AiRepositoryImpl.sendMessage).
 }

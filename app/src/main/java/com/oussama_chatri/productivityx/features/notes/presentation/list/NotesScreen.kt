@@ -7,14 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -22,22 +20,13 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
-import androidx.compose.material.icons.outlined.DeleteOutline
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.StickyNote2
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -79,40 +68,11 @@ fun NotesScreen(
         }
     }
 
-    Scaffold(
-        modifier        = modifier,
-        containerColor  = Color(0xFF0F0F14),
-        snackbarHost    = { SnackbarHost(snackbarHost) },
-        topBar          = {
-            TopAppBar(
-                title  = { Text("Notes", style = MaterialTheme.typography.titleLarge, color = Color(0xFFEEEEF5)) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14)),
-                actions = {
-                    IconButton(onClick = onNavigateToSearch) {
-                        Icon(Icons.Outlined.Search, contentDescription = "Search", tint = Color(0xFFCCCCD8))
-                    }
-                    IconButton(onClick = onNavigateToTrash) {
-                        Icon(Icons.Outlined.DeleteOutline, contentDescription = "Trash", tint = Color(0xFFCCCCD8))
-                    }
-                }
-            )
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick           = { onNavigateToEditor(null) },
-                containerColor    = Color(0xFF6366F1),
-                contentColor      = Color.White,
-                icon              = { Icon(Icons.Outlined.Add, contentDescription = null) },
-                text              = { Text("New note", style = MaterialTheme.typography.labelMedium) }
-            )
-        }
-    ) { innerPadding ->
+    Box(modifier = modifier.fillMaxSize()) {
         PullToRefreshBox(
             isRefreshing = uiState.isRefreshing,
             onRefresh    = { viewModel.onEvent(NotesUiEvent.Refresh) },
-            modifier     = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
+            modifier     = Modifier.fillMaxSize()
         ) {
             if (uiState.notes.isEmpty() && !uiState.isLoading) {
                 NotesEmptyState(modifier = Modifier.fillMaxSize())
@@ -182,6 +142,10 @@ fun NotesScreen(
                 }
             }
         }
+        SnackbarHost(
+            hostState = snackbarHost,
+            modifier  = Modifier.align(Alignment.BottomCenter),
+        )
     }
 }
 

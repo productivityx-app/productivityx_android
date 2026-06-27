@@ -21,6 +21,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
                 onNavigateToOnboarding = {
                     navController.navigateAndClearBackStack(AuthRoute.Onboarding)
                 },
+                onNavigateToLogin = {
+                    navController.navigateAndClearBackStack(AuthRoute.Login)
+                },
                 onNavigateToHome = {
                     navController.navigateAndClearBackStack(MainGraph)
                 }

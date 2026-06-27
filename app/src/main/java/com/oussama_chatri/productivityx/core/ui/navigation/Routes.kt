@@ -44,7 +44,7 @@ sealed interface Routes {
     @Serializable data object Tasks          : Routes
     @Serializable data class  TaskDetail(val taskId: String) : Routes
 
-    @Serializable data object Calendar       : Routes
+    @Serializable data class Calendar(val showAddEvent: Boolean = false) : Routes
     @Serializable data class  EventDetail(val eventId: String) : Routes
 
     @Serializable data object Pomodoro       : Routes

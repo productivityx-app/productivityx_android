@@ -1,6 +1,6 @@
 package com.oussama_chatri.productivityx.features.events.data.remote
 
-import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.events.data.remote.dto.EventRequestDto
 import com.oussama_chatri.productivityx.features.events.data.remote.dto.EventResponseDto
 import com.oussama_chatri.productivityx.features.notes.data.remote.dto.PagedResponseDto
@@ -45,8 +45,24 @@ interface EventApi {
         @Path("id") id: String
     ): Response<ApiResponse<EventResponseDto>>
 
+    @GET("api/v1/events/trash")
+    suspend fun listTrash(
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 50
+    ): Response<ApiResponse<PagedResponseDto<EventResponseDto>>>
+
     @PATCH("api/v1/events/{id}/restore")
     suspend fun restoreEvent(
         @Path("id") id: String
     ): Response<ApiResponse<EventResponseDto>>
+
+    @DELETE("api/v1/events/{id}/permanent")
+    suspend fun permanentDeleteEvent(
+        @Path("id") id: String
+    ): Response<ApiResponse<Void>>
+
+    @DELETE("api/v1/events/{id}/series")
+    suspend fun deleteSeries(
+        @Path("id") id: String
+    ): Response<ApiResponse<Void>>
 }

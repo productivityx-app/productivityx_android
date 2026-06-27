@@ -44,5 +44,11 @@ interface EventRepository {
 
     suspend fun restoreEvent(eventId: String): Resource<Event>
 
+    suspend fun permanentDeleteEvent(eventId: String): Resource<Unit>
+
+    suspend fun deleteSeries(eventId: String): Resource<Unit>
+
+    suspend fun listTrashEvents(page: Int = 0, size: Int = 50): Resource<List<Event>>
+
     suspend fun refreshEvents(from: Instant, to: Instant): Resource<Unit>
 }

@@ -20,9 +20,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -35,17 +37,13 @@ import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.ViewKanban
 import androidx.compose.material.icons.outlined.ViewList
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -53,7 +51,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -79,9 +76,9 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.state.displa
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.label
 import com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel.TasksViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TasksScreen(
+    modifier: Modifier = Modifier,
     onTaskClick: (String) -> Unit,
     onAddTask: () -> Unit,
     viewModel: TasksViewModel = hiltViewModel()
@@ -104,32 +101,15 @@ fun TasksScreen(
         }
     }
 
-    Scaffold(
-        containerColor = Color(0xFF0F0F14),
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        topBar = {
-            TasksTopBar(
+    Box(modifier = modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            TaskViewToggle(
                 viewMode = uiState.viewMode,
                 onToggleView = { viewModel.onEvent(TasksEvent.ToggleView(it)) }
             )
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = onAddTask,
-                containerColor = Color(0xFF6366F1),
-                contentColor = Color.White,
-                icon = { Icon(Icons.Outlined.Add, contentDescription = null) },
-                text = {
-                    Text("New Task", fontWeight = FontWeight.SemiBold)
-                }
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
+
             TaskTabRow(
                 activeTab = uiState.activeTab,
                 onTabSelected = { viewModel.onEvent(TasksEvent.SelectTab(it)) }
@@ -162,43 +142,41 @@ fun TasksScreen(
         }
 
         if (uiState.isLoading) PxLoadingOverlay()
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier  = Modifier.align(Alignment.BottomCenter),
+        )
     }
 }
 
-// ─── Top Bar ──────────────────────────────────────────────────────────────────
+// ─── View toggle bar ──────────────────────────────────────────────────────────
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TasksTopBar(
+private fun TaskViewToggle(
     viewMode: TaskView,
     onToggleView: (TaskView) -> Unit
 ) {
-    TopAppBar(
-        title = {
-            Text(
-                "Tasks",
-                color = Color(0xFFEEEEF5),
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 4.dp),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(onClick = {}) {
+            Icon(Icons.Outlined.FilterList, contentDescription = "Filter", tint = Color(0xFF888899))
+        }
+        IconButton(onClick = {
+            onToggleView(if (viewMode == TaskView.LIST) TaskView.KANBAN else TaskView.LIST)
+        }) {
+            Icon(
+                imageVector = if (viewMode == TaskView.LIST) Icons.Outlined.ViewKanban else Icons.Outlined.ViewList,
+                contentDescription = "Toggle view",
+                tint = Color(0xFF6366F1)
             )
-        },
-        actions = {
-            IconButton(onClick = {}) {
-                Icon(Icons.Outlined.FilterList, contentDescription = "Filter", tint = Color(0xFF888899))
-            }
-            IconButton(onClick = {
-                onToggleView(if (viewMode == TaskView.LIST) TaskView.KANBAN else TaskView.LIST)
-            }) {
-                Icon(
-                    imageVector = if (viewMode == TaskView.LIST) Icons.Outlined.ViewKanban else Icons.Outlined.ViewList,
-                    contentDescription = "Toggle view",
-                    tint = Color(0xFF6366F1)
-                )
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
-    )
-}
+        }
+    }
+} 
 
 // ─── Tab Row ──────────────────────────────────────────────────────────────────
 

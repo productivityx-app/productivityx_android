@@ -1,6 +1,6 @@
 package com.oussama_chatri.productivityx.features.notes.data.remote
 
-import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.notes.data.remote.dto.TagRequestDto
 import com.oussama_chatri.productivityx.features.notes.data.remote.dto.TagResponseDto
 import retrofit2.Response

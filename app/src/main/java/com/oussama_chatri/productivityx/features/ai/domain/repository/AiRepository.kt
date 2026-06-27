@@ -1,6 +1,5 @@
 package com.oussama_chatri.productivityx.features.ai.domain.repository
 
-import com.oussama_chatri.productivityx.features.ai.domain.model.AiContext
 import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
 import com.oussama_chatri.productivityx.features.ai.domain.model.Message
 import kotlinx.coroutines.flow.Flow
@@ -27,11 +26,7 @@ interface AiRepository {
     fun sendMessage(
         conversationId: UUID,
         content: String,
-        context: AiContext,
     ): Flow<StreamChunk>
-
-    // Context
-    suspend fun buildContext(): AiContext
 }
 
 sealed class StreamChunk {

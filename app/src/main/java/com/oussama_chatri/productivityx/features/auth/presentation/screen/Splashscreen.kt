@@ -38,6 +38,7 @@ import com.oussama_chatri.productivityx.features.auth.presentation.viewmodel.Spl
 @Composable
 fun SplashScreen(
     onNavigateToOnboarding: () -> Unit,
+    onNavigateToLogin: () -> Unit,
     onNavigateToHome: () -> Unit,
     viewModel: SplashViewModel = hiltViewModel()
 ) {
@@ -46,7 +47,8 @@ fun SplashScreen(
     LaunchedEffect(uiState) {
         when (uiState) {
             SplashUiState.Authenticated -> onNavigateToHome()
-            SplashUiState.Unauthenticated -> onNavigateToOnboarding()
+            SplashUiState.ShowOnboarding -> onNavigateToOnboarding()
+            SplashUiState.ShowLogin -> onNavigateToLogin()
             SplashUiState.Checking -> {}
         }
     }

@@ -1,25 +1,15 @@
 package com.oussama_chatri.productivityx.features.pomodoro.presentation.viewmodel
 
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
-import android.content.ServiceConnection
-import android.os.IBinder
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
-import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.TimerState
-import com.oussama_chatri.productivityx.features.pomodoro.domain.usecase.EndSessionUseCase
-import com.oussama_chatri.productivityx.features.pomodoro.domain.usecase.GetActiveSessionUseCase
 import com.oussama_chatri.productivityx.features.pomodoro.domain.usecase.GetTodayStatsUseCase
-import com.oussama_chatri.productivityx.features.pomodoro.domain.usecase.InterruptSessionUseCase
-import com.oussama_chatri.productivityx.features.pomodoro.domain.usecase.StartSessionUseCase
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.event.PomodoroUiEvent
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.state.PomodoroUiState
-import com.oussama_chatri.productivityx.features.pomodoro.service.PomodoroForegroundService
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -28,16 +18,12 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
 class PomodoroViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val startSessionUseCase:    StartSessionUseCase,
-    private val endSessionUseCase:      EndSessionUseCase,
-    private val interruptSessionUseCase: InterruptSessionUseCase,
-    private val getActiveSessionUseCase: GetActiveSessionUseCase,
-    private val getTodayStatsUseCase:   GetTodayStatsUseCase
+    private val getTodayStatsUseCase: GetTodayStatsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PomodoroUiState())
@@ -46,24 +32,9 @@ class PomodoroViewModel @Inject constructor(
     private val _snackbar = MutableSharedFlow<String>()
     val snackbar: SharedFlow<String> = _snackbar.asSharedFlow()
 
-    private var timerService: PomodoroForegroundService? = null
+    private var tickJob: Job? = null
 
-    private val serviceConnection = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-            val b = binder as? PomodoroForegroundService.PomodoroServiceBinder ?: return
-            timerService = b.getService()
-            observeTimerState()
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-            timerService = null
-        }
-    }
-
-    init {
-        bindToService()
-        loadInitialData()
-    }
+    init { refreshStats() }
 
     fun onEvent(event: PomodoroUiEvent) {
         when (event) {
@@ -108,159 +79,184 @@ class PomodoroViewModel @Inject constructor(
 
     private fun startSession() {
         val state = _uiState.value
-        _uiState.update { it.copy(isLoadingStart = true, error = null) }
+        if (!state.isIdle) return
 
-        viewModelScope.launch {
-            val result = startSessionUseCase(state.selectedType, state.linkedTaskId)
-            when (result) {
-                is Resource.Success -> {
-                    val session     = result.data
-                    val totalSecs   = session.plannedDurationSeconds
+        val sessionId = UUID.randomUUID().toString()
+        val totalSecs = state.totalSeconds
 
-                    // Boot the foreground service with the server-assigned session ID
-                    val serviceIntent = PomodoroForegroundService.startIntent(
-                        context      = context,
-                        sessionId    = session.id,
-                        type         = session.type,
-                        totalSeconds = totalSecs,
-                        taskId       = session.taskId,
-                        taskTitle    = state.linkedTaskTitle,
-                        cycleIndex   = state.cycleIndex
+        _uiState.update {
+            it.copy(
+                activeSessionId = sessionId,
+                isLoadingStart  = false,
+                timerState      = TimerState.Running(
+                    sessionId        = sessionId,
+                    type             = state.selectedType,
+                    totalSeconds     = totalSecs,
+                    remainingSeconds = totalSecs,
+                    taskId           = state.linkedTaskId,
+                    taskTitle        = state.linkedTaskTitle,
+                    cycleIndex       = state.cycleIndex
+                )
+            )
+        }
+
+        startTicking(sessionId, state.selectedType, totalSecs, state.linkedTaskId, state.linkedTaskTitle, state.cycleIndex)
+    }
+
+    private fun startTicking(
+        sessionId: String,
+        type: PomodoroType,
+        totalSeconds: Int,
+        taskId: String?,
+        taskTitle: String?,
+        cycleIndex: Int
+    ) {
+        tickJob?.cancel()
+        tickJob = viewModelScope.launch {
+            var remaining = totalSeconds
+            while (remaining > 0) {
+                delay(1000L)
+                val current = _uiState.value.timerState
+                if (current is TimerState.Paused) {
+                    while (_uiState.value.timerState is TimerState.Paused) delay(200L)
+                    continue
+                }
+                if (current !is TimerState.Running) break
+                remaining--
+                _uiState.update {
+                    it.copy(
+                        timerState = current.copy(remainingSeconds = remaining)
                     )
-                    context.startForegroundService(serviceIntent)
-
-                    _uiState.update {
-                        it.copy(
-                            isLoadingStart  = false,
-                            activeSessionId = session.id
-                        )
-                    }
                 }
-                is Resource.Error -> {
-                    _uiState.update { it.copy(isLoadingStart = false, error = result.message) }
+            }
+            val finalState = _uiState.value.timerState
+            if (finalState is TimerState.Running) {
+                _uiState.update {
+                    it.copy(
+                        timerState = TimerState.Completed(finalState.type, finalState.cycleIndex)
+                    )
                 }
-                Resource.Loading -> Unit
+                onEvent(PomodoroUiEvent.SessionCompleted)
             }
         }
     }
 
     private fun pauseTimer() {
-        context.startService(PomodoroForegroundService.pauseIntent(context))
+        val current = _uiState.value.timerState as? TimerState.Running ?: return
+        _uiState.update {
+            it.copy(
+                timerState = TimerState.Paused(
+                    sessionId        = current.sessionId,
+                    type             = current.type,
+                    totalSeconds     = current.totalSeconds,
+                    remainingSeconds = current.remainingSeconds,
+                    taskId           = current.taskId,
+                    taskTitle        = current.taskTitle,
+                    cycleIndex       = current.cycleIndex
+                )
+            )
+        }
     }
 
     private fun resumeTimer() {
-        context.startService(PomodoroForegroundService.resumeIntent(context))
+        val current = _uiState.value.timerState as? TimerState.Paused ?: return
+        _uiState.update {
+            it.copy(
+                timerState = TimerState.Running(
+                    sessionId        = current.sessionId,
+                    type             = current.type,
+                    totalSeconds     = current.totalSeconds,
+                    remainingSeconds = current.remainingSeconds,
+                    taskId           = current.taskId,
+                    taskTitle        = current.taskTitle,
+                    cycleIndex       = current.cycleIndex
+                )
+            )
+        }
     }
 
     private fun skipTimer() {
-        context.startService(PomodoroForegroundService.skipIntent(context))
+        val current = _uiState.value.timerState
+        val (type, cycle) = when (current) {
+            is TimerState.Running -> current.type to current.cycleIndex
+            is TimerState.Paused  -> current.type to current.cycleIndex
+            else                  -> return
+        }
+        tickJob?.cancel()
+        _uiState.update {
+            it.copy(
+                timerState = TimerState.Completed(type, cycle),
+                cycleIndex = cycle + 1,
+                selectedType = PomodoroType.FOCUS
+            )
+        }
+        _snackbar.tryEmit("Session skipped")
+        refreshStats()
     }
 
     private fun confirmInterrupt(reason: String) {
-        val sessionId   = _uiState.value.activeSessionId ?: return
-        val elapsedSecs = (timerService?.let {
-            val total = _uiState.value.totalSeconds
-            total - it.getRemainingSeconds()
-        }) ?: 0
-
-        _uiState.update { it.copy(showInterruptDialog = false, isLoadingEnd = true) }
-        context.startService(PomodoroForegroundService.stopIntent(context))
-
-        viewModelScope.launch {
-            val result = interruptSessionUseCase(sessionId, elapsedSecs.takeIf { it > 0 }, reason.ifBlank { null })
-            _uiState.update {
-                when (result) {
-                    is Resource.Success -> it.copy(
-                        isLoadingEnd    = false,
-                        activeSessionId = null,
-                        timerState      = TimerState.Idle,
-                        interruptReason = ""
-                    )
-                    is Resource.Error   -> it.copy(isLoadingEnd = false, error = result.message)
-                    Resource.Loading    -> it
-                }
-            }
-            refreshStats()
+        val state = _uiState.value
+        val current = state.timerState
+        val elapsedSecs = when (current) {
+            is TimerState.Running -> current.totalSeconds - current.remainingSeconds
+            is TimerState.Paused  -> current.totalSeconds - current.remainingSeconds
+            else                  -> 0
         }
+        tickJob?.cancel()
+        _uiState.update {
+            it.copy(
+                showInterruptDialog = false,
+                timerState          = TimerState.Idle,
+                activeSessionId     = null,
+                interruptReason     = ""
+            )
+        }
+        _snackbar.tryEmit("Session interrupted · ${elapsedSecs / 60}m focus credited")
+        refreshStats()
     }
 
     private fun onSessionCompleted() {
-        val sessionId = _uiState.value.activeSessionId ?: return
-        val totalSecs = _uiState.value.totalSeconds
+        tickJob?.cancel()
+        val state = _uiState.value
+        val nextCycle     = state.cycleIndex + 1
+        val longBreakCycle = state.cyclesBeforeLongBreak
 
-        _uiState.update { it.copy(isLoadingEnd = true) }
-
-        viewModelScope.launch {
-            endSessionUseCase(sessionId, totalSecs)
-            val nextCycle     = _uiState.value.cycleIndex + 1
-            val longBreakCycle = _uiState.value.cyclesBeforeLongBreak
-
-            val nextType = when {
-                _uiState.value.selectedType != PomodoroType.FOCUS -> PomodoroType.FOCUS
-                nextCycle % longBreakCycle == 0                   -> PomodoroType.LONG_BREAK
-                else                                              -> PomodoroType.SHORT_BREAK
-            }
-
-            _uiState.update {
-                it.copy(
-                    isLoadingEnd    = false,
-                    activeSessionId = null,
-                    cycleIndex      = nextCycle,
-                    selectedType    = nextType,
-                    timerState      = TimerState.Idle
-                )
-            }
-            refreshStats()
+        val nextType = when {
+            state.selectedType != PomodoroType.FOCUS -> PomodoroType.FOCUS
+            nextCycle % longBreakCycle == 0          -> PomodoroType.LONG_BREAK
+            else                                     -> PomodoroType.SHORT_BREAK
         }
+
+        _uiState.update {
+            it.copy(
+                activeSessionId = null,
+                cycleIndex      = nextCycle,
+                selectedType    = nextType,
+                timerState      = TimerState.Idle
+            )
+        }
+        _snackbar.tryEmit(
+            when (state.selectedType) {
+                PomodoroType.FOCUS       -> "Focus session complete! 🎉"
+                PomodoroType.SHORT_BREAK -> "Break over — time to focus!"
+                PomodoroType.LONG_BREAK  -> "Long break done — great job!"
+            }
+        )
+        refreshStats()
     }
 
-    private fun observeTimerState() {
+    private fun refreshStats() {
         viewModelScope.launch {
-            timerService?.timerState?.collect { state ->
-                _uiState.update { it.copy(timerState = state) }
-                if (state is TimerState.Completed) {
-                    onEvent(PomodoroUiEvent.SessionCompleted)
+            getTodayStatsUseCase().let { result ->
+                if (result is com.oussama_chatri.productivityx.core.util.Resource.Success) {
+                    _uiState.update { it.copy(todayStats = result.data) }
                 }
             }
         }
-    }
-
-    private fun loadInitialData() {
-        viewModelScope.launch {
-            // Restore any active session from the server (resumed from another device)
-            when (val result = getActiveSessionUseCase()) {
-                is Resource.Success -> {
-                    result.data?.let { session ->
-                        _uiState.update {
-                            it.copy(
-                                activeSessionId = session.id,
-                                selectedType    = session.type,
-                                linkedTaskId    = session.taskId,
-                                linkedTaskTitle = session.taskTitle
-                            )
-                        }
-                    }
-                }
-                else -> Unit
-            }
-            refreshStats()
-        }
-    }
-
-    private suspend fun refreshStats() {
-        when (val result = getTodayStatsUseCase()) {
-            is Resource.Success -> _uiState.update { it.copy(todayStats = result.data) }
-            else -> Unit
-        }
-    }
-
-    private fun bindToService() {
-        val intent = Intent(context, PomodoroForegroundService::class.java)
-        context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onCleared() {
         super.onCleared()
-        try { context.unbindService(serviceConnection) } catch (e: Exception) { /* not bound */ }
+        tickJob?.cancel()
     }
 }

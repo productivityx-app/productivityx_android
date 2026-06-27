@@ -4,6 +4,8 @@ import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.SyncOperation
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
+import com.oussama_chatri.productivityx.core.alarm.AlarmScheduler
+import com.oussama_chatri.productivityx.core.network.isSyncEnabled
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
@@ -30,7 +32,8 @@ import javax.inject.Singleton
 class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao,
     private val taskApi: TaskApi,
-    private val prefsDataStore: PreferencesDataStore
+    private val prefsDataStore: PreferencesDataStore,
+    private val alarmScheduler: AlarmScheduler
 ) : TaskRepository {
 
     override fun observeTasks(status: TaskStatus?, priority: Priority?): Flow<List<Task>> {
@@ -126,6 +129,9 @@ class TaskRepositoryImpl @Inject constructor(
             updatedAt = now
         )
         taskDao.insert(entity)
+        if (reminderAt != null) {
+            alarmScheduler.scheduleTaskReminder(tempId, title, reminderAt.toEpochMilli())
+        }
 
         val requestDto = TaskRequestDto(
             title = title,
@@ -140,20 +146,21 @@ class TaskRepositoryImpl @Inject constructor(
             linkedEventId = linkedEventId
         )
 
-        return when (val result = safeApiCall { taskApi.createTask(requestDto) }) {
-            is Resource.Success -> {
-                val serverDto = result.data.data ?: return Resource.Error("Empty response")
-                // Replace temp local entity with server response
-                taskDao.deleteById(tempId)
-                taskDao.insert(serverDto.toEntity(fallbackUserId = cachedUserId()))
-                Resource.Success(serverDto.toDomain())
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.createTask(requestDto) }) {
+                is Resource.Success -> {
+                    val serverDto = result.data.data ?: return Resource.Error("Empty response")
+                    taskDao.deleteById(tempId)
+                    taskDao.insert(serverDto.toEntity(fallbackUserId = cachedUserId()))
+                    Resource.Success(serverDto.toDomain())
+                }
+                is Resource.Error -> {
+                    Resource.Success(entity.toDomain())
+                }
+                Resource.Loading -> Resource.Loading
             }
-            is Resource.Error -> {
-                // Keep the local PENDING entry — SyncWorker will retry
-                Resource.Success(entity.toDomain())
-            }
-            Resource.Loading -> Resource.Loading
         }
+        return Resource.Success(entity.toDomain())
     }
 
     override suspend fun updateTask(
@@ -184,6 +191,12 @@ class TaskRepositoryImpl @Inject constructor(
             updatedAt = Instant.now()
         )
         taskDao.update(updated)
+        val effectiveReminderAt = reminderAt ?: existing.reminderAt
+        if (effectiveReminderAt != null) {
+            alarmScheduler.scheduleTaskReminder(taskId, updated.title, effectiveReminderAt.toEpochMilli())
+        } else {
+            alarmScheduler.cancel(taskId)
+        }
 
         val requestDto = TaskRequestDto(
             title = updated.title,
@@ -197,15 +210,18 @@ class TaskRepositoryImpl @Inject constructor(
             linkedEventId = updated.linkedEventId
         )
 
-        return when (val result = safeApiCall { taskApi.updateTask(taskId, requestDto) }) {
-            is Resource.Success -> {
-                val dto = result.data.data ?: return Resource.Error("Empty response")
-                taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                Resource.Success(dto.toDomain())
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.updateTask(taskId, requestDto) }) {
+                is Resource.Success -> {
+                    val dto = result.data.data ?: return Resource.Error("Empty response")
+                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
+                    Resource.Success(dto.toDomain())
+                }
+                is Resource.Error -> Resource.Success(updated.toDomain())
+                Resource.Loading -> Resource.Loading
             }
-            is Resource.Error -> Resource.Success(updated.toDomain())
-            Resource.Loading -> Resource.Loading
         }
+        return Resource.Success(updated.toDomain())
     }
 
     override suspend fun updateStatus(taskId: String, status: TaskStatus): Resource<Task> {
@@ -227,17 +243,20 @@ class TaskRepositoryImpl @Inject constructor(
         )
         taskDao.update(updated)
 
-        return when (val result = safeApiCall {
-            taskApi.updateStatus(taskId, UpdateStatusRequestDto(status.name))
-        }) {
-            is Resource.Success -> {
-                val dto = result.data.data ?: return Resource.Error("Empty response")
-                taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                Resource.Success(dto.toDomain())
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall {
+                taskApi.updateStatus(taskId, UpdateStatusRequestDto(status.name))
+            }) {
+                is Resource.Success -> {
+                    val dto = result.data.data ?: return Resource.Error("Empty response")
+                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
+                    Resource.Success(dto.toDomain())
+                }
+                is Resource.Error -> Resource.Success(updated.toDomain())
+                Resource.Loading -> Resource.Loading
             }
-            is Resource.Error -> Resource.Success(updated.toDomain())
-            Resource.Loading -> Resource.Loading
         }
+        return Resource.Success(updated.toDomain())
     }
 
     override suspend fun reorder(items: List<Pair<String, Int>>): Resource<Unit> {
@@ -246,11 +265,14 @@ class TaskRepositoryImpl @Inject constructor(
         val requestDto = ReorderRequestDto(
             items = items.map { (id, pos) -> ReorderItemDto(id, pos) }
         )
-        return when (val result = safeApiCall { taskApi.reorder(requestDto) }) {
-            is Resource.Success -> Resource.Success(Unit)
-            is Resource.Error -> Resource.Error(result.message, result.code)
-            Resource.Loading -> Resource.Loading
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.reorder(requestDto) }) {
+                is Resource.Success -> Resource.Success(Unit)
+                is Resource.Error -> Resource.Error(result.message, result.code)
+                Resource.Loading -> Resource.Loading
+            }
         }
+        return Resource.Success(Unit)
     }
 
     override suspend fun softDeleteTask(taskId: String): Resource<Task> {
@@ -263,16 +285,20 @@ class TaskRepositoryImpl @Inject constructor(
             updatedAt = Instant.now()
         )
         taskDao.update(updated)
+        alarmScheduler.cancel(taskId)
 
-        return when (val result = safeApiCall { taskApi.softDeleteTask(taskId) }) {
-            is Resource.Success -> {
-                val dto = result.data.data ?: return Resource.Error("Empty response")
-                taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                Resource.Success(dto.toDomain())
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.softDeleteTask(taskId) }) {
+                is Resource.Success -> {
+                    val dto = result.data.data ?: return Resource.Error("Empty response")
+                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
+                    Resource.Success(dto.toDomain())
+                }
+                is Resource.Error -> Resource.Success(updated.toDomain())
+                Resource.Loading -> Resource.Loading
             }
-            is Resource.Error -> Resource.Success(updated.toDomain())
-            Resource.Loading -> Resource.Loading
         }
+        return Resource.Success(updated.toDomain())
     }
 
     override suspend fun restoreTask(taskId: String): Resource<Task> {
@@ -286,27 +312,35 @@ class TaskRepositoryImpl @Inject constructor(
         )
         taskDao.update(updated)
 
-        return when (val result = safeApiCall { taskApi.restoreTask(taskId) }) {
-            is Resource.Success -> {
-                val dto = result.data.data ?: return Resource.Error("Empty response")
-                taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                Resource.Success(dto.toDomain())
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.restoreTask(taskId) }) {
+                is Resource.Success -> {
+                    val dto = result.data.data ?: return Resource.Error("Empty response")
+                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
+                    Resource.Success(dto.toDomain())
+                }
+                is Resource.Error -> Resource.Success(updated.toDomain())
+                Resource.Loading -> Resource.Loading
             }
-            is Resource.Error -> Resource.Success(updated.toDomain())
-            Resource.Loading -> Resource.Loading
         }
+        return Resource.Success(updated.toDomain())
     }
 
     override suspend fun hardDeleteTask(taskId: String): Resource<Unit> {
         taskDao.deleteById(taskId)
-        return when (val result = safeApiCall { taskApi.hardDeleteTask(taskId) }) {
-            is Resource.Success -> Resource.Success(Unit)
-            is Resource.Error -> Resource.Error(result.message, result.code)
-            Resource.Loading -> Resource.Loading
+        alarmScheduler.cancel(taskId)
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { taskApi.hardDeleteTask(taskId) }) {
+                is Resource.Success -> Resource.Success(Unit)
+                is Resource.Error -> Resource.Error(result.message, result.code)
+                Resource.Loading -> Resource.Loading
+            }
         }
+        return Resource.Success(Unit)
     }
 
     override suspend fun refreshTasks(): Resource<Unit> {
+        if (!isSyncEnabled()) return Resource.Success(Unit)
         return when (val result = safeApiCall { taskApi.listTasks(size = 200) }) {
             is Resource.Success -> {
                 val tasks = result.data.data?.content ?: return Resource.Error("Empty response")
@@ -323,4 +357,5 @@ class TaskRepositoryImpl @Inject constructor(
     private fun cachedUserId(): String =
         runCatching { kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
 
+    private suspend fun isSyncEnabled(): Boolean = prefsDataStore.isSyncEnabled()
 }

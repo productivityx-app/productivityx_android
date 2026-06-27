@@ -374,6 +374,21 @@ fun PreferencesScreen(
                 )
             }
 
+            // ── Privacy ────────────────────────────────────────────────
+            SettingsSectionHeader("Privacy")
+            SettingsSectionCard {
+                SettingRowSwitch(
+                    icon = Icons.Outlined.Notifications,
+                    label = "Local-only mode",
+                    subtitle = "Keep all data stored locally, never sync to cloud",
+                    checked = state.localOnlyMode,
+                    showDivider = false,
+                    onCheckedChange = {
+                        viewModel.onEvent(PreferencesUiEvent.LocalOnlyModeChanged(it))
+                    }
+                )
+            }
+
             Spacer(Modifier.height(32.dp))
         }
     }

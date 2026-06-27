@@ -21,8 +21,11 @@ enum class AppTheme {
     OCEAN,
     AMBER,
     FOREST,
-    ROSE
+    ROSE,
+    MIDNIGHT,
 }
+
+val proThemes = listOf(AppTheme.OCEAN, AppTheme.AMBER, AppTheme.FOREST, AppTheme.ROSE, AppTheme.MIDNIGHT)
 enum class Gender { MALE, FEMALE }
 
 enum class TaskView { LIST, KANBAN }

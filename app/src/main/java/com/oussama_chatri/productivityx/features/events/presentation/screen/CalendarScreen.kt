@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,22 +12,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CalendarViewDay
 import androidx.compose.material.icons.outlined.CalendarViewMonth
 import androidx.compose.material.icons.outlined.ChevronLeft
 import androidx.compose.material.icons.outlined.ChevronRight
 import androidx.compose.material.icons.outlined.Today
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -64,11 +58,19 @@ private val monthHeaderFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalendarScreen(
+    modifier: Modifier = Modifier,
     onNavigateToEventDetail: (String) -> Unit,
+    showAddEvent: Boolean = false,
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val state           by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(showAddEvent) {
+        if (showAddEvent) {
+            viewModel.onEvent(CalendarUiEvent.OpenAddEvent())
+        }
+    }
 
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
@@ -79,25 +81,9 @@ fun CalendarScreen(
         }
     }
 
-    Scaffold(
-        containerColor  = Color(0xFF0F0F14),
-        snackbarHost    = { SnackbarHost(snackbarHostState) },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick           = { viewModel.onEvent(CalendarUiEvent.OpenAddEvent()) },
-                containerColor    = Color(0xFF6366F1),
-                contentColor      = Color.White,
-                elevation         = FloatingActionButtonDefaults.elevation(0.dp)
-            ) {
-                Icon(Icons.Outlined.Add, "Add event")
-            }
-        }
-    ) { innerPadding ->
+    Box(modifier = modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .statusBarsPadding()
+            modifier = Modifier.fillMaxSize()
         ) {
             CalendarTopBar(
                 view        = state.view,
@@ -156,6 +142,10 @@ fun CalendarScreen(
                 }
             }
         }
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier  = Modifier.align(Alignment.BottomCenter),
+        )
     }
 
     // Bottom sheet

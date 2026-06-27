@@ -5,6 +5,8 @@ import com.oussama_chatri.productivityx.core.enums.EntityType
 import com.oussama_chatri.productivityx.core.enums.SyncOperation
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.network.ApiConstants
+import com.oussama_chatri.productivityx.core.network.isSyncEnabled
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.storage.TokenStorage
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -17,11 +19,13 @@ import javax.inject.Singleton
 class OutboxProcessor @Inject constructor(
     private val syncQueueDao: SyncQueueDao,
     private val okHttpClient: OkHttpClient,
-    private val tokenStorage: TokenStorage
+    private val tokenStorage: TokenStorage,
+    private val prefs: PreferencesDataStore
 ) {
     private val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
 
     suspend fun drainOutbox() {
+        if (!prefs.isSyncEnabled()) return
         val pending = syncQueueDao.getPending()
         for (item in pending) {
             val now = System.currentTimeMillis()

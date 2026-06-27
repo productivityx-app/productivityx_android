@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.StickyNote2
@@ -46,14 +46,12 @@ private data class NavItem(
     val route : MainRoute,
 )
 
-// 5 tabs per project spec: Home · Notes · Tasks · Pomodoro · AI
-// Profile is reached via the avatar button in the Home top bar.
 private val navItems = listOf(
-    NavItem("Home",     Icons.Outlined.Home,        MainRoute.Home),
-    NavItem("Notes",    Icons.Outlined.StickyNote2, MainRoute.Notes),
-    NavItem("Tasks",    Icons.Outlined.CheckCircle, MainRoute.Tasks),
-    NavItem("Pomodoro", Icons.Outlined.Timer,       MainRoute.Pomodoro),
-    NavItem("AI",       Icons.Outlined.AutoAwesome, MainRoute.Ai),
+    NavItem("Home",     Icons.Outlined.Home,          MainRoute.Home),
+    NavItem("Notes",    Icons.Outlined.StickyNote2,   MainRoute.Notes),
+    NavItem("Tasks",    Icons.Outlined.CheckCircle,   MainRoute.Tasks),
+    NavItem("Events",   Icons.Outlined.CalendarMonth, MainRoute.Calendar),
+    NavItem("Pomodoro", Icons.Outlined.Timer,         MainRoute.Pomodoro),
 )
 
 @Composable

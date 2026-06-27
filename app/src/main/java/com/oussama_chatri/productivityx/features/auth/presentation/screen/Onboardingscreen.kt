@@ -43,6 +43,8 @@ import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxButton
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
+import com.oussama_chatri.productivityx.features.auth.presentation.viewmodel.OnboardingViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 
 private data class OnboardingPage(
@@ -58,7 +60,10 @@ private val pages = listOf(
 )
 
 @Composable
-fun OnboardingScreen(onGetStarted: () -> Unit) {
+fun OnboardingScreen(
+    onGetStarted: () -> Unit,
+    viewModel: OnboardingViewModel = hiltViewModel()
+) {
     val pagerState = rememberPagerState(pageCount = { pages.size })
     val scope = rememberCoroutineScope()
 
@@ -133,7 +138,10 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
             } else {
                 PxButton(
                     text = stringResource(R.string.onboarding_get_started),
-                    onClick = onGetStarted
+                    onClick = {
+                        viewModel.completeOnboarding()
+                        onGetStarted()
+                    }
                 )
             }
         }

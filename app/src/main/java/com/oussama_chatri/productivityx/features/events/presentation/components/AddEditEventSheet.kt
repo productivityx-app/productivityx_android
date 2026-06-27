@@ -29,6 +29,9 @@ import androidx.compose.material.icons.outlined.NotificationsActive
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Repeat
 import androidx.compose.material.icons.outlined.WbSunny
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,7 +41,11 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -59,7 +66,10 @@ import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.events.presentation.event.AddEditEventUiEvent
 import com.oussama_chatri.productivityx.features.events.presentation.viewmodel.AddEditEventViewModel
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 private val dateFormatter = DateTimeFormatter.ofPattern("EEE, MMM d").withZone(ZoneId.systemDefault())
@@ -111,6 +121,7 @@ fun AddEditEventSheet(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AddEditEventSheetContent(
     state: com.oussama_chatri.productivityx.features.events.presentation.state.AddEditEventUiState,
@@ -119,6 +130,14 @@ private fun AddEditEventSheetContent(
 ) {
     var showRecurrencePicker by remember { mutableStateOf(false) }
     var showReminderPicker   by remember { mutableStateOf(false) }
+    var showStartDatePicker  by remember { mutableStateOf(false) }
+    var showStartTimePicker  by remember { mutableStateOf(false) }
+    var showEndDatePicker    by remember { mutableStateOf(false) }
+    var showEndTimePicker    by remember { mutableStateOf(false) }
+    var showLocationDialog   by remember { mutableStateOf(false) }
+    var showDescriptionDialog by remember { mutableStateOf(false) }
+    var locationDraft        by remember { mutableStateOf(state.location) }
+    var descriptionDraft     by remember { mutableStateOf(state.description) }
 
     Column(
         modifier = Modifier
@@ -128,7 +147,6 @@ private fun AddEditEventSheetContent(
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp)
     ) {
-        // Title — textStyle removed; PxTextField does not expose that parameter
         PxTextField(
             value         = state.title,
             onValueChange = { onEvent(AddEditEventUiEvent.TitleChanged(it)) },
@@ -152,7 +170,7 @@ private fun AddEditEventSheetContent(
         SheetRow(
             icon    = Icons.Outlined.CalendarMonth,
             label   = "Start",
-            onClick = { /* date/time picker */ }
+            onClick = { showStartDatePicker = true }
         ) {
             Row(
                 verticalAlignment     = Alignment.CenterVertically,
@@ -178,7 +196,7 @@ private fun AddEditEventSheetContent(
         SheetRow(
             icon    = Icons.Outlined.AccessTime,
             label   = "End",
-            onClick = { /* date/time picker */ }
+            onClick = { showEndDatePicker = true }
         ) {
             Row(
                 verticalAlignment     = Alignment.CenterVertically,
@@ -216,7 +234,14 @@ private fun AddEditEventSheetContent(
 
         HorizontalDivider(color = Color(0xFF252533), modifier = Modifier.padding(vertical = 4.dp))
 
-        SheetRow(icon = Icons.Outlined.LocationOn, label = "Location") {
+        SheetRow(
+            icon    = Icons.Outlined.LocationOn,
+            label   = "Location",
+            onClick = {
+                locationDraft = state.location
+                showLocationDialog = true
+            }
+        ) {
             Text(
                 text  = state.location.ifBlank { "Add location" },
                 style = MaterialTheme.typography.bodySmall,
@@ -224,7 +249,14 @@ private fun AddEditEventSheetContent(
             )
         }
 
-        SheetRow(icon = Icons.Outlined.Notes, label = "Description") {
+        SheetRow(
+            icon    = Icons.Outlined.Notes,
+            label   = "Description",
+            onClick = {
+                descriptionDraft = state.description
+                showDescriptionDialog = true
+            }
+        ) {
             Text(
                 text  = state.description.ifBlank { "Add description" },
                 style = MaterialTheme.typography.bodySmall,
@@ -323,6 +355,177 @@ private fun AddEditEventSheetContent(
         }
 
         Spacer(Modifier.height(8.dp))
+    }
+
+    // Start Date Picker
+    if (showStartDatePicker) {
+        DatePickerDialog(
+            onDismissRequest = { showStartDatePicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    showStartDatePicker = false
+                    if (!state.isAllDay) showStartTimePicker = true
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showStartDatePicker = false }) { Text("Cancel") }
+            }
+        ) {
+            val datePickerState = rememberDatePickerState(
+                initialSelectedDateMillis = state.startMs
+            )
+            DatePicker(state = datePickerState)
+            LaunchedEffect(datePickerState.selectedDateMillis) {
+                datePickerState.selectedDateMillis?.let { millis ->
+                    val oldInstant = Instant.ofEpochMilli(state.startMs)
+                    val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
+                    val newInstant = Instant.ofEpochMilli(millis)
+                    val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
+                    val combined = newDate.atTime(localTime).toInstant(ZoneOffset.UTC)
+                    onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
+                }
+            }
+        }
+    }
+
+    // Start Time Picker
+    if (showStartTimePicker) {
+        val instant = Instant.ofEpochMilli(state.startMs)
+        val localTime = LocalTime.ofInstant(instant, ZoneId.systemDefault())
+        val timePickerState = rememberTimePickerState(
+            initialHour = localTime.hour,
+            initialMinute = localTime.minute,
+            is24Hour = false
+        )
+        AlertDialog(
+            onDismissRequest = { showStartTimePicker = false },
+            title = { Text("Select time", color = Color.White) },
+            text = { TimePicker(state = timePickerState) },
+            containerColor = Color(0xFF1A1A24),
+            confirmButton = {
+                TextButton(onClick = {
+                    val date = LocalDate.ofInstant(instant, ZoneId.systemDefault())
+                    val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
+                    val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
+                    onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
+                    showStartTimePicker = false
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showStartTimePicker = false }) { Text("Cancel") }
+            }
+        )
+    }
+
+    // End Date Picker
+    if (showEndDatePicker) {
+        DatePickerDialog(
+            onDismissRequest = { showEndDatePicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    showEndDatePicker = false
+                    if (!state.isAllDay) showEndTimePicker = true
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showEndDatePicker = false }) { Text("Cancel") }
+            }
+        ) {
+            val datePickerState = rememberDatePickerState(
+                initialSelectedDateMillis = state.endMs
+            )
+            DatePicker(state = datePickerState)
+            LaunchedEffect(datePickerState.selectedDateMillis) {
+                datePickerState.selectedDateMillis?.let { millis ->
+                    val oldInstant = Instant.ofEpochMilli(state.endMs)
+                    val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
+                    val newInstant = Instant.ofEpochMilli(millis)
+                    val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
+                    val combined = newDate.atTime(localTime).toInstant(ZoneOffset.UTC)
+                    onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
+                }
+            }
+        }
+    }
+
+    // End Time Picker
+    if (showEndTimePicker) {
+        val instant = Instant.ofEpochMilli(state.endMs)
+        val localTime = LocalTime.ofInstant(instant, ZoneId.systemDefault())
+        val timePickerState = rememberTimePickerState(
+            initialHour = localTime.hour,
+            initialMinute = localTime.minute,
+            is24Hour = false
+        )
+        AlertDialog(
+            onDismissRequest = { showEndTimePicker = false },
+            title = { Text("Select time", color = Color.White) },
+            text = { TimePicker(state = timePickerState) },
+            containerColor = Color(0xFF1A1A24),
+            confirmButton = {
+                TextButton(onClick = {
+                    val date = LocalDate.ofInstant(instant, ZoneId.systemDefault())
+                    val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
+                    val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
+                    onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
+                    showEndTimePicker = false
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showEndTimePicker = false }) { Text("Cancel") }
+            }
+        )
+    }
+
+    // Location Dialog
+    if (showLocationDialog) {
+        AlertDialog(
+            onDismissRequest = { showLocationDialog = false },
+            title = { Text("Location", color = Color.White) },
+            text = {
+                TextField(
+                    value       = locationDraft,
+                    onValueChange = { locationDraft = it },
+                    placeholder  = { Text("Enter location") },
+                    singleLine   = true
+                )
+            },
+            containerColor = Color(0xFF1A1A24),
+            confirmButton = {
+                TextButton(onClick = {
+                    onEvent(AddEditEventUiEvent.LocationChanged(locationDraft))
+                    showLocationDialog = false
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLocationDialog = false }) { Text("Cancel") }
+            }
+        )
+    }
+
+    // Description Dialog
+    if (showDescriptionDialog) {
+        AlertDialog(
+            onDismissRequest = { showDescriptionDialog = false },
+            title = { Text("Description", color = Color.White) },
+            text = {
+                TextField(
+                    value       = descriptionDraft,
+                    onValueChange = { descriptionDraft = it },
+                    placeholder  = { Text("Enter description") }
+                )
+            },
+            containerColor = Color(0xFF1A1A24),
+            confirmButton = {
+                TextButton(onClick = {
+                    onEvent(AddEditEventUiEvent.DescriptionChanged(descriptionDraft))
+                    showDescriptionDialog = false
+                }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDescriptionDialog = false }) { Text("Cancel") }
+            }
+        )
     }
 }
 

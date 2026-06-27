@@ -81,7 +81,10 @@ fun LoginScreen(
         uiState = uiState,
         onEvent = viewModel::onEvent,
         onNavigateToRegister = onNavigateToRegister,
-        onNavigateToForgotPassword = onNavigateToForgotPassword
+        onNavigateToForgotPassword = onNavigateToForgotPassword,
+        onSkipLogin = {
+            viewModel.onEvent(LoginUiEvent.SkipLogin)
+        }
     )
 }
 
@@ -90,7 +93,8 @@ private fun LoginContent(
     uiState: LoginUiState,
     onEvent: (LoginUiEvent) -> Unit,
     onNavigateToRegister: () -> Unit,
-    onNavigateToForgotPassword: () -> Unit
+    onNavigateToForgotPassword: () -> Unit,
+    onSkipLogin: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -213,6 +217,16 @@ private fun LoginContent(
                 )
             }
 
+            // Skip login — use app locally without an account
+            Spacer(modifier = Modifier.height(12.dp))
+            TextButton(onClick = onSkipLogin, modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = stringResource(R.string.auth_skip_login),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = PxColors.OnSurfaceDim
+                )
+            }
+
             Spacer(modifier = Modifier.height(24.dp))
 
             // Navigate to register
@@ -248,7 +262,8 @@ private fun LoginScreenPreview() {
             uiState = LoginUiState(),
             onEvent = {},
             onNavigateToRegister = {},
-            onNavigateToForgotPassword = {}
+            onNavigateToForgotPassword = {},
+            onSkipLogin = {}
         )
     }
 }

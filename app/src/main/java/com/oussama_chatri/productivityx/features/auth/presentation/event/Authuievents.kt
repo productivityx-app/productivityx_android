@@ -5,6 +5,7 @@ sealed class LoginUiEvent {
     data class PasswordChanged(val value: String) : LoginUiEvent()
     data object TogglePasswordVisibility : LoginUiEvent()
     data object Submit : LoginUiEvent()
+    data object SkipLogin : LoginUiEvent()
 }
 
 sealed class RegisterUiEvent {

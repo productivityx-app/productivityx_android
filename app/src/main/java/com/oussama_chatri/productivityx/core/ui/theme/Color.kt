@@ -157,14 +157,36 @@ private val RoseScheme = PxColorScheme(
     Info           = Color(0xFF60A5FA),
 )
 
+private val MidnightScheme = PxColorScheme(
+    Primary        = Color(0xFF6366F1), // Indigo-500
+    PrimaryVariant = Color(0xFF4F46E5), // Indigo-600
+    Secondary      = Color(0xFF818CF8), // Indigo-400
+    Background     = Color(0xFF07070E),
+    Surface        = Color(0xFF10101F),
+    SurfaceVariant = Color(0xFF191930),
+    OnPrimary      = Color(0xFFFFFFFF),
+    OnBackground   = Color(0xFFE0E0F5),
+    OnSurface      = Color(0xFFC0C0DD),
+    OnSurfaceDim   = Color(0xFF7070AA),
+    Outline        = Color(0xFF2A2A4A),
+    Error          = Color(0xFFEF4444),
+    ErrorVariant   = Color(0xFF7F1D1D),
+    Success        = Color(0xFF22C55E),
+    SuccessVariant = Color(0xFF14532D),
+    Warning        = Color(0xFFF59E0B),
+    WarningVariant = Color(0xFF78350F),
+    Info           = Color(0xFF38BDF8),
+)
+
 fun appColorScheme(theme: AppTheme, isSystemInDarkTheme: Boolean): PxColorScheme = when (theme) {
-    AppTheme.DARK   -> DarkScheme
-    AppTheme.LIGHT  -> LightScheme
-    AppTheme.SYSTEM -> if (isSystemInDarkTheme) DarkScheme else LightScheme
-    AppTheme.OCEAN  -> OceanScheme
-    AppTheme.AMBER  -> AmberScheme
-    AppTheme.FOREST -> ForestScheme
-    AppTheme.ROSE   -> RoseScheme
+    AppTheme.DARK     -> DarkScheme
+    AppTheme.LIGHT    -> LightScheme
+    AppTheme.SYSTEM   -> if (isSystemInDarkTheme) DarkScheme else LightScheme
+    AppTheme.OCEAN    -> OceanScheme
+    AppTheme.AMBER    -> AmberScheme
+    AppTheme.FOREST   -> ForestScheme
+    AppTheme.ROSE     -> RoseScheme
+    AppTheme.MIDNIGHT -> MidnightScheme
 }
 
 object PxColors {

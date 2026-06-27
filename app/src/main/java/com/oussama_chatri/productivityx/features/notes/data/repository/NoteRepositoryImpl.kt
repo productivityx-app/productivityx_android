@@ -7,9 +7,10 @@ import com.oussama_chatri.productivityx.core.enums.EntityType
 import com.oussama_chatri.productivityx.core.enums.SyncOperation
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.network.safeApiCall
+import com.oussama_chatri.productivityx.core.network.isSyncEnabled
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteEntity
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteTagCrossRef
@@ -60,7 +61,7 @@ class NoteRepositoryImpl @Inject constructor(
     // Single fetch
 
     override suspend fun getNoteById(noteId: String): Resource<Note> {
-        val userId = cachedUserId()
+        val userId = cachedUserIdSuspend()
         val local  = noteDao.getNoteByIdAndUser(noteId, userId)
         if (local != null) return Resource.Success(local.toDomain())
 
@@ -80,12 +81,11 @@ class NoteRepositoryImpl @Inject constructor(
         tagIds: Set<String>?,
         pinned: Boolean?
     ): Resource<Note> {
-        val userId   = cachedUserId()
+        val userId   = cachedUserIdSuspend()
         val clientId = UUID.randomUUID().toString()
         val now      = Instant.now().toEpochMilli()
         val plain    = stripMarkdown(content ?: "")
 
-        // Write locally first — UI reflects the note immediately
         val entity = NoteEntity(
             id                 = clientId,
             userId             = userId,
@@ -106,17 +106,25 @@ class NoteRepositoryImpl @Inject constructor(
         noteDao.upsert(entity)
         if (!tagIds.isNullOrEmpty()) noteDao.replaceNoteTags(clientId, tagIds.toList())
 
-        enqueueSync(clientId, SyncOperation.CREATE, gson.toJson(NoteRequestDto(title, content, tagIds, pinned)))
+        if (isSyncEnabled()) {
+            enqueueSync(clientId, SyncOperation.CREATE, gson.toJson(NoteRequestDto(title, content, tagIds, pinned)))
 
-        // Sync to remote and replace client-side temp record with server record
-        val remote = safeApiCall { noteApi.createNote(NoteRequestDto(title, content, tagIds, pinned)) }
-        return handleNoteResponse(remote) { dto ->
-            noteDao.deleteById(clientId)
-            val (remoteEntity, refs) = dto.toEntityWithRefs(userId)   // <-- fallbackUserId
-            noteDao.upsert(remoteEntity)
-            noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
-            syncQueueDao.deleteByEntity(clientId, EntityType.NOTE)
+            val remote = safeApiCall { noteApi.createNote(NoteRequestDto(title, content, tagIds, pinned)) }
+            if (remote is Resource.Success && remote.data.isSuccessful) {
+                val dto = remote.data.body()?.data
+                if (dto != null) {
+                    noteDao.deleteById(clientId)
+                    val (remoteEntity, refs) = dto.toEntityWithRefs(userId)
+                    noteDao.upsert(remoteEntity)
+                    noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+                    syncQueueDao.deleteByEntity(clientId, EntityType.NOTE)
+                    return Resource.Success(dto.toDomain(userId))
+                }
+            }
         }
+
+        return noteDao.getNoteById(clientId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Failed to create note")
     }
 
     // Update
@@ -128,10 +136,16 @@ class NoteRepositoryImpl @Inject constructor(
         tagIds: Set<String>?,
         pinned: Boolean?
     ): Resource<Note> {
-        val userId = cachedUserId()
+        val userId = cachedUserIdSuspend()
         val now    = Instant.now().toEpochMilli()
 
+        var originalVersion: Int? = null
+        var originalUpdatedAt: Long? = null
+
         noteDao.getNoteById(noteId)?.let { local ->
+            originalVersion = local.note.version
+            originalUpdatedAt = local.note.updatedAt
+
             val plain   = content?.let { stripMarkdown(it) } ?: local.note.plainTextContent
             val updated = local.note.copy(
                 title              = title?.trim() ?: local.note.title,
@@ -149,29 +163,48 @@ class NoteRepositoryImpl @Inject constructor(
             if (tagIds != null) noteDao.replaceNoteTags(noteId, tagIds.toList())
         }
 
-        enqueueSync(noteId, SyncOperation.UPDATE, gson.toJson(NoteRequestDto(title, content, tagIds, pinned)))
+        if (isSyncEnabled()) {
+            val clientUpdatedAt = originalUpdatedAt?.let { Instant.ofEpochMilli(it).toString() }
 
-        val remote = safeApiCall { noteApi.updateNote(noteId, NoteRequestDto(title, content, tagIds, pinned)) }
-        return handleNoteResponse(remote) { dto ->
-            val (remoteEntity, refs) = dto.toEntityWithRefs(userId)
-            noteDao.upsert(remoteEntity)
-            noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
-            syncQueueDao.deleteByEntity(noteId, EntityType.NOTE)
+            enqueueSync(noteId, SyncOperation.UPDATE, gson.toJson(NoteRequestDto(title, content, tagIds, pinned, originalVersion, clientUpdatedAt)))
+
+            val remote = safeApiCall { noteApi.updateNote(noteId, NoteRequestDto(title, content, tagIds, pinned, originalVersion, clientUpdatedAt)) }
+            if (remote is Resource.Success && remote.data.isSuccessful) {
+                val dto = remote.data.body()?.data
+                if (dto != null) {
+                    val (remoteEntity, refs) = dto.toEntityWithRefs(userId)
+                    noteDao.upsert(remoteEntity)
+                    noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+                    syncQueueDao.deleteByEntity(noteId, EntityType.NOTE)
+                    return Resource.Success(dto.toDomain(userId))
+                }
+            }
         }
+
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     // Pin / Unpin
 
     override suspend fun pinNote(noteId: String): Resource<Note> {
         togglePinnedLocally(noteId, true)
-        val remote = safeApiCall { noteApi.pinNote(noteId) }
-        return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.pinNote(noteId) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+        }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     override suspend fun unpinNote(noteId: String): Resource<Note> {
         togglePinnedLocally(noteId, false)
-        val remote = safeApiCall { noteApi.unpinNote(noteId) }
-        return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.unpinNote(noteId) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+        }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     // Delete / Restore
@@ -190,12 +223,16 @@ class NoteRepositoryImpl @Inject constructor(
                 )
             )
         }
-        enqueueSync(noteId, SyncOperation.DELETE, "{}")
-        val remote = safeApiCall { noteApi.softDeleteNote(noteId) }
-        return handleNoteResponse(remote) { dto ->
-            noteDao.upsert(dto.toEntity(cachedUserId()))
-            syncQueueDao.deleteByEntity(noteId, EntityType.NOTE)
+        if (isSyncEnabled()) {
+            enqueueSync(noteId, SyncOperation.DELETE, "{}")
+            val remote = safeApiCall { noteApi.softDeleteNote(noteId) }
+            return handleNoteResponse(remote) { dto ->
+                noteDao.upsert(dto.toEntity(cachedUserIdSuspend()))
+                syncQueueDao.deleteByEntity(noteId, EntityType.NOTE)
+            }
         }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     override suspend fun restoreNote(noteId: String): Resource<Note> {
@@ -211,31 +248,42 @@ class NoteRepositoryImpl @Inject constructor(
                 )
             )
         }
-        val remote = safeApiCall { noteApi.restoreNote(noteId) }
-        return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.restoreNote(noteId) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+        }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     override suspend fun hardDeleteNote(noteId: String): Resource<Unit> {
         noteDao.deleteById(noteId)
-        val remote = safeApiCall { noteApi.hardDeleteNote(noteId) }
-        return when (remote) {
-            is Resource.Success -> if (remote.data.isSuccessful) Resource.Success(Unit)
-            else Resource.Error(parseError(remote.data.errorBody()?.string()))
-            is Resource.Error   -> remote
-            is Resource.Loading -> Resource.Loading
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.hardDeleteNote(noteId) }
+            return when (remote) {
+                is Resource.Success -> if (remote.data.isSuccessful) Resource.Success(Unit)
+                else Resource.Error(parseError(remote.data.errorBody()?.string()))
+                is Resource.Error   -> remote
+                is Resource.Loading -> Resource.Loading
+            }
         }
+        return Resource.Success(Unit)
     }
 
     // Tags
 
     override suspend fun addTagToNote(noteId: String, tagId: String): Resource<Note> {
         noteDao.insertNoteTagRef(NoteTagCrossRef(noteId, tagId))
-        val remote = safeApiCall { noteApi.addTagToNote(noteId, AddTagToNoteRequestDto(tagId)) }
-        return handleNoteResponse(remote) { dto ->
-            val (entity, refs) = dto.toEntityWithRefs(cachedUserId())
-            noteDao.upsert(entity)
-            noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.addTagToNote(noteId, AddTagToNoteRequestDto(tagId)) }
+            return handleNoteResponse(remote) { dto ->
+                val (entity, refs) = dto.toEntityWithRefs(cachedUserIdSuspend())
+                noteDao.upsert(entity)
+                noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+            }
         }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     override suspend fun removeTagFromNote(noteId: String, tagId: String): Resource<Note> {
@@ -244,18 +292,23 @@ class NoteRepositoryImpl @Inject constructor(
         noteDao.clearTagsForNote(noteId)
         remaining.forEach { noteDao.insertNoteTagRef(NoteTagCrossRef(noteId, it)) }
 
-        val remote = safeApiCall { noteApi.removeTagFromNote(noteId, tagId) }
-        return handleNoteResponse(remote) { dto ->
-            val (entity, refs) = dto.toEntityWithRefs(cachedUserId())
-            noteDao.upsert(entity)
-            noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { noteApi.removeTagFromNote(noteId, tagId) }
+            return handleNoteResponse(remote) { dto ->
+                val (entity, refs) = dto.toEntityWithRefs(cachedUserIdSuspend())
+                noteDao.upsert(entity)
+                noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
+            }
         }
+        return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Note not found")
     }
 
     // Refresh
 
     override suspend fun refreshNotes(): Resource<Unit> {
-        val userId = cachedUserId()
+        if (!isSyncEnabled()) return Resource.Success(Unit)
+        val userId = cachedUserIdSuspend()
         val result = safeApiCall { noteApi.listActiveNotes(size = 100) }
         if (result is Resource.Success && result.data.isSuccessful) {
             result.data.body()?.data?.content?.forEach { dto ->
@@ -302,7 +355,7 @@ class NoteRepositoryImpl @Inject constructor(
                 val dto = response.body()?.data
                 if (dto != null) {
                     onSuccess(dto)
-                    Resource.Success(dto.toDomain(cachedUserId()))
+                    Resource.Success(dto.toDomain(cachedUserIdSuspend()))
                 } else Resource.Error("Empty response body")
             } else Resource.Error(parseError(response.errorBody()?.string()))
         }
@@ -312,6 +365,11 @@ class NoteRepositoryImpl @Inject constructor(
 
     private fun cachedUserId(): String =
         runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
+
+    private suspend fun cachedUserIdSuspend(): String =
+        preferencesDataStore.cachedUserId.first() ?: ""
+
+    private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
 
     private fun parseError(body: String?): String {
         if (body.isNullOrBlank()) return "Something went wrong."

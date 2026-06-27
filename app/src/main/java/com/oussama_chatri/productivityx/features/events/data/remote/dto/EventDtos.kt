@@ -8,7 +8,7 @@ data class EventRequestDto(
     @SerializedName("location")         val location: String?      = null,
     @SerializedName("startAt")          val startAt: String,         // ISO-8601
     @SerializedName("endAt")            val endAt: String,           // ISO-8601
-    @SerializedName("isAllDay")         val isAllDay: Boolean       = false,
+    @SerializedName("allDay")           val isAllDay: Boolean       = false,
     @SerializedName("color")            val color: String           = "#6366F1",
     @SerializedName("recurrenceRule")   val recurrenceRule: String? = null,
     @SerializedName("recurrenceEndAt")  val recurrenceEndAt: String? = null,
@@ -24,7 +24,7 @@ data class EventResponseDto(
     @SerializedName("location")             val location: String?     = null,
     @SerializedName("startAt")              val startAt: String,
     @SerializedName("endAt")                val endAt: String,
-    @SerializedName("isAllDay")             val isAllDay: Boolean     = false,
+    @SerializedName("allDay")               val isAllDay: Boolean     = false,
     @SerializedName("color")                val color: String         = "#6366F1",
     @SerializedName("recurrenceRule")       val recurrenceRule: String? = null,
     @SerializedName("recurrenceEndAt")      val recurrenceEndAt: String? = null,

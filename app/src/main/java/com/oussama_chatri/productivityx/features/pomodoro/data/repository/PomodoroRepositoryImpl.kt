@@ -2,7 +2,10 @@ package com.oussama_chatri.productivityx.features.pomodoro.data.repository
 
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.core.network.ApiConstants
+import com.oussama_chatri.productivityx.core.network.ApiResponse
+import com.oussama_chatri.productivityx.core.network.isSyncEnabled
 import com.oussama_chatri.productivityx.core.network.safeApiCall
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.pomodoro.data.remote.PomodoroApi
 import com.oussama_chatri.productivityx.features.pomodoro.data.remote.dto.request.EndSessionRequestDto
@@ -18,13 +21,15 @@ import javax.inject.Singleton
 
 @Singleton
 class PomodoroRepositoryImpl @Inject constructor(
-    private val api: PomodoroApi
+    private val api: PomodoroApi,
+    private val preferencesDataStore: PreferencesDataStore
 ) : PomodoroRepository {
 
     override suspend fun startSession(
         type: PomodoroType,
         taskId: String?
     ): Resource<PomodoroSession> {
+        if (!isSyncEnabled()) return Resource.Error("Cloud sync is disabled")
         val result = safeApiCall {
             api.startSession(StartSessionRequestDto(type = type, taskId = taskId))
         }
@@ -35,6 +40,7 @@ class PomodoroRepositoryImpl @Inject constructor(
         sessionId: String,
         actualDurationSeconds: Int?
     ): Resource<PomodoroSession> {
+        if (!isSyncEnabled()) return Resource.Error("Cloud sync is disabled")
         val result = safeApiCall {
             api.endSession(
                 url     = ApiConstants.Pomodoro.end(sessionId),
@@ -49,6 +55,7 @@ class PomodoroRepositoryImpl @Inject constructor(
         actualDurationSeconds: Int?,
         reason: String?
     ): Resource<PomodoroSession> {
+        if (!isSyncEnabled()) return Resource.Error("Cloud sync is disabled")
         val result = safeApiCall {
             api.interruptSession(
                 url     = ApiConstants.Pomodoro.interrupt(sessionId),
@@ -59,6 +66,7 @@ class PomodoroRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getActiveSession(): Resource<PomodoroSession?> {
+        if (!isSyncEnabled()) return Resource.Success(null)
         val result = safeApiCall { api.getActiveSession() }
         return when (result) {
             is Resource.Success -> {
@@ -75,6 +83,7 @@ class PomodoroRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getSessionById(sessionId: String): Resource<PomodoroSession> {
+        if (!isSyncEnabled()) return Resource.Error("Cloud sync is disabled")
         val result = safeApiCall {
             api.getSessionById("${ApiConstants.Pomodoro.SESSIONS}/$sessionId")
         }
@@ -86,6 +95,7 @@ class PomodoroRepositoryImpl @Inject constructor(
         size: Int,
         taskId: String?
     ): Resource<List<PomodoroSession>> {
+        if (!isSyncEnabled()) return Resource.Success(emptyList())
         val result = safeApiCall { api.getSessions(page, size, taskId) }
         return when (result) {
             is Resource.Success -> {
@@ -103,6 +113,7 @@ class PomodoroRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTodayStats(): Resource<PomodoroStats> {
+        if (!isSyncEnabled()) return Resource.Error("Cloud sync is disabled")
         val result = safeApiCall { api.getTodayStats() }
         return when (result) {
             is Resource.Success -> {
@@ -126,7 +137,7 @@ class PomodoroRepositoryImpl @Inject constructor(
     }
 
     private fun <T, R> mapResponse(
-        result: Resource<retrofit2.Response<com.oussama_chatri.productivityx.features.pomodoro.data.remote.ApiResponseWrapper<T>>>,
+        result: Resource<retrofit2.Response<ApiResponse<T>>>,
         transform: (T) -> R
     ): Resource<R> = when (result) {
         is Resource.Success -> {
@@ -142,6 +153,8 @@ class PomodoroRepositoryImpl @Inject constructor(
         is Resource.Error -> result
         Resource.Loading  -> Resource.Loading
     }
+
+    private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
 
     private fun parseErrorMessage(errorBody: String?): String {
         if (errorBody.isNullOrBlank()) return "Something went wrong."

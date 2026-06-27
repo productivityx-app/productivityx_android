@@ -75,4 +75,18 @@ interface EventDao {
     """
     )
     suspend fun countUpcomingThisWeek(userId: String, weekStartMs: Long, weekEndMs: Long): Int
+
+    @Query(
+        """
+        SELECT * FROM events
+        WHERE userId = :userId AND isDeleted = 0
+          AND (LOWER(title) LIKE '%' || LOWER(:query) || '%'
+            OR LOWER(description) LIKE '%' || LOWER(:query) || '%')
+        ORDER BY updatedAt DESC
+    """
+    )
+    suspend fun searchEvents(userId: String, query: String): List<EventEntity>
+
+    @Query("SELECT * FROM events WHERE isDeleted = 0")
+    suspend fun getAllNonDeleted(): List<EventEntity>
 }

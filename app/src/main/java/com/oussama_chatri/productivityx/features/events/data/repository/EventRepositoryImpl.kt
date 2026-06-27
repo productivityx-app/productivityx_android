@@ -6,10 +6,12 @@ import com.oussama_chatri.productivityx.core.db.sync.SyncQueueEntity
 import com.oussama_chatri.productivityx.core.enums.EntityType
 import com.oussama_chatri.productivityx.core.enums.SyncOperation
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
+import com.oussama_chatri.productivityx.core.alarm.AlarmScheduler
+import com.oussama_chatri.productivityx.core.network.isSyncEnabled
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.events.data.local.EventDao
 import com.oussama_chatri.productivityx.features.events.data.local.EventEntity
 import com.oussama_chatri.productivityx.features.events.data.mapper.toDomain
@@ -35,7 +37,8 @@ class EventRepositoryImpl @Inject constructor(
     private val eventDao: EventDao,
     private val syncQueueDao: SyncQueueDao,
     private val preferencesDataStore: PreferencesDataStore,
-    private val gson: Gson
+    private val gson: Gson,
+    private val alarmScheduler: AlarmScheduler
 ) : EventRepository {
 
     override fun observeEvents(from: Instant, to: Instant): Flow<List<Event>> =
@@ -96,19 +99,28 @@ class EventRepositoryImpl @Inject constructor(
             pendingOperation   = "CREATE"
         )
         eventDao.upsert(entity)
+        if (reminderMinutes != null && reminderMinutes > 0) {
+            val triggerAtMs = startAt.toEpochMilli() - (reminderMinutes * 60000L)
+            alarmScheduler.scheduleEventReminder(clientId, title, triggerAtMs)
+        }
 
         val requestDto = buildRequestDto(
             title, description, location, startAt, endAt,
             isAllDay, color, recurrenceRule, recurrenceEndAt, reminderMinutes
         )
-        enqueueSync(clientId, SyncOperation.CREATE, gson.toJson(requestDto))
+        if (isSyncEnabled()) {
+            enqueueSync(clientId, SyncOperation.CREATE, gson.toJson(requestDto))
 
-        val remote = safeApiCall { eventApi.createEvent(requestDto) }
-        return handleEventResponse(remote) { dto ->
-            eventDao.deleteById(clientId)
-            eventDao.upsert(dto.toEntity(userId))
-            syncQueueDao.deleteByEntity(clientId, EntityType.EVENT)
+            val remote = safeApiCall { eventApi.createEvent(requestDto) }
+            return handleEventResponse(remote) { dto ->
+                eventDao.deleteById(clientId)
+                eventDao.upsert(dto.toEntity(userId))
+                syncQueueDao.deleteByEntity(clientId, EntityType.EVENT)
+            }
         }
+
+        return eventDao.getEventById(clientId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Failed to create event")
     }
 
     override suspend fun updateEvent(
@@ -148,17 +160,29 @@ class EventRepositoryImpl @Inject constructor(
             )
         }
 
+        if (reminderMinutes != null && reminderMinutes > 0) {
+            val triggerAtMs = startAt.toEpochMilli() - (reminderMinutes * 60000L)
+            alarmScheduler.scheduleEventReminder(eventId, title, triggerAtMs)
+        } else {
+            alarmScheduler.cancel(eventId)
+        }
+
         val requestDto = buildRequestDto(
             title, description, location, startAt, endAt,
             isAllDay, color, recurrenceRule, recurrenceEndAt, reminderMinutes
         )
-        enqueueSync(eventId, SyncOperation.UPDATE, gson.toJson(requestDto))
+        if (isSyncEnabled()) {
+            enqueueSync(eventId, SyncOperation.UPDATE, gson.toJson(requestDto))
 
-        val remote = safeApiCall { eventApi.updateEvent(eventId, requestDto) }
-        return handleEventResponse(remote) { dto ->
-            eventDao.upsert(dto.toEntity(userId))
-            syncQueueDao.deleteByEntity(eventId, EntityType.EVENT)
+            val remote = safeApiCall { eventApi.updateEvent(eventId, requestDto) }
+            return handleEventResponse(remote) { dto ->
+                eventDao.upsert(dto.toEntity(userId))
+                syncQueueDao.deleteByEntity(eventId, EntityType.EVENT)
+            }
         }
+
+        return eventDao.getEventById(eventId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Event not found")
     }
 
     override suspend fun deleteEvent(eventId: String): Resource<Unit> {
@@ -174,19 +198,24 @@ class EventRepositoryImpl @Inject constructor(
                 )
             )
         }
-        enqueueSync(eventId, SyncOperation.DELETE, "{}")
+        alarmScheduler.cancel(eventId)
+        if (isSyncEnabled()) {
+            enqueueSync(eventId, SyncOperation.DELETE, "{}")
 
-        val remote = safeApiCall { eventApi.deleteEvent(eventId) }
-        return when (remote) {
-            is Resource.Success -> {
-                if (remote.data.isSuccessful) {
-                    syncQueueDao.deleteByEntity(eventId, EntityType.EVENT)
-                    Resource.Success(Unit)
-                } else Resource.Error(parseError(remote.data.errorBody()?.string()))
+            val remote = safeApiCall { eventApi.deleteEvent(eventId) }
+            return when (remote) {
+                is Resource.Success -> {
+                    if (remote.data.isSuccessful) {
+                        syncQueueDao.deleteByEntity(eventId, EntityType.EVENT)
+                        Resource.Success(Unit)
+                    } else Resource.Error(parseError(remote.data.errorBody()?.string()))
+                }
+                is Resource.Error   -> remote
+                is Resource.Loading -> Resource.Loading
             }
-            is Resource.Error   -> remote
-            is Resource.Loading -> Resource.Loading
         }
+
+        return Resource.Success(Unit)
     }
 
     override suspend fun restoreEvent(eventId: String): Resource<Event> {
@@ -202,11 +231,60 @@ class EventRepositoryImpl @Inject constructor(
                 )
             )
         }
-        val remote = safeApiCall { eventApi.restoreEvent(eventId) }
-        return handleEventResponse(remote) { dto -> eventDao.upsert(dto.toEntity(cachedUserId())) }
+        if (isSyncEnabled()) {
+            val remote = safeApiCall { eventApi.restoreEvent(eventId) }
+            return handleEventResponse(remote) { dto -> eventDao.upsert(dto.toEntity(cachedUserId())) }
+        }
+        return eventDao.getEventById(eventId)?.let { Resource.Success(it.toDomain()) }
+            ?: Resource.Error("Event not found")
+    }
+
+    override suspend fun permanentDeleteEvent(eventId: String): Resource<Unit> {
+        eventDao.deleteById(eventId)
+        if (isSyncEnabled()) {
+            return when (val result = safeApiCall { eventApi.permanentDeleteEvent(eventId) }) {
+                is Resource.Success -> {
+                    if (result.data.isSuccessful) Resource.Success(Unit)
+                    else Resource.Error(parseError(result.data.errorBody()?.string()))
+                }
+                is Resource.Error   -> result
+                is Resource.Loading -> Resource.Loading
+            }
+        }
+        return Resource.Success(Unit)
+    }
+
+    override suspend fun deleteSeries(eventId: String): Resource<Unit> {
+        if (!isSyncEnabled()) return Resource.Success(Unit)
+        return when (val result = safeApiCall { eventApi.deleteSeries(eventId) }) {
+            is Resource.Success -> {
+                if (result.data.isSuccessful) Resource.Success(Unit)
+                else Resource.Error(parseError(result.data.errorBody()?.string()))
+            }
+            is Resource.Error   -> result
+            is Resource.Loading -> Resource.Loading
+        }
+    }
+
+    override suspend fun listTrashEvents(page: Int, size: Int): Resource<List<Event>> {
+        if (!isSyncEnabled()) return Resource.Success(emptyList())
+        val userId = cachedUserId()
+        return when (val result = safeApiCall { eventApi.listTrash(page, size) }) {
+            is Resource.Success -> {
+                val response = result.data
+                if (response.isSuccessful) {
+                    val events = response.body()?.data?.content ?: emptyList()
+                    eventDao.upsertAll(events.map { it.toEntity(userId) })
+                    Resource.Success(events.map { it.toDomain(userId) })
+                } else Resource.Error(parseError(response.errorBody()?.string()))
+            }
+            is Resource.Error   -> result
+            is Resource.Loading -> Resource.Loading
+        }
     }
 
     override suspend fun refreshEvents(from: Instant, to: Instant): Resource<Unit> {
+        if (!isSyncEnabled()) return Resource.Success(Unit)
         val userId = cachedUserId()
         val result = safeApiCall {
             eventApi.listEvents(
@@ -279,6 +357,8 @@ class EventRepositoryImpl @Inject constructor(
 
     private fun cachedUserId(): String =
         runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
+
+    private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
 
     private fun parseError(body: String?): String {
         if (body.isNullOrBlank()) return "Something went wrong."

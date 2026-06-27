@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
-import com.oussama_chatri.productivityx.features.ai.domain.model.AiContext
 import com.oussama_chatri.productivityx.features.ai.domain.repository.StreamChunk
-import com.oussama_chatri.productivityx.features.ai.domain.usecase.BuildAiContextUseCase
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.CreateConversationUseCase
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.ObserveMessagesUseCase
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.SendMessageUseCase
@@ -30,7 +28,6 @@ class AiViewModel @Inject constructor(
     private val observeMessages    : ObserveMessagesUseCase,
     private val sendMessage        : SendMessageUseCase,
     private val createConversation : CreateConversationUseCase,
-    private val buildContext       : BuildAiContextUseCase,
 ) : ViewModel() {
 
     private val _state  = MutableStateFlow(AiUiState())
@@ -43,10 +40,6 @@ class AiViewModel @Inject constructor(
     private var streamJob     : Job? = null
     private var createConvJob : Job? = null
 
-    init {
-        loadContext()
-    }
-
     fun onEvent(event: AiUiEvent) {
         when (event) {
             is AiUiEvent.InputChanged     -> _state.update { it.copy(inputText = event.text) }
@@ -55,18 +48,9 @@ class AiViewModel @Inject constructor(
             is AiUiEvent.NewConversation  -> startNewConversation()
             is AiUiEvent.OpenConversation -> loadConversation(event.id)
             is AiUiEvent.DismissError     -> _state.update { it.copy(error = null) }
-            is AiUiEvent.RefreshContext   -> loadContext()
+            is AiUiEvent.RefreshContext   -> {}
             is AiUiEvent.ConfirmAction    -> executeAction(event.action)
             is AiUiEvent.DismissAction    -> _state.update { it.copy(pendingAction = null) }
-        }
-    }
-
-    private fun loadContext() {
-        viewModelScope.launch {
-            _state.update { it.copy(isContextLoading = true) }
-            runCatching { buildContext() }
-                .onSuccess { ctx -> _state.update { it.copy(context = ctx, isContextLoading = false) } }
-                .onFailure { _state.update { it.copy(context = emptyContext(), isContextLoading = false) } }
         }
     }
 
@@ -88,7 +72,6 @@ class AiViewModel @Inject constructor(
         }
     }
 
-    // Collapses InputChanged + SendMessage into one call — no recomposition gap between them
     private fun handleSuggestion(text: String) {
         _state.update { it.copy(inputText = text) }
         handleSend()
@@ -119,21 +102,11 @@ class AiViewModel @Inject constructor(
     }
 
     private fun doSendMessage(conversationId: UUID, content: String) {
-        val ctx = _state.value.context ?: AiContext(
-            tasksDueToday         = 0,
-            tasksOverdue          = 0,
-            totalActiveTasks      = 0,
-            upcomingEventsThisWeek = 0,
-            lastEditedNoteTitle   = null,
-            currentPomodoroTask   = null,
-            todayFocusMinutes     = 0,
-        )
-
         _state.update { it.copy(inputText = "", isStreaming = true, streamingContent = "") }
 
         streamJob?.cancel()
         streamJob = viewModelScope.launch {
-            sendMessage(conversationId, content, ctx)
+            sendMessage(conversationId, content)
                 .catch { e -> _state.update { it.copy(isStreaming = false, error = e.message) } }
                 .collect { chunk ->
                     when (chunk) {
@@ -161,14 +134,4 @@ class AiViewModel @Inject constructor(
             _state.update { it.copy(pendingAction = null) }
         }
     }
-
-    private fun emptyContext() = AiContext(
-        tasksDueToday          = 0,
-        tasksOverdue           = 0,
-        totalActiveTasks       = 0,
-        upcomingEventsThisWeek = 0,
-        lastEditedNoteTitle    = null,
-        currentPomodoroTask    = null,
-        todayFocusMinutes      = 0,
-    )
 }

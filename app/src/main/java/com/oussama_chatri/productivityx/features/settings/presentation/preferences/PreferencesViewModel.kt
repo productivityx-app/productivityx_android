@@ -2,6 +2,7 @@ package com.oussama_chatri.productivityx.features.profile.presentation.preferenc
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.profile.domain.repository.UpdatePreferencesParams
 import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetPreferencesUseCase
@@ -14,6 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +23,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PreferencesViewModel @Inject constructor(
     private val getPreferencesUseCase: GetPreferencesUseCase,
-    private val updatePreferencesUseCase: UpdatePreferencesUseCase
+    private val updatePreferencesUseCase: UpdatePreferencesUseCase,
+    private val prefs: PreferencesDataStore
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PreferencesUiState(isLoading = true))
@@ -73,6 +76,10 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(aiModel = event.value) }
             is PreferencesUiEvent.CompactModeChanged ->
                 mutate { it.copy(compactMode = event.value) }
+            is PreferencesUiEvent.LocalOnlyModeChanged -> {
+                _uiState.update { it.copy(localOnlyMode = event.value) }
+                viewModelScope.launch { prefs.setLocalOnlyMode(event.value) }
+            }
             PreferencesUiEvent.DismissError ->
                 _uiState.update { it.copy(errorMessage = null) }
             PreferencesUiEvent.DismissSuccess ->
@@ -95,12 +102,14 @@ class PreferencesViewModel @Inject constructor(
 
     private fun load() {
         viewModelScope.launch {
+            val localOnly = prefs.localOnlyMode.first()
             when (val result = getPreferencesUseCase()) {
                 is Resource.Success -> {
                     val d = result.data
                     _uiState.update {
                         it.copy(
                             isLoading = false,
+                            localOnlyMode = localOnly,
                             pomodoroFocusMinutes = d.pomodoroFocusMinutes,
                             pomodoroShortBreakMinutes = d.pomodoroShortBreakMinutes,
                             pomodoroLongBreakMinutes = d.pomodoroLongBreakMinutes,

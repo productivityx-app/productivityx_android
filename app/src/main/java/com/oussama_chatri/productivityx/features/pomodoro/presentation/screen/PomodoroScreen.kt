@@ -26,10 +26,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -39,21 +37,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material.icons.outlined.History
 import androidx.compose.material.icons.outlined.Pause
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.SkipNext
 import androidx.compose.material.icons.outlined.Stop
-import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -93,11 +87,13 @@ import com.oussama_chatri.productivityx.features.pomodoro.presentation.viewmodel
 
 @Composable
 fun PomodoroScreen(
-    onNavigateToHistory: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: PomodoroViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+
+    val onEvent = viewModel::onEvent
 
     LaunchedEffect(viewModel.snackbar) {
         viewModel.snackbar.collect { message ->
@@ -105,40 +101,13 @@ fun PomodoroScreen(
         }
     }
 
-    PomodoroScreenContent(
-        state               = state,
-        onEvent             = viewModel::onEvent,
-        onNavigateToHistory = onNavigateToHistory,
-        snackbarHostState   = snackbarHostState
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun PomodoroScreenContent(
-    state: PomodoroUiState,
-    onEvent: (PomodoroUiEvent) -> Unit,
-    onNavigateToHistory: () -> Unit,
-    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
-) {
-    Scaffold(
-        containerColor = PxColors.Background,
-        snackbarHost   = { SnackbarHost(snackbarHostState) }
-    ) { innerPadding ->
-
+    Box(modifier = modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
-                .statusBarsPadding()
-                .navigationBarsPadding()
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            // Top bar row
-            PomodoroTopBar(onNavigateToHistory = onNavigateToHistory)
-
             Spacer(Modifier.height(16.dp))
 
             // Session type selector chips
@@ -201,6 +170,10 @@ private fun PomodoroScreenContent(
 
             Spacer(Modifier.height(24.dp))
         }
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier  = Modifier.align(Alignment.BottomCenter),
+        )
     }
 
     // Interrupt reason dialog
@@ -210,39 +183,6 @@ private fun PomodoroScreenContent(
             onConfirm = { reason -> onEvent(PomodoroUiEvent.ConfirmInterrupt(reason)) },
             onDismiss = { onEvent(PomodoroUiEvent.DismissInterruptDialog) }
         )
-    }
-}
-
-// ── Top bar ──────────────────────────────────────────────────────────────────
-
-@Composable
-private fun PomodoroTopBar(onNavigateToHistory: () -> Unit) {
-    Row(
-        modifier          = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector        = Icons.Outlined.Timer,
-            contentDescription = null,
-            tint               = PxColors.Primary,
-            modifier           = Modifier.size(24.dp)
-        )
-        Spacer(Modifier.width(10.dp))
-        Text(
-            text     = "Focus",
-            style    = MaterialTheme.typography.titleLarge,
-            color    = PxColors.OnBackground,
-            modifier = Modifier.weight(1f)
-        )
-        IconButton(onClick = onNavigateToHistory) {
-            Icon(
-                imageVector        = Icons.Outlined.History,
-                contentDescription = "Session history",
-                tint               = PxColors.OnSurfaceDim
-            )
-        }
     }
 }
 
@@ -783,10 +723,6 @@ fun typeLabel(type: PomodoroType): String = when (type) {
 @Composable
 private fun PomodoroScreenPreview() {
     ProductivityXTheme {
-        PomodoroScreenContent(
-            state               = PomodoroUiState(focusMinutes = 25),
-            onEvent             = {},
-            onNavigateToHistory = {}
-        )
+        PomodoroScreen(modifier = Modifier)
     }
 }

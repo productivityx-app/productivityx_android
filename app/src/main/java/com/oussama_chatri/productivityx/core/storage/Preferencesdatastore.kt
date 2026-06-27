@@ -10,11 +10,12 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "px_prefs")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "px_prefs")
 
 @Singleton
 class PreferencesDataStore @Inject constructor(
@@ -22,7 +23,7 @@ class PreferencesDataStore @Inject constructor(
 ) {
     private val store = context.dataStore
 
-    val onboardingSeen: Flow<Boolean> = store.data.map { it[KEY_ONBOARDING_SEEN] ?: false }
+    val onboardingCompleted: Flow<Boolean> = store.data.map { it[KEY_ONBOARDING_COMPLETED] ?: false }
 
     val appTheme: Flow<String> = store.data.map { it[KEY_THEME] ?: "DARK" }
 
@@ -34,8 +35,16 @@ class PreferencesDataStore @Inject constructor(
 
     val cachedUserEmail: Flow<String?> = store.data.map { it[KEY_USER_EMAIL] }
 
-    suspend fun setOnboardingSeen(seen: Boolean) {
-        store.edit { it[KEY_ONBOARDING_SEEN] = seen }
+    val localOnlyMode: Flow<Boolean> = store.data.map { it[KEY_LOCAL_ONLY] ?: true }
+
+    val authSkipCompleted: Flow<Boolean> = store.data.map { it[KEY_AUTH_SKIP] ?: false }
+
+    val language: Flow<String> = store.data.map { it[KEY_LANGUAGE] ?: "en" }
+
+    suspend fun isLocalOnly(): Boolean = store.data.map { it[KEY_LOCAL_ONLY] ?: true }.first()
+
+    suspend fun setOnboardingCompleted(completed: Boolean) {
+        store.edit { it[KEY_ONBOARDING_COMPLETED] = completed }
     }
 
     suspend fun setTheme(theme: String) {
@@ -54,6 +63,18 @@ class PreferencesDataStore @Inject constructor(
         }
     }
 
+    suspend fun setLocalOnlyMode(enabled: Boolean) {
+        store.edit { it[KEY_LOCAL_ONLY] = enabled }
+    }
+
+    suspend fun setLanguage(lang: String) {
+        store.edit { it[KEY_LANGUAGE] = lang }
+    }
+
+    suspend fun setAuthSkipCompleted(completed: Boolean) {
+        store.edit { it[KEY_AUTH_SKIP] = completed }
+    }
+
     suspend fun clearUser() {
         store.edit {
             it.remove(KEY_USER_ID)
@@ -64,11 +85,14 @@ class PreferencesDataStore @Inject constructor(
     }
 
     companion object {
-        private val KEY_ONBOARDING_SEEN = booleanPreferencesKey("onboarding_seen")
+        private val KEY_ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
         private val KEY_THEME = stringPreferencesKey("theme")
         private val KEY_LAST_SYNCED_AT = longPreferencesKey("last_synced_at")
         private val KEY_USER_ID = stringPreferencesKey("user_id")
         private val KEY_USER_FIRST_NAME = stringPreferencesKey("user_first_name")
         private val KEY_USER_EMAIL = stringPreferencesKey("user_email")
+        private val KEY_LOCAL_ONLY = booleanPreferencesKey("local_only")
+        private val KEY_AUTH_SKIP = booleanPreferencesKey("auth_skip_completed")
+        private val KEY_LANGUAGE = stringPreferencesKey("language")
     }
 }

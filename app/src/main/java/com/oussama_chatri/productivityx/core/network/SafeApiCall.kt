@@ -1,18 +1,20 @@
 package com.oussama_chatri.productivityx.core.network
 
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import com.oussama_chatri.productivityx.core.util.Resource
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import retrofit2.HttpException
 import java.io.IOException
 
-@Serializable
 data class ApiResponse<T>(
-    @SerialName("success") val success: Boolean,
-    @SerialName("data") val data: T? = null,
-    @SerialName("message") val message: String? = null,
-    @SerialName("timestamp") val timestamp: String? = null
+    @SerializedName("success")   val success: Boolean,
+    @SerializedName("data")      val data: T? = null,
+    @SerializedName("message")   val message: String? = null,
+    @SerializedName("errorCode") val errorCode: String? = null,
+    @SerializedName("timestamp") val timestamp: String? = null
 )
+
+private val gson = Gson()
 
 suspend fun <T> safeApiCall(call: suspend () -> T): Resource<T> {
     return try {
@@ -20,7 +22,10 @@ suspend fun <T> safeApiCall(call: suspend () -> T): Resource<T> {
     } catch (e: HttpException) {
         val httpCode = e.code()
         val body = e.response()?.errorBody()?.string()
-        val message = when (httpCode) {
+        val parsed = body?.let {
+            runCatching { gson.fromJson(it, ApiResponse::class.java) }.getOrNull()
+        }
+        val message = parsed?.message ?: when (httpCode) {
             400 -> "Bad request. Please check your input."
             401 -> "Session expired. Please sign in again."
             403 -> "You don't have permission to perform this action."
@@ -31,8 +36,7 @@ suspend fun <T> safeApiCall(call: suspend () -> T): Resource<T> {
             500 -> "Server error. Please try again later."
             else -> body ?: "Unexpected error (HTTP $httpCode)"
         }
-        // code kept as String? for consistency with AuthResult and parseError()
-        Resource.Error(message = message, code = httpCode.toString())
+        Resource.Error(message = message, code = parsed?.errorCode ?: httpCode.toString())
     } catch (e: IOException) {
         Resource.Error(message = "No internet connection. Please check your network.")
     } catch (e: Exception) {

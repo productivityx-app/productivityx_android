@@ -28,5 +28,7 @@ data class PreferencesUiState(
     val aiContextEnabled: Boolean = true,
     val aiModel: String = "gemini-2.0-flash",
     // Display
-    val compactMode: Boolean = false
+    val compactMode: Boolean = false,
+    // Privacy
+    val localOnlyMode: Boolean = true
 )

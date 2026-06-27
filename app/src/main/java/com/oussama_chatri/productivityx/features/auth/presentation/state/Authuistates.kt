@@ -4,7 +4,8 @@ package com.oussama_chatri.productivityx.features.auth.presentation.state
 sealed class SplashUiState {
     data object Checking : SplashUiState()
     data object Authenticated : SplashUiState()
-    data object Unauthenticated : SplashUiState()
+    data object ShowOnboarding : SplashUiState()
+    data object ShowLogin : SplashUiState()
 }
 
 // Login form state

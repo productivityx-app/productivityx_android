@@ -1,5 +1,6 @@
 package com.oussama_chatri.productivityx.features.auth.data.repository
 
+import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.auth.data.local.AuthLocalDataSource
@@ -282,7 +283,7 @@ class AuthRepositoryImpl @Inject constructor(
     // Private helpers
 
     private suspend fun handleAuthResponse(
-        result: Resource<retrofit2.Response<com.oussama_chatri.productivityx.features.auth.data.remote.dto.response.ApiResponse<AuthResponse>>>
+        result: Resource<retrofit2.Response<ApiResponse<AuthResponse>>>
     ): AuthResult {
         return when (result) {
             is Resource.Success -> {

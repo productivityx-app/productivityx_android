@@ -36,13 +36,11 @@ import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.EventAvailable
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Place
 import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.material.icons.outlined.StickyNote2
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -71,10 +69,7 @@ import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import com.oussama_chatri.productivityx.features.home.domain.model.DashboardSummary
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
-import java.time.LocalDate
-import java.time.LocalTime
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 // Entry point — wired from HomeTab in AppNavGraph.kt
 @Composable
@@ -83,6 +78,7 @@ fun HomeScreen(
     onNavigateToNotes: () -> Unit,
     onNavigateToTasks: () -> Unit,
     onNavigateToCalendar: () -> Unit,
+    onNavigateToPomodoro: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
@@ -98,11 +94,12 @@ fun HomeScreen(
             is UiState.Loading -> HomeLoadingState()
             is UiState.Error   -> HomeErrorState(message = state.message)
             is UiState.Success -> HomeContent(
-                summary              = state.data,
-                onNavigateToProfile  = onNavigateToProfile,
-                onSeeAllTasks        = onNavigateToTasks,
-                onSeeAllEvents       = onNavigateToCalendar,
-                onSeeAllNotes        = onNavigateToNotes,
+                summary               = state.data,
+                onNavigateToProfile   = onNavigateToProfile,
+                onSeeAllTasks         = onNavigateToTasks,
+                onSeeAllEvents        = onNavigateToCalendar,
+                onSeeAllNotes         = onNavigateToNotes,
+                onNavigateToPomodoro  = onNavigateToPomodoro,
             )
         }
     }
@@ -117,6 +114,7 @@ private fun HomeContent(
     onSeeAllTasks: () -> Unit,
     onSeeAllEvents: () -> Unit,
     onSeeAllNotes: () -> Unit,
+    onNavigateToPomodoro: () -> Unit,
 ) {
     LazyColumn(
         modifier       = Modifier
@@ -124,26 +122,11 @@ private fun HomeContent(
             .background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(bottom = 32.dp),
     ) {
-        item {
-            GreetingHeader(
-                firstName     = summary.firstName,
-                onAvatarClick = onNavigateToProfile,
-            )
-        }
-
-        item {
-            HorizontalDivider(
-                color    = MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier.padding(horizontal = 16.dp),
-            )
-            Spacer(Modifier.height(16.dp))
-        }
-
         item { SummaryCardsRow(summary = summary) }
 
         item { Spacer(Modifier.height(12.dp)) }
 
-        item { FocusStrip(focusMinutes = summary.todayFocusMinutes) }
+        item { FocusStrip(focusMinutes = summary.todayFocusMinutes, onOpenPomodoro = onNavigateToPomodoro) }
 
         item { Spacer(Modifier.height(24.dp)) }
 
@@ -192,67 +175,6 @@ private fun HomeContent(
                 RecentNotesRow(notes = summary.recentNotes)
             } else {
                 EmptySection(label = "No notes yet. Start writing!")
-            }
-        }
-    }
-}
-
-// Greeting header
-
-@Composable
-private fun GreetingHeader(firstName: String, onAvatarClick: () -> Unit) {
-    val hour = LocalTime.now().hour
-    val greeting = when {
-        hour < 12 -> "Good morning"
-        hour < 17 -> "Good afternoon"
-        hour < 21 -> "Good evening"
-        else       -> "Good night"
-    }
-    val displayName = if (firstName.isNotBlank()) ", $firstName 👋" else " 👋"
-    val dateLabel   = LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM d"))
-
-    Row(
-        modifier          = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 20.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text  = "$greeting$displayName",
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onBackground,
-            )
-            Spacer(Modifier.height(2.dp))
-            Text(
-                text  = dateLabel,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-
-        Box(
-            modifier         = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .background(PxColors.Primary)
-                .clickable { onAvatarClick() },
-            contentAlignment = Alignment.Center,
-        ) {
-            val initial = firstName.firstOrNull()?.uppercase() ?: ""
-            if (initial.isNotEmpty()) {
-                Text(
-                    text  = initial,
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                    color = Color.White,
-                )
-            } else {
-                Icon(
-                    imageVector        = Icons.Outlined.Person,
-                    contentDescription = "Profile",
-                    tint               = Color.White,
-                    modifier           = Modifier.size(20.dp),
-                )
             }
         }
     }
@@ -338,7 +260,7 @@ private fun SummaryCard(icon: ImageVector, tint: Color, count: String, label: St
 // Today's focus strip
 
 @Composable
-private fun FocusStrip(focusMinutes: Int) {
+private fun FocusStrip(focusMinutes: Int, onOpenPomodoro: () -> Unit = {}) {
     val targetMinutes = 120f
     val progress      = (focusMinutes / targetMinutes).coerceIn(0f, 1f)
 
@@ -348,6 +270,7 @@ private fun FocusStrip(focusMinutes: Int) {
             .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .clickable { onOpenPomodoro() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

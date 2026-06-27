@@ -147,4 +147,18 @@ interface TaskDao {
     """
     )
     suspend fun countActive(userId: String): Int
+
+    @Query(
+        """
+        SELECT * FROM tasks
+        WHERE user_id = :userId AND is_deleted = 0
+          AND (LOWER(title) LIKE '%' || LOWER(:query) || '%'
+            OR LOWER(description) LIKE '%' || LOWER(:query) || '%')
+        ORDER BY updated_at DESC
+    """
+    )
+    suspend fun searchTasks(userId: String, query: String): List<TaskEntity>
+
+    @Query("SELECT * FROM tasks WHERE is_deleted = 0")
+    suspend fun getAllNonDeleted(): List<TaskEntity>
 }
