@@ -1,21 +1,23 @@
 package com.oussama_chatri.productivityx.features.tasks.data.repository
 
+import com.google.gson.Gson
+import com.oussama_chatri.productivityx.core.alarm.AlarmScheduler
+import com.oussama_chatri.productivityx.core.db.sync.SyncQueueDao
+import com.oussama_chatri.productivityx.core.db.sync.SyncQueueEntity
+import com.oussama_chatri.productivityx.core.enums.EntityType
 import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.SyncOperation
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
-import com.oussama_chatri.productivityx.core.alarm.AlarmScheduler
 import com.oussama_chatri.productivityx.core.network.isSyncEnabled
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
+import com.oussama_chatri.productivityx.core.sync.SyncScheduler
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEntity
 import com.oussama_chatri.productivityx.features.tasks.data.remote.api.TaskApi
-import com.oussama_chatri.productivityx.features.tasks.data.remote.dto.ReorderItemDto
-import com.oussama_chatri.productivityx.features.tasks.data.remote.dto.ReorderRequestDto
 import com.oussama_chatri.productivityx.features.tasks.data.remote.dto.TaskRequestDto
-import com.oussama_chatri.productivityx.features.tasks.data.remote.dto.UpdateStatusRequestDto
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.domain.repository.TaskRepository
 import kotlinx.coroutines.flow.Flow
@@ -32,8 +34,11 @@ import javax.inject.Singleton
 class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao,
     private val taskApi: TaskApi,
+    private val syncQueueDao: SyncQueueDao,
+    private val syncScheduler: SyncScheduler,
     private val prefsDataStore: PreferencesDataStore,
-    private val alarmScheduler: AlarmScheduler
+    private val alarmScheduler: AlarmScheduler,
+    private val gson: Gson
 ) : TaskRepository {
 
     override fun observeTasks(status: TaskStatus?, priority: Priority?): Flow<List<Task>> {
@@ -133,32 +138,26 @@ class TaskRepositoryImpl @Inject constructor(
             alarmScheduler.scheduleTaskReminder(tempId, title, reminderAt.toEpochMilli())
         }
 
-        val requestDto = TaskRequestDto(
-            title = title,
-            description = description,
-            status = status?.name,
-            priority = priority?.name,
-            dueDate = dueDate?.toString(),
-            dueTime = dueTime?.toString(),
-            reminderAt = reminderAt?.toString(),
-            estimatedMinutes = estimatedMinutes,
-            parentTaskId = parentTaskId,
-            linkedEventId = linkedEventId
-        )
-
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.createTask(requestDto) }) {
-                is Resource.Success -> {
-                    val serverDto = result.data.data ?: return Resource.Error("Empty response")
-                    taskDao.deleteById(tempId)
-                    taskDao.insert(serverDto.toEntity(fallbackUserId = cachedUserId()))
-                    Resource.Success(serverDto.toDomain())
-                }
-                is Resource.Error -> {
-                    Resource.Success(entity.toDomain())
-                }
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = tempId,
+                operation = SyncOperation.CREATE,
+                payload = gson.toJson(
+                    TaskRequestDto(
+                        title = title,
+                        description = description,
+                        status = status?.name,
+                        priority = priority?.name,
+                        dueDate = dueDate?.toString(),
+                        dueTime = dueTime?.toString(),
+                        reminderAt = reminderAt?.toString(),
+                        estimatedMinutes = estimatedMinutes,
+                        parentTaskId = parentTaskId,
+                        linkedEventId = linkedEventId
+                    )
+                )
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(entity.toDomain())
     }
@@ -198,28 +197,25 @@ class TaskRepositoryImpl @Inject constructor(
             alarmScheduler.cancel(taskId)
         }
 
-        val requestDto = TaskRequestDto(
-            title = updated.title,
-            description = updated.description,
-            status = updated.status.name,
-            priority = updated.priority.name,
-            dueDate = updated.dueDate?.toString(),
-            dueTime = updated.dueTime?.toString(),
-            reminderAt = updated.reminderAt?.toString(),
-            estimatedMinutes = updated.estimatedMinutes,
-            linkedEventId = updated.linkedEventId
-        )
-
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.updateTask(taskId, requestDto) }) {
-                is Resource.Success -> {
-                    val dto = result.data.data ?: return Resource.Error("Empty response")
-                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                    Resource.Success(dto.toDomain())
-                }
-                is Resource.Error -> Resource.Success(updated.toDomain())
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = taskId,
+                operation = SyncOperation.UPDATE,
+                payload = gson.toJson(
+                    TaskRequestDto(
+                        title = updated.title,
+                        description = updated.description,
+                        status = updated.status.name,
+                        priority = updated.priority.name,
+                        dueDate = updated.dueDate?.toString(),
+                        dueTime = updated.dueTime?.toString(),
+                        reminderAt = updated.reminderAt?.toString(),
+                        estimatedMinutes = updated.estimatedMinutes,
+                        linkedEventId = updated.linkedEventId
+                    )
+                )
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(updated.toDomain())
     }
@@ -244,33 +240,66 @@ class TaskRepositoryImpl @Inject constructor(
         taskDao.update(updated)
 
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall {
-                taskApi.updateStatus(taskId, UpdateStatusRequestDto(status.name))
-            }) {
-                is Resource.Success -> {
-                    val dto = result.data.data ?: return Resource.Error("Empty response")
-                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                    Resource.Success(dto.toDomain())
-                }
-                is Resource.Error -> Resource.Success(updated.toDomain())
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = taskId,
+                operation = SyncOperation.UPDATE,
+                payload = gson.toJson(
+                    TaskRequestDto(
+                        title = updated.title,
+                        description = updated.description,
+                        status = updated.status.name,
+                        priority = updated.priority.name,
+                        dueDate = updated.dueDate?.toString(),
+                        dueTime = updated.dueTime?.toString(),
+                        reminderAt = updated.reminderAt?.toString(),
+                        estimatedMinutes = updated.estimatedMinutes,
+                        linkedEventId = updated.linkedEventId
+                    )
+                )
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(updated.toDomain())
     }
 
     override suspend fun reorder(items: List<Pair<String, Int>>): Resource<Unit> {
-        items.forEach { (id, position) -> taskDao.updatePosition(id, position) }
-
-        val requestDto = ReorderRequestDto(
-            items = items.map { (id, pos) -> ReorderItemDto(id, pos) }
-        )
-        if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.reorder(requestDto) }) {
-                is Resource.Success -> Resource.Success(Unit)
-                is Resource.Error -> Resource.Error(result.message, result.code)
-                Resource.Loading -> Resource.Loading
+        val now = Instant.now()
+        items.forEach { (id, position) ->
+            taskDao.updatePosition(id, position)
+            val entity = taskDao.getById(id)
+            if (entity != null) {
+                taskDao.update(entity.copy(
+                    syncStatus = SyncStatus.PENDING,
+                    pendingOperation = SyncOperation.UPDATE,
+                    updatedAt = now
+                ))
             }
+        }
+
+        if (isSyncEnabled()) {
+            items.forEach { (id, position) ->
+                val entity = taskDao.getById(id) ?: return@forEach
+                enqueueSync(
+                    entityId = id,
+                    operation = SyncOperation.UPDATE,
+                    payload = gson.toJson(
+                        TaskRequestDto(
+                            title = entity.title,
+                            description = entity.description,
+                            status = entity.status.name,
+                            priority = entity.priority.name,
+                            dueDate = entity.dueDate?.toString(),
+                            dueTime = entity.dueTime?.toString(),
+                            reminderAt = entity.reminderAt?.toString(),
+                            estimatedMinutes = entity.estimatedMinutes,
+                            parentTaskId = entity.parentTaskId,
+                            linkedEventId = entity.linkedEventId,
+                            position = position
+                        )
+                    )
+                )
+            }
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(Unit)
     }
@@ -281,22 +310,19 @@ class TaskRepositoryImpl @Inject constructor(
             isDeleted = true,
             deletedAt = Instant.now(),
             syncStatus = SyncStatus.PENDING,
-            pendingOperation = SyncOperation.UPDATE,
+            pendingOperation = SyncOperation.DELETE,
             updatedAt = Instant.now()
         )
         taskDao.update(updated)
         alarmScheduler.cancel(taskId)
 
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.softDeleteTask(taskId) }) {
-                is Resource.Success -> {
-                    val dto = result.data.data ?: return Resource.Error("Empty response")
-                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                    Resource.Success(dto.toDomain())
-                }
-                is Resource.Error -> Resource.Success(updated.toDomain())
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = taskId,
+                operation = SyncOperation.DELETE,
+                payload = "{}"
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(updated.toDomain())
     }
@@ -313,15 +339,25 @@ class TaskRepositoryImpl @Inject constructor(
         taskDao.update(updated)
 
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.restoreTask(taskId) }) {
-                is Resource.Success -> {
-                    val dto = result.data.data ?: return Resource.Error("Empty response")
-                    taskDao.insert(dto.toEntity(fallbackUserId = cachedUserId()))
-                    Resource.Success(dto.toDomain())
-                }
-                is Resource.Error -> Resource.Success(updated.toDomain())
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = taskId,
+                operation = SyncOperation.UPDATE,
+                payload = gson.toJson(
+                    TaskRequestDto(
+                        title = updated.title,
+                        description = updated.description,
+                        status = updated.status.name,
+                        priority = updated.priority.name,
+                        dueDate = updated.dueDate?.toString(),
+                        dueTime = updated.dueTime?.toString(),
+                        reminderAt = updated.reminderAt?.toString(),
+                        estimatedMinutes = updated.estimatedMinutes,
+                        parentTaskId = updated.parentTaskId,
+                        linkedEventId = updated.linkedEventId
+                    )
+                )
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(updated.toDomain())
     }
@@ -330,11 +366,12 @@ class TaskRepositoryImpl @Inject constructor(
         taskDao.deleteById(taskId)
         alarmScheduler.cancel(taskId)
         if (isSyncEnabled()) {
-            return when (val result = safeApiCall { taskApi.hardDeleteTask(taskId) }) {
-                is Resource.Success -> Resource.Success(Unit)
-                is Resource.Error -> Resource.Error(result.message, result.code)
-                Resource.Loading -> Resource.Loading
-            }
+            enqueueSync(
+                entityId = taskId,
+                operation = SyncOperation.DELETE,
+                payload = "{}"
+            )
+            syncScheduler.scheduleImmediateSync()
         }
         return Resource.Success(Unit)
     }
@@ -352,6 +389,18 @@ class TaskRepositoryImpl @Inject constructor(
             is Resource.Error -> Resource.Error(result.message, result.code)
             Resource.Loading -> Resource.Loading
         }
+    }
+
+    private suspend fun enqueueSync(entityId: String, operation: SyncOperation, payload: String) {
+        syncQueueDao.enqueue(
+            SyncQueueEntity(
+                id = UUID.randomUUID().toString(),
+                entityType = EntityType.TASK,
+                entityId = entityId,
+                operation = operation,
+                payload = payload
+            )
+        )
     }
 
     private fun cachedUserId(): String =
