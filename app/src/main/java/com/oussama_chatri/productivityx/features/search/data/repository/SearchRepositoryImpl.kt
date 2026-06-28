@@ -36,7 +36,7 @@ class SearchRepositoryImpl @Inject constructor(
                 val response = result.data
                 if (response.isSuccessful) {
                     val body = response.body()
-                    Resource.Success(body?.data?.results?.map { it.toDomain() } ?: emptyList())
+                    Resource.Success(body?.data?.results?.mapNotNull { it.toDomain() } ?: emptyList())
                 } else {
                     Resource.Error("Search failed: ${response.code()}")
                 }

@@ -11,7 +11,7 @@ data class SearchResponseDto(
 ) {
     fun toDomain(): com.oussama_chatri.productivityx.features.search.domain.model.SearchResponse =
         com.oussama_chatri.productivityx.features.search.domain.model.SearchResponse(
-            results = results.map { it.toDomain() },
+            results = results.mapNotNull { it.toDomain() },
             total = total,
             query = query
         )
@@ -24,11 +24,15 @@ data class SearchResultDto(
     @SerializedName("snippet")    val snippet: String,
     @SerializedName("updatedAt")  val updatedAt: String?
 ) {
-    fun toDomain(): SearchResult = SearchResult(
-        id = id,
-        type = SearchResultType.valueOf(type),
-        title = title,
-        snippet = snippet,
-        updatedAt = updatedAt
-    )
+    fun toDomain(): SearchResult? {
+        val parsedType = runCatching { SearchResultType.valueOf(type.trim().uppercase()) }.getOrNull()
+            ?: return null
+        return SearchResult(
+            id = id,
+            type = parsedType,
+            title = title,
+            snippet = snippet,
+            updatedAt = updatedAt
+        )
+    }
 }
