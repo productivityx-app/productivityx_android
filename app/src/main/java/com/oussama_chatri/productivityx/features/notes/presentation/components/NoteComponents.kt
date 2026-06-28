@@ -205,7 +205,7 @@ private fun relativeTime(instant: Instant): String {
             val formatter = java.time.format.DateTimeFormatter
                 .ofPattern("MMM d")
                 .withZone(java.time.ZoneId.systemDefault())
-            formatter.format(instant)
+            runCatching { formatter.format(instant) }.getOrElse { "—" }
         }
     }
 }

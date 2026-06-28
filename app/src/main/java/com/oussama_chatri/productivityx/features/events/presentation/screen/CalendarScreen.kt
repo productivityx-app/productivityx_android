@@ -173,10 +173,10 @@ private fun CalendarTopBar(
     val headerText = if (view == CalendarView.WEEK) {
         val weekStart = today.plusWeeks(weekOffset.toLong())
             .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
-        weekHeaderFormatter.format(weekStart)
+        runCatching { weekHeaderFormatter.format(weekStart) }.getOrElse { "—" }
     } else {
         val month = YearMonth.now().plusMonths(weekOffset.toLong())
-        monthHeaderFormatter.format(month.atDay(1))
+        runCatching { monthHeaderFormatter.format(month.atDay(1)) }.getOrElse { "—" }
     }
 
     Row(

@@ -140,16 +140,16 @@ fun EventDetailScreen(
                 if (state.isAllDay) {
                     DetailRow(
                         icon  = Icons.Outlined.WbSunny,
-                        label = fullDateFormatter.format(Instant.ofEpochMilli(state.startMs))
+                        label = runCatching { fullDateFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "—" }
                     )
                 } else {
                     DetailRow(
                         icon  = Icons.Outlined.CalendarMonth,
-                        label = fullDateTimeFormatter.format(Instant.ofEpochMilli(state.startMs))
+                        label = runCatching { fullDateTimeFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "—" }
                     )
                     DetailRow(
                         icon  = Icons.Outlined.AccessTime,
-                        label = "Ends ${timeOnlyFormatter.format(Instant.ofEpochMilli(state.endMs))}"
+                        label = runCatching { "Ends ${timeOnlyFormatter.format(Instant.ofEpochMilli(state.endMs))}" }.getOrElse { "—" }
                     )
                 }
 

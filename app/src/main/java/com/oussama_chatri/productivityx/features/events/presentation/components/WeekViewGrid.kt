@@ -88,9 +88,11 @@ fun WeekViewGrid(
                     ) {
                         if (hour > 0) {
                             Text(
-                                text     = timeFormatter.format(
-                                    java.time.Instant.ofEpochSecond((hour * 3600).toLong())
-                                ),
+                                text     = runCatching {
+                                    timeFormatter.format(
+                                        java.time.Instant.ofEpochSecond((hour * 3600).toLong())
+                                    )
+                                }.getOrElse { "—" },
                                 style    = MaterialTheme.typography.labelSmall,
                                 color    = Color(0xFF888899),
                                 modifier = Modifier.padding(end = 8.dp)
@@ -146,7 +148,7 @@ private fun WeekDayHeader(
                 verticalArrangement   = Arrangement.Center
             ) {
                 Text(
-                    text  = dayAbbrFormatter.format(day).uppercase(),
+                    text  = runCatching { dayAbbrFormatter.format(day).uppercase() }.getOrElse { "—" },
                     style = MaterialTheme.typography.labelSmall,
                     color = Color(0xFF888899)
                 )
@@ -165,7 +167,7 @@ private fun WeekDayHeader(
                         )
                 ) {
                     Text(
-                        text       = dayNumFormatter.format(day),
+                        text       = runCatching { dayNumFormatter.format(day) }.getOrElse { "—" },
                         style      = MaterialTheme.typography.labelMedium.copy(
                             fontWeight = if (isToday) FontWeight.Bold else FontWeight.Normal
                         ),

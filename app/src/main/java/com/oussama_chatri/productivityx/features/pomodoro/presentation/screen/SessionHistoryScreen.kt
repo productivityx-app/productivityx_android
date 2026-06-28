@@ -198,7 +198,7 @@ private fun DateGroupHeader(date: LocalDate) {
     val label = when (date) {
         today     -> "Today"
         yesterday -> "Yesterday"
-        else      -> DateTimeFormatter.ofPattern("EEEE, MMM d").format(date)
+        else      -> runCatching { DateTimeFormatter.ofPattern("EEEE, MMM d").format(date) }.getOrElse { "—" }
     }
     Text(
         text  = label,
@@ -216,8 +216,8 @@ fun SessionHistoryItem(session: PomodoroSession) {
     }
 
     val formatter = DateTimeFormatter.ofPattern("h:mm a").withZone(ZoneId.systemDefault())
-    val startStr  = formatter.format(session.startedAt)
-    val endStr    = session.endedAt?.let { formatter.format(it) } ?: "Ongoing"
+    val startStr  = runCatching { formatter.format(session.startedAt) }.getOrElse { "—" }
+    val endStr    = session.endedAt?.let { runCatching { formatter.format(it) }.getOrElse { "—" } } ?: "Ongoing"
     val duration  = session.actualMinutes ?: session.plannedMinutes
 
     Row(

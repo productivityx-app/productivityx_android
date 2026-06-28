@@ -364,19 +364,19 @@ private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue)
     val text     = current.text
     val start    = current.selection.start
     val end      = current.selection.end
-    val selected = text.substring(start, end)
+    val selected = runCatching { text.substring(start, end) }.getOrElse { return text to start }
 
     return when {
         action.suffix.isNotEmpty() -> {
             val wrapped = "${action.prefix}${selected.ifEmpty { "text" }}${action.suffix}"
-            val newText = text.substring(0, start) + wrapped + text.substring(end)
+            val newText = runCatching { text.substring(0, start) + wrapped + text.substring(end) }.getOrElse { return text to start }
             val cursor  = if (selected.isEmpty()) start + action.prefix.length + 4
             else start + wrapped.length
             newText to cursor
         }
         else -> {
             val lineStart = text.lastIndexOf('\n', start - 1) + 1
-            val newText   = text.substring(0, lineStart) + action.prefix + text.substring(lineStart)
+            val newText   = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
             val cursor    = start + action.prefix.length
             newText to cursor
         }

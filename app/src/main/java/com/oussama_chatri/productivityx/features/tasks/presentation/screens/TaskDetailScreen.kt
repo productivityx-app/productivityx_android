@@ -259,7 +259,7 @@ private fun TaskDetailContent(
                     DetailRow(
                         icon = Icons.Outlined.AccessTime,
                         label = "Due time",
-                        value = task.dueTime.format(DateTimeFormatter.ofPattern("h:mm a"))
+                        value = runCatching { task.dueTime.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "—" }
                     )
                 }
                 if (task.reminderAt != null) {

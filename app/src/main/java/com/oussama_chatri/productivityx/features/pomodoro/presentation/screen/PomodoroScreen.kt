@@ -325,7 +325,7 @@ private fun CircularTimer(
         ) {
             val minutes = remainingSeconds / 60
             val seconds = remainingSeconds % 60
-            val timeStr = "%02d:%02d".format(minutes, seconds)
+            val timeStr = runCatching { "%02d:%02d".format(minutes, seconds) }.getOrElse { "00:00" }
 
             AnimatedContent(
                 targetState = timeStr,

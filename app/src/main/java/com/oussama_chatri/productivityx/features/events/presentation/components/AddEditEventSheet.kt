@@ -179,14 +179,14 @@ private fun AddEditEventSheetContent(
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text  = dateFormatter.format(Instant.ofEpochMilli(state.startMs)),
+                    text  = runCatching { dateFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "—" },
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFFEEEEF5)
                 )
                 if (!state.isAllDay) {
                     Text("·", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF888899))
                     Text(
-                        text  = timeFormatter.format(Instant.ofEpochMilli(state.startMs)),
+                        text  = runCatching { timeFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "—" },
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color(0xFFEEEEF5)
                     )
@@ -205,14 +205,14 @@ private fun AddEditEventSheetContent(
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text  = dateFormatter.format(Instant.ofEpochMilli(state.endMs)),
+                    text  = runCatching { dateFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "—" },
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFFEEEEF5)
                 )
                 if (!state.isAllDay) {
                     Text("·", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF888899))
                     Text(
-                        text  = timeFormatter.format(Instant.ofEpochMilli(state.endMs)),
+                        text  = runCatching { timeFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "—" },
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color(0xFFEEEEF5)
                     )
@@ -379,12 +379,14 @@ private fun AddEditEventSheetContent(
             DatePicker(state = datePickerState)
             LaunchedEffect(datePickerState.selectedDateMillis) {
                 datePickerState.selectedDateMillis?.let { millis ->
-                    val oldInstant = Instant.ofEpochMilli(state.startMs)
-                    val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
-                    val newInstant = Instant.ofEpochMilli(millis)
-                    val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
-                    val combined = newDate.atTime(localTime).toInstant(ZoneOffset.UTC)
-                    onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
+                    val result = runCatching {
+                        val oldInstant = Instant.ofEpochMilli(state.startMs)
+                        val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
+                        val newInstant = Instant.ofEpochMilli(millis)
+                        val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
+                        newDate.atTime(localTime).toInstant(ZoneOffset.UTC).toEpochMilli()
+                    }.getOrNull()
+                    if (result != null) onEvent(AddEditEventUiEvent.StartDateTimeChanged(result))
                 }
             }
         }
@@ -392,31 +394,33 @@ private fun AddEditEventSheetContent(
 
     // Start Time Picker
     if (showStartTimePicker) {
-        val instant = Instant.ofEpochMilli(state.startMs)
-        val localTime = LocalTime.ofInstant(instant, ZoneId.systemDefault())
-        val timePickerState = rememberTimePickerState(
-            initialHour = localTime.hour,
-            initialMinute = localTime.minute,
-            is24Hour = false
-        )
-        AlertDialog(
-            onDismissRequest = { showStartTimePicker = false },
-            title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
-            text = { TimePicker(state = timePickerState) },
-            containerColor = Color(0xFF1A1A24),
-            confirmButton = {
-                TextButton(onClick = {
-                    val date = LocalDate.ofInstant(instant, ZoneId.systemDefault())
-                    val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
-                    val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
-                    onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
-                    showStartTimePicker = false
-                }) { Text(stringResource(R.string.ok)) }
-            },
-            dismissButton = {
-                TextButton(onClick = { showStartTimePicker = false }) { Text(stringResource(R.string.cancel)) }
-            }
-        )
+        val safeInstant = runCatching { Instant.ofEpochMilli(state.startMs) }.getOrNull()
+        if (safeInstant != null) {
+            val localTime = LocalTime.ofInstant(safeInstant, ZoneId.systemDefault())
+            val timePickerState = rememberTimePickerState(
+                initialHour = localTime.hour,
+                initialMinute = localTime.minute,
+                is24Hour = false
+            )
+            AlertDialog(
+                onDismissRequest = { showStartTimePicker = false },
+                title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
+                text = { TimePicker(state = timePickerState) },
+                containerColor = Color(0xFF1A1A24),
+                confirmButton = {
+                    TextButton(onClick = {
+                        val date = LocalDate.ofInstant(safeInstant, ZoneId.systemDefault())
+                        val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
+                        val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
+                        onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
+                        showStartTimePicker = false
+                    }) { Text(stringResource(R.string.ok)) }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showStartTimePicker = false }) { Text(stringResource(R.string.cancel)) }
+                }
+            )
+        }
     }
 
     // End Date Picker
@@ -439,12 +443,14 @@ private fun AddEditEventSheetContent(
             DatePicker(state = datePickerState)
             LaunchedEffect(datePickerState.selectedDateMillis) {
                 datePickerState.selectedDateMillis?.let { millis ->
-                    val oldInstant = Instant.ofEpochMilli(state.endMs)
-                    val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
-                    val newInstant = Instant.ofEpochMilli(millis)
-                    val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
-                    val combined = newDate.atTime(localTime).toInstant(ZoneOffset.UTC)
-                    onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
+                    val result = runCatching {
+                        val oldInstant = Instant.ofEpochMilli(state.endMs)
+                        val localTime = LocalTime.ofInstant(oldInstant, ZoneId.systemDefault())
+                        val newInstant = Instant.ofEpochMilli(millis)
+                        val newDate = LocalDate.ofInstant(newInstant, ZoneId.systemDefault())
+                        newDate.atTime(localTime).toInstant(ZoneOffset.UTC).toEpochMilli()
+                    }.getOrNull()
+                    if (result != null) onEvent(AddEditEventUiEvent.EndDateTimeChanged(result))
                 }
             }
         }
@@ -452,31 +458,33 @@ private fun AddEditEventSheetContent(
 
     // End Time Picker
     if (showEndTimePicker) {
-        val instant = Instant.ofEpochMilli(state.endMs)
-        val localTime = LocalTime.ofInstant(instant, ZoneId.systemDefault())
-        val timePickerState = rememberTimePickerState(
-            initialHour = localTime.hour,
-            initialMinute = localTime.minute,
-            is24Hour = false
-        )
-        AlertDialog(
-            onDismissRequest = { showEndTimePicker = false },
-            title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
-            text = { TimePicker(state = timePickerState) },
-            containerColor = Color(0xFF1A1A24),
-            confirmButton = {
-                TextButton(onClick = {
-                    val date = LocalDate.ofInstant(instant, ZoneId.systemDefault())
-                    val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
-                    val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
-                    onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
-                    showEndTimePicker = false
-                }) { Text(stringResource(R.string.ok)) }
-            },
-            dismissButton = {
-                TextButton(onClick = { showEndTimePicker = false }) { Text(stringResource(R.string.cancel)) }
-            }
-        )
+        val safeEndInstant = runCatching { Instant.ofEpochMilli(state.endMs) }.getOrNull()
+        if (safeEndInstant != null) {
+            val localTime = LocalTime.ofInstant(safeEndInstant, ZoneId.systemDefault())
+            val timePickerState = rememberTimePickerState(
+                initialHour = localTime.hour,
+                initialMinute = localTime.minute,
+                is24Hour = false
+            )
+            AlertDialog(
+                onDismissRequest = { showEndTimePicker = false },
+                title = { Text(stringResource(R.string.dialog_time_picker_title), color = Color.White) },
+                text = { TimePicker(state = timePickerState) },
+                containerColor = Color(0xFF1A1A24),
+                confirmButton = {
+                    TextButton(onClick = {
+                        val date = LocalDate.ofInstant(safeEndInstant, ZoneId.systemDefault())
+                        val newTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
+                        val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
+                        onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
+                        showEndTimePicker = false
+                    }) { Text(stringResource(R.string.ok)) }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showEndTimePicker = false }) { Text(stringResource(R.string.cancel)) }
+                }
+            )
+        }
     }
 
     // Location Dialog

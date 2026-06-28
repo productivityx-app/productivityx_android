@@ -351,11 +351,13 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
                 TextButton(
                     onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
-                            val formatted = Instant.ofEpochMilli(millis)
-                                .atZone(ZoneId.of("UTC"))
-                                .toLocalDate()
-                                .format(dateFormatter)
-                            onEvent(RegisterUiEvent.BirthDateChanged(formatted))
+                            val formatted = runCatching {
+                                Instant.ofEpochMilli(millis)
+                                    .atZone(ZoneId.of("UTC"))
+                                    .toLocalDate()
+                                    .format(dateFormatter)
+                            }.getOrNull()
+                            if (formatted != null) onEvent(RegisterUiEvent.BirthDateChanged(formatted))
                         }
                         showDatePicker = false
                     }

@@ -187,7 +187,7 @@ private fun TrashNoteCard(
                     .ofPattern("MMM d")
                     .withZone(java.time.ZoneId.systemDefault())
                 Text(
-                    text  = "Deleted ${formatter.format(deletedAt)}",
+                    text  = runCatching { "Deleted ${formatter.format(deletedAt)}" }.getOrElse { "Deleted" },
                     style = MaterialTheme.typography.labelSmall,
                     color = PxColors.OnSurfaceDim
                 )

@@ -307,7 +307,7 @@ private fun AddEditTaskContent(
                     onClick = { showTimePicker = true },
                     trailing = {
                         Text(
-                            text = uiState.dueTime?.format(DateTimeFormatter.ofPattern("h:mm a")) ?: "Set time",
+                            text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "—" } } ?: "Set time",
                             color = if (uiState.dueTime != null) Color(0xFFCCCCD8) else Color(0xFF888899),
                             fontSize = 14.sp
                         )
@@ -462,10 +462,12 @@ private fun AddEditTaskContent(
             confirmButton = {
                 TextButton(onClick = {
                     datePickerState.selectedDateMillis?.let { millis ->
-                        val date = Instant.ofEpochMilli(millis)
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDate()
-                        onEvent(AddEditTaskEvent.DueDateChanged(date))
+                        val date = runCatching {
+                            Instant.ofEpochMilli(millis)
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate()
+                        }.getOrNull()
+                        if (date != null) onEvent(AddEditTaskEvent.DueDateChanged(date))
                     }
                     showDatePicker = false
                 }) { Text("OK", color = Color(0xFF6366F1)) }

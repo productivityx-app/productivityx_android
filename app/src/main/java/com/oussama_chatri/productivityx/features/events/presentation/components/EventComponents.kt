@@ -76,10 +76,10 @@ fun EventBlock(
                 overflow = TextOverflow.Ellipsis
             )
             val timeLabel = if (showDate) {
-                dateTimeFormatter.format(event.startAt)
+                runCatching { dateTimeFormatter.format(event.startAt) }.getOrElse { "—" }
             } else {
                 if (event.isAllDay) "All day"
-                else "${timeFormatter.format(event.startAt)} – ${timeFormatter.format(event.endAt)}"
+                else runCatching { "${timeFormatter.format(event.startAt)} – ${timeFormatter.format(event.endAt)}" }.getOrElse { "—" }
             }
             Text(
                 text  = timeLabel,
