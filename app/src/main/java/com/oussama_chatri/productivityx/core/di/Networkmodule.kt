@@ -18,7 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -51,8 +50,8 @@ object NetworkModule {
     @Singleton
     fun provideTokenRefreshInterceptor(
         tokenStorage: TokenStorage,
-        okHttpClientProvider: Provider<OkHttpClient>
-    ): TokenRefreshInterceptor = TokenRefreshInterceptor(tokenStorage, okHttpClientProvider)
+        refreshCookieInterceptor: RefreshCookieInterceptor,
+    ): TokenRefreshInterceptor = TokenRefreshInterceptor(tokenStorage, refreshCookieInterceptor)
 
     @Provides
     @Singleton
