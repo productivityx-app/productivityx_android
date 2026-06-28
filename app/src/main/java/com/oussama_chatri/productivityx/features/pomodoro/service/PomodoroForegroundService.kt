@@ -24,18 +24,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * Timer runs entirely in this service so the countdown continues when the
- * app is backgrounded. The UI composable binds to this service and reads
- * [timerState] as a [StateFlow].
- *
- * Commands are delivered via [Intent] actions so PendingIntents from the
- * persistent notification can also control the timer.
- *
- * Note on drawables: using android.R.drawable system icons as safe fallbacks.
- * Replace with custom ic_pomodoro_notification / ic_play / ic_pause / ic_skip_next
- * once those vector assets are added to res/drawable/.
- */
 @AndroidEntryPoint
 class PomodoroForegroundService : Service() {
 
@@ -56,7 +44,6 @@ class PomodoroForegroundService : Service() {
         private const val NOTIFICATION_ID  = 7001
         private const val CHANNEL_ID       = "pomodoro_timer"
         private const val CHANNEL_NAME     = "Pomodoro Timer"
-        private const val TICK_INTERVAL_MS = 1000L
 
         fun startIntent(
             context: Context,
@@ -93,6 +80,7 @@ class PomodoroForegroundService : Service() {
     val timerState: StateFlow<TimerState> = _timerState.asStateFlow()
 
     private var tickJob: Job? = null
+    private var tickStartEpochMs: Long = 0L
 
     override fun onBind(intent: Intent?): IBinder = binder
 
@@ -104,21 +92,22 @@ class PomodoroForegroundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             ACTION_START -> {
-                val sessionId    = intent.getStringExtra(EXTRA_SESSION_ID) ?: return START_NOT_STICKY
-                val typeName     = intent.getStringExtra(EXTRA_TYPE)        ?: return START_NOT_STICKY
+                val sessionId    = intent.getStringExtra(EXTRA_SESSION_ID)    ?: return START_REDELIVER_INTENT
+                val typeName     = intent.getStringExtra(EXTRA_TYPE)          ?: return START_REDELIVER_INTENT
                 val totalSeconds = intent.getIntExtra(EXTRA_TOTAL_SECONDS, 0)
                 val taskId       = intent.getStringExtra(EXTRA_TASK_ID)
                 val taskTitle    = intent.getStringExtra(EXTRA_TASK_TITLE)
                 val cycleIndex   = intent.getIntExtra(EXTRA_CYCLE_INDEX, 0)
                 val type         = PomodoroType.valueOf(typeName)
                 startTimer(sessionId, type, totalSeconds, taskId, taskTitle, cycleIndex)
+                return START_REDELIVER_INTENT
             }
             ACTION_PAUSE  -> pauseTimer()
             ACTION_RESUME -> resumeTimer()
             ACTION_SKIP   -> skipTimer()
             ACTION_STOP   -> stopSelf()
         }
-        return START_STICKY
+        return START_NOT_STICKY
     }
 
     private fun startTimer(
@@ -130,6 +119,7 @@ class PomodoroForegroundService : Service() {
         cycleIndex: Int
     ) {
         tickJob?.cancel()
+        tickStartEpochMs = System.currentTimeMillis()
 
         val runningState = TimerState.Running(
             sessionId        = sessionId,
@@ -145,28 +135,33 @@ class PomodoroForegroundService : Service() {
         startForeground(NOTIFICATION_ID, buildNotification(runningState))
 
         tickJob = serviceScope.launch {
-            var remaining = totalSeconds
-            while (remaining > 0) {
-                delay(TICK_INTERVAL_MS)
-                remaining--
-
+            while (true) {
+                val elapsedMs = System.currentTimeMillis() - tickStartEpochMs
+                val remaining = maxOf(0, totalSeconds - (elapsedMs / 1000).toInt())
                 val current = _timerState.value
-                if (current is TimerState.Paused) {
-                    while (_timerState.value is TimerState.Paused) delay(200)
-                    continue
+
+                when (current) {
+                    is TimerState.Paused -> {
+                        delay(200)
+                        continue
+                    }
+                    is TimerState.Running -> {
+                        val updated = current.copy(remainingSeconds = remaining)
+                        _timerState.value = updated
+                        if (remaining > 0) {
+                            updateNotification(updated)
+                        } else {
+                            _timerState.value = TimerState.Completed(current.type, current.cycleIndex)
+                            showCompletionNotification(current.type)
+                            stopForeground(STOP_FOREGROUND_REMOVE)
+                            break
+                        }
+                        val nextBoundaryMs = ((elapsedMs / 1000) + 1) * 1000
+                        val sleepMs = nextBoundaryMs - elapsedMs
+                        if (sleepMs > 0) delay(sleepMs)
+                    }
+                    else -> break
                 }
-                if (current !is TimerState.Running) break
-
-                val updated = current.copy(remainingSeconds = remaining)
-                _timerState.value = updated
-                updateNotification(updated)
-            }
-
-            val finalState = _timerState.value
-            if (finalState is TimerState.Running) {
-                _timerState.value = TimerState.Completed(finalState.type, finalState.cycleIndex)
-                showCompletionNotification(finalState.type)
-                stopForeground(STOP_FOREGROUND_REMOVE)
             }
         }
     }
@@ -186,6 +181,7 @@ class PomodoroForegroundService : Service() {
 
     private fun resumeTimer() {
         val current = _timerState.value as? TimerState.Paused ?: return
+        tickStartEpochMs = System.currentTimeMillis() - (current.totalSeconds - current.remainingSeconds) * 1000L
         _timerState.value = TimerState.Running(
             sessionId        = current.sessionId,
             type             = current.type,
@@ -227,9 +223,9 @@ class PomodoroForegroundService : Service() {
         val timeStr = "%02d:%02d".format(minutes, seconds)
 
         val label = when (state.type) {
-            PomodoroType.FOCUS       -> "🍅 Focus"
-            PomodoroType.SHORT_BREAK -> "☕ Short Break"
-            PomodoroType.LONG_BREAK  -> "🛋️ Long Break"
+            PomodoroType.FOCUS       -> "Focus"
+            PomodoroType.SHORT_BREAK -> "Short Break"
+            PomodoroType.LONG_BREAK  -> "Long Break"
         }
 
         val taskLine = state.taskTitle?.let { " — $it" } ?: ""
@@ -248,7 +244,7 @@ class PomodoroForegroundService : Service() {
 
     private fun showCompletionNotification(type: PomodoroType) {
         val title = when (type) {
-            PomodoroType.FOCUS       -> "Focus session complete! 🎉"
+            PomodoroType.FOCUS       -> "Focus session complete!"
             PomodoroType.SHORT_BREAK -> "Break over — ready to focus?"
             PomodoroType.LONG_BREAK  -> "Long break done — great job!"
         }
@@ -265,9 +261,6 @@ class PomodoroForegroundService : Service() {
         val resumePi = PendingIntent.getService(this, 1, resumeIntent(this), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val skipPi   = PendingIntent.getService(this, 2, skipIntent(this),   PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-        // Using android.R.drawable system icons as compile-safe fallbacks.
-        // Once you add res/drawable/ic_pomodoro_notification.xml, ic_play.xml,
-        // ic_pause.xml, and ic_skip_next.xml, swap these to R.drawable.* equivalents.
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setSmallIcon(android.R.drawable.ic_media_play)
