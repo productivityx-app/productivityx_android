@@ -12,6 +12,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -60,19 +61,27 @@ class OutboxProcessor @Inject constructor(
         operation: SyncOperation,
         payload: String
     ): Boolean {
-        val url = resolveUrl(entityType, entityId, operation) ?: return false
         val token = tokenStorage.getAccessToken() ?: return false
+
+        val isPomodoroUpdate = entityType == EntityType.POMODORO && operation == SyncOperation.UPDATE
+        val url = if (isPomodoroUpdate) {
+            resolvePomodoroUpdateUrl(entityId, payload)
+        } else {
+            resolveUrl(entityType, entityId, operation)
+        } ?: return false
 
         val requestBuilder = Request.Builder()
             .url("${ApiConstants.BASE_URL}$url")
             .header(ApiConstants.HEADER_AUTHORIZATION, "${ApiConstants.HEADER_BEARER_PREFIX}$token")
 
-        val request = when (operation) {
-            SyncOperation.CREATE ->
+        val request = when {
+            isPomodoroUpdate ->
+                requestBuilder.patch(RequestBody.create(jsonMediaType, payload)).build()
+            operation == SyncOperation.CREATE ->
                 requestBuilder.post(RequestBody.create(jsonMediaType, payload)).build()
-            SyncOperation.UPDATE ->
+            operation == SyncOperation.UPDATE ->
                 requestBuilder.put(RequestBody.create(jsonMediaType, payload)).build()
-            SyncOperation.DELETE ->
+            else ->
                 requestBuilder.delete().build()
         }
 
@@ -104,6 +113,19 @@ class OutboxProcessor @Inject constructor(
         EntityType.POMODORO -> when (op) {
             SyncOperation.CREATE -> ApiConstants.Pomodoro.START
             else -> null
+        }
+    }
+
+    private fun resolvePomodoroUpdateUrl(sessionId: String, payload: String): String? {
+        return try {
+            val json = JSONObject(payload)
+            when (json.optString("action")) {
+                "end" -> ApiConstants.Pomodoro.end(sessionId)
+                "interrupt" -> ApiConstants.Pomodoro.interrupt(sessionId)
+                else -> null
+            }
+        } catch (e: Exception) {
+            null
         }
     }
 }

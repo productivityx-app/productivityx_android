@@ -174,6 +174,8 @@ private fun PomodoroSessionResponseDto.toEntity(userId: String) = PomodoroSessio
     actualDurationSeconds = actualDurationSeconds,
     completed = completed,
     interrupted = interrupted,
+    interruptReason = interruptReason,
     startedAt = runCatching { Instant.parse(startedAt).toEpochMilli() }.getOrDefault(System.currentTimeMillis()),
     endedAt = endedAt?.let { runCatching { Instant.parse(it).toEpochMilli() }.getOrNull() },
+    syncStatus = SyncStatus.SYNCED,
 )

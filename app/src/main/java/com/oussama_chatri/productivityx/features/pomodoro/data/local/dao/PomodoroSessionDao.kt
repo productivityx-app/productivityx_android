@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.entity.PomodoroSessionEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PomodoroSessionDao {
@@ -43,4 +44,27 @@ interface PomodoroSessionDao {
     """
     )
     suspend fun getRecentSessions(userId: String, limit: Int = 20): List<PomodoroSessionEntity>
+
+    @Query("SELECT * FROM pomodoro_sessions_local WHERE id = :id")
+    suspend fun getById(id: String): PomodoroSessionEntity?
+
+    @Query(
+        """
+        SELECT * FROM pomodoro_sessions_local
+        WHERE user_id = :userId AND ended_at IS NULL
+        ORDER BY started_at DESC
+        LIMIT 1
+    """
+    )
+    suspend fun getActiveSession(userId: String): PomodoroSessionEntity?
+
+    @Query(
+        """
+        SELECT * FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+        ORDER BY started_at DESC
+        LIMIT :limit
+    """
+    )
+    fun observeSessions(userId: String, limit: Int = 50): Flow<List<PomodoroSessionEntity>>
 }

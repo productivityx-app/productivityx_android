@@ -18,6 +18,7 @@ import com.oussama_chatri.productivityx.features.notes.data.local.TagDao
 import com.oussama_chatri.productivityx.features.notes.data.local.TagEntity
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.dao.PomodoroSessionDao
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.entity.PomodoroSessionEntity
+import com.oussama_chatri.productivityx.core.db.migration.MIGRATION_5_6
 import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEntity
 
@@ -33,7 +34,7 @@ import com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEnt
         MessageEntity::class,
         PomodoroSessionEntity::class,
     ],
-    version = 5,
+    version = 6,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

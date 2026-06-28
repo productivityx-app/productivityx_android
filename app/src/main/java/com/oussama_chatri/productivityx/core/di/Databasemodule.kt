@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.oussama_chatri.productivityx.core.db.AppDatabase
 import com.oussama_chatri.productivityx.core.db.migration.MIGRATION_3_4
 import com.oussama_chatri.productivityx.core.db.migration.MIGRATION_4_5
+import com.oussama_chatri.productivityx.core.db.migration.MIGRATION_5_6
 import com.oussama_chatri.productivityx.core.db.sync.SyncQueueDao
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.ConversationDao
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.MessageDao
@@ -28,7 +29,7 @@ object DatabaseModule {
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, AppDatabase.DATABASE_NAME)
-            .addMigrations(MIGRATION_3_4, MIGRATION_4_5)
+            .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
             .fallbackToDestructiveMigration()
             .build()
 
