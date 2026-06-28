@@ -2,11 +2,6 @@ package com.oussama_chatri.productivityx.features.home.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -61,6 +56,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.components.PxLoadingState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.theme.PriorityColors
@@ -93,7 +89,7 @@ fun HomeScreen(
         label          = "home_content",
     ) { state ->
         when (state) {
-            is UiState.Loading -> HomeLoadingState()
+            is UiState.Loading -> PxLoadingState()
             is UiState.Error   -> HomeErrorState(message = state.message)
             is UiState.Success -> HomeContent(
                 summary               = state.data,
@@ -551,34 +547,6 @@ private fun NoteCard(note: Note) {
                 }
             }
         }
-    }
-}
-
-// Loading state
-
-@Composable
-private fun HomeLoadingState() {
-    val infiniteTransition = rememberInfiniteTransition(label = "loading_pulse")
-    val alpha by infiniteTransition.animateFloat(
-        initialValue  = 0.3f,
-        targetValue   = 1f,
-        animationSpec = infiniteRepeatable(
-            animation  = tween(800, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-        label = "alpha",
-    )
-
-    Box(
-        modifier         = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(
-            color    = PxColors.Primary.copy(alpha = alpha),
-            modifier = Modifier.size(40.dp),
-        )
     }
 }
 

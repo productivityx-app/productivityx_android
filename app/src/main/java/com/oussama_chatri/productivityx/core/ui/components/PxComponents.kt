@@ -1,6 +1,11 @@
 package com.oussama_chatri.productivityx.core.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -136,7 +141,7 @@ fun PxEmptyState(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            modifier = Modifier.size(Dimensions.iconHero),
+            modifier = Modifier.size(48.dp),
             tint = PxColors.OnSurfaceDim.copy(alpha = 0.5f)
         )
         Spacer(Modifier.height(Spacing.lg))
@@ -177,6 +182,31 @@ fun PxLoadingOverlay(modifier: Modifier = Modifier) {
     }
 }
 
+
+// PxLoadingState
+
+@Composable
+fun PxLoadingState(modifier: Modifier = Modifier) {
+    val infiniteTransition = rememberInfiniteTransition(label = "loading_pulse")
+    val alpha by infiniteTransition.animateFloat(
+        initialValue  = 0.3f,
+        targetValue   = 1f,
+        animationSpec = infiniteRepeatable(
+            animation  = tween(800, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse,
+        ),
+        label = "alpha",
+    )
+    Box(
+        modifier         = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        CircularProgressIndicator(
+            color    = PxColors.Primary.copy(alpha = alpha),
+            modifier = Modifier.size(40.dp),
+        )
+    }
+}
 
 // PxSnackbarHost
 

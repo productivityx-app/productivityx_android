@@ -62,6 +62,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
+import com.oussama_chatri.productivityx.core.ui.components.PxLoadingState
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResult
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResultType
@@ -132,11 +134,7 @@ fun SearchScreen(
             Spacer(Modifier.height(8.dp))
 
             when {
-                state.isLoading -> {
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = PxColors.Primary)
-                    }
-                }
+                state.isLoading -> PxLoadingState()
                 state.error != null && state.results.isEmpty() -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(state.error!!, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -285,25 +283,11 @@ private fun RecentSearchesSection(
         Spacer(Modifier.height(8.dp))
 
         if (searches.isEmpty()) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(
-                        Icons.Outlined.Search,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-                        modifier = Modifier.size(64.dp)
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    Text(
-                        stringResource(R.string.search_hint),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                    )
-                }
-            }
+            PxEmptyState(
+                icon     = Icons.Outlined.Search,
+                title    = stringResource(R.string.search_hint),
+                modifier = Modifier.fillMaxSize()
+            )
         } else {
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -338,28 +322,12 @@ private fun RecentSearchesSection(
 
 @Composable
 private fun NoResultsState(query: String) {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                Icons.Outlined.SearchOff,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(56.dp)
-            )
-            Spacer(Modifier.height(12.dp))
-            Text(
-                stringResource(R.string.search_empty_title, query),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(6.dp))
-            Text(
-                stringResource(R.string.search_empty_body),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-            )
-        }
-    }
+    PxEmptyState(
+        icon     = Icons.Outlined.SearchOff,
+        title    = stringResource(R.string.search_empty_title, query),
+        subtitle = stringResource(R.string.search_empty_body),
+        modifier = Modifier.fillMaxSize()
+    )
 }
 
 // ─── Section header ───────────────────────────────────────────────────────────

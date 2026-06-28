@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.FilterTagChip
@@ -77,7 +78,12 @@ fun NotesScreen(
             modifier     = Modifier.fillMaxSize()
         ) {
             if (uiState.notes.isEmpty() && !uiState.isLoading) {
-                NotesEmptyState(modifier = Modifier.fillMaxSize())
+                PxEmptyState(
+                    icon     = Icons.Outlined.StickyNote2,
+                    title    = stringResource(R.string.notes_empty_title),
+                    subtitle = stringResource(R.string.notes_empty_body),
+                    modifier = Modifier.fillMaxSize()
+                )
             } else {
                 LazyVerticalStaggeredGrid(
                     columns             = StaggeredGridCells.Fixed(2),
@@ -189,40 +195,15 @@ private fun FilterChipsRow(
     }
 }
 
-@Composable
-private fun NotesEmptyState(modifier: Modifier = Modifier) {
-    Column(
-        modifier              = modifier.padding(32.dp),
-        horizontalAlignment   = Alignment.CenterHorizontally,
-        verticalArrangement   = Arrangement.Center
-    ) {
-        Icon(
-            imageVector        = Icons.Outlined.StickyNote2,
-            contentDescription = null,
-            tint               = Color(0xFF252533),
-            modifier           = Modifier.size(72.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text      = stringResource(R.string.notes_empty_title),
-            style     = MaterialTheme.typography.bodyLarge,
-            color     = Color(0xFFCCCCD8),
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text      = stringResource(R.string.notes_empty_body),
-            style     = MaterialTheme.typography.bodyMedium,
-            color     = Color(0xFF888899),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
 @Preview(showBackground = true, backgroundColor = 0xFF0F0F14)
 @Composable
 private fun NotesScreenPreview() {
     ProductivityXTheme {
-        NotesEmptyState(modifier = Modifier.fillMaxSize())
+        PxEmptyState(
+            icon     = Icons.Outlined.StickyNote2,
+            title    = stringResource(R.string.notes_empty_title),
+            subtitle = stringResource(R.string.notes_empty_body),
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }

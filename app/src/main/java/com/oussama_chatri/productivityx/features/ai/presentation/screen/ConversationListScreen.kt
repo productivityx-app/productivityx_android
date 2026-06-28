@@ -41,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.DateTimeUtils
 import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
@@ -88,16 +89,11 @@ fun ConversationListScreen(
         }
     ) { padding ->
         if (state.conversations.isEmpty() && !state.isLoading) {
-            Box(
-                modifier         = Modifier.fillMaxSize().padding(padding),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text  = "No conversations yet",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = PxColors.OnSurfaceDim,
-                )
-            }
+            PxEmptyState(
+                icon     = Icons.Outlined.AutoAwesome,
+                title    = "No conversations yet",
+                modifier = Modifier.fillMaxSize().padding(padding)
+            )
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize().padding(padding)) {
                 items(state.conversations, key = { it.id }) { conversation ->
