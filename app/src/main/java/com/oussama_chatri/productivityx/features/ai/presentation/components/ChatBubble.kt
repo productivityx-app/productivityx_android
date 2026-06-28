@@ -29,6 +29,7 @@ import com.mikepenz.markdown.compose.Markdown
 import com.mikepenz.markdown.m3.markdownColor
 import com.mikepenz.markdown.m3.markdownTypography
 import com.oussama_chatri.productivityx.core.enums.MessageRole
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.DateTimeUtils
 import com.oussama_chatri.productivityx.features.ai.domain.model.Message
 import java.time.ZoneId
@@ -61,7 +62,7 @@ private fun UserBubble(message: Message) {
             modifier = Modifier
                 .wrapContentWidth()
                 .background(
-                    color = Color(0xFF6366F1),
+                    color = PxColors.Primary,
                     shape = RoundedCornerShape(12.dp, 12.dp, 4.dp, 12.dp),
                 )
                 .padding(horizontal = 16.dp, vertical = 10.dp)
@@ -74,7 +75,7 @@ private fun UserBubble(message: Message) {
         Text(
             text     = DateTimeUtils.formatTime(message.createdAt, ZoneId.systemDefault()),
             style    = MaterialTheme.typography.labelSmall,
-            color    = Color(0xFF888899),
+            color    = PxColors.OnSurfaceDim,
             modifier = Modifier.padding(top = 4.dp, end = 4.dp),
         )
     }
@@ -89,7 +90,7 @@ private fun AssistantBubble(message: Message) {
                 .clip(CircleShape)
                 .background(
                     Brush.linearGradient(
-                        colors = listOf(Color(0xFF6366F1), Color(0xFF8B5CF6)),
+                        colors = listOf(PxColors.Primary, PxColors.Secondary),
                     )
                 ),
             contentAlignment = Alignment.Center,
@@ -109,7 +110,7 @@ private fun AssistantBubble(message: Message) {
                 modifier = Modifier
                     .wrapContentWidth()
                     .background(
-                        color = Color(0xFF1A1A24),
+                        color = PxColors.Surface,
                         shape = RoundedCornerShape(12.dp, 12.dp, 12.dp, 4.dp),
                     )
                     .padding(horizontal = 16.dp, vertical = 10.dp)
@@ -117,10 +118,10 @@ private fun AssistantBubble(message: Message) {
                 Markdown(
                     content    = message.content,
                     colors     = markdownColor(
-                        text            = Color(0xFFEEEEF5),
-                        linkText        = Color(0xFF6366F1),
-                        codeText        = Color(0xFF8B5CF6),
-                        codeBackground  = Color(0xFF252533),
+                        text            = PxColors.OnBackground,
+                        linkText        = PxColors.Primary,
+                        codeText        = PxColors.Secondary,
+                        codeBackground  = PxColors.SurfaceVariant,
                     ),
                     typography = markdownTypography(
                         text = MaterialTheme.typography.bodyMedium,
@@ -133,7 +134,7 @@ private fun AssistantBubble(message: Message) {
             Text(
                 text     = DateTimeUtils.formatTime(message.createdAt, ZoneId.systemDefault()),
                 style    = MaterialTheme.typography.labelSmall,
-                color    = Color(0xFF888899),
+                color    = PxColors.OnSurfaceDim,
                 modifier = Modifier.padding(top = 4.dp, start = 4.dp),
             )
         }

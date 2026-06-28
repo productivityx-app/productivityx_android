@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @Composable
 fun WelcomeState(
@@ -63,7 +64,7 @@ fun WelcomeState(
                 .clip(RoundedCornerShape(20.dp))
                 .background(
                     Brush.linearGradient(
-                        colors = listOf(Color(0xFF6366F1), Color(0xFF8B5CF6)),
+                        colors = listOf(PxColors.Primary, PxColors.Secondary),
                     )
                 ),
             contentAlignment = Alignment.Center,
@@ -81,7 +82,7 @@ fun WelcomeState(
         Text(
             text      = stringResource(R.string.ai_welcome_title),
             style     = MaterialTheme.typography.headlineMedium,
-            color     = Color(0xFFEEEEF5),
+            color     = PxColors.OnBackground,
             textAlign = TextAlign.Center,
         )
 
@@ -90,7 +91,7 @@ fun WelcomeState(
         Text(
             text      = stringResource(R.string.ai_welcome_body),
             style     = MaterialTheme.typography.bodyMedium,
-            color     = Color(0xFF888899),
+            color     = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center,
         )
 
@@ -131,7 +132,7 @@ private fun SuggestionCard(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.Surface)
             .clickable(onClick = onClick)
             .padding(12.dp),
         contentAlignment = Alignment.CenterStart,
@@ -139,7 +140,7 @@ private fun SuggestionCard(
         Text(
             text  = text,
             style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
         )
     }
 }

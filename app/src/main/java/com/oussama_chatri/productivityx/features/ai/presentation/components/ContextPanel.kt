@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.DateTimeUtils
 import com.oussama_chatri.productivityx.features.ai.domain.model.AiContext
 
@@ -42,7 +43,7 @@ fun ContextPanel(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color(0xFF1A1A24), RoundedCornerShape(12.dp))
+            .background(PxColors.Surface, RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
         Row(
@@ -52,7 +53,7 @@ fun ContextPanel(
             Text(
                 text     = stringResource(R.string.ai_context_title),
                 style    = MaterialTheme.typography.titleMedium,
-                color    = Color(0xFFEEEEF5),
+                color    = PxColors.OnBackground,
                 modifier = Modifier.weight(1f),
             )
             TextButton(onClick = onRefresh, enabled = !isLoading) {
@@ -60,13 +61,13 @@ fun ContextPanel(
                     imageVector = Icons.Outlined.Refresh,
                     contentDescription = stringResource(R.string.ai_context_refresh),
                     modifier    = Modifier.size(14.dp),
-                    tint        = Color(0xFF6366F1),
+                    tint        = PxColors.Primary,
                 )
                 Spacer(Modifier.width(4.dp))
                 Text(
                     text  = if (isLoading) stringResource(R.string.refreshing) else stringResource(R.string.ai_context_refresh),
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF6366F1),
+                    color = PxColors.Primary,
                 )
             }
         }
@@ -98,18 +99,18 @@ fun ContextPanel(
             Text(
                 text  = stringResource(R.string.ai_context_caption),
                 style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
             )
         }
 
         Spacer(Modifier.height(8.dp))
-        HorizontalDivider(color = Color(0xFF252533))
+        HorizontalDivider(color = PxColors.SurfaceVariant)
         Spacer(Modifier.height(8.dp))
 
         Text(
             text  = stringResource(R.string.ai_context_caption),
             style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF888899),
+            color = PxColors.OnSurfaceDim,
         )
     }
 }
@@ -126,18 +127,18 @@ private fun ContextRow(
             .padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(icon, null, tint = Color(0xFF888899), modifier = Modifier.size(16.dp))
+        Icon(icon, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
         Spacer(Modifier.width(8.dp))
         Text(
             text     = label,
             style    = MaterialTheme.typography.bodySmall,
-            color    = Color(0xFF888899),
+            color    = PxColors.OnSurfaceDim,
             modifier = Modifier.weight(1f),
         )
         Text(
             text  = value,
             style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
         )
     }
 }

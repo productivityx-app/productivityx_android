@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
 
 @Composable
@@ -45,14 +46,14 @@ fun ActionCard(
         modifier = modifier
             .height(IntrinsicSize.Min)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24)),
+            .background(PxColors.Surface),
     ) {
         // Primary-colored accent bar
         Spacer(
             modifier = Modifier
                 .width(4.dp)
                 .fillMaxHeight()
-                .background(Color(0xFF6366F1))
+                .background(PxColors.Primary)
         )
 
         Column(modifier = Modifier.padding(12.dp)) {
@@ -60,14 +61,14 @@ fun ActionCard(
                 Icon(
                     imageVector        = icon,
                     contentDescription = null,
-                    tint               = Color(0xFF6366F1),
-                    modifier           = Modifier.size(18.dp),
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    text  = label,
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Color(0xFF6366F1),
+                tint               = PxColors.Primary,
+                modifier           = Modifier.size(18.dp),
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text  = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = PxColors.Primary,
                 )
             }
 
@@ -75,7 +76,7 @@ fun ActionCard(
             Text(
                 text  = description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
             )
 
             Spacer(Modifier.height(12.dp))
@@ -95,7 +96,7 @@ fun ActionCard(
                     Text(
                         text  = stringResource(R.string.ai_action_dismiss),
                         style = MaterialTheme.typography.labelMedium,
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                     )
                 }
             }

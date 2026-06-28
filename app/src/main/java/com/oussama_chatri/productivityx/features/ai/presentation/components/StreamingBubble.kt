@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 /**
  * Rendered in place of the final message bubble while the SSE stream is active.
@@ -42,7 +43,7 @@ fun StreamingBubble(
                 .clip(CircleShape)
                 .background(
                     Brush.linearGradient(
-                        colors = listOf(Color(0xFF6366F1), Color(0xFF8B5CF6)),
+                        colors = listOf(PxColors.Primary, PxColors.Secondary),
                     )
                 ),
             contentAlignment = Alignment.Center,
@@ -64,7 +65,7 @@ fun StreamingBubble(
                 modifier = Modifier
                     .wrapContentWidth()
                     .background(
-                        color = Color(0xFF1A1A24),
+                        color = PxColors.Surface,
                         shape = RoundedCornerShape(12.dp, 12.dp, 12.dp, 4.dp),
                     )
                     .padding(horizontal = 16.dp, vertical = 10.dp)
@@ -72,7 +73,7 @@ fun StreamingBubble(
                 Text(
                     text  = content,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFEEEEF5),
+                    color = PxColors.OnBackground,
                 )
             }
         }

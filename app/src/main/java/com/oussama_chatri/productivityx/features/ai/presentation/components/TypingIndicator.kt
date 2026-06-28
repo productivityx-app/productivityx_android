@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import kotlinx.coroutines.delay
 
 @Composable
@@ -43,8 +44,8 @@ fun TypingIndicator(modifier: Modifier = Modifier) {
 
     Box(
         modifier = modifier
-            .background(Color(0xFF1A1A24), RoundedCornerShape(12.dp, 12.dp, 12.dp, 4.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .background(PxColors.Surface, RoundedCornerShape(12.dp, 12.dp, 12.dp, 4.dp))
+            .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -55,7 +56,7 @@ fun TypingIndicator(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .size(8.dp)
                         .scale(scale.value)
-                        .background(Color(0xFF6366F1), CircleShape)
+                        .background(PxColors.Primary, CircleShape)
                 )
             }
         }

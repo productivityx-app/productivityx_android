@@ -30,6 +30,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.rememberDebouncedClick
 
 @Composable
@@ -42,12 +43,12 @@ fun MessageInputBar(
 ) {
     val canSend = value.isNotBlank() && !isStreaming
 
-    HorizontalDivider(color = Color(0xFF252533))
+    HorizontalDivider(color = PxColors.SurfaceVariant)
 
     Row(
         modifier          = modifier
             .fillMaxWidth()
-            .background(Color(0xFF252533))
+            .background(PxColors.SurfaceVariant)
             .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -55,21 +56,21 @@ fun MessageInputBar(
             modifier = Modifier
                 .weight(1f)
                 .clip(RoundedCornerShape(24.dp))
-                .background(Color(0xFF1A1A24))
+                .background(PxColors.Surface)
                 .padding(horizontal = 16.dp, vertical = 10.dp),
         ) {
             if (value.isEmpty()) {
                 Text(
                     text  = stringResource(R.string.ai_message_hint),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                 )
             }
             BasicTextField(
                 value           = value,
                 onValueChange   = onValueChange,
-                textStyle       = MaterialTheme.typography.bodyMedium.copy(color = Color(0xFFEEEEF5)),
-                cursorBrush     = SolidColor(Color(0xFF6366F1)),
+                textStyle       = MaterialTheme.typography.bodyMedium.copy(color = PxColors.OnBackground),
+                cursorBrush     = SolidColor(PxColors.Primary),
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.Sentences,
                     imeAction      = ImeAction.Send,
@@ -88,12 +89,12 @@ fun MessageInputBar(
             modifier = Modifier
                 .size(44.dp)
                 .clip(CircleShape)
-                .background(if (canSend) Color(0xFF6366F1) else Color(0xFF252533)),
+                .background(if (canSend) PxColors.Primary else PxColors.SurfaceVariant),
         ) {
             Icon(
                 imageVector        = Icons.Outlined.Send,
                 contentDescription = stringResource(R.string.cd_send_message),
-                tint               = if (canSend) Color.White else Color(0xFF888899),
+                tint               = if (canSend) Color.White else PxColors.OnSurfaceDim,
                 modifier           = Modifier.size(20.dp),
             )
         }

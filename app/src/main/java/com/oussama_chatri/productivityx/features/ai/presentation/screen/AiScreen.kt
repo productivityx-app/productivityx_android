@@ -32,12 +32,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ActionCard
 import com.oussama_chatri.productivityx.features.ai.presentation.components.ChatBubble
@@ -82,7 +82,7 @@ fun AiScreen(
     }
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         snackbarHost   = { SnackbarHost(snackbarState) },
         topBar         = {
             TopAppBar(
@@ -90,23 +90,23 @@ fun AiScreen(
                     Text(
                         text  = stringResource(R.string.ai_title),
                         style = MaterialTheme.typography.titleLarge,
-                        color = Color(0xFFEEEEF5),
+                        color = PxColors.OnBackground,
                     )
                 },
                 actions = {
                     IconButton(onClick = onNavigateToHistory) {
-                        Icon(Icons.Outlined.FormatListBulleted, stringResource(R.string.ai_conversations_title), tint = Color(0xFF888899))
+                        Icon(Icons.Outlined.FormatListBulleted, stringResource(R.string.ai_conversations_title), tint = PxColors.OnSurfaceDim)
                     }
                     IconButton(onClick = { viewModel.onEvent(AiUiEvent.NewConversation) }) {
-                        Icon(Icons.Outlined.Refresh, stringResource(R.string.ai_new_conversation), tint = Color(0xFF888899))
+                        Icon(Icons.Outlined.Refresh, stringResource(R.string.ai_new_conversation), tint = PxColors.OnSurfaceDim)
                     }
                     if (state.conversationId != null) {
                         IconButton(onClick = { /* confirm delete then delete */ }) {
-                            Icon(Icons.Outlined.Delete, stringResource(R.string.ai_delete_conversation_title), tint = Color(0xFF888899))
+                            Icon(Icons.Outlined.Delete, stringResource(R.string.ai_delete_conversation_title), tint = PxColors.OnSurfaceDim)
                         }
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14)),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
             )
         },
         bottomBar = {
