@@ -2,6 +2,8 @@ package com.oussama_chatri.productivityx.core.sync
 
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import com.oussama_chatri.productivityx.core.db.sync.SyncQueueDao
+import com.oussama_chatri.productivityx.core.enums.EntityType
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.network.ApiConstants
@@ -54,6 +56,8 @@ class DeltaSyncManager @Inject constructor(
     private val taskDao: TaskDao,
     private val eventDao: EventDao,
     private val pomodoroDao: PomodoroSessionDao,
+    private val syncQueueDao: SyncQueueDao,
+    private val conflictResolver: ConflictResolver,
     private val gson: Gson,
 ) {
     suspend fun pullDelta() {
@@ -101,68 +105,60 @@ class DeltaSyncManager @Inject constructor(
 
     private suspend fun applyDelta(delta: DeltaSyncData, userId: String) {
         // Notes
-        if (delta.notes.isNotEmpty()) {
-            val toUpsert = mutableListOf<NoteEntity>()
-            val tagRefs = mutableListOf<Pair<String, List<String>>>()
-            for (dto in delta.notes) {
-                if (dto.deleted) {
-                    noteDao.deleteById(dto.id)
-                } else {
+        for (dto in delta.notes) {
+            if (syncQueueDao.pendingCountByEntity(dto.id, EntityType.NOTE) > 0) continue
+            if (dto.deleted) {
+                noteDao.deleteById(dto.id)
+            } else {
+                val local = noteDao.getNoteById(dto.id)
+                val remoteUpdatedAt = parseInstantMs(dto.updatedAt)
+                if (local == null || conflictResolver.remoteWins(local.note.updatedAt, remoteUpdatedAt)) {
                     val (entity, refs) = dto.toEntityWithRefs(userId)
-                    toUpsert.add(entity)
-                    tagRefs.add(dto.id to refs.map { it.tagId })
-                }
-            }
-            if (toUpsert.isNotEmpty()) {
-                noteDao.upsertAll(toUpsert)
-                for ((noteId, tagIds) in tagRefs) {
-                    runCatching { noteDao.replaceNoteTags(noteId, tagIds) }
+                    noteDao.upsert(entity)
+                    runCatching { noteDao.replaceNoteTags(entity.id, refs.map { it.tagId }) }
                 }
             }
         }
 
         // Tasks
-        if (delta.tasks.isNotEmpty()) {
-            val toUpsert = mutableListOf<com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEntity>()
-            for (dto in delta.tasks) {
-                if (dto.deleted) {
-                    taskDao.deleteById(dto.id)
-                } else {
-                    toUpsert.add(dto.toEntity(userId))
+        for (dto in delta.tasks) {
+            if (syncQueueDao.pendingCountByEntity(dto.id, EntityType.TASK) > 0) continue
+            if (dto.deleted) {
+                taskDao.deleteById(dto.id)
+            } else {
+                val local = taskDao.getById(dto.id)
+                val remoteUpdatedAt = parseInstantMs(dto.updatedAt)
+                if (local == null || conflictResolver.remoteWins(local.updatedAt.toEpochMilli(), remoteUpdatedAt)) {
+                    taskDao.insert(dto.toEntity(userId))
                 }
-            }
-            if (toUpsert.isNotEmpty()) {
-                taskDao.insertAll(toUpsert)
             }
         }
 
         // Events
-        if (delta.events.isNotEmpty()) {
-            val toUpsert = mutableListOf<EventEntity>()
-            for (dto in delta.events) {
-                if (dto.deleted) {
-                    eventDao.deleteById(dto.id)
-                } else {
-                    toUpsert.add(dto.toEntity(userId))
+        for (dto in delta.events) {
+            if (syncQueueDao.pendingCountByEntity(dto.id, EntityType.EVENT) > 0) continue
+            if (dto.deleted) {
+                eventDao.deleteById(dto.id)
+            } else {
+                val local = eventDao.getEventById(dto.id)
+                val remoteUpdatedAt = parseInstantMs(dto.updatedAt)
+                if (local == null || conflictResolver.remoteWins(local.updatedAt, remoteUpdatedAt)) {
+                    eventDao.upsert(dto.toEntity(userId))
                 }
-            }
-            if (toUpsert.isNotEmpty()) {
-                eventDao.upsertAll(toUpsert)
             }
         }
 
-        // Pomodoro sessions
-        if (delta.pomodoroSessions.isNotEmpty()) {
-            val toUpsert = mutableListOf<PomodoroSessionEntity>()
-            for (dto in delta.pomodoroSessions) {
-                toUpsert.add(dto.toEntity(userId))
-            }
-            if (toUpsert.isNotEmpty()) {
-                pomodoroDao.insertAll(toUpsert)
-            }
+        // Pomodoro sessions — no updatedAt field, so skip timestamp check but still respect pending outbox
+        for (dto in delta.pomodoroSessions) {
+            if (syncQueueDao.pendingCountByEntity(dto.id, EntityType.POMODORO) > 0) continue
+            pomodoroDao.insert(dto.toEntity(userId))
         }
     }
 }
+
+private fun parseInstantMs(value: String?): Long =
+    if (value.isNullOrBlank()) System.currentTimeMillis()
+    else runCatching { Instant.parse(value).toEpochMilli() }.getOrDefault(System.currentTimeMillis())
 
 private fun PomodoroSessionResponseDto.toEntity(userId: String) = PomodoroSessionEntity(
     id = id,
@@ -175,7 +171,7 @@ private fun PomodoroSessionResponseDto.toEntity(userId: String) = PomodoroSessio
     completed = completed,
     interrupted = interrupted,
     interruptReason = interruptReason,
-    startedAt = runCatching { Instant.parse(startedAt).toEpochMilli() }.getOrDefault(System.currentTimeMillis()),
-    endedAt = endedAt?.let { runCatching { Instant.parse(it).toEpochMilli() }.getOrNull() },
+    startedAt = parseInstantMs(startedAt),
+    endedAt = endedAt?.let { parseInstantMs(it) },
     syncStatus = SyncStatus.SYNCED,
 )

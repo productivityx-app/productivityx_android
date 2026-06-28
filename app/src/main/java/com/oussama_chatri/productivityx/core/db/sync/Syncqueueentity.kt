@@ -45,6 +45,9 @@ interface SyncQueueDao {
     @Query("DELETE FROM sync_queue WHERE entityId = :entityId AND entityType = :type")
     suspend fun deleteByEntity(entityId: String, type: EntityType)
 
+    @Query("SELECT COUNT(*) FROM sync_queue WHERE entityId = :entityId AND entityType = :entityType AND status = 'PENDING'")
+    suspend fun pendingCountByEntity(entityId: String, entityType: EntityType): Int
+
     @Query("SELECT COUNT(*) FROM sync_queue WHERE status = 'PENDING'")
     fun observePendingCount(): Flow<Int>
 }
