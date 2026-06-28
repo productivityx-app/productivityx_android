@@ -1,8 +1,8 @@
 package com.oussama_chatri.productivityx.core.notifications
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
 import androidx.core.content.getSystemService
 
 object NotificationChannels {
@@ -14,39 +14,39 @@ object NotificationChannels {
     const val CHANNEL_GENERAL = "px_general"
 
     fun createAll(context: Context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val manager = context.getSystemService<NotificationManager>() ?: return
-        manager.createNotificationChannels(
-            listOf(
-                NotificationChannel(
-                    CHANNEL_POMODORO,
-                    "Focus Timer",
-                    NotificationManager.IMPORTANCE_LOW
-                ).apply { description = "Live Pomodoro session timer" },
+        val channels = listOf(
+            android.app.NotificationChannel(
+                CHANNEL_POMODORO,
+                "Focus Timer",
+                NotificationManager.IMPORTANCE_LOW
+            ).apply { description = "Live Pomodoro session timer" },
 
-                NotificationChannel(
-                    CHANNEL_TASK_REMINDER,
-                    "Task Reminders",
-                    NotificationManager.IMPORTANCE_HIGH
-                ).apply { description = "Reminders for upcoming tasks" },
+            android.app.NotificationChannel(
+                CHANNEL_TASK_REMINDER,
+                "Task Reminders",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply { description = "Reminders for upcoming tasks" },
 
-                NotificationChannel(
-                    CHANNEL_EVENT_REMINDER,
-                    "Event Reminders",
-                    NotificationManager.IMPORTANCE_HIGH
-                ).apply { description = "Reminders for calendar events" },
+            android.app.NotificationChannel(
+                CHANNEL_EVENT_REMINDER,
+                "Event Reminders",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply { description = "Reminders for calendar events" },
 
-                NotificationChannel(
-                    CHANNEL_SYNC,
-                    "Sync",
-                    NotificationManager.IMPORTANCE_MIN
-                ).apply { description = "Background sync status" },
+            android.app.NotificationChannel(
+                CHANNEL_SYNC,
+                "Sync",
+                NotificationManager.IMPORTANCE_MIN
+            ).apply { description = "Background sync status" },
 
-                NotificationChannel(
-                    CHANNEL_GENERAL,
-                    "General",
-                    NotificationManager.IMPORTANCE_DEFAULT
-                ).apply { description = "General app notifications" }
-            )
+            android.app.NotificationChannel(
+                CHANNEL_GENERAL,
+                "General",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply { description = "General app notifications" }
         )
+        manager.createNotificationChannels(channels)
     }
 }

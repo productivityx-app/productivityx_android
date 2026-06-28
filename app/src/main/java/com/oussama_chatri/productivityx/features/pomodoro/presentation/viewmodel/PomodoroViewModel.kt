@@ -2,6 +2,7 @@ package com.oussama_chatri.productivityx.features.pomodoro.presentation.viewmode
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
@@ -26,6 +27,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
+
+private fun Context.startForegroundServiceCompat(intent: Intent) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        startForegroundService(intent)
+    } else {
+        startService(intent)
+    }
+}
 
 @HiltViewModel
 class PomodoroViewModel @Inject constructor(
@@ -106,7 +115,7 @@ class PomodoroViewModel @Inject constructor(
                 startTicking(sessionId, type, totalSeconds, taskId, taskTitle, cycleIndex)
             }
 
-            context.startForegroundService(
+            context.startForegroundServiceCompat(
                 PomodoroForegroundService.startIntent(
                     context = context,
                     sessionId = sessionId,
@@ -197,7 +206,7 @@ class PomodoroViewModel @Inject constructor(
             )
         }
 
-        context.startForegroundService(
+        context.startForegroundServiceCompat(
             PomodoroForegroundService.startIntent(
                 context = context,
                 sessionId = sessionId,

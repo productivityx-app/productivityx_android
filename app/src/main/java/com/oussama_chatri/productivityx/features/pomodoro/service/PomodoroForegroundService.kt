@@ -277,6 +277,7 @@ class PomodoroForegroundService : Service() {
     }
 
     private fun createNotificationChannel() {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) return
         val channel = NotificationChannel(
             CHANNEL_ID,
             CHANNEL_NAME,
