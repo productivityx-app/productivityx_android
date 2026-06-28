@@ -34,6 +34,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject lateinit var prefs: PreferencesDataStore
+    @Inject lateinit var tokenStorage: com.oussama_chatri.productivityx.core.storage.TokenStorage
 
     private var navController: NavHostController? = null
 
@@ -62,6 +63,19 @@ class MainActivity : ComponentActivity() {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     })
                     finish()
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            tokenStorage.sessionExpiredEvents.collect {
+                navController?.let { nav ->
+                    try {
+                        nav.navigate(AuthRoute.Login) {
+                            popUpTo(0) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    } catch (_: Exception) { }
                 }
             }
         }

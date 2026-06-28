@@ -72,6 +72,7 @@ class TokenRefreshInterceptor @Inject constructor(
 
             val resp = refreshClient.newCall(request).execute()
             if (!resp.isSuccessful) {
+                tokenStorage.notifySessionExpired()
                 tokenStorage.clearAll()
                 return null
             }

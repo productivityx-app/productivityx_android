@@ -1,5 +1,7 @@
 package com.oussama_chatri.productivityx.core.storage
 
+import kotlinx.coroutines.flow.SharedFlow
+
 interface TokenStorage {
     fun saveAccessToken(token: String)
     fun getAccessToken(): String?
@@ -11,4 +13,8 @@ interface TokenStorage {
     fun getRefreshToken(): String?
 
     fun clearAll()
+
+    fun notifySessionExpired()
+
+    val sessionExpiredEvents: SharedFlow<Unit>
 }
