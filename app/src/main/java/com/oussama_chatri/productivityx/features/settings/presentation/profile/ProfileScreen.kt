@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.profile
+package com.oussama_chatri.productivityx.features.settings.presentation.profile
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -23,7 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
 import androidx.compose.material.icons.automirrored.outlined.Logout
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.CalendarMonth
@@ -76,12 +76,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import com.oussama_chatri.productivityx.features.profile.presentation.components.AvatarInitials
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingRow
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingRowSwitch
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionCard
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionHeader
-import com.oussama_chatri.productivityx.features.profile.presentation.profile.event.ProfileUiEvent
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
+import com.oussama_chatri.productivityx.features.settings.presentation.components.AvatarInitials
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingRow
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingRowSwitch
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionCard
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.event.ProfileUiEvent
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
@@ -165,13 +166,13 @@ fun ProfileScreen(
                     showSignOutDialog = false
                     viewModel.onEvent(ProfileUiEvent.SignOutConfirmed)
                 }) {
-                    Text(stringResource(R.string.auth_sign_out), color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.auth_sign_out), color = PxColors.Error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) { Text(stringResource(R.string.cancel)) }
             },
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = PxColors.Surface,
             shape = RoundedCornerShape(16.dp)
         )
     }
@@ -199,7 +200,7 @@ fun ProfileScreen(
     }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -222,7 +223,7 @@ fun ProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent,
-                    titleContentColor = MaterialTheme.colorScheme.onBackground,
+                    titleContentColor = PxColors.OnBackground,
                 ),
             )
         }
@@ -246,7 +247,7 @@ fun ProfileScreen(
                         .height(200.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                    CircularProgressIndicator(color = PxColors.Primary)
                 }
             } else {
                 ProfileHeader(
@@ -283,7 +284,7 @@ fun ProfileScreen(
                         Text(
                             text = state.currentLanguage.uppercase(),
                             style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                            color = PxColors.OnSurface.copy(alpha = 0.5f),
                         )
                     }
                 )
@@ -342,7 +343,7 @@ fun ProfileScreen(
                         Text(
                             text = state.preferences?.aiModel ?: "gemini-2.0-flash",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                            color = PxColors.OnSurface.copy(alpha = 0.5f)
                         )
                     },
                     onClick = onNavigateToPreferences
@@ -394,7 +395,7 @@ fun ProfileScreen(
                     SettingRow(
                         icon = Icons.AutoMirrored.Outlined.Logout,
                         label = stringResource(R.string.auth_sign_out),
-                        iconTint = MaterialTheme.colorScheme.error,
+                        iconTint = PxColors.Error,
                         showDivider = false,
                         onClick = { showSignOutDialog = true },
                         trailing = {
@@ -402,7 +403,7 @@ fun ProfileScreen(
                                 CircularProgressIndicator(
                                     modifier = Modifier.size(18.dp),
                                     strokeWidth = 2.dp,
-                                    color = MaterialTheme.colorScheme.error
+                                    color = PxColors.Error
                                 )
                             }
                         }
@@ -422,7 +423,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            .background(PxColors.SurfaceVariant.copy(alpha = 0.4f))
             .padding(vertical = 36.dp, horizontal = 24.dp)
     ) {
         Box(
@@ -430,12 +431,12 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
             modifier = Modifier
                 .size(80.dp)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(PxColors.SurfaceVariant)
         ) {
             Icon(
                 Icons.Outlined.Person,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(40.dp)
             )
         }
@@ -446,7 +447,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
             text = "Local Mode",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = PxColors.OnBackground,
         )
 
         Spacer(Modifier.height(8.dp))
@@ -454,7 +455,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
         Text(
             text = "You're using ProductivityX without an account.\nYour data stays on this device only.",
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center,
         )
 
@@ -464,7 +465,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
             onClick = onNavigateToLogin,
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
+                containerColor = PxColors.Primary,
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -509,7 +510,7 @@ private fun ProfileHeader(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            .background(PxColors.SurfaceVariant.copy(alpha = 0.4f))
             .padding(vertical = 32.dp, horizontal = 24.dp)
     ) {
         if (!avatarUrl.isNullOrBlank()) {
@@ -534,7 +535,7 @@ private fun ProfileHeader(
             text = profile?.fullName ?: "—",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = PxColors.OnBackground,
         )
 
         if (!profile?.bio.isNullOrBlank()) {
@@ -542,7 +543,7 @@ private fun ProfileHeader(
             Text(
                 text = profile!!.bio!!,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PxColors.OnSurfaceDim,
             )
         }
 
@@ -552,7 +553,7 @@ private fun ProfileHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.6f))
+                .background(PxColors.Surface.copy(alpha = 0.6f))
                 .padding(vertical = 14.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -569,13 +570,13 @@ private fun StatItem(value: String, label: String) {
         Text(
             text = value,
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-            color = MaterialTheme.colorScheme.onSurface
+            color = PxColors.OnSurface
         )
         Spacer(Modifier.height(2.dp))
         Text(
             text = label,
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+            color = PxColors.OnSurface.copy(alpha = 0.5f)
         )
     }
 }
@@ -654,7 +655,7 @@ fun ThemePickerDialog(
                                 .clip(CircleShape)
                                 .background(themePrimaryColor(key))
                                 .then(
-                                    if (isSelected) Modifier.border(3.dp, MaterialTheme.colorScheme.onSurface, CircleShape)
+                                    if (isSelected) Modifier.border(3.dp, PxColors.OnSurface, CircleShape)
                                     else Modifier
                                 ),
                             contentAlignment = Alignment.Center,
@@ -675,13 +676,13 @@ fun ThemePickerDialog(
                             Text(
                                 text = label,
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurface,
+                                color = PxColors.OnSurface,
                             )
                             if (isPro) {
                                 Text(
                                     text = "Pro theme",
                                     style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.primary,
+                                    color = PxColors.Primary,
                                 )
                             }
                         }
@@ -690,7 +691,7 @@ fun ThemePickerDialog(
                             Icon(
                                 Icons.Outlined.CheckCircle,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
+                                tint = PxColors.Primary,
                                 modifier = Modifier.size(24.dp),
                             )
                         }
@@ -701,7 +702,7 @@ fun ThemePickerDialog(
         confirmButton = {
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) }
         },
-        containerColor = MaterialTheme.colorScheme.surface,
+        containerColor = PxColors.Surface,
         shape = RoundedCornerShape(20.dp),
     )
 }
@@ -738,14 +739,14 @@ fun LanguagePickerDialog(
                             text = label,
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.weight(1f),
-                            color = MaterialTheme.colorScheme.onSurface,
+                            color = PxColors.OnSurface,
                         )
 
                         if (isSelected) {
                             Icon(
                                 Icons.Outlined.CheckCircle,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
+                                tint = PxColors.Primary,
                                 modifier = Modifier.size(24.dp),
                             )
                         }
@@ -756,7 +757,7 @@ fun LanguagePickerDialog(
         confirmButton = {
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) }
         },
-        containerColor = MaterialTheme.colorScheme.surface,
+        containerColor = PxColors.Surface,
         shape = RoundedCornerShape(20.dp),
     )
 }

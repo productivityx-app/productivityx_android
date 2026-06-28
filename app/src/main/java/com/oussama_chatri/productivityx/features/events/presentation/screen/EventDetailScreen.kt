@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import com.oussama_chatri.productivityx.features.events.presentation.event.AddEditEventUiEvent
 import com.oussama_chatri.productivityx.features.events.presentation.viewmodel.AddEditEventViewModel
@@ -83,21 +84,21 @@ fun EventDetailScreen(
     }
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         topBar         = {
             TopAppBar(
                 title = {},
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Outlined.ArrowBack, "Back", tint = Color(0xFFCCCCD8))
+                        Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurface)
                     }
                 },
                 actions = {
                     IconButton(onClick = { onEdit(eventId) }) {
-                        Icon(Icons.Outlined.Edit, "Edit", tint = Color(0xFFCCCCD8))
+                        Icon(Icons.Outlined.Edit, "Edit", tint = PxColors.OnSurface)
                     }
                     IconButton(onClick = { showDeleteDialog = true }) {
-                        Icon(Icons.Outlined.Delete, "Delete", tint = Color(0xFFEF4444))
+                        Icon(Icons.Outlined.Delete, "Delete", tint = PxColors.Error)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
@@ -113,7 +114,7 @@ fun EventDetailScreen(
             // Colored header banner
             val eventColor = runCatching {
                 Color(android.graphics.Color.parseColor(state.color))
-            }.getOrDefault(Color(0xFF6366F1))
+            }.getOrDefault(PxColors.Primary)
 
             Box(
                 modifier         = Modifier
@@ -188,24 +189,24 @@ fun EventDetailScreen(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest    = { showDeleteDialog = false },
-            containerColor      = Color(0xFF1A1A24),
+            containerColor      = PxColors.Surface,
             title               = {
-                Text("Delete event?", color = Color(0xFFEEEEF5), style = MaterialTheme.typography.titleMedium)
+                Text("Delete event?", color = PxColors.OnBackground, style = MaterialTheme.typography.titleMedium)
             },
             text                = {
-                Text("This action cannot be undone.", color = Color(0xFF888899), style = MaterialTheme.typography.bodyMedium)
+                Text("This action cannot be undone.", color = PxColors.OnSurfaceDim, style = MaterialTheme.typography.bodyMedium)
             },
             confirmButton       = {
                 TextButton(onClick = {
                     showDeleteDialog = false
                     viewModel.onEvent(AddEditEventUiEvent.Delete)
                 }) {
-                    Text("Delete", color = Color(0xFFEF4444))
+                    Text("Delete", color = PxColors.Error)
                 }
             },
             dismissButton       = {
                 TextButton(onClick = { showDeleteDialog = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -227,14 +228,14 @@ private fun DetailRow(
         Icon(
             imageVector        = icon,
             contentDescription = null,
-            tint               = Color(0xFF888899),
+            tint               = PxColors.OnSurfaceDim,
             modifier           = Modifier.size(18.dp)
         )
         Spacer(Modifier.width(12.dp))
         Text(
             text  = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFFCCCCD8)
+            color = PxColors.OnSurface
         )
     }
 }

@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
@@ -81,7 +82,7 @@ fun TrashScreen(
 
     Scaffold(
         modifier       = modifier,
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         snackbarHost   = { SnackbarHost(snackbarHost) },
         topBar         = {
             TopAppBar(
@@ -90,16 +91,16 @@ fun TrashScreen(
                         Icon(
                             imageVector        = Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = "Back",
-                            tint               = Color(0xFFCCCCD8)
+                            tint               = PxColors.OnSurface
                         )
                     }
                 },
-                title   = { Text("Trash", style = MaterialTheme.typography.titleLarge, color = Color(0xFFEEEEF5)) },
-                colors  = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14)),
+                title   = { Text("Trash", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
+                colors  = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     if (uiState.notes.isNotEmpty()) {
                         TextButton(onClick = { showEmptyConfirm = true }) {
-                            Text("Empty trash", color = Color(0xFFEF4444), style = MaterialTheme.typography.labelMedium)
+                            Text("Empty trash", color = PxColors.Error, style = MaterialTheme.typography.labelMedium)
                         }
                     }
                 }
@@ -155,7 +156,7 @@ private fun TrashNoteCard(
     Surface(
         modifier       = modifier.fillMaxWidth(),
         shape          = RoundedCornerShape(12.dp),
-        color          = Color(0xFF1A1A24),
+        color          = PxColors.Surface,
         tonalElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
@@ -163,7 +164,7 @@ private fun TrashNoteCard(
                 Text(
                     text     = note.title,
                     style    = MaterialTheme.typography.titleMedium,
-                    color    = Color(0xFFEEEEF5),
+                    color    = PxColors.OnBackground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -174,7 +175,7 @@ private fun TrashNoteCard(
                 Text(
                     text     = note.preview,
                     style    = MaterialTheme.typography.bodySmall,
-                    color    = Color(0xFF888899),
+                    color    = PxColors.OnSurfaceDim,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -188,7 +189,7 @@ private fun TrashNoteCard(
                 Text(
                     text  = "Deleted ${formatter.format(deletedAt)}",
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -205,7 +206,7 @@ private fun TrashNoteCard(
                     Icon(
                         imageVector        = Icons.Outlined.RestoreFromTrash,
                         contentDescription = "Restore",
-                        tint               = Color(0xFF22C55E),
+                        tint               = PxColors.Success,
                         modifier           = Modifier.size(18.dp)
                     )
                 }
@@ -216,7 +217,7 @@ private fun TrashNoteCard(
                     Icon(
                         imageVector        = Icons.Outlined.DeleteForever,
                         contentDescription = "Delete permanently",
-                        tint               = Color(0xFFEF4444),
+                        tint               = PxColors.Error,
                         modifier           = Modifier.size(18.dp)
                     )
                 }
@@ -235,21 +236,21 @@ private fun TrashEmptyState(modifier: Modifier = Modifier) {
         Icon(
             imageVector        = Icons.Outlined.DeleteForever,
             contentDescription = null,
-            tint               = Color(0xFF252533),
+            tint               = PxColors.SurfaceVariant,
             modifier           = Modifier.size(72.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text      = "Trash is empty",
             style     = MaterialTheme.typography.bodyLarge,
-            color     = Color(0xFFCCCCD8),
+            color     = PxColors.OnSurface,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text      = "Deleted notes appear here for 30 days",
             style     = MaterialTheme.typography.bodyMedium,
-            color     = Color(0xFF888899),
+            color     = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center
         )
     }
@@ -263,27 +264,27 @@ private fun EmptyTrashDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor   = Color(0xFF1A1A24),
+        containerColor   = PxColors.Surface,
         title = {
             Text(
                 text  = "Empty trash?",
-                color = Color(0xFFEEEEF5)
+                color = PxColors.OnBackground
             )
         },
         text = {
             Text(
                 text  = "$noteCount ${if (noteCount == 1) "note" else "notes"} will be permanently deleted and cannot be recovered.",
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Empty trash", color = Color(0xFFEF4444))
+                Text("Empty trash", color = PxColors.Error)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = Color(0xFF888899))
+                Text("Cancel", color = PxColors.OnSurfaceDim)
             }
         }
     )

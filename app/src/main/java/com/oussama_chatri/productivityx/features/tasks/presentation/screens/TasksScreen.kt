@@ -39,6 +39,7 @@ import androidx.compose.material.icons.outlined.ViewList
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SwipeToDismissBox
@@ -64,6 +65,7 @@ import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.enums.TaskView
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.components.PxLoadingOverlay
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.KanbanColumnHeader
@@ -96,7 +98,6 @@ fun TasksScreen(
                         message = event.message,
                         actionLabel = event.actionLabel
                     )
-                    // handle snackbar action if provided
                 }
                 else -> Unit
             }
@@ -135,7 +136,6 @@ fun TasksScreen(
                         tasks = uiState.tasks,
                         onTaskClick = onTaskClick,
                         onStatusChange = { id, status ->
-                            // Status chip in kanban column changes status
                         },
                         onAddTask = onAddTask
                     )
@@ -166,7 +166,7 @@ private fun TaskViewToggle(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = {}) {
-            Icon(Icons.Outlined.FilterList, contentDescription = stringResource(R.string.cd_filter), tint = Color(0xFF888899))
+            Icon(Icons.Outlined.FilterList, contentDescription = stringResource(R.string.cd_filter), tint = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         IconButton(onClick = {
             onToggleView(if (viewMode == TaskView.LIST) TaskView.KANBAN else TaskView.LIST)
@@ -174,7 +174,7 @@ private fun TaskViewToggle(
             Icon(
                 imageVector = if (viewMode == TaskView.LIST) Icons.Outlined.ViewKanban else Icons.Outlined.ViewList,
                 contentDescription = if (viewMode == TaskView.LIST) stringResource(R.string.tasks_view_kanban) else stringResource(R.string.tasks_view_list),
-                tint = Color(0xFF6366F1)
+                tint = PxColors.Primary
             )
         }
     }
@@ -195,12 +195,12 @@ private fun TaskTabRow(
         items(TaskTab.entries) { tab ->
             val isActive = tab == activeTab
             val bgColor by animateColorAsState(
-                targetValue = if (isActive) Color(0xFF6366F1) else Color(0xFF252533),
+                targetValue = if (isActive) PxColors.Primary else MaterialTheme.colorScheme.surfaceVariant,
                 animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
                 label = "tabBg"
             )
             val textColor by animateColorAsState(
-                targetValue = if (isActive) Color.White else Color(0xFF888899),
+                targetValue = if (isActive) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
                 animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
                 label = "tabText"
             )
@@ -285,7 +285,7 @@ private fun SwipeableTaskItem(
                 }
                 SwipeToDismissBoxValue.StartToEnd -> {
                     onComplete()
-                    false // don't dismiss — just trigger action
+                    false
                 }
                 SwipeToDismissBoxValue.Settled -> false
             }
@@ -305,8 +305,8 @@ private fun SwipeableTaskItem(
                     .clip(RoundedCornerShape(12.dp))
                     .background(
                         when {
-                            isCompleteSwipe -> Color(0xFF22C55E)
-                            isDeleteSwipe -> Color(0xFFEF4444)
+                            isCompleteSwipe -> PxColors.Success
+                            isDeleteSwipe -> MaterialTheme.colorScheme.error
                             else -> Color.Transparent
                         }
                     )
@@ -329,7 +329,7 @@ private fun SwipeableTaskItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFF1A1A24))
+                .background(MaterialTheme.colorScheme.surface)
         ) {
             TaskListItem(
                 task = task,
@@ -385,7 +385,7 @@ private fun KanbanColumn(
             .width(280.dp)
             .fillMaxHeight()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(MaterialTheme.colorScheme.surface)
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -400,7 +400,7 @@ private fun KanbanColumn(
             ) {
                 Text(
                     stringResource(R.string.kanban_column_empty),
-                    color = Color(0xFF888899),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 13.sp
                 )
             }
@@ -426,8 +426,8 @@ private fun KanbanColumn(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(Icons.Outlined.Add, contentDescription = null, tint = Color(0xFF6366F1), modifier = Modifier.size(16.dp))
-                Text(stringResource(R.string.kanban_add_task), color = Color(0xFF6366F1), fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                Icon(Icons.Outlined.Add, contentDescription = null, tint = PxColors.Primary, modifier = Modifier.size(16.dp))
+                Text(stringResource(R.string.kanban_add_task), color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.Medium)
             }
         }
     }

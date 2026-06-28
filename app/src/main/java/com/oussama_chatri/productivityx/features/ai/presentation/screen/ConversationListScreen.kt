@@ -41,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.DateTimeUtils
 import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
 import com.oussama_chatri.productivityx.features.ai.presentation.event.ConversationListUiEvent
@@ -58,28 +59,28 @@ fun ConversationListScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         text  = "Conversations",
                         style = MaterialTheme.typography.titleLarge,
-                        color = Color(0xFFEEEEF5),
+                        color = PxColors.OnBackground,
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Outlined.ArrowBack, "Back", tint = Color(0xFF888899))
+                        Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurfaceDim)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14)),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick          = onNewConversation,
-                containerColor   = Color(0xFF6366F1),
+                containerColor   = PxColors.Primary,
                 contentColor     = Color.White,
             ) {
                 Icon(Icons.Outlined.Add, "New conversation")
@@ -94,7 +95,7 @@ fun ConversationListScreen(
                 Text(
                     text  = "No conversations yet",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                 )
             }
         } else {
@@ -138,7 +139,7 @@ private fun ConversationItem(
             Box(
                 modifier         = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFF7F1D1D))
+                    .background(PxColors.ErrorVariant)
                     .padding(end = 24.dp),
                 contentAlignment = Alignment.CenterEnd,
             ) {
@@ -149,7 +150,7 @@ private fun ConversationItem(
         Row(
             modifier          = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFF0F0F14))
+                .background(PxColors.Background)
                 .clickable(onClick = onClick)
                 .padding(horizontal = 16.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -158,13 +159,13 @@ private fun ConversationItem(
                 modifier         = Modifier
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(Color(0xFF1A1A24)),
+                    .background(PxColors.Surface),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     imageVector        = Icons.Outlined.AutoAwesome,
                     contentDescription = null,
-                    tint               = Color(0xFF6366F1),
+                    tint               = PxColors.Primary,
                     modifier           = Modifier.size(20.dp),
                 )
             }
@@ -175,7 +176,7 @@ private fun ConversationItem(
                 Text(
                     text     = conversation.title ?: "New conversation",
                     style    = MaterialTheme.typography.bodyMedium,
-                    color    = Color(0xFFEEEEF5),
+                    color    = PxColors.OnBackground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -183,7 +184,7 @@ private fun ConversationItem(
                     Text(
                         text     = conversation.lastMessage,
                         style    = MaterialTheme.typography.bodySmall,
-                        color    = Color(0xFF888899),
+                        color    = PxColors.OnSurfaceDim,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -195,7 +196,7 @@ private fun ConversationItem(
             Text(
                 text  = DateTimeUtils.formatDateShort(conversation.updatedAt),
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
             )
         }
     }

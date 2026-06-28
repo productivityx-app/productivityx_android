@@ -23,6 +23,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -48,6 +49,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.PriorityChip
@@ -73,21 +75,21 @@ fun TaskTrashScreen(
     }
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         "Trash",
-                        color = Color(0xFFEEEEF5),
+                        color = PxColors.OnBackground,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, null, tint = Color(0xFFCCCCD8))
+                        Icon(Icons.Outlined.ArrowBack, null, tint = PxColors.OnSurface)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
@@ -101,7 +103,7 @@ fun TaskTrashScreen(
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = Color(0xFF6366F1))
+                CircularProgressIndicator(color = PxColors.Primary)
             }
 
             uiState.tasks.isEmpty() -> PxEmptyState(
@@ -141,7 +143,7 @@ private fun TrashTaskItem(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.Surface)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -149,7 +151,7 @@ private fun TrashTaskItem(
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = task.title,
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 textDecoration = TextDecoration.LineThrough,
@@ -159,7 +161,7 @@ private fun TrashTaskItem(
             if (task.dueDate != null) {
                 Text(
                     text = "Due ${task.dueDate}",
-                    color = Color(0xFF555566),
+                    color = PxColors.OnSurfaceDim,
                     fontSize = 12.sp
                 )
             }
@@ -171,7 +173,7 @@ private fun TrashTaskItem(
             Icon(
                 Icons.Outlined.Refresh,
                 contentDescription = "Restore",
-                tint = Color(0xFF22C55E),
+                tint = PxColors.Success,
                 modifier = Modifier.size(18.dp)
             )
         }
@@ -180,7 +182,7 @@ private fun TrashTaskItem(
             Icon(
                 Icons.Outlined.DeleteForever,
                 contentDescription = "Delete permanently",
-                tint = Color(0xFFEF4444),
+                tint = PxColors.Error,
                 modifier = Modifier.size(18.dp)
             )
         }
@@ -189,22 +191,22 @@ private fun TrashTaskItem(
     if (showConfirm) {
         AlertDialog(
             onDismissRequest = { showConfirm = false },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.Surface,
             title = {
-                Text("Delete permanently?", color = Color(0xFFEEEEF5), fontWeight = FontWeight.SemiBold)
+                Text("Delete permanently?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
             },
             text = {
-                Text("This task cannot be recovered.", color = Color(0xFF888899))
+                Text("This task cannot be recovered.", color = PxColors.OnSurfaceDim)
             },
             confirmButton = {
                 TextButton(onClick = {
                     showConfirm = false
                     onHardDelete()
-                }) { Text("Delete", color = Color(0xFFEF4444), fontWeight = FontWeight.SemiBold) }
+                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showConfirm = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         )

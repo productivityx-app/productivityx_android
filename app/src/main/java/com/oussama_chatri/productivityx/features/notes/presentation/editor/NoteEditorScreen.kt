@@ -62,6 +62,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownAction
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownToolbar
@@ -109,7 +110,7 @@ fun NoteEditorScreen(
 
     Scaffold(
         modifier       = modifier,
-        containerColor = Color(0xFF0F0F14),
+        containerColor = PxColors.Background,
         snackbarHost   = { SnackbarHost(snackbar) },
         topBar = {
             TopAppBar(
@@ -118,7 +119,7 @@ fun NoteEditorScreen(
                         Icon(
                             Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = "Back",
-                            tint               = Color(0xFFCCCCD8)
+                            tint               = PxColors.OnSurface
                         )
                     }
                 },
@@ -126,27 +127,27 @@ fun NoteEditorScreen(
                     Text(
                         text     = uiState.title.ifBlank { "Untitled" }.take(30),
                         style    = MaterialTheme.typography.titleMedium,
-                        color    = Color(0xFFCCCCD8),
+                        color    = PxColors.OnSurface,
                         maxLines = 1
                     )
                 },
-                colors  = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14)),
+                colors  = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     AnimatedVisibility(visible = uiState.hasUnsavedChanges) {
                         TextButton(onClick = { viewModel.onEvent(NoteEditorUiEvent.Save) }) {
-                            Text("Save", color = Color(0xFF6366F1), fontWeight = FontWeight.SemiBold)
+                            Text("Save", color = PxColors.Primary, fontWeight = FontWeight.SemiBold)
                         }
                     }
                     IconButton(onClick = { viewModel.onEvent(NoteEditorUiEvent.TogglePin) }) {
                         Icon(
                             imageVector        = Icons.Outlined.PushPin,
                             contentDescription = if (uiState.isPinned) "Unpin" else "Pin",
-                            tint               = if (uiState.isPinned) Color(0xFF6366F1) else Color(0xFF888899)
+                            tint               = if (uiState.isPinned) PxColors.Primary else PxColors.OnSurfaceDim
                         )
                     }
                     Box {
                         IconButton(onClick = { showMenu = true }) {
-                            Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = Color(0xFFCCCCD8))
+                            Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = PxColors.OnSurface)
                         }
                         EditorDropdownMenu(
                             expanded  = showMenu,
@@ -184,11 +185,11 @@ fun NoteEditorScreen(
                 value         = uiState.title,
                 onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
                 textStyle     = MaterialTheme.typography.titleLarge.copy(
-                    color      = Color(0xFFEEEEF5),
+                    color      = PxColors.OnBackground,
                     fontSize   = 22.sp,
                     fontWeight = FontWeight.SemiBold
                 ),
-                cursorBrush  = SolidColor(Color(0xFF6366F1)),
+                cursorBrush  = SolidColor(PxColors.Primary),
                 singleLine   = false,
                 maxLines     = 3,
                 decorationBox = { inner ->
@@ -196,7 +197,7 @@ fun NoteEditorScreen(
                         Text(
                             text  = "Untitled",
                             style = MaterialTheme.typography.titleLarge.copy(
-                                color    = Color(0xFF888899),
+                                color    = PxColors.OnSurfaceDim,
                                 fontSize = 22.sp
                             )
                         )
@@ -226,7 +227,7 @@ fun NoteEditorScreen(
             }
 
             Spacer(modifier = Modifier.height(12.dp))
-            HorizontalDivider(color = Color(0xFF252533))
+            HorizontalDivider(color = PxColors.Outline)
             Spacer(modifier = Modifier.height(12.dp))
 
             BasicTextField(
@@ -235,14 +236,14 @@ fun NoteEditorScreen(
                     contentValue = newVal
                     viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
                 },
-                textStyle    = MaterialTheme.typography.bodyLarge.copy(color = Color(0xFFCCCCD8)),
-                cursorBrush  = SolidColor(Color(0xFF6366F1)),
+                textStyle    = MaterialTheme.typography.bodyLarge.copy(color = PxColors.OnSurface),
+                cursorBrush  = SolidColor(PxColors.Primary),
                 decorationBox = { inner ->
                     if (contentValue.text.isEmpty()) {
                         Text(
                             text  = "Start writing...",
                             style = MaterialTheme.typography.bodyLarge,
-                            color = Color(0xFF888899)
+                            color = PxColors.OnSurfaceDim
                         )
                     }
                     inner()
@@ -269,7 +270,6 @@ fun NoteEditorScreen(
                 else            viewModel.onEvent(NoteEditorUiEvent.AddTag(tagId))
             },
             onCreateTag    = { name, color ->
-                // ← previously an empty comment — now fires the real event
                 viewModel.onEvent(NoteEditorUiEvent.CreateTag(name, color))
             }
         )
@@ -291,7 +291,7 @@ private fun AddTagChip(onClick: () -> Unit) {
     Row(
         modifier              = Modifier
             .clip(RoundedCornerShape(50.dp))
-            .background(Color(0xFF252533))
+            .background(PxColors.SurfaceVariant)
             .clickable(onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 4.dp),
         verticalAlignment     = Alignment.CenterVertically,
@@ -300,13 +300,13 @@ private fun AddTagChip(onClick: () -> Unit) {
         Icon(
             imageVector        = Icons.Outlined.Add,
             contentDescription = "Add tag",
-            tint               = Color(0xFF888899),
+            tint               = PxColors.OnSurfaceDim,
             modifier           = Modifier.size(14.dp)
         )
         Text(
             text  = "Add tag",
             style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF888899)
+            color = PxColors.OnSurfaceDim
         )
     }
 }
@@ -320,14 +320,14 @@ private fun EditorDropdownMenu(
     DropdownMenu(
         expanded         = expanded,
         onDismissRequest = onDismiss,
-        containerColor   = Color(0xFF1A1A24)
+        containerColor   = PxColors.Surface
     ) {
         DropdownMenuItem(
             text    = {
                 Text(
                     "Move to trash",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFEF4444)
+                    color = PxColors.Error
                 )
             },
             onClick = onDelete
@@ -339,22 +339,22 @@ private fun EditorDropdownMenu(
 private fun DeleteNoteDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor   = Color(0xFF1A1A24),
-        title  = { Text("Move to trash?", color = Color(0xFFEEEEF5)) },
+        containerColor   = PxColors.Surface,
+        title  = { Text("Move to trash?", color = PxColors.OnBackground) },
         text   = {
             Text(
                 "This note will be moved to trash. You can restore it within 30 days.",
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Move to trash", color = Color(0xFFEF4444))
+                Text("Move to trash", color = PxColors.Error)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = Color(0xFF888899))
+                Text("Cancel", color = PxColors.OnSurfaceDim)
             }
         }
     )

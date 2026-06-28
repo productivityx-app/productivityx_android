@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResult
 import com.oussama_chatri.productivityx.features.search.domain.model.SearchResultType
 
@@ -35,20 +36,20 @@ fun SearchScreen(
     val state by viewModel.uiState.collectAsState()
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.search_title), color = Color(0xFFEEEEF5)) },
+                title = { Text(stringResource(R.string.search_title), color = MaterialTheme.colorScheme.onBackground) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = stringResource(R.string.cd_back),
-                            tint = Color(0xFFCCCCD8)
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0F0F14))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background)
             )
         }
     ) { innerPadding ->
@@ -62,26 +63,26 @@ fun SearchScreen(
                 value = state.query,
                 onValueChange = viewModel::onQueryChanged,
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(stringResource(R.string.search_hint), color = Color(0xFF888899)) },
+                placeholder = { Text(stringResource(R.string.search_hint), color = MaterialTheme.colorScheme.onSurfaceVariant) },
                 leadingIcon = {
-                    Icon(Icons.Outlined.Search, contentDescription = null, tint = Color(0xFF888899))
+                    Icon(Icons.Outlined.Search, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 },
                 trailingIcon = {
                     if (state.query.isNotEmpty()) {
                         IconButton(onClick = { viewModel.onQueryChanged("") }) {
-                            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.cd_clear_input), tint = Color(0xFF888899))
+                            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.cd_clear_input), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 },
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color(0xFFEEEEF5),
-                    unfocusedTextColor = Color(0xFFEEEEF5),
-                    cursorColor = Color(0xFF6366F1),
-                    focusedBorderColor = Color(0xFF6366F1),
-                    unfocusedBorderColor = Color(0xFF252533),
-                    focusedContainerColor = Color(0xFF1A1A22),
-                    unfocusedContainerColor = Color(0xFF1A1A22)
+                    focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+                    cursorColor = PxColors.Primary,
+                    focusedBorderColor = PxColors.Primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.surfaceVariant,
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface
                 )
             )
 
@@ -90,12 +91,12 @@ fun SearchScreen(
             when {
                 state.isLoading -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = Color(0xFF6366F1))
+                        CircularProgressIndicator(color = PxColors.Primary)
                     }
                 }
                 state.error != null && state.results.isEmpty() -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(state.error!!, color = Color(0xFF888899))
+                        Text(state.error!!, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
                 state.query.isNotEmpty() && state.results.isEmpty() && !state.isLoading -> {
@@ -104,11 +105,11 @@ fun SearchScreen(
                             Icon(
                                 Icons.Outlined.SearchOff,
                                 contentDescription = null,
-                                tint = Color(0xFF888899),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(48.dp)
                             )
                             Spacer(Modifier.height(8.dp))
-                            Text(stringResource(R.string.search_empty_title, state.query), color = Color(0xFF888899))
+                            Text(stringResource(R.string.search_empty_title, state.query), color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }
@@ -127,7 +128,7 @@ fun SearchScreen(
                     }
                     val typeColor = { type: SearchResultType ->
                         when (type) {
-                            SearchResultType.NOTE -> Color(0xFF6366F1)
+                            SearchResultType.NOTE -> PxColors.Primary
                             SearchResultType.TASK -> Color(0xFF10B981)
                             SearchResultType.EVENT -> Color(0xFFF59E0B)
                         }
@@ -168,7 +169,7 @@ private fun SearchResultItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A22)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         shape = MaterialTheme.shapes.medium
     ) {
         Row(
@@ -186,7 +187,7 @@ private fun SearchResultItem(
                 Text(
                     text = result.title,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = Color(0xFFEEEEF5),
+                    color = MaterialTheme.colorScheme.onBackground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -195,7 +196,7 @@ private fun SearchResultItem(
                     Text(
                         text = result.snippet,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFF888899),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )

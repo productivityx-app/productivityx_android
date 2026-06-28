@@ -32,6 +32,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -58,6 +59,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.PriorityChip
@@ -92,7 +94,7 @@ fun TaskDetailScreen(
     }
 
     Scaffold(
-        containerColor = Color(0xFF0F0F14),
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -101,7 +103,7 @@ fun TaskDetailScreen(
                         text = uiState.task?.title?.take(30)?.plus(
                             if ((uiState.task?.title?.length ?: 0) > 30) "…" else ""
                         ) ?: "Task",
-                        color = Color(0xFFEEEEF5),
+                        color = MaterialTheme.colorScheme.onBackground,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 1
@@ -109,21 +111,21 @@ fun TaskDetailScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, null, tint = Color(0xFFCCCCD8))
+                        Icon(Icons.Outlined.ArrowBack, null, tint = MaterialTheme.colorScheme.onSurface)
                     }
                 },
                 actions = {
                     uiState.task?.let { task ->
                         if (!task.isDeleted) {
                             IconButton(onClick = { onEditTask(task.id) }) {
-                                Icon(Icons.Outlined.Edit, null, tint = Color(0xFF6366F1))
+                                Icon(Icons.Outlined.Edit, null, tint = PxColors.Primary)
                             }
                             IconButton(onClick = { showDeleteConfirm = true }) {
-                                Icon(Icons.Outlined.Delete, null, tint = Color(0xFF888899))
+                                Icon(Icons.Outlined.Delete, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         } else {
                             IconButton(onClick = { viewModel.onEvent(TaskDetailEvent.RestoreTask) }) {
-                                Icon(Icons.Outlined.Refresh, null, tint = Color(0xFF22C55E))
+                                Icon(Icons.Outlined.Refresh, null, tint = PxColors.Success)
                             }
                         }
                     }
@@ -137,7 +139,7 @@ fun TaskDetailScreen(
                 Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = Color(0xFF6366F1))
+                CircularProgressIndicator(color = PxColors.Primary)
             }
 
             uiState.error != null -> PxEmptyState(
@@ -162,18 +164,18 @@ fun TaskDetailScreen(
     if (showDeleteConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
-            containerColor = Color(0xFF1A1A24),
-            title = { Text("Delete task?", color = Color(0xFFEEEEF5), fontWeight = FontWeight.SemiBold) },
-            text = { Text("This task will be moved to trash.", color = Color(0xFF888899)) },
+            containerColor = MaterialTheme.colorScheme.surface,
+            title = { Text("Delete task?", color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight.SemiBold) },
+            text = { Text("This task will be moved to trash.", color = MaterialTheme.colorScheme.onSurfaceVariant) },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteConfirm = false
                     viewModel.onEvent(TaskDetailEvent.DeleteTask)
-                }) { Text("Delete", color = Color(0xFFEF4444), fontWeight = FontWeight.SemiBold) }
+                }) { Text("Delete", color = MaterialTheme.colorScheme.error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         )
@@ -198,7 +200,7 @@ private fun TaskDetailContent(
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(
                 text = task.title,
-                color = if (task.status == TaskStatus.DONE) Color(0xFF888899) else Color(0xFFEEEEF5),
+                color = if (task.status == TaskStatus.DONE) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onBackground,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 textDecoration = if (task.status == TaskStatus.DONE) TextDecoration.LineThrough else TextDecoration.None
@@ -235,7 +237,7 @@ private fun TaskDetailContent(
             DetailCard {
                 Text(
                     text = task.description,
-                    color = Color(0xFFCCCCD8),
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 15.sp,
                     lineHeight = 22.sp
                 )
@@ -250,7 +252,7 @@ private fun TaskDetailContent(
                         icon = Icons.Outlined.CalendarMonth,
                         label = "Due date",
                         value = task.dueDate.toString(),
-                        valueColor = if (task.isOverdue) Color(0xFFEF4444) else Color(0xFFCCCCD8)
+                        valueColor = if (task.isOverdue) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
                     )
                 }
                 if (task.dueTime != null) {
@@ -283,7 +285,7 @@ private fun TaskDetailContent(
                         icon = Icons.Outlined.CheckCircle,
                         label = "Completed",
                         value = task.completedAt.toString().take(10),
-                        valueColor = Color(0xFF22C55E)
+                        valueColor = PxColors.Success
                     )
                 }
             }
@@ -301,13 +303,13 @@ private fun TaskDetailContent(
                     ) {
                         Text(
                             "Subtasks",
-                            color = Color(0xFFCCCCD8),
+                            color = MaterialTheme.colorScheme.onSurface,
                             fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
                             "${task.completedSubtaskCount}/${task.subtaskCount}",
-                            color = Color(0xFF888899),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 13.sp
                         )
                     }
@@ -331,7 +333,7 @@ private fun DetailCard(content: @Composable () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(MaterialTheme.colorScheme.surface)
     ) {
         content()
     }
@@ -342,7 +344,7 @@ private fun DetailRow(
     icon: ImageVector,
     label: String,
     value: String,
-    valueColor: Color = Color(0xFFCCCCD8)
+    valueColor: Color = MaterialTheme.colorScheme.onSurface
 ) {
     Row(
         modifier = Modifier
@@ -351,8 +353,8 @@ private fun DetailRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Icon(icon, null, tint = Color(0xFF888899), modifier = Modifier.size(18.dp))
-        Text(label, color = Color(0xFF888899), fontSize = 14.sp, modifier = Modifier.width(80.dp))
+        Icon(icon, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
+        Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp, modifier = Modifier.width(80.dp))
         Text(value, color = valueColor, fontSize = 14.sp, fontWeight = FontWeight.Medium)
     }
 }
@@ -362,12 +364,12 @@ private fun OverdueBadge() {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(50.dp))
-            .background(Color(0xFFEF4444).copy(alpha = 0.15f))
+            .background(MaterialTheme.colorScheme.error.copy(alpha = 0.15f))
             .padding(horizontal = 8.dp, vertical = 3.dp)
     ) {
         Text(
             "Overdue",
-            color = Color(0xFFEF4444),
+            color = MaterialTheme.colorScheme.error,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold
         )
