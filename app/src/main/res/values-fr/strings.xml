@@ -845,6 +845,7 @@
     <string name="cd_sync_status">Statut de synchronisation : %1$s</string>
     <string name="cd_password_toggle">Afficher/masquer le mot de passe</string>
     <string name="cd_clear_input">Effacer la saisie</string>
+    <string name="cd_remove_subtask">Supprimer la sous-tâche</string>
     <string name="cd_notification">Notification</string>
 
     <!-- ═══════════════════════════════════════════ -->

@@ -38,12 +38,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
@@ -141,6 +145,8 @@ fun TaskCheckbox(
         label = "checkboxColor"
     )
 
+    val checkboxDescription = if (checked) stringResource(R.string.cd_uncheck_task) else stringResource(R.string.cd_check_task)
+
     Box(
         modifier = modifier
             .size(24.dp)
@@ -151,7 +157,10 @@ fun TaskCheckbox(
                 shape = RoundedCornerShape(6.dp)
             )
             .background(checkboxColor)
-            .clickable(onClick = onClick),
+            .clickable(onClick = onClick)
+            .semantics {
+                contentDescription = checkboxDescription
+            },
         contentAlignment = Alignment.Center
     ) {
         if (checked) {

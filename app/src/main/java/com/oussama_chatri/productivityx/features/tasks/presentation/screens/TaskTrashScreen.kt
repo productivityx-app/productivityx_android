@@ -46,8 +46,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
@@ -89,7 +91,7 @@ fun TaskTrashScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, null, tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)

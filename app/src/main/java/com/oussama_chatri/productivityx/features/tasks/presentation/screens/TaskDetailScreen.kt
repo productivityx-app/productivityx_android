@@ -51,12 +51,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
@@ -111,21 +113,21 @@ fun TaskDetailScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, null, tint = MaterialTheme.colorScheme.onSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = MaterialTheme.colorScheme.onSurface)
                     }
                 },
                 actions = {
                     uiState.task?.let { task ->
                         if (!task.isDeleted) {
                             IconButton(onClick = { onEditTask(task.id) }) {
-                                Icon(Icons.Outlined.Edit, null, tint = PxColors.Primary)
+                                Icon(Icons.Outlined.Edit, stringResource(R.string.cd_edit), tint = PxColors.Primary)
                             }
                             IconButton(onClick = { showDeleteConfirm = true }) {
-                                Icon(Icons.Outlined.Delete, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Icon(Icons.Outlined.Delete, stringResource(R.string.cd_delete), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         } else {
                             IconButton(onClick = { viewModel.onEvent(TaskDetailEvent.RestoreTask) }) {
-                                Icon(Icons.Outlined.Refresh, null, tint = PxColors.Success)
+                                Icon(Icons.Outlined.Refresh, stringResource(R.string.cd_restore), tint = PxColors.Success)
                             }
                         }
                     }

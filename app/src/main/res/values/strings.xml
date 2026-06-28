@@ -854,6 +854,7 @@
     <string name="cd_sync_status">Sync status: %1$s</string>
     <string name="cd_password_toggle">Toggle password visibility</string>
     <string name="cd_clear_input">Clear input</string>
+    <string name="cd_remove_subtask">Remove subtask</string>
     <string name="cd_notification">Notification</string>
 
     <!-- ═══════════════════════════════════════════ -->

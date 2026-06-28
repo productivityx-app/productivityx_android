@@ -845,6 +845,7 @@
     <string name="cd_sync_status">حالة المزامنة: %1$s</string>
     <string name="cd_password_toggle">تبديل إظهار كلمة المرور</string>
     <string name="cd_clear_input">مسح الإدخال</string>
+    <string name="cd_remove_subtask">إزالة المهمة الفرعية</string>
     <string name="cd_notification">إشعار</string>
 
     <!-- ═══════════════════════════════════════════ -->

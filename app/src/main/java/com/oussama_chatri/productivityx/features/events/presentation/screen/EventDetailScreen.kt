@@ -45,9 +45,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import com.oussama_chatri.productivityx.features.events.presentation.event.AddEditEventUiEvent
@@ -90,15 +92,15 @@ fun EventDetailScreen(
                 title = {},
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
                 actions = {
                     IconButton(onClick = { onEdit(eventId) }) {
-                        Icon(Icons.Outlined.Edit, "Edit", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.Edit, stringResource(R.string.cd_edit), tint = PxColors.OnSurface)
                     }
                     IconButton(onClick = { showDeleteDialog = true }) {
-                        Icon(Icons.Outlined.Delete, "Delete", tint = PxColors.Error)
+                        Icon(Icons.Outlined.Delete, stringResource(R.string.cd_delete), tint = PxColors.Error)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)

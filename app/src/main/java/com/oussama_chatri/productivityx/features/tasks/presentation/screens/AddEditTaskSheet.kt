@@ -74,8 +74,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
@@ -290,7 +292,7 @@ private fun AddEditTaskContent(
                             onClick = { onEvent(AddEditTaskEvent.DueDateChanged(null)) },
                             modifier = Modifier.size(20.dp)
                         ) {
-                            Icon(Icons.Outlined.Close, null, tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
+                            Icon(Icons.Outlined.Close, stringResource(R.string.cd_clear_input), tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
                         }
                     }
                 }
@@ -571,7 +573,7 @@ private fun SubtaskSection(
                     onClick = { onRemoveSubtask(subtask.id) },
                     modifier = Modifier.size(28.dp)
                 ) {
-                    Icon(Icons.Outlined.Close, null, tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
+                    Icon(Icons.Outlined.Close, stringResource(R.string.cd_remove_subtask), tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
                 }
             }
         }
@@ -613,7 +615,7 @@ private fun SubtaskSection(
             ) {
                 Icon(
                     Icons.Outlined.Add,
-                    null,
+                    stringResource(R.string.cd_add),
                     tint = if (newSubtaskTitle.isNotBlank()) Color(0xFF6366F1) else Color(0xFF888899),
                     modifier = Modifier.size(18.dp)
                 )
