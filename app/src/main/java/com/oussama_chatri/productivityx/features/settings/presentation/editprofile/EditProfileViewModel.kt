@@ -1,14 +1,14 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.editprofile
+package com.oussama_chatri.productivityx.features.settings.presentation.editprofile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetProfileUseCase
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.UpdateAvatarUseCase
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.UpdateProfileUseCase
-import com.oussama_chatri.productivityx.features.profile.presentation.editprofile.event.EditProfileUiEvent
-import com.oussama_chatri.productivityx.features.profile.presentation.editprofile.state.EditProfileUiState
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetProfileUseCase
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.UpdateAvatarUseCase
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.UpdateProfileUseCase
+import com.oussama_chatri.productivityx.features.settings.presentation.editprofile.event.EditProfileUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.editprofile.state.EditProfileUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

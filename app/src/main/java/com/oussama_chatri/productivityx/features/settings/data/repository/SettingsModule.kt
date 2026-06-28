@@ -1,11 +1,11 @@
-package com.oussama_chatri.productivityx.features.profile.di
+package com.oussama_chatri.productivityx.features.settings.di
 
-import com.oussama_chatri.productivityx.features.profile.data.remote.api.PreferencesApi
-import com.oussama_chatri.productivityx.features.profile.data.remote.api.ProfileApi
-import com.oussama_chatri.productivityx.features.profile.data.repository.PreferencesRepositoryImpl
-import com.oussama_chatri.productivityx.features.profile.data.repository.ProfileRepositoryImpl
-import com.oussama_chatri.productivityx.features.profile.domain.repository.PreferencesRepository
-import com.oussama_chatri.productivityx.features.profile.domain.repository.ProfileRepository
+import com.oussama_chatri.productivityx.features.settings.data.remote.api.PreferencesApi
+import com.oussama_chatri.productivityx.features.settings.data.remote.api.ProfileApi
+import com.oussama_chatri.productivityx.features.settings.data.repository.PreferencesRepositoryImpl
+import com.oussama_chatri.productivityx.features.settings.data.repository.ProfileRepositoryImpl
+import com.oussama_chatri.productivityx.features.settings.domain.repository.PreferencesRepository
+import com.oussama_chatri.productivityx.features.settings.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

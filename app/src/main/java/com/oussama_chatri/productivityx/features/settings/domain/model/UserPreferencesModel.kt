@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.domain.model
+package com.oussama_chatri.productivityx.features.settings.domain.model
 
 data class UserPreferencesModel(
     val id: String,
@@ -27,5 +27,6 @@ data class UserPreferencesModel(
     val aiModel: String,
     // Display
     val compactMode: Boolean,
+    val appTheme: String = "DARK",
     val updatedAt: String?
 )

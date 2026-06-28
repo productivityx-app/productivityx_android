@@ -1,5 +1,13 @@
 package com.oussama_chatri.productivityx.core.ui.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -16,7 +24,14 @@ import com.oussama_chatri.productivityx.features.auth.presentation.screen.Verify
 fun NavGraphBuilder.authNavGraph(navController: NavController) {
     navigation<AuthGraph>(startDestination = AuthRoute.Splash) {
 
-        composable<AuthRoute.Splash> {
+        composable<AuthRoute.Splash>(
+            enterTransition = {
+                scaleIn(tween(400, delayMillis = 200), initialScale = 2f) + fadeIn(tween(400))
+            },
+            exitTransition = {
+                scaleOut(tween(200), targetScale = 0.5f) + fadeOut(tween(200))
+            },
+        ) {
             SplashScreen(
                 onNavigateToOnboarding = {
                     navController.navigateAndClearBackStack(AuthRoute.Onboarding)
@@ -30,7 +45,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.Onboarding> {
+        composable<AuthRoute.Onboarding>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(300)) { -it / 3 } + fadeOut(tween(300))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(300)) { -it / 3 } + fadeIn(tween(300))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) {
             OnboardingScreen(
                 onGetStarted = {
                     navController.navigateAndClearBackStack(AuthRoute.Login)
@@ -38,7 +66,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.Login> {
+        composable<AuthRoute.Login>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) {
             LoginScreen(
                 onNavigateToRegister = {
                     navController.safeNavigate(AuthRoute.Register)
@@ -55,7 +96,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.Register> {
+        composable<AuthRoute.Register>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) {
             RegisterScreen(
                 onNavigateToLogin = {
                     navController.popBackStack()
@@ -66,7 +120,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.VerifyEmail> { backStackEntry ->
+        composable<AuthRoute.VerifyEmail>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) { backStackEntry ->
             val route = backStackEntry.toRoute<AuthRoute.VerifyEmail>()
             VerifyEmailScreen(
                 email = route.email,
@@ -79,7 +146,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.ForgotPassword> {
+        composable<AuthRoute.ForgotPassword>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) {
             ForgotPasswordScreen(
                 onNavigateBack = {
                     navController.popBackStack()
@@ -90,7 +170,20 @@ fun NavGraphBuilder.authNavGraph(navController: NavController) {
             )
         }
 
-        composable<AuthRoute.ResetPassword> { backStackEntry ->
+        composable<AuthRoute.ResetPassword>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) + fadeOut(tween(300))
+            },
+        ) { backStackEntry ->
             val route = backStackEntry.toRoute<AuthRoute.ResetPassword>()
             ResetPasswordScreen(
                 token = route.token,

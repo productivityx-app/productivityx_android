@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.editprofile.event
+package com.oussama_chatri.productivityx.features.settings.presentation.editprofile.event
 
 sealed class EditProfileUiEvent {
     data class FirstNameChanged(val value: String) : EditProfileUiEvent()

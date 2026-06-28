@@ -1,7 +1,7 @@
-package com.oussama_chatri.productivityx.features.profile.domain.repository
+package com.oussama_chatri.productivityx.features.settings.domain.repository
 
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
 
 interface ProfileRepository {
     suspend fun getProfile(): Resource<ProfileModel>

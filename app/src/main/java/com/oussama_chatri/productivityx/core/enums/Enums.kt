@@ -23,6 +23,7 @@ enum class AppTheme {
     FOREST,
     ROSE,
     MIDNIGHT,
+    DYNAMIC,
 }
 
 val proThemes = listOf(AppTheme.OCEAN, AppTheme.AMBER, AppTheme.FOREST, AppTheme.ROSE, AppTheme.MIDNIGHT)

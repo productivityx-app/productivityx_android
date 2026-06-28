@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.changepassword.event
+package com.oussama_chatri.productivityx.features.settings.presentation.changepassword.event
 
 sealed class ChangePasswordUiEvent {
     data class CurrentPasswordChanged(val value: String) : ChangePasswordUiEvent()

@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.editprofile.state
+package com.oussama_chatri.productivityx.features.settings.presentation.editprofile.state
 
 data class EditProfileUiState(
     val isLoading: Boolean = false,

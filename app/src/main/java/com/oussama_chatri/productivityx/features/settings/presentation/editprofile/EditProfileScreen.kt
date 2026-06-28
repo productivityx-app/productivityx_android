@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.editprofile
+package com.oussama_chatri.productivityx.features.settings.presentation.editprofile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,10 +50,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import com.oussama_chatri.productivityx.features.profile.presentation.components.AvatarInitials
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SelectionChipRow
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionHeader
-import com.oussama_chatri.productivityx.features.profile.presentation.editprofile.event.EditProfileUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.components.AvatarInitials
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SelectionChipRow
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
+import com.oussama_chatri.productivityx.features.settings.presentation.editprofile.event.EditProfileUiEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

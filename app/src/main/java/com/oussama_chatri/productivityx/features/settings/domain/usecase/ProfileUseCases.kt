@@ -1,8 +1,8 @@
-package com.oussama_chatri.productivityx.features.profile.domain.usecase
+package com.oussama_chatri.productivityx.features.settings.domain.usecase
 
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
-import com.oussama_chatri.productivityx.features.profile.domain.repository.ProfileRepository
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.repository.ProfileRepository
 import javax.inject.Inject
 
 class GetProfileUseCase @Inject constructor(

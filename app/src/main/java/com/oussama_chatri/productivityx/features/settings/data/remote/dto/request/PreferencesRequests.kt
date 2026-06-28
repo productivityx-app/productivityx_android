@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.data.remote.dto.request
+package com.oussama_chatri.productivityx.features.settings.data.remote.dto.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -23,5 +23,6 @@ data class UpdatePreferencesRequest(
     @SerialName("weekStartsOn") val weekStartsOn: String? = null,
     @SerialName("aiContextEnabled") val aiContextEnabled: Boolean? = null,
     @SerialName("aiModel") val aiModel: String? = null,
-    @SerialName("compactMode") val compactMode: Boolean? = null
+    @SerialName("compactMode") val compactMode: Boolean? = null,
+    @SerialName("appTheme") val appTheme: String? = null
 )

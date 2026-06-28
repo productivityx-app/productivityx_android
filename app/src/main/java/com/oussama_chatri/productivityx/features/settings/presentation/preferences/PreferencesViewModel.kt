@@ -1,14 +1,14 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.preferences
+package com.oussama_chatri.productivityx.features.settings.presentation.preferences
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.repository.UpdatePreferencesParams
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetPreferencesUseCase
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.UpdatePreferencesUseCase
-import com.oussama_chatri.productivityx.features.profile.presentation.preferences.event.PreferencesUiEvent
-import com.oussama_chatri.productivityx.features.profile.presentation.preferences.state.PreferencesUiState
+import com.oussama_chatri.productivityx.features.settings.domain.repository.UpdatePreferencesParams
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetPreferencesUseCase
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.UpdatePreferencesUseCase
+import com.oussama_chatri.productivityx.features.settings.presentation.preferences.event.PreferencesUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.preferences.state.PreferencesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -76,6 +76,8 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(aiModel = event.value) }
             is PreferencesUiEvent.CompactModeChanged ->
                 mutate { it.copy(compactMode = event.value) }
+            is PreferencesUiEvent.AppThemeChanged ->
+                mutate { it.copy(appTheme = event.value) }
             is PreferencesUiEvent.LocalOnlyModeChanged -> {
                 _uiState.update { it.copy(localOnlyMode = event.value) }
                 viewModelScope.launch { prefs.setLocalOnlyMode(event.value) }
@@ -128,7 +130,8 @@ class PreferencesViewModel @Inject constructor(
                             weekStartsOn = d.weekStartsOn,
                             aiContextEnabled = d.aiContextEnabled,
                             aiModel = d.aiModel,
-                            compactMode = d.compactMode
+                            compactMode = d.compactMode,
+                            appTheme = d.appTheme
                         )
                     }
                 }
@@ -164,7 +167,8 @@ class PreferencesViewModel @Inject constructor(
                 weekStartsOn = s.weekStartsOn,
                 aiContextEnabled = s.aiContextEnabled,
                 aiModel = s.aiModel,
-                compactMode = s.compactMode
+                compactMode = s.compactMode,
+                appTheme = s.appTheme
             )
         )
 

@@ -1,11 +1,11 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.changepassword
+package com.oussama_chatri.productivityx.features.settings.presentation.changepassword
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.auth.domain.usecase.ChangePasswordUseCase
-import com.oussama_chatri.productivityx.features.profile.presentation.changepassword.event.ChangePasswordUiEvent
-import com.oussama_chatri.productivityx.features.profile.presentation.changepassword.state.ChangePasswordUiState
+import com.oussama_chatri.productivityx.features.settings.presentation.changepassword.event.ChangePasswordUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.changepassword.state.ChangePasswordUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.preferences.state
+package com.oussama_chatri.productivityx.features.settings.presentation.preferences.state
 
 data class PreferencesUiState(
     val isLoading: Boolean = false,
@@ -29,6 +29,7 @@ data class PreferencesUiState(
     val aiModel: String = "gemini-2.0-flash",
     // Display
     val compactMode: Boolean = false,
+    val appTheme: String = "DARK",
     // Privacy
     val localOnlyMode: Boolean = true
 )

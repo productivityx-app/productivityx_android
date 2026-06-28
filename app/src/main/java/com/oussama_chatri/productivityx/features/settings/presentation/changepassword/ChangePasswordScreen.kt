@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.changepassword
+package com.oussama_chatri.productivityx.features.settings.presentation.changepassword
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -43,9 +43,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussama_chatri.productivityx.features.profile.presentation.changepassword.event.ChangePasswordUiEvent
-import com.oussama_chatri.productivityx.features.profile.presentation.components.PasswordStrengthIndicator
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionHeader
+import com.oussama_chatri.productivityx.features.settings.presentation.changepassword.event.ChangePasswordUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.components.PasswordStrengthIndicator
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

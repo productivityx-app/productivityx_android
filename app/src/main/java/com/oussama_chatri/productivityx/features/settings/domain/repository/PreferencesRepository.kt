@@ -1,7 +1,7 @@
-package com.oussama_chatri.productivityx.features.profile.domain.repository
+package com.oussama_chatri.productivityx.features.settings.domain.repository
 
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.model.UserPreferencesModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.UserPreferencesModel
 
 interface PreferencesRepository {
     suspend fun getPreferences(): Resource<UserPreferencesModel>
@@ -27,5 +27,6 @@ data class UpdatePreferencesParams(
     val weekStartsOn: String? = null,
     val aiContextEnabled: Boolean? = null,
     val aiModel: String? = null,
-    val compactMode: Boolean? = null
+    val compactMode: Boolean? = null,
+    val appTheme: String? = null
 )

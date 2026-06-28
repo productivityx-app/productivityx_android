@@ -3,10 +3,10 @@ package com.oussama_chatri.productivityx.core.ui.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.oussama_chatri.productivityx.features.profile.presentation.changepassword.ChangePasswordScreen
-import com.oussama_chatri.productivityx.features.profile.presentation.editprofile.EditProfileScreen
-import com.oussama_chatri.productivityx.features.profile.presentation.profile.ProfileScreen
+import com.oussama_chatri.productivityx.features.settings.presentation.changepassword.ChangePasswordScreen
+import com.oussama_chatri.productivityx.features.settings.presentation.editprofile.EditProfileScreen
 import com.oussama_chatri.productivityx.features.settings.presentation.preferences.PreferencesScreen
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.ProfileScreen
 
 fun NavGraphBuilder.settingsNavGraph(
     navController: NavController,

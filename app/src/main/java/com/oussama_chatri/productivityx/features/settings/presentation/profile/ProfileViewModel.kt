@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.profile
+package com.oussama_chatri.productivityx.features.settings.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,10 +6,10 @@ import com.oussama_chatri.productivityx.core.data.DataExportImportManager
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.auth.domain.usecase.LogoutUseCase
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetPreferencesUseCase
-import com.oussama_chatri.productivityx.features.profile.domain.usecase.GetProfileUseCase
-import com.oussama_chatri.productivityx.features.profile.presentation.profile.event.ProfileUiEvent
-import com.oussama_chatri.productivityx.features.profile.presentation.profile.state.ProfileUiState
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetPreferencesUseCase
+import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetProfileUseCase
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.event.ProfileUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.ProfileUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel

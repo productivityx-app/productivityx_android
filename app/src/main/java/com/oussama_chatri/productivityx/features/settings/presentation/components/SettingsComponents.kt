@@ -1,10 +1,11 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.components
+package com.oussama_chatri.productivityx.features.settings.presentation.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
@@ -274,6 +276,86 @@ fun AvatarInitials(
             ),
             color = Color.White
         )
+    }
+}
+
+@Composable
+fun ThemeSelector(
+    currentTheme: String,
+    onThemeSelected: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    data class ThemeOption(val key: String, val label: String, val primary: Color, val surface: Color)
+
+    val themes = listOf(
+        ThemeOption("DARK", "Dark", Color(0xFF6366F1), Color(0xFF1A1A24)),
+        ThemeOption("LIGHT", "Light", Color(0xFF4F46E5), Color(0xFFFFFFFF)),
+        ThemeOption("SYSTEM", "System", Color(0xFF6366F1), Color(0xFF1A1A24)),
+        ThemeOption("OCEAN", "Ocean", Color(0xFF06B6D4), Color(0xFF0C1A26)),
+        ThemeOption("AMBER", "Amber", Color(0xFFF59E0B), Color(0xFF1A1400)),
+        ThemeOption("FOREST", "Forest", Color(0xFF22C55E), Color(0xFF0D1A10)),
+        ThemeOption("ROSE", "Rose", Color(0xFFF43F5E), Color(0xFF1C0A10)),
+        ThemeOption("MIDNIGHT", "Midnight", Color(0xFF6366F1), Color(0xFF10101F)),
+        ThemeOption("DYNAMIC", "Dynamic", Color(0xFF6366F1), Color(0xFF1A1A24)),
+    )
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        themes.forEach { theme ->
+            val isSelected = theme.key == currentTheme
+            val borderColor by animateColorAsState(
+                targetValue = if (isSelected) theme.primary else Color.Transparent,
+                animationSpec = spring(),
+                label = "themeBorder",
+            )
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable { onThemeSelected(theme.key) }
+                    .border(
+                        width = 2.dp,
+                        color = borderColor,
+                        shape = RoundedCornerShape(12.dp),
+                    )
+                    .padding(8.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(theme.surface)
+                        .border(1.dp, theme.primary.copy(alpha = 0.3f), RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(16.dp)
+                            .clip(CircleShape)
+                            .background(theme.primary),
+                    )
+                }
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = theme.label,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = if (isSelected) MaterialTheme.colorScheme.primary
+                    else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                )
+                if (theme.key == "DYNAMIC") {
+                    Text(
+                        text = "Android 12+",
+                        style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
+                    )
+                }
+            }
+        }
     }
 }
 

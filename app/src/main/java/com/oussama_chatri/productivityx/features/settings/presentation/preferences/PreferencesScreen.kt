@@ -49,14 +49,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussama_chatri.productivityx.features.profile.presentation.components.MinuteStepper
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SelectionChipRow
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingRow
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingRowSwitch
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionCard
-import com.oussama_chatri.productivityx.features.profile.presentation.components.SettingsSectionHeader
-import com.oussama_chatri.productivityx.features.profile.presentation.preferences.PreferencesViewModel
-import com.oussama_chatri.productivityx.features.profile.presentation.preferences.event.PreferencesUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.components.MinuteStepper
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SelectionChipRow
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingRow
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingRowSwitch
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionCard
+import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
+import com.oussama_chatri.productivityx.features.settings.presentation.preferences.PreferencesViewModel
+import com.oussama_chatri.productivityx.features.settings.presentation.preferences.event.PreferencesUiEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

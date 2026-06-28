@@ -1,9 +1,9 @@
-package com.oussama_chatri.productivityx.features.profile.data.remote.api
+package com.oussama_chatri.productivityx.features.settings.data.remote.api
 
 import com.oussama_chatri.productivityx.core.network.ApiResponse
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.request.UpdateAvatarRequest
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.request.UpdateProfileRequest
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.response.ProfileResponseDto
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.request.UpdateAvatarRequest
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.request.UpdateProfileRequest
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.response.ProfileResponseDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

@@ -242,6 +242,7 @@ fun SearchScreen(
 // ─── Recent searches ──────────────────────────────────────────────────────────
 
 @Composable
+@OptIn(ExperimentalLayoutApi::class)
 private fun RecentSearchesSection(
     searches: List<String>,
     onSearch: (String) -> Unit,

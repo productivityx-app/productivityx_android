@@ -1,12 +1,12 @@
-package com.oussama_chatri.productivityx.features.profile.data.repository
+package com.oussama_chatri.productivityx.features.settings.data.repository
 
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.data.remote.api.PreferencesApi
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.request.UpdatePreferencesRequest
-import com.oussama_chatri.productivityx.features.profile.domain.model.UserPreferencesModel
-import com.oussama_chatri.productivityx.features.profile.domain.repository.PreferencesRepository
-import com.oussama_chatri.productivityx.features.profile.domain.repository.UpdatePreferencesParams
+import com.oussama_chatri.productivityx.features.settings.data.remote.api.PreferencesApi
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.request.UpdatePreferencesRequest
+import com.oussama_chatri.productivityx.features.settings.domain.model.UserPreferencesModel
+import com.oussama_chatri.productivityx.features.settings.domain.repository.PreferencesRepository
+import com.oussama_chatri.productivityx.features.settings.domain.repository.UpdatePreferencesParams
 import javax.inject.Inject
 
 class PreferencesRepositoryImpl @Inject constructor(
@@ -42,7 +42,8 @@ class PreferencesRepositoryImpl @Inject constructor(
                 weekStartsOn = request.weekStartsOn,
                 aiContextEnabled = request.aiContextEnabled,
                 aiModel = request.aiModel,
-                compactMode = request.compactMode
+                compactMode = request.compactMode,
+                appTheme = request.appTheme
             )
         )
         response.body()?.data?.toDomain()

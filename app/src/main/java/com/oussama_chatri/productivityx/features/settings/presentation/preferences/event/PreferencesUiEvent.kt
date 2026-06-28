@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.preferences.event
+package com.oussama_chatri.productivityx.features.settings.presentation.preferences.event
 
 sealed class PreferencesUiEvent {
     // Pomodoro
@@ -25,6 +25,7 @@ sealed class PreferencesUiEvent {
     data class AiModelChanged(val value: String) : PreferencesUiEvent()
     // Display
     data class CompactModeChanged(val value: Boolean) : PreferencesUiEvent()
+    data class AppThemeChanged(val value: String) : PreferencesUiEvent()
     // Privacy
     data class LocalOnlyModeChanged(val value: Boolean) : PreferencesUiEvent()
     // Actions

@@ -1,12 +1,12 @@
-package com.oussama_chatri.productivityx.features.profile.data.repository
+package com.oussama_chatri.productivityx.features.settings.data.repository
 
 import com.oussama_chatri.productivityx.core.network.safeApiCall
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.data.remote.api.ProfileApi
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.request.UpdateAvatarRequest
-import com.oussama_chatri.productivityx.features.profile.data.remote.dto.request.UpdateProfileRequest
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
-import com.oussama_chatri.productivityx.features.profile.domain.repository.ProfileRepository
+import com.oussama_chatri.productivityx.features.settings.data.remote.api.ProfileApi
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.request.UpdateAvatarRequest
+import com.oussama_chatri.productivityx.features.settings.data.remote.dto.request.UpdateProfileRequest
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.repository.ProfileRepository
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(

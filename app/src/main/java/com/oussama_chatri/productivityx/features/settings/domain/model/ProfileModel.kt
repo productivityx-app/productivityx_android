@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.domain.model
+package com.oussama_chatri.productivityx.features.settings.domain.model
 
 data class ProfileModel(
     val id: String,

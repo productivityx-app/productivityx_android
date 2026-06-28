@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.profile.event
+package com.oussama_chatri.productivityx.features.settings.presentation.profile.event
 
 sealed class ProfileUiEvent {
     data object LoadData : ProfileUiEvent()

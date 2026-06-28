@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.changepassword.state
+package com.oussama_chatri.productivityx.features.settings.presentation.changepassword.state
 
 data class ChangePasswordUiState(
     val currentPassword: String = "",

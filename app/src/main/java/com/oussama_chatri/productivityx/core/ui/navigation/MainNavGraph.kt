@@ -1,5 +1,15 @@
 package com.oussama_chatri.productivityx.core.ui.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,8 +56,10 @@ import com.oussama_chatri.productivityx.features.events.presentation.navigation.
 import com.oussama_chatri.productivityx.features.home.presentation.HomeScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.NotesRoute
 import com.oussama_chatri.productivityx.features.search.navigation.searchNavGraph
+import com.oussama_chatri.productivityx.features.events.presentation.screen.EventDetailScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.editor.NoteEditorScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.list.NotesScreen
+import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskDetailScreen
 import com.oussama_chatri.productivityx.features.notes.presentation.trash.TrashScreen
 import com.oussama_chatri.productivityx.features.pomodoro.navigation.PomodoroRoute
 import com.oussama_chatri.productivityx.features.pomodoro.navigation.pomodoroNavGraph
@@ -72,32 +84,118 @@ private val tabConfigs = mapOf(
 fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
     navigation<MainGraph>(startDestination = MainRoute.Home) {
 
-        composable<MainRoute.Home> {
+        composable<MainRoute.Home>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             HomeTab(rootNavController)
         }
 
-        composable<MainRoute.Notes> {
+        composable<MainRoute.Notes>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             NotesTab(rootNavController)
         }
 
-        composable<MainRoute.Tasks> {
+        composable<MainRoute.Tasks>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             TasksTab(rootNavController)
         }
 
-        composable<MainRoute.Pomodoro> {
+        composable<MainRoute.Pomodoro>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             PomodoroTab(rootNavController)
         }
 
-        composable<MainRoute.Calendar> {
+        composable<MainRoute.Calendar>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             CalendarTab(rootNavController)
         }
 
-        composable<MainRoute.Ai> {
+        composable<MainRoute.Ai>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             AiTab(rootNavController)
         }
 
-        composable<MainRoute.Profile> {
+        composable<MainRoute.Profile>(
+            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
+            exitTransition = { fadeOut(tween(200)) },
+        ) {
             ProfileTab(rootNavController)
+        }
+
+        composable<Routes.NoteEditor>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) { it / 4 } + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) { it / 4 } + fadeOut(tween(300))
+            },
+        ) { entry ->
+            val route = entry.toRoute<Routes.NoteEditor>()
+            NoteEditorScreen(
+                noteId         = route.noteId,
+                onNavigateBack = { rootNavController.popBackStack() },
+            )
+        }
+
+        composable<Routes.TaskDetail>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) { it / 4 } + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) { it / 4 } + fadeOut(tween(300))
+            },
+        ) { entry ->
+            val route = entry.toRoute<Routes.TaskDetail>()
+            TaskDetailScreen(
+                taskId         = route.taskId,
+                onNavigateBack = { rootNavController.popBackStack() },
+                onEditTask     = { rootNavController.popBackStack() },
+            )
+        }
+
+        composable<Routes.EventDetail>(
+            enterTransition = {
+                slideInHorizontally(tween(300)) { it / 4 } + fadeIn(tween(300))
+            },
+            exitTransition = {
+                slideOutHorizontally(tween(250)) { -it / 3 } + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideInHorizontally(tween(250)) { -it / 3 } + fadeIn(tween(250))
+            },
+            popExitTransition = {
+                slideOutHorizontally(tween(300)) { it / 4 } + fadeOut(tween(300))
+            },
+        ) { entry ->
+            val route = entry.toRoute<Routes.EventDetail>()
+            EventDetailScreen(
+                eventId = route.eventId,
+                onBack  = { rootNavController.popBackStack() },
+                onEdit  = { rootNavController.popBackStack() },
+            )
         }
 
         searchNavGraph(rootNavController)
@@ -296,7 +394,10 @@ private fun NotesTab(rootNavController: NavHostController) {
             startDestination = NotesRoute.NotesList,
             modifier         = modifier,
         ) {
-            composable<NotesRoute.NotesList> {
+            composable<NotesRoute.NotesList>(
+                enterTransition = { fadeIn(tween(200)) },
+                popExitTransition = { fadeOut(tween(200)) },
+            ) {
                 NotesScreen(
                     onNavigateToEditor = { noteId ->
                         notesNavController.navigate(NotesRoute.NoteEditor(noteId))
@@ -310,7 +411,14 @@ private fun NotesTab(rootNavController: NavHostController) {
                 )
             }
 
-            composable<NotesRoute.NoteEditor> { entry ->
+            composable<NotesRoute.NoteEditor>(
+                enterTransition = {
+                    slideInHorizontally(tween(300)) { it / 4 } + fadeIn(tween(300))
+                },
+                popExitTransition = {
+                    slideOutHorizontally(tween(300)) { it / 4 } + fadeOut(tween(300))
+                },
+            ) { entry ->
                 val route = entry.toRoute<NotesRoute.NoteEditor>()
                 NoteEditorScreen(
                     noteId         = route.noteId,
@@ -318,7 +426,14 @@ private fun NotesTab(rootNavController: NavHostController) {
                 )
             }
 
-            composable<NotesRoute.Trash> {
+            composable<NotesRoute.Trash>(
+                enterTransition = {
+                    slideInVertically(tween(250)) { it } + fadeIn(tween(250))
+                },
+                popExitTransition = {
+                    slideOutVertically(tween(250)) { it } + fadeOut(tween(250))
+                },
+            ) {
                 TrashScreen(
                     onNavigateBack = { notesNavController.navigateUp() },
                 )

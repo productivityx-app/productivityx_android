@@ -1,7 +1,7 @@
-package com.oussama_chatri.productivityx.features.profile.data.remote.dto.response
+package com.oussama_chatri.productivityx.features.settings.data.remote.dto.response
 
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
-import com.oussama_chatri.productivityx.features.profile.domain.model.UserPreferencesModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.UserPreferencesModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -57,6 +57,7 @@ data class UserPreferencesResponseDto(
     @SerialName("aiContextEnabled") val aiContextEnabled: Boolean,
     @SerialName("aiModel") val aiModel: String,
     @SerialName("compactMode") val compactMode: Boolean,
+    @SerialName("appTheme") val appTheme: String = "DARK",
     @SerialName("updatedAt") val updatedAt: String? = null
 ) {
     fun toDomain() = UserPreferencesModel(
@@ -81,6 +82,7 @@ data class UserPreferencesResponseDto(
         aiContextEnabled = aiContextEnabled,
         aiModel = aiModel,
         compactMode = compactMode,
+        appTheme = appTheme,
         updatedAt = updatedAt
     )
 }

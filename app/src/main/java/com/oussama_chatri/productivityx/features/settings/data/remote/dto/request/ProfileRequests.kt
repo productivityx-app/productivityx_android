@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivityx.features.profile.data.remote.dto.request
+package com.oussama_chatri.productivityx.features.settings.data.remote.dto.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

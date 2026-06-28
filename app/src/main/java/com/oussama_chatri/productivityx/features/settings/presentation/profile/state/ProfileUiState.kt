@@ -1,7 +1,7 @@
-package com.oussama_chatri.productivityx.features.profile.presentation.profile.state
+package com.oussama_chatri.productivityx.features.settings.presentation.profile.state
 
-import com.oussama_chatri.productivityx.features.profile.domain.model.ProfileModel
-import com.oussama_chatri.productivityx.features.profile.domain.model.UserPreferencesModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.ProfileModel
+import com.oussama_chatri.productivityx.features.settings.domain.model.UserPreferencesModel
 
 data class ProfileUiState(
     val isLoading: Boolean = false,

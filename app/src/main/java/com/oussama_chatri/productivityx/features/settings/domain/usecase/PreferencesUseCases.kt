@@ -1,9 +1,9 @@
-package com.oussama_chatri.productivityx.features.profile.domain.usecase
+package com.oussama_chatri.productivityx.features.settings.domain.usecase
 
 import com.oussama_chatri.productivityx.core.util.Resource
-import com.oussama_chatri.productivityx.features.profile.domain.model.UserPreferencesModel
-import com.oussama_chatri.productivityx.features.profile.domain.repository.PreferencesRepository
-import com.oussama_chatri.productivityx.features.profile.domain.repository.UpdatePreferencesParams
+import com.oussama_chatri.productivityx.features.settings.domain.model.UserPreferencesModel
+import com.oussama_chatri.productivityx.features.settings.domain.repository.PreferencesRepository
+import com.oussama_chatri.productivityx.features.settings.domain.repository.UpdatePreferencesParams
 import javax.inject.Inject
 
 class GetPreferencesUseCase @Inject constructor(
