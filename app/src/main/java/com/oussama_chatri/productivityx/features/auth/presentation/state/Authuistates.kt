@@ -56,7 +56,8 @@ data class RegisterUiState(
 
     // Loading / result
     val isLoading: Boolean = false,
-    val generalError: String? = null
+    val generalError: String? = null,
+    val isRegistrationComplete: Boolean = false,
 )
 
 // Verify email screen (standalone deep-link path)

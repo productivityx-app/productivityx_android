@@ -183,8 +183,7 @@ class RegisterViewModel @Inject constructor(
             try {
                 when (val result = verifyOtpUseCase(state.pendingEmail, state.otp)) {
                     is com.oussama_chatri.productivityx.features.auth.domain.model.AuthResult.Success -> {
-                        _uiState.update { it.copy(isLoading = false) }
-                        _events.send(UiEvent.Navigate(com.oussama_chatri.productivityx.core.ui.navigation.MainRoute.Home))
+                        _uiState.update { it.copy(isLoading = false, isRegistrationComplete = true) }
                     }
                     is com.oussama_chatri.productivityx.features.auth.domain.model.AuthResult.Error -> _uiState.update {
                         it.copy(isLoading = false, generalError = result.message)

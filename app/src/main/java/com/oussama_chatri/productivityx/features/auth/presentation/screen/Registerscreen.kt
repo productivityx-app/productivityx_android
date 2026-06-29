@@ -2,12 +2,25 @@ package com.oussama_chatri.productivityx.features.auth.presentation.screen
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,21 +30,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.CameraAlt
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.PhotoLibrary
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +67,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -55,6 +79,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.OtpInputField
@@ -72,6 +97,8 @@ import com.oussama_chatri.productivityx.features.auth.presentation.viewmodel.Reg
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Composable
 fun RegisterScreen(
@@ -94,45 +121,148 @@ fun RegisterScreen(
         viewModel.onEvent(RegisterUiEvent.PrevStep)
     }
 
-    RegisterContent(
-        uiState = uiState,
-        onEvent = viewModel::onEvent,
-        onNavigateToLogin = onNavigateToLogin
-    )
+    if (uiState.isRegistrationComplete) {
+        RegistrationCelebration(onContinue = onRegisterSuccess)
+    } else {
+        RegisterContent(
+            uiState = uiState,
+            onEvent = viewModel::onEvent,
+            onNavigateToLogin = onNavigateToLogin,
+        )
+    }
 }
+
+@Composable
+private fun RegistrationCelebration(onContinue: () -> Unit) {
+    val scaleAnim = remember { Animatable(0f) }
+    val confettiParticles = remember { (0 until 20).map { ConfettiParticle() } }
+
+    LaunchedEffect(Unit) {
+        scaleAnim.animateTo(1f, animationSpec = spring(dampingRatio = 0.5f, stiffness = 200f))
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(PxColors.Background),
+        contentAlignment = Alignment.Center,
+    ) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            confettiParticles.forEach { particle ->
+                val x = size.width * particle.x
+                val y = size.height * (particle.y + particle.drift)
+                val path = Path().apply {
+                    moveTo(x, y)
+                    lineTo(x + 8.dp.toPx(), y + 8.dp.toPx())
+                    lineTo(x - 4.dp.toPx(), y + 12.dp.toPx())
+                    close()
+                }
+                drawPath(
+                    path = path,
+                    color = particle.color.copy(alpha = particle.alpha),
+                )
+            }
+        }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.scale(scaleAnim.value),
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape)
+                    .background(
+                        Brush.radialGradient(
+                            colors = listOf(PxColors.Success, PxColors.Success.copy(alpha = 0.5f)),
+                        ),
+                    ),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    text = "\u2713",
+                    fontSize = 36.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "Welcome aboard!",
+                style = MaterialTheme.typography.headlineMedium,
+                color = PxColors.OnBackground,
+                fontWeight = FontWeight.Bold,
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Your account has been created successfully",
+                style = MaterialTheme.typography.bodyLarge,
+                color = PxColors.OnSurfaceDim,
+                textAlign = TextAlign.Center,
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            PxButton(
+                text = "Continue",
+                onClick = onContinue,
+                modifier = Modifier.fillMaxWidth(0.7f),
+            )
+        }
+    }
+}
+
+private data class ConfettiParticle(
+    val x: Float = (0..100).random() / 100f,
+    val y: Float = (0..100).random() / 100f,
+    val drift: Float = (0..50).random() / 100f,
+    val alpha: Float = 0.5f + (0..50).random() / 100f,
+    val color: Color = listOf(
+        PxColors.Primary,
+        PxColors.Secondary,
+        PxColors.Success,
+        PxColors.Warning,
+        Color(0xFFF43F5E),
+        Color(0xFF06B6D4),
+    ).random(),
+)
 
 @Composable
 private fun RegisterContent(
     uiState: RegisterUiState,
     onEvent: (RegisterUiEvent) -> Unit,
-    onNavigateToLogin: () -> Unit
+    onNavigateToLogin: () -> Unit,
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(PxColors.Background)
             .statusBarsPadding()
-            .imePadding()
+            .imePadding(),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 if (uiState.currentStep > 0) {
                     IconButton(onClick = { onEvent(RegisterUiEvent.PrevStep) }) {
                         Icon(
                             imageVector = Icons.Outlined.ArrowBack,
                             contentDescription = stringResource(R.string.cd_back),
-                            tint = PxColors.OnBackground
+                            tint = PxColors.OnBackground,
                         )
                     }
                 } else {
@@ -140,11 +270,17 @@ private fun RegisterContent(
                 }
 
                 Text(
-                    text = stringResource(R.string.auth_create_your_account),
+                    text = when (uiState.currentStep) {
+                        0 -> "Create Account"
+                        1 -> "Your Profile"
+                        2 -> "Preferences"
+                        3 -> "Verify Email"
+                        else -> ""
+                    },
                     style = MaterialTheme.typography.titleLarge,
                     color = PxColors.OnBackground,
                     modifier = Modifier.weight(1f),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
 
                 Spacer(modifier = Modifier.size(48.dp))
@@ -156,7 +292,7 @@ private fun RegisterContent(
                 StepIndicator(
                     totalSteps = 3,
                     currentStep = uiState.currentStep,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 Spacer(modifier = Modifier.height(24.dp))
             }
@@ -165,14 +301,22 @@ private fun RegisterContent(
                 targetState = uiState.currentStep,
                 transitionSpec = {
                     if (targetState > initialState) {
-                        (slideInHorizontally { it } + fadeIn()) togetherWith
-                                (slideOutHorizontally { -it } + fadeOut())
+                        (slideInHorizontally(
+                            animationSpec = spring(dampingRatio = 0.7f, stiffness = 200f),
+                        ) { it } + fadeIn(spring())) togetherWith
+                                (slideOutHorizontally(
+                                    animationSpec = tween(200),
+                                ) { -it / 3 } + fadeOut(tween(200)))
                     } else {
-                        (slideInHorizontally { -it } + fadeIn()) togetherWith
-                                (slideOutHorizontally { it } + fadeOut())
+                        (slideInHorizontally(
+                            animationSpec = spring(dampingRatio = 0.7f, stiffness = 200f),
+                        ) { -it } + fadeIn(spring())) togetherWith
+                                (slideOutHorizontally(
+                                    animationSpec = tween(200),
+                                ) { it / 3 } + fadeOut(tween(200)))
                     }
                 },
-                label = "registerStep"
+                label = "registerStep",
             ) { step ->
                 Column(
                     modifier = Modifier
@@ -180,7 +324,7 @@ private fun RegisterContent(
                         .clip(RoundedCornerShape(16.dp))
                         .background(PxColors.Surface)
                         .padding(20.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     when (step) {
                         0 -> Step0Account(uiState, onEvent)
@@ -189,11 +333,21 @@ private fun RegisterContent(
                         3 -> Step3VerifyOtp(uiState, onEvent)
                     }
 
-                    if (uiState.generalError != null) {
+                    // Error display
+                    AnimatedVisibility(
+                        visible = uiState.generalError != null,
+                        enter = fadeIn(tween(200)) + scaleIn(tween(200)),
+                        exit = fadeOut(tween(200)) + scaleOut(tween(200)),
+                    ) {
                         Text(
-                            text = uiState.generalError,
+                            text = uiState.generalError ?: "",
                             style = MaterialTheme.typography.bodySmall,
-                            color = PxColors.Error
+                            color = PxColors.Error,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(PxColors.Error.copy(alpha = 0.1f))
+                                .padding(12.dp),
                         )
                     }
 
@@ -203,7 +357,7 @@ private fun RegisterContent(
                             else stringResource(R.string.next),
                             onClick = { onEvent(RegisterUiEvent.NextStep) },
                             isLoading = uiState.isLoading,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
                 }
@@ -214,19 +368,19 @@ private fun RegisterContent(
             if (uiState.currentStep == 0) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    horizontalArrangement = Arrangement.Center,
                 ) {
                     Text(
                         text = stringResource(R.string.auth_already_have_account),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = PxColors.OnSurfaceDim
+                        color = PxColors.OnSurfaceDim,
                     )
                     TextButton(onClick = onNavigateToLogin) {
                         Text(
                             text = stringResource(R.string.auth_sign_in),
                             style = MaterialTheme.typography.bodyMedium,
                             color = PxColors.Primary,
-                            fontWeight = FontWeight.SemiBold
+                            fontWeight = FontWeight.SemiBold,
                         )
                     }
                 }
@@ -248,7 +402,7 @@ private fun Step0Account(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         isError = uiState.emailError != null,
         errorMessage = uiState.emailError,
         keyboardType = KeyboardType.Email,
-        imeAction = ImeAction.Next
+        imeAction = ImeAction.Next,
     )
 
     PxTextField(
@@ -262,7 +416,7 @@ private fun Step0Account(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         onPasswordToggle = { onEvent(RegisterUiEvent.TogglePasswordVisibility) },
         isError = uiState.passwordError != null,
         errorMessage = uiState.passwordError,
-        imeAction = ImeAction.Next
+        imeAction = ImeAction.Next,
     )
 
     PasswordStrengthIndicator(password = uiState.password)
@@ -278,7 +432,7 @@ private fun Step0Account(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         onPasswordToggle = { onEvent(RegisterUiEvent.ToggleConfirmPasswordVisibility) },
         isError = uiState.confirmPasswordError != null,
         errorMessage = uiState.confirmPasswordError,
-        imeAction = ImeAction.Done
+        imeAction = ImeAction.Done,
     )
 }
 
@@ -289,6 +443,51 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
     val datePickerState = rememberDatePickerState()
     val dateFormatter = remember { DateTimeFormatter.ofPattern("yyyy-MM-dd") }
 
+    // Profile photo picker
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Box(
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape)
+                .background(
+                    Brush.linearGradient(
+                        colors = listOf(PxColors.Primary, PxColors.Secondary),
+                    ),
+                )
+                .clickable { /* open photo picker */ },
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    imageVector = Icons.Outlined.CameraAlt,
+                    contentDescription = "Add photo",
+                    tint = Color.White,
+                    modifier = Modifier.size(24.dp),
+                )
+                Text(
+                    text = "Photo",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color.White,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "Tap to add profile photo",
+            style = MaterialTheme.typography.bodySmall,
+            color = PxColors.OnSurfaceDim,
+        )
+    }
+
+    Spacer(modifier = Modifier.height(8.dp))
+    HorizontalDivider(color = PxColors.Outline.copy(alpha = 0.2f))
+    Spacer(modifier = Modifier.height(8.dp))
+
     PxTextField(
         value = uiState.firstName,
         onValueChange = { onEvent(RegisterUiEvent.FirstNameChanged(it)) },
@@ -297,7 +496,7 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         leadingIcon = Icons.Outlined.Person,
         isError = uiState.firstNameError != null,
         errorMessage = uiState.firstNameError,
-        imeAction = ImeAction.Next
+        imeAction = ImeAction.Next,
     )
 
     PxTextField(
@@ -308,10 +507,9 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         leadingIcon = Icons.Outlined.Person,
         isError = uiState.lastNameError != null,
         errorMessage = uiState.lastNameError,
-        imeAction = ImeAction.Next
+        imeAction = ImeAction.Next,
     )
 
-    // Birth date — tapping opens the date picker, read-only text field
     PxTextField(
         value = uiState.birthDate,
         onValueChange = {},
@@ -322,7 +520,7 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         errorMessage = uiState.birthDateError,
         readOnly = true,
         trailingIcon = Icons.Outlined.CalendarMonth,
-        onTrailingIconClick = { showDatePicker = true }
+        onTrailingIconClick = { showDatePicker = true },
     )
 
     PxTextField(
@@ -331,7 +529,7 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         label = "${stringResource(R.string.field_username)} (${stringResource(R.string.optional)})",
         placeholder = stringResource(R.string.field_username_hint),
         leadingIcon = Icons.Outlined.Person,
-        imeAction = ImeAction.Next
+        imeAction = ImeAction.Next,
     )
 
     PxTextField(
@@ -341,7 +539,7 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         placeholder = stringResource(R.string.field_phone_hint),
         leadingIcon = Icons.Outlined.Person,
         keyboardType = KeyboardType.Phone,
-        imeAction = ImeAction.Done
+        imeAction = ImeAction.Done,
     )
 
     if (showDatePicker) {
@@ -360,22 +558,19 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
                             if (formatted != null) onEvent(RegisterUiEvent.BirthDateChanged(formatted))
                         }
                         showDatePicker = false
-                    }
+                    },
                 ) {
-                    Text(
-                        text = stringResource(R.string.ok),
-                        color = PxColors.Primary
-                    )
+                    Text(text = stringResource(R.string.ok), color = PxColors.Primary)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = PxColors.OnSurfaceDim
+                        color = PxColors.OnSurfaceDim,
                     )
                 }
-            }
+            },
         ) {
             DatePicker(state = datePickerState)
         }
@@ -387,7 +582,7 @@ private fun Step2Preferences(uiState: RegisterUiState, onEvent: (RegisterUiEvent
     Text(
         text = stringResource(R.string.profile_theme),
         style = MaterialTheme.typography.titleMedium,
-        color = PxColors.OnBackground
+        color = PxColors.OnBackground,
     )
 
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -397,7 +592,7 @@ private fun Step2Preferences(uiState: RegisterUiState, onEvent: (RegisterUiEvent
                 text = theme.lowercase().replaceFirstChar { it.uppercase() },
                 onClick = { onEvent(RegisterUiEvent.ThemeSelected(theme)) },
                 modifier = Modifier.weight(1f),
-                variant = if (isSelected) PxButtonVariant.Primary else PxButtonVariant.Outlined
+                variant = if (isSelected) PxButtonVariant.Primary else PxButtonVariant.Outlined,
             )
         }
     }
@@ -405,7 +600,7 @@ private fun Step2Preferences(uiState: RegisterUiState, onEvent: (RegisterUiEvent
     Text(
         text = stringResource(R.string.profile_theme_hint),
         style = MaterialTheme.typography.bodySmall,
-        color = PxColors.OnSurfaceDim
+        color = PxColors.OnSurfaceDim,
     )
 }
 
@@ -414,45 +609,53 @@ private fun Step3VerifyOtp(uiState: RegisterUiState, onEvent: (RegisterUiEvent) 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        Icon(
-            imageVector = Icons.Outlined.Email,
-            contentDescription = null,
-            modifier = Modifier.size(56.dp),
-            tint = PxColors.Primary
-        )
+        Box(
+            modifier = Modifier
+                .size(64.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(PxColors.Primary.copy(alpha = 0.12f)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Email,
+                contentDescription = null,
+                modifier = Modifier.size(32.dp),
+                tint = PxColors.Primary,
+            )
+        }
 
         Text(
             text = stringResource(R.string.auth_verify_email_title),
             style = MaterialTheme.typography.titleLarge,
             color = PxColors.OnBackground,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         Text(
             text = stringResource(R.string.auth_verify_email_body, uiState.pendingEmail),
             style = MaterialTheme.typography.bodyMedium,
             color = PxColors.OnSurfaceDim,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         OtpInputField(
             value = uiState.otp,
-            onValueChange = { onEvent(RegisterUiEvent.OtpChanged(it)) }
+            onValueChange = { onEvent(RegisterUiEvent.OtpChanged(it)) },
         )
 
         PxButton(
             text = stringResource(R.string.auth_verify),
             onClick = { onEvent(RegisterUiEvent.VerifyOtp) },
             isLoading = uiState.isLoading,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         val cooldown = uiState.resendCooldownSeconds
         TextButton(
             onClick = { onEvent(RegisterUiEvent.ResendOtp) },
-            enabled = cooldown == 0 && !uiState.isResending
+            enabled = cooldown == 0 && !uiState.isResending,
         ) {
             Text(
                 text = if (cooldown > 0)
@@ -460,7 +663,7 @@ private fun Step3VerifyOtp(uiState: RegisterUiState, onEvent: (RegisterUiEvent) 
                 else
                     stringResource(R.string.auth_resend_code),
                 color = if (cooldown > 0) PxColors.OnSurfaceDim else PxColors.Primary,
-                style = MaterialTheme.typography.labelMedium
+                style = MaterialTheme.typography.labelMedium,
             )
         }
     }
@@ -473,7 +676,7 @@ private fun RegisterScreenPreview() {
         RegisterContent(
             uiState = RegisterUiState(),
             onEvent = {},
-            onNavigateToLogin = {}
+            onNavigateToLogin = {},
         )
     }
 }
