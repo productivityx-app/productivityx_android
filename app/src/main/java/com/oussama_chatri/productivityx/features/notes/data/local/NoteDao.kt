@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import androidx.paging.PagingSource
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import kotlinx.coroutines.flow.Flow
 
@@ -49,12 +50,29 @@ interface NoteDao {
 
     @Transaction
     @Query("""
+        SELECT * FROM notes
+        WHERE userId = :userId AND isDeleted = 0
+        ORDER BY isPinned DESC, updatedAt DESC
+    """)
+    fun getPagedActiveNotes(userId: String): PagingSource<Int, NoteWithTags>
+
+    @Transaction
+    @Query("""
         SELECT n.* FROM notes n
         INNER JOIN note_tags nt ON n.id = nt.noteId
         WHERE n.userId = :userId AND n.isDeleted = 0 AND nt.tagId = :tagId
         ORDER BY n.isPinned DESC, n.updatedAt DESC
     """)
     fun observeNotesByTag(userId: String, tagId: String): Flow<List<NoteWithTags>>
+
+    @Transaction
+    @Query("""
+        SELECT n.* FROM notes n
+        INNER JOIN note_tags nt ON n.id = nt.noteId
+        WHERE n.userId = :userId AND n.isDeleted = 0 AND nt.tagId = :tagId
+        ORDER BY n.isPinned DESC, n.updatedAt DESC
+    """)
+    fun getPagedNotesByTag(userId: String, tagId: String): PagingSource<Int, NoteWithTags>
 
     @Transaction
     @Query("""
@@ -67,6 +85,15 @@ interface NoteDao {
 
     @Transaction
     @Query("""
+        SELECT n.* FROM notes n
+        INNER JOIN note_tags nt ON n.id = nt.noteId
+        WHERE n.userId = :userId AND n.isDeleted = 0 AND nt.tagId IN (:tagIds)
+        ORDER BY n.isPinned DESC, n.updatedAt DESC
+    """)
+    fun getPagedNotesByTags(userId: String, tagIds: List<String>): PagingSource<Int, NoteWithTags>
+
+    @Transaction
+    @Query("""
         SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 0 AND isPinned = 1
         ORDER BY updatedAt DESC
@@ -76,10 +103,26 @@ interface NoteDao {
     @Transaction
     @Query("""
         SELECT * FROM notes
+        WHERE userId = :userId AND isDeleted = 0 AND isPinned = 1
+        ORDER BY updatedAt DESC
+    """)
+    fun getPagedPinnedNotes(userId: String): PagingSource<Int, NoteWithTags>
+
+    @Transaction
+    @Query("""
+        SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 0 AND folderId = :folderId
         ORDER BY isPinned DESC, updatedAt DESC
     """)
     fun observeNotesByFolder(userId: String, folderId: String): Flow<List<NoteWithTags>>
+
+    @Transaction
+    @Query("""
+        SELECT * FROM notes
+        WHERE userId = :userId AND isDeleted = 0 AND folderId = :folderId
+        ORDER BY isPinned DESC, updatedAt DESC
+    """)
+    fun getPagedNotesByFolder(userId: String, folderId: String): PagingSource<Int, NoteWithTags>
 
     @Transaction
     @Query("""

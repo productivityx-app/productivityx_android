@@ -20,6 +20,10 @@ import com.oussama_chatri.productivityx.features.tasks.data.remote.api.TaskApi
 import com.oussama_chatri.productivityx.features.tasks.data.remote.dto.TaskRequestDto
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.domain.repository.TaskRepository
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -56,6 +60,30 @@ class TaskRepositoryImpl @Inject constructor(
             entities.map { entity ->
                 // Eagerly load subtasks for each top-level task
                 val subtaskEntities = taskDao.getSubtasksByParentId(entity.id)
+                entity.toDomain(subtaskEntities.map { it.toDomain() })
+            }
+        }
+    }
+
+    override fun getPagedTasks(status: TaskStatus?, priority: Priority?): Flow<PagingData<Task>> {
+        val userId = runCatching {
+            kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" }
+        }.getOrDefault("")
+
+        return Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = true),
+            pagingSourceFactory = {
+                when {
+                    status != null -> taskDao.getPagedTopLevelTasksByStatus(userId, status)
+                    priority != null -> taskDao.getPagedTopLevelTasksByPriority(userId, priority)
+                    else -> taskDao.getPagedTopLevelTasks(userId)
+                }
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { entity ->
+                // Note: This might be slightly inefficient if paging source doesn't handle suspend properly
+                // But Room PagingSource handles it well. Subtasks are loaded here.
+                val subtaskEntities = kotlinx.coroutines.runBlocking { taskDao.getSubtasksByParentId(entity.id) }
                 entity.toDomain(subtaskEntities.map { it.toDomain() })
             }
         }

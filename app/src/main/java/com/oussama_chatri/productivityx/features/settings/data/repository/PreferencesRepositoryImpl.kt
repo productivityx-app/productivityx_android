@@ -43,7 +43,8 @@ class PreferencesRepositoryImpl @Inject constructor(
                 aiContextEnabled = request.aiContextEnabled,
                 aiModel = request.aiModel,
                 compactMode = request.compactMode,
-                appTheme = request.appTheme
+                appTheme = request.appTheme,
+                language = request.language
             )
         )
         response.body()?.data?.toDomain()

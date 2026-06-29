@@ -36,7 +36,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,9 +70,13 @@ fun TasksWidget(
     onSeeAll: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val completedCount = tasks.count { it.status.name == "DONE" }
-    val totalCount = tasks.size
-    val progress = if (totalCount > 0) completedCount.toFloat() / totalCount else 0f
+    val progress by remember(tasks) {
+        derivedStateOf {
+            val completedCount = tasks.count { it.status.name == "DONE" }
+            val totalCount = tasks.size
+            if (totalCount > 0) completedCount.toFloat() / totalCount else 0f
+        }
+    }
 
     WidgetCard(
         title = "Today's Tasks",
@@ -94,7 +100,10 @@ fun TasksWidget(
             WidgetEmptyState("No tasks due today")
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                tasks.take(if (isExpanded) Int.MAX_VALUE else 3).forEach { task ->
+                val displayTasks = remember(tasks, isExpanded) {
+                    if (isExpanded) tasks else tasks.take(3)
+                }
+                displayTasks.forEach { task ->
                     TaskMiniRow(task = task)
                 }
                 if (!isExpanded && tasks.size > 3) {
@@ -130,7 +139,10 @@ fun EventsWidget(
         if (events.isEmpty()) {
             WidgetEmptyState("No upcoming events")
         } else {
-            TimelineView(events = events.take(if (isExpanded) Int.MAX_VALUE else 3))
+            val displayEvents = remember(events, isExpanded) {
+                if (isExpanded) events else events.take(3)
+            }
+            TimelineView(events = displayEvents)
         }
     }
 }
@@ -225,8 +237,11 @@ fun RecentNotesWidget(
         if (notes.isEmpty()) {
             WidgetEmptyState("No recent notes")
         } else if (!isExpanded) {
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(notes) { note ->
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(horizontal = 4.dp)
+            ) {
+                items(notes, key = { it.id }) { note ->
                     NoteMiniCard(note = note)
                 }
             }

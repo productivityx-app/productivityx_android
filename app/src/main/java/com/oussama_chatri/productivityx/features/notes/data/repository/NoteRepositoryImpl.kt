@@ -27,6 +27,10 @@ import com.oussama_chatri.productivityx.features.notes.data.remote.dto.NoteReque
 import com.oussama_chatri.productivityx.features.notes.data.remote.dto.NoteResponseDto
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
 import com.oussama_chatri.productivityx.features.notes.domain.repository.NoteRepository
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -58,6 +62,22 @@ class NoteRepositoryImpl @Inject constructor(
             else -> noteDao.observeActiveNotes(userId)
         }
         return flow.map { list -> list.map { it.toDomain() } }
+    }
+
+    override fun getPagedActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<PagingData<Note>> {
+        val userId = cachedUserId()
+        return Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = true),
+            pagingSourceFactory = {
+                when {
+                    tagId != null -> noteDao.getPagedNotesByTag(userId, tagId)
+                    !tagIds.isNullOrEmpty() -> noteDao.getPagedNotesByTags(userId, tagIds)
+                    folderId != null -> noteDao.getPagedNotesByFolder(userId, folderId)
+                    pinnedOnly -> noteDao.getPagedPinnedNotes(userId)
+                    else -> noteDao.getPagedActiveNotes(userId)
+                }
+            }
+        ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
     }
 
     override fun observeTrash(): Flow<List<Note>> =

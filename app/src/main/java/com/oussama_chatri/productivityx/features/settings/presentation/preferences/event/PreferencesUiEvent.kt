@@ -33,6 +33,7 @@ sealed class PreferencesUiEvent {
     data class AppThemeChanged(val value: String) : PreferencesUiEvent()
     data class FontScaleChanged(val value: Float) : PreferencesUiEvent()
     data class DensityChanged(val value: String) : PreferencesUiEvent()
+    data class LanguageChanged(val value: String) : PreferencesUiEvent()
     // Privacy & Sync
     data class LocalOnlyModeChanged(val value: Boolean) : PreferencesUiEvent()
     data class OfflineModeChanged(val value: Boolean) : PreferencesUiEvent()

@@ -34,6 +34,7 @@ data class PreferencesUiState(
     // Display
     val compactMode: Boolean = false,
     val appTheme: String = "DARK",
+    val language: String = "en",
     val fontScale: Float = 1f,
     val density: String = "COMFORTABLE",
     // Privacy

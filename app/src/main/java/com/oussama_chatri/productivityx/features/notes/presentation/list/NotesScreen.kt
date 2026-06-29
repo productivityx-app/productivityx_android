@@ -50,8 +50,12 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -85,6 +89,7 @@ fun NotesScreen(
     viewModel: NotesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val pagedNotes = viewModel.pagedNotes.collectAsLazyPagingItems()
     val snackbarHost = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
@@ -144,11 +149,9 @@ fun NotesScreen(
                         modifier = Modifier.fillMaxSize()
                     )
                 } else {
-                    val displayNotes = if (uiState.isSearchActive) uiState.searchResults else uiState.notes
-
                     when (uiState.viewMode) {
                         NoteViewMode.GRID -> NotesGridView(
-                            notes = displayNotes,
+                            notes = pagedNotes,
                             tags = uiState.tags,
                             selectedTagId = uiState.selectedTagId,
                             showPinnedOnly = uiState.showPinnedOnly,
@@ -165,7 +168,7 @@ fun NotesScreen(
                             onToggleSearch = { viewModel.onEvent(NotesUiEvent.ToggleSearch) }
                         )
                         NoteViewMode.LIST -> NotesListView(
-                            notes = displayNotes,
+                            notes = pagedNotes,
                             tags = uiState.tags,
                             selectedTagId = uiState.selectedTagId,
                             showPinnedOnly = uiState.showPinnedOnly,
@@ -182,7 +185,7 @@ fun NotesScreen(
                             onToggleSearch = { viewModel.onEvent(NotesUiEvent.ToggleSearch) }
                         )
                         NoteViewMode.COMPACT -> NotesCompactView(
-                            notes = displayNotes,
+                            notes = pagedNotes,
                             tags = uiState.tags,
                             selectedTagId = uiState.selectedTagId,
                             showPinnedOnly = uiState.showPinnedOnly,
@@ -285,7 +288,7 @@ private fun BulkActionBar(
 
 @Composable
 private fun NotesGridView(
-    notes: List<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
+    notes: LazyPagingItems<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
     tags: List<com.oussama_chatri.productivityx.features.notes.domain.model.Tag>,
     selectedTagId: String?,
     showPinnedOnly: Boolean,
@@ -321,56 +324,19 @@ private fun NotesGridView(
             )
         }
 
-        val pinnedNotes = notes.filter { it.isPinned }
-        if (pinnedNotes.isNotEmpty() && selectedTagId == null && !showPinnedOnly) {
-            item(span = StaggeredGridItemSpan.FullLine) {
-                Text(
-                    text = "Pinned",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Color(0xFF888899),
-                    modifier = Modifier.padding(top = 4.dp, bottom = 2.dp)
-                )
+        items(
+            count = notes.itemCount,
+            key = notes.itemKey { it.id },
+            span = { index ->
+                val note = notes[index]
+                if (note?.isPinned == true && selectedTagId == null && !showPinnedOnly) {
+                    // StaggeredGrid does not support FullLine for individual items in items() easily like LazyColumn headers
+                    // but we can just let them flow. Paging items don't mix well with manual headers in StaggeredGrid items()
+                    StaggeredGridItemSpan.SingleLane
+                } else StaggeredGridItemSpan.SingleLane
             }
-            items(pinnedNotes, key = { "pin_${it.id}" }) { note ->
-                NoteCard(
-                    note = note,
-                    viewMode = NoteViewMode.GRID,
-                    isSelected = note.id in selectedNoteIds,
-                    isSelectionMode = isSelectionMode,
-                    searchQuery = searchQuery,
-                    onClick = { onNoteClick(note.id) },
-                    onLongClick = { onNoteLongClick(note.id) },
-                    onSwipeLeft = { onSwipeLeft(note.id) },
-                    onSwipeRight = { onSwipeRight(note.id) }
-                )
-            }
-
-            val otherNotes = notes.filter { !it.isPinned }
-            if (otherNotes.isNotEmpty()) {
-                item(span = StaggeredGridItemSpan.FullLine) {
-                    Text(
-                        text = "All notes",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Color(0xFF888899),
-                        modifier = Modifier.padding(top = 8.dp, bottom = 2.dp)
-                    )
-                }
-                items(otherNotes, key = { it.id }) { note ->
-                    NoteCard(
-                        note = note,
-                        viewMode = NoteViewMode.GRID,
-                        isSelected = note.id in selectedNoteIds,
-                        isSelectionMode = isSelectionMode,
-                        searchQuery = searchQuery,
-                        onClick = { onNoteClick(note.id) },
-                        onLongClick = { onNoteLongClick(note.id) },
-                        onSwipeLeft = { onSwipeLeft(note.id) },
-                        onSwipeRight = { onSwipeRight(note.id) }
-                    )
-                }
-            }
-        } else {
-            items(notes, key = { it.id }) { note ->
+        ) { index ->
+            notes[index]?.let { note ->
                 NoteCard(
                     note = note,
                     viewMode = NoteViewMode.GRID,
@@ -389,7 +355,7 @@ private fun NotesGridView(
 
 @Composable
 private fun NotesListView(
-    notes: List<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
+    notes: LazyPagingItems<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
     tags: List<com.oussama_chatri.productivityx.features.notes.domain.model.Tag>,
     selectedTagId: String?,
     showPinnedOnly: Boolean,
@@ -423,56 +389,11 @@ private fun NotesListView(
             )
         }
 
-        val pinnedNotes = notes.filter { it.isPinned }
-        if (pinnedNotes.isNotEmpty() && selectedTagId == null && !showPinnedOnly) {
-            item {
-                Text(
-                    text = "Pinned",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Color(0xFF888899),
-                    modifier = Modifier.padding(vertical = 4.dp)
-                )
-            }
-            items(pinnedNotes, key = { "pin_${it.id}" }) { note ->
-                NoteCard(
-                    note = note,
-                    viewMode = NoteViewMode.LIST,
-                    isSelected = note.id in selectedNoteIds,
-                    isSelectionMode = isSelectionMode,
-                    searchQuery = searchQuery,
-                    onClick = { onNoteClick(note.id) },
-                    onLongClick = { onNoteLongClick(note.id) },
-                    onSwipeLeft = { onSwipeLeft(note.id) },
-                    onSwipeRight = { onSwipeRight(note.id) }
-                )
-            }
-
-            val otherNotes = notes.filter { !it.isPinned }
-            if (otherNotes.isNotEmpty()) {
-                item {
-                    Text(
-                        text = "All notes",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Color(0xFF888899),
-                        modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
-                    )
-                }
-                items(otherNotes, key = { it.id }) { note ->
-                    NoteCard(
-                        note = note,
-                        viewMode = NoteViewMode.LIST,
-                        isSelected = note.id in selectedNoteIds,
-                        isSelectionMode = isSelectionMode,
-                        searchQuery = searchQuery,
-                        onClick = { onNoteClick(note.id) },
-                        onLongClick = { onNoteLongClick(note.id) },
-                        onSwipeLeft = { onSwipeLeft(note.id) },
-                        onSwipeRight = { onSwipeRight(note.id) }
-                    )
-                }
-            }
-        } else {
-            items(notes, key = { it.id }) { note ->
+        items(
+            count = notes.itemCount,
+            key = notes.itemKey { it.id }
+        ) { index ->
+            notes[index]?.let { note ->
                 NoteCard(
                     note = note,
                     viewMode = NoteViewMode.LIST,
@@ -491,7 +412,7 @@ private fun NotesListView(
 
 @Composable
 private fun NotesCompactView(
-    notes: List<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
+    notes: LazyPagingItems<com.oussama_chatri.productivityx.features.notes.domain.model.Note>,
     tags: List<com.oussama_chatri.productivityx.features.notes.domain.model.Tag>,
     selectedTagId: String?,
     showPinnedOnly: Boolean,
@@ -521,17 +442,22 @@ private fun NotesCompactView(
                 onToggleSearch = onToggleSearch
             )
         }
-        items(notes, key = { it.id }) { note ->
-            NoteCard(
-                note = note,
-                viewMode = NoteViewMode.COMPACT,
-                isSelected = note.id in selectedNoteIds,
-                isSelectionMode = isSelectionMode,
-                searchQuery = searchQuery,
-                onClick = { onNoteClick(note.id) },
-                onLongClick = { onNoteLongClick(note.id) },
-                modifier = Modifier.animateContentSize()
-            )
+        items(
+            count = notes.itemCount,
+            key = notes.itemKey { it.id }
+        ) { index ->
+            notes[index]?.let { note ->
+                NoteCard(
+                    note = note,
+                    viewMode = NoteViewMode.COMPACT,
+                    isSelected = note.id in selectedNoteIds,
+                    isSelectionMode = isSelectionMode,
+                    searchQuery = searchQuery,
+                    onClick = { onNoteClick(note.id) },
+                    onLongClick = { onNoteLongClick(note.id) },
+                    modifier = Modifier.animateContentSize()
+                )
+            }
         }
     }
 }

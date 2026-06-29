@@ -17,33 +17,54 @@ class AmbientSoundManager @Inject constructor(
 
     fun playSound(sound: AmbientSound) {
         if (currentSound == sound) return
-        
+
         stopSound()
         currentSound = sound
 
+        if (sound == AmbientSound.NONE) return
+
         val resId: Int? = when (sound) {
             AmbientSound.RAIN -> null // Replace with actual R.raw.rain if available
-            AmbientSound.CAFE -> null 
+            AmbientSound.CAFE -> null
             AmbientSound.WHITE_NOISE -> null
             AmbientSound.NATURE -> null
             AmbientSound.NONE -> null
         }
 
         resId?.let { id ->
-            mediaPlayer = MediaPlayer.create(context, id)
-            mediaPlayer?.isLooping = true
-            mediaPlayer?.start()
+            try {
+                mediaPlayer = MediaPlayer.create(context, id)
+                mediaPlayer?.isLooping = true
+                mediaPlayer?.setOnErrorListener { mp, _, _ ->
+                    mp.release()
+                    mediaPlayer = null
+                    true
+                }
+                mediaPlayer?.start()
+            } catch (e: Exception) {
+                currentSound = AmbientSound.NONE
+                mediaPlayer = null
+            }
         }
     }
 
     fun stopSound() {
         mediaPlayer?.let {
-            if (it.isPlaying) {
-                it.stop()
+            try {
+                if (it.isPlaying) {
+                    it.stop()
+                }
+            } catch (e: Exception) {
+                // Ignore
+            } finally {
+                it.release()
             }
-            it.release()
         }
         mediaPlayer = null
         currentSound = AmbientSound.NONE
+    }
+
+    fun release() {
+        stopSound()
     }
 }

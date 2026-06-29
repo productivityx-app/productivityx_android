@@ -58,6 +58,7 @@ data class UserPreferencesResponseDto(
     @SerialName("aiModel") val aiModel: String,
     @SerialName("compactMode") val compactMode: Boolean,
     @SerialName("appTheme") val appTheme: String = "DARK",
+    @SerialName("language") val language: String = "en",
     @SerialName("updatedAt") val updatedAt: String? = null
 ) {
     fun toDomain() = UserPreferencesModel(
@@ -83,6 +84,7 @@ data class UserPreferencesResponseDto(
         aiModel = aiModel,
         compactMode = compactMode,
         appTheme = appTheme,
+        language = language,
         updatedAt = updatedAt
     )
 }

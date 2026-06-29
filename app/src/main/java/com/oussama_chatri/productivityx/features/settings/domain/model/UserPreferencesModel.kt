@@ -28,5 +28,6 @@ data class UserPreferencesModel(
     // Display
     val compactMode: Boolean,
     val appTheme: String = "DARK",
+    val language: String = "en",
     val updatedAt: String?
 )

@@ -6,11 +6,14 @@ import com.oussama_chatri.productivityx.features.notes.domain.model.NoteFolder
 import com.oussama_chatri.productivityx.features.notes.domain.model.NoteLink
 import com.oussama_chatri.productivityx.features.notes.domain.model.NoteTemplate
 import com.oussama_chatri.productivityx.features.notes.domain.model.Tag
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
 
     fun observeActiveNotes(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<List<Note>>
+
+    fun getPagedActiveNotes(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<PagingData<Note>>
 
     fun observeTrash(): Flow<List<Note>>
 

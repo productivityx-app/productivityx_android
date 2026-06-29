@@ -28,5 +28,6 @@ data class UpdatePreferencesParams(
     val aiContextEnabled: Boolean? = null,
     val aiModel: String? = null,
     val compactMode: Boolean? = null,
-    val appTheme: String? = null
+    val appTheme: String? = null,
+    val language: String? = null
 )

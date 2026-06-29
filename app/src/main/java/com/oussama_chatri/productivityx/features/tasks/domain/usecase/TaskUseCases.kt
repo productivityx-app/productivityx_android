@@ -5,6 +5,7 @@ import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.domain.repository.TaskRepository
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import java.time.Instant
 import java.time.LocalDate
@@ -16,6 +17,13 @@ class ObserveTasksUseCase @Inject constructor(private val repo: TaskRepository) 
         status: TaskStatus? = null,
         priority: Priority? = null
     ): Flow<List<Task>> = repo.observeTasks(status, priority)
+}
+
+class GetPagedTasksUseCase @Inject constructor(private val repo: TaskRepository) {
+    operator fun invoke(
+        status: TaskStatus? = null,
+        priority: Priority? = null
+    ): Flow<PagingData<Task>> = repo.getPagedTasks(status, priority)
 }
 
 class ObserveSubtasksUseCase @Inject constructor(private val repo: TaskRepository) {

@@ -70,6 +70,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -379,14 +380,16 @@ private fun SmartFilterRow(
     tasks: List<Task>,
     onFilterSelected: (TaskSmartFilter) -> Unit
 ) {
-    val filters = listOf(
-        TaskSmartFilter.ALL to "All",
-        TaskSmartFilter.TODAY to "Today",
-        TaskSmartFilter.UPCOMING to "Upcoming",
-        TaskSmartFilter.OVERDUE to "Overdue",
-        TaskSmartFilter.NO_DATE to "No Date",
-        TaskSmartFilter.COMPLETED to "Done"
-    )
+    val filters = remember {
+        listOf(
+            TaskSmartFilter.ALL to "All",
+            TaskSmartFilter.TODAY to "Today",
+            TaskSmartFilter.UPCOMING to "Upcoming",
+            TaskSmartFilter.OVERDUE to "Overdue",
+            TaskSmartFilter.NO_DATE to "No Date",
+            TaskSmartFilter.COMPLETED to "Done"
+        )
+    }
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -394,13 +397,17 @@ private fun SmartFilterRow(
         modifier = Modifier.fillMaxWidth()
     ) {
         items(filters) { (filter, label) ->
-            val count = when (filter) {
-                TaskSmartFilter.ALL -> tasks.size
-                TaskSmartFilter.TODAY -> tasks.count { it.isDueToday }
-                TaskSmartFilter.UPCOMING -> tasks.count { it.dueDate != null && it.dueDate.isAfter(LocalDate.now()) && it.status != TaskStatus.DONE }
-                TaskSmartFilter.OVERDUE -> tasks.count { it.isOverdue }
-                TaskSmartFilter.NO_DATE -> tasks.count { it.dueDate == null && it.status != TaskStatus.DONE && it.status != TaskStatus.CANCELLED }
-                TaskSmartFilter.COMPLETED -> tasks.count { it.status == TaskStatus.DONE }
+            val count by remember(filter, tasks) {
+                derivedStateOf {
+                    when (filter) {
+                        TaskSmartFilter.ALL -> tasks.size
+                        TaskSmartFilter.TODAY -> tasks.count { it.isDueToday }
+                        TaskSmartFilter.UPCOMING -> tasks.count { it.dueDate != null && it.dueDate.isAfter(LocalDate.now()) && it.status != TaskStatus.DONE }
+                        TaskSmartFilter.OVERDUE -> tasks.count { it.isOverdue }
+                        TaskSmartFilter.NO_DATE -> tasks.count { it.dueDate == null && it.status != TaskStatus.DONE && it.status != TaskStatus.CANCELLED }
+                        TaskSmartFilter.COMPLETED -> tasks.count { it.status == TaskStatus.DONE }
+                    }
+                }
             }
             SmartFilterChip(
                 label = label,

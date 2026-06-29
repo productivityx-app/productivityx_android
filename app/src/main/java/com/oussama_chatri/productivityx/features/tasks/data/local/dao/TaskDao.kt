@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.paging.PagingSource
 import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEntity
@@ -31,6 +32,17 @@ interface TaskDao {
         WHERE user_id = :userId
           AND is_deleted = 0
           AND parent_task_id IS NULL
+        ORDER BY position ASC, updated_at DESC
+    """
+    )
+    fun getPagedTopLevelTasks(userId: String): PagingSource<Int, TaskEntity>
+
+    @Query(
+        """
+        SELECT * FROM tasks
+        WHERE user_id = :userId
+          AND is_deleted = 0
+          AND parent_task_id IS NULL
           AND status = :status
         ORDER BY position ASC, updated_at DESC
     """
@@ -43,11 +55,35 @@ interface TaskDao {
         WHERE user_id = :userId
           AND is_deleted = 0
           AND parent_task_id IS NULL
+          AND status = :status
+        ORDER BY position ASC, updated_at DESC
+    """
+    )
+    fun getPagedTopLevelTasksByStatus(userId: String, status: TaskStatus): PagingSource<Int, TaskEntity>
+
+    @Query(
+        """
+        SELECT * FROM tasks
+        WHERE user_id = :userId
+          AND is_deleted = 0
+          AND parent_task_id IS NULL
           AND priority = :priority
         ORDER BY position ASC, updated_at DESC
     """
     )
     fun observeTopLevelTasksByPriority(userId: String, priority: Priority): Flow<List<TaskEntity>>
+
+    @Query(
+        """
+        SELECT * FROM tasks
+        WHERE user_id = :userId
+          AND is_deleted = 0
+          AND parent_task_id IS NULL
+          AND priority = :priority
+        ORDER BY position ASC, updated_at DESC
+    """
+    )
+    fun getPagedTopLevelTasksByPriority(userId: String, priority: Priority): PagingSource<Int, TaskEntity>
 
     @Query(
         """

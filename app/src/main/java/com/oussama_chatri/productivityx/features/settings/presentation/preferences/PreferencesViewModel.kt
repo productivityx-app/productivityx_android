@@ -90,6 +90,11 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(fontScale = event.value.coerceIn(0.7f, 1.5f)) }
             is PreferencesUiEvent.DensityChanged ->
                 mutate { it.copy(density = event.value) }
+            is PreferencesUiEvent.LanguageChanged -> {
+                _uiState.update { it.copy(language = event.value) }
+                viewModelScope.launch { prefs.setLanguage(event.value) }
+                scheduleSave()
+            }
             is PreferencesUiEvent.LocalOnlyModeChanged -> {
                 _uiState.update { it.copy(localOnlyMode = event.value) }
                 viewModelScope.launch { prefs.setLocalOnlyMode(event.value) }

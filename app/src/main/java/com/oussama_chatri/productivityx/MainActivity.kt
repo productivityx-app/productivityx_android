@@ -1,11 +1,16 @@
 package com.oussama_chatri.productivityx
 
+import android.app.LocaleManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Build
+import android.os.LocaleList
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
@@ -32,6 +37,8 @@ import com.oussama_chatri.productivityx.core.ui.notifications.InAppNotificationT
 import com.oussama_chatri.productivityx.core.ui.notifications.LocalNotificationState
 import com.oussama_chatri.productivityx.core.ui.notifications.NotificationCenter
 import com.oussama_chatri.productivityx.core.ui.notifications.NotificationState
+import com.oussama_chatri.productivityx.core.ui.components.ErrorBoundary
+import com.oussama_chatri.productivityx.core.ui.components.OfflineIndicator
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,13 +70,20 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
+        )
 
         lifecycleScope.launch {
             prefs.language.collect { newLang ->
-                if (newLang != Locale.getDefault().language) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    val localeManager = getSystemService(LocaleManager::class.java)
+                    localeManager.applicationLocales = LocaleList.forLanguageTags(newLang)
+                } else if (newLang != Locale.getDefault().language) {
                     startActivity(Intent(this@MainActivity, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     })
@@ -107,6 +121,8 @@ class MainActivity : ComponentActivity() {
                             onNavControllerReady = { navController = it },
                             modifier = Modifier.fillMaxSize(),
                         )
+
+                        OfflineIndicator(modifier = Modifier.align(Alignment.TopCenter))
 
                         InAppNotificationToast(
                             notification = notificationState.currentToast,

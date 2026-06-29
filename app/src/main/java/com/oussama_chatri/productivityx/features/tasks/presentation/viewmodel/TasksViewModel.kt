@@ -2,12 +2,16 @@ package com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.core.util.UiEvent
+import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.domain.model.TaskFilter
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.CreateTaskUseCase
+import com.oussama_chatri.productivityx.features.tasks.domain.usecase.GetPagedTasksUseCase
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.ObserveTasksUseCase
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.RefreshTasksUseCase
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.ReorderTasksUseCase
@@ -34,6 +38,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TasksViewModel @Inject constructor(
     private val observeTasks: ObserveTasksUseCase,
+    private val getPagedTasks: GetPagedTasksUseCase,
     private val updateStatus: UpdateTaskStatusUseCase,
     private val updateTask: UpdateTaskUseCase,
     private val softDelete: SoftDeleteTaskUseCase,
@@ -47,6 +52,9 @@ class TasksViewModel @Inject constructor(
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+
+    private val _pagedTasks = MutableStateFlow<PagingData<Task>>(PagingData.empty())
+    val pagedTasks = _pagedTasks.asStateFlow()
 
     init {
         loadTasks()
@@ -252,6 +260,12 @@ class TasksViewModel @Inject constructor(
     }
 
     private fun loadTasks() {
+        // Paged tasks
+        getPagedTasks()
+            .cachedIn(viewModelScope)
+            .onEach { _pagedTasks.value = it }
+            .launchIn(viewModelScope)
+
         observeTasks()
             .onEach { tasks ->
                 val tags = tasks.flatMap { it.tags }.distinct().sorted()

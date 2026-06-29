@@ -2,8 +2,12 @@ package com.oussama_chatri.productivityx.features.notes.presentation.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.oussama_chatri.productivityx.core.util.UiEvent
+import com.oussama_chatri.productivityx.features.notes.domain.model.Note
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.AddTagToNoteUseCase
+import com.oussama_chatri.productivityx.features.notes.domain.usecase.GetPagedNotesUseCase
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.ObserveActiveNotesUseCase
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.ObserveFoldersUseCase
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.ObserveSearchUseCase
@@ -34,6 +38,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NotesViewModel @Inject constructor(
     private val observeActiveNotes: ObserveActiveNotesUseCase,
+    private val getPagedNotes: GetPagedNotesUseCase,
     private val observeTags: ObserveTagsUseCase,
     private val observeFolders: ObserveFoldersUseCase,
     private val observeSearch: ObserveSearchUseCase,
@@ -49,6 +54,9 @@ class NotesViewModel @Inject constructor(
 
     private val _events = Channel<UiEvent>(Channel.BUFFERED)
     val events = _events.receiveAsFlow()
+
+    private val _pagedNotes = MutableStateFlow<PagingData<Note>>(PagingData.empty())
+    val pagedNotes: StateFlow<PagingData<Note>> = _pagedNotes.asStateFlow()
 
     private var notesJob: Job? = null
     private var searchJob: Job? = null
@@ -196,6 +204,20 @@ class NotesViewModel @Inject constructor(
     private fun observeNotesList() {
         notesJob?.cancel()
         val state = _uiState.value
+
+        // Use Paging for the main list
+        getPagedNotes(
+            tagId = state.selectedTagId,
+            pinnedOnly = state.showPinnedOnly,
+            tagIds = state.selectedTagIds.toList().ifEmpty { null },
+            folderId = state.selectedFolderId
+        ).cachedIn(viewModelScope)
+            .onEach { pagingData ->
+                _pagedNotes.value = pagingData
+            }.launchIn(viewModelScope)
+
+        // Keep observing the non-paged list for selection and bulk actions
+        // (Optional: depending on how many notes we expect)
         notesJob = observeActiveNotes(
             tagId = state.selectedTagId,
             pinnedOnly = state.showPinnedOnly,

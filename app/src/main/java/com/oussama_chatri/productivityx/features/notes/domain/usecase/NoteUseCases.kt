@@ -3,12 +3,18 @@ package com.oussama_chatri.productivityx.features.notes.domain.usecase
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
 import com.oussama_chatri.productivityx.features.notes.domain.repository.NoteRepository
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ObserveActiveNotesUseCase @Inject constructor(private val repo: NoteRepository) {
     operator fun invoke(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<List<Note>> =
         repo.observeActiveNotes(tagId, pinnedOnly, tagIds, folderId)
+}
+
+class GetPagedNotesUseCase @Inject constructor(private val repo: NoteRepository) {
+    operator fun invoke(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<PagingData<Note>> =
+        repo.getPagedActiveNotes(tagId, pinnedOnly, tagIds, folderId)
 }
 
 class ObserveTrashUseCase @Inject constructor(private val repo: NoteRepository) {

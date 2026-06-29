@@ -24,5 +24,6 @@ data class UpdatePreferencesRequest(
     @SerialName("aiContextEnabled") val aiContextEnabled: Boolean? = null,
     @SerialName("aiModel") val aiModel: String? = null,
     @SerialName("compactMode") val compactMode: Boolean? = null,
-    @SerialName("appTheme") val appTheme: String? = null
+    @SerialName("appTheme") val appTheme: String? = null,
+    @SerialName("language") val language: String? = null
 )

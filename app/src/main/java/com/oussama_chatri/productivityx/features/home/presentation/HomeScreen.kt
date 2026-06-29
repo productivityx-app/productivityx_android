@@ -30,7 +30,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -133,6 +135,12 @@ private fun HomeContent(
     onOpenPomodoro: () -> Unit,
     onOpenAi: () -> Unit,
 ) {
+    val widgets by remember(uiState.widgetOrder, summary.widgetVisibility) {
+        derivedStateOf {
+            uiState.widgetOrder.filter { summary.widgetVisibility[it] != false }
+        }
+    }
+
     PullToRefreshBox(
         isRefreshing = uiState.isRefreshing,
         onRefresh = { onEvent(HomeEvent.Refresh) },
@@ -145,12 +153,8 @@ private fun HomeContent(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            val widgets = uiState.widgetOrder
-                .filter { summary.widgetVisibility[it] != false }
-
             itemsIndexed(widgets, key = { _, w -> w.name }) { _, widgetType ->
                 val isExpanded = uiState.expandedWidget == widgetType
-                val span = widgetType.defaultSpan
 
                 WidgetContent(
                     widgetType = widgetType,

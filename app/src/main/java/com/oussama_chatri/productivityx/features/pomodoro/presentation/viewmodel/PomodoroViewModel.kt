@@ -346,5 +346,6 @@ class PomodoroViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         tickJob?.cancel()
+        ambientSoundManager.release()
     }
 }

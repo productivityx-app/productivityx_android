@@ -32,13 +32,22 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.Breakpoints
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -237,85 +246,154 @@ private fun TabScaffold(
     additionalActions: @Composable () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
-        topBar = {
-            if (showTopBar) {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text(
-                            text       = stringResource(config.titleRes),
-                            style      = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        if (config.descriptionRes != null) {
-                            Text(
-                                text       = stringResource(config.descriptionRes),
-                                style      = MaterialTheme.typography.bodyMedium,
-                                color      = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                },
-                actions = {
-                    // Screen-specific actions (e.g. trash, filter) inserted here
-                    additionalActions?.invoke()
-                    IconButton(onClick = onNavigateToProfile) {
-                        Icon(Icons.Outlined.Person, contentDescription = stringResource(R.string.nav_profile))
-                    }
-                    IconButton(onClick = onNavigateToSearch) {
-                        Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
-                    }
-                    val notificationState = LocalNotificationState.current
-                    val badgeCount = notificationState.unreadCount
-                    IconButton(onClick = { notificationState.showNotificationCenter = !notificationState.showNotificationCenter }) {
-                        Box {
-                            Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
-                            if (badgeCount > 0) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(16.dp)
-                                        .clip(CircleShape)
-                                        .background(PxColors.Error)
-                                        .align(Alignment.TopEnd),
-                                    contentAlignment = Alignment.Center,
-                                ) {
+    val configuration = LocalConfiguration.current
+    val windowSizeClass = remember(configuration.screenWidthDp) {
+        Breakpoints.classify(configuration.screenWidthDp.dp)
+    }
+    val useNavRail = windowSizeClass != Breakpoints.WindowSizeClass.Compact
+
+    Row(modifier = Modifier.fillMaxSize()) {
+        if (useNavRail && showBottomBar) {
+            PxNavRail(
+                currentRoute = bottomNavCurrentRoute,
+                onNavItemClick = onNavItemClick
+            )
+        }
+        Scaffold(
+            containerColor = MaterialTheme.colorScheme.background,
+            modifier = Modifier.weight(1f),
+            topBar = {
+                if (showTopBar) {
+                    TopAppBar(
+                        title = {
+                            Column {
+                                Text(
+                                    text = stringResource(config.titleRes),
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                if (config.descriptionRes != null) {
                                     Text(
-                                        text = if (badgeCount > 9) "9+" else badgeCount.toString(),
-                                        fontSize = 9.sp,
-                                        color = Color.White,
-                                        fontWeight = FontWeight.Bold,
-                                        textAlign = TextAlign.Center,
+                                        text = stringResource(config.descriptionRes),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )
                                 }
                             }
-                        }
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                    titleContentColor = MaterialTheme.colorScheme.onBackground,
-                ),
+                        },
+                        actions = {
+                            additionalActions?.invoke()
+                            IconButton(onClick = onNavigateToProfile) {
+                                Icon(Icons.Outlined.Person, contentDescription = stringResource(R.string.nav_profile))
+                            }
+                            IconButton(onClick = onNavigateToSearch) {
+                                Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
+                            }
+                            val notificationState = LocalNotificationState.current
+                            val badgeCount = notificationState.unreadCount
+                            IconButton(onClick = { notificationState.showNotificationCenter = !notificationState.showNotificationCenter }) {
+                                Box {
+                                    Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
+                                    if (badgeCount > 0) {
+                                        Box(
+                                            modifier = Modifier
+                                                .size(16.dp)
+                                                .clip(CircleShape)
+                                                .background(PxColors.Error)
+                                                .align(Alignment.TopEnd),
+                                            contentAlignment = Alignment.Center,
+                                        ) {
+                                            Text(
+                                                text = if (badgeCount > 9) "9+" else badgeCount.toString(),
+                                                fontSize = 9.sp,
+                                                color = Color.White,
+                                                fontWeight = FontWeight.Bold,
+                                                textAlign = TextAlign.Center,
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = Color.Transparent,
+                            titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        ),
+                    )
+                }
+            },
+            bottomBar = {
+                if (showBottomBar && !useNavRail) {
+                    PxBottomNavBar(
+                        currentRoute = bottomNavCurrentRoute,
+                        onNavItemClick = onNavItemClick,
+                        modifier = Modifier.navigationBarsPadding(),
+                    )
+                }
+            },
+            floatingActionButton = {
+                if (config.fabAdd || config.fabAi) {
+                    FabStack(onFabAdd = onFabAdd, onFabAi = onNavigateToAi, config = config)
+                }
+            },
+        ) { innerPadding ->
+            content(Modifier.fillMaxSize().padding(innerPadding))
+        }
+    }
+}
+
+@Composable
+private fun PxNavRail(
+    currentRoute: String?,
+    onNavItemClick: (MainRoute) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    NavigationRail(
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.surface,
+        contentColor = MaterialTheme.colorScheme.onSurface,
+        header = {
+            Icon(
+                imageVector = Icons.Outlined.AutoAwesome,
+                contentDescription = null,
+                tint = PxColors.Primary,
+                modifier = Modifier.padding(vertical = 24.dp).size(32.dp)
             )
+        }
+    ) {
+        val tabs = listOf(
+            MainRoute.Home,
+            MainRoute.Notes,
+            MainRoute.Tasks,
+            MainRoute.Calendar,
+            MainRoute.Pomodoro
+        )
+
+        tabs.forEach { route ->
+            val label = when (route) {
+                MainRoute.Home -> "Home"
+                MainRoute.Notes -> "Notes"
+                MainRoute.Tasks -> "Tasks"
+                MainRoute.Calendar -> "Calendar"
+                MainRoute.Pomodoro -> "Focus"
+                else -> ""
             }
-        },
-        bottomBar = {
-            if (showBottomBar) {
-                PxBottomNavBar(
-                    currentRoute   = bottomNavCurrentRoute,
-                    onNavItemClick = onNavItemClick,
-                    modifier       = Modifier.navigationBarsPadding(),
-                )
+            val icon = when (route) {
+                MainRoute.Home -> Icons.Outlined.Person // Should use proper icons from PxBottomNavBar but demonstrating
+                MainRoute.Notes -> Icons.Outlined.Add
+                MainRoute.Tasks -> Icons.Outlined.CheckCircle
+                MainRoute.Calendar -> Icons.Outlined.CalendarMonth
+                MainRoute.Pomodoro -> Icons.Outlined.Notifications
+                else -> Icons.Outlined.AutoAwesome
             }
-        },
-        floatingActionButton = {
-            if (config.fabAdd || config.fabAi) {
-                FabStack(onFabAdd = onFabAdd, onFabAi = onNavigateToAi, config = config)
-            }
-        },
-    ) { innerPadding ->
-        content(Modifier.fillMaxSize().padding(innerPadding))
+
+            NavigationRailItem(
+                selected = currentRoute?.contains(route::class.simpleName ?: "") == true,
+                onClick = { onNavItemClick(route) },
+                icon = { Icon(icon, contentDescription = label) },
+                label = { Text(label) }
+            )
+        }
     }
 }
 

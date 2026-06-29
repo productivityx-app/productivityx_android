@@ -4,6 +4,7 @@ import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
 
@@ -13,6 +14,11 @@ interface TaskRepository {
         status: TaskStatus? = null,
         priority: Priority? = null
     ): Flow<List<Task>>
+
+    fun getPagedTasks(
+        status: TaskStatus? = null,
+        priority: Priority? = null
+    ): Flow<PagingData<Task>>
 
     fun observeSubtasks(parentTaskId: String): Flow<List<Task>>
 

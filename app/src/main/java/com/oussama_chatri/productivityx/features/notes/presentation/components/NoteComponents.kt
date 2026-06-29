@@ -423,41 +423,36 @@ fun HighlightedText(
     maxLines: Int = Int.MAX_VALUE,
     modifier: Modifier = Modifier
 ) {
-    if (query.isBlank() || !text.contains(query, ignoreCase = true)) {
-        Text(
-            text = text,
-            style = style,
-            color = color,
-            maxLines = maxLines,
-            overflow = TextOverflow.Ellipsis,
-            modifier = modifier
-        )
-        return
-    }
-
-    val annotated = buildAnnotatedString {
-        var currentIndex = 0
-        val lowerText = text.lowercase()
-        val lowerQuery = query.lowercase()
-        while (currentIndex < text.length) {
-            val matchIndex = lowerText.indexOf(lowerQuery, currentIndex)
-            if (matchIndex == -1) {
-                append(text.substring(currentIndex))
-                break
+    val annotated = remember(text, query, color) {
+        if (query.isBlank() || !text.contains(query, ignoreCase = true)) {
+            buildAnnotatedString { append(text) }
+        } else {
+            buildAnnotatedString {
+                var currentIndex = 0
+                val lowerText = text.lowercase()
+                val lowerQuery = query.lowercase()
+                while (currentIndex < text.length) {
+                    val matchIndex = lowerText.indexOf(lowerQuery, currentIndex)
+                    if (matchIndex == -1) {
+                        append(text.substring(currentIndex))
+                        break
+                    }
+                    if (matchIndex > currentIndex) {
+                        append(text.substring(currentIndex, matchIndex))
+                    }
+                    withStyle(SpanStyle(color = PxColors.Primary, background = PxColors.Primary.copy(alpha = 0.2f))) {
+                        append(text.substring(matchIndex, matchIndex + query.length))
+                    }
+                    currentIndex = matchIndex + query.length
+                }
             }
-            if (matchIndex > currentIndex) {
-                append(text.substring(currentIndex, matchIndex))
-            }
-            withStyle(SpanStyle(color = PxColors.Primary, background = PxColors.Primary.copy(alpha = 0.2f))) {
-                append(text.substring(matchIndex, matchIndex + query.length))
-            }
-            currentIndex = matchIndex + query.length
         }
     }
 
     Text(
         text = annotated,
         style = style,
+        color = if (query.isBlank() || !text.contains(query, ignoreCase = true)) color else Color.Unspecified,
         maxLines = maxLines,
         overflow = TextOverflow.Ellipsis,
         modifier = modifier
