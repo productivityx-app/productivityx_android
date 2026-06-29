@@ -10,11 +10,15 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.AutoAwesome
@@ -36,11 +40,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -51,6 +58,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
+import com.oussama_chatri.productivityx.core.ui.notifications.LocalNotificationState
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.ai.presentation.navigation.aiNavGraph
 import com.oussama_chatri.productivityx.features.events.presentation.navigation.eventsNavGraph
 import com.oussama_chatri.productivityx.features.home.presentation.HomeScreen
@@ -258,8 +267,30 @@ private fun TabScaffold(
                     IconButton(onClick = onNavigateToSearch) {
                         Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
                     }
-                    IconButton(onClick = { /* TODO: notifications */ }) {
-                        Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
+                    val notificationState = LocalNotificationState.current
+                    val badgeCount = notificationState.unreadCount
+                    IconButton(onClick = { notificationState.showNotificationCenter = !notificationState.showNotificationCenter }) {
+                        Box {
+                            Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
+                            if (badgeCount > 0) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(16.dp)
+                                        .clip(CircleShape)
+                                        .background(PxColors.Error)
+                                        .align(Alignment.TopEnd),
+                                    contentAlignment = Alignment.Center,
+                                ) {
+                                    Text(
+                                        text = if (badgeCount > 9) "9+" else badgeCount.toString(),
+                                        fontSize = 9.sp,
+                                        color = Color.White,
+                                        fontWeight = FontWeight.Bold,
+                                        textAlign = TextAlign.Center,
+                                    )
+                                }
+                            }
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -354,6 +385,7 @@ private fun HomeTab(rootNavController: NavHostController) {
             onNavigateToTasks     = { rootNavController.navigateToTab(MainRoute.Tasks) },
             onNavigateToCalendar  = { rootNavController.navigateToTab(MainRoute.Calendar) },
             onNavigateToPomodoro  = { rootNavController.navigateToTab(MainRoute.Pomodoro) },
+            onNavigateToAi        = { rootNavController.navigateToTab(MainRoute.Ai) },
             modifier              = modifier,
         )
     }

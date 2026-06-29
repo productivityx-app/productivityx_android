@@ -932,4 +932,57 @@
     <string name="language_id">Indonesian</string>
     <string name="language_nl">Dutch</string>
 
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">Tasks</string>
+    <string name="widget_task_list_empty">No tasks due today</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Tap to start focus</string>
+    <string name="widget_quick_note_title">Quick Note</string>
+    <string name="widget_quick_note_hint">Tap to add a note</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">Today\'s Tasks</string>
+    <string name="home_widget_events">Upcoming Events</string>
+    <string name="home_widget_focus">Focus Time Today</string>
+    <string name="home_widget_notes">Recent Notes</string>
+    <string name="home_widget_quote">Daily Quote</string>
+    <string name="home_widget_ai">AI Assistant</string>
+    <string name="home_widget_focus_mode">Quick Focus</string>
+    <string name="home_expand">Expand</string>
+    <string name="home_collapse">Collapse</string>
+    <string name="home_see_all">See all</string>
+    <string name="home_empty_tasks">No tasks due today</string>
+    <string name="home_empty_events">No upcoming events</string>
+    <string name="home_empty_notes">No recent notes</string>
+    <string name="home_empty_focus">No focus time yet</string>
+    <string name="home_focus_mode_active">Focus Mode</string>
+    <string name="home_focus_mode_inactive">Quick Focus</string>
+    <string name="home_focus_mode_desc_active">Minimize distractions</string>
+    <string name="home_focus_mode_desc_inactive">Tap to enter focus mode</string>
+    <string name="home_quick_action_new_note">New Note</string>
+    <string name="home_quick_action_new_task">New Task</string>
+    <string name="home_quick_action_start_timer">Start Timer</string>
+    <string name="home_quick_action_ai_chat">AI Chat</string>
+    <string name="home_voice_prompt">What would you like to do?</string>
+    <string name="home_voice_listening">Listening…</string>
+    <string name="home_pull_to_refresh">Pull to refresh</string>
+    <string name="home_syncing">Syncing…</string>
+    <string name="home_refreshed">Dashboard updated</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">New Note</string>
+    <string name="shortcut_new_task">New Task</string>
+    <string name="shortcut_start_focus">Start Focus</string>
+    <string name="shortcut_ai_chat">AI Chat</string>
+    <string name="shortcut_note_short_label">Note</string>
+    <string name="shortcut_task_short_label">Task</string>
+    <string name="shortcut_focus_short_label">Focus</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
 </resources>

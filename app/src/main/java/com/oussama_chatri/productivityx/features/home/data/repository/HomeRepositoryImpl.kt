@@ -3,11 +3,12 @@ package com.oussama_chatri.productivityx.features.home.data.repository
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.features.events.data.local.EventDao
-import com.oussama_chatri.productivityx.features.events.data.mapper.toDomain        // EventEntity.toDomain()
+import com.oussama_chatri.productivityx.features.events.data.mapper.toDomain
 import com.oussama_chatri.productivityx.features.home.domain.model.DashboardSummary
+import com.oussama_chatri.productivityx.features.home.domain.model.WidgetType
 import com.oussama_chatri.productivityx.features.home.domain.repository.HomeRepository
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
-import com.oussama_chatri.productivityx.features.notes.data.mapper.toDomain          // NoteWithTags.toDomain()
+import com.oussama_chatri.productivityx.features.notes.data.mapper.toDomain
 import com.oussama_chatri.productivityx.features.pomodoro.data.remote.PomodoroApi
 import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -42,7 +43,7 @@ class HomeRepositoryImpl @Inject constructor(
             combine(
                 taskDao.observeTopLevelTasks(userId),
                 noteDao.observeActiveNotes(userId),
-                eventDao.observeUpcomingEvents(userId, nowMs, limit = 5),
+                eventDao.observeUpcomingEvents(userId, nowMs, limit = 8),
                 fetchStatsFlow(),
                 preferencesDataStore.cachedUserFirstName,
             ) { tasks, notes, events, stats, firstName ->
@@ -51,33 +52,53 @@ class HomeRepositoryImpl @Inject constructor(
 
                 val dueToday = activeTasks.filter { task ->
                     task.dueDate == today &&
-                    task.status != TaskStatus.DONE &&
-                    task.status != TaskStatus.CANCELLED
+                            task.status != TaskStatus.DONE &&
+                            task.status != TaskStatus.CANCELLED
                 }
 
                 val overdueCount = activeTasks.count { task ->
                     task.dueDate != null &&
-                    task.dueDate.isBefore(today) &&
-                    task.status != TaskStatus.DONE &&
-                    task.status != TaskStatus.CANCELLED
+                            task.dueDate.isBefore(today) &&
+                            task.status != TaskStatus.DONE &&
+                            task.status != TaskStatus.CANCELLED
+                }
+
+                val completedToday = activeTasks.count { task ->
+                    task.completedAt?.let {
+                        val completedDate = java.time.Instant.ofEpochMilli(it.toEpochMilli())
+                            .atZone(java.time.ZoneId.systemDefault()).toLocalDate()
+                        completedDate == today
+                    } ?: false
                 }
 
                 DashboardSummary(
-                    firstName              = firstName ?: "",
-                    tasksDueToday          = dueToday.size,
-                    tasksOverdue           = overdueCount,
-                    totalActiveNotes       = notes.size,
-                    dueTodayTasks          = dueToday.take(3).map { it.toDomain() },
-                    upcomingEvents         = events.map { it.toDomain() },
-                    recentNotes            = notes.take(6).map { it.toDomain() },
-                    todayFocusMinutes      = stats.first,
+                    firstName = firstName ?: "",
+                    tasksDueToday = dueToday.size,
+                    tasksOverdue = overdueCount,
+                    totalActiveNotes = notes.size,
+                    dueTodayTasks = dueToday.take(5).map { it.toDomain() },
+                    upcomingEvents = events.map { it.toDomain() },
+                    recentNotes = notes.take(8).map { it.toDomain() },
+                    todayFocusMinutes = stats.first,
                     completedSessionsToday = stats.second,
+                    tasksCompletedToday = completedToday,
+                    widgetOrder = listOf(
+                        WidgetType.GREETING,
+                        WidgetType.TODAYS_TASKS,
+                        WidgetType.UPCOMING_EVENTS,
+                        WidgetType.FOCUS_TIME,
+                        WidgetType.RECENT_NOTES,
+                        WidgetType.DAILY_QUOTE,
+                        WidgetType.AI_QUICK_ACTION,
+                        WidgetType.FOCUS_MODE_TOGGLE,
+                    ),
+                    widgetVisibility = WidgetType.entries.associateWith { true },
+                    widgetUsageCount = emptyMap(),
+                    isFocusMode = false,
                 )
             }
         }.catch { emit(emptyDashboard()) }
 
-    // Emits (0, 0) immediately so combine() doesn't suspend waiting for the network,
-    // then replaces with the real API value once the call resolves.
     private fun fetchStatsFlow(): Flow<Pair<Int, Int>> = flow {
         emit(Pair(0, 0))
         runCatching {
@@ -97,14 +118,15 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     private fun emptyDashboard() = DashboardSummary(
-        firstName              = "",
-        tasksDueToday          = 0,
-        tasksOverdue           = 0,
-        totalActiveNotes       = 0,
-        dueTodayTasks          = emptyList(),
-        upcomingEvents         = emptyList(),
-        recentNotes            = emptyList(),
-        todayFocusMinutes      = 0,
+        firstName = "",
+        tasksDueToday = 0,
+        tasksOverdue = 0,
+        totalActiveNotes = 0,
+        dueTodayTasks = emptyList(),
+        upcomingEvents = emptyList(),
+        recentNotes = emptyList(),
+        todayFocusMinutes = 0,
         completedSessionsToday = 0,
+        tasksCompletedToday = 0,
     )
 }
