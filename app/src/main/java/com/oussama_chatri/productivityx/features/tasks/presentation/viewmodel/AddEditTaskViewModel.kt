@@ -3,6 +3,7 @@ package com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.enums.RecurrenceType
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.CreateTaskUseCase
@@ -69,6 +70,9 @@ class AddEditTaskViewModel @Inject constructor(
             is AddEditTaskEvent.ReminderChanged ->
                 _uiState.update { it.copy(reminderAt = event.instant) }
 
+            is AddEditTaskEvent.ReminderMinutesChanged ->
+                _uiState.update { it.copy(reminderMinutes = event.minutes) }
+
             is AddEditTaskEvent.EstimatedMinutesChanged ->
                 _uiState.update { it.copy(estimatedMinutes = event.minutes) }
 
@@ -83,6 +87,44 @@ class AddEditTaskViewModel @Inject constructor(
             is AddEditTaskEvent.Delete        -> delete()
             is AddEditTaskEvent.ClearError    ->
                 _uiState.update { it.copy(titleError = null) }
+
+            // Tags
+            is AddEditTaskEvent.AddTag -> {
+                val tag = event.tag.trim()
+                if (tag.isNotBlank() && !_uiState.value.tags.contains(tag)) {
+                    _uiState.update { it.copy(tags = it.tags + tag, newTag = "") }
+                }
+            }
+
+            is AddEditTaskEvent.RemoveTag -> {
+                _uiState.update { it.copy(tags = it.tags - event.tag) }
+            }
+
+            is AddEditTaskEvent.NewTagChanged -> {
+                _uiState.update { it.copy(newTag = event.tag) }
+            }
+
+            // Recurrence
+            is AddEditTaskEvent.RecurrenceTypeChanged -> {
+                _uiState.update { it.copy(recurrenceType = event.type) }
+            }
+
+            is AddEditTaskEvent.RecurrenceEndDateChanged -> {
+                _uiState.update { it.copy(recurrenceEndDate = event.date) }
+            }
+
+            is AddEditTaskEvent.RecurrenceIntervalChanged -> {
+                _uiState.update { it.copy(recurrenceInterval = event.interval) }
+            }
+
+            is AddEditTaskEvent.RecurrenceDaysOfWeekChanged -> {
+                _uiState.update { it.copy(recurrenceDaysOfWeek = event.days) }
+            }
+
+            // Priority matrix
+            is AddEditTaskEvent.TogglePriorityMatrix -> {
+                _uiState.update { it.copy(showPriorityMatrix = !it.showPriorityMatrix) }
+            }
         }
     }
 
@@ -102,13 +144,18 @@ class AddEditTaskViewModel @Inject constructor(
                             dueDate          = task.dueDate,
                             dueTime          = task.dueTime,
                             reminderAt       = task.reminderAt,
+                            reminderMinutes  = task.reminderMinutes,
                             estimatedMinutes = task.estimatedMinutes,
                             linkedEventId    = task.linkedEventId,
-                            subtasks         = task.subtasks
+                            subtasks         = task.subtasks,
+                            tags             = task.tags,
+                            recurrenceType   = task.recurrenceType,
+                            recurrenceEndDate = task.recurrenceEndDate,
+                            recurrenceInterval = task.recurrenceInterval,
+                            recurrenceDaysOfWeek = task.recurrenceDaysOfWeek
                         )
                     }
                 }
-                // AddEditTaskUiState has no generic error field — surface via snackbar
                 is Resource.Error -> {
                     _uiState.update { it.copy(isLoading = false) }
                     _uiEvent.send(UiEvent.ShowSnackbar(result.message))

@@ -1,15 +1,23 @@
 package com.oussama_chatri.productivityx.features.tasks.presentation.screens
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,19 +32,33 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.ui.Alignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.BarChart
+import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.DeleteSweep
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.FilterList
+import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material.icons.outlined.SelectAll
+import androidx.compose.material.icons.outlined.Timeline
 import androidx.compose.material.icons.outlined.ViewKanban
 import androidx.compose.material.icons.outlined.ViewList
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -52,39 +74,55 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.enums.Priority
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
 import com.oussama_chatri.productivityx.core.enums.TaskView
-import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
 import com.oussama_chatri.productivityx.core.ui.components.PxLoadingOverlay
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
+import com.oussama_chatri.productivityx.features.tasks.domain.model.TaskSmartFilter
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.CalendarDayCell
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.KanbanColumnHeader
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.KanbanTaskCard
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.SmartFilterChip
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskEmptyState
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskListItem
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.TimelineTaskBar
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.TasksEvent
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.TaskTab
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.TasksUiState
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.displayLabel
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.label
 import com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel.TasksViewModel
-import androidx.compose.ui.res.stringResource
-import com.oussama_chatri.productivityx.R
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 @Composable
 fun TasksScreen(
     modifier: Modifier = Modifier,
     onTaskClick: (String) -> Unit,
     onAddTask: () -> Unit,
+    onNavigateToStats: () -> Unit = {},
     viewModel: TasksViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -94,7 +132,7 @@ fun TasksScreen(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.ShowSnackbar -> {
-                    val result = snackbarHostState.showSnackbar(
+                    snackbarHostState.showSnackbar(
                         message = event.message,
                         actionLabel = event.actionLabel
                     )
@@ -108,16 +146,33 @@ fun TasksScreen(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
+            // View mode toggle + Filter
             TaskViewToggle(
                 viewMode = uiState.viewMode,
-                onToggleView = { viewModel.onEvent(TasksEvent.ToggleView(it)) }
+                isMultiSelectMode = uiState.isMultiSelectMode,
+                selectedCount = uiState.selectedTaskIds.size,
+                onToggleView = { viewModel.onEvent(TasksEvent.ToggleView(it)) },
+                onExitMultiSelect = { viewModel.onEvent(TasksEvent.ExitMultiSelectMode) },
+                onBulkComplete = { viewModel.onEvent(TasksEvent.BulkComplete) },
+                onBulkDelete = { viewModel.onEvent(TasksEvent.BulkDelete) },
+                onSelectAll = { viewModel.onEvent(TasksEvent.SelectAll) },
+                onNavigateToStats = onNavigateToStats
             )
 
-            TaskTabRow(
-                activeTab = uiState.activeTab,
-                onTabSelected = { viewModel.onEvent(TasksEvent.SelectTab(it)) }
+            // Search bar
+            SearchBar(
+                query = uiState.taskFilter.searchQuery,
+                onQueryChange = { viewModel.onEvent(TasksEvent.SetSearchQuery(it)) }
             )
 
+            // Smart filters row
+            SmartFilterRow(
+                activeFilter = uiState.taskFilter.smartFilter,
+                tasks = uiState.filteredTasks,
+                onFilterSelected = { viewModel.onEvent(TasksEvent.SetSmartFilter(it)) }
+            )
+
+            // Main content area based on view mode
             AnimatedContent(
                 targetState = uiState.viewMode,
                 transitionSpec = {
@@ -127,26 +182,65 @@ fun TasksScreen(
             ) { mode ->
                 when (mode) {
                     TaskView.LIST -> TaskListView(
-                        tasks = uiState.tasks,
+                        tasks = uiState.filteredTasks,
+                        isMultiSelectMode = uiState.isMultiSelectMode,
+                        selectedTaskIds = uiState.selectedTaskIds,
                         onTaskClick = onTaskClick,
                         onComplete = { id -> viewModel.onEvent(TasksEvent.CompleteTask(id)) },
-                        onDelete = { id -> viewModel.onEvent(TasksEvent.DeleteTask(id)) }
+                        onDelete = { id -> viewModel.onEvent(TasksEvent.DeleteTask(id)) },
+                        onToggleSelect = { viewModel.onEvent(TasksEvent.ToggleTaskSelection(it)) },
+                        onAddTask = onAddTask
                     )
                     TaskView.KANBAN -> KanbanView(
-                        tasks = uiState.tasks,
+                        tasks = uiState.filteredTasks,
                         onTaskClick = onTaskClick,
                         onStatusChange = { id, status ->
+                            viewModel.onEvent(TasksEvent.MoveTaskToStatus(id, status))
                         },
                         onAddTask = onAddTask
+                    )
+                    TaskView.CALENDAR -> CalendarView(
+                        tasks = uiState.tasks,
+                        startDate = uiState.calendarStartDate,
+                        selectedDate = uiState.calendarSelectedDate,
+                        onNavigateMonth = { viewModel.onEvent(TasksEvent.CalendarNavigateMonth(it)) },
+                        onSelectDate = { viewModel.onEvent(TasksEvent.SelectCalendarDate(it)) },
+                        onTaskClick = onTaskClick
+                    )
+                    TaskView.TIMELINE -> TimelineView(
+                        tasks = uiState.filteredTasks.filter { it.dueDate != null },
+                        startDate = uiState.timelineStartDate,
+                        endDate = uiState.timelineEndDate,
+                        onTaskClick = onTaskClick,
+                        onZoomIn = { viewModel.onEvent(TasksEvent.TimelineZoomIn()) },
+                        onZoomOut = { viewModel.onEvent(TasksEvent.TimelineZoomOut()) },
+                        onPan = { viewModel.onEvent(TasksEvent.TimelinePan(it)) }
                     )
                 }
             }
         }
 
+        // Bulk action bar at bottom
+        AnimatedVisibility(
+            visible = uiState.isMultiSelectMode,
+            enter = slideInHorizontally() + fadeIn(),
+            exit = slideOutHorizontally() + fadeOut(),
+            modifier = Modifier.align(Alignment.BottomCenter)
+        ) {
+            BulkActionBar(
+                selectedCount = uiState.selectedTaskIds.size,
+                onComplete = { viewModel.onEvent(TasksEvent.BulkComplete) },
+                onDelete = { viewModel.onEvent(TasksEvent.BulkDelete) },
+                onReschedule = { /* show date picker */ },
+                onSetPriority = { /* show priority picker */ },
+                onClearSelection = { viewModel.onEvent(TasksEvent.ClearSelection) }
+            )
+        }
+
         if (uiState.isLoading) PxLoadingOverlay()
         SnackbarHost(
             hostState = snackbarHostState,
-            modifier  = Modifier.align(Alignment.BottomCenter),
+            modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
 }
@@ -156,73 +250,164 @@ fun TasksScreen(
 @Composable
 private fun TaskViewToggle(
     viewMode: TaskView,
-    onToggleView: (TaskView) -> Unit
+    isMultiSelectMode: Boolean,
+    selectedCount: Int,
+    onToggleView: (TaskView) -> Unit,
+    onExitMultiSelect: () -> Unit,
+    onBulkComplete: () -> Unit,
+    onBulkDelete: () -> Unit,
+    onSelectAll: () -> Unit,
+    onNavigateToStats: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 4.dp),
-        horizontalArrangement = Arrangement.End,
+            .padding(horizontal = 12.dp, vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = {}) {
-            Icon(Icons.Outlined.FilterList, contentDescription = stringResource(R.string.cd_filter), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+        AnimatedContent(targetState = isMultiSelectMode, label = "multiSelectToggle") { multiSelect ->
+            if (multiSelect) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onExitMultiSelect) {
+                        Icon(Icons.Filled.Close, "Exit multi-select", tint = PxColors.OnSurface)
+                    }
+                    Text(
+                        "$selectedCount selected",
+                        color = PxColors.OnSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(onClick = onSelectAll) {
+                        Icon(Icons.Outlined.SelectAll, "Select all", tint = PxColors.Primary)
+                    }
+                }
+            } else {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = when (viewMode) {
+                            TaskView.LIST -> "List"
+                            TaskView.KANBAN -> "Board"
+                            TaskView.CALENDAR -> "Calendar"
+                            TaskView.TIMELINE -> "Timeline"
+                        },
+                        color = PxColors.OnBackground,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
         }
-        IconButton(onClick = {
-            onToggleView(if (viewMode == TaskView.LIST) TaskView.KANBAN else TaskView.LIST)
-        }) {
+
+        Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+            // Stats button
+            IconButton(onClick = onNavigateToStats) {
+                Icon(Icons.Outlined.BarChart, "Statistics", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp))
+            }
+
+            // View mode switcher
+            val views = listOf(TaskView.LIST, TaskView.KANBAN, TaskView.CALENDAR, TaskView.TIMELINE)
+            views.forEach { v ->
+                val isActive = v == viewMode
+                IconButton(
+                    onClick = { onToggleView(v) }
+                ) {
+                    Icon(
+                        imageVector = when (v) {
+                            TaskView.LIST -> Icons.Outlined.ViewList
+                            TaskView.KANBAN -> Icons.Outlined.ViewKanban
+                            TaskView.CALENDAR -> Icons.Outlined.CalendarMonth
+                            TaskView.TIMELINE -> Icons.Outlined.Timeline
+                        },
+                        contentDescription = v.name,
+                        tint = if (isActive) PxColors.Primary else PxColors.OnSurfaceDim,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+// ─── Search Bar ───────────────────────────────────────────────────────────────
+
+@Composable
+private fun SearchBar(
+    query: String,
+    onQueryChange: (String) -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color(0xFF252533))
+            .clickable { }
+            .padding(horizontal = 12.dp, vertical = 8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Icon(
-                imageVector = if (viewMode == TaskView.LIST) Icons.Outlined.ViewKanban else Icons.Outlined.ViewList,
-                contentDescription = if (viewMode == TaskView.LIST) stringResource(R.string.tasks_view_kanban) else stringResource(R.string.tasks_view_list),
-                tint = PxColors.Primary
+                Icons.Outlined.FilterList,
+                contentDescription = "Search",
+                tint = Color(0xFF888899),
+                modifier = Modifier.size(16.dp)
+            )
+            Text(
+                text = if (query.isBlank()) "Search or filter tasks\u2026" else query,
+                color = if (query.isBlank()) Color(0xFF888899) else Color(0xFFCCCCD8),
+                fontSize = 14.sp
             )
         }
     }
-} 
+}
 
-// ─── Tab Row ──────────────────────────────────────────────────────────────────
+// ─── Smart Filter Row ─────────────────────────────────────────────────────────
 
 @Composable
-private fun TaskTabRow(
-    activeTab: TaskTab,
-    onTabSelected: (TaskTab) -> Unit
+private fun SmartFilterRow(
+    activeFilter: TaskSmartFilter,
+    tasks: List<Task>,
+    onFilterSelected: (TaskSmartFilter) -> Unit
 ) {
+    val filters = listOf(
+        TaskSmartFilter.ALL to "All",
+        TaskSmartFilter.TODAY to "Today",
+        TaskSmartFilter.UPCOMING to "Upcoming",
+        TaskSmartFilter.OVERDUE to "Overdue",
+        TaskSmartFilter.NO_DATE to "No Date",
+        TaskSmartFilter.COMPLETED to "Done"
+    )
+
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(TaskTab.entries) { tab ->
-            val isActive = tab == activeTab
-            val bgColor by animateColorAsState(
-                targetValue = if (isActive) PxColors.Primary else MaterialTheme.colorScheme.surfaceVariant,
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-                label = "tabBg"
-            )
-            val textColor by animateColorAsState(
-                targetValue = if (isActive) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-                label = "tabText"
-            )
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(bgColor)
-                    .clickable { onTabSelected(tab) }
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
-            ) {
-                Text(
-                    text = when (tab) {
-                        TaskTab.ALL -> stringResource(R.string.tasks_tab_all)
-                        TaskTab.TODAY -> stringResource(R.string.tasks_tab_today)
-                        TaskTab.UPCOMING -> stringResource(R.string.tasks_tab_upcoming)
-                        TaskTab.COMPLETED -> stringResource(R.string.tasks_tab_completed)
-                    },
-                    color = textColor,
-                    fontSize = 13.sp,
-                    fontWeight = if (isActive) FontWeight.SemiBold else FontWeight.Normal
-                )
+        items(filters) { (filter, label) ->
+            val count = when (filter) {
+                TaskSmartFilter.ALL -> tasks.size
+                TaskSmartFilter.TODAY -> tasks.count { it.isDueToday }
+                TaskSmartFilter.UPCOMING -> tasks.count { it.dueDate != null && it.dueDate.isAfter(LocalDate.now()) && it.status != TaskStatus.DONE }
+                TaskSmartFilter.OVERDUE -> tasks.count { it.isOverdue }
+                TaskSmartFilter.NO_DATE -> tasks.count { it.dueDate == null && it.status != TaskStatus.DONE && it.status != TaskStatus.CANCELLED }
+                TaskSmartFilter.COMPLETED -> tasks.count { it.status == TaskStatus.DONE }
             }
+            SmartFilterChip(
+                label = label,
+                isSelected = activeFilter == filter,
+                count = count,
+                onClick = { onFilterSelected(filter) }
+            )
         }
     }
     Spacer(modifier = Modifier.height(8.dp))
@@ -234,36 +419,42 @@ private fun TaskTabRow(
 @Composable
 private fun TaskListView(
     tasks: List<Task>,
+    isMultiSelectMode: Boolean,
+    selectedTaskIds: Set<String>,
     onTaskClick: (String) -> Unit,
     onComplete: (String) -> Unit,
-    onDelete: (String) -> Unit
+    onDelete: (String) -> Unit,
+    onToggleSelect: (String) -> Unit,
+    onAddTask: () -> Unit
 ) {
     if (tasks.isEmpty()) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            PxEmptyState(
-                icon = Icons.Outlined.CheckCircle,
-                title = stringResource(R.string.tasks_empty_title),
-                subtitle = stringResource(R.string.tasks_empty_body)
-            )
-        }
+        TaskEmptyState(viewMode = TaskView.LIST, onAddTask = onAddTask)
         return
     }
 
     LazyColumn(
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp),
         modifier = Modifier.fillMaxSize()
     ) {
         items(tasks, key = { it.id }) { task ->
-            SwipeableTaskItem(
-                task = task,
-                onTaskClick = { onTaskClick(task.id) },
-                onComplete = { onComplete(task.id) },
-                onDelete = { onDelete(task.id) }
-            )
+            if (isMultiSelectMode) {
+                // Selection mode: click to toggle
+                TaskListItem(
+                    task = task,
+                    onTaskClick = { onToggleSelect(task.id) },
+                    onCheckChange = { id, _ -> onToggleSelect(id) },
+                    isSelected = selectedTaskIds.contains(task.id)
+                )
+            } else {
+                SwipeableTaskItem(
+                    task = task,
+                    onTaskClick = { onTaskClick(task.id) },
+                    onComplete = { onComplete(task.id) },
+                    onDelete = { onDelete(task.id) },
+                    onLongClick = { onToggleSelect(task.id) }
+                )
+            }
         }
     }
 }
@@ -274,7 +465,8 @@ private fun SwipeableTaskItem(
     task: Task,
     onTaskClick: () -> Unit,
     onComplete: () -> Unit,
-    onDelete: () -> Unit
+    onDelete: () -> Unit,
+    onLongClick: (() -> Unit)? = null
 ) {
     val dismissState = rememberSwipeToDismissBoxState(
         confirmValueChange = { value ->
@@ -329,7 +521,7 @@ private fun SwipeableTaskItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .background(MaterialTheme.colorScheme.surface)
+                .background(PxColors.Surface)
         ) {
             TaskListItem(
                 task = task,
@@ -367,6 +559,7 @@ private fun KanbanView(
                 status = status,
                 tasks = columnTasks,
                 onTaskClick = onTaskClick,
+                onStatusChange = onStatusChange,
                 onAddTask = onAddTask
             )
         }
@@ -378,20 +571,31 @@ private fun KanbanColumn(
     status: TaskStatus,
     tasks: List<Task>,
     onTaskClick: (String) -> Unit,
+    onStatusChange: (String, TaskStatus) -> Unit,
     onAddTask: () -> Unit
 ) {
+    var dropActive by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .width(280.dp)
             .fillMaxHeight()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         KanbanColumnHeader(status = status, count = tasks.size)
 
-        if (tasks.isEmpty()) {
+        // Drop zone at top
+        androidx.compose.animation.AnimatedVisibility(visible = dropActive) {
+            com.oussama_chatri.productivityx.features.tasks.presentation.components.DropZone(
+                isActive = dropActive,
+                label = "Drop here"
+            )
+        }
+
+        if (tasks.isEmpty() && !dropActive) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -399,8 +603,8 @@ private fun KanbanColumn(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    stringResource(R.string.kanban_column_empty),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    "Drop tasks here",
+                    color = PxColors.OnSurfaceDim,
                     fontSize = 13.sp
                 )
             }
@@ -409,11 +613,12 @@ private fun KanbanColumn(
         tasks.forEach { task ->
             KanbanTaskCard(
                 task = task,
-                onClick = { onTaskClick(task.id) }
+                onClick = { onTaskClick(task.id) },
+                onDragStart = { dropActive = true }
             )
         }
 
-        // Add task button at bottom of column
+        // Add task button
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -427,8 +632,391 @@ private fun KanbanColumn(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(Icons.Outlined.Add, contentDescription = null, tint = PxColors.Primary, modifier = Modifier.size(16.dp))
-                Text(stringResource(R.string.kanban_add_task), color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                Text("Add task", color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.Medium)
             }
         }
+    }
+}
+
+// ─── Calendar View ────────────────────────────────────────────────────────────
+
+@Composable
+private fun CalendarView(
+    tasks: List<Task>,
+    startDate: LocalDate,
+    selectedDate: LocalDate?,
+    onNavigateMonth: (Int) -> Unit,
+    onSelectDate: (LocalDate?) -> Unit,
+    onTaskClick: (String) -> Unit
+) {
+    val yearMonth = YearMonth.from(startDate)
+    val daysInMonth = yearMonth.lengthOfMonth()
+    val firstDayOfWeek = yearMonth.atDay(1).dayOfWeek.value % 7 // 0 = Sun
+    val today = LocalDate.now()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+    ) {
+        // Month header
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = yearMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy")),
+                color = PxColors.OnBackground,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                IconButton(onClick = { onNavigateMonth(-1) }) {
+                    Icon(Icons.Filled.Close, "Previous", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
+                }
+                // Use a simple text-based nav instead
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onNavigateMonth(-1) }
+                        .padding(8.dp)
+                ) {
+                    Text("\u25C0", color = PxColors.Primary, fontSize = 14.sp)
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onNavigateMonth(1) }
+                        .padding(8.dp)
+                ) {
+                    Text("\u25B6", color = PxColors.Primary, fontSize = 14.sp)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Day headers
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            listOf("S", "M", "T", "W", "T", "F", "S").forEach { day ->
+                Text(
+                    text = day,
+                    color = PxColors.OnSurfaceDim,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.width(40.dp),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Calendar grid
+        val totalCells = firstDayOfWeek + daysInMonth
+        val rows = (totalCells + 6) / 7
+
+        for (row in 0 until rows) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                for (col in 0..6) {
+                    val dayIndex = row * 7 + col - firstDayOfWeek + 1
+                    if (dayIndex in 1..daysInMonth) {
+                        val date = yearMonth.atDay(dayIndex)
+                        val dayTasks = tasks.filter { it.dueDate == date }
+                        CalendarDayCell(
+                            day = dayIndex,
+                            isSelected = date == selectedDate,
+                            isToday = date == today,
+                            taskCount = dayTasks.size,
+                            hasTasks = dayTasks.isNotEmpty(),
+                            onClick = {
+                                if (selectedDate == date) {
+                                    onSelectDate(null)
+                                } else {
+                                    onSelectDate(date)
+                                }
+                            }
+                        )
+                    } else {
+                        Spacer(modifier = Modifier.size(40.dp))
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Tasks for selected date
+        val dateToShow = selectedDate ?: today
+        val dayTasks = tasks.filter { it.dueDate == dateToShow }
+
+        Text(
+            text = "Tasks for ${dateToShow.format(DateTimeFormatter.ofPattern("MMM d, yyyy"))}",
+            color = PxColors.OnBackground,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        if (dayTasks.isEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    "No tasks on this day",
+                    color = PxColors.OnSurfaceDim,
+                    fontSize = 13.sp
+                )
+            }
+        } else {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                items(dayTasks) { task ->
+                    TaskListItem(
+                        task = task,
+                        onTaskClick = { onTaskClick(task.id) },
+                        onCheckChange = { _, _ -> }
+                    )
+                }
+            }
+        }
+    }
+}
+
+// ─── Timeline View (Gantt-style) ──────────────────────────────────────────────
+
+@Composable
+private fun TimelineView(
+    tasks: List<Task>,
+    startDate: LocalDate,
+    endDate: LocalDate,
+    onTaskClick: (String) -> Unit,
+    onZoomIn: () -> Unit,
+    onZoomOut: () -> Unit,
+    onPan: (Int) -> Unit
+) {
+    val totalDays = ChronoUnit.DAYS.between(startDate, endDate).toInt().coerceAtLeast(1)
+    val today = LocalDate.now()
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Controls
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onPan(-7) }
+                        .padding(6.dp)
+                ) {
+                    Text("\u25C0", color = PxColors.Primary, fontSize = 14.sp)
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onPan(7) }
+                        .padding(6.dp)
+                ) {
+                    Text("\u25B6", color = PxColors.Primary, fontSize = 14.sp)
+                }
+            }
+
+            Text(
+                text = "${startDate.format(DateTimeFormatter.ofPattern("MMM d"))} - ${endDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy"))}",
+                color = PxColors.OnSurface,
+                fontSize = 13.sp
+            )
+
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable(onClick = onZoomIn)
+                        .padding(6.dp)
+                ) {
+                    Text("+", color = PxColors.Primary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable(onClick = onZoomOut)
+                        .padding(6.dp)
+                ) {
+                    Text("\u2212", color = PxColors.Primary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        if (tasks.isEmpty()) {
+            TaskEmptyState(viewMode = TaskView.TIMELINE, onAddTask = {})
+            return
+        }
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            // Calendar header row
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(24.dp)
+                ) {
+                    for (i in 0 until totalDays.coerceAtMost(31)) {
+                        val date = startDate.plusDays(i.toLong())
+                        val isTodayCol = date == today
+                        Box(
+                            modifier = Modifier
+                                .width(28.dp)
+                                .background(if (isTodayCol) PxColors.Primary.copy(alpha = 0.15f) else Color.Transparent),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = date.dayOfMonth.toString(),
+                                color = if (isTodayCol) PxColors.Primary else PxColors.OnSurfaceDim,
+                                fontSize = 10.sp,
+                                fontWeight = if (isTodayCol) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
+            }
+
+            // Tasks
+            items(tasks) { task ->
+                val taskStart = task.dueDate ?: return@items
+                val offset = ChronoUnit.DAYS.between(startDate, taskStart).toInt().coerceAtLeast(0)
+                val duration = task.estimatedMinutes?.let { (it / 60).coerceAtLeast(1) } ?: 1
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(32.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onTaskClick(task.id) },
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Task label
+                    Text(
+                        text = task.title,
+                        color = PxColors.OnSurface,
+                        fontSize = 11.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.width(80.dp)
+                    )
+
+                    // Timeline bar
+                    Box(
+                        modifier = Modifier
+                            .offset(x = (offset * 28).dp)
+                            .width((duration * 28).dp.coerceAtLeast(20.dp))
+                            .height(20.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(
+                                when (task.priority) {
+                                    Priority.LOW -> Color(0xFF6B7280)
+                                    Priority.MEDIUM -> Color(0xFF3B82F6)
+                                    Priority.HIGH -> Color(0xFFF59E0B)
+                                    Priority.URGENT -> Color(0xFFEF4444)
+                                }.copy(alpha = 0.3f)
+                            ),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        Text(
+                            text = task.title,
+                            color = PxColors.OnBackground,
+                            fontSize = 10.sp,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(horizontal = 4.dp)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ─── Bulk Action Bar ──────────────────────────────────────────────────────────
+
+@Composable
+private fun BulkActionBar(
+    selectedCount: Int,
+    onComplete: () -> Unit,
+    onDelete: () -> Unit,
+    onReschedule: () -> Unit,
+    onSetPriority: () -> Unit,
+    onClearSelection: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(PxColors.Surface)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        BulkActionButton(
+            icon = Icons.Outlined.CheckCircle,
+            label = "Complete",
+            onClick = onComplete
+        )
+        BulkActionButton(
+            icon = Icons.Outlined.Delete,
+            label = "Delete",
+            onClick = onDelete
+        )
+        BulkActionButton(
+            icon = Icons.Outlined.Schedule,
+            label = "Reschedule",
+            onClick = onReschedule
+        )
+        BulkActionButton(
+            icon = Icons.Outlined.Edit,
+            label = "Priority",
+            onClick = onSetPriority
+        )
+    }
+}
+
+@Composable
+private fun BulkActionButton(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    label: String,
+    onClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .clip(RoundedCornerShape(8.dp))
+            .clickable(onClick = onClick)
+            .padding(8.dp)
+    ) {
+        Icon(icon, contentDescription = label, tint = PxColors.Primary, modifier = Modifier.size(20.dp))
+        Text(label, color = PxColors.Primary, fontSize = 10.sp, fontWeight = FontWeight.Medium)
     }
 }

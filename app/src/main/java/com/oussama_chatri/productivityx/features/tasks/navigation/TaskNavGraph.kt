@@ -10,10 +10,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.AddEditTaskSheet
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskDetailScreen
+import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskStatsScreen
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskTrashScreen
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TasksScreen
-
-// ─── Route Definitions ─────────────────────────────────────────────────────────
+import com.oussama_chatri.productivityx.features.tasks.presentation.state.TaskStatsUiState
 
 object TaskRoutes {
     const val TASKS = "tasks"
@@ -22,20 +22,20 @@ object TaskRoutes {
     const val EDIT_TASK = "tasks/{taskId}/edit"
     const val ADD_SUBTASK = "tasks/{parentTaskId}/subtask/add"
     const val TASK_TRASH = "tasks/trash"
+    const val TASK_STATS = "tasks/stats"
 
     fun taskDetail(taskId: String) = "tasks/$taskId"
     fun editTask(taskId: String) = "tasks/$taskId/edit"
     fun addSubtask(parentTaskId: String) = "tasks/$parentTaskId/subtask/add"
 }
 
-// ─── Navigation Graph Extension ───────────────────────────────────────────────
-
 fun NavGraphBuilder.tasksNavGraph(navController: NavController) {
 
     composable(route = TaskRoutes.TASKS) {
         TasksScreen(
             onTaskClick = { taskId -> navController.navigate(TaskRoutes.taskDetail(taskId)) },
-            onAddTask = { navController.navigate(TaskRoutes.ADD_TASK) }
+            onAddTask = { navController.navigate(TaskRoutes.ADD_TASK) },
+            onNavigateToStats = { navController.navigate(TaskRoutes.TASK_STATS) }
         )
     }
 
@@ -82,6 +82,13 @@ fun NavGraphBuilder.tasksNavGraph(navController: NavController) {
     composable(route = TaskRoutes.TASK_TRASH) {
         TaskTrashScreen(
             onNavigateBack = { navController.popBackStack() }
+        )
+    }
+
+    composable(route = TaskRoutes.TASK_STATS) {
+        TaskStatsScreen(
+            onNavigateBack = { navController.popBackStack() },
+            uiState = TaskStatsUiState()
         )
     }
 }

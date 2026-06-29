@@ -29,8 +29,28 @@ enum class AppTheme {
 val proThemes = listOf(AppTheme.OCEAN, AppTheme.AMBER, AppTheme.FOREST, AppTheme.ROSE, AppTheme.MIDNIGHT)
 enum class Gender { MALE, FEMALE }
 
-enum class TaskView { LIST, KANBAN }
+enum class TaskView { LIST, KANBAN, CALENDAR, TIMELINE }
 
 enum class TaskSort { DUE_DATE, PRIORITY, CREATED_AT, TITLE }
 
 enum class WeekStartDay { MON, SUN, SAT }
+
+enum class RecurrenceType {
+    NONE, DAILY, WEEKDAYS, WEEKLY, BIWEEKLY, MONTHLY, YEARLY, CUSTOM
+}
+
+enum class BadgeType {
+    FIRST_TASK, TEN_TASKS, FIFTY_TASKS, HUNDRED_TASKS,
+    WEEK_STREAK, TWO_WEEK_STREAK, MONTH_STREAK,
+    COMPLETED_WEEK, COMPLETED_MONTH,
+    EARLY_BIRD, NIGHT_OWL,
+    CATEGORY_MASTER
+}
+
+data class Badge(
+    val type: BadgeType,
+    val title: String,
+    val description: String,
+    val iconRes: String,
+    val unlockedAt: Long? = null
+)

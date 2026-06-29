@@ -12,6 +12,7 @@ import com.oussama_chatri.productivityx.features.tasks.domain.usecase.RefreshTas
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.RestoreTaskUseCase
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.SoftDeleteTaskUseCase
 import com.oussama_chatri.productivityx.features.tasks.domain.usecase.UpdateTaskStatusUseCase
+import com.oussama_chatri.productivityx.features.tasks.domain.usecase.UpdateTaskUseCase
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.TaskDetailEvent
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.TaskTrashEvent
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.TaskDetailUiState
@@ -28,13 +29,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// ─── TaskDetailViewModel ──────────────────────────────────────────────────────
-
 @HiltViewModel
 class TaskDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getTaskById: GetTaskByIdUseCase,
     private val updateStatus: UpdateTaskStatusUseCase,
+    private val updateTask: UpdateTaskUseCase,
     private val softDelete: SoftDeleteTaskUseCase,
     private val restore: RestoreTaskUseCase
 ) : ViewModel() {
@@ -55,14 +55,18 @@ class TaskDetailViewModel @Inject constructor(
         when (event) {
             is TaskDetailEvent.StatusChanged -> viewModelScope.launch {
                 when (val result = updateStatus(taskId, event.status)) {
-                    is Resource.Success -> _uiState.update { it.copy(task = result.data) }
+                    is Resource.Success -> {
+                        _uiState.update { it.copy(task = result.data) }
+                        if (event.status == com.oussama_chatri.productivityx.core.enums.TaskStatus.DONE) {
+                            _uiState.update { it.copy(showCelebration = true, showConfetti = isMilestoneTask(result.data)) }
+                        }
+                    }
                     is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
                     else -> Unit
                 }
             }
 
             is TaskDetailEvent.CompleteTask -> viewModelScope.launch {
-                val task = _uiState.value.task ?: return@launch
                 onEvent(TaskDetailEvent.StatusChanged(
                     com.oussama_chatri.productivityx.core.enums.TaskStatus.DONE
                 ))
@@ -91,6 +95,102 @@ class TaskDetailViewModel @Inject constructor(
             }
 
             is TaskDetailEvent.Refresh -> loadTask()
+
+            // Inline editing - Title
+            is TaskDetailEvent.StartEditTitle -> {
+                _uiState.update { it.copy(isEditingTitle = true, editingTitle = _uiState.value.task?.title ?: "") }
+            }
+            is TaskDetailEvent.CancelEditTitle -> {
+                _uiState.update { it.copy(isEditingTitle = false, editingTitle = "") }
+            }
+            is TaskDetailEvent.TitleChanged -> {
+                _uiState.update { it.copy(editingTitle = event.title) }
+            }
+            is TaskDetailEvent.SaveTitle -> viewModelScope.launch {
+                val title = _uiState.value.editingTitle.trim()
+                if (title.isNotBlank()) {
+                    when (val result = updateTask(taskId, title = title)) {
+                        is Resource.Success -> {
+                            _uiState.update { it.copy(task = result.data, isEditingTitle = false, editingTitle = "") }
+                        }
+                        is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                        else -> Unit
+                    }
+                }
+            }
+
+            // Inline editing - Description
+            is TaskDetailEvent.StartEditDescription -> {
+                _uiState.update { it.copy(isEditingDescription = true, editingDescription = _uiState.value.task?.description ?: "") }
+            }
+            is TaskDetailEvent.CancelEditDescription -> {
+                _uiState.update { it.copy(isEditingDescription = false, editingDescription = "") }
+            }
+            is TaskDetailEvent.DescriptionChanged -> {
+                _uiState.update { it.copy(editingDescription = event.description) }
+            }
+            is TaskDetailEvent.SaveDescription -> viewModelScope.launch {
+                val description = _uiState.value.editingDescription.trim().ifBlank { null }
+                when (val result = updateTask(taskId, description = description)) {
+                    is Resource.Success -> {
+                        _uiState.update { it.copy(task = result.data, isEditingDescription = false, editingDescription = "") }
+                    }
+                    is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                    else -> Unit
+                }
+            }
+
+            // Subtask inline - requires CreateTaskUseCase injection
+            is TaskDetailEvent.AddSubtaskInline -> viewModelScope.launch {
+                loadTask()
+            }
+
+            is TaskDetailEvent.ToggleSubtask -> viewModelScope.launch {
+                val subtask = _uiState.value.task?.subtasks?.find { it.id == event.subtaskId } ?: return@launch
+                val newStatus = if (subtask.status == com.oussama_chatri.productivityx.core.enums.TaskStatus.DONE)
+                    com.oussama_chatri.productivityx.core.enums.TaskStatus.TODO
+                else
+                    com.oussama_chatri.productivityx.core.enums.TaskStatus.DONE
+                updateStatus(event.subtaskId, newStatus)
+                loadTask()
+            }
+
+            // Scheduling updates
+            is TaskDetailEvent.UpdateDueDate -> viewModelScope.launch {
+                when (val result = updateTask(taskId, dueDate = event.date)) {
+                    is Resource.Success -> _uiState.update { it.copy(task = result.data) }
+                    is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                    else -> Unit
+                }
+            }
+
+            is TaskDetailEvent.UpdateDueTime -> viewModelScope.launch {
+                when (val result = updateTask(taskId, dueTime = event.time)) {
+                    is Resource.Success -> _uiState.update { it.copy(task = result.data) }
+                    is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                    else -> Unit
+                }
+            }
+
+            is TaskDetailEvent.UpdateReminder -> viewModelScope.launch {
+                when (val result = updateTask(taskId, reminderAt = event.instant)) {
+                    is Resource.Success -> _uiState.update { it.copy(task = result.data) }
+                    is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                    else -> Unit
+                }
+            }
+
+            is TaskDetailEvent.UpdatePriority -> viewModelScope.launch {
+                when (val result = updateTask(taskId, priority = event.priority)) {
+                    is Resource.Success -> _uiState.update { it.copy(task = result.data) }
+                    is Resource.Error -> _uiEvent.send(UiEvent.ShowSnackbar(result.message))
+                    else -> Unit
+                }
+            }
+
+            is TaskDetailEvent.DismissCelebration -> {
+                _uiState.update { it.copy(showCelebration = false, showConfetti = false) }
+            }
         }
     }
 
@@ -103,6 +203,10 @@ class TaskDetailViewModel @Inject constructor(
                 else -> Unit
             }
         }
+    }
+
+    private fun isMilestoneTask(task: com.oussama_chatri.productivityx.features.tasks.domain.model.Task?): Boolean {
+        return task?.hasSubtasks == true || task?.priority == com.oussama_chatri.productivityx.core.enums.Priority.URGENT
     }
 }
 

@@ -8,6 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,10 +31,10 @@ import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.outlined.Event
 import androidx.compose.material.icons.outlined.Flag
-import androidx.compose.material.icons.outlined.Notes
+import androidx.compose.material.icons.outlined.Label
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Repeat
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
@@ -68,29 +70,33 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.Priority
+import com.oussama_chatri.productivityx.core.enums.RecurrenceType
 import com.oussama_chatri.productivityx.core.enums.TaskStatus
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.tasks.domain.model.Task
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.MinuteStepper
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.PriorityChip
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.TagChip
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskSettingRow
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.priorityAccentColor
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.AddEditTaskEvent
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.AddEditTaskUiState
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.displayLabel
 import com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel.AddEditTaskViewModel
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -141,7 +147,7 @@ fun AddEditTaskSheet(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 private fun AddEditTaskContent(
     uiState: AddEditTaskUiState,
@@ -152,6 +158,8 @@ private fun AddEditTaskContent(
     var showTimePicker by remember { mutableStateOf(false) }
     var showPriorityExpanded by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
+    var showRecurrenceExpanded by remember { mutableStateOf(false) }
+    var showTagsExpanded by remember { mutableStateOf(false) }
 
     val titleFocusRequester = remember { FocusRequester() }
 
@@ -189,7 +197,7 @@ private fun AddEditTaskContent(
                 Box {
                     if (uiState.title.isEmpty()) {
                         Text(
-                            "Task title…",
+                            "Task title\u2026",
                             color = Color(0xFF888899),
                             fontSize = 18.sp,
                             fontWeight = FontWeight.SemiBold
@@ -227,7 +235,7 @@ private fun AddEditTaskContent(
             decorationBox = { innerTextField ->
                 Box {
                     if (uiState.description.isEmpty()) {
-                        Text("Add description…", color = Color(0xFF888899), fontSize = 15.sp)
+                        Text("Add description\u2026", color = Color(0xFF888899), fontSize = 15.sp)
                     }
                     innerTextField()
                 }
@@ -236,7 +244,7 @@ private fun AddEditTaskContent(
 
         Divider(color = Color(0xFF252533), thickness = 1.dp)
 
-        // Priority row
+        // Priority row with visual matrix
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Flag, null, tint = priorityAccentColor(uiState.priority), modifier = Modifier.size(20.dp)) },
             label = "Priority",
@@ -251,21 +259,211 @@ private fun AddEditTaskContent(
             enter = expandVertically(),
             exit = shrinkVertically()
         ) {
-            Row(
+            // Visual priority matrix
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Priority.entries.forEach { p ->
-                    PriorityChip(
-                        priority = p,
-                        modifier = Modifier
-                            .clickable {
-                                onEvent(AddEditTaskEvent.PriorityChanged(p))
-                                showPriorityExpanded = false
-                            }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Low Importance", color = Color(0xFF888899), fontSize = 10.sp)
+                    Text("High Importance", color = Color(0xFF888899), fontSize = 10.sp)
+                }
+
+                // Urgent row
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text("Urgent", color = Color(0xFF888899), fontSize = 10.sp, modifier = Modifier.width(40.dp))
+                    PriorityButton(
+                        label = "High",
+                        priority = Priority.HIGH,
+                        isSelected = uiState.priority == Priority.HIGH,
+                        color = Color(0xFFF59E0B),
+                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.HIGH)); showPriorityExpanded = false },
+                        modifier = Modifier.weight(1f)
                     )
+                    PriorityButton(
+                        label = "Urgent",
+                        priority = Priority.URGENT,
+                        isSelected = uiState.priority == Priority.URGENT,
+                        color = Color(0xFFEF4444),
+                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.URGENT)); showPriorityExpanded = false },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                // Not urgent row
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text("Not Urgent", color = Color(0xFF888899), fontSize = 10.sp, modifier = Modifier.width(40.dp))
+                    PriorityButton(
+                        label = "Low",
+                        priority = Priority.LOW,
+                        isSelected = uiState.priority == Priority.LOW,
+                        color = Color(0xFF6B7280),
+                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.LOW)); showPriorityExpanded = false },
+                        modifier = Modifier.weight(1f)
+                    )
+                    PriorityButton(
+                        label = "Medium",
+                        priority = Priority.MEDIUM,
+                        isSelected = uiState.priority == Priority.MEDIUM,
+                        color = Color(0xFF3B82F6),
+                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.MEDIUM)); showPriorityExpanded = false },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                // Color buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Priority.entries.forEach { p ->
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(32.dp)
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(
+                                    if (p == uiState.priority) priorityAccentColor(p)
+                                    else priorityAccentColor(p).copy(alpha = 0.15f)
+                                )
+                                .clickable {
+                                    onEvent(AddEditTaskEvent.PriorityChanged(p))
+                                    showPriorityExpanded = false
+                                },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = p.name.lowercase().replaceFirstChar { it.uppercase() },
+                                color = if (p == uiState.priority) Color.White else priorityAccentColor(p),
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        Divider(color = Color(0xFF252533), thickness = 1.dp)
+
+        // Tags section
+        TaskSettingRow(
+            icon = { Icon(Icons.Outlined.Label, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            label = "Tags",
+            onClick = { showTagsExpanded = !showTagsExpanded },
+            trailing = {
+                if (uiState.tags.isNotEmpty()) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        uiState.tags.take(3).forEach { tag ->
+                            TagChip(tag = tag)
+                        }
+                        if (uiState.tags.size > 3) {
+                            Text("+${uiState.tags.size - 3}", color = Color(0xFF888899), fontSize = 11.sp)
+                        }
+                    }
+                } else {
+                    Text("Add tags", color = Color(0xFF888899), fontSize = 14.sp)
+                }
+            }
+        )
+
+        AnimatedVisibility(
+            visible = showTagsExpanded,
+            enter = expandVertically(),
+            exit = shrinkVertically()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                if (uiState.tags.isNotEmpty()) {
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        uiState.tags.forEach { tag ->
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(50.dp))
+                                    .background(Color(0xFF252533))
+                                    .clickable { onEvent(AddEditTaskEvent.RemoveTag(tag)) }
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                            ) {
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(tag, color = Color(0xFFCCCCD8), fontSize = 12.sp)
+                                    Icon(Icons.Outlined.Close, null, tint = Color(0xFF888899), modifier = Modifier.size(12.dp))
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Add tag input
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color(0xFF252533))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    BasicTextField(
+                        value = uiState.newTag,
+                        onValueChange = { onEvent(AddEditTaskEvent.NewTagChanged(it)) },
+                        textStyle = TextStyle(color = Color(0xFFCCCCD8), fontSize = 14.sp),
+                        cursorBrush = SolidColor(Color(0xFF6366F1)),
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Words,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            if (uiState.newTag.isNotBlank()) {
+                                onEvent(AddEditTaskEvent.AddTag(uiState.newTag))
+                            }
+                        }),
+                        modifier = Modifier.weight(1f),
+                        decorationBox = { inner ->
+                            Box {
+                                if (uiState.newTag.isEmpty()) {
+                                    Text("Add tag\u2026", color = Color(0xFF888899), fontSize = 14.sp)
+                                }
+                                inner()
+                            }
+                        }
+                    )
+                    IconButton(
+                        onClick = {
+                            if (uiState.newTag.isNotBlank()) {
+                                onEvent(AddEditTaskEvent.AddTag(uiState.newTag))
+                            }
+                        },
+                        enabled = uiState.newTag.isNotBlank(),
+                        modifier = Modifier.size(24.dp)
+                    ) {
+                        Icon(
+                            Icons.Outlined.Add,
+                            "Add tag",
+                            tint = if (uiState.newTag.isNotBlank()) Color(0xFF6366F1) else Color(0xFF888899),
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
                 }
             }
         }
@@ -309,7 +507,7 @@ private fun AddEditTaskContent(
                     onClick = { showTimePicker = true },
                     trailing = {
                         Text(
-                            text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "—" } } ?: "Set time",
+                            text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "\u2014" } } ?: "Set time",
                             color = if (uiState.dueTime != null) Color(0xFFCCCCD8) else Color(0xFF888899),
                             fontSize = 14.sp
                         )
@@ -342,6 +540,129 @@ private fun AddEditTaskContent(
             }
         )
 
+        // Reminder minutes (smart defaults)
+        if (uiState.reminderAt != null) {
+            Divider(color = Color(0xFF252533), thickness = 1.dp)
+            TaskSettingRow(
+                icon = { Icon(Icons.Outlined.Notifications, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+                label = "Remind before",
+                trailing = {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        listOf(5, 15, 30, 60).forEach { mins ->
+                            val isSelected = uiState.reminderMinutes == mins
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(4.dp))
+                                    .background(if (isSelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                    .clickable { onEvent(AddEditTaskEvent.ReminderMinutesChanged(mins)) }
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                            ) {
+                                Text(
+                                    "${mins}m",
+                                    color = if (isSelected) Color.White else Color(0xFF888899),
+                                    fontSize = 11.sp,
+                                    fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
+                                )
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
+        Divider(color = Color(0xFF252533), thickness = 1.dp)
+
+        // Recurrence section
+        TaskSettingRow(
+            icon = { Icon(Icons.Outlined.Repeat, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            label = "Repeat",
+            onClick = { showRecurrenceExpanded = !showRecurrenceExpanded },
+            trailing = {
+                Text(
+                    text = if (uiState.recurrenceType != RecurrenceType.NONE) {
+                        uiState.recurrenceType.name.lowercase().replaceFirstChar { it.uppercase() }
+                    } else "Never",
+                    color = Color(0xFFCCCCD8),
+                    fontSize = 14.sp
+                )
+            }
+        )
+
+        AnimatedVisibility(
+            visible = showRecurrenceExpanded,
+            enter = expandVertically(),
+            exit = shrinkVertically()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                // Recurrence type chips
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    listOf(
+                        RecurrenceType.NONE to "None",
+                        RecurrenceType.DAILY to "Daily",
+                        RecurrenceType.WEEKDAYS to "Weekdays",
+                        RecurrenceType.WEEKLY to "Weekly",
+                        RecurrenceType.BIWEEKLY to "Biweekly",
+                        RecurrenceType.MONTHLY to "Monthly",
+                        RecurrenceType.YEARLY to "Yearly"
+                    ).forEach { (type, label) ->
+                        val isSelected = uiState.recurrenceType == type
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(if (isSelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                .clickable { onEvent(AddEditTaskEvent.RecurrenceTypeChanged(type)) }
+                                .padding(horizontal = 10.dp, vertical = 6.dp)
+                        ) {
+                            Text(
+                                text = label,
+                                color = if (isSelected) Color.White else Color(0xFF888899),
+                                fontSize = 12.sp,
+                                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
+
+                // Weekly day picker
+                if (uiState.recurrenceType == RecurrenceType.WEEKLY || uiState.recurrenceType == RecurrenceType.WEEKDAYS) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        val days = listOf("M" to 1, "T" to 2, "W" to 3, "Th" to 4, "F" to 5, "Sa" to 6, "Su" to 7)
+                        days.forEach { (label, dayNum) ->
+                            val isDaySelected = uiState.recurrenceDaysOfWeek?.contains(dayNum) == true
+                            Box(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(RoundedCornerShape(50.dp))
+                                    .background(if (isDaySelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                    .clickable {
+                                        val currentDays = uiState.recurrenceDaysOfWeek?.toMutableList() ?: mutableListOf()
+                                        if (isDaySelected) currentDays.remove(dayNum) else currentDays.add(dayNum)
+                                        onEvent(AddEditTaskEvent.RecurrenceDaysOfWeekChanged(currentDays.ifEmpty { null }))
+                                    },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(label, color = if (isDaySelected) Color.White else Color(0xFF888899), fontSize = 11.sp, fontWeight = if (isDaySelected) FontWeight.Bold else FontWeight.Normal)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         Divider(color = Color(0xFF252533), thickness = 1.dp)
 
         // Estimated time row
@@ -361,7 +682,7 @@ private fun AddEditTaskContent(
         // Status row (only in edit mode)
         if (uiState.isEditMode) {
             TaskSettingRow(
-                icon = { Icon(Icons.Outlined.Event, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+                icon = { Icon(Icons.Outlined.Timer, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
                 label = "Status",
                 trailing = {
                     Text(
@@ -371,7 +692,6 @@ private fun AddEditTaskContent(
                     )
                 }
             )
-            // Inline status chips
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -534,6 +854,34 @@ private fun AddEditTaskContent(
     }
 }
 
+// ─── Priority Button ──────────────────────────────────────────────────────────
+
+@Composable
+private fun PriorityButton(
+    label: String,
+    priority: Priority,
+    isSelected: Boolean,
+    color: Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .height(40.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(if (isSelected) color.copy(alpha = 0.15f) else Color.Transparent)
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = label,
+            color = if (isSelected) color else Color(0xFF888899),
+            fontSize = 12.sp,
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+        )
+    }
+}
+
 // ─── Subtask Section ──────────────────────────────────────────────────────────
 
 @Composable
@@ -602,7 +950,7 @@ private fun SubtaskSection(
                 decorationBox = { inner ->
                     Box {
                         if (newSubtaskTitle.isEmpty()) {
-                            Text("Add subtask…", color = Color(0xFF888899), fontSize = 14.sp)
+                            Text("Add subtask\u2026", color = Color(0xFF888899), fontSize = 14.sp)
                         }
                         inner()
                     }
