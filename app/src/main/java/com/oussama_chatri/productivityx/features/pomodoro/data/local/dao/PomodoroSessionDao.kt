@@ -39,6 +39,68 @@ interface PomodoroSessionDao {
         """
         SELECT * FROM pomodoro_sessions_local
         WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
+          AND started_at >= :startMs
+          AND started_at < :endMs
+        ORDER BY started_at ASC
+    """
+    )
+    suspend fun getFocusSessionsInRange(userId: String, startMs: Long, endMs: Long): List<PomodoroSessionEntity>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
+          AND started_at >= :startMs
+          AND started_at < :endMs
+    """
+    )
+    suspend fun countFocusSessionsInRange(userId: String, startMs: Long, endMs: Long): Long
+
+    @Query(
+        """
+        SELECT COALESCE(SUM(actual_duration_seconds), 0)
+        FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
+          AND started_at >= :startMs
+          AND started_at < :endMs
+    """
+    )
+    suspend fun sumFocusSecondsInRange(userId: String, startMs: Long, endMs: Long): Long
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
+          AND interrupted = 1
+          AND started_at >= :startMs
+          AND started_at < :endMs
+    """
+    )
+    suspend fun countInterruptedFocusSessionsInRange(userId: String, startMs: Long, endMs: Long): Long
+
+    @Query(
+        """
+        SELECT * FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
+        ORDER BY started_at ASC
+    """
+    )
+    suspend fun getAllCompletedFocusSessions(userId: String): List<PomodoroSessionEntity>
+
+    @Query(
+        """
+        SELECT * FROM pomodoro_sessions_local
+        WHERE user_id = :userId
         ORDER BY started_at DESC
         LIMIT :limit
     """

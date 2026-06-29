@@ -21,7 +21,7 @@ class AmbientSoundManager @Inject constructor(
         stopSound()
         currentSound = sound
 
-        val resId = when (sound) {
+        val resId: Int? = when (sound) {
             AmbientSound.RAIN -> null // Replace with actual R.raw.rain if available
             AmbientSound.CAFE -> null 
             AmbientSound.WHITE_NOISE -> null
@@ -29,11 +29,10 @@ class AmbientSoundManager @Inject constructor(
             AmbientSound.NONE -> null
         }
 
-        resId?.let {
-            mediaPlayer = MediaPlayer.create(context, it).apply {
-                isLooping = true
-                start()
-            }
+        resId?.let { id ->
+            mediaPlayer = MediaPlayer.create(context, id)
+            mediaPlayer?.isLooping = true
+            mediaPlayer?.start()
         }
     }
 

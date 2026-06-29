@@ -76,6 +76,18 @@ class PreferencesDataStore @Inject constructor(
         store.edit { it[KEY_AUTH_SKIP] = completed }
     }
 
+    // ── Pomodoro Goals ─────────────────────────────────────────────────────────
+
+    val pomodoroDailyGoal: Flow<Int> = store.data.map { it[KEY_POMODORO_DAILY_GOAL] ?: 120 }
+    val pomodoroWeeklyGoal: Flow<Int> = store.data.map { it[KEY_POMODORO_WEEKLY_GOAL] ?: 600 }
+
+    suspend fun setPomodoroGoals(daily: Int, weekly: Int) {
+        store.edit {
+            it[KEY_POMODORO_DAILY_GOAL] = daily
+            it[KEY_POMODORO_WEEKLY_GOAL] = weekly
+        }
+    }
+
     // ── Pomodoro active timer ──────────────────────────────────────────────────
 
     val pomodoroSessionId: Flow<String?> = store.data.map { it[KEY_POMODORO_SESSION_ID] }
@@ -157,6 +169,9 @@ class PreferencesDataStore @Inject constructor(
         private val KEY_LOCAL_ONLY = booleanPreferencesKey("local_only")
         private val KEY_AUTH_SKIP = booleanPreferencesKey("auth_skip_completed")
         private val KEY_LANGUAGE = stringPreferencesKey("language")
+
+        private val KEY_POMODORO_DAILY_GOAL = intPreferencesKey("pomodoro_daily_goal")
+        private val KEY_POMODORO_WEEKLY_GOAL = intPreferencesKey("pomodoro_weekly_goal")
 
         private val KEY_POMODORO_SESSION_ID = stringPreferencesKey("pomodoro_session_id")
         private val KEY_POMODORO_TYPE = stringPreferencesKey("pomodoro_type")

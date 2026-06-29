@@ -1,7 +1,10 @@
 package com.oussama_chatri.productivityx.features.pomodoro.presentation.screen
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +13,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,8 +27,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.EmojiEvents
+import androidx.compose.material.icons.outlined.Flag
 import androidx.compose.material.icons.outlined.LocalFireDepartment
 import androidx.compose.material.icons.outlined.PieChart
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -51,6 +57,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroStats
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.viewmodel.PomodoroStatsViewModel
+import com.oussama_chatri.productivityx.features.pomodoro.presentation.viewmodel.TimeRange
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,6 +78,11 @@ fun PomodoroStatsScreen(
                         Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
                     }
                 },
+                actions = {
+                    IconButton(onClick = { /* Share stats image */ }) {
+                        Icon(Icons.Outlined.Share, contentDescription = "Share")
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -83,11 +95,101 @@ fun PomodoroStatsScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            TimeRangeSelector(
+                selected = state.selectedTimeRange,
+                onSelect = { /* viewModel.onEvent(...) */ }
+            )
+
             state.stats?.let { stats ->
+                GoalProgressCard(
+                    currentMinutes = stats.totalFocusMinutesToday.toInt(),
+                    goalMinutes = state.dailyGoal
+                )
                 StreakCard(stats)
                 WeeklyHeatMap(stats.weeklyHeatMap)
                 CategoryDistribution(stats.categoryDistribution)
                 SummaryStats(stats)
+            }
+        }
+    }
+}
+
+@Composable
+private fun TimeRangeSelector(
+    selected: TimeRange,
+    onSelect: (TimeRange) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(PxColors.Surface)
+            .padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        TimeRange.values().forEach { range ->
+            val isSelected = selected == range
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(if (isSelected) PxColors.Primary else Color.Transparent)
+                    .clickable { onSelect(range) }
+                    .padding(vertical = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    range.name.lowercase().capitalize(),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
+                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun GoalProgressCard(currentMinutes: Int, goalMinutes: Int) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = PxColors.Surface)
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Text("Daily Goal", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+                    Text(
+                        "${currentMinutes / 60}h ${currentMinutes % 60}m / ${goalMinutes / 60}h",
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                        color = PxColors.OnSurface
+                    )
+                }
+                Icon(Icons.Outlined.Flag, contentDescription = null, tint = PxColors.Primary)
+            }
+            Spacer(Modifier.height(12.dp))
+            val progress = (currentMinutes.toFloat() / goalMinutes.toFloat()).coerceIn(0f, 1f)
+            val animatedProgress by animateFloatAsState(targetValue = progress, animationSpec = tween(1000), label = "goalProgress")
+            
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(10.dp)
+                    .clip(CircleShape)
+                    .background(PxColors.SurfaceVariant)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(animatedProgress)
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .background(Brush.horizontalGradient(listOf(PxColors.Primary, PxColors.PrimaryVariant)))
+                )
             }
         }
     }

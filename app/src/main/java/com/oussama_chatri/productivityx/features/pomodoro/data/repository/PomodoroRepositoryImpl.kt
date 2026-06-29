@@ -234,44 +234,93 @@ class PomodoroRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTodayStats(): Resource<PomodoroStats> {
-        val userId = preferencesDataStore.cachedUserId.first()
-        if (userId != null) {
-            val zoneId = ZoneId.systemDefault()
-            val today = LocalDate.now(zoneId)
-            val dayStart = today.atStartOfDay(zoneId).toInstant().toEpochMilli()
-            val dayEnd = today.plusDays(1).atStartOfDay(zoneId).toInstant().toEpochMilli()
-            val focusMinutes = pomodoroDao.totalFocusMinutesToday(userId, dayStart, dayEnd)
-            val focusSeconds = focusMinutes * 60L
+        val zoneId = ZoneId.systemDefault()
+        val today = LocalDate.now(zoneId)
+        return getDetailedStats(today, today)
+    }
 
-            if (focusMinutes > 0) {
-                return Resource.Success(
-                    PomodoroStats(
-                        completedFocusSessionsToday = 0,
-                        totalFocusMinutesToday = focusMinutes.toLong(),
-                        totalFocusSecondsToday = focusSeconds
-                    )
-                )
+    override suspend fun getDetailedStats(startDate: LocalDate, endDate: LocalDate): Resource<PomodoroStats> {
+        val userId = preferencesDataStore.cachedUserId.first() ?: return Resource.Error("Not logged in")
+        val zoneId = ZoneId.systemDefault()
+
+        val startMs = startDate.atStartOfDay(zoneId).toInstant().toEpochMilli()
+        val endMs = endDate.plusDays(1).atStartOfDay(zoneId).toInstant().toEpochMilli()
+
+        val sessions = pomodoroDao.getFocusSessionsInRange(userId, startMs, endMs)
+        val totalFocusSeconds = pomodoroDao.sumFocusSecondsInRange(userId, startMs, endMs)
+        val totalSessions = pomodoroDao.countFocusSessionsInRange(userId, startMs, endMs)
+        val interruptedSessions = pomodoroDao.countInterruptedFocusSessionsInRange(userId, startMs, endMs)
+
+        // Streak calculation (simplified: check consecutive days with at least one session)
+        val allSessions = pomodoroDao.getAllCompletedFocusSessions(userId)
+        val focusDays = allSessions.map {
+            Instant.ofEpochMilli(it.startedAt).atZone(zoneId).toLocalDate()
+        }.distinct().sortedDescending()
+
+        var currentStreak = 0
+        var today_ = LocalDate.now(zoneId)
+        if (focusDays.contains(today_) || focusDays.contains(today_.minusDays(1))) {
+            var checkDate = if (focusDays.contains(today_)) today_ else today_.minusDays(1)
+            while (focusDays.contains(checkDate)) {
+                currentStreak++
+                checkDate = checkDate.minusDays(1)
             }
         }
 
-        if (!isSyncEnabled()) {
-            return Resource.Success(PomodoroStats(0, 0, 0))
-        }
-
-        return when (val result = safeApiCall { api.getTodayStats() }) {
-            is Resource.Success -> {
-                val response = result.data
-                if (response.isSuccessful) {
-                    val stats = response.body()?.data?.toDomain()
-                        ?: return Resource.Error("Empty stats response.")
-                    Resource.Success(stats)
+        // Longest streak
+        var longestStreak = 0
+        var tempStreak = 0
+        if (focusDays.isNotEmpty()) {
+            var lastDate = focusDays.last()
+            focusDays.reversed().forEach { date ->
+                if (date == lastDate.plusDays(1)) {
+                    tempStreak++
                 } else {
-                    Resource.Error(parseErrorMessage(response.errorBody()?.string()))
+                    tempStreak = 1
                 }
+                if (tempStreak > longestStreak) longestStreak = tempStreak
+                lastDate = date
             }
-            is Resource.Error -> result
-            Resource.Loading -> Resource.Loading
         }
+
+        val qualityScore = if (totalSessions > 0) {
+            1f - (interruptedSessions.toFloat() / totalSessions.toFloat())
+        } else 1f
+
+        val heatMap = sessions.groupBy {
+            Instant.ofEpochMilli(it.startedAt).atZone(zoneId).toLocalDate()
+        }.mapValues { (_, daySessions) ->
+            daySessions.sumOf { it.actualDurationSeconds ?: 0 } / 60
+        }
+
+        val categoryDist = sessions.groupBy { it.taskTitle ?: "Uncategorized" }
+            .mapValues { (_, catSessions) ->
+                catSessions.sumOf { it.actualDurationSeconds ?: 0 } / 60
+            }
+
+        val dailyGoal = preferencesDataStore.pomodoroDailyGoal.first()
+        val weeklyGoal = preferencesDataStore.pomodoroWeeklyGoal.first()
+
+        return Resource.Success(
+            PomodoroStats(
+                completedFocusSessionsToday = if (startDate == LocalDate.now(zoneId)) totalSessions else 0, // Simplified
+                totalFocusMinutesToday = if (startDate == LocalDate.now(zoneId)) totalFocusSeconds / 60 else 0,
+                totalFocusSecondsToday = if (startDate == LocalDate.now(zoneId)) totalFocusSeconds else 0,
+                currentStreak = currentStreak,
+                longestStreak = longestStreak,
+                focusQualityScore = qualityScore,
+                weeklyHeatMap = heatMap,
+                categoryDistribution = categoryDist,
+                dailyGoalMinutes = dailyGoal,
+                weeklyGoalMinutes = weeklyGoal,
+                totalFocusTimeAllTime = allSessions.sumOf { (it.actualDurationSeconds ?: 0).toLong() }
+            )
+        )
+    }
+
+    override suspend fun updateGoals(dailyMinutes: Int, weeklyMinutes: Int): Resource<Unit> {
+        preferencesDataStore.setPomodoroGoals(dailyMinutes, weeklyMinutes)
+        return Resource.Success(Unit)
     }
 
     override fun observeSessions(): Flow<List<PomodoroSession>> {

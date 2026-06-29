@@ -5,6 +5,7 @@ import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroSession
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroStats
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 interface PomodoroRepository {
 
@@ -25,6 +26,10 @@ interface PomodoroRepository {
     suspend fun getSessions(page: Int, size: Int, taskId: String?): Resource<List<PomodoroSession>>
 
     suspend fun getTodayStats(): Resource<PomodoroStats>
+
+    suspend fun getDetailedStats(startDate: LocalDate, endDate: LocalDate): Resource<PomodoroStats>
+
+    suspend fun updateGoals(dailyMinutes: Int, weeklyMinutes: Int): Resource<Unit>
 
     fun observeSessions(): Flow<List<PomodoroSession>>
 }

@@ -5,11 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.screen.PomodoroScreen
 import com.oussama_chatri.productivityx.features.pomodoro.presentation.screen.SessionHistoryScreen
+import com.oussama_chatri.productivityx.features.pomodoro.presentation.screen.PomodoroStatsScreen
 import kotlinx.serialization.Serializable
 
 sealed class PomodoroRoute {
     @Serializable data object Timer   : PomodoroRoute()
     @Serializable data object History : PomodoroRoute()
+    @Serializable data object Stats   : PomodoroRoute()
 }
 
 fun NavGraphBuilder.pomodoroNavGraph(navController: NavHostController) {
@@ -20,6 +22,12 @@ fun NavGraphBuilder.pomodoroNavGraph(navController: NavHostController) {
 
     composable<PomodoroRoute.History> {
         SessionHistoryScreen(
+            onNavigateBack = { navController.popBackStack() }
+        )
+    }
+
+    composable<PomodoroRoute.Stats> {
+        PomodoroStatsScreen(
             onNavigateBack = { navController.popBackStack() }
         )
     }

@@ -51,5 +51,12 @@ class PomodoroStatsViewModel @Inject constructor(
 data class PomodoroStatsUiState(
     val stats: PomodoroStats? = null,
     val isLoading: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val selectedTimeRange: TimeRange = TimeRange.WEEKLY,
+    val dailyGoal: Int = 120,
+    val weeklyTarget: Int = 600
 )
+
+enum class TimeRange {
+    DAILY, WEEKLY, MONTHLY
+}

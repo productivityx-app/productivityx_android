@@ -604,6 +604,20 @@
     <string name="pomodoro_until_long_break">%1$d session until long break</string>
     <string name="pomodoro_until_long_break_plural">%1$d sessions until long break</string>
 
+    <string name="pomodoro_swipe_to_skip">SWIPE TO SKIP</string>
+    <string name="pomodoro_extend_1min">+1 Min</string>
+    <string name="pomodoro_focus_analytics">Focus Analytics</string>
+    <string name="pomodoro_streak_day">%1$d Day Streak</string>
+    <string name="pomodoro_best_streak">Best: %1$d days</string>
+    <string name="pomodoro_weekly_intensity">Weekly Intensity</string>
+    <string name="pomodoro_focus_by_category">Focus by Category</string>
+    <string name="pomodoro_quality_score">Quality Score</string>
+    <string name="pomodoro_total_focus_time">Total Focus</string>
+    <string name="pomodoro_daily_goal">Daily Goal</string>
+    <string name="pomodoro_weekly_goal">Weekly Target</string>
+    <string name="pomodoro_exit_focus_mode">Exit Focus Mode</string>
+    <string name="pomodoro_dnd_access_required">DND Access required. Please enable in settings.</string>
+
     <!-- ═══════════════════════════════════════════ -->
     <!-- AI                                          -->
     <!-- ═══════════════════════════════════════════ -->

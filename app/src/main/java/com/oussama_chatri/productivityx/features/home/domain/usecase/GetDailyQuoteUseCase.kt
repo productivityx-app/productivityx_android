@@ -23,11 +23,15 @@ class GetDailyQuoteUseCase @Inject constructor() {
     )
 
     operator fun invoke(summary: DashboardSummary): DashboardSummary {
-        val dayIndex = java.time.LocalDate.now().dayOfYear
-        val quote = quotes[dayIndex % quotes.size]
+        val (quote, author) = getQuote()
         return summary.copy(
-            dailyQuote = quote.first,
-            dailyQuoteAuthor = quote.second,
+            dailyQuote = quote,
+            dailyQuoteAuthor = author,
         )
+    }
+
+    fun getQuote(): Pair<String, String> {
+        val dayIndex = java.time.LocalDate.now().dayOfYear
+        return quotes[dayIndex % quotes.size]
     }
 }

@@ -3,6 +3,15 @@ package com.oussama_chatri.productivityx.features.pomodoro.presentation.state
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroStats
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.TimerState
+import java.time.LocalDateTime
+
+data class SessionHistoryItem(
+    val id: String,
+    val type: PomodoroType,
+    val startTime: LocalDateTime,
+    val durationMinutes: Int,
+    val taskTitle: String?
+)
 
 data class PomodoroUiState(
     val timerState: TimerState          = TimerState.Idle,
@@ -21,7 +30,17 @@ data class PomodoroUiState(
     val error: String?                  = null,
     val showTaskPickerSheet: Boolean    = false,
     val showInterruptDialog: Boolean    = false,
-    val interruptReason: String         = ""
+    val interruptReason: String         = "",
+    
+    // New Modernization Fields
+    val isFocusMode: Boolean            = false,
+    val selectedAmbientSound: AmbientSound = AmbientSound.NONE,
+    val isDndEnabled: Boolean           = false,
+    val showExtensionDialog: Boolean    = false,
+    val motivationalQuote: String?      = null,
+    val sessionTimeline: List<SessionHistoryItem> = emptyList(),
+    val focusGoalMinutes: Int           = 120,
+    val completedFocusMinutesToday: Int = 0
 ) {
     val totalSeconds: Int
         get() = when (selectedType) {
@@ -33,4 +52,8 @@ data class PomodoroUiState(
     val isRunning: Boolean get() = timerState is TimerState.Running
     val isPaused:  Boolean get() = timerState is TimerState.Paused
     val isIdle:    Boolean get() = timerState is TimerState.Idle || timerState is TimerState.Completed
+}
+
+enum class AmbientSound {
+    NONE, RAIN, CAFE, WHITE_NOISE, NATURE
 }
