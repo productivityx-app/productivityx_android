@@ -45,7 +45,8 @@ fun EventBlock(
     event: Event,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    showDate: Boolean = false
+    showDate: Boolean = false,
+    showLocation: Boolean = false,
 ) {
     val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
         .getOrDefault(Color(0xFF6366F1))
@@ -69,30 +70,40 @@ fun EventBlock(
         Spacer(Modifier.width(8.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text     = event.title,
-                style    = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-                color    = Color(0xFFEEEEF5),
+                text = event.title,
+                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = Color(0xFFEEEEF5),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             val timeLabel = if (showDate) {
-                runCatching { dateTimeFormatter.format(event.startAt) }.getOrElse { "—" }
+                runCatching { dateTimeFormatter.format(event.startAt) }.getOrElse { "-" }
             } else {
                 if (event.isAllDay) "All day"
-                else runCatching { "${timeFormatter.format(event.startAt)} – ${timeFormatter.format(event.endAt)}" }.getOrElse { "—" }
+                else runCatching { "${timeFormatter.format(event.startAt)} - ${timeFormatter.format(event.endAt)}" }
+                    .getOrElse { "-" }
             }
             Text(
-                text  = timeLabel,
+                text = timeLabel,
                 style = MaterialTheme.typography.labelSmall,
                 color = Color(0xFF888899)
             )
+            if (showLocation && !event.location.isNullOrBlank()) {
+                Text(
+                    text = event.location,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color(0xFF888899).copy(alpha = 0.7f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
         if (event.isRecurring) {
             Icon(
-                imageVector        = Icons.Outlined.Repeat,
+                imageVector = Icons.Outlined.Repeat,
                 contentDescription = "Recurring",
-                tint               = eventColor.copy(alpha = 0.7f),
-                modifier           = Modifier.size(14.dp)
+                tint = eventColor.copy(alpha = 0.7f),
+                modifier = Modifier.size(14.dp)
             )
         }
     }
@@ -102,15 +113,15 @@ fun EventBlock(
 fun EventColorPicker(
     selectedHex: String,
     onColorSelected: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier              = modifier,
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-        verticalAlignment     = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically
     ) {
         eventColorPalette.forEach { hex ->
-            val c     = runCatching { Color(android.graphics.Color.parseColor(hex)) }.getOrDefault(Color.Gray)
+            val c = runCatching { Color(android.graphics.Color.parseColor(hex)) }.getOrDefault(Color.Gray)
             val isSelected = hex == selectedHex
             Box(
                 modifier = Modifier
@@ -132,9 +143,9 @@ fun RecurrenceChip(
     label: String,
     isSelected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val bg      = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533)
+    val bg = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533)
     val content = if (isSelected) Color.White else Color(0xFF888899)
     Box(
         modifier = modifier
@@ -144,7 +155,7 @@ fun RecurrenceChip(
             .padding(horizontal = 12.dp, vertical = 6.dp)
     ) {
         Text(
-            text  = label,
+            text = label,
             style = MaterialTheme.typography.labelMedium,
             color = content
         )

@@ -518,6 +518,36 @@
     <string name="event_end_before_start">End time must be after start time.</string>
     <string name="event_location_open_maps">Open in Maps</string>
     <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Meeting</string>
+    <string name="event_template_focus">Focus Time</string>
+    <string name="event_template_break">Break</string>
+    <string name="event_template_travel">Travel</string>
+    <string name="event_join_meeting">Join meeting</string>
+    <string name="event_navigate">Navigate</string>
+    <string name="event_share">Share event</string>
+    <string name="event_duplicate">Duplicate</string>
+    <string name="event_weather">Weather</string>
+    <string name="event_attendees">Attendees</string>
+    <string name="event_timezone">Timezone</string>
+    <string name="event_travel_time">Travel time</string>
+    <string name="event_conflict_detected">Time conflict detected</string>
+    <string name="event_reminder_multiple">Multiple reminders</string>
+    <string name="event_reminder_add">Add reminder</string>
+    <string name="event_reminder_custom">Custom</string>
+    <string name="event_voice_input">Voice input</string>
+    <string name="event_smart_suggestion">Smart suggestions</string>
+    <string name="event_free_busy">Free/Busy</string>
+    <string name="event_suggested_times">Suggested times</string>
+    <string name="calendar_view_day">Day</string>
+    <string name="calendar_view_agenda">Agenda</string>
+    <string name="calendar_view_year">Year</string>
+    <string name="calendar_date_jump">Jump to date</string>
+    <string name="calendar_swipe_instruction">Swipe to navigate</string>
+    <string name="calendar_pinch_zoom">Pinch to zoom</string>
+    <string name="calendar_no_events_day">No events this day</string>
+    <string name="calendar_all_day_section">All day</string>
+    <string name="calendar_agenda_empty">No upcoming events</string>
+    <string name="calendar_heat_map_label">Activity</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- POMODORO                                    -->
