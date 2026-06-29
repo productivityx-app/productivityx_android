@@ -2,6 +2,8 @@ package com.oussama_chatri.productivityx.features.notes.presentation.editor
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -25,9 +28,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.CenterFocusWeak
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.PushPin
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,9 +44,11 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -67,9 +78,14 @@ import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownAction
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownToolbar
 import com.oussama_chatri.productivityx.features.notes.presentation.components.NoteTagChip
+import com.oussama_chatri.productivityx.features.notes.presentation.components.SyncDot
 import com.oussama_chatri.productivityx.features.notes.presentation.components.TagPickerSheet
+import com.oussama_chatri.productivityx.features.notes.presentation.state.EditorFocusMode
 import com.oussama_chatri.productivityx.features.notes.presentation.event.NoteEditorUiEvent
 import kotlinx.coroutines.flow.collectLatest
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -79,16 +95,17 @@ fun NoteEditorScreen(
     modifier: Modifier = Modifier,
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
-    val uiState    by viewModel.uiState.collectAsStateWithLifecycle()
-    val allTags    by viewModel.allTags.collectAsStateWithLifecycle()
-    val snackbar   = remember { SnackbarHostState() }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val allTags by viewModel.allTags.collectAsStateWithLifecycle()
+    val snackbar = remember { SnackbarHostState() }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    var showTagSheet       by rememberSaveable { mutableStateOf(false) }
-    var showMenu           by remember { mutableStateOf(false) }
-    var showDeleteConfirm  by remember { mutableStateOf(false) }
-
+    var showTagSheet by rememberSaveable { mutableStateOf(false) }
+    var showMenu by remember { mutableStateOf(false) }
+    var showDeleteConfirm by remember { mutableStateOf(false) }
     var contentValue by remember { mutableStateOf(TextFieldValue(uiState.content)) }
+
+    val isFocusMode = uiState.focusMode != EditorFocusMode.NORMAL
 
     LaunchedEffect(noteId) { viewModel.init(noteId) }
 
@@ -103,178 +120,235 @@ fun NoteEditorScreen(
             when (event) {
                 is UiEvent.NavigateBack -> onNavigateBack()
                 is UiEvent.ShowSnackbar -> snackbar.showSnackbar(event.message)
-                else                    -> {}
+                else -> {}
             }
         }
     }
 
-    Scaffold(
-        modifier       = modifier,
-        containerColor = PxColors.Background,
-        snackbarHost   = { SnackbarHost(snackbar) },
-        topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(
-                            Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Back",
-                            tint               = PxColors.OnSurface
-                        )
-                    }
-                },
-                title = {
-                    Text(
-                        text     = uiState.title.ifBlank { "Untitled" }.take(30),
-                        style    = MaterialTheme.typography.titleMedium,
-                        color    = PxColors.OnSurface,
-                        maxLines = 1
+    Box(modifier = modifier.fillMaxSize()) {
+        Scaffold(
+            modifier = modifier,
+            containerColor = if (isFocusMode) Color(0xFF0A0A0F) else PxColors.Background,
+            snackbarHost = { SnackbarHost(snackbar) },
+            topBar = {
+                if (!isFocusMode) {
+                    EditorTopAppBar(
+                        title = uiState.title,
+                        isPinned = uiState.isPinned,
+                        hasUnsavedChanges = uiState.hasUnsavedChanges,
+                        onBack = onNavigateBack,
+                        onTogglePin = { viewModel.onEvent(NoteEditorUiEvent.TogglePin) },
+                        onSave = { viewModel.onEvent(NoteEditorUiEvent.Save) },
+                        onMoreClick = { showMenu = true },
+                        onMenuDismiss = { showMenu = false },
+                        onDelete = { showMenu = false; showDeleteConfirm = true },
+                        onToggleFocus = { viewModel.onEvent(NoteEditorUiEvent.ToggleFocusMode) },
+                        onToggleMetadata = { viewModel.onEvent(NoteEditorUiEvent.ToggleMetadata) },
+                        onExport = { viewModel.onEvent(NoteEditorUiEvent.ShowExportSheet) }
                     )
-                },
-                colors  = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
-                actions = {
-                    AnimatedVisibility(visible = uiState.hasUnsavedChanges) {
-                        TextButton(onClick = { viewModel.onEvent(NoteEditorUiEvent.Save) }) {
-                            Text("Save", color = PxColors.Primary, fontWeight = FontWeight.SemiBold)
-                        }
+                }
+            },
+            bottomBar = {
+                if (!isFocusMode) {
+                    Column {
+                        MarkdownToolbar(
+                            onAction = { action ->
+                                val (newText, newCursor) = applyMarkdownAction(action, contentValue)
+                                contentValue = TextFieldValue(newText, TextRange(newCursor))
+                                viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
+                            }
+                        )
+                        Spacer(modifier = Modifier.navigationBarsPadding())
                     }
-                    IconButton(onClick = { viewModel.onEvent(NoteEditorUiEvent.TogglePin) }) {
+                }
+            }
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .imePadding()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = if (isFocusMode) 24.dp else 20.dp)
+                    .then(if (isFocusMode) Modifier.background(Color(0xFF0A0A0F)) else Modifier)
+            ) {
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Title field
+                BasicTextField(
+                    value = uiState.title,
+                    onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
+                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                        color = if (isFocusMode) Color(0xFFEEEEF5) else PxColors.OnBackground,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                    cursorBrush = SolidColor(PxColors.Primary),
+                    singleLine = false,
+                    maxLines = 3,
+                    decorationBox = { inner ->
+                        if (uiState.title.isEmpty()) {
+                            Text(
+                                text = "Untitled",
+                                style = MaterialTheme.typography.titleLarge.copy(
+                                    color = PxColors.OnSurfaceDim,
+                                    fontSize = 22.sp
+                                )
+                            )
+                        }
+                        inner()
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                // Tag row
+                if (!isFocusMode) {
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalArrangement = Arrangement.spacedBy(6.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        uiState.tags.forEach { tag ->
+                            NoteTagChip(
+                                tag = tag,
+                                modifier = Modifier.clickable {
+                                    viewModel.onEvent(NoteEditorUiEvent.RemoveTag(tag.id))
+                                }
+                            )
+                        }
+                        AddTagChip(onClick = { showTagSheet = true })
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    HorizontalDivider(color = PxColors.Outline)
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
+
+                // Content field
+                BasicTextField(
+                    value = contentValue,
+                    onValueChange = { newVal ->
+                        contentValue = newVal
+                        viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
+                    },
+                    textStyle = MaterialTheme.typography.bodyLarge.copy(
+                        color = if (isFocusMode) Color(0xFFCCCCD8) else PxColors.OnSurface,
+                        lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
+                    ),
+                    cursorBrush = SolidColor(PxColors.Primary),
+                    decorationBox = { inner ->
+                        if (contentValue.text.isEmpty()) {
+                            Text(
+                                text = "Start writing...",
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = PxColors.OnSurfaceDim
+                            )
+                        }
+                        inner()
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize()
+                )
+
+                // Metadata bar
+                AnimatedVisibility(visible = uiState.showMetadata && !isFocusMode) {
+                    MetadataBar(
+                        wordCount = uiState.wordCount,
+                        characterCount = uiState.characterCount,
+                        readingTimeLabel = uiState.readingTimeLabel,
+                        lastSavedAt = uiState.lastSavedAt,
+                        syncStatus = uiState.syncStatus,
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
+                }
+
+                // Auto-save indicator
+                if (!isFocusMode && uiState.hasUnsavedChanges) {
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
-                            imageVector        = Icons.Outlined.PushPin,
-                            contentDescription = if (uiState.isPinned) "Unpin" else "Pin",
-                            tint               = if (uiState.isPinned) PxColors.Primary else PxColors.OnSurfaceDim
+                            Icons.Outlined.Edit,
+                            contentDescription = null,
+                            tint = PxColors.Warning,
+                            modifier = Modifier.size(12.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = "Unsaved changes",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = PxColors.Warning
                         )
                     }
-                    Box {
-                        IconButton(onClick = { showMenu = true }) {
-                            Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = PxColors.OnSurface)
-                        }
-                        EditorDropdownMenu(
-                            expanded  = showMenu,
-                            onDismiss = { showMenu = false },
-                            onDelete  = { showMenu = false; showDeleteConfirm = true }
+                } else if (!isFocusMode && uiState.lastSavedAt != null) {
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Outlined.CheckCircle,
+                            contentDescription = null,
+                            tint = PxColors.Success,
+                            modifier = Modifier.size(12.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = "Saved",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = PxColors.Success
                         )
                     }
                 }
-            )
-        },
-        bottomBar = {
-            Column {
-                MarkdownToolbar(
-                    onAction = { action ->
-                        val (newText, newCursor) = applyMarkdownAction(action, contentValue)
-                        contentValue = TextFieldValue(newText, TextRange(newCursor))
-                        viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
-                    }
-                )
-                Spacer(modifier = Modifier.navigationBarsPadding())
+
+                Spacer(modifier = Modifier.height(120.dp))
             }
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .imePadding()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp)
-        ) {
-            Spacer(modifier = Modifier.height(8.dp))
 
-            BasicTextField(
-                value         = uiState.title,
-                onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
-                textStyle     = MaterialTheme.typography.titleLarge.copy(
-                    color      = PxColors.OnBackground,
-                    fontSize   = 22.sp,
-                    fontWeight = FontWeight.SemiBold
-                ),
-                cursorBrush  = SolidColor(PxColors.Primary),
-                singleLine   = false,
-                maxLines     = 3,
-                decorationBox = { inner ->
-                    if (uiState.title.isEmpty()) {
-                        Text(
-                            text  = "Untitled",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                color    = PxColors.OnSurfaceDim,
-                                fontSize = 22.sp
-                            )
-                        )
-                    }
-                    inner()
-                },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Tag row — existing tags + "Add tag" chip
-            FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-                verticalArrangement   = Arrangement.spacedBy(6.dp),
-                modifier              = Modifier.fillMaxWidth()
-            ) {
-                uiState.tags.forEach { tag ->
-                    NoteTagChip(
-                        tag      = tag,
-                        modifier = Modifier.clickable {
-                            viewModel.onEvent(NoteEditorUiEvent.RemoveTag(tag.id))
-                        }
-                    )
-                }
-                AddTagChip(onClick = { showTagSheet = true })
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-            HorizontalDivider(color = PxColors.Outline)
-            Spacer(modifier = Modifier.height(12.dp))
-
-            BasicTextField(
-                value         = contentValue,
-                onValueChange = { newVal ->
-                    contentValue = newVal
-                    viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
-                },
-                textStyle    = MaterialTheme.typography.bodyLarge.copy(color = PxColors.OnSurface),
-                cursorBrush  = SolidColor(PxColors.Primary),
-                decorationBox = { inner ->
-                    if (contentValue.text.isEmpty()) {
-                        Text(
-                            text  = "Start writing...",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = PxColors.OnSurfaceDim
-                        )
-                    }
-                    inner()
-                },
+        // Focus mode exit button
+        if (isFocusMode) {
+            IconButton(
+                onClick = { viewModel.onEvent(NoteEditorUiEvent.ToggleFocusMode) },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-            )
-
-            Spacer(modifier = Modifier.height(120.dp))
+                    .align(Alignment.TopEnd)
+                    .padding(top = 48.dp, end = 16.dp)
+                    .background(
+                        color = Color(0xFF252533),
+                        shape = RoundedCornerShape(20.dp)
+                    )
+                    .padding(8.dp)
+            ) {
+                Icon(
+                    Icons.Outlined.CenterFocusWeak,
+                    contentDescription = "Exit focus mode",
+                    tint = PxColors.OnSurface
+                )
+            }
         }
     }
 
     // Tag picker sheet
     if (showTagSheet) {
         TagPickerSheet(
-            allTags        = allTags,
+            allTags = allTags,
             selectedTagIds = uiState.tags.map { it.id }.toSet(),
-            sheetState     = sheetState,
-            onDismiss      = { showTagSheet = false },
-            onTagToggle    = { tagId ->
+            sheetState = sheetState,
+            onDismiss = { showTagSheet = false },
+            onTagToggle = { tagId ->
                 val isSelected = uiState.tags.any { it.id == tagId }
                 if (isSelected) viewModel.onEvent(NoteEditorUiEvent.RemoveTag(tagId))
-                else            viewModel.onEvent(NoteEditorUiEvent.AddTag(tagId))
+                else viewModel.onEvent(NoteEditorUiEvent.AddTag(tagId))
             },
-            onCreateTag    = { name, color ->
+            onCreateTag = { name, color ->
                 viewModel.onEvent(NoteEditorUiEvent.CreateTag(name, color))
             }
         )
     }
 
+    // Delete confirmation
     if (showDeleteConfirm) {
         DeleteNoteDialog(
             onConfirm = {
@@ -284,53 +358,223 @@ fun NoteEditorScreen(
             onDismiss = { showDeleteConfirm = false }
         )
     }
+
+    // Export sheet
+    if (uiState.showExportSheet) {
+        ExportSheet(
+            onDismiss = { viewModel.onEvent(NoteEditorUiEvent.HideExportSheet) },
+            onExportPdf = { /* Snackbar */ },
+            onShare = { /* Share */ },
+            onPrint = { /* Print */ }
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun EditorTopAppBar(
+    title: String,
+    isPinned: Boolean,
+    hasUnsavedChanges: Boolean,
+    onBack: () -> Unit,
+    onTogglePin: () -> Unit,
+    onSave: () -> Unit,
+    onMoreClick: () -> Unit,
+    onMenuDismiss: () -> Unit,
+    onDelete: () -> Unit,
+    onToggleFocus: () -> Unit,
+    onToggleMetadata: () -> Unit,
+    onExport: () -> Unit
+) {
+    TopAppBar(
+        navigationIcon = {
+            IconButton(onClick = onBack) {
+                Icon(
+                    Icons.AutoMirrored.Outlined.ArrowBack,
+                    contentDescription = "Back",
+                    tint = PxColors.OnSurface
+                )
+            }
+        },
+        title = {
+            Text(
+                text = title.ifBlank { "Untitled" }.take(30),
+                style = MaterialTheme.typography.titleMedium,
+                color = PxColors.OnSurface,
+                maxLines = 1
+            )
+        },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
+        actions = {
+            IconButton(onClick = onToggleFocus) {
+                Icon(Icons.Outlined.CenterFocusWeak, contentDescription = "Focus mode", tint = PxColors.OnSurfaceDim)
+            }
+            AnimatedVisibility(visible = hasUnsavedChanges) {
+                TextButton(onClick = onSave) {
+                    Text("Save", color = PxColors.Primary, fontWeight = FontWeight.SemiBold)
+                }
+            }
+            IconButton(onClick = onTogglePin) {
+                Icon(
+                    imageVector = Icons.Outlined.PushPin,
+                    contentDescription = if (isPinned) "Unpin" else "Pin",
+                    tint = if (isPinned) PxColors.Primary else PxColors.OnSurfaceDim
+                )
+            }
+            Box {
+                IconButton(onClick = onMoreClick) {
+                    Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = PxColors.OnSurface)
+                }
+                DropdownMenu(
+                    expanded = true,
+                    onDismissRequest = onMenuDismiss,
+                    containerColor = PxColors.Surface
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Show metadata", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
+                        onClick = { onMenuDismiss(); onToggleMetadata() }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Export", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
+                        onClick = { onMenuDismiss(); onExport() }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Move to trash", style = MaterialTheme.typography.bodyMedium, color = PxColors.Error) },
+                        onClick = onDelete
+                    )
+                }
+            }
+        }
+    )
+}
+
+@Composable
+private fun MetadataBar(
+    wordCount: Int,
+    characterCount: Int,
+    readingTimeLabel: String,
+    lastSavedAt: Instant?,
+    syncStatus: com.oussama_chatri.productivityx.core.enums.SyncStatus,
+    modifier: Modifier = Modifier
+) {
+    val dateFormatter = DateTimeFormatter.ofPattern("MMM d, h:mm a").withZone(ZoneId.systemDefault())
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = PxColors.SurfaceVariant,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text("Note info", style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                MetaItem("Words", "$wordCount")
+                MetaItem("Characters", "$characterCount")
+                MetaItem("Reading time", readingTimeLabel)
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Last saved: ${lastSavedAt?.let { runCatching { dateFormatter.format(it) }.getOrElse("—") } ?: "—"}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = PxColors.OnSurfaceDim
+                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    SyncDot(syncStatus = syncStatus)
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = syncStatus.name.lowercase().replaceFirstChar { it.uppercase() },
+                        style = MaterialTheme.typography.labelSmall,
+                        color = PxColors.OnSurfaceDim
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MetaItem(label: String, value: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = value, style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface)
+        Text(text = label, style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ExportSheet(
+    onDismiss: () -> Unit,
+    onExportPdf: () -> Unit,
+    onShare: () -> Unit,
+    onPrint: () -> Unit
+) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        containerColor = PxColors.Surface,
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    ) {
+        Column(
+            modifier = Modifier.padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text("Export", style = MaterialTheme.typography.titleMedium, color = PxColors.OnBackground)
+            Spacer(modifier = Modifier.height(8.dp))
+            ExportOption("Export as PDF", "Save a PDF copy of this note") { onDismiss(); onExportPdf() }
+            ExportOption("Share", "Share via other apps") { onDismiss(); onShare() }
+            ExportOption("Print", "Print this note") { onDismiss(); onPrint() }
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@Composable
+private fun ExportOption(
+    title: String,
+    subtitle: String,
+    onClick: () -> Unit
+) {
+    Surface(
+        onClick = onClick,
+        shape = RoundedCornerShape(12.dp),
+        color = PxColors.SurfaceVariant,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = title, style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface)
+            Text(text = subtitle, style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+        }
+    }
 }
 
 @Composable
 private fun AddTagChip(onClick: () -> Unit) {
     Row(
-        modifier              = Modifier
+        modifier = Modifier
             .clip(RoundedCornerShape(50.dp))
             .background(PxColors.SurfaceVariant)
             .clickable(onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 4.dp),
-        verticalAlignment     = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Icon(
-            imageVector        = Icons.Outlined.Add,
+            imageVector = Icons.Outlined.Add,
             contentDescription = "Add tag",
-            tint               = PxColors.OnSurfaceDim,
-            modifier           = Modifier.size(14.dp)
+            tint = PxColors.OnSurfaceDim,
+            modifier = Modifier.size(14.dp)
         )
         Text(
-            text  = "Add tag",
+            text = "Add tag",
             style = MaterialTheme.typography.labelSmall,
             color = PxColors.OnSurfaceDim
-        )
-    }
-}
-
-@Composable
-private fun EditorDropdownMenu(
-    expanded: Boolean,
-    onDismiss: () -> Unit,
-    onDelete: () -> Unit
-) {
-    DropdownMenu(
-        expanded         = expanded,
-        onDismissRequest = onDismiss,
-        containerColor   = PxColors.Surface
-    ) {
-        DropdownMenuItem(
-            text    = {
-                Text(
-                    "Move to trash",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = PxColors.Error
-                )
-            },
-            onClick = onDelete
         )
     }
 }
@@ -339,9 +583,9 @@ private fun EditorDropdownMenu(
 private fun DeleteNoteDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor   = PxColors.Surface,
-        title  = { Text("Move to trash?", color = PxColors.OnBackground) },
-        text   = {
+        containerColor = PxColors.Surface,
+        title = { Text("Move to trash?", color = PxColors.OnBackground) },
+        text = {
             Text(
                 "This note will be moved to trash. You can restore it within 30 days.",
                 color = PxColors.OnSurfaceDim
@@ -361,23 +605,23 @@ private fun DeleteNoteDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
 }
 
 private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue): Pair<String, Int> {
-    val text     = current.text
-    val start    = current.selection.start
-    val end      = current.selection.end
+    val text = current.text
+    val start = current.selection.start
+    val end = current.selection.end
     val selected = runCatching { text.substring(start, end) }.getOrElse { return text to start }
 
     return when {
         action.suffix.isNotEmpty() -> {
             val wrapped = "${action.prefix}${selected.ifEmpty { "text" }}${action.suffix}"
             val newText = runCatching { text.substring(0, start) + wrapped + text.substring(end) }.getOrElse { return text to start }
-            val cursor  = if (selected.isEmpty()) start + action.prefix.length + 4
+            val cursor = if (selected.isEmpty()) start + action.prefix.length + 4
             else start + wrapped.length
             newText to cursor
         }
         else -> {
             val lineStart = text.lastIndexOf('\n', start - 1) + 1
-            val newText   = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
-            val cursor    = start + action.prefix.length
+            val newText = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
+            val cursor = start + action.prefix.length
             newText to cursor
         }
     }

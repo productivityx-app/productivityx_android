@@ -11,11 +11,16 @@ import com.oussama_chatri.productivityx.features.ai.data.local.entity.Conversati
 import com.oussama_chatri.productivityx.features.ai.data.local.entity.MessageEntity
 import com.oussama_chatri.productivityx.features.events.data.local.EventDao
 import com.oussama_chatri.productivityx.features.events.data.local.EventEntity
+import com.oussama_chatri.productivityx.features.notes.data.local.FolderDao
+import com.oussama_chatri.productivityx.features.notes.data.local.FolderEntity
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteEntity
+import com.oussama_chatri.productivityx.features.notes.data.local.NoteLinkEntity
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteTagCrossRef
 import com.oussama_chatri.productivityx.features.notes.data.local.TagDao
 import com.oussama_chatri.productivityx.features.notes.data.local.TagEntity
+import com.oussama_chatri.productivityx.features.notes.data.local.TemplateDao
+import com.oussama_chatri.productivityx.features.notes.data.local.TemplateEntity
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.dao.PomodoroSessionDao
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.entity.PomodoroSessionEntity
 import com.oussama_chatri.productivityx.core.db.migration.MIGRATION_5_6
@@ -28,13 +33,16 @@ import com.oussama_chatri.productivityx.features.tasks.data.local.entity.TaskEnt
         NoteEntity::class,
         TagEntity::class,
         NoteTagCrossRef::class,
+        FolderEntity::class,
+        TemplateEntity::class,
+        NoteLinkEntity::class,
         TaskEntity::class,
         EventEntity::class,
         ConversationEntity::class,
         MessageEntity::class,
         PomodoroSessionEntity::class,
     ],
-    version = 6,
+    version = 7,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -43,6 +51,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun syncQueueDao(): SyncQueueDao
     abstract fun noteDao(): NoteDao
     abstract fun tagDao(): TagDao
+    abstract fun folderDao(): FolderDao
+    abstract fun templateDao(): TemplateDao
     abstract fun taskDao(): TaskDao
     abstract fun eventDao(): EventDao
     abstract fun conversationDao(): ConversationDao

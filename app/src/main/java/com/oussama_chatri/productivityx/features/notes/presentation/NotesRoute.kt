@@ -12,4 +12,13 @@ sealed interface NotesRoute {
 
     @Serializable
     data object Trash : NotesRoute
+
+    @Serializable
+    data object TagManagement : NotesRoute
+
+    @Serializable
+    data object FolderManagement : NotesRoute
+
+    @Serializable
+    data object TemplateGallery : NotesRoute
 }

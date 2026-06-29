@@ -2,6 +2,7 @@ package com.oussama_chatri.productivityx.features.notes.presentation.editor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.domain.model.Tag
@@ -14,6 +15,7 @@ import com.oussama_chatri.productivityx.features.notes.domain.usecase.SoftDelete
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.UnpinNoteUseCase
 import com.oussama_chatri.productivityx.features.notes.domain.usecase.UpdateNoteUseCase
 import com.oussama_chatri.productivityx.features.notes.presentation.event.NoteEditorUiEvent
+import com.oussama_chatri.productivityx.features.notes.presentation.state.EditorFocusMode
 import com.oussama_chatri.productivityx.features.notes.presentation.state.NoteEditorUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -28,6 +30,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.Instant
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,6 +55,7 @@ class NoteEditorViewModel @Inject constructor(
     val allTags: StateFlow<List<Tag>> = _allTags.asStateFlow()
 
     private var autoSaveJob: Job? = null
+    private var metadataJob: Job? = null
 
     init {
         observeTags().onEach { tags ->
@@ -70,18 +74,24 @@ class NoteEditorViewModel @Inject constructor(
                     val note = result.data
                     _uiState.update {
                         it.copy(
-                            noteId            = note.id,
-                            title             = note.title,
-                            content           = note.content,
-                            tags              = note.tags,
-                            isPinned          = note.isPinned,
-                            isDeleted         = note.isDeleted,
+                            noteId = note.id,
+                            title = note.title,
+                            content = note.content,
+                            plainTextContent = note.plainTextContent,
+                            tags = note.tags,
+                            isPinned = note.isPinned,
+                            isDeleted = note.isDeleted,
                             hasUnsavedChanges = false,
-                            isSaving          = false
+                            isSaving = false,
+                            lastSavedAt = note.updatedAt,
+                            wordCount = note.wordCount,
+                            characterCount = note.plainTextContent.length,
+                            readingTimeSeconds = note.readingTimeSeconds,
+                            syncStatus = note.syncStatus
                         )
                     }
                 }
-                is Resource.Error   -> _uiState.update { it.copy(error = result.message, isSaving = false) }
+                is Resource.Error -> _uiState.update { it.copy(error = result.message, isSaving = false) }
                 is Resource.Loading -> {}
             }
         }
@@ -94,7 +104,7 @@ class NoteEditorViewModel @Inject constructor(
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.ContentChanged -> {
-                _uiState.update { it.copy(content = event.value, hasUnsavedChanges = true) }
+                updateContent(event.value)
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.AddTag -> {
@@ -105,31 +115,57 @@ class NoteEditorViewModel @Inject constructor(
             is NoteEditorUiEvent.RemoveTag -> {
                 _uiState.update {
                     it.copy(
-                        tags              = it.tags.filterNot { t -> t.id == event.tagId }.toSet(),
+                        tags = it.tags.filterNot { t -> t.id == event.tagId }.toSet(),
                         hasUnsavedChanges = true
                     )
                 }
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.CreateTag -> handleCreateTag(event.name, event.color)
-            NoteEditorUiEvent.TogglePin    -> togglePin()
-            NoteEditorUiEvent.Save         -> saveNow()
-            NoteEditorUiEvent.DeleteNote   -> deleteNote()
-            NoteEditorUiEvent.ClearError   -> _uiState.update { it.copy(error = null) }
+            NoteEditorUiEvent.TogglePin -> togglePin()
+            NoteEditorUiEvent.Save -> saveNow()
+            NoteEditorUiEvent.DeleteNote -> deleteNote()
+            NoteEditorUiEvent.ClearError -> _uiState.update { it.copy(error = null) }
+            is NoteEditorUiEvent.SetFocusMode -> _uiState.update { it.copy(focusMode = event.mode) }
+            NoteEditorUiEvent.ToggleFocusMode -> {
+                val next = when (_uiState.value.focusMode) {
+                    EditorFocusMode.NORMAL -> EditorFocusMode.FOCUS
+                    EditorFocusMode.FOCUS -> EditorFocusMode.TYPEWRITER
+                    EditorFocusMode.TYPEWRITER -> EditorFocusMode.NORMAL
+                }
+                _uiState.update { it.copy(focusMode = next) }
+            }
+            NoteEditorUiEvent.ToggleMetadata -> _uiState.update { it.copy(showMetadata = !it.showMetadata) }
+            NoteEditorUiEvent.ShowExportSheet -> _uiState.update { it.copy(showExportSheet = true) }
+            NoteEditorUiEvent.HideExportSheet -> _uiState.update { it.copy(showExportSheet = false) }
+            NoteEditorUiEvent.RequestFocus -> {}
         }
     }
 
-    // Creates the tag remotely/locally, then immediately adds it to the current note
+    private fun updateContent(value: String) {
+        val plain = stripMarkdown(value)
+        val words = wordCount(plain)
+        val readingSecs = readingTimeSeconds(words)
+        _uiState.update {
+            it.copy(
+                content = value,
+                plainTextContent = plain,
+                wordCount = words,
+                characterCount = value.length,
+                readingTimeSeconds = readingSecs,
+                hasUnsavedChanges = true
+            )
+        }
+    }
+
     private fun handleCreateTag(name: String, color: String) {
         viewModelScope.launch {
             when (val result = createTag(name, color)) {
                 is Resource.Success -> {
                     val newTag = result.data
-                    // The tag now appears in allTags via ObserveTagsUseCase automatically.
-                    // Also add it to this note immediately without waiting for the next recomposition.
                     _uiState.update {
                         it.copy(
-                            tags              = it.tags + newTag,
+                            tags = it.tags + newTag,
                             hasUnsavedChanges = true
                         )
                     }
@@ -156,34 +192,36 @@ class NoteEditorViewModel @Inject constructor(
         if (!state.hasUnsavedChanges && state.noteId != null) return
 
         viewModelScope.launch {
-            _uiState.update { it.copy(isSaving = true) }
+            _uiState.update { it.copy(isSaving = true, syncStatus = SyncStatus.PENDING) }
             val tagIds = state.tags.map { it.id }.toSet()
             val result = if (state.noteId == null) {
                 createNote(
-                    title   = state.title.trim().ifBlank { null },
+                    title = state.title.trim().ifBlank { null },
                     content = state.content.ifBlank { null },
-                    tagIds  = tagIds.ifEmpty { null },
-                    pinned  = if (state.isPinned) true else null
+                    tagIds = tagIds.ifEmpty { null },
+                    pinned = if (state.isPinned) true else null
                 )
             } else {
                 updateNote(
-                    noteId  = state.noteId,
-                    title   = state.title.trim(),
+                    noteId = state.noteId,
+                    title = state.title.trim(),
                     content = state.content,
-                    tagIds  = tagIds,
-                    pinned  = state.isPinned
+                    tagIds = tagIds,
+                    pinned = state.isPinned
                 )
             }
             when (result) {
                 is Resource.Success -> _uiState.update {
                     it.copy(
-                        noteId            = result.data.id,
+                        noteId = result.data.id,
                         hasUnsavedChanges = false,
-                        isSaving          = false
+                        isSaving = false,
+                        lastSavedAt = Instant.now(),
+                        syncStatus = SyncStatus.SYNCED
                     )
                 }
                 is Resource.Error -> _uiState.update {
-                    it.copy(error = result.message, isSaving = false)
+                    it.copy(error = result.message, isSaving = false, syncStatus = SyncStatus.CONFLICT)
                 }
                 is Resource.Loading -> {}
             }
@@ -191,7 +229,7 @@ class NoteEditorViewModel @Inject constructor(
     }
 
     private fun togglePin() {
-        val state  = _uiState.value
+        val state = _uiState.value
         val noteId = state.noteId ?: return
         viewModelScope.launch {
             if (state.isPinned) unpinNote(noteId) else pinNote(noteId)
@@ -206,4 +244,26 @@ class NoteEditorViewModel @Inject constructor(
             _events.send(UiEvent.NavigateBack)
         }
     }
+
+    private fun stripMarkdown(md: String): String {
+        val pattern = Regex(
+            "(!?\\[([^\\]]*)\\]\\([^)]*\\))" +
+                    "|(```[\\s\\S]*?```)" +
+                    "|(`.+?`)" +
+                    "|(^#{1,6}\\s)" +
+                    "|(\\*{1,3}|_{1,3})" +
+                    "|(~~.+?~~)" +
+                    "|(^[-*+]\\s|^\\d+\\.\\s)" +
+                    "|(^>+\\s?)" +
+                    "|(^---+$|^===+$)" +
+                    "|(\\n{2,})"
+        )
+        return Regex("\\s{2,}").replace(pattern.replace(md, " "), " ").trim()
+    }
+
+    private fun wordCount(plain: String): Int =
+        if (plain.isBlank()) 0 else plain.trim().split(Regex("\\s+")).size
+
+    private fun readingTimeSeconds(words: Int): Int =
+        if (words == 0) 0 else (words.toDouble() / 200.0 * 60).toInt().coerceAtLeast(1)
 }

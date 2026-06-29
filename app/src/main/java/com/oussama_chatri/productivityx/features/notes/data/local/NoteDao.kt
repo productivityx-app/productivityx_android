@@ -40,44 +40,53 @@ interface NoteDao {
     }
 
     @Transaction
-    @Query(
-        """
+    @Query("""
         SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 0
         ORDER BY isPinned DESC, updatedAt DESC
-    """
-    )
+    """)
     fun observeActiveNotes(userId: String): Flow<List<NoteWithTags>>
 
     @Transaction
-    @Query(
-        """
+    @Query("""
         SELECT n.* FROM notes n
         INNER JOIN note_tags nt ON n.id = nt.noteId
         WHERE n.userId = :userId AND n.isDeleted = 0 AND nt.tagId = :tagId
         ORDER BY n.isPinned DESC, n.updatedAt DESC
-    """
-    )
+    """)
     fun observeNotesByTag(userId: String, tagId: String): Flow<List<NoteWithTags>>
 
     @Transaction
-    @Query(
-        """
+    @Query("""
+        SELECT n.* FROM notes n
+        INNER JOIN note_tags nt ON n.id = nt.noteId
+        WHERE n.userId = :userId AND n.isDeleted = 0 AND nt.tagId IN (:tagIds)
+        ORDER BY n.isPinned DESC, n.updatedAt DESC
+    """)
+    fun observeNotesByTags(userId: String, tagIds: List<String>): Flow<List<NoteWithTags>>
+
+    @Transaction
+    @Query("""
         SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 0 AND isPinned = 1
         ORDER BY updatedAt DESC
-    """
-    )
+    """)
     fun observePinnedNotes(userId: String): Flow<List<NoteWithTags>>
 
     @Transaction
-    @Query(
-        """
+    @Query("""
+        SELECT * FROM notes
+        WHERE userId = :userId AND isDeleted = 0 AND folderId = :folderId
+        ORDER BY isPinned DESC, updatedAt DESC
+    """)
+    fun observeNotesByFolder(userId: String, folderId: String): Flow<List<NoteWithTags>>
+
+    @Transaction
+    @Query("""
         SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 1
         ORDER BY deletedAt DESC
-    """
-    )
+    """)
     fun observeTrash(userId: String): Flow<List<NoteWithTags>>
 
     @Transaction
@@ -95,28 +104,49 @@ interface NoteDao {
     @Query("SELECT COUNT(*) FROM notes WHERE userId = :userId AND isDeleted = 0")
     suspend fun countActiveNotes(userId: String): Long
 
-    @Query(
-        """
+    @Query("""
         SELECT * FROM notes
         WHERE userId = :userId AND isDeleted = 0
           AND (LOWER(title) LIKE '%' || LOWER(:query) || '%'
             OR LOWER(plainTextContent) LIKE '%' || LOWER(:query) || '%')
         ORDER BY isPinned DESC, updatedAt DESC
-    """
-    )
+    """)
     suspend fun searchNotes(userId: String, query: String): List<NoteEntity>
+
+    @Transaction
+    @Query("""
+        SELECT * FROM notes
+        WHERE userId = :userId AND isDeleted = 0
+          AND (LOWER(title) LIKE '%' || LOWER(:query) || '%'
+            OR LOWER(plainTextContent) LIKE '%' || LOWER(:query) || '%')
+        ORDER BY isPinned DESC, updatedAt DESC
+    """)
+    fun observeSearchNotes(userId: String, query: String): Flow<List<NoteWithTags>>
 
     @Query("UPDATE notes SET syncStatus = :status WHERE id = :id")
     suspend fun updateSyncStatus(id: String, status: SyncStatus)
 
-    // Returns the title of the most recently edited non-deleted note (used for AI context)
-    @Query(
-        """
+    @Query("""
         SELECT title FROM notes
         WHERE userId = :userId AND isDeleted = 0
         ORDER BY updatedAt DESC
         LIMIT 1
-    """
-    )
+    """)
     suspend fun lastEditedTitle(userId: String): String?
+
+    @Query("SELECT * FROM note_links WHERE sourceNoteId = :noteId")
+    suspend fun getNoteLinks(noteId: String): List<NoteLinkEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNoteLink(link: NoteLinkEntity)
+
+    @Query("DELETE FROM note_links WHERE sourceNoteId = :sourceId AND targetNoteId = :targetId")
+    suspend fun deleteNoteLink(sourceId: String, targetId: String)
+
+    @Query("DELETE FROM note_links WHERE sourceNoteId = :noteId")
+    suspend fun clearNoteLinks(noteId: String)
+
+    @Transaction
+    @Query("SELECT * FROM notes WHERE id IN (SELECT targetNoteId FROM note_links WHERE sourceNoteId = :noteId)")
+    suspend fun getLinkedNotes(noteId: String): List<NoteWithTags>
 }

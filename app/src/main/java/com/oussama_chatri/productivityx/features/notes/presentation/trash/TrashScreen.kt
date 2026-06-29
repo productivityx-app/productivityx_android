@@ -1,6 +1,8 @@
 package com.oussama_chatri.productivityx.features.notes.presentation.trash
 
-import androidx.compose.foundation.background
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,18 +14,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.RestoreFromTrash
+import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -56,9 +60,11 @@ import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
 import com.oussama_chatri.productivityx.features.notes.presentation.components.NoteTagChip
+import com.oussama_chatri.productivityx.features.notes.presentation.components.relativeTime
 import com.oussama_chatri.productivityx.features.notes.presentation.event.TrashUiEvent
 import kotlinx.coroutines.flow.collectLatest
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,36 +73,36 @@ fun TrashScreen(
     modifier: Modifier = Modifier,
     viewModel: TrashViewModel = hiltViewModel()
 ) {
-    val uiState       by viewModel.uiState.collectAsStateWithLifecycle()
-    val snackbarHost  = remember { SnackbarHostState() }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val snackbarHost = remember { SnackbarHostState() }
     var showEmptyConfirm by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         viewModel.events.collectLatest { event ->
             when (event) {
                 is UiEvent.ShowSnackbar -> snackbarHost.showSnackbar(event.message)
-                else                    -> {}
+                else -> {}
             }
         }
     }
 
     Scaffold(
-        modifier       = modifier,
+        modifier = modifier,
         containerColor = PxColors.Background,
-        snackbarHost   = { SnackbarHost(snackbarHost) },
-        topBar         = {
+        snackbarHost = { SnackbarHost(snackbarHost) },
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
-                            imageVector        = Icons.AutoMirrored.Outlined.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = "Back",
-                            tint               = PxColors.OnSurface
+                            tint = PxColors.OnSurface
                         )
                     }
                 },
-                title   = { Text("Trash", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
-                colors  = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
+                title = { Text("Trash", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     if (uiState.notes.isNotEmpty()) {
                         TextButton(onClick = { showEmptyConfirm = true }) {
@@ -114,20 +120,26 @@ fun TrashScreen(
                     .padding(innerPadding)
             )
         } else {
-            LazyVerticalStaggeredGrid(
-                columns               = StaggeredGridCells.Fixed(2),
-                contentPadding        = PaddingValues(12.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalItemSpacing   = 8.dp,
-                modifier              = Modifier
+            LazyColumn(
+                contentPadding = PaddingValues(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
+                item {
+                    Text(
+                        text = "${uiState.notes.size} ${if (uiState.notes.size == 1) "note" else "notes"} in trash",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = PxColors.OnSurfaceDim,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                }
                 items(uiState.notes, key = { it.id }) { note ->
                     TrashNoteCard(
-                        note      = note,
+                        note = note,
                         onRestore = { viewModel.onEvent(TrashUiEvent.Restore(note.id)) },
-                        onDelete  = { viewModel.onEvent(TrashUiEvent.HardDelete(note.id)) }
+                        onDelete = { viewModel.onEvent(TrashUiEvent.HardDelete(note.id)) }
                     )
                 }
             }
@@ -154,17 +166,17 @@ private fun TrashNoteCard(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier       = modifier.fillMaxWidth(),
-        shape          = RoundedCornerShape(12.dp),
-        color          = PxColors.Surface,
+        modifier = modifier.fillMaxWidth().animateContentSize(),
+        shape = RoundedCornerShape(12.dp),
+        color = PxColors.Surface,
         tonalElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             if (note.title.isNotBlank()) {
                 Text(
-                    text     = note.title,
-                    style    = MaterialTheme.typography.titleMedium,
-                    color    = PxColors.OnBackground,
+                    text = note.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = PxColors.OnBackground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -173,9 +185,9 @@ private fun TrashNoteCard(
 
             if (note.preview.isNotBlank()) {
                 Text(
-                    text     = note.preview,
-                    style    = MaterialTheme.typography.bodySmall,
-                    color    = PxColors.OnSurfaceDim,
+                    text = note.preview,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = PxColors.OnSurfaceDim,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -183,42 +195,56 @@ private fun TrashNoteCard(
             }
 
             note.deletedAt?.let { deletedAt ->
-                val formatter = java.time.format.DateTimeFormatter
-                    .ofPattern("MMM d")
-                    .withZone(java.time.ZoneId.systemDefault())
-                Text(
-                    text  = runCatching { "Deleted ${formatter.format(deletedAt)}" }.getOrElse { "Deleted" },
-                    style = MaterialTheme.typography.labelSmall,
-                    color = PxColors.OnSurfaceDim
-                )
+                val daysRemaining = 30 - ChronoUnit.DAYS.between(deletedAt, Instant.now()).toInt().coerceAtLeast(0)
+                val progress = (30 - daysRemaining).toFloat() / 30f
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = if (daysRemaining > 0) "$daysRemaining days left" else "Expiring soon",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = if (daysRemaining <= 3) PxColors.Error else PxColors.OnSurfaceDim
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    LinearProgressIndicator(
+                        progress = { if (daysRemaining > 0) 1f - progress else 1f },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(4.dp)
+                            .clip(RoundedCornerShape(2.dp)),
+                        color = if (daysRemaining <= 3) PxColors.Error else PxColors.Warning,
+                        trackColor = PxColors.SurfaceVariant,
+                    )
+                }
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
             Row(
-                modifier              = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End,
-                verticalAlignment     = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    onClick  = onRestore,
+                    onClick = onRestore,
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(
-                        imageVector        = Icons.Outlined.RestoreFromTrash,
+                        imageVector = Icons.Outlined.RestoreFromTrash,
                         contentDescription = "Restore",
-                        tint               = PxColors.Success,
-                        modifier           = Modifier.size(18.dp)
+                        tint = PxColors.Success,
+                        modifier = Modifier.size(18.dp)
                     )
                 }
                 IconButton(
-                    onClick  = onDelete,
+                    onClick = onDelete,
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(
-                        imageVector        = Icons.Outlined.DeleteForever,
+                        imageVector = Icons.Outlined.DeleteForever,
                         contentDescription = "Delete permanently",
-                        tint               = PxColors.Error,
-                        modifier           = Modifier.size(18.dp)
+                        tint = PxColors.Error,
+                        modifier = Modifier.size(18.dp)
                     )
                 }
             }
@@ -229,28 +255,28 @@ private fun TrashNoteCard(
 @Composable
 private fun TrashEmptyState(modifier: Modifier = Modifier) {
     Column(
-        modifier              = modifier.padding(32.dp),
-        horizontalAlignment   = Alignment.CenterHorizontally,
-        verticalArrangement   = Arrangement.Center
+        modifier = modifier.padding(32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Icon(
-            imageVector        = Icons.Outlined.DeleteForever,
+            imageVector = Icons.Outlined.DeleteSweep,
             contentDescription = null,
-            tint               = PxColors.SurfaceVariant,
-            modifier           = Modifier.size(72.dp)
+            tint = PxColors.SurfaceVariant,
+            modifier = Modifier.size(72.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text      = "Trash is empty",
-            style     = MaterialTheme.typography.bodyLarge,
-            color     = PxColors.OnSurface,
+            text = "Trash is empty",
+            style = MaterialTheme.typography.bodyLarge,
+            color = PxColors.OnSurface,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text      = "Deleted notes appear here for 30 days",
-            style     = MaterialTheme.typography.bodyMedium,
-            color     = PxColors.OnSurfaceDim,
+            text = "Deleted notes appear here for 30 days",
+            style = MaterialTheme.typography.bodyMedium,
+            color = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center
         )
     }
@@ -264,16 +290,16 @@ private fun EmptyTrashDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor   = PxColors.Surface,
+        containerColor = PxColors.Surface,
         title = {
             Text(
-                text  = "Empty trash?",
+                text = "Empty trash?",
                 color = PxColors.OnBackground
             )
         },
         text = {
             Text(
-                text  = "$noteCount ${if (noteCount == 1) "note" else "notes"} will be permanently deleted and cannot be recovered.",
+                text = "$noteCount ${if (noteCount == 1) "note" else "notes"} will be permanently deleted and cannot be recovered.",
                 color = PxColors.OnSurfaceDim
             )
         },

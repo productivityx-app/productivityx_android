@@ -2,14 +2,19 @@ package com.oussama_chatri.productivityx.features.notes.domain.repository
 
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.notes.domain.model.Note
+import com.oussama_chatri.productivityx.features.notes.domain.model.NoteFolder
+import com.oussama_chatri.productivityx.features.notes.domain.model.NoteLink
+import com.oussama_chatri.productivityx.features.notes.domain.model.NoteTemplate
 import com.oussama_chatri.productivityx.features.notes.domain.model.Tag
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
 
-    fun observeActiveNotes(tagId: String? = null, pinnedOnly: Boolean = false): Flow<List<Note>>
+    fun observeActiveNotes(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<List<Note>>
 
     fun observeTrash(): Flow<List<Note>>
+
+    fun observeSearch(query: String): Flow<List<Note>>
 
     suspend fun getNoteById(noteId: String): Resource<Note>
 
@@ -17,7 +22,8 @@ interface NoteRepository {
         title: String?,
         content: String?,
         tagIds: Set<String>?,
-        pinned: Boolean?
+        pinned: Boolean?,
+        folderId: String? = null
     ): Resource<Note>
 
     suspend fun updateNote(
@@ -25,7 +31,8 @@ interface NoteRepository {
         title: String?,
         content: String?,
         tagIds: Set<String>?,
-        pinned: Boolean?
+        pinned: Boolean?,
+        folderId: String? = null
     ): Resource<Note>
 
     suspend fun pinNote(noteId: String): Resource<Note>
@@ -43,6 +50,14 @@ interface NoteRepository {
     suspend fun removeTagFromNote(noteId: String, tagId: String): Resource<Note>
 
     suspend fun refreshNotes(): Resource<Unit>
+
+    suspend fun createFromTemplate(templateId: String): Resource<Note>
+
+    suspend fun addNoteLink(sourceId: String, targetId: String): Resource<Unit>
+
+    suspend fun removeNoteLink(sourceId: String, targetId: String): Resource<Unit>
+
+    suspend fun getLinkedNotes(noteId: String): Resource<List<Note>>
 }
 
 interface TagRepository {
@@ -58,4 +73,24 @@ interface TagRepository {
     suspend fun deleteTag(tagId: String): Resource<Unit>
 
     suspend fun refreshTags(): Resource<Unit>
+}
+
+interface FolderRepository {
+
+    fun observeFolders(): Flow<List<NoteFolder>>
+
+    suspend fun createFolder(name: String, color: String?, parentFolderId: String?): Resource<NoteFolder>
+
+    suspend fun updateFolder(folderId: String, name: String, color: String?): Resource<NoteFolder>
+
+    suspend fun deleteFolder(folderId: String): Resource<Unit>
+}
+
+interface TemplateRepository {
+
+    fun observeTemplates(): Flow<List<NoteTemplate>>
+
+    suspend fun createTemplate(name: String, content: String, icon: String?): Resource<NoteTemplate>
+
+    suspend fun deleteTemplate(templateId: String): Resource<Unit>
 }

@@ -7,12 +7,16 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ObserveActiveNotesUseCase @Inject constructor(private val repo: NoteRepository) {
-    operator fun invoke(tagId: String? = null, pinnedOnly: Boolean = false): Flow<List<Note>> =
-        repo.observeActiveNotes(tagId, pinnedOnly)
+    operator fun invoke(tagId: String? = null, pinnedOnly: Boolean = false, tagIds: List<String>? = null, folderId: String? = null): Flow<List<Note>> =
+        repo.observeActiveNotes(tagId, pinnedOnly, tagIds, folderId)
 }
 
 class ObserveTrashUseCase @Inject constructor(private val repo: NoteRepository) {
     operator fun invoke(): Flow<List<Note>> = repo.observeTrash()
+}
+
+class ObserveSearchUseCase @Inject constructor(private val repo: NoteRepository) {
+    operator fun invoke(query: String): Flow<List<Note>> = repo.observeSearch(query)
 }
 
 class GetNoteByIdUseCase @Inject constructor(private val repo: NoteRepository) {
@@ -24,8 +28,9 @@ class CreateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
         title: String? = null,
         content: String? = null,
         tagIds: Set<String>? = null,
-        pinned: Boolean? = null
-    ): Resource<Note> = repo.createNote(title, content, tagIds, pinned)
+        pinned: Boolean? = null,
+        folderId: String? = null
+    ): Resource<Note> = repo.createNote(title, content, tagIds, pinned, folderId)
 }
 
 class UpdateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
@@ -34,8 +39,9 @@ class UpdateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
         title: String? = null,
         content: String? = null,
         tagIds: Set<String>? = null,
-        pinned: Boolean? = null
-    ): Resource<Note> = repo.updateNote(noteId, title, content, tagIds, pinned)
+        pinned: Boolean? = null,
+        folderId: String? = null
+    ): Resource<Note> = repo.updateNote(noteId, title, content, tagIds, pinned, folderId)
 }
 
 class PinNoteUseCase @Inject constructor(private val repo: NoteRepository) {
@@ -70,4 +76,20 @@ class RemoveTagFromNoteUseCase @Inject constructor(private val repo: NoteReposit
 
 class RefreshNotesUseCase @Inject constructor(private val repo: NoteRepository) {
     suspend operator fun invoke(): Resource<Unit> = repo.refreshNotes()
+}
+
+class CreateFromTemplateUseCase @Inject constructor(private val repo: NoteRepository) {
+    suspend operator fun invoke(templateId: String): Resource<Note> = repo.createFromTemplate(templateId)
+}
+
+class AddNoteLinkUseCase @Inject constructor(private val repo: NoteRepository) {
+    suspend operator fun invoke(sourceId: String, targetId: String): Resource<Unit> = repo.addNoteLink(sourceId, targetId)
+}
+
+class RemoveNoteLinkUseCase @Inject constructor(private val repo: NoteRepository) {
+    suspend operator fun invoke(sourceId: String, targetId: String): Resource<Unit> = repo.removeNoteLink(sourceId, targetId)
+}
+
+class GetLinkedNotesUseCase @Inject constructor(private val repo: NoteRepository) {
+    suspend operator fun invoke(noteId: String): Resource<List<Note>> = repo.getLinkedNotes(noteId)
 }

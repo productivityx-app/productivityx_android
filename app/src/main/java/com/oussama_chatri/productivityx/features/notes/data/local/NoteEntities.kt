@@ -1,23 +1,13 @@
 package com.oussama_chatri.productivityx.features.notes.data.local
 
-import androidx.room.ColumnInfo
-import androidx.room.Dao
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import androidx.room.Insert
 import androidx.room.Junction
-import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
-import androidx.room.Query
 import androidx.room.Relation
-import androidx.room.Transaction
-import androidx.room.Update
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
-import kotlinx.coroutines.flow.Flow
-
-// ─── Entities ─────────────────────────────────────────────────────────────────
 
 @Entity(tableName = "tags")
 data class TagEntity(
@@ -29,12 +19,64 @@ data class TagEntity(
 )
 
 @Entity(
+    tableName = "note_folders",
+    indices = [Index("userId"), Index("parentFolderId")]
+)
+data class FolderEntity(
+    @PrimaryKey val id: String,
+    val userId: String,
+    val name: String,
+    val parentFolderId: String? = null,
+    val color: String = "#6366F1",
+    val createdAt: Long
+)
+
+@Entity(
+    tableName = "note_templates",
+    indices = [Index("userId")]
+)
+data class TemplateEntity(
+    @PrimaryKey val id: String,
+    val userId: String,
+    val name: String,
+    val content: String,
+    val icon: String = "note",
+    val createdAt: Long
+)
+
+@Entity(
+    tableName = "note_links",
+    primaryKeys = ["sourceNoteId", "targetNoteId"],
+    foreignKeys = [
+        ForeignKey(
+            entity = NoteEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["sourceNoteId"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = NoteEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["targetNoteId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index("sourceNoteId"), Index("targetNoteId")]
+)
+data class NoteLinkEntity(
+    val sourceNoteId: String,
+    val targetNoteId: String,
+    val createdAt: Long
+)
+
+@Entity(
     tableName = "notes",
     indices = [
         Index("userId"),
         Index("userId", "isDeleted"),
         Index("userId", "updatedAt"),
-        Index("syncStatus")
+        Index("syncStatus"),
+        Index("folderId")
     ]
 )
 data class NoteEntity(
@@ -52,7 +94,12 @@ data class NoteEntity(
     val syncStatus: SyncStatus,
     val createdAt: Long,
     val updatedAt: Long,
-    val pendingOperation: String?
+    val folderId: String? = null,
+    val imageUrls: String = "",
+    val hasVoiceMemo: Boolean = false,
+    val hasFileAttachment: Boolean = false,
+    val linkedNoteIds: String = "",
+    val pendingOperation: String? = null
 )
 
 @Entity(
@@ -79,8 +126,6 @@ data class NoteTagCrossRef(
     val tagId: String
 )
 
-// ─── Relations ────────────────────────────────────────────────────────────────
-
 data class NoteWithTags(
     @Embedded val note: NoteEntity,
     @Relation(
@@ -93,4 +138,13 @@ data class NoteWithTags(
         )
     )
     val tags: List<TagEntity>
+)
+
+data class FolderWithNotes(
+    @Embedded val folder: FolderEntity,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "folderId"
+    )
+    val notes: List<NoteEntity>
 )

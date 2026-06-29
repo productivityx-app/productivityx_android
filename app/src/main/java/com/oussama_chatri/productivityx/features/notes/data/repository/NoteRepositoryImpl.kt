@@ -13,9 +13,12 @@ import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.core.network.ApiResponse
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteEntity
+import com.oussama_chatri.productivityx.features.notes.data.local.NoteLinkEntity
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteTagCrossRef
+import com.oussama_chatri.productivityx.features.notes.data.local.TemplateDao
 import com.oussama_chatri.productivityx.features.notes.data.local.TagDao
 import com.oussama_chatri.productivityx.features.notes.data.mapper.toDomain
+import com.oussama_chatri.productivityx.features.notes.data.mapper.toDomainWithTags
 import com.oussama_chatri.productivityx.features.notes.data.mapper.toEntity
 import com.oussama_chatri.productivityx.features.notes.data.mapper.toEntityWithRefs
 import com.oussama_chatri.productivityx.features.notes.data.remote.NoteApi
@@ -40,29 +43,32 @@ class NoteRepositoryImpl @Inject constructor(
     private val noteDao: NoteDao,
     private val syncQueueDao: SyncQueueDao,
     private val tagDao: TagDao,
+    private val templateDao: TemplateDao,
     private val preferencesDataStore: PreferencesDataStore,
     private val gson: Gson
 ) : NoteRepository {
 
-    // Observe
-
-    override fun observeActiveNotes(tagId: String?, pinnedOnly: Boolean): Flow<List<Note>> {
+    override fun observeActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<List<Note>> {
         val userId = cachedUserId()
-        return when {
+        val flow = when {
             tagId != null -> noteDao.observeNotesByTag(userId, tagId)
-            pinnedOnly    -> noteDao.observePinnedNotes(userId)
-            else          -> noteDao.observeActiveNotes(userId)
-        }.map { list -> list.map { it.toDomain() } }
+            !tagIds.isNullOrEmpty() -> noteDao.observeNotesByTags(userId, tagIds)
+            folderId != null -> noteDao.observeNotesByFolder(userId, folderId)
+            pinnedOnly -> noteDao.observePinnedNotes(userId)
+            else -> noteDao.observeActiveNotes(userId)
+        }
+        return flow.map { list -> list.map { it.toDomain() } }
     }
 
     override fun observeTrash(): Flow<List<Note>> =
         noteDao.observeTrash(cachedUserId()).map { list -> list.map { it.toDomain() } }
 
-    // Single fetch
+    override fun observeSearch(query: String): Flow<List<Note>> =
+        noteDao.observeSearchNotes(cachedUserId(), query).map { list -> list.map { it.toDomain() } }
 
     override suspend fun getNoteById(noteId: String): Resource<Note> {
         val userId = cachedUserIdSuspend()
-        val local  = noteDao.getNoteByIdAndUser(noteId, userId)
+        val local = noteDao.getNoteByIdAndUser(noteId, userId)
         if (local != null) return Resource.Success(local.toDomain())
 
         val result = safeApiCall { noteApi.getNoteById(noteId) }
@@ -73,35 +79,35 @@ class NoteRepositoryImpl @Inject constructor(
         }
     }
 
-    // Create
-
     override suspend fun createNote(
         title: String?,
         content: String?,
         tagIds: Set<String>?,
-        pinned: Boolean?
+        pinned: Boolean?,
+        folderId: String?
     ): Resource<Note> {
-        val userId   = cachedUserIdSuspend()
+        val userId = cachedUserIdSuspend()
         val clientId = UUID.randomUUID().toString()
-        val now      = Instant.now().toEpochMilli()
-        val plain    = stripMarkdown(content ?: "")
+        val now = Instant.now().toEpochMilli()
+        val plain = stripMarkdown(content ?: "")
 
         val entity = NoteEntity(
-            id                 = clientId,
-            userId             = userId,
-            title              = title?.trim() ?: "",
-            content            = content ?: "",
-            plainTextContent   = plain,
-            wordCount          = wordCount(plain),
+            id = clientId,
+            userId = userId,
+            title = title?.trim() ?: "",
+            content = content ?: "",
+            plainTextContent = plain,
+            wordCount = wordCount(plain),
             readingTimeSeconds = readingTimeSeconds(wordCount(plain)),
-            isPinned           = pinned == true,
-            isDeleted          = false,
-            deletedAt          = null,
-            version            = 1,
-            syncStatus         = SyncStatus.PENDING,
-            createdAt          = now,
-            updatedAt          = now,
-            pendingOperation   = "CREATE"
+            isPinned = pinned == true,
+            isDeleted = false,
+            deletedAt = null,
+            version = 1,
+            syncStatus = SyncStatus.PENDING,
+            createdAt = now,
+            updatedAt = now,
+            folderId = folderId,
+            pendingOperation = "CREATE"
         )
         noteDao.upsert(entity)
         if (!tagIds.isNullOrEmpty()) noteDao.replaceNoteTags(clientId, tagIds.toList())
@@ -127,17 +133,16 @@ class NoteRepositoryImpl @Inject constructor(
             ?: Resource.Error("Failed to create note")
     }
 
-    // Update
-
     override suspend fun updateNote(
         noteId: String,
         title: String?,
         content: String?,
         tagIds: Set<String>?,
-        pinned: Boolean?
+        pinned: Boolean?,
+        folderId: String?
     ): Resource<Note> {
         val userId = cachedUserIdSuspend()
-        val now    = Instant.now().toEpochMilli()
+        val now = Instant.now().toEpochMilli()
 
         var originalVersion: Int? = null
         var originalUpdatedAt: Long? = null
@@ -146,18 +151,19 @@ class NoteRepositoryImpl @Inject constructor(
             originalVersion = local.note.version
             originalUpdatedAt = local.note.updatedAt
 
-            val plain   = content?.let { stripMarkdown(it) } ?: local.note.plainTextContent
+            val plain = content?.let { stripMarkdown(it) } ?: local.note.plainTextContent
             val updated = local.note.copy(
-                title              = title?.trim() ?: local.note.title,
-                content            = content ?: local.note.content,
-                plainTextContent   = plain,
-                wordCount          = wordCount(plain),
+                title = title?.trim() ?: local.note.title,
+                content = content ?: local.note.content,
+                plainTextContent = plain,
+                wordCount = wordCount(plain),
                 readingTimeSeconds = readingTimeSeconds(wordCount(plain)),
-                isPinned           = pinned ?: local.note.isPinned,
-                version            = local.note.version + 1,
-                syncStatus         = SyncStatus.PENDING,
-                updatedAt          = now,
-                pendingOperation   = "UPDATE"
+                isPinned = pinned ?: local.note.isPinned,
+                folderId = folderId ?: local.note.folderId,
+                version = local.note.version + 1,
+                syncStatus = SyncStatus.PENDING,
+                updatedAt = now,
+                pendingOperation = "UPDATE"
             )
             noteDao.upsert(updated)
             if (tagIds != null) noteDao.replaceNoteTags(noteId, tagIds.toList())
@@ -185,8 +191,6 @@ class NoteRepositoryImpl @Inject constructor(
             ?: Resource.Error("Note not found")
     }
 
-    // Pin / Unpin
-
     override suspend fun pinNote(noteId: String): Resource<Note> {
         togglePinnedLocally(noteId, true)
         if (isSyncEnabled()) {
@@ -207,19 +211,17 @@ class NoteRepositoryImpl @Inject constructor(
             ?: Resource.Error("Note not found")
     }
 
-    // Delete / Restore
-
     override suspend fun softDeleteNote(noteId: String): Resource<Note> {
         val now = Instant.now().toEpochMilli()
         noteDao.getNoteById(noteId)?.let {
             noteDao.upsert(
                 it.note.copy(
-                    isDeleted        = true,
-                    deletedAt        = now,
-                    isPinned         = false,
-                    syncStatus       = SyncStatus.PENDING,
+                    isDeleted = true,
+                    deletedAt = now,
+                    isPinned = false,
+                    syncStatus = SyncStatus.PENDING,
                     pendingOperation = "DELETE",
-                    updatedAt        = now
+                    updatedAt = now
                 )
             )
         }
@@ -240,11 +242,11 @@ class NoteRepositoryImpl @Inject constructor(
         noteDao.getNoteById(noteId)?.let {
             noteDao.upsert(
                 it.note.copy(
-                    isDeleted        = false,
-                    deletedAt        = null,
-                    syncStatus       = SyncStatus.PENDING,
+                    isDeleted = false,
+                    deletedAt = null,
+                    syncStatus = SyncStatus.PENDING,
                     pendingOperation = "UPDATE",
-                    updatedAt        = now
+                    updatedAt = now
                 )
             )
         }
@@ -263,14 +265,12 @@ class NoteRepositoryImpl @Inject constructor(
             return when (remote) {
                 is Resource.Success -> if (remote.data.isSuccessful) Resource.Success(Unit)
                 else Resource.Error(parseError(remote.data.errorBody()?.string()))
-                is Resource.Error   -> remote
+                is Resource.Error -> remote
                 is Resource.Loading -> Resource.Loading
             }
         }
         return Resource.Success(Unit)
     }
-
-    // Tags
 
     override suspend fun addTagToNote(noteId: String, tagId: String): Resource<Note> {
         noteDao.insertNoteTagRef(NoteTagCrossRef(noteId, tagId))
@@ -287,7 +287,7 @@ class NoteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun removeTagFromNote(noteId: String, tagId: String): Resource<Note> {
-        val local     = noteDao.getNoteById(noteId)
+        val local = noteDao.getNoteById(noteId)
         val remaining = local?.tags?.map { it.id }?.filter { it != tagId } ?: emptyList()
         noteDao.clearTagsForNote(noteId)
         remaining.forEach { noteDao.insertNoteTagRef(NoteTagCrossRef(noteId, it)) }
@@ -304,15 +304,12 @@ class NoteRepositoryImpl @Inject constructor(
             ?: Resource.Error("Note not found")
     }
 
-    // Refresh
-
     override suspend fun refreshNotes(): Resource<Unit> {
         if (!isSyncEnabled()) return Resource.Success(Unit)
         val userId = cachedUserIdSuspend()
         val result = safeApiCall { noteApi.listActiveNotes(size = 100) }
         if (result is Resource.Success && result.data.isSuccessful) {
             result.data.body()?.data?.content?.forEach { dto ->
-                // Upsert tags before inserting cross-refs
                 if (dto.tags.isNotEmpty()) {
                     tagDao.upsertAll(dto.tags.map { it.toEntity() })
                 }
@@ -325,7 +322,31 @@ class NoteRepositoryImpl @Inject constructor(
         return Resource.Error("Failed to refresh notes")
     }
 
-    // Helpers
+    override suspend fun createFromTemplate(templateId: String): Resource<Note> {
+        val template = templateDao.getTemplateById(templateId) ?: return Resource.Error("Template not found")
+        return createNote(
+            title = template.name,
+            content = template.content,
+            tagIds = null,
+            pinned = null,
+            folderId = null
+        )
+    }
+
+    override suspend fun addNoteLink(sourceId: String, targetId: String): Resource<Unit> {
+        noteDao.insertNoteLink(NoteLinkEntity(sourceId, targetId, Instant.now().toEpochMilli()))
+        return Resource.Success(Unit)
+    }
+
+    override suspend fun removeNoteLink(sourceId: String, targetId: String): Resource<Unit> {
+        noteDao.deleteNoteLink(sourceId, targetId)
+        return Resource.Success(Unit)
+    }
+
+    override suspend fun getLinkedNotes(noteId: String): Resource<List<Note>> {
+        val linked = noteDao.getLinkedNotes(noteId)
+        return Resource.Success(linked.map { it.toDomain() })
+    }
 
     private suspend fun togglePinnedLocally(noteId: String, pinned: Boolean) {
         noteDao.getNoteById(noteId)?.let {
@@ -336,11 +357,11 @@ class NoteRepositoryImpl @Inject constructor(
     private suspend fun enqueueSync(entityId: String, operation: SyncOperation, payload: String) {
         syncQueueDao.enqueue(
             SyncQueueEntity(
-                id         = UUID.randomUUID().toString(),
+                id = UUID.randomUUID().toString(),
                 entityType = EntityType.NOTE,
-                entityId   = entityId,
-                operation  = operation,
-                payload    = payload
+                entityId = entityId,
+                operation = operation,
+                payload = payload
             )
         )
     }
@@ -359,7 +380,7 @@ class NoteRepositoryImpl @Inject constructor(
                 } else Resource.Error("Empty response body")
             } else Resource.Error(parseError(response.errorBody()?.string()))
         }
-        is Resource.Error   -> result
+        is Resource.Error -> result
         is Resource.Loading -> Resource.Loading
     }
 
