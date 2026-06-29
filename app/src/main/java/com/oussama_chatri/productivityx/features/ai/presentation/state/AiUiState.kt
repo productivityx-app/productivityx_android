@@ -13,6 +13,16 @@ data class AiUiState(
     val context         : AiContext?     = null,
     val isContextLoading: Boolean         = false,
     val error           : String?        = null,
-    // Active action card waiting for user confirmation
     val pendingAction   : com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock? = null,
+    val replyToMessage  : Message?       = null,
+    val showEmojiReaction: UUID?         = null,
+    val suggestions     : List<String>   = emptyList(),
+    val personaType     : AiPersonaType  = AiPersonaType.PRODUCTIVITY,
+    val isContextExpanded: Boolean       = true,
 )
+
+enum class AiPersonaType {
+    PRODUCTIVITY,
+    CREATIVE,
+    TECHNICAL,
+}

@@ -18,6 +18,12 @@ data class ConversationEntity(
     @ColumnInfo(name = "is_archived")
     val isArchived: Boolean = false,
 
+    @ColumnInfo(name = "is_pinned")
+    val isPinned: Boolean = false,
+
+    @ColumnInfo(name = "unread_count")
+    val unreadCount: Int = 0,
+
     @ColumnInfo(name = "last_message")
     val lastMessage: String?,
 

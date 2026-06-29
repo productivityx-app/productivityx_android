@@ -6,4 +6,11 @@ data class ConversationListUiState(
     val conversations : List<Conversation> = emptyList(),
     val isLoading     : Boolean             = false,
     val error         : String?            = null,
+    val searchQuery   : String             = "",
+    val isSearchVisible: Boolean            = false,
+    val pinnedConversations: List<Conversation> = emptyList(),
+    val todayConversations: List<Conversation> = emptyList(),
+    val yesterdayConversations: List<Conversation> = emptyList(),
+    val earlierConversations: List<Conversation> = emptyList(),
+    val fabExpanded  : Boolean             = false,
 )

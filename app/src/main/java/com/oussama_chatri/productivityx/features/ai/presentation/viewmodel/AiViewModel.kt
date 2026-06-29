@@ -9,6 +9,7 @@ import com.oussama_chatri.productivityx.features.ai.domain.usecase.CreateConvers
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.ObserveMessagesUseCase
 import com.oussama_chatri.productivityx.features.ai.domain.usecase.SendMessageUseCase
 import com.oussama_chatri.productivityx.features.ai.presentation.event.AiUiEvent
+import com.oussama_chatri.productivityx.features.ai.presentation.state.AiPersonaType
 import com.oussama_chatri.productivityx.features.ai.presentation.state.AiUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -51,6 +52,35 @@ class AiViewModel @Inject constructor(
             is AiUiEvent.RefreshContext   -> {}
             is AiUiEvent.ConfirmAction    -> executeAction(event.action)
             is AiUiEvent.DismissAction    -> _state.update { it.copy(pendingAction = null) }
+            is AiUiEvent.CopyMessage      -> handleCopy(event.messageId)
+            is AiUiEvent.RegenerateResponse -> handleRegenerate(event.messageId)
+            is AiUiEvent.AddReaction      -> handleReaction(event.messageId, event.emoji)
+            is AiUiEvent.ReplyToMessage   -> _state.update { it.copy(replyToMessage = event.message) }
+            is AiUiEvent.CancelReply      -> _state.update { it.copy(replyToMessage = null) }
+            is AiUiEvent.ToggleEmojiReaction -> {}
+            is AiUiEvent.HideEmojiReaction -> _state.update { it.copy(showEmojiReaction = null) }
+            is AiUiEvent.ToggleContextPanel -> _state.update { it.copy(isContextExpanded = !it.isContextExpanded) }
+            is AiUiEvent.SelectPersona    -> _state.update { it.copy(personaType = event.type) }
+        }
+    }
+
+    private fun handleCopy(messageId: UUID) {
+        _state.value.messages.find { it.id == messageId }?.let { msg ->
+            viewModelScope.launch {
+                _events.send(UiEvent.ShowSnackbar("Message copied to clipboard"))
+            }
+        }
+    }
+
+    private fun handleRegenerate(messageId: UUID) {
+        val msg = _state.value.messages.find { it.id == messageId } ?: return
+        val conversationId = _state.value.conversationId ?: return
+        doSendMessage(conversationId, msg.content)
+    }
+
+    private fun handleReaction(messageId: UUID, emoji: String) {
+        viewModelScope.launch {
+            _events.send(UiEvent.ShowSnackbar("Reaction added: $emoji"))
         }
     }
 
@@ -102,7 +132,7 @@ class AiViewModel @Inject constructor(
     }
 
     private fun doSendMessage(conversationId: UUID, content: String) {
-        _state.update { it.copy(inputText = "", isStreaming = true, streamingContent = "") }
+        _state.update { it.copy(inputText = "", isStreaming = true, streamingContent = "", replyToMessage = null) }
 
         streamJob?.cancel()
         streamJob = viewModelScope.launch {
@@ -113,7 +143,7 @@ class AiViewModel @Inject constructor(
                         is StreamChunk.Token -> _state.update {
                             it.copy(streamingContent = it.streamingContent + chunk.text)
                         }
-                        is StreamChunk.Done  -> _state.update {
+                        is StreamChunk.Done -> _state.update {
                             it.copy(
                                 isStreaming      = false,
                                 streamingContent = "",
@@ -130,7 +160,7 @@ class AiViewModel @Inject constructor(
 
     private fun executeAction(action: AiActionBlock) {
         viewModelScope.launch {
-            _events.send(UiEvent.ShowSnackbar("Action queued — check your workspace"))
+            _events.send(UiEvent.ShowSnackbar("Action queued \u2014 check your workspace"))
             _state.update { it.copy(pendingAction = null) }
         }
     }

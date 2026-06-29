@@ -12,7 +12,7 @@ import java.util.UUID
 @Dao
 interface ConversationDao {
 
-    @Query("SELECT * FROM conversations WHERE is_archived = 0 ORDER BY updated_at DESC")
+    @Query("SELECT * FROM conversations WHERE is_archived = 0 ORDER BY is_pinned DESC, updated_at DESC")
     fun observeAll(): Flow<List<ConversationEntity>>
 
     @Query("SELECT * FROM conversations WHERE id = :id LIMIT 1")
@@ -30,11 +30,32 @@ interface ConversationDao {
     @Query("UPDATE conversations SET is_archived = 1, updated_at = :now WHERE id = :id")
     suspend fun archive(id: UUID, now: java.time.Instant)
 
+    @Query("UPDATE conversations SET is_pinned = 1 WHERE id = :id")
+    suspend fun pin(id: UUID)
+
+    @Query("UPDATE conversations SET is_pinned = 0 WHERE id = :id")
+    suspend fun unpin(id: UUID)
+
+    @Query("""
+        SELECT * FROM conversations
+        WHERE is_archived = 0
+        AND (title LIKE '%' || :query || '%' OR last_message LIKE '%' || :query || '%')
+        ORDER BY is_pinned DESC, updated_at DESC
+    """)
+    fun search(query: String): Flow<List<ConversationEntity>>
+
+    @Query("UPDATE conversations SET unread_count = unread_count + 1 WHERE id = :id")
+    suspend fun incrementUnread(id: UUID)
+
+    @Query("UPDATE conversations SET unread_count = 0 WHERE id = :id")
+    suspend fun clearUnread(id: UUID)
+
     // Bump the summary fields after a new message lands
     @Query("""
         UPDATE conversations
         SET last_message   = :lastMessage,
             message_count  = message_count + 1,
+            unread_count   = unread_count + 1,
             updated_at     = :now
         WHERE id = :id
     """)

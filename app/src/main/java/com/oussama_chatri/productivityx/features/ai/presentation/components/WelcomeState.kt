@@ -35,86 +35,109 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
+import com.oussama_chatri.productivityx.features.ai.presentation.state.AiPersonaType
 
 @Composable
 fun WelcomeState(
-    onSuggestionClick : (String) -> Unit,
-    modifier          : Modifier = Modifier,
+    onSuggestionClick: (String) -> Unit,
+    personaType: AiPersonaType = AiPersonaType.PRODUCTIVITY,
+    modifier: Modifier = Modifier,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "shimmer")
     val shimmerOffset by infiniteTransition.animateFloat(
-        initialValue   = 0f,
-        targetValue    = 1f,
-        animationSpec  = infiniteRepeatable(
-            animation  = tween(2000, easing = LinearEasing),
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart,
         ),
         label = "shimmerOffset",
     )
 
     Column(
-        modifier              = modifier.padding(24.dp),
-        horizontalAlignment   = Alignment.CenterHorizontally,
-        verticalArrangement   = Arrangement.Center,
+        modifier = modifier.padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
-        // Gradient icon
         Box(
-            modifier         = Modifier
+            modifier = Modifier
                 .size(72.dp)
                 .clip(RoundedCornerShape(20.dp))
                 .background(
                     Brush.linearGradient(
-                        colors = listOf(PxColors.Primary, PxColors.Secondary),
+                        colors = when (personaType) {
+                            AiPersonaType.PRODUCTIVITY -> listOf(PxColors.Primary, PxColors.PrimaryVariant)
+                            AiPersonaType.CREATIVE -> listOf(PxColors.Secondary, PxColors.Primary)
+                            AiPersonaType.TECHNICAL -> listOf(PxColors.Info, PxColors.Primary)
+                        },
                     )
                 ),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector        = Icons.Outlined.AutoAwesome,
+                imageVector = when (personaType) {
+                    AiPersonaType.PRODUCTIVITY -> Icons.Outlined.Bolt
+                    AiPersonaType.CREATIVE -> Icons.Outlined.AutoAwesome
+                    AiPersonaType.TECHNICAL -> Icons.Outlined.Code
+                },
                 contentDescription = null,
-                tint               = Color.White,
-                modifier           = Modifier.size(36.dp),
+                tint = Color.White,
+                modifier = Modifier.size(36.dp),
             )
         }
 
         Spacer(Modifier.height(20.dp))
 
         Text(
-            text      = stringResource(R.string.ai_welcome_title),
-            style     = MaterialTheme.typography.headlineMedium,
-            color     = PxColors.OnBackground,
+            text = stringResource(R.string.ai_welcome_title),
+            style = MaterialTheme.typography.headlineMedium,
+            color = PxColors.OnBackground,
             textAlign = TextAlign.Center,
         )
 
         Spacer(Modifier.height(8.dp))
 
         Text(
-            text      = stringResource(R.string.ai_welcome_body),
-            style     = MaterialTheme.typography.bodyMedium,
-            color     = PxColors.OnSurfaceDim,
+            text = stringResource(R.string.ai_welcome_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center,
         )
 
         Spacer(Modifier.height(32.dp))
 
-        // 2×2 suggestion grid
-        val suggestions = listOf(
-            stringResource(R.string.ai_suggestion_due_today),
-            stringResource(R.string.ai_suggestion_overdue),
-            stringResource(R.string.ai_suggestion_start_focus),
-            stringResource(R.string.ai_suggestion_meeting_agenda),
-        )
+        val suggestions = when (personaType) {
+            AiPersonaType.PRODUCTIVITY -> listOf(
+                stringResource(R.string.ai_suggestion_due_today),
+                stringResource(R.string.ai_suggestion_overdue),
+                stringResource(R.string.ai_suggestion_start_focus),
+                stringResource(R.string.ai_suggestion_meeting_agenda),
+            )
+            AiPersonaType.CREATIVE -> listOf(
+                "Brainstorm project ideas",
+                "Write a creative brief",
+                "Draft a newsletter",
+                "Design thinking exercise",
+            )
+            AiPersonaType.TECHNICAL -> listOf(
+                "Debug code snippet",
+                "Explain architecture",
+                "Review pull request",
+                "Optimize query",
+            )
+        }
+
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             suggestions.chunked(2).forEach { row ->
                 Row(
-                    modifier              = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     row.forEach { suggestion ->
                         SuggestionCard(
-                            text      = suggestion,
-                            onClick   = { onSuggestionClick(suggestion) },
-                            modifier  = Modifier.weight(1f),
+                            text = suggestion,
+                            onClick = { onSuggestionClick(suggestion) },
+                            modifier = Modifier.weight(1f),
                         )
                     }
                 }
@@ -125,9 +148,9 @@ fun WelcomeState(
 
 @Composable
 private fun SuggestionCard(
-    text     : String,
-    onClick  : () -> Unit,
-    modifier : Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -138,7 +161,7 @@ private fun SuggestionCard(
         contentAlignment = Alignment.CenterStart,
     ) {
         Text(
-            text  = text,
+            text = text,
             style = MaterialTheme.typography.bodySmall,
             color = PxColors.OnSurface,
         )
