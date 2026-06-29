@@ -5,6 +5,7 @@ data class PreferencesUiState(
     val isSaving: Boolean = false,
     val errorMessage: String? = null,
     val successMessage: String? = null,
+    val settingsSearchQuery: String = "",
     // Pomodoro
     val pomodoroFocusMinutes: Int = 25,
     val pomodoroShortBreakMinutes: Int = 5,
@@ -18,6 +19,9 @@ data class PreferencesUiState(
     val notifyEventReminders: Boolean = true,
     val notifyPomodoroEnd: Boolean = true,
     val notifyDailySummary: Boolean = false,
+    val hapticFeedback: Boolean = true,
+    val quietHoursStart: Int = 22,
+    val quietHoursEnd: Int = 8,
     // Views
     val defaultTaskView: String = "LIST",
     val defaultTaskSort: String = "DUE_DATE",
@@ -30,6 +34,17 @@ data class PreferencesUiState(
     // Display
     val compactMode: Boolean = false,
     val appTheme: String = "DARK",
+    val fontScale: Float = 1f,
+    val density: String = "COMFORTABLE",
     // Privacy
-    val localOnlyMode: Boolean = true
+    val localOnlyMode: Boolean = true,
+    // Feature flags
+    val offlineMode: Boolean = false,
+    val autoSync: Boolean = true,
+    val featureFlags: Map<String, Boolean> = mapOf(
+        "ai_smart_compose" to false,
+        "collaborative_editing" to false,
+        "advanced_analytics" to false,
+        "voice_notes" to true,
+    ),
 )

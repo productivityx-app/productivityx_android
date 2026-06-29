@@ -8,4 +8,6 @@ sealed class ProfileUiEvent {
     data object SignOutConfirmed : ProfileUiEvent()
     data object DismissError : ProfileUiEvent()
     data object DismissSuccess : ProfileUiEvent()
+    data object DeleteAccountClicked : ProfileUiEvent()
+    data object DeleteAccountConfirmed : ProfileUiEvent()
 }

@@ -359,10 +359,10 @@ private fun CalendarModernTopBar(
         .animateFloat(
             initialValue = 1f,
             targetValue = if (isTodayPulsing) 1.2f else 1f,
-            animationSpec = if (isTodayPulsing)
-                infiniteRepeatable<Float>(tween(400, easing = EaseInOutCubic), RepeatMode.Reverse)
-            else
-                infiniteRepeatable<Float>(tween(durationMillis = 0), RepeatMode.Restart),
+            animationSpec = infiniteRepeatable(
+                animation = tween(if (isTodayPulsing) 400 else 1, easing = EaseInOutCubic),
+                repeatMode = RepeatMode.Reverse
+            ),
             label = "pulse"
         )
 

@@ -38,6 +38,8 @@ class PreferencesViewModel @Inject constructor(
 
     fun onEvent(event: PreferencesUiEvent) {
         when (event) {
+            is PreferencesUiEvent.SettingsSearchQueryChanged ->
+                _uiState.update { it.copy(settingsSearchQuery = event.value) }
             is PreferencesUiEvent.FocusMinutesChanged ->
                 mutate { it.copy(pomodoroFocusMinutes = event.value.coerceIn(1, 120)) }
             is PreferencesUiEvent.ShortBreakMinutesChanged ->
@@ -60,6 +62,12 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(notifyPomodoroEnd = event.value) }
             is PreferencesUiEvent.NotifyDailySummaryChanged ->
                 mutate { it.copy(notifyDailySummary = event.value) }
+            is PreferencesUiEvent.HapticFeedbackChanged ->
+                mutate { it.copy(hapticFeedback = event.value) }
+            is PreferencesUiEvent.QuietHoursStartChanged ->
+                mutate { it.copy(quietHoursStart = event.value.coerceIn(0, 23)) }
+            is PreferencesUiEvent.QuietHoursEndChanged ->
+                mutate { it.copy(quietHoursEnd = event.value.coerceIn(0, 23)) }
             is PreferencesUiEvent.DefaultTaskViewChanged ->
                 mutate { it.copy(defaultTaskView = event.value) }
             is PreferencesUiEvent.DefaultTaskSortChanged ->
@@ -78,10 +86,20 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(compactMode = event.value) }
             is PreferencesUiEvent.AppThemeChanged ->
                 mutate { it.copy(appTheme = event.value) }
+            is PreferencesUiEvent.FontScaleChanged ->
+                mutate { it.copy(fontScale = event.value.coerceIn(0.7f, 1.5f)) }
+            is PreferencesUiEvent.DensityChanged ->
+                mutate { it.copy(density = event.value) }
             is PreferencesUiEvent.LocalOnlyModeChanged -> {
                 _uiState.update { it.copy(localOnlyMode = event.value) }
                 viewModelScope.launch { prefs.setLocalOnlyMode(event.value) }
             }
+            is PreferencesUiEvent.OfflineModeChanged ->
+                mutate { it.copy(offlineMode = event.value) }
+            is PreferencesUiEvent.AutoSyncChanged ->
+                mutate { it.copy(autoSync = event.value) }
+            is PreferencesUiEvent.FeatureFlagToggled ->
+                mutate { it.copy(featureFlags = it.featureFlags + (event.key to event.value)) }
             PreferencesUiEvent.DismissError ->
                 _uiState.update { it.copy(errorMessage = null) }
             PreferencesUiEvent.DismissSuccess ->

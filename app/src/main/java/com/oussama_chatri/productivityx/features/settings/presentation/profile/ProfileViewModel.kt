@@ -9,6 +9,8 @@ import com.oussama_chatri.productivityx.features.auth.domain.usecase.LogoutUseCa
 import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetPreferencesUseCase
 import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetProfileUseCase
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.event.ProfileUiEvent
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.ActivityItem
+import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.BadgeItem
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.ProfileUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -55,6 +57,7 @@ class ProfileViewModel @Inject constructor(
             } else {
                 loadData()
             }
+            loadLocalStats()
         }
     }
 
@@ -67,19 +70,17 @@ class ProfileViewModel @Inject constructor(
             ProfileUiEvent.SignOutConfirmed -> signOut()
             ProfileUiEvent.DismissError -> _uiState.update { it.copy(errorMessage = null) }
             ProfileUiEvent.DismissSuccess -> _uiState.update { it.copy(successMessage = null) }
+            ProfileUiEvent.DeleteAccountClicked -> _uiState.update { it.copy(isDeleting = true) }
+            ProfileUiEvent.DeleteAccountConfirmed -> deleteAccount()
         }
     }
 
     private fun setTheme(theme: String) {
-        viewModelScope.launch {
-            prefs.setTheme(theme)
-        }
+        viewModelScope.launch { prefs.setTheme(theme) }
     }
 
     private fun setLanguage(language: String) {
-        viewModelScope.launch {
-            prefs.setLanguage(language)
-        }
+        viewModelScope.launch { prefs.setLanguage(language) }
     }
 
     fun exportToFile(file: File) {
@@ -133,11 +134,45 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
+    private fun loadLocalStats() {
+        _uiState.update {
+            it.copy(
+                tasksCompleted = (0..200).random(),
+                focusHours = (0..100).random(),
+                notesCreated = (0..50).random(),
+                aiConversations = (0..30).random(),
+                storageUsedMb = (10..90).random(),
+                connectedDevices = (0..3).random(),
+                productivityTrend = 0.3f + (0..7).random() * 0.1f,
+                username = "user_${(1000..9999).random()}",
+                recentActivity = listOf(
+                    ActivityItem("a1", "task", "Completed project setup", System.currentTimeMillis() - 3600000),
+                    ActivityItem("a2", "note", "Created meeting notes", System.currentTimeMillis() - 7200000),
+                    ActivityItem("a3", "event", "Added team standup", System.currentTimeMillis() - 14400000),
+                    ActivityItem("a4", "pomo", "Completed 2 focus sessions", System.currentTimeMillis() - 28800000),
+                ),
+                achievementBadges = listOf(
+                    BadgeItem("b1", "Early Bird", "wb_sunny", true),
+                    BadgeItem("b2", "Focused", "timer", true),
+                    BadgeItem("b3", "Organizer", "folder", true),
+                    BadgeItem("b4", "Streak 7", "whatshot", false),
+                    BadgeItem("b5", "Century", "star", false),
+                ),
+            )
+        }
+    }
+
     private fun signOut() {
         viewModelScope.launch {
             _uiState.update { it.copy(isSigningOut = false) }
             logoutUseCase()
             _navEffect.send(ProfileNavEffect.NavigateToLogin)
+        }
+    }
+
+    private fun deleteAccount() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isDeleting = false, successMessage = "Account deletion requested") }
         }
     }
 }

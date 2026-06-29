@@ -14,5 +14,33 @@ data class ProfileUiState(
     val isExporting: Boolean = false,
     val isImporting: Boolean = false,
     val errorMessage: String? = null,
-    val successMessage: String? = null
+    val successMessage: String? = null,
+    val tasksCompleted: Int = 0,
+    val focusHours: Int = 0,
+    val notesCreated: Int = 0,
+    val aiConversations: Int = 0,
+    val subscriptionStatus: String = "Free",
+    val subscriptionRenewal: String? = null,
+    val storageUsedMb: Int = 0,
+    val storageTotalMb: Int = 100,
+    val connectedDevices: Int = 0,
+    val isDeleting: Boolean = false,
+    val recentActivity: List<ActivityItem> = emptyList(),
+    val achievementBadges: List<BadgeItem> = emptyList(),
+    val productivityTrend: Float = 0.5f,
+    val username: String = "",
+)
+
+data class ActivityItem(
+    val id: String,
+    val type: String,
+    val title: String,
+    val timestamp: Long,
+)
+
+data class BadgeItem(
+    val id: String,
+    val label: String,
+    val icon: String,
+    val unlocked: Boolean,
 )
