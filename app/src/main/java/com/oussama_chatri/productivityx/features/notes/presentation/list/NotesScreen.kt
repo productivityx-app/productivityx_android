@@ -134,7 +134,7 @@ fun NotesScreen(
                 onRefresh = { viewModel.onEvent(NotesUiEvent.Refresh) },
                 modifier = Modifier.fillMaxSize()
             ) {
-                if (uiState.notes.isEmpty() && !uiState.isLoading && !uiState.isSearchActive) {
+                if (uiState.notes.isEmpty() && !uiState.isLoading && !uiState.isSearchActive && uiState.selectedTagId == null && !uiState.showPinnedOnly && uiState.selectedFolderId == null) {
                     PxEmptyState(
                         icon = Icons.Outlined.StickyNote2,
                         title = stringResource(R.string.notes_empty_title),

@@ -113,9 +113,11 @@ fun PomodoroScreen(
     viewModel: PomodoroViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val tasks by viewModel.tasks.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val onEvent = viewModel::onEvent
+    var showSoundPicker by remember { mutableStateOf(false) }
 
     LaunchedEffect(viewModel.snackbar) {
         viewModel.snackbar.collect { message ->
@@ -134,7 +136,7 @@ fun PomodoroScreen(
         label = "phaseBackground"
     )
 
-    Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
+        Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -143,6 +145,32 @@ fun PomodoroScreen(
         ) {
             if (!state.isFocusMode) {
                 Spacer(Modifier.height(16.dp))
+
+                // Icons row inside the scrollable column
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
+                        Icon(
+                            Icons.Outlined.DoNotDisturbOn,
+                            contentDescription = "DND",
+                            tint = if (state.isDndEnabled) PxColors.Primary else Color.White.copy(alpha = 0.6f)
+                        )
+                    }
+                    IconButton(onClick = { showSoundPicker = true }) {
+                        Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = Color.White.copy(alpha = 0.6f))
+                    }
+                    IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
+                        Icon(
+                            Icons.Outlined.AutoAwesome,
+                            contentDescription = "Focus Mode",
+                            tint = if (state.isFocusMode) PxColors.Primary else Color.White.copy(alpha = 0.6f)
+                        )
+                    }
+                }
+
                 // Session type selector chips
                 SessionTypeSelector(
                     selected = state.selectedType,
@@ -238,33 +266,94 @@ fun PomodoroScreen(
             Spacer(Modifier.height(48.dp))
         }
 
-        // Top-right controls for DND, Sound, Focus Mode
-        Row(
-            modifier = Modifier.align(Alignment.TopEnd).padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
-                Icon(
-                    Icons.Outlined.DoNotDisturbOn,
-                    contentDescription = "DND",
-                    tint = if (state.isDndEnabled) PxColors.Primary else Color.White.copy(alpha = 0.6f)
-                )
-            }
-            IconButton(onClick = { /* Show sound picker */ }) {
-                Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = Color.White.copy(alpha = 0.6f))
-            }
-            IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
-                Icon(
-                    Icons.Outlined.AutoAwesome,
-                    contentDescription = "Focus Mode",
-                    tint = if (state.isFocusMode) PxColors.Primary else Color.White.copy(alpha = 0.6f)
-                )
-            }
-        }
-
         SnackbarHost(
             hostState = snackbarHostState,
             modifier = Modifier.align(Alignment.BottomCenter),
+        )
+    }
+
+    // Task picker sheet
+    if (state.showTaskPickerSheet) {
+        AlertDialog(
+            onDismissRequest = { onEvent(PomodoroUiEvent.SelectTask("", "")) },
+            containerColor = PxColors.Surface,
+            title = { Text("Link a Task", color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
+            text = {
+                Column {
+                    if (tasks.isEmpty()) {
+                        Text("No active tasks available.", color = PxColors.OnSurfaceDim)
+                    } else {
+                        tasks.forEach { task ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable { onEvent(PomodoroUiEvent.SelectTask(task.id, task.title)) }
+                                    .padding(vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            ) {
+                                Icon(Icons.Outlined.CheckCircle, null, tint = PxColors.Primary, modifier = Modifier.size(18.dp))
+                                Text(task.title, color = PxColors.OnSurface, fontSize = 14.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { onEvent(PomodoroUiEvent.SelectTask("", "")) }) {
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                }
+            }
+        )
+    }
+
+    // Sound picker sheet
+    if (showSoundPicker) {
+        AlertDialog(
+            onDismissRequest = { showSoundPicker = false },
+            containerColor = PxColors.Surface,
+            title = { Text("Ambient Sound", color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
+            text = {
+                Column {
+                    AmbientSound.entries.forEach { sound ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    onEvent(PomodoroUiEvent.SelectAmbientSound(sound))
+                                    showSoundPicker = false
+                                }
+                                .padding(vertical = 10.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            val isSelected = state.selectedAmbientSound == sound
+                            Icon(
+                                if (isSelected) Icons.Outlined.CheckCircle else Icons.Outlined.MusicNote,
+                                null,
+                                tint = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Text(
+                                text = when (sound) {
+                                    AmbientSound.NONE -> "None"
+                                    AmbientSound.RAIN -> "Rain"
+                                    AmbientSound.CAFE -> "Cafe"
+                                    AmbientSound.WHITE_NOISE -> "White Noise"
+                                    AmbientSound.NATURE -> "Nature"
+                                },
+                                color = if (isSelected) PxColors.Primary else PxColors.OnSurface,
+                                fontSize = 14.sp
+                            )
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showSoundPicker = false }) {
+                    Text("Close", color = PxColors.OnSurfaceDim)
+                }
+            }
         )
     }
 

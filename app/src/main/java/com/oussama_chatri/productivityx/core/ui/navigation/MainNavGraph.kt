@@ -28,6 +28,7 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -68,6 +69,7 @@ import androidx.navigation.toRoute
 import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
 import com.oussama_chatri.productivityx.core.ui.notifications.LocalNotificationState
+import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.ai.presentation.navigation.aiNavGraph
 import com.oussama_chatri.productivityx.features.events.presentation.navigation.eventsNavGraph
@@ -264,62 +266,68 @@ private fun TabScaffold(
             modifier = Modifier.weight(1f),
             topBar = {
                 if (showTopBar) {
-                    TopAppBar(
-                        title = {
-                            Column {
-                                Text(
-                                    text = stringResource(config.titleRes),
-                                    style = MaterialTheme.typography.headlineSmall,
-                                    fontWeight = FontWeight.Bold,
-                                )
-                                if (config.descriptionRes != null) {
+                    Column {
+                        TopAppBar(
+                            title = {
+                                Column {
                                     Text(
-                                        text = stringResource(config.descriptionRes),
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        text = stringResource(config.titleRes),
+                                        style = MaterialTheme.typography.headlineSmall,
+                                        fontWeight = FontWeight.Bold,
                                     )
+                                    if (config.descriptionRes != null) {
+                                        Text(
+                                            text = stringResource(config.descriptionRes),
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
                                 }
-                            }
-                        },
-                        actions = {
-                            additionalActions?.invoke()
-                            IconButton(onClick = onNavigateToProfile) {
-                                Icon(Icons.Outlined.Person, contentDescription = stringResource(R.string.nav_profile))
-                            }
-                            IconButton(onClick = onNavigateToSearch) {
-                                Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
-                            }
-                            val notificationState = LocalNotificationState.current
-                            val badgeCount = notificationState.unreadCount
-                            IconButton(onClick = { notificationState.showNotificationCenter = !notificationState.showNotificationCenter }) {
-                                Box {
-                                    Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
-                                    if (badgeCount > 0) {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(16.dp)
-                                                .clip(CircleShape)
-                                                .background(PxColors.Error)
-                                                .align(Alignment.TopEnd),
-                                            contentAlignment = Alignment.Center,
-                                        ) {
-                                            Text(
-                                                text = if (badgeCount > 9) "9+" else badgeCount.toString(),
-                                                fontSize = 9.sp,
-                                                color = Color.White,
-                                                fontWeight = FontWeight.Bold,
-                                                textAlign = TextAlign.Center,
-                                            )
+                            },
+                            actions = {
+                                additionalActions?.invoke()
+                                IconButton(onClick = onNavigateToProfile) {
+                                    Icon(Icons.Outlined.Person, contentDescription = stringResource(R.string.nav_profile))
+                                }
+                                IconButton(onClick = onNavigateToSearch) {
+                                    Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.cd_search))
+                                }
+                                val notificationState = LocalNotificationState.current
+                                val badgeCount = notificationState.unreadCount
+                                IconButton(onClick = { notificationState.showNotificationCenter = !notificationState.showNotificationCenter }) {
+                                    Box {
+                                        Icon(Icons.Outlined.Notifications, contentDescription = stringResource(R.string.cd_notifications))
+                                        if (badgeCount > 0) {
+                                            Box(
+                                                modifier = Modifier
+                                                    .size(16.dp)
+                                                    .clip(CircleShape)
+                                                    .background(PxColors.Error)
+                                                    .align(Alignment.TopEnd),
+                                                contentAlignment = Alignment.Center,
+                                            ) {
+                                                Text(
+                                                    text = if (badgeCount > 9) "9+" else badgeCount.toString(),
+                                                    fontSize = 9.sp,
+                                                    color = Color.White,
+                                                    fontWeight = FontWeight.Bold,
+                                                    textAlign = TextAlign.Center,
+                                                )
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = Color.Transparent,
-                            titleContentColor = MaterialTheme.colorScheme.onBackground,
-                        ),
-                    )
+                            },
+                            colors = TopAppBarDefaults.topAppBarColors(
+                                containerColor = PxColors.Surface.copy(alpha = 0.45f),
+                                titleContentColor = MaterialTheme.colorScheme.onBackground,
+                            ),
+                        )
+                        HorizontalDivider(
+                            thickness = 0.5.dp,
+                            color = PxColors.Outline.copy(alpha = 0.25f),
+                        )
+                    }
                 }
             },
             bottomBar = {

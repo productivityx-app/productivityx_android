@@ -13,7 +13,7 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.screens.Task
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskStatsScreen
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TaskTrashScreen
 import com.oussama_chatri.productivityx.features.tasks.presentation.screens.TasksScreen
-import com.oussama_chatri.productivityx.features.tasks.presentation.state.TaskStatsUiState
+import com.oussama_chatri.productivityx.features.tasks.presentation.viewmodel.TaskStatsViewModel
 
 object TaskRoutes {
     const val TASKS = "tasks"
@@ -86,9 +86,11 @@ fun NavGraphBuilder.tasksNavGraph(navController: NavController) {
     }
 
     composable(route = TaskRoutes.TASK_STATS) {
+        val viewModel: TaskStatsViewModel = hiltViewModel()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         TaskStatsScreen(
             onNavigateBack = { navController.popBackStack() },
-            uiState = TaskStatsUiState()
+            uiState = uiState
         )
     }
 }

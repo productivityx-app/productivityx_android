@@ -3,7 +3,6 @@ package com.oussama_chatri.productivityx.core.ui.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -53,7 +51,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -106,15 +103,6 @@ fun PxBottomNavBar(
     selectedIndex: Int = items.indexOfFirst { it.route::class.qualifiedName == currentRoute }.coerceAtLeast(0),
 ) {
     val haptic = LocalHapticFeedback.current
-    val density = LocalDensity.current
-    val indicatorOffset by animateDpAsState(
-        targetValue = if (selectedIndex >= 0) {
-            val itemWidth = with(density) { 360.dp / items.size }
-            itemWidth * selectedIndex + (itemWidth - 32.dp) / 2
-        } else 0.dp,
-        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium),
-        label = "indicatorOffset",
-    )
 
     AnimatedVisibility(
         visible = visible,
@@ -151,17 +139,6 @@ fun PxBottomNavBar(
                         else Modifier.background(PxColors.Surface, RoundedCornerShape(28.dp))
                     ),
             ) {
-                if (items.isNotEmpty() && selectedIndex >= 0) {
-                    Box(
-                        modifier = Modifier
-                            .offset(x = indicatorOffset)
-                            .size(width = 32.dp, height = 4.dp)
-                            .clip(RoundedCornerShape(2.dp))
-                            .background(PxColors.Primary)
-                            .align(Alignment.TopCenter),
-                    )
-                }
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()

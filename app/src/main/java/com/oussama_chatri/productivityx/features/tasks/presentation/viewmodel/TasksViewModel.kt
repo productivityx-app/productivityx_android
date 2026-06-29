@@ -62,16 +62,21 @@ class TasksViewModel @Inject constructor(
 
     fun onEvent(event: TasksEvent) {
         when (event) {
-            is TasksEvent.SelectTab -> _uiState.update { it.copy(activeTab = event.tab) }
+            is TasksEvent.SelectTab -> {
+                _uiState.update { it.copy(activeTab = event.tab) }
+                reapplyFilter()
+            }
 
             is TasksEvent.ToggleView -> _uiState.update { it.copy(viewMode = event.view) }
 
             is TasksEvent.FilterByStatus -> {
                 _uiState.update { it.copy(filterStatus = event.status, filterPriority = null) }
+                reapplyFilter()
             }
 
             is TasksEvent.FilterByPriority -> {
                 _uiState.update { it.copy(filterPriority = event.priority, filterStatus = null) }
+                reapplyFilter()
             }
 
             is TasksEvent.CompleteTask -> viewModelScope.launch {
@@ -110,14 +115,17 @@ class TasksViewModel @Inject constructor(
             // Smart filter
             is TasksEvent.SetSmartFilter -> {
                 _uiState.update { it.copy(taskFilter = it.taskFilter.copy(smartFilter = event.filter)) }
+                reapplyFilter()
             }
 
             is TasksEvent.SetTagFilter -> {
                 _uiState.update { it.copy(taskFilter = it.taskFilter.copy(tagFilter = event.tag)) }
+                reapplyFilter()
             }
 
             is TasksEvent.SetSearchQuery -> {
                 _uiState.update { it.copy(taskFilter = it.taskFilter.copy(searchQuery = event.query)) }
+                reapplyFilter()
             }
 
             is TasksEvent.SetCustomDateRange -> {
@@ -127,6 +135,7 @@ class TasksViewModel @Inject constructor(
                         customEndDate = event.end
                     ))
                 }
+                reapplyFilter()
             }
 
             // Multi-select
@@ -257,6 +266,15 @@ class TasksViewModel @Inject constructor(
         // TODO: implement tag update in repository when available
         _uiState.update { it.copy(isBulkActionRunning = false, selectedTaskIds = emptySet(), isMultiSelectMode = false) }
         _uiEvent.send(UiEvent.ShowSnackbar("Tag added to tasks"))
+    }
+
+    private fun reapplyFilter() {
+        _uiState.update { state ->
+            val filtered = state.tasks
+                .filterForTab(state.activeTab)
+                .applyFilter(state.taskFilter)
+            state.copy(filteredTasks = filtered)
+        }
     }
 
     private fun loadTasks() {

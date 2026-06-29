@@ -91,6 +91,7 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.components.M
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.PriorityChip
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TagChip
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskSettingRow
+import com.oussama_chatri.productivityx.features.tasks.presentation.components.displayLabel
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.priorityAccentColor
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.AddEditTaskEvent
 import com.oussama_chatri.productivityx.features.tasks.presentation.state.AddEditTaskUiState
@@ -259,97 +260,37 @@ private fun AddEditTaskContent(
             enter = expandVertically(),
             exit = shrinkVertically()
         ) {
-            // Visual priority matrix
-            Column(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text("Low Importance", color = Color(0xFF888899), fontSize = 10.sp)
-                    Text("High Importance", color = Color(0xFF888899), fontSize = 10.sp)
-                }
-
-                // Urgent row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text("Urgent", color = Color(0xFF888899), fontSize = 10.sp, modifier = Modifier.width(40.dp))
-                    PriorityButton(
-                        label = "High",
-                        priority = Priority.HIGH,
-                        isSelected = uiState.priority == Priority.HIGH,
-                        color = Color(0xFFF59E0B),
-                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.HIGH)); showPriorityExpanded = false },
-                        modifier = Modifier.weight(1f)
-                    )
-                    PriorityButton(
-                        label = "Urgent",
-                        priority = Priority.URGENT,
-                        isSelected = uiState.priority == Priority.URGENT,
-                        color = Color(0xFFEF4444),
-                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.URGENT)); showPriorityExpanded = false },
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-
-                // Not urgent row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text("Not Urgent", color = Color(0xFF888899), fontSize = 10.sp, modifier = Modifier.width(40.dp))
-                    PriorityButton(
-                        label = "Low",
-                        priority = Priority.LOW,
-                        isSelected = uiState.priority == Priority.LOW,
-                        color = Color(0xFF6B7280),
-                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.LOW)); showPriorityExpanded = false },
-                        modifier = Modifier.weight(1f)
-                    )
-                    PriorityButton(
-                        label = "Medium",
-                        priority = Priority.MEDIUM,
-                        isSelected = uiState.priority == Priority.MEDIUM,
-                        color = Color(0xFF3B82F6),
-                        onClick = { onEvent(AddEditTaskEvent.PriorityChanged(Priority.MEDIUM)); showPriorityExpanded = false },
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-
-                // Color buttons
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Priority.entries.forEach { p ->
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(32.dp)
-                                .clip(RoundedCornerShape(6.dp))
-                                .background(
-                                    if (p == uiState.priority) priorityAccentColor(p)
-                                    else priorityAccentColor(p).copy(alpha = 0.15f)
-                                )
-                                .clickable {
-                                    onEvent(AddEditTaskEvent.PriorityChanged(p))
-                                    showPriorityExpanded = false
-                                },
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = p.name.lowercase().replaceFirstChar { it.uppercase() },
-                                color = if (p == uiState.priority) Color.White else priorityAccentColor(p),
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                        }
+                listOf(
+                    Priority.LOW to Color(0xFF6B7280),
+                    Priority.MEDIUM to Color(0xFF3B82F6),
+                    Priority.HIGH to Color(0xFFF59E0B),
+                    Priority.URGENT to Color(0xFFEF4444)
+                ).forEach { (priority, color) ->
+                    val selected = uiState.priority == priority
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(if (selected) color.copy(alpha = 0.15f) else Color.Transparent)
+                            .clickable {
+                                onEvent(AddEditTaskEvent.PriorityChanged(priority))
+                                showPriorityExpanded = false
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = priority.displayLabel,
+                            color = if (selected) color else Color(0xFF888899),
+                            fontSize = 12.sp,
+                            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
+                        )
                     }
                 }
             }

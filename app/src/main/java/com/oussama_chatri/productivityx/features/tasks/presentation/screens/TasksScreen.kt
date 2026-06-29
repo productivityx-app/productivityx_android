@@ -169,7 +169,7 @@ fun TasksScreen(
             // Smart filters row
             SmartFilterRow(
                 activeFilter = uiState.taskFilter.smartFilter,
-                tasks = uiState.filteredTasks,
+                tasks = uiState.tasks,
                 onFilterSelected = { viewModel.onEvent(TasksEvent.SetSmartFilter(it)) }
             )
 

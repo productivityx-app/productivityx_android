@@ -136,6 +136,7 @@ fun NoteEditorScreen(
                         title = uiState.title,
                         isPinned = uiState.isPinned,
                         hasUnsavedChanges = uiState.hasUnsavedChanges,
+                        showMenu = showMenu,
                         onBack = onNavigateBack,
                         onTogglePin = { viewModel.onEvent(NoteEditorUiEvent.TogglePin) },
                         onSave = { viewModel.onEvent(NoteEditorUiEvent.Save) },
@@ -376,6 +377,7 @@ private fun EditorTopAppBar(
     title: String,
     isPinned: Boolean,
     hasUnsavedChanges: Boolean,
+    showMenu: Boolean,
     onBack: () -> Unit,
     onTogglePin: () -> Unit,
     onSave: () -> Unit,
@@ -426,7 +428,7 @@ private fun EditorTopAppBar(
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = PxColors.OnSurface)
                 }
                 DropdownMenu(
-                    expanded = true,
+                    expanded = showMenu,
                     onDismissRequest = onMenuDismiss,
                     containerColor = PxColors.Surface
                 ) {
