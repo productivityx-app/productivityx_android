@@ -129,7 +129,7 @@ fun ActionCard(
                     Column {
                         Spacer(Modifier.height(8.dp))
                         Text(
-                            text = stringResource(R.string.ai_action_preview),
+                            text = "Preview",
                             style = MaterialTheme.typography.bodySmall,
                             color = PxColors.OnSurfaceDim,
                         )

@@ -243,7 +243,7 @@ private fun TagFormDialog(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text("Color", style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
                 Spacer(modifier = Modifier.height(8.dp))
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                @OptIn(ExperimentalLayoutApi::class) FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     presetColors.forEach { preset ->
                         val isSelected = color == preset
                         val presetColor = runCatching { Color(android.graphics.Color.parseColor(preset)) }.getOrDefault(PxColors.Primary)

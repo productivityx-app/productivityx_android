@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.Computer
+import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -76,9 +78,9 @@ fun WelcomeState(
         ) {
             Icon(
                 imageVector = when (personaType) {
-                    AiPersonaType.PRODUCTIVITY -> Icons.Outlined.Bolt
+                    AiPersonaType.PRODUCTIVITY -> Icons.Outlined.TrendingUp
                     AiPersonaType.CREATIVE -> Icons.Outlined.AutoAwesome
-                    AiPersonaType.TECHNICAL -> Icons.Outlined.Code
+                    AiPersonaType.TECHNICAL -> Icons.Outlined.Computer
                 },
                 contentDescription = null,
                 tint = Color.White,

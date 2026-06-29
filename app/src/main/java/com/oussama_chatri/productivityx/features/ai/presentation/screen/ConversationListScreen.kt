@@ -282,7 +282,7 @@ private fun SectionHeader(title: String) {
         text = title,
         style = MaterialTheme.typography.labelMedium,
         color = PxColors.OnSurfaceDim,
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp, paddingStart = 16.dp),
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }
 

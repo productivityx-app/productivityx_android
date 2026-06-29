@@ -33,6 +33,7 @@ private fun HomeTab(rootNavController: NavHostController) {
             onNavigateToTasks     = { rootNavController.navigateToTab(MainRoute.Tasks) },
             onNavigateToCalendar  = { rootNavController.navigateToTab(MainRoute.Calendar) },
             onNavigateToPomodoro  = { rootNavController.navigateToTab(MainRoute.Pomodoro) },
+            onNavigateToAi        = { rootNavController.safeNavigate(MainRoute.Ai) },
             modifier              = Modifier.padding(innerPadding),
         )
     }

@@ -482,7 +482,7 @@ private fun MetadataBar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Last saved: ${lastSavedAt?.let { runCatching { dateFormatter.format(it) }.getOrElse("—") } ?: "—"}",
+                    text = "Last saved: ${lastSavedAt?.let { runCatching { dateFormatter.format(it) }.getOrDefault("—") } ?: "—"}",
                     style = MaterialTheme.typography.labelSmall,
                     color = PxColors.OnSurfaceDim
                 )

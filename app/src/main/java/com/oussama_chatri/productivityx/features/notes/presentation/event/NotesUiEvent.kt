@@ -24,6 +24,6 @@ sealed class NotesUiEvent {
     data object BulkArchive : NotesUiEvent()
     data class BulkAddTag(val tagId: String) : NotesUiEvent()
     data object BulkPin : NotesUiEvent()
-    data object SwipePin(val noteId: String) : NotesUiEvent()
-    data object SwipeArchive(val noteId: String) : NotesUiEvent()
+    data class SwipePin(val noteId: String) : NotesUiEvent()
+    data class SwipeArchive(val noteId: String) : NotesUiEvent()
 }

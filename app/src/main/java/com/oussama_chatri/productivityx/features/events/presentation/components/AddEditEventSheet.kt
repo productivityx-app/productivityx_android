@@ -866,7 +866,7 @@ private fun SmartTitleSuggestions(
             )
         }
         Spacer(Modifier.height(4.dp))
-        FlowRow(
+                    @OptIn(ExperimentalLayoutApi::class) FlowRow(
             horizontalArrangement = Arrangement.spacedBy(6.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
@@ -904,7 +904,7 @@ private fun MultipleReminderPicker(
         1440 to "1 day",
     )
 
-    FlowRow(
+    @OptIn(ExperimentalLayoutApi::class) FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
         modifier = Modifier.padding(bottom = 8.dp)

@@ -10,6 +10,8 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -104,10 +106,12 @@ fun NoteGridCard(
     var offsetX by remember { mutableStateOf(0f) }
 
     Surface(
-        onClick = onClick,
-        onLongClick = onLongClick,
         modifier = modifier
             .fillMaxWidth()
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            )
             .offset { IntOffset(offsetX.roundToInt(), 0) }
             .pointerInput(Unit) {
                 detectHorizontalDragGestures(
@@ -264,9 +268,12 @@ fun NoteListCard(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        onClick = onClick,
-        onLongClick = onLongClick,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            ),
         shape = RoundedCornerShape(12.dp),
         color = if (isSelected) PxColors.Primary.copy(alpha = 0.12f) else PxColors.Surface,
         tonalElevation = 0.dp
@@ -352,9 +359,12 @@ fun NoteCompactCard(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        onClick = onClick,
-        onLongClick = onLongClick,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            ),
         shape = RoundedCornerShape(8.dp),
         color = if (isSelected) PxColors.Primary.copy(alpha = 0.12f) else Color.Transparent,
         tonalElevation = 0.dp
@@ -569,9 +579,13 @@ private fun NoteCardPreview() {
                 syncStatus = SyncStatus.SYNCED,
                 tags = setOf(Tag("t1", "u1", "Work", "#6366F1", Instant.now())),
                 createdAt = Instant.now(),
-                updatedAt = Instant.now()
+                updatedAt = Instant.now(),
+                folderId = null,
+                imageUrls = emptyList(),
+                hasVoiceMemo = false,
+                hasFileAttachment = false,
+                linkedNoteIds = emptyList()
             ),
-            viewMode = NoteViewMode.GRID,
             isSelected = false,
             isSelectionMode = false,
             onClick = {},

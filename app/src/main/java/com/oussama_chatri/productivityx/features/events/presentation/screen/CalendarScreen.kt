@@ -362,7 +362,7 @@ private fun CalendarModernTopBar(
             animationSpec = if (isTodayPulsing)
                 infiniteRepeatable<Float>(tween(400, easing = EaseInOutCubic), RepeatMode.Reverse)
             else
-                tween(durationMillis = 0),
+                infiniteRepeatable<Float>(tween(durationMillis = 0), RepeatMode.Restart),
             label = "pulse"
         )
 
@@ -423,11 +423,11 @@ private fun ViewSwitcherRow(
     modifier: Modifier = Modifier,
 ) {
     val views = listOf(
-        CalendarView.DAY to Icons.Outlined.ViewDay to "Day",
-        CalendarView.WEEK to Icons.Outlined.CalendarViewWeek to "Week",
-        CalendarView.MONTH to Icons.Outlined.ViewModule to "Month",
-        CalendarView.AGENDA to Icons.Outlined.ViewAgenda to "Agenda",
-        CalendarView.YEAR to Icons.Outlined.EditCalendar to "Year",
+        Triple(CalendarView.DAY, Icons.Outlined.ViewDay, "Day"),
+        Triple(CalendarView.WEEK, Icons.Outlined.DateRange, "Week"),
+        Triple(CalendarView.MONTH, Icons.Outlined.DateRange, "Month"),
+        Triple(CalendarView.AGENDA, Icons.Outlined.ViewAgenda, "Agenda"),
+        Triple(CalendarView.YEAR, Icons.Outlined.DateRange, "Year"),
     )
 
     Row(

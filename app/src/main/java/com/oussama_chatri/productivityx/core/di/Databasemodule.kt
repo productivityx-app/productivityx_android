@@ -10,8 +10,10 @@ import com.oussama_chatri.productivityx.core.db.sync.SyncQueueDao
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.ConversationDao
 import com.oussama_chatri.productivityx.features.ai.data.local.dao.MessageDao
 import com.oussama_chatri.productivityx.features.events.data.local.EventDao
+import com.oussama_chatri.productivityx.features.notes.data.local.FolderDao
 import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivityx.features.notes.data.local.TagDao
+import com.oussama_chatri.productivityx.features.notes.data.local.TemplateDao
 import com.oussama_chatri.productivityx.features.pomodoro.data.local.dao.PomodoroSessionDao
 import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import dagger.Module
@@ -36,6 +38,8 @@ object DatabaseModule {
     @Provides fun provideSyncQueueDao(db: AppDatabase): SyncQueueDao             = db.syncQueueDao()
     @Provides fun provideNoteDao(db: AppDatabase): NoteDao                        = db.noteDao()
     @Provides fun provideTagDao(db: AppDatabase): TagDao                          = db.tagDao()
+    @Provides fun provideFolderDao(db: AppDatabase): FolderDao                    = db.folderDao()
+    @Provides fun provideTemplateDao(db: AppDatabase): TemplateDao                = db.templateDao()
     @Provides fun provideTaskDao(db: AppDatabase): TaskDao                        = db.taskDao()
     @Provides fun provideEventDao(db: AppDatabase): EventDao                      = db.eventDao()
     @Provides fun provideConversationDao(db: AppDatabase): ConversationDao        = db.conversationDao()
