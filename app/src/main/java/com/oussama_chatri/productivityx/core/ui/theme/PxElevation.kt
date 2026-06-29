@@ -37,7 +37,7 @@ object ElevationTokens {
     val Dialog      = PxElevationLevel.Level4
     val BottomSheet = PxElevationLevel.Level2
     val Button      = PxElevationLevel.Level1
-    val TopBar      = PxElevationLevel.Level0
+    val TopBar      = PxElevationLevel.Level1
     val Dropdown    = PxElevationLevel.Level3
 }
 

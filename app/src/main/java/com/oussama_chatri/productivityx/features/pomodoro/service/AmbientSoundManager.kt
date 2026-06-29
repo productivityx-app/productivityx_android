@@ -24,10 +24,10 @@ class AmbientSoundManager @Inject constructor(
         if (sound == AmbientSound.NONE) return
 
         val resId: Int? = when (sound) {
-            AmbientSound.RAIN -> null // Replace with actual R.raw.rain if available
-            AmbientSound.CAFE -> null
-            AmbientSound.WHITE_NOISE -> null
-            AmbientSound.NATURE -> null
+            AmbientSound.RAIN -> R.raw.rain
+            AmbientSound.CAFE -> R.raw.coffe
+            AmbientSound.WHITE_NOISE -> R.raw.white_noise
+            AmbientSound.NATURE -> R.raw.nature
             AmbientSound.NONE -> null
         }
 
