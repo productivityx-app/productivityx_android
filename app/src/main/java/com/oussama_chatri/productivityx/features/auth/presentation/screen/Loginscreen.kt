@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -50,6 +51,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -158,20 +160,12 @@ private fun LoginContent(
         ) {
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Logo with gradient
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(PxColors.Primary, PxColors.Secondary),
-                        )
-                    ),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text("PX", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color.White)
-            }
+            // Logo
+            Image(
+                painter = painterResource(R.drawable.ic_logo),
+                contentDescription = stringResource(R.string.app_name),
+                modifier = Modifier.size(56.dp),
+            )
 
             Spacer(modifier = Modifier.height(12.dp))
 

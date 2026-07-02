@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.res.painterResource
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -130,14 +132,12 @@ private fun SplashContent(contentAlpha: Float) {
         label = "gradientRotation",
     )
 
-    val logoPProgress = remember { Animatable(0f) }
-    val logoXProgress = remember { Animatable(0f) }
+    val logoProgress = remember { Animatable(0f) }
     val ringProgress = remember { Animatable(0f) }
     var currentTipIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
-        logoPProgress.animateTo(1f, animationSpec = tween(500, delayMillis = 200))
-        logoXProgress.animateTo(1f, animationSpec = tween(500, delayMillis = 100))
+        logoProgress.animateTo(1f, animationSpec = tween(500, delayMillis = 200))
         ringProgress.animateTo(1f, animationSpec = tween(800, delayMillis = 300))
     }
 
@@ -179,77 +179,16 @@ private fun SplashContent(contentAlpha: Float) {
 
             // Animated logo
             Box(
-                modifier = Modifier.size(96.dp),
+                modifier = Modifier
+                    .size(96.dp)
+                    .graphicsLayer(alpha = logoProgress.value),
                 contentAlignment = Alignment.Center,
             ) {
-                Canvas(modifier = Modifier.size(96.dp)) {
-                    val strokeWidth = 5.dp.toPx()
-                    val halfSize = size.minDimension / 2f
-                    val center = Offset(size.width / 2f, size.height / 2f)
-                    val logoSize = halfSize * 0.7f
-
-                    // Draw P
-                    val pPath = Path().apply {
-                        val startX = center.x - logoSize * 0.5f
-                        val topY = center.y - logoSize * 0.7f
-                        val bottomY = center.y + logoSize * 0.7f
-                        val pWidth = logoSize * 0.6f
-
-                        // Vertical stem of P
-                        moveTo(startX, topY)
-                        lineTo(startX, bottomY)
-
-                        // Top horizontal of P
-                        moveTo(startX, topY)
-                        lineTo(startX + pWidth, topY)
-
-                        // Curve of P
-                        moveTo(startX + pWidth, topY)
-                        cubicTo(
-                            startX + pWidth + logoSize * 0.3f, topY,
-                            startX + pWidth + logoSize * 0.3f, center.y,
-                            startX + pWidth * 0.5f, center.y,
-                        )
-
-                        // Bottom horizontal of P opening
-                        moveTo(startX + pWidth * 0.5f, center.y)
-                        lineTo(startX, center.y)
-                    }
-
-                    // Draw X
-                    val xPath = Path().apply {
-                        val xStartX = center.x + logoSize * 0.1f
-                        val xEndX = center.x + logoSize * 0.9f
-                        val xTopY = center.y - logoSize * 0.7f
-                        val xBottomY = center.y + logoSize * 0.7f
-
-                        moveTo(xStartX, xTopY)
-                        lineTo(xEndX, xBottomY)
-
-                        moveTo(xEndX, xTopY)
-                        lineTo(xStartX, xBottomY)
-                    }
-
-                    drawPath(
-                        path = pPath,
-                        color = PxColors.Primary.copy(alpha = logoPProgress.value),
-                        style = Stroke(
-                            width = 5.dp.toPx(),
-                            cap = StrokeCap.Round,
-                            join = StrokeJoin.Round,
-                        ),
-                    )
-
-                    drawPath(
-                        path = xPath,
-                        color = PxColors.Secondary.copy(alpha = logoXProgress.value),
-                        style = Stroke(
-                            width = 5.dp.toPx(),
-                            cap = StrokeCap.Round,
-                            join = StrokeJoin.Round,
-                        ),
-                    )
-                }
+                Image(
+                    painter = painterResource(R.drawable.ic_logo),
+                    contentDescription = stringResource(R.string.app_name),
+                    modifier = Modifier.size(96.dp),
+                )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
