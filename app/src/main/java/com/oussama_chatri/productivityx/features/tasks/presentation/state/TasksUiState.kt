@@ -43,6 +43,7 @@ data class TasksUiState(
 
 data class TaskDetailUiState(
     val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
     val task: Task? = null,
     val error: String? = null,
     val isEditingTitle: Boolean = false,
@@ -87,12 +88,14 @@ data class AddEditTaskUiState(
 
 data class TaskTrashUiState(
     val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
     val tasks: List<Task> = emptyList(),
     val error: String? = null
 )
 
 data class TaskStatsUiState(
     val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
 
     // Completion rate
     val weeklyCompletionRate: Float = 0f,

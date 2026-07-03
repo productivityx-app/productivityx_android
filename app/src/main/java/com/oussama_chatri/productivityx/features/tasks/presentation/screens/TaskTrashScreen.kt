@@ -31,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -98,35 +99,39 @@ fun TaskTrashScreen(
             )
         }
     ) { paddingValues ->
-        when {
-            uiState.isLoading -> Box(
-                Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(color = PxColors.Primary)
-            }
+        PullToRefreshBox(
+            isRefreshing = uiState.isRefreshing,
+            onRefresh = { viewModel.onEvent(TaskTrashEvent.Refresh) },
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            when {
+                uiState.isLoading -> Box(
+                    Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = PxColors.Primary)
+                }
 
-            uiState.tasks.isEmpty() -> PxEmptyState(
-                icon = Icons.Outlined.DeleteForever,
-                title = "Trash is empty",
-                subtitle = "Deleted tasks appear here."
-            )
+                uiState.tasks.isEmpty() -> PxEmptyState(
+                    icon = Icons.Outlined.DeleteForever,
+                    title = "Trash is empty",
+                    subtitle = "Deleted tasks appear here."
+                )
 
-            else -> LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(uiState.tasks, key = { it.id }) { task ->
-                    TrashTaskItem(
-                        task = task,
-                        onRestore = { viewModel.onEvent(TaskTrashEvent.RestoreTask(task.id)) },
-                        onHardDelete = { viewModel.onEvent(TaskTrashEvent.HardDeleteTask(task.id)) }
-                    )
+                else -> LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(uiState.tasks, key = { it.id }) { task ->
+                        TrashTaskItem(
+                            task = task,
+                            onRestore = { viewModel.onEvent(TaskTrashEvent.RestoreTask(task.id)) },
+                            onHardDelete = { viewModel.onEvent(TaskTrashEvent.HardDeleteTask(task.id)) }
+                        )
+                    }
                 }
             }
         }

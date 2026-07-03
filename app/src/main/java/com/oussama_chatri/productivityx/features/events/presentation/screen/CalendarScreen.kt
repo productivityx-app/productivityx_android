@@ -15,7 +15,6 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -56,16 +55,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -157,121 +153,88 @@ fun CalendarScreen(
                 onRefresh = { viewModel.onEvent(CalendarUiEvent.Refresh) },
                 modifier = Modifier.fillMaxSize()
             ) {
-                val swipeThreshold = 50f
-                var totalDrag by remember { mutableStateOf(0f) }
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .pointerInput(state.view) {
-                            detectHorizontalDragGestures(
-                                onDragEnd = {
-                                    if (totalDrag < -swipeThreshold) {
-                                        when (state.view) {
-                                            CalendarView.WEEK -> viewModel.onEvent(CalendarUiEvent.WeekChanged(1))
-                                            CalendarView.MONTH -> viewModel.onEvent(CalendarUiEvent.MonthChanged(1))
-                                            CalendarView.DAY -> viewModel.onEvent(CalendarUiEvent.DayChanged(1))
-                                            else -> {}
-                                        }
-                                    } else if (totalDrag > swipeThreshold) {
-                                        when (state.view) {
-                                            CalendarView.WEEK -> viewModel.onEvent(CalendarUiEvent.WeekChanged(-1))
-                                            CalendarView.MONTH -> viewModel.onEvent(CalendarUiEvent.MonthChanged(-1))
-                                            CalendarView.DAY -> viewModel.onEvent(CalendarUiEvent.DayChanged(-1))
-                                            else -> {}
-                                        }
-                                    }
-                                    totalDrag = 0f
-                                },
-                                onHorizontalDrag = { _, dragAmount ->
-                                    totalDrag += dragAmount
-                                }
-                            )
-                        }
-                ) {
-                    AnimatedContent(
-                        targetState = state.view,
-                        transitionSpec = {
-                            val direction = if (targetState.ordinal > initialState.ordinal) 1 else -1
-                            fadeIn(tween(200)) + scaleIn(tween(200)) togetherWith
-                                fadeOut(tween(200)) + scaleOut(tween(200))
-                        },
-                        label = "calendar_view_switch"
-                    ) { view ->
-                        when (view) {
-                            CalendarView.WEEK -> WeekViewGrid(
-                                weekOffset = state.weekOffset,
+                AnimatedContent(
+                    targetState = state.view,
+                    transitionSpec = {
+                        val direction = if (targetState.ordinal > initialState.ordinal) 1 else -1
+                        fadeIn(tween(200)) + scaleIn(tween(200)) togetherWith
+                            fadeOut(tween(200)) + scaleOut(tween(200))
+                    },
+                    label = "calendar_view_switch"
+                ) { view ->
+                    when (view) {
+                        CalendarView.WEEK -> WeekViewGrid(
+                            weekOffset = state.weekOffset,
+                            selectedDay = state.selectedDay,
+                            events = state.events,
+                            onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
+                            onSlotClick = { day, hour ->
+                                viewModel.onEvent(CalendarUiEvent.OpenAddEventAtSlot(day, hour))
+                            },
+                            onSlotLongPress = { day, startHour, endHour ->
+                                viewModel.onEvent(CalendarUiEvent.OpenAddEventWithDuration(day, startHour, endHour))
+                            },
+                            onEventClick = { id ->
+                                if (state.showAddEditSheet) return@WeekViewGrid
+                                onNavigateToEventDetail(id)
+                            },
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 8.dp)
+                        )
+                        CalendarView.MONTH -> MonthViewGrid(
+                            monthOffset = state.weekOffset,
+                            selectedDay = state.selectedDay,
+                            events = state.events,
+                            onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
+                            onEventClick = { id -> onNavigateToEventDetail(id) },
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 16.dp)
+                        )
+                        CalendarView.DAY -> Column {
+                            if (state.weatherData != null) {
+                                WeatherWidget(
+                                    weather = state.weatherData,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+                                )
+                            }
+                            DayView(
+                                dayOffset = state.weekOffset,
                                 selectedDay = state.selectedDay,
                                 events = state.events,
-                                onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
                                 onSlotClick = { day, hour ->
                                     viewModel.onEvent(CalendarUiEvent.OpenAddEventAtSlot(day, hour))
                                 },
                                 onSlotLongPress = { day, startHour, endHour ->
                                     viewModel.onEvent(CalendarUiEvent.OpenAddEventWithDuration(day, startHour, endHour))
                                 },
-                                onEventClick = { id ->
-                                    if (state.showAddEditSheet) return@WeekViewGrid
-                                    onNavigateToEventDetail(id)
-                                },
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 8.dp)
-                            )
-                            CalendarView.MONTH -> MonthViewGrid(
-                                monthOffset = state.weekOffset,
-                                selectedDay = state.selectedDay,
-                                events = state.events,
-                                onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
                                 onEventClick = { id -> onNavigateToEventDetail(id) },
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 16.dp)
-                            )
-                            CalendarView.DAY -> Column {
-                                if (state.weatherData != null) {
-                                    WeatherWidget(
-                                        weather = state.weatherData,
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
-                                    )
-                                }
-                                DayView(
-                                    dayOffset = state.weekOffset,
-                                    selectedDay = state.selectedDay,
-                                    events = state.events,
-                                    onSlotClick = { day, hour ->
-                                        viewModel.onEvent(CalendarUiEvent.OpenAddEventAtSlot(day, hour))
-                                    },
-                                    onSlotLongPress = { day, startHour, endHour ->
-                                        viewModel.onEvent(CalendarUiEvent.OpenAddEventWithDuration(day, startHour, endHour))
-                                    },
-                                    onEventClick = { id -> onNavigateToEventDetail(id) },
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-                            CalendarView.AGENDA -> Column {
-                                AvailabilityView(
-                                    events = state.events,
-                                    selectedDay = state.selectedDay,
-                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                                )
-                                Spacer(Modifier.height(4.dp))
-                                AgendaView(
-                                    daysOffset = state.weekOffset,
-                                    today = state.selectedDay,
-                                    events = state.events,
-                                    onEventClick = { id -> onNavigateToEventDetail(id) },
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-                            CalendarView.YEAR -> YearView(
-                                selectedYear = state.selectedYear,
-                                events = state.events,
-                                onYearChanged = { viewModel.onEvent(CalendarUiEvent.YearSelected(it)) },
-                                onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
                                 modifier = Modifier.fillMaxSize()
                             )
                         }
+                        CalendarView.AGENDA -> Column {
+                            AvailabilityView(
+                                events = state.events,
+                                selectedDay = state.selectedDay,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            AgendaView(
+                                daysOffset = state.weekOffset,
+                                today = state.selectedDay,
+                                events = state.events,
+                                onEventClick = { id -> onNavigateToEventDetail(id) },
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        CalendarView.YEAR -> YearView(
+                            selectedYear = state.selectedYear,
+                            events = state.events,
+                            onYearChanged = { viewModel.onEvent(CalendarUiEvent.YearSelected(it)) },
+                            onDaySelected = { viewModel.onEvent(CalendarUiEvent.DaySelected(it)) },
+                            modifier = Modifier.fillMaxSize()
+                        )
                     }
                 }
             }

@@ -90,6 +90,7 @@ fun NavGraphBuilder.tasksNavGraph(navController: NavController) {
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         TaskStatsScreen(
             onNavigateBack = { navController.popBackStack() },
+            onRefresh = { viewModel.refresh() },
             uiState = uiState
         )
     }

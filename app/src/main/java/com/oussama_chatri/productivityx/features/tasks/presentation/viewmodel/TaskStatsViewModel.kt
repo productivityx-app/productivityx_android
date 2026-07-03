@@ -36,7 +36,7 @@ class TaskStatsViewModel @Inject constructor(
     }
 
     fun refresh() {
-        _uiState.update { it.copy(isLoading = true) }
+        _uiState.update { it.copy(isRefreshing = true) }
         loadStats()
     }
 
@@ -44,10 +44,10 @@ class TaskStatsViewModel @Inject constructor(
         observeTasks()
             .map { tasks -> computeStats(tasks) }
             .catch { e ->
-                _uiState.update { it.copy(isLoading = false) }
+                _uiState.update { it.copy(isLoading = false, isRefreshing = false) }
             }
             .onEach { stats ->
-                _uiState.value = stats
+                _uiState.value = stats.copy(isRefreshing = false)
             }
             .launchIn(viewModelScope)
     }

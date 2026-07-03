@@ -57,14 +57,25 @@ import androidx.compose.material.icons.outlined.SelectAll
 import androidx.compose.material.icons.outlined.Timeline
 import androidx.compose.material.icons.outlined.ViewKanban
 import androidx.compose.material.icons.outlined.ViewList
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.AlertDialog
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
@@ -129,6 +140,10 @@ fun TasksScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 
+    var showReschedulePicker by remember { mutableStateOf(false) }
+    var showPriorityPicker by remember { mutableStateOf(false) }
+    var showTagPicker by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { event ->
             when (event) {
@@ -144,79 +159,85 @@ fun TasksScreen(
     }
 
     Box(modifier = modifier.fillMaxSize()) {
-        Column(
+        PullToRefreshBox(
+            isRefreshing = uiState.isSyncing,
+            onRefresh = { viewModel.onEvent(TasksEvent.Refresh) },
             modifier = Modifier.fillMaxSize()
         ) {
-            // View mode toggle + Filter
-            TaskViewToggle(
-                viewMode = uiState.viewMode,
-                isMultiSelectMode = uiState.isMultiSelectMode,
-                selectedCount = uiState.selectedTaskIds.size,
-                onToggleView = { viewModel.onEvent(TasksEvent.ToggleView(it)) },
-                onExitMultiSelect = { viewModel.onEvent(TasksEvent.ExitMultiSelectMode) },
-                onBulkComplete = { viewModel.onEvent(TasksEvent.BulkComplete) },
-                onBulkDelete = { viewModel.onEvent(TasksEvent.BulkDelete) },
-                onSelectAll = { viewModel.onEvent(TasksEvent.SelectAll) },
-                onNavigateToStats = onNavigateToStats
-            )
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                // View mode toggle + Filter
+                TaskViewToggle(
+                    viewMode = uiState.viewMode,
+                    isMultiSelectMode = uiState.isMultiSelectMode,
+                    selectedCount = uiState.selectedTaskIds.size,
+                    onToggleView = { viewModel.onEvent(TasksEvent.ToggleView(it)) },
+                    onExitMultiSelect = { viewModel.onEvent(TasksEvent.ExitMultiSelectMode) },
+                    onBulkComplete = { viewModel.onEvent(TasksEvent.BulkComplete) },
+                    onBulkDelete = { viewModel.onEvent(TasksEvent.BulkDelete) },
+                    onSelectAll = { viewModel.onEvent(TasksEvent.SelectAll) },
+                    onNavigateToStats = onNavigateToStats
+                )
 
-            // Search bar
-            SearchBar(
-                query = uiState.taskFilter.searchQuery,
-                onQueryChange = { viewModel.onEvent(TasksEvent.SetSearchQuery(it)) }
-            )
+                // Search bar
+                SearchBar(
+                    query = uiState.taskFilter.searchQuery,
+                    onQueryChange = { viewModel.onEvent(TasksEvent.SetSearchQuery(it)) }
+                )
 
-            // Smart filters row
-            SmartFilterRow(
-                activeFilter = uiState.taskFilter.smartFilter,
-                tasks = uiState.tasks,
-                onFilterSelected = { viewModel.onEvent(TasksEvent.SetSmartFilter(it)) }
-            )
+                // Smart filters row
+                SmartFilterRow(
+                    activeFilter = uiState.taskFilter.smartFilter,
+                    tasks = uiState.tasks,
+                    onFilterSelected = { viewModel.onEvent(TasksEvent.SetSmartFilter(it)) }
+                )
 
-            // Main content area based on view mode
-            AnimatedContent(
-                targetState = uiState.viewMode,
-                transitionSpec = {
-                    fadeIn(tween(200)) togetherWith fadeOut(tween(200))
-                },
-                label = "viewModeTransition"
-            ) { mode ->
-                when (mode) {
-                    TaskView.LIST -> TaskListView(
-                        tasks = uiState.filteredTasks,
-                        isMultiSelectMode = uiState.isMultiSelectMode,
-                        selectedTaskIds = uiState.selectedTaskIds,
-                        onTaskClick = onTaskClick,
-                        onComplete = { id -> viewModel.onEvent(TasksEvent.CompleteTask(id)) },
-                        onDelete = { id -> viewModel.onEvent(TasksEvent.DeleteTask(id)) },
-                        onToggleSelect = { viewModel.onEvent(TasksEvent.ToggleTaskSelection(it)) },
-                        onAddTask = onAddTask
-                    )
-                    TaskView.KANBAN -> KanbanView(
-                        tasks = uiState.filteredTasks,
-                        onTaskClick = onTaskClick,
-                        onStatusChange = { id, status ->
-                            viewModel.onEvent(TasksEvent.MoveTaskToStatus(id, status))
-                        },
-                        onAddTask = onAddTask
-                    )
-                    TaskView.CALENDAR -> CalendarView(
-                        tasks = uiState.tasks,
-                        startDate = uiState.calendarStartDate,
-                        selectedDate = uiState.calendarSelectedDate,
-                        onNavigateMonth = { viewModel.onEvent(TasksEvent.CalendarNavigateMonth(it)) },
-                        onSelectDate = { viewModel.onEvent(TasksEvent.SelectCalendarDate(it)) },
-                        onTaskClick = onTaskClick
-                    )
-                    TaskView.TIMELINE -> TimelineView(
-                        tasks = uiState.filteredTasks.filter { it.dueDate != null },
-                        startDate = uiState.timelineStartDate,
-                        endDate = uiState.timelineEndDate,
-                        onTaskClick = onTaskClick,
-                        onZoomIn = { viewModel.onEvent(TasksEvent.TimelineZoomIn()) },
-                        onZoomOut = { viewModel.onEvent(TasksEvent.TimelineZoomOut()) },
-                        onPan = { viewModel.onEvent(TasksEvent.TimelinePan(it)) }
-                    )
+                // Main content area based on view mode
+                AnimatedContent(
+                    targetState = uiState.viewMode,
+                    transitionSpec = {
+                        fadeIn(tween(200)) togetherWith fadeOut(tween(200))
+                    },
+                    label = "viewModeTransition"
+                ) { mode ->
+                    when (mode) {
+                        TaskView.LIST -> TaskListView(
+                            tasks = uiState.filteredTasks,
+                            isMultiSelectMode = uiState.isMultiSelectMode,
+                            selectedTaskIds = uiState.selectedTaskIds,
+                            onTaskClick = onTaskClick,
+                            onComplete = { id -> viewModel.onEvent(TasksEvent.CompleteTask(id)) },
+                            onDelete = { id -> viewModel.onEvent(TasksEvent.DeleteTask(id)) },
+                            onToggleSelect = { viewModel.onEvent(TasksEvent.ToggleTaskSelection(it)) },
+                            onAddTask = onAddTask
+                        )
+                        TaskView.KANBAN -> KanbanView(
+                            tasks = uiState.filteredTasks,
+                            onTaskClick = onTaskClick,
+                            onStatusChange = { id, status ->
+                                viewModel.onEvent(TasksEvent.MoveTaskToStatus(id, status))
+                            },
+                            onAddTask = onAddTask
+                        )
+                        TaskView.CALENDAR -> CalendarView(
+                            tasks = uiState.tasks,
+                            startDate = uiState.calendarStartDate,
+                            selectedDate = uiState.calendarSelectedDate,
+                            onNavigateMonth = { viewModel.onEvent(TasksEvent.CalendarNavigateMonth(it)) },
+                            onSelectDate = { viewModel.onEvent(TasksEvent.SelectCalendarDate(it)) },
+                            onTaskClick = onTaskClick
+                        )
+                        TaskView.TIMELINE -> TimelineView(
+                            tasks = uiState.filteredTasks.filter { it.dueDate != null },
+                            startDate = uiState.timelineStartDate,
+                            endDate = uiState.timelineEndDate,
+                            onTaskClick = onTaskClick,
+                            onZoomIn = { viewModel.onEvent(TasksEvent.TimelineZoomIn()) },
+                            onZoomOut = { viewModel.onEvent(TasksEvent.TimelineZoomOut()) },
+                            onPan = { viewModel.onEvent(TasksEvent.TimelinePan(it)) }
+                        )
+                    }
                 }
             }
         }
@@ -232,9 +253,61 @@ fun TasksScreen(
                 selectedCount = uiState.selectedTaskIds.size,
                 onComplete = { viewModel.onEvent(TasksEvent.BulkComplete) },
                 onDelete = { viewModel.onEvent(TasksEvent.BulkDelete) },
-                onReschedule = { /* show date picker */ },
-                onSetPriority = { /* show priority picker */ },
+                onReschedule = { showReschedulePicker = true },
+                onSetPriority = { showPriorityPicker = true },
                 onClearSelection = { viewModel.onEvent(TasksEvent.ClearSelection) }
+            )
+        }
+
+        if (showReschedulePicker) {
+            DatePickerDialog(
+                onDismissRequest = { showReschedulePicker = false },
+                confirmButton = {
+                    TextButton(onClick = { showReschedulePicker = false }) { Text("OK") }
+                }
+            ) {
+                val datePickerState = rememberDatePickerState()
+                DatePicker(state = datePickerState)
+                LaunchedEffect(datePickerState.selectedDateMillis) {
+                    datePickerState.selectedDateMillis?.let { millis ->
+                        val date = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate()
+                        viewModel.onEvent(TasksEvent.BulkReschedule(date))
+                    }
+                }
+            }
+        }
+
+        if (showPriorityPicker) {
+            AlertDialog(
+                onDismissRequest = { showPriorityPicker = false },
+                title = { Text("Set Priority") },
+                text = {
+                    Column {
+                        Priority.entries.forEach { priority ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        viewModel.onEvent(TasksEvent.BulkSetPriority(priority))
+                                        showPriorityPicker = false
+                                    }
+                                    .padding(vertical = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                RadioButton(
+                                    selected = false,
+                                    onClick = null
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(priority.name)
+                            }
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = { showPriorityPicker = false }) { Text("Cancel") }
+                },
+                containerColor = PxColors.Surface
             )
         }
 

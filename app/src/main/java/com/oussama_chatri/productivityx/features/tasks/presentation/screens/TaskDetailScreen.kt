@@ -62,6 +62,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
@@ -176,26 +177,34 @@ fun TaskDetailScreen(
             )
         }
     ) { paddingValues ->
-        when {
-            uiState.isLoading -> Box(
-                Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(color = PxColors.Primary)
+        PullToRefreshBox(
+            isRefreshing = uiState.isRefreshing,
+            onRefresh = { viewModel.onEvent(TaskDetailEvent.Refresh) },
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            when {
+                uiState.isLoading -> Box(
+                    Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = PxColors.Primary)
+                }
+
+                uiState.error != null -> PxEmptyState(
+                    icon = Icons.Outlined.Flag,
+                    title = "Task not found",
+                    subtitle = uiState.error ?: "Something went wrong"
+                )
+
+                uiState.task != null -> TaskDetailContent(
+                    task = uiState.task!!,
+                    uiState = uiState,
+                    onEvent = viewModel::onEvent,
+                    modifier = Modifier
+                )
             }
-
-            uiState.error != null -> PxEmptyState(
-                icon = Icons.Outlined.Flag,
-                title = "Task not found",
-                subtitle = uiState.error ?: "Something went wrong"
-            )
-
-            uiState.task != null -> TaskDetailContent(
-                task = uiState.task!!,
-                uiState = uiState,
-                onEvent = viewModel::onEvent,
-                modifier = Modifier.padding(paddingValues)
-            )
         }
     }
 

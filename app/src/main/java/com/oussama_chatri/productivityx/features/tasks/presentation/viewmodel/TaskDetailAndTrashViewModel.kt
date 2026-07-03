@@ -36,7 +36,8 @@ class TaskDetailViewModel @Inject constructor(
     private val updateStatus: UpdateTaskStatusUseCase,
     private val updateTask: UpdateTaskUseCase,
     private val softDelete: SoftDeleteTaskUseCase,
-    private val restore: RestoreTaskUseCase
+    private val restore: RestoreTaskUseCase,
+    private val refreshTasks: RefreshTasksUseCase
 ) : ViewModel() {
 
     private val taskId: String = requireNotNull(savedStateHandle["taskId"])
@@ -94,7 +95,12 @@ class TaskDetailViewModel @Inject constructor(
                 }
             }
 
-            is TaskDetailEvent.Refresh -> loadTask()
+            is TaskDetailEvent.Refresh -> viewModelScope.launch {
+                _uiState.update { it.copy(isRefreshing = true) }
+                refreshTasks()
+                loadTask()
+                _uiState.update { it.copy(isRefreshing = false) }
+            }
 
             // Inline editing - Title
             is TaskDetailEvent.StartEditTitle -> {
@@ -252,7 +258,9 @@ class TaskTrashViewModel @Inject constructor(
             }
 
             is TaskTrashEvent.Refresh -> viewModelScope.launch {
+                _uiState.update { it.copy(isRefreshing = true) }
                 refreshTasks()
+                _uiState.update { it.copy(isRefreshing = false) }
             }
         }
     }

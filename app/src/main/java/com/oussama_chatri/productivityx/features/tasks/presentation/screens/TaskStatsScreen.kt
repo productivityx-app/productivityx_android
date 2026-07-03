@@ -51,6 +51,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -79,6 +80,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun TaskStatsScreen(
     onNavigateBack: () -> Unit,
+    onRefresh: () -> Unit = {},
     uiState: TaskStatsUiState = TaskStatsUiState()
 ) {
     Scaffold(
@@ -102,60 +104,67 @@ fun TaskStatsScreen(
             )
         }
     ) { paddingValues ->
-        if (uiState.isLoading) {
-            Box(
-                Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(color = PxColors.Primary)
-            }
-        } else {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                // Productivity Score + Streak
-                ProductivityHeader(
-                    productivityScore = uiState.productivityScore,
-                    productivityTrend = uiState.productivityTrend,
-                    currentStreak = uiState.currentStreak,
-                    longestStreak = uiState.longestStreak
-                )
+        PullToRefreshBox(
+            isRefreshing = uiState.isRefreshing,
+            onRefresh = onRefresh,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            if (uiState.isLoading) {
+                Box(
+                    Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = PxColors.Primary)
+                }
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    // Productivity Score + Streak
+                    ProductivityHeader(
+                        productivityScore = uiState.productivityScore,
+                        productivityTrend = uiState.productivityTrend,
+                        currentStreak = uiState.currentStreak,
+                        longestStreak = uiState.longestStreak
+                    )
 
-                // Completion Rate Charts
-                CompletionRateSection(
-                    weeklyRate = uiState.weeklyCompletionRate,
-                    monthlyRate = uiState.monthlyCompletionRate,
-                    weeklyCompleted = uiState.weeklyCompletedCount,
-                    weeklyTotal = uiState.weeklyTotalCount
-                )
+                    // Completion Rate Charts
+                    CompletionRateSection(
+                        weeklyRate = uiState.weeklyCompletionRate,
+                        monthlyRate = uiState.monthlyCompletionRate,
+                        weeklyCompleted = uiState.weeklyCompletedCount,
+                        weeklyTotal = uiState.weeklyTotalCount
+                    )
 
-                // Time per Category
-                TimePerCategoryChart(timePerPriority = uiState.timePerPriority)
+                    // Time per Category
+                    TimePerCategoryChart(timePerPriority = uiState.timePerPriority)
 
-                // Badges / Achievements
-                AchievementsSection(badges = uiState.badges)
+                    // Badges / Achievements
+                    AchievementsSection(badges = uiState.badges)
 
-                // Weekly Review
-                WeeklyReviewCard(
-                    createdCount = uiState.weekCreatedCount,
-                    completedCount = uiState.weekCompletedCount,
-                    overdueCount = uiState.weekOverdueCount,
-                    suggestedFocus = uiState.weekSuggestedFocus
-                )
+                    // Weekly Review
+                    WeeklyReviewCard(
+                        createdCount = uiState.weekCreatedCount,
+                        completedCount = uiState.weekCompletedCount,
+                        overdueCount = uiState.weekOverdueCount,
+                        suggestedFocus = uiState.weekSuggestedFocus
+                    )
 
-                // Productivity Patterns
-                ProductivityPatternsSection(
-                    hourlyHeatmap = uiState.hourlyHeatmap,
-                    categoryBreakdown = uiState.categoryBreakdown,
-                    completionVelocity = uiState.completionVelocity
-                )
+                    // Productivity Patterns
+                    ProductivityPatternsSection(
+                        hourlyHeatmap = uiState.hourlyHeatmap,
+                        categoryBreakdown = uiState.categoryBreakdown,
+                        completionVelocity = uiState.completionVelocity
+                    )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
+                }
             }
         }
     }
