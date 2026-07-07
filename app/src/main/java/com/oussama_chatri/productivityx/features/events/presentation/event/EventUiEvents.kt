@@ -51,4 +51,5 @@ sealed class AddEditEventUiEvent {
     data class RemoveAttendee(val email: String) : AddEditEventUiEvent()
     data object CheckConflicts : AddEditEventUiEvent()
     data class VoiceTitleResult(val title: String) : AddEditEventUiEvent()
+    data object Duplicate : AddEditEventUiEvent()
 }

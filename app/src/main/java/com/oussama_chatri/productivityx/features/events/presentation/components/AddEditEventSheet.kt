@@ -1,5 +1,6 @@
 package com.oussama_chatri.productivityx.features.events.presentation.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -65,6 +66,10 @@ import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberTimePickerState
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import android.content.Intent
+import android.speech.RecognizerIntent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -175,6 +180,16 @@ private fun AddEditEventSheetContent(
     var travelTimeDraft by remember { mutableStateOf(state.travelTimeMinutes?.toString() ?: "") }
     val focusManager = LocalFocusManager.current
 
+    val speechLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult(),
+    ) { result ->
+        val matches = result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+        val text = matches?.firstOrNull() ?: ""
+        if (text.isNotBlank()) {
+            onEvent(AddEditEventUiEvent.TitleChanged(text))
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -206,7 +221,15 @@ private fun AddEditEventSheetContent(
             isError = state.titleError != null,
             errorMessage = state.titleError,
             modifier = Modifier.fillMaxWidth(),
-            onVoiceInput = { /* TODO: voice */ }
+            onVoiceInput = {
+                val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                    putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                    putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the event title")
+                }
+                try {
+                    speechLauncher.launch(intent)
+                } catch (_: Exception) { }
+            }
         )
 
         Spacer(Modifier.height(12.dp))
@@ -977,6 +1000,36 @@ private fun RecurrencePickerRow(
                 onClick = { onSelect(rule) }
             )
         }
+    }
+}
+
+@Composable
+private fun RecurrenceChip(
+    label: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    val bgColor by animateColorAsState(
+        targetValue = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533),
+        label = "chipBg"
+    )
+    val textColor by animateColorAsState(
+        targetValue = if (isSelected) Color.White else Color(0xFF888899),
+        label = "chipText"
+    )
+
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(50.dp))
+            .background(bgColor)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 12.dp, vertical = 6.dp)
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = textColor
+        )
     }
 }
 

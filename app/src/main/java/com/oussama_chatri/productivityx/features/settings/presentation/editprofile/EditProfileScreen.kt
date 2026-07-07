@@ -1,5 +1,8 @@
 package com.oussama_chatri.productivityx.features.settings.presentation.editprofile
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -63,6 +66,14 @@ fun EditProfileScreen(
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            viewModel.onEvent(EditProfileUiEvent.AvatarUrlChanged(it.toString()))
+        }
+    }
 
     LaunchedEffect(state.saveSuccess) {
         if (state.saveSuccess) onNavigateBack()
@@ -153,7 +164,7 @@ fun EditProfileScreen(
                             .align(Alignment.BottomEnd)
                             .clip(CircleShape)
                             .background(MaterialTheme.colorScheme.primary)
-                            .clickable { /* open image picker */ }
+                            .clickable { photoPickerLauncher.launch("image/*") }
                     ) {
                         Icon(
                             Icons.Outlined.CameraAlt,

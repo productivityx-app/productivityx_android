@@ -59,6 +59,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -97,6 +100,7 @@ fun EventDetailScreen(
     val state by viewModel.uiState.collectAsState()
     var showDeleteDialog by remember { mutableStateOf(false) }
     val clipboardManager = LocalClipboardManager.current
+    val context = LocalContext.current
 
     LaunchedEffect(eventId) { viewModel.init(eventId, null) }
 
@@ -282,9 +286,24 @@ fun EventDetailScreen(
                 Spacer(Modifier.height(20.dp))
 
                 ActionButtonsRow(
-                    onDuplicate = { /* TODO: duplicate logic */ },
-                    onJoinMeeting = if (state.meetingUrl != null) {{ /* TODO: open URL */ }} else null,
-                    onNavigate = if (state.location.isNotBlank()) {{ /* TODO: open maps */ }} else null,
+                    onDuplicate = { viewModel.onEvent(AddEditEventUiEvent.Duplicate) },
+                    onJoinMeeting = if (state.meetingUrl != null) {
+                        {
+                            try {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(state.meetingUrl))
+                                context.startActivity(intent)
+                            } catch (_: Exception) { }
+                        }
+                    } else null,
+                    onNavigate = if (state.location.isNotBlank()) {
+                        {
+                            try {
+                                val uri = Uri.parse("geo:0,0?q=${Uri.encode(state.location)}")
+                                val intent = Intent(Intent.ACTION_VIEW, uri)
+                                context.startActivity(intent)
+                            } catch (_: Exception) { }
+                        }
+                    } else null,
                 )
             }
         }

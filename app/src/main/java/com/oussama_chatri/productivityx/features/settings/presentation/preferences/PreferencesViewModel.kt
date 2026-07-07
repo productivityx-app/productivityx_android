@@ -84,8 +84,11 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(aiModel = event.value) }
             is PreferencesUiEvent.CompactModeChanged ->
                 mutate { it.copy(compactMode = event.value) }
-            is PreferencesUiEvent.AppThemeChanged ->
-                mutate { it.copy(appTheme = event.value) }
+            is PreferencesUiEvent.AppThemeChanged -> {
+                _uiState.update { it.copy(appTheme = event.value) }
+                viewModelScope.launch { prefs.setTheme(event.value) }
+                scheduleSave()
+            }
             is PreferencesUiEvent.FontScaleChanged ->
                 mutate { it.copy(fontScale = event.value.coerceIn(0.7f, 1.5f)) }
             is PreferencesUiEvent.DensityChanged ->
@@ -191,7 +194,8 @@ class PreferencesViewModel @Inject constructor(
                 aiContextEnabled = s.aiContextEnabled,
                 aiModel = s.aiModel,
                 compactMode = s.compactMode,
-                appTheme = s.appTheme
+                appTheme = s.appTheme,
+                language = s.language
             )
         )
 

@@ -115,6 +115,8 @@ class AiViewModel @Inject constructor(
         if (currentState.isStreaming) return
         if (createConvJob?.isActive == true) return
 
+        _state.update { it.copy(isStreaming = true) }
+
         val conversationId = currentState.conversationId
         if (conversationId == null) {
             createConvJob = viewModelScope.launch {
@@ -123,7 +125,9 @@ class AiViewModel @Inject constructor(
                         loadConversation(conv.id)
                         doSendMessage(conv.id, content)
                     }
-                    .onFailure { e -> _state.update { it.copy(error = e.message) } }
+                    .onFailure { e ->
+                        _state.update { it.copy(isStreaming = false, error = e.message) }
+                    }
             }
             return
         }

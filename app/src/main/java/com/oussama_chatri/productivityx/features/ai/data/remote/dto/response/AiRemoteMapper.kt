@@ -6,14 +6,17 @@ import com.oussama_chatri.productivityx.features.ai.data.local.entity.MessageEnt
 import java.time.Instant
 import java.util.UUID
 
+private fun parseInstant(value: String?): Instant =
+    runCatching { value?.let { Instant.parse(it) } }.getOrNull() ?: Instant.now()
+
 fun ConversationResponse.toEntity() = ConversationEntity(
     id           = UUID.fromString(id),
     title        = title,
     isArchived   = archived,
     lastMessage  = messages.lastOrNull()?.content?.take(100),
     messageCount = messages.size,
-    createdAt    = Instant.parse(createdAt),
-    updatedAt    = Instant.parse(updatedAt),
+    createdAt    = parseInstant(createdAt),
+    updatedAt    = parseInstant(updatedAt),
 )
 
 fun ConversationResponse.toEntityWithMessages() = buildList {
@@ -23,8 +26,8 @@ fun ConversationResponse.toEntityWithMessages() = buildList {
         isArchived   = archived,
         lastMessage  = messages.lastOrNull()?.content?.take(100),
         messageCount = messages.size,
-        createdAt    = Instant.parse(createdAt),
-        updatedAt    = Instant.parse(updatedAt),
+        createdAt    = parseInstant(createdAt),
+        updatedAt    = parseInstant(updatedAt),
     )
     add(conversationEntity)
     addAll(messages.map { it.toEntity() })
@@ -37,5 +40,5 @@ fun MessageResponse.toEntity() = MessageEntity(
     content         = content,
     actionBlockJson = actionBlock,
     tokenCount      = tokenCount,
-    createdAt       = Instant.parse(createdAt),
+    createdAt       = parseInstant(createdAt),
 )

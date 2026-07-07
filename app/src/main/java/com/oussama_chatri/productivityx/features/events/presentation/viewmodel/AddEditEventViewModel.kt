@@ -124,6 +124,37 @@ class AddEditEventViewModel @Inject constructor(
             is AddEditEventUiEvent.RemoveAttendee -> _uiState.update { it.copy(attendees = it.attendees - event.email) }
             AddEditEventUiEvent.CheckConflicts -> checkConflicts()
             is AddEditEventUiEvent.VoiceTitleResult -> _uiState.update { it.copy(title = event.title) }
+            AddEditEventUiEvent.Duplicate -> duplicate()
+        }
+    }
+
+    private fun duplicate() {
+        val state = _uiState.value
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null) }
+            val startAt = Instant.ofEpochMilli(state.startMs)
+            val endAt = Instant.ofEpochMilli(state.endMs)
+
+            val result = createEvent(
+                title = "${state.title} (Copy)".trim(),
+                description = state.description.ifBlank { null },
+                location = state.location.ifBlank { null },
+                startAt = startAt,
+                endAt = endAt,
+                isAllDay = state.isAllDay,
+                color = state.color,
+                recurrenceRule = state.recurrenceRule,
+                reminderMinutes = state.reminderMinutes
+            )
+
+            when (result) {
+                is Resource.Success -> {
+                    _uiState.update { it.copy(isLoading = false, isSaved = true) }
+                    _events.send(UiEvent.NavigateBack)
+                }
+                is Resource.Error -> _uiState.update { it.copy(isLoading = false, error = result.message) }
+                is Resource.Loading -> {}
+            }
         }
     }
 

@@ -8,8 +8,8 @@ data class ConversationResponse(
     val title: String?,
     val archived: Boolean = false,
     val messages: List<MessageResponse> = emptyList(),
-    @SerializedName("createdAt") val createdAt: String,
-    @SerializedName("updatedAt") val updatedAt: String,
+    @SerializedName("createdAt") val createdAt: String?,
+    @SerializedName("updatedAt") val updatedAt: String?,
 )
 
 data class MessageResponse(
@@ -19,7 +19,7 @@ data class MessageResponse(
     val content: String,
     @SerializedName("actionBlock") val actionBlock: String? = null,
     @SerializedName("tokenCount") val tokenCount: Int? = null,
-    @SerializedName("createdAt") val createdAt: String,
+    @SerializedName("createdAt") val createdAt: String?,
 )
 
 data class ConversationsListResponse(

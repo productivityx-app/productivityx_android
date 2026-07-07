@@ -98,7 +98,7 @@ fun PxBottomNavBar(
     modifier: Modifier = Modifier,
     items: List<NavItemConfig> = defaultNavItems,
     labelBehavior: NavLabelBehavior = NavLabelBehavior.ALWAYS_SHOW,
-    floatingVariant: Boolean = false,
+    floatingVariant: Boolean = true,
     visible: Boolean = true,
     selectedIndex: Int = items.indexOfFirst { it.route::class.qualifiedName == currentRoute }.coerceAtLeast(0),
 ) {
@@ -106,26 +106,26 @@ fun PxBottomNavBar(
 
     AnimatedVisibility(
         visible = visible,
-        enter = slideInVertically(spring()) { it } + fadeIn(spring()),
-        exit = fadeOut(spring()),
+        enter = slideInVertically(spring(stiffness = Spring.StiffnessMediumLow)) { it } + fadeIn(spring(stiffness = Spring.StiffnessMediumLow)),
+        exit = fadeOut(spring(stiffness = Spring.StiffnessMediumLow)),
     ) {
         Surface(
             modifier = modifier
                 .fillMaxWidth()
                 .then(
                     if (floatingVariant) Modifier
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .shadow(8.dp, RoundedCornerShape(28.dp))
+                        .padding(horizontal = 16.dp, vertical = 12.dp)
+                        .shadow(16.dp, RoundedCornerShape(32.dp), spotColor = PxColors.Primary.copy(alpha = 0.25f))
                     else Modifier
                 ),
-            shape = if (floatingVariant) RoundedCornerShape(28.dp) else RoundedCornerShape(0.dp),
-            color = if (floatingVariant) PxColors.Surface else Color.Transparent,
-            tonalElevation = if (floatingVariant) 0.dp else 0.dp,
+            shape = if (floatingVariant) RoundedCornerShape(32.dp) else RoundedCornerShape(0.dp),
+            color = Color.Transparent,
+            tonalElevation = 0.dp,
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(if (floatingVariant) 64.dp else 72.dp)
+                    .height(if (floatingVariant) 68.dp else 72.dp)
                     .then(
                         if (!floatingVariant) Modifier
                             .drawBehind {
@@ -136,7 +136,7 @@ fun PxBottomNavBar(
                                 )
                             }
                             .background(PxColors.Surface)
-                        else Modifier.background(PxColors.Surface, RoundedCornerShape(28.dp))
+                        else Modifier.background(PxColors.Surface.copy(alpha = 0.85f), RoundedCornerShape(32.dp))
                     ),
             ) {
                 Row(
@@ -177,17 +177,17 @@ private fun NavBarTab(
 
     val iconTint by animateColorAsState(
         targetValue = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
-        animationSpec = spring(),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "tabIconTint",
     )
     val labelColor by animateColorAsState(
         targetValue = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
-        animationSpec = spring(),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "tabLabelColor",
     )
     val pillBg by animateColorAsState(
         targetValue = if (isSelected) PxColors.Primary.copy(alpha = 0.14f) else Color.Transparent,
-        animationSpec = spring(),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "tabPillBg",
     )
 

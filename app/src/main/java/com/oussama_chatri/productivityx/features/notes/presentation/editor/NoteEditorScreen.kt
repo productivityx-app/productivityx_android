@@ -61,6 +61,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import android.content.Intent
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -99,6 +101,7 @@ fun NoteEditorScreen(
     val allTags by viewModel.allTags.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val context = LocalContext.current
 
     var showTagSheet by rememberSaveable { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
@@ -364,8 +367,15 @@ fun NoteEditorScreen(
     if (uiState.showExportSheet) {
         ExportSheet(
             onDismiss = { viewModel.onEvent(NoteEditorUiEvent.HideExportSheet) },
-            onExportPdf = { /* Snackbar */ },
-            onShare = { /* Share */ },
+            onExportPdf = { viewModel.onEvent(NoteEditorUiEvent.ShowExportSheet) }, // Placeholder
+            onShare = {
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_SUBJECT, uiState.title)
+                    putExtra(Intent.EXTRA_TEXT, "${uiState.title}\n\n${uiState.content}")
+                }
+                context.startActivity(Intent.createChooser(intent, "Share Note"))
+            },
             onPrint = { /* Print */ }
         )
     }

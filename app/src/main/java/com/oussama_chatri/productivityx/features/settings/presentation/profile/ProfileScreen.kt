@@ -852,6 +852,7 @@ private val allThemeEntries = listOf(
     "FOREST"  to "Forest",
     "ROSE"    to "Rose",
     "MIDNIGHT" to "Midnight",
+    "DYNAMIC" to "Dynamic",
 )
 
 private val proThemeKeys = setOf("OCEAN", "AMBER", "FOREST", "ROSE", "MIDNIGHT")
@@ -868,6 +869,7 @@ private fun themePrimaryColor(theme: String): Color = when (theme) {
     "FOREST"  -> Color(0xFF22C55E)
     "ROSE"    -> Color(0xFFF43F5E)
     "MIDNIGHT" -> Color(0xFF6366F1)
+    "DYNAMIC" -> Color(0xFF6366F1)
     else      -> Color(0xFF6366F1)
 }
 

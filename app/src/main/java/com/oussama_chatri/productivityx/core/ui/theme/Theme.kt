@@ -1,6 +1,5 @@
 package com.oussama_chatri.productivityx.core.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -44,20 +43,14 @@ private fun PxColorScheme.toM3Light() = lightColorScheme(
 @Composable
 fun ProductivityXTheme(
     appTheme: AppTheme = AppTheme.DARK,
-    dynamicColorAvailable: Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
     content: @Composable () -> Unit
 ) {
     val isSystemDark = isSystemInDarkTheme()
-    val useDynamic = appTheme == AppTheme.DYNAMIC && dynamicColorAvailable
 
-    val scheme = if (useDynamic) {
-        dynamicPxColorScheme(isSystemDark)
-    } else {
-        val resolved = if (appTheme == AppTheme.DYNAMIC) AppTheme.DARK else appTheme
-        appColorScheme(resolved, isSystemDark)
-    }
+    val scheme = appColorScheme(appTheme, isSystemDark)
 
     SideEffect { PxColors.applyScheme(scheme) }
+    
     val isDark = when (appTheme) {
         AppTheme.LIGHT -> false
         AppTheme.SYSTEM -> isSystemDark

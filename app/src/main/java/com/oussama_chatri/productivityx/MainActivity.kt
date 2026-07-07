@@ -173,7 +173,13 @@ class MainActivity : ComponentActivity() {
         }
         if (intent.hasExtra("voice_command")) {
             val command = intent.getStringExtra("voice_command") ?: ""
-            nav?.navigate(MainRoute.Home)
+            val action = com.oussama_chatri.productivityx.core.ui.voice.VoiceCommandHandler.parseCommand(command)
+            if (action != null) {
+                val route = com.oussama_chatri.productivityx.core.ui.voice.VoiceCommandHandler.getNavigationRoute(action)
+                nav?.navigate(route)
+            } else {
+                nav?.navigate(MainRoute.Home)
+            }
             return
         }
         intent.data?.let { handleDeepLink(it, nav) }

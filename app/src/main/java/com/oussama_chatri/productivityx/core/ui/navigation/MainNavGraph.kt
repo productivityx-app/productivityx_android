@@ -1,6 +1,8 @@
 package com.oussama_chatri.productivityx.core.ui.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -105,50 +107,50 @@ fun NavGraphBuilder.mainNavGraph(rootNavController: NavHostController) {
     navigation<MainGraph>(startDestination = MainRoute.Home) {
 
         composable<MainRoute.Home>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             HomeTab(rootNavController)
         }
 
         composable<MainRoute.Notes>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             NotesTab(rootNavController)
         }
 
         composable<MainRoute.Tasks>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             TasksTab(rootNavController)
         }
 
         composable<MainRoute.Pomodoro>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             PomodoroTab(rootNavController)
         }
 
         composable<MainRoute.Calendar>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             CalendarTab(rootNavController)
         }
 
         composable<MainRoute.Ai>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             AiTab(rootNavController)
         }
 
         composable<MainRoute.Profile>(
-            enterTransition = { fadeIn(tween(250)) + scaleIn(tween(250), initialScale = 0.97f) },
-            exitTransition = { fadeOut(tween(200)) },
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) + scaleIn(spring(stiffness = Spring.StiffnessMediumLow), initialScale = 0.92f) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) },
         ) {
             ProfileTab(rootNavController)
         }

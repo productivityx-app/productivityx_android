@@ -197,6 +197,18 @@ fun PxTextField(
                         }
                     }
                 }
+                onVoiceInput != null -> {
+                    {
+                        IconButton(onClick = { onVoiceInput.invoke() }) {
+                            Icon(
+                                imageVector = Icons.Filled.Mic,
+                                contentDescription = "Voice input",
+                                modifier = Modifier.size(20.dp),
+                                tint = PxColors.OnSurfaceDim,
+                            )
+                        }
+                    }
+                }
                 else -> null
             },
             isError = currentError,

@@ -17,16 +17,8 @@ enum class MessageRole { USER, ASSISTANT }
 enum class AppTheme {
     DARK,
     LIGHT,
-    SYSTEM,
-    OCEAN,
-    AMBER,
-    FOREST,
-    ROSE,
-    MIDNIGHT,
-    DYNAMIC,
+    SYSTEM
 }
-
-val proThemes = listOf(AppTheme.OCEAN, AppTheme.AMBER, AppTheme.FOREST, AppTheme.ROSE, AppTheme.MIDNIGHT)
 enum class Gender { MALE, FEMALE }
 
 enum class TaskView { LIST, KANBAN, CALENDAR, TIMELINE }
