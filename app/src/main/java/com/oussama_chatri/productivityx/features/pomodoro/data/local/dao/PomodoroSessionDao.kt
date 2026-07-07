@@ -67,6 +67,17 @@ interface PomodoroSessionDao {
         WHERE user_id = :userId
           AND type = 'FOCUS'
           AND completed = 1
+    """
+    )
+    suspend fun getTotalFocusSeconds(userId: String): Long
+
+    @Query(
+        """
+        SELECT COALESCE(SUM(actual_duration_seconds), 0)
+        FROM pomodoro_sessions_local
+        WHERE user_id = :userId
+          AND type = 'FOCUS'
+          AND completed = 1
           AND started_at >= :startMs
           AND started_at < :endMs
     """

@@ -302,15 +302,11 @@ private fun SettingsContent(
     SettingsSectionHeader("Appearance")
     SettingsSectionCard {
         val themeOptions = remember {
-            val options = mutableListOf(
+            listOf(
                 "DARK" to "Dark",
                 "LIGHT" to "Light",
                 "SYSTEM" to "System"
             )
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                options.add("DYNAMIC" to "Dynamic")
-            }
-            options
         }
         SettingRow(
             icon = Icons.Outlined.DarkMode,

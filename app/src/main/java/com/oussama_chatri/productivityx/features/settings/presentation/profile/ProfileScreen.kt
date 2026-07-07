@@ -59,6 +59,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -123,6 +124,7 @@ fun ProfileScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     var showSignOutDialog by remember { mutableStateOf(false) }
     var showDeleteAccountDialog by remember { mutableStateOf(false) }
+    var deleteAccountPassword by remember { mutableStateOf("") }
     var showThemePicker by remember { mutableStateOf(false) }
     var showLanguagePicker by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -204,7 +206,10 @@ fun ProfileScreen(
 
     if (showDeleteAccountDialog) {
         AlertDialog(
-            onDismissRequest = { showDeleteAccountDialog = false },
+            onDismissRequest = { 
+                showDeleteAccountDialog = false 
+                deleteAccountPassword = ""
+            },
             title = { Text("Delete Account", fontWeight = FontWeight.Bold) },
             text = {
                 Column {
@@ -228,18 +233,36 @@ fun ProfileScreen(
                         style = MaterialTheme.typography.bodySmall,
                         color = PxColors.Error
                     )
+                    Spacer(Modifier.height(16.dp))
+                    OutlinedTextField(
+                        value = deleteAccountPassword,
+                        onValueChange = { deleteAccountPassword = it },
+                        label = { Text("Confirm Password") },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true,
+                        visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
+                    )
                 }
             },
             confirmButton = {
-                TextButton(onClick = {
-                    showDeleteAccountDialog = false
-                    viewModel.onEvent(ProfileUiEvent.DeleteAccountConfirmed)
-                }) {
-                    Text("Delete permanently", color = PxColors.Error)
+                TextButton(
+                    onClick = {
+                        if (deleteAccountPassword.isNotBlank()) {
+                            showDeleteAccountDialog = false
+                            viewModel.onEvent(ProfileUiEvent.DeleteAccountConfirmed(deleteAccountPassword))
+                            deleteAccountPassword = ""
+                        }
+                    },
+                    enabled = deleteAccountPassword.isNotBlank()
+                ) {
+                    Text("Delete permanently", color = if (deleteAccountPassword.isNotBlank()) PxColors.Error else PxColors.OnSurfaceDim)
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showDeleteAccountDialog = false }) { Text(stringResource(R.string.cancel)) }
+                TextButton(onClick = { 
+                    showDeleteAccountDialog = false 
+                    deleteAccountPassword = ""
+                }) { Text(stringResource(R.string.cancel)) }
             },
             containerColor = PxColors.Surface,
             shape = RoundedCornerShape(16.dp)
@@ -847,15 +870,9 @@ private val allThemeEntries = listOf(
     "DARK"    to "Dark",
     "LIGHT"   to "Light",
     "SYSTEM"  to "System",
-    "OCEAN"   to "Ocean",
-    "AMBER"   to "Amber",
-    "FOREST"  to "Forest",
-    "ROSE"    to "Rose",
-    "MIDNIGHT" to "Midnight",
-    "DYNAMIC" to "Dynamic",
 )
 
-private val proThemeKeys = setOf("OCEAN", "AMBER", "FOREST", "ROSE", "MIDNIGHT")
+private val proThemeKeys = setOf<String>()
 
 private fun themeDisplayName(theme: String): String =
     allThemeEntries.firstOrNull { it.first == theme }?.second ?: theme
@@ -864,12 +881,6 @@ private fun themePrimaryColor(theme: String): Color = when (theme) {
     "DARK"    -> Color(0xFF6366F1)
     "LIGHT"   -> Color(0xFF4F46E5)
     "SYSTEM"  -> Color(0xFF6366F1)
-    "OCEAN"   -> Color(0xFF06B6D4)
-    "AMBER"   -> Color(0xFFF59E0B)
-    "FOREST"  -> Color(0xFF22C55E)
-    "ROSE"    -> Color(0xFFF43F5E)
-    "MIDNIGHT" -> Color(0xFF6366F1)
-    "DYNAMIC" -> Color(0xFF6366F1)
     else      -> Color(0xFF6366F1)
 }
 

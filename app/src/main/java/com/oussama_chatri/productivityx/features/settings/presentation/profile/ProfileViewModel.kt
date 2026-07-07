@@ -5,13 +5,19 @@ import androidx.lifecycle.viewModelScope
 import com.oussama_chatri.productivityx.core.data.DataExportImportManager
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
+import com.oussama_chatri.productivityx.core.util.getOrNull
+import com.oussama_chatri.productivityx.features.auth.domain.usecase.DeleteAccountUseCase
+import com.oussama_chatri.productivityx.features.auth.domain.usecase.GetCurrentUserUseCase
 import com.oussama_chatri.productivityx.features.auth.domain.usecase.LogoutUseCase
+import com.oussama_chatri.productivityx.features.notes.data.local.NoteDao
+import com.oussama_chatri.productivityx.features.pomodoro.data.local.dao.PomodoroSessionDao
 import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetPreferencesUseCase
 import com.oussama_chatri.productivityx.features.settings.domain.usecase.GetProfileUseCase
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.event.ProfileUiEvent
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.ActivityItem
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.BadgeItem
 import com.oussama_chatri.productivityx.features.settings.presentation.profile.state.ProfileUiState
+import com.oussama_chatri.productivityx.features.tasks.data.local.dao.TaskDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
@@ -34,6 +40,11 @@ class ProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val getPreferencesUseCase: GetPreferencesUseCase,
     private val logoutUseCase: LogoutUseCase,
+    private val deleteAccountUseCase: DeleteAccountUseCase,
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    private val taskDao: TaskDao,
+    private val noteDao: NoteDao,
+    private val pomodoroSessionDao: PomodoroSessionDao,
     private val exportImportManager: DataExportImportManager,
     private val prefs: PreferencesDataStore,
 ) : ViewModel() {
@@ -71,7 +82,7 @@ class ProfileViewModel @Inject constructor(
             ProfileUiEvent.DismissError -> _uiState.update { it.copy(errorMessage = null) }
             ProfileUiEvent.DismissSuccess -> _uiState.update { it.copy(successMessage = null) }
             ProfileUiEvent.DeleteAccountClicked -> _uiState.update { it.copy(isDeleting = true) }
-            ProfileUiEvent.DeleteAccountConfirmed -> deleteAccount()
+            is ProfileUiEvent.DeleteAccountConfirmed -> deleteAccount(event.password)
         }
     }
 
@@ -135,30 +146,42 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun loadLocalStats() {
-        _uiState.update {
-            it.copy(
-                tasksCompleted = (0..200).random(),
-                focusHours = (0..100).random(),
-                notesCreated = (0..50).random(),
-                aiConversations = (0..30).random(),
-                storageUsedMb = (10..90).random(),
-                connectedDevices = (0..3).random(),
-                productivityTrend = 0.3f + (0..7).random() * 0.1f,
-                username = "user_${(1000..9999).random()}",
-                recentActivity = listOf(
-                    ActivityItem("a1", "task", "Completed project setup", System.currentTimeMillis() - 3600000),
-                    ActivityItem("a2", "note", "Created meeting notes", System.currentTimeMillis() - 7200000),
-                    ActivityItem("a3", "event", "Added team standup", System.currentTimeMillis() - 14400000),
-                    ActivityItem("a4", "pomo", "Completed 2 focus sessions", System.currentTimeMillis() - 28800000),
-                ),
-                achievementBadges = listOf(
-                    BadgeItem("b1", "Early Bird", "wb_sunny", true),
-                    BadgeItem("b2", "Focused", "timer", true),
-                    BadgeItem("b3", "Organizer", "folder", true),
-                    BadgeItem("b4", "Streak 7", "whatshot", false),
-                    BadgeItem("b5", "Century", "star", false),
-                ),
-            )
+        viewModelScope.launch {
+            val userResult = getCurrentUserUseCase()
+            val userId = userResult.getOrNull()?.id ?: return@launch
+            val username = userResult.getOrNull()?.username ?: "user_${(1000..9999).random()}"
+
+            val completedTasks = taskDao.countCompleted(userId)
+            val activeNotes = noteDao.countActiveNotes(userId)
+            val focusSeconds = pomodoroSessionDao.getTotalFocusSeconds(userId)
+            val focusHours = (focusSeconds / 3600).toInt()
+
+            _uiState.update {
+                it.copy(
+                    tasksCompleted = completedTasks,
+                    focusHours = focusHours,
+                    notesCreated = activeNotes.toInt(),
+                    username = username,
+                    // Keep mock for others if there's no real backend for it yet
+                    aiConversations = (0..30).random(),
+                    storageUsedMb = (10..90).random(),
+                    connectedDevices = (0..3).random(),
+                    productivityTrend = 0.3f + (0..7).random() * 0.1f,
+                    recentActivity = listOf(
+                        ActivityItem("a1", "task", "Completed project setup", System.currentTimeMillis() - 3600000),
+                        ActivityItem("a2", "note", "Created meeting notes", System.currentTimeMillis() - 7200000),
+                        ActivityItem("a3", "event", "Added team standup", System.currentTimeMillis() - 14400000),
+                        ActivityItem("a4", "pomo", "Completed 2 focus sessions", System.currentTimeMillis() - 28800000),
+                    ),
+                    achievementBadges = listOf(
+                        BadgeItem("b1", "Early Bird", "wb_sunny", true),
+                        BadgeItem("b2", "Focused", "timer", true),
+                        BadgeItem("b3", "Organizer", "folder", true),
+                        BadgeItem("b4", "Streak 7", "whatshot", focusHours >= 7),
+                        BadgeItem("b5", "Century", "star", completedTasks >= 100),
+                    ),
+                )
+            }
         }
     }
 
@@ -170,9 +193,20 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private fun deleteAccount() {
+    private fun deleteAccount(password: String) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isDeleting = false, successMessage = "Account deletion requested") }
+            _uiState.update { it.copy(isDeleting = true, errorMessage = null) }
+            val result = deleteAccountUseCase(password)
+            when (result) {
+                is Resource.Success -> {
+                    _uiState.update { it.copy(isDeleting = false, successMessage = "Account deleted successfully") }
+                    _navEffect.send(ProfileNavEffect.NavigateToLogin)
+                }
+                is Resource.Error -> {
+                    _uiState.update { it.copy(isDeleting = false, errorMessage = result.message) }
+                }
+                is Resource.Loading -> Unit
+            }
         }
     }
 }

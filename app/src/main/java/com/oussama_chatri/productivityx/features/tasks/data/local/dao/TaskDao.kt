@@ -172,6 +172,15 @@ interface TaskDao {
 
     @Query(
         """
+        SELECT COUNT(*) FROM tasks
+        WHERE user_id = :userId
+          AND status = 'DONE'
+    """
+    )
+    suspend fun countCompleted(userId: String): Int
+
+    @Query(
+        """
         SELECT * FROM tasks
         WHERE user_id = :userId AND is_deleted = 0
           AND (LOWER(title) LIKE '%' || LOWER(:query) || '%'
