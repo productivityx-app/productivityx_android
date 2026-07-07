@@ -1,0 +1,1022 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">あなたのワークスペース。統合された。</string>
+    <string name="app_description">ノート、タスク、カレンダー、集中タイマー、そしてあなたの1日を本当に理解するAIアシスタント。</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="save">保存</string>
+    <string name="delete">削除</string>
+    <string name="edit">編集</string>
+    <string name="done">完了</string>
+    <string name="back">戻る</string>
+    <string name="close">閉じる</string>
+    <string name="confirm">確認</string>
+    <string name="discard">破棄</string>
+    <string name="retry">再試行</string>
+    <string name="skip">スキップ</string>
+    <string name="next">次へ</string>
+    <string name="previous">前へ</string>
+    <string name="continue_action">続ける</string>
+    <string name="finish">終了</string>
+    <string name="apply">適用</string>
+    <string name="reset">リセット</string>
+    <string name="clear">クリア</string>
+    <string name="search">検索</string>
+    <string name="filter">フィルター</string>
+    <string name="sort">並び替え</string>
+    <string name="share">共有</string>
+    <string name="copy">コピー</string>
+    <string name="paste">ペースト</string>
+    <string name="undo">元に戻す</string>
+    <string name="redo">やり直し</string>
+    <string name="select_all">すべて選択</string>
+    <string name="deselect_all">すべて選択解除</string>
+    <string name="more_options">その他のオプション</string>
+    <string name="settings">設定</string>
+    <string name="help">ヘルプ</string>
+    <string name="feedback">フィードバック</string>
+    <string name="loading">読み込み中…</string>
+    <string name="refreshing">更新中…</string>
+    <string name="saving">保存中…</string>
+    <string name="deleting">削除中…</string>
+    <string name="please_wait">お待ちください…</string>
+    <string name="see_all">すべて表示</string>
+    <string name="show_less">少なく表示</string>
+    <string name="show_more">もっと表示</string>
+    <string name="optional">任意</string>
+    <string name="required">必須</string>
+    <string name="none">なし</string>
+    <string name="unknown">不明</string>
+    <string name="today">今日</string>
+    <string name="yesterday">昨日</string>
+    <string name="tomorrow">明日</string>
+    <string name="this_week">今週</string>
+    <string name="last_week">先週</string>
+    <string name="next_week">来週</string>
+    <string name="this_month">今月</string>
+    <string name="all">すべて</string>
+    <string name="new_action">新規</string>
+    <string name="add">追加</string>
+    <string name="remove">削除</string>
+    <string name="create">作成</string>
+    <string name="update">更新</string>
+    <string name="restore">復元</string>
+    <string name="archive">アーカイブ</string>
+    <string name="unarchive">アーカイブ解除</string>
+    <string name="pin">ピン留め</string>
+    <string name="unpin">ピン解除</string>
+    <string name="move">移動</string>
+    <string name="rename">名前変更</string>
+    <string name="duplicate">複製</string>
+    <string name="open">開く</string>
+    <string name="view">表示</string>
+    <string name="preview">プレビュー</string>
+    <string name="expand">展開</string>
+    <string name="collapse">折りたたむ</string>
+    <string name="enable">有効</string>
+    <string name="disable">無効</string>
+    <string name="turn_on">オン</string>
+    <string name="turn_off">オフ</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="not_now">後で</string>
+    <string name="got_it">了解</string>
+    <string name="learn_more">詳しくは</string>
+    <string name="send">送信</string>
+    <string name="submit">提出</string>
+    <string name="upload">アップロード</string>
+    <string name="download">ダウンロード</string>
+    <string name="link">リンク</string>
+    <string name="unlink">リンク解除</string>
+    <string name="connect">接続</string>
+    <string name="disconnect">切断</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">問題が発生しました。もう一度お試しください。</string>
+    <string name="error_network">インターネットに接続されていません。ネットワークを確認してもう一度お試しください。</string>
+    <string name="error_timeout">リクエストがタイムアウトしました。もう一度お試しください。</string>
+    <string name="error_server">サーバーエラーが発生しました。後でもう一度お試しください。</string>
+    <string name="error_not_found">要求されたアイテムが見つかりませんでした。</string>
+    <string name="error_unauthorized">セッションの有効期限が切れました。もう一度サインインしてください。</string>
+    <string name="error_forbidden">この操作を実行する権限がありません。</string>
+    <string name="error_validation">フォームを確認してエラーを修正してください。</string>
+    <string name="error_unknown">予期しないエラーが発生しました。</string>
+    <string name="error_loading">読み込みに失敗しました。タップして再試行してください。</string>
+    <string name="error_saving">保存に失敗しました。もう一度お試しください。</string>
+    <string name="error_deleting">削除に失敗しました。もう一度お試しください。</string>
+    <string name="error_no_data">データがありません。</string>
+    <string name="error_offline_action">この操作にはインターネット接続が必要です。</string>
+    <string name="error_conflict">競合が発生しました。更新してもう一度お試しください。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">すべてをひとつの場所に</string>
+    <string name="onboarding_page1_body">ノート、タスク、カレンダーがひとつのワークスペースに統合されます。</string>
+    <string name="onboarding_page2_title">フローをキープ</string>
+    <string name="onboarding_page2_body">ポモドーロタイマーは作業内容を認識し、時間を自動記録します。</string>
+    <string name="onboarding_page3_title">あなたを理解するAI</string>
+    <string name="onboarding_page3_body">アシスタントは応答の前に、アクティブなタスクや予定、最近のノートを確認します。</string>
+    <string name="onboarding_get_started">始める</string>
+    <string name="onboarding_skip">スキップ</string>
+    <string name="onboarding_next">次へ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">サインイン</string>
+    <string name="auth_sign_up">サインアップ</string>
+    <string name="auth_sign_out">サインアウト</string>
+    <string name="auth_log_in">ログイン</string>
+    <string name="auth_log_out">ログアウト</string>
+    <string name="auth_create_account">アカウント作成</string>
+    <string name="auth_already_have_account">すでにアカウントをお持ちですか？</string>
+    <string name="auth_skip_login">アカウントなしで続ける</string>
+    <string name="auth_dont_have_account">アカウントをお持ちでない場合</string>
+    <string name="auth_welcome_back">おかえりなさい</string>
+    <string name="auth_create_your_account">アカウントを作成</string>
+    <string name="auth_join_productivityx">ProductivityXに参加</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">パスワードをお忘れですか？</string>
+    <string name="auth_forgot_password_title">パスワードをお忘れですか？</string>
+    <string name="auth_forgot_password_body">メールアドレスを入力すると、パスワードリセットリンクをお送りします。</string>
+    <string name="auth_forgot_password_success_title">リセットリンクを送信しました</string>
+    <string name="auth_forgot_password_success_body">そのメールアドレスが存在する場合、リセットリンクが送信されました。受信トレイをご確認ください。</string>
+
+    <string name="auth_reset_password_title">パスワードをリセット</string>
+    <string name="auth_reset_password_body">アカウントの新しいパスワードを入力してください。</string>
+    <string name="auth_reset_password_action">パスワードをリセット</string>
+    <string name="auth_reset_password_success_title">パスワードをリセットしました！</string>
+    <string name="auth_reset_password_success_body">パスワードが変更されました。新しいパスワードでサインインしてください。</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">メールをご確認ください</string>
+    <string name="auth_verify_email_body">%1$s に6桁のコードを送信しました</string>
+    <string name="auth_verify">認証</string>
+    <string name="auth_resend_code">コードを再送信</string>
+    <string name="auth_resend_cooldown">%1$s 後に再送信</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">メールアドレス</string>
+    <string name="field_email_hint">メールアドレスを入力</string>
+    <string name="field_password">パスワード</string>
+    <string name="field_password_hint">パスワードを入力</string>
+    <string name="field_password_new">新しいパスワード</string>
+    <string name="field_password_new_hint">新しいパスワードを入力</string>
+    <string name="field_password_confirm">パスワード確認</string>
+    <string name="field_password_confirm_hint">パスワードを再入力</string>
+    <string name="field_password_current">現在のパスワード</string>
+    <string name="field_password_current_hint">現在のパスワードを入力</string>
+    <string name="field_username">ユーザー名</string>
+    <string name="field_username_hint">ユーザー名を選択</string>
+    <string name="field_first_name">名</string>
+    <string name="field_first_name_hint">名前を入力</string>
+    <string name="field_last_name">姓</string>
+    <string name="field_last_name_hint">姓を入力</string>
+    <string name="field_phone">電話番号</string>
+    <string name="field_phone_hint">電話番号を入力</string>
+    <string name="field_birth_date">生年月日</string>
+    <string name="field_birth_date_hint">生年月日を選択</string>
+    <string name="field_identifier">メール、ユーザー名、または電話番号</string>
+    <string name="field_identifier_hint">メール、ユーザー名、または電話番号を入力</string>
+    <string name="field_gender">性別</string>
+    <string name="field_bio">自己紹介</string>
+    <string name="field_bio_hint">自分について教えてください</string>
+    <string name="field_timezone">タイムゾーン</string>
+    <string name="field_language">言語</string>
+    <string name="field_theme">テーマ</string>
+    <string name="field_avatar">プロフィール写真</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">パスワードを表示</string>
+    <string name="password_hide">パスワードを隠す</string>
+    <string name="password_strength_weak">弱い</string>
+    <string name="password_strength_fair">普通</string>
+    <string name="password_strength_good">良い</string>
+    <string name="password_strength_strong">強い</string>
+    <string name="password_requirement_length">8文字以上</string>
+    <string name="password_requirement_uppercase">大文字1文字</string>
+    <string name="password_requirement_lowercase">小文字1文字</string>
+    <string name="password_requirement_number">数字1文字</string>
+    <string name="password_requirement_special">特殊文字1文字</string>
+    <string name="password_forgot">パスワードをお忘れですか？</string>
+    <string name="password_reset">パスワードリセット</string>
+    <string name="password_change">パスワード変更</string>
+    <string name="password_mismatch">パスワードが一致しません。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">アカウント</string>
+    <string name="register_step_profile">プロフィール</string>
+    <string name="register_step_preferences">環境設定</string>
+    <string name="register_step_verify">認証</string>
+    <string name="register_step_indicator">ステップ %1$d / %2$d</string>
+    <string name="register_change_photo">写真を変更</string>
+    <string name="register_preferences_caption">設定からいつでも変更できます。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_system">システム</string>
+
+    <string name="profile_theme">テーマ</string>
+    <string name="profile_theme_hint">設定からいつでも変更できます。</string>
+
+    <string name="gender_male">男性</string>
+    <string name="gender_female">女性</string>
+    <string name="gender_prefer_not_to_say">回答しない</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">ホーム</string>
+    <string name="nav_notes">ノート</string>
+    <string name="nav_tasks">タスク</string>
+    <string name="nav_calendar">カレンダー</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">ポモドーロ</string>
+    <string name="nav_search">検索</string>
+    <string name="nav_profile">プロフィール</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_trash">ゴミ箱</string>
+    <string name="nav_history">履歴</string>
+    <string name="nav_events">イベント</string>
+    <string name="tab_dashboard">ダッシュボード</string>
+    <string name="tab_events">イベント</string>
+    <string name="tab_dashboard_desc">今日の概要</string>
+    <string name="tab_notes_desc">思いを記録</string>
+    <string name="tab_tasks_desc">タスクを完了</string>
+    <string name="tab_events_desc">スケジュールを一目で</string>
+    <string name="tab_pomodoro_desc">フローを維持</string>
+    <string name="cd_notifications">通知</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">おはようございます、%1$sさん 👋</string>
+    <string name="home_greeting_afternoon">こんにちは、%1$sさん 👋</string>
+    <string name="home_greeting_evening">こんばんは、%1$sさん 👋</string>
+    <string name="home_greeting_night">おやすみなさい、%1$sさん 👋</string>
+    <string name="home_quick_add">クイック追加</string>
+    <string name="home_due_today">今日が期限</string>
+    <string name="home_overdue">期限超過</string>
+    <string name="home_this_week">今週</string>
+    <string name="home_total_notes">全ノート</string>
+    <string name="home_focus_time">今日の集中時間</string>
+    <string name="home_upcoming_events">今後の予定</string>
+    <string name="home_recent_notes">最近のノート</string>
+    <string name="home_no_tasks_today">今日のタスクはありません。</string>
+    <string name="home_no_events">今後の予定はありません。</string>
+    <string name="home_no_notes">最近のノートはありません。</string>
+    <string name="home_sessions_today">今日のセッション</string>
+    <string name="home_focus_minutes">集中時間</string>
+    <string name="home_completed_tasks">完了したタスク</string>
+    <string name="home_start_focus">集中を開始</string>
+    <string name="home_tasks_completed">完了したタスク</string>
+    <string name="home_events_upcoming">今後の予定</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">ノート</string>
+    <string name="notes_new">新しいノート</string>
+    <string name="notes_search_hint">ノートを検索…</string>
+    <string name="notes_filter_all">すべて</string>
+    <string name="notes_filter_pinned">ピン留め</string>
+    <string name="notes_empty_title">まだノートがありません</string>
+    <string name="notes_empty_body">最初のノートを作成しましょう。</string>
+    <string name="notes_empty_action">ノートを作成</string>
+    <string name="notes_pinned_section">ピン留め</string>
+    <string name="notes_all_section">すべてのノート</string>
+    <string name="notes_untitled">無題</string>
+    <string name="notes_word_count">%1$d 語</string>
+    <string name="notes_reading_time">%1$d 分で読了</string>
+    <string name="notes_pin_success">ノートをピン留めしました。</string>
+    <string name="notes_unpin_success">ノートのピンを解除しました。</string>
+    <string name="notes_delete_confirm_title">ゴミ箱に移動しますか？</string>
+    <string name="notes_delete_confirm_body">このノートはゴミ箱に移動され、30日後に完全に削除されます。</string>
+    <string name="notes_delete_success">ノートをゴミ箱に移動しました。</string>
+    <string name="notes_restore_success">ノートを復元しました。</string>
+    <string name="notes_hard_delete_confirm_title">完全に削除しますか？</string>
+    <string name="notes_hard_delete_confirm_body">このノートは完全に削除され、復元できなくなります。</string>
+    <string name="notes_hard_delete_success">ノートを完全に削除しました。</string>
+    <string name="notes_create_success">ノートを作成しました。</string>
+    <string name="notes_update_success">ノートを保存しました。</string>
+    <string name="notes_autosave">自動保存されました</string>
+    <string name="notes_saving">保存中…</string>
+    <string name="notes_copy_link">リンクをコピー</string>
+    <string name="notes_link_copied">リンクをコピーしました。</string>
+    <string name="notes_link_task">タスクをリンク</string>
+    <string name="notes_unlink_task">リンクを解除</string>
+    <string name="notes_task_linked">リンク先: %1$s</string>
+    <string name="notes_add_tag">タグを追加</string>
+    <string name="notes_no_tags">タグなし</string>
+    <string name="notes_start_writing">書き始める…</string>
+    <string name="notes_title_hint">タイトル</string>
+    <string name="notes_trash_empty_title">ゴミ箱は空です</string>
+    <string name="notes_trash_empty_body">ゴミ箱内のノートは30日後に完全に削除されます。</string>
+    <string name="notes_trash_empty_all">ゴミ箱を空にする</string>
+    <string name="notes_trash_empty_all_confirm_title">ゴミ箱を空にしますか？</string>
+    <string name="notes_trash_empty_all_confirm_body">ゴミ箱内のすべてのノートが完全に削除されます。</string>
+    <string name="notes_in_trash">ゴミ箱に %1$d 件のノート</string>
+    <string name="notes_in_trash_plural">ゴミ箱に %1$d 件のノート</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">太字</string>
+    <string name="editor_format_italic">斜体</string>
+    <string name="editor_format_heading">見出し</string>
+    <string name="editor_format_list_bullet">箇条書き</string>
+    <string name="editor_format_list_numbered">番号付きリスト</string>
+    <string name="editor_format_code">コード</string>
+    <string name="editor_format_quote">引用</string>
+    <string name="editor_format_link">リンクを挿入</string>
+    <string name="editor_insert_link_title">リンクを挿入</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">表示テキスト</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">タグ</string>
+    <string name="tags_new">新しいタグ</string>
+    <string name="tags_name_hint">タグ名</string>
+    <string name="tags_color">色</string>
+    <string name="tags_create_success">タグを作成しました。</string>
+    <string name="tags_update_success">タグを更新しました。</string>
+    <string name="tags_delete_success">タグを削除しました。</string>
+    <string name="tags_delete_confirm_title">タグを削除しますか？</string>
+    <string name="tags_delete_confirm_body">このタグは、使用しているすべてのノートから削除されます。</string>
+    <string name="tags_already_exists">この名前のタグはすでに存在します。</string>
+    <string name="tags_empty_title">まだタグがありません</string>
+    <string name="tags_empty_body">ノートを整理するためにタグを作成してください。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">タスク</string>
+    <string name="tasks_new">新しいタスク</string>
+    <string name="tasks_search_hint">タスクを検索…</string>
+    <string name="tasks_tab_all">すべて</string>
+    <string name="tasks_tab_today">今日</string>
+    <string name="tasks_tab_upcoming">予定</string>
+    <string name="tasks_tab_completed">完了</string>
+    <string name="tasks_view_list">リスト表示</string>
+    <string name="tasks_view_kanban">ボード表示</string>
+    <string name="tasks_empty_title">タスクがありません</string>
+    <string name="tasks_empty_body">最初のタスクを作成しましょう。</string>
+    <string name="tasks_empty_action">タスクを作成</string>
+    <string name="tasks_empty_today">今日が期限のタスクはありません。良い1日を！</string>
+    <string name="tasks_empty_upcoming">予定のタスクはありません。</string>
+    <string name="tasks_empty_completed">まだ完了したタスクはありません。</string>
+    <string name="tasks_empty_filter">このフィルターに一致するタスクはありません。</string>
+    <string name="tasks_field_title">タスクのタイトル</string>
+    <string name="tasks_field_title_hint">何をする必要がありますか？</string>
+    <string name="tasks_field_description">説明</string>
+    <string name="tasks_field_description_hint">詳細を追加…</string>
+    <string name="tasks_field_due_date">期限日</string>
+    <string name="tasks_field_due_time">期限時間</string>
+    <string name="tasks_field_priority">優先度</string>
+    <string name="tasks_field_status">ステータス</string>
+    <string name="tasks_field_reminder">リマインダー</string>
+    <string name="tasks_field_estimated_time">予想時間</string>
+    <string name="tasks_field_actual_time">実際の時間</string>
+    <string name="tasks_field_link_event">イベントをリンク</string>
+    <string name="tasks_field_subtasks">サブタスク</string>
+    <string name="tasks_add_subtask">サブタスクを追加</string>
+    <string name="tasks_subtask_count">%1$d 件のサブタスク</string>
+    <string name="tasks_subtask_count_plural">%1$d 件のサブタスク</string>
+    <string name="tasks_subtask_completed">%1$d / %2$d 完了</string>
+    <string name="tasks_pomodoro_sessions">集中セッション</string>
+    <string name="tasks_no_due_date">期限なし</string>
+    <string name="tasks_no_due_time">時間未設定</string>
+    <string name="tasks_no_reminder">リマインダーなし</string>
+    <string name="tasks_no_estimated">見積もりなし</string>
+    <string name="tasks_create_success">タスクを作成しました。</string>
+    <string name="tasks_update_success">タスクを更新しました。</string>
+    <string name="tasks_delete_success">タスクを削除しました。</string>
+    <string name="tasks_restore_success">タスクを復元しました。</string>
+    <string name="tasks_complete_success">タスクを完了しました。</string>
+    <string name="tasks_reorder_success">タスクを並べ替えました。</string>
+    <string name="tasks_status_updated">ステータスを更新しました。</string>
+    <string name="tasks_delete_confirm_title">タスクを削除しますか？</string>
+    <string name="tasks_delete_confirm_body">このタスクは削除されます。</string>
+    <string name="tasks_minutes">%1$d 分</string>
+    <string name="tasks_hours_minutes">%1$dh %2$dm</string>
+    <string name="tasks_swipe_complete">完了</string>
+    <string name="tasks_swipe_delete">削除</string>
+    <string name="tasks_sort_due_date">期限日</string>
+    <string name="tasks_sort_priority">優先度</string>
+    <string name="tasks_sort_created">作成日</string>
+    <string name="tasks_sort_title">タイトル</string>
+    <string name="tasks_filter_priority">優先度でフィルター</string>
+    <string name="tasks_filter_status">ステータスでフィルター</string>
+    <string name="tasks_filter_due">期限でフィルター</string>
+    <string name="tasks_overdue_label">期限超過</string>
+    <string name="tasks_due_today_label">今日が期限</string>
+    <string name="tasks_due_tomorrow_label">明日が期限</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">低</string>
+    <string name="priority_medium">中</string>
+    <string name="priority_high">高</string>
+    <string name="priority_urgent">緊急</string>
+
+    <string name="status_todo">未着手</string>
+    <string name="status_in_progress">進行中</string>
+    <string name="status_on_hold">保留</string>
+    <string name="status_done">完了</string>
+    <string name="status_cancelled">キャンセル</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">未着手</string>
+    <string name="kanban_column_in_progress">進行中</string>
+    <string name="kanban_column_on_hold">保留</string>
+    <string name="kanban_column_done">完了</string>
+    <string name="kanban_add_task">タスクを追加</string>
+    <string name="kanban_drag_hint">長押ししてドラッグで移動</string>
+    <string name="kanban_column_empty">タスクがありません</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">カレンダー</string>
+    <string name="calendar_view_week">週</string>
+    <string name="calendar_view_month">月</string>
+    <string name="calendar_today">今日</string>
+    <string name="calendar_new_event">新しいイベント</string>
+    <string name="calendar_no_events">イベントなし</string>
+    <string name="calendar_all_day">終日</string>
+    <string name="calendar_recurring">繰り返し</string>
+    <string name="calendar_events_count">%1$d 件のイベント</string>
+    <string name="calendar_events_count_plural">%1$d 件のイベント</string>
+    <string name="calendar_more_events">+%1$d 件</string>
+    <string name="calendar_week_header">%1$s の週</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">新しいイベント</string>
+    <string name="event_edit_title">イベントを編集</string>
+    <string name="event_field_title">イベントのタイトル</string>
+    <string name="event_field_title_hint">イベント名は？</string>
+    <string name="event_field_description">説明</string>
+    <string name="event_field_description_hint">このイベントに関するメモを追加…</string>
+    <string name="event_field_location">場所</string>
+    <string name="event_field_location_hint">場所を追加</string>
+    <string name="event_field_start">開始</string>
+    <string name="event_field_end">終了</string>
+    <string name="event_field_all_day">終日イベント</string>
+    <string name="event_field_color">色</string>
+    <string name="event_field_recurrence">繰り返し</string>
+    <string name="event_field_reminder">リマインダー</string>
+    <string name="event_field_link_task">タスクをリンク</string>
+    <string name="event_recurrence_none">繰り返しなし</string>
+    <string name="event_recurrence_daily">毎日</string>
+    <string name="event_recurrence_weekly">毎週</string>
+    <string name="event_recurrence_monthly">毎月</string>
+    <string name="event_recurrence_yearly">毎年</string>
+    <string name="event_recurrence_custom">カスタム</string>
+    <string name="event_recurrence_weekdays">毎平日（月〜金）</string>
+    <string name="event_recurrence_end_date">終了日</string>
+    <string name="event_recurrence_end_never">なし</string>
+    <string name="event_recurrence_label">繰り返し: %1$s</string>
+    <string name="event_reminder_none">リマインダーなし</string>
+    <string name="event_reminder_at_time">イベントの時間に</string>
+    <string name="event_reminder_5_min">5分前</string>
+    <string name="event_reminder_10_min">10分前</string>
+    <string name="event_reminder_15_min">15分前</string>
+    <string name="event_reminder_30_min">30分前</string>
+    <string name="event_reminder_1_hour">1時間前</string>
+    <string name="event_reminder_1_day">1日前</string>
+    <string name="event_create_success">イベントを作成しました。</string>
+    <string name="event_update_success">イベントを更新しました。</string>
+    <string name="event_delete_success">イベントを削除しました。</string>
+    <string name="event_restore_success">イベントを復元しました。</string>
+    <string name="event_delete_confirm_title">イベントを削除しますか？</string>
+    <string name="event_delete_confirm_body">このイベントは削除されます。</string>
+    <string name="event_delete_recurring_title">繰り返しイベントを削除</string>
+    <string name="event_delete_recurring_body">このイベントのみ削除しますか、それともシリーズ全体を削除しますか？</string>
+    <string name="event_delete_this_only">このイベントのみ</string>
+    <string name="event_delete_all_in_series">シリーズ全体</string>
+    <string name="event_end_before_start">終了時間は開始時間より後でなければなりません。</string>
+    <string name="event_location_open_maps">マップで開く</string>
+    <string name="event_time_range">%1$s ～ %2$s</string>
+    <string name="event_template_meeting">会議</string>
+    <string name="event_template_focus">集中時間</string>
+    <string name="event_template_break">休憩</string>
+    <string name="event_template_travel">移動</string>
+    <string name="event_join_meeting">会議に参加</string>
+    <string name="event_navigate">ナビゲート</string>
+    <string name="event_share">イベントを共有</string>
+    <string name="event_duplicate">複製</string>
+    <string name="event_weather">天気</string>
+    <string name="event_attendees">参加者</string>
+    <string name="event_timezone">タイムゾーン</string>
+    <string name="event_travel_time">移動時間</string>
+    <string name="event_conflict_detected">時間の競合が検出されました</string>
+    <string name="event_reminder_multiple">複数のリマインダー</string>
+    <string name="event_reminder_add">リマインダーを追加</string>
+    <string name="event_reminder_custom">カスタム</string>
+    <string name="event_voice_input">音声入力</string>
+    <string name="event_smart_suggestion">スマート提案</string>
+    <string name="event_free_busy">空き状況</string>
+    <string name="event_suggested_times">おすすめの時間</string>
+    <string name="calendar_view_day">日</string>
+    <string name="calendar_view_agenda">アジェンダ</string>
+    <string name="calendar_view_year">年</string>
+    <string name="calendar_date_jump">日付に移動</string>
+    <string name="calendar_swipe_instruction">スワイプして移動</string>
+    <string name="calendar_pinch_zoom">ピンチで拡大/縮小</string>
+    <string name="calendar_no_events_day">この日はイベントがありません</string>
+    <string name="calendar_all_day_section">終日</string>
+    <string name="calendar_agenda_empty">今後の予定はありません</string>
+    <string name="calendar_heat_map_label">アクティビティ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">集中</string>
+    <string name="pomodoro_focus">集中</string>
+    <string name="pomodoro_short_break">短い休憩</string>
+    <string name="pomodoro_long_break">長い休憩</string>
+    <string name="pomodoro_session_focus">集中セッション</string>
+    <string name="pomodoro_session_short_break">短い休憩</string>
+    <string name="pomodoro_session_long_break">長い休憩</string>
+    <string name="pomodoro_start">開始</string>
+    <string name="pomodoro_pause">一時停止</string>
+    <string name="pomodoro_resume">再開</string>
+    <string name="pomodoro_skip">スキップ</string>
+    <string name="pomodoro_stop">停止</string>
+    <string name="pomodoro_reset">リセット</string>
+    <string name="pomodoro_link_task">タスクをリンク</string>
+    <string name="pomodoro_link_task_hint">タップしてタスクをリンク</string>
+    <string name="pomodoro_linked_task">集中中: %1$s</string>
+    <string name="pomodoro_sessions_today">今日 %1$d セッション</string>
+    <string name="pomodoro_sessions_today_plural">今日 %1$d セッション</string>
+    <string name="pomodoro_focus_time_today">今日 %1$s 集中</string>
+    <string name="pomodoro_completed_today">今日完了</string>
+    <string name="pomodoro_no_active_session">アクティブなセッションはありません</string>
+    <string name="pomodoro_session_complete_title">セッション完了！🎉</string>
+    <string name="pomodoro_session_complete_body">お疲れ様です。休憩を取りましょう！</string>
+    <string name="pomodoro_break_complete_title">休憩終了</string>
+    <string name="pomodoro_break_complete_body">また集中する準備はできましたか？</string>
+    <string name="pomodoro_start_success">セッションを開始しました。</string>
+    <string name="pomodoro_end_success">セッションを完了しました。</string>
+    <string name="pomodoro_interrupt_success">セッションを中断しました。</string>
+    <string name="pomodoro_interrupt_reason_hint">なぜ停止しますか？（任意）</string>
+    <string name="pomodoro_interrupt_confirm_title">セッションを停止しますか？</string>
+    <string name="pomodoro_interrupt_confirm_body">進行状況は保存されますが、セッションは中断としてマークされます。</string>
+    <string name="pomodoro_already_active">すでにアクティブなセッションがあります。新しいセッションを開始する前に終了してください。</string>
+    <string name="pomodoro_stats_title">今日の統計</string>
+    <string name="pomodoro_history_title">セッション履歴</string>
+    <string name="pomodoro_history_empty_title">まだセッションがありません</string>
+    <string name="pomodoro_history_empty_body">集中セッションを開始すると、ここに履歴が表示されます。</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">中断</string>
+    <string name="pomodoro_session_completed">完了</string>
+    <string name="pomodoro_dot_current">現在のセッション</string>
+    <string name="pomodoro_dot_completed">完了したセッション</string>
+    <string name="pomodoro_dot_upcoming">今後のセッション</string>
+    <string name="pomodoro_notification_channel_name">ポモドーロタイマー</string>
+    <string name="pomodoro_notification_channel_desc">ライブタイマー更新とセッション通知。</string>
+    <string name="pomodoro_notification_running">残り %1$s — %2$s</string>
+    <string name="pomodoro_notification_action_pause">一時停止</string>
+    <string name="pomodoro_notification_action_skip">スキップ</string>
+    <string name="pomodoro_notification_action_stop">停止</string>
+    <string name="pomodoro_cycle_count">サイクル %1$d / %2$d</string>
+    <string name="pomodoro_until_long_break">長い休憩まで %1$d セッション</string>
+    <string name="pomodoro_until_long_break_plural">長い休憩まで %1$d セッション</string>
+
+    <string name="pomodoro_swipe_to_skip">スワイプしてスキップ</string>
+    <string name="pomodoro_extend_1min">+1分</string>
+    <string name="pomodoro_focus_analytics">集中分析</string>
+    <string name="pomodoro_streak_day">%1$d日連続</string>
+    <string name="pomodoro_best_streak">最高: %1$d日</string>
+    <string name="pomodoro_weekly_intensity">週間集中度</string>
+    <string name="pomodoro_focus_by_category">カテゴリー別集中</string>
+    <string name="pomodoro_quality_score">品質スコア</string>
+    <string name="pomodoro_total_focus_time">総集中時間</string>
+    <string name="pomodoro_daily_goal">1日の目標</string>
+    <string name="pomodoro_weekly_goal">週間目標</string>
+    <string name="pomodoro_exit_focus_mode">集中モードを終了</string>
+    <string name="pomodoro_dnd_access_required">おやすみモードへのアクセスが必要です。設定で有効にしてください。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AIアシスタント</string>
+    <string name="ai_welcome_title">どのようなご用件ですか？</string>
+    <string name="ai_welcome_body">ワークスペースのタスク、予定、ノートを確認して、状況に応じた回答を提供します。</string>
+    <string name="ai_message_hint">メッセージ…</string>
+    <string name="ai_send">送信</string>
+    <string name="ai_new_conversation">新しい会話</string>
+    <string name="ai_conversations_title">会話</string>
+    <string name="ai_conversation_empty">まだメッセージがありません</string>
+    <string name="ai_conversations_empty_title">まだ会話がありません</string>
+    <string name="ai_conversations_empty_body">新しい会話を開始して、ワークスペースに関するヘルプを得てください。</string>
+    <string name="ai_delete_conversation_title">会話を削除しますか？</string>
+    <string name="ai_delete_conversation_body">この会話とすべてのメッセージが完全に削除されます。</string>
+    <string name="ai_delete_conversation_success">会話を削除しました。</string>
+    <string name="ai_clear_conversation_title">会話をクリアしますか？</string>
+    <string name="ai_clear_conversation_body">この会話のすべてのメッセージがクリアされます。</string>
+    <string name="ai_suggestion_due_today">今日が期限のものは？</string>
+    <string name="ai_suggestion_overdue">期限超過のタスクを要約</string>
+    <string name="ai_suggestion_start_focus">集中セッションを開始</string>
+    <string name="ai_suggestion_meeting_agenda">会議のアジェンダを作成</string>
+    <string name="ai_context_title">ワークスペース</string>
+    <string name="ai_context_active_tasks">アクティブなタスク</string>
+    <string name="ai_context_events_week">今週の予定</string>
+    <string name="ai_context_last_note">最後のノート</string>
+    <string name="ai_context_focus_today">今日の集中</string>
+    <string name="ai_context_overdue">期限超過</string>
+    <string name="ai_context_caption">このコンテキストは毎回のメッセージとともにAIに送信されます。</string>
+    <string name="ai_context_refresh">コンテキストを更新</string>
+    <string name="ai_typing">AIが考えています…</string>
+    <string name="ai_streaming">応答を生成中…</string>
+    <string name="ai_error_unavailable">現在AIアシスタントは利用できません。後でもう一度お試しください。</string>
+    <string name="ai_error_stream">応答の生成中にエラーが発生しました。</string>
+    <string name="ai_action_create_task">タスクを作成</string>
+    <string name="ai_action_create_note">ノートを作成</string>
+    <string name="ai_action_add_event">イベントを追加</string>
+    <string name="ai_action_confirm">確認</string>
+    <string name="ai_action_dismiss">閉じる</string>
+    <string name="ai_action_executed">完了！アイテムを作成しました。</string>
+    <string name="ai_action_dismissed">閉じました。</string>
+    <string name="ai_copy_message">メッセージをコピー</string>
+    <string name="ai_message_copied">メッセージをコピーしました。</string>
+    <string name="ai_regenerate">応答を再生成</string>
+    <string name="ai_you">あなた</string>
+    <string name="ai_assistant">アシスタント</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">検索</string>
+    <string name="search_hint">ノート、タスク、イベントを検索…</string>
+    <string name="search_results_notes">ノート</string>
+    <string name="search_results_tasks">タスク</string>
+    <string name="search_results_events">イベント</string>
+    <string name="search_recent">最近の検索</string>
+    <string name="search_clear_recent">クリア</string>
+    <string name="search_empty_title">\'%1$s\' の結果はありません</string>
+    <string name="search_empty_body">別のキーワードを試すか、スペルを確認してください。</string>
+    <string name="search_results_count">%1$d 件の結果</string>
+    <string name="search_results_count_plural">%1$d 件の結果</string>
+    <string name="search_type_note">ノート</string>
+    <string name="search_type_task">タスク</string>
+    <string name="search_type_event">イベント</string>
+    <string name="search_offline_notice">ローカルで検索中です。完全な結果を得るにはインターネットに接続してください。</string>
+    <string name="search_loading">検索中…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">プロフィール</string>
+    <string name="profile_edit_title">プロフィールを編集</string>
+    <string name="profile_change_photo">写真を変更</string>
+    <string name="profile_remove_photo">写真を削除</string>
+    <string name="profile_photo_updated">プロフィール写真を更新しました。</string>
+    <string name="profile_photo_removed">プロフィール写真を削除しました。</string>
+    <string name="profile_photo_pick">ギャラリーから選択</string>
+    <string name="profile_photo_camera">写真を撮る</string>
+    <string name="profile_update_success">プロフィールを更新しました。</string>
+    <string name="profile_stats_notes">ノート</string>
+    <string name="profile_stats_tasks_completed">完了したタスク</string>
+    <string name="profile_stats_focus_this_week">今週の集中時間</string>
+    <string name="profile_member_since">%1$s から利用</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">まだ自己紹介がありません。</string>
+    <string name="profile_section_account">アカウント</string>
+    <string name="profile_section_appearance">外観</string>
+    <string name="profile_section_pomodoro">ポモドーロ</string>
+    <string name="profile_section_notifications">通知</string>
+    <string name="profile_section_ai">AIアシスタント</string>
+    <string name="profile_section_data">データと同期</string>
+    <string name="profile_section_about">このアプリについて</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">環境設定</string>
+    <string name="preferences_update_success">環境設定を保存しました。</string>
+    <string name="preferences_pomodoro_focus">集中時間</string>
+    <string name="preferences_pomodoro_focus_desc">各集中セッションの長さ</string>
+    <string name="preferences_pomodoro_short_break">短い休憩</string>
+    <string name="preferences_pomodoro_short_break_desc">セッション間の短い休憩の長さ</string>
+    <string name="preferences_pomodoro_long_break">長い休憩</string>
+    <string name="preferences_pomodoro_long_break_desc">全サイクル後の長い休憩の長さ</string>
+    <string name="preferences_pomodoro_cycles">長い休憩前のセッション数</string>
+    <string name="preferences_pomodoro_cycles_desc">長い休憩前の集中セッション数</string>
+    <string name="preferences_pomodoro_auto_start_breaks">休憩を自動開始</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">セッション終了時に自動的に休憩を開始</string>
+    <string name="preferences_pomodoro_auto_start_focus">集中を自動開始</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">休憩後に次のセッションを自動的に開始</string>
+    <string name="preferences_pomodoro_sound">サウンド</string>
+    <string name="preferences_pomodoro_sound_desc">セッション終了時にサウンドを再生</string>
+    <string name="preferences_notify_task_reminders">タスクリマインダー</string>
+    <string name="preferences_notify_task_reminders_desc">タスクリマインダーが期限のときに通知</string>
+    <string name="preferences_notify_event_reminders">イベントリマインダー</string>
+    <string name="preferences_notify_event_reminders_desc">カレンダーイベントの前に通知</string>
+    <string name="preferences_notify_pomodoro_end">ポモドーロ終了</string>
+    <string name="preferences_notify_pomodoro_end_desc">ポモドーロセッション終了時に通知</string>
+    <string name="preferences_notify_daily_summary">デイリーサマリー</string>
+    <string name="preferences_notify_daily_summary_desc">朝に1日のサマリーを受け取る</string>
+    <string name="preferences_default_task_view">デフォルトのタスク表示</string>
+    <string name="preferences_default_task_sort">デフォルトのタスク並び替え</string>
+    <string name="preferences_show_completed_tasks">完了したタスクを表示</string>
+    <string name="preferences_show_completed_tasks_desc">タスク一覧に完了したタスクを含める</string>
+    <string name="preferences_default_calendar_view">デフォルトのカレンダー表示</string>
+    <string name="preferences_week_starts_on">週の始まり</string>
+    <string name="preferences_week_starts_monday">月曜日</string>
+    <string name="preferences_week_starts_sunday">日曜日</string>
+    <string name="preferences_ai_context">ワークスペースコンテキスト</string>
+    <string name="preferences_ai_context_desc">タスク、予定、ノートをAIアシスタントと共有</string>
+    <string name="preferences_ai_model">AIモデル</string>
+    <string name="preferences_ai_model_desc">アシスタントのAIモデルを選択</string>
+    <string name="preferences_compact_mode">コンパクトモード</string>
+    <string name="preferences_compact_mode_desc">より密なレイアウトで多くのコンテンツを表示</string>
+    <string name="preferences_minutes_format">%1$d 分</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">同期済み</string>
+    <string name="sync_status_pending">同期保留中</string>
+    <string name="sync_status_syncing">同期中…</string>
+    <string name="sync_status_conflict">同期の競合</string>
+    <string name="sync_status_error">同期エラー</string>
+    <string name="sync_last_synced">最終同期: %1$s</string>
+    <string name="sync_never_synced">未同期</string>
+    <string name="sync_conflict_title">同期の競合</string>
+    <string name="sync_conflict_body">\'%1$s\' に競合が検出されました。どのバージョンを保持しますか？</string>
+    <string name="sync_conflict_keep_local">ローカル版を保持</string>
+    <string name="sync_conflict_keep_server">サーバー版を保持</string>
+    <string name="sync_conflict_resolved">競合を解決しました。</string>
+    <string name="sync_pending_count">%1$d 件の変更保留中</string>
+    <string name="sync_pending_count_plural">%1$d 件の変更保留中</string>
+    <string name="sync_offline_banner">オフラインです。再接続時に変更が同期されます。</string>
+    <string name="sync_reconnected">オンラインに復帰しました。同期中…</string>
+    <string name="sync_complete">すべての変更を同期しました。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">リマインダー</string>
+    <string name="notification_channel_reminders_desc">タスクとイベントのリマインダー通知。</string>
+    <string name="notification_channel_sync_name">同期</string>
+    <string name="notification_channel_sync_desc">バックグラウンド同期ステータスの通知。</string>
+    <string name="notification_task_reminder_title">タスクリマインダー</string>
+    <string name="notification_task_reminder_body">%1$s の期限が近づいています。</string>
+    <string name="notification_event_reminder_title">間近のイベント</string>
+    <string name="notification_event_reminder_body">%1$s が %2$s 後に開始します。</string>
+    <string name="notification_daily_summary_title">今日の概要</string>
+    <string name="notification_daily_summary_body">今日が期限のタスク %1$d 件、今後の予定 %2$d 件。</string>
+    <string name="notification_permission_title">通知を有効にする</string>
+    <string name="notification_permission_body">リマインダー、集中セッション、デイリーサマリーを見逃さないように。</string>
+    <string name="notification_permission_allow">許可</string>
+    <string name="notification_permission_deny">後で</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">カメラアクセス</string>
+    <string name="permission_camera_body">プロフィール写真を撮影するために、ProductivityXはカメラへのアクセスが必要です。</string>
+    <string name="permission_storage_title">ストレージアクセス</string>
+    <string name="permission_storage_body">プロフィール写真を選択するために、ProductivityXはストレージへのアクセスが必要です。</string>
+    <string name="permission_notification_title">通知アクセス</string>
+    <string name="permission_notification_body">タスクリマインダーとポモドーロアラートを受け取るには通知を許可してください。</string>
+    <string name="permission_denied_title">権限が必要です</string>
+    <string name="permission_denied_body">この機能には権限が必要です。設定で有効にしてください。</string>
+    <string name="permission_go_to_settings">設定を開く</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">たった今</string>
+    <string name="time_minutes_ago">%1$d 分前</string>
+    <string name="time_hours_ago">%1$d 時間前</string>
+    <string name="time_yesterday">昨日</string>
+    <string name="time_days_ago">%1$d 日前</string>
+    <string name="time_weeks_ago">%1$d 週間前</string>
+    <string name="time_weeks_ago_plural">%1$d 週間前</string>
+    <string name="time_months_ago">%1$d ヶ月前</string>
+    <string name="time_months_ago_plural">%1$d ヶ月前</string>
+    <string name="time_format_date">yyyy/M/d</string>
+    <string name="time_format_date_short">M/d</string>
+    <string name="time_format_time">H:mm</string>
+    <string name="time_format_datetime">yyyy/M/d H:mm</string>
+    <string name="time_format_day_month">M/d</string>
+    <string name="time_format_full">yyyy年M月d日 EEEE</string>
+    <string name="time_am">午前</string>
+    <string name="time_pm">午後</string>
+    <string name="time_hour_singular">%1$d 時間</string>
+    <string name="time_hour_plural">%1$d 時間</string>
+    <string name="time_minute_singular">%1$d 分</string>
+    <string name="time_minute_plural">%1$d 分</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">月</string>
+    <string name="day_tuesday_short">火</string>
+    <string name="day_wednesday_short">水</string>
+    <string name="day_thursday_short">木</string>
+    <string name="day_friday_short">金</string>
+    <string name="day_saturday_short">土</string>
+    <string name="day_sunday_short">日</string>
+    <string name="day_monday">月曜日</string>
+    <string name="day_tuesday">火曜日</string>
+    <string name="day_wednesday">水曜日</string>
+    <string name="day_thursday">木曜日</string>
+    <string name="day_friday">金曜日</string>
+    <string name="day_saturday">土曜日</string>
+    <string name="day_sunday">日曜日</string>
+
+    <string name="month_january">1月</string>
+    <string name="month_february">2月</string>
+    <string name="month_march">3月</string>
+    <string name="month_april">4月</string>
+    <string name="month_may">5月</string>
+    <string name="month_june">6月</string>
+    <string name="month_july">7月</string>
+    <string name="month_august">8月</string>
+    <string name="month_september">9月</string>
+    <string name="month_october">10月</string>
+    <string name="month_november">11月</string>
+    <string name="month_december">12月</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">まだ何もありません</string>
+    <string name="empty_state_generic_body">新しいものを作成して始めましょう。</string>
+    <string name="empty_state_no_results_title">結果が見つかりません</string>
+    <string name="empty_state_no_results_body">別の検索語やフィルターをお試しください。</string>
+    <string name="empty_state_offline_title">オフラインです</string>
+    <string name="empty_state_offline_body">インターネットに接続してコンテンツを読み込んでください。</string>
+    <string name="empty_state_error_title">問題が発生しました</string>
+    <string name="empty_state_error_body">下にスワイプして更新するか、下のボタンをタップしてください。</string>
+    <string name="empty_state_retry">再試行</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">戻る</string>
+    <string name="cd_close">閉じる</string>
+    <string name="cd_more_options">その他のオプション</string>
+    <string name="cd_search">検索</string>
+    <string name="cd_filter">フィルター</string>
+    <string name="cd_sort">並び替え</string>
+    <string name="cd_add">追加</string>
+    <string name="cd_delete">削除</string>
+    <string name="cd_edit">編集</string>
+    <string name="cd_restore">復元</string>
+    <string name="cd_pin">ノートをピン留め</string>
+    <string name="cd_unpin">ノートのピン解除</string>
+    <string name="cd_check_task">タスクを完了としてマーク</string>
+    <string name="cd_uncheck_task">タスクを未完了としてマーク</string>
+    <string name="cd_profile_picture">プロフィール写真</string>
+    <string name="cd_send_message">メッセージを送信</string>
+    <string name="cd_play_pause">タイマーを再生または一時停止</string>
+    <string name="cd_skip_session">セッションをスキップ</string>
+    <string name="cd_stop_session">セッションを停止</string>
+    <string name="cd_sync_status">同期ステータス: %1$s</string>
+    <string name="cd_password_toggle">パスワードの表示を切り替え</string>
+    <string name="cd_clear_input">入力をクリア</string>
+    <string name="cd_remove_subtask">サブタスクを削除</string>
+    <string name="cd_notification">通知</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">セッションを確認中…</string>
+    <string name="splash_loading">読み込み中…</string>
+
+    <string name="dialog_unsaved_changes_title">未保存の変更</string>
+    <string name="dialog_unsaved_changes_body">未保存の変更があります。破棄しますか？</string>
+    <string name="dialog_unsaved_changes_save">保存</string>
+    <string name="dialog_unsaved_changes_discard">破棄</string>
+    <string name="dialog_date_picker_title">日付を選択</string>
+    <string name="dialog_time_picker_title">時間を選択</string>
+    <string name="dialog_color_picker_title">色を選択</string>
+    <string name="dialog_task_picker_title">タスクをリンク</string>
+    <string name="dialog_event_picker_title">イベントをリンク</string>
+    <string name="dialog_tag_manager_title">タグを管理</string>
+
+    <string name="task_view_list">リスト</string>
+    <string name="task_view_kanban">ボード</string>
+
+    <string name="snackbar_undo">元に戻す</string>
+    <string name="snackbar_note_deleted">ノートを削除しました</string>
+    <string name="snackbar_task_deleted">タスクを削除しました</string>
+    <string name="snackbar_event_deleted">イベントを削除しました</string>
+    <string name="snackbar_tag_deleted">タグを削除しました</string>
+    <string name="snackbar_copied">クリップボードにコピーしました</string>
+    <string name="snackbar_no_internet">インターネットに接続されていません</string>
+    <string name="snackbar_changes_saved">変更を保存しました</string>
+
+    <string name="about_version">バージョン %1$s</string>
+    <string name="about_build">ビルド %1$s</string>
+    <string name="about_privacy_policy">プライバシーポリシー</string>
+    <string name="about_terms_of_service">利用規約</string>
+    <string name="about_open_source_licenses">オープンソースライセンス</string>
+    <string name="about_rate_app">アプリを評価</string>
+    <string name="about_send_feedback">フィードバックを送信</string>
+    <string name="about_built_by">Oussama Chatri 制作</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">データをエクスポート</string>
+    <string name="data_export_body">すべてのノート、タスク、イベントをファイルとしてダウンロードします。</string>
+    <string name="data_export_action">エクスポート</string>
+    <string name="data_export_success">データのエクスポートが完了しました。</string>
+    <string name="data_delete_account_title">アカウントを削除</string>
+    <string name="data_delete_account_body">アカウントと関連データを完全に削除します。元に戻せません。</string>
+    <string name="data_delete_account_action">アカウントを削除</string>
+    <string name="data_delete_account_confirm_title">アカウントを削除しますか？</string>
+    <string name="data_delete_account_confirm_body">すべてのノート、タスク、イベント、会話が完全に削除されます。この操作は元に戻せません。</string>
+    <string name="data_delete_account_type_confirm">確認のため「削除」と入力</string>
+    <string name="data_delete_account_confirm_word">削除</string>
+
+    <string name="update_available_title">アップデートがあります</string>
+    <string name="update_available_body">ProductivityXの新しいバージョンが利用可能です。最新の機能と修正を入手するために今すぐアップデートしてください。</string>
+    <string name="update_now">今すぐ更新</string>
+    <string name="update_later">後で</string>
+
+    <string name="auth_check_your_email">メールをご確認ください</string>
+    <string name="auth_otp_sent_body">%s に6桁のコードを送信しました</string>
+
+    <string name="language_en">英語</string>
+    <string name="language_fr">フランス語</string>
+    <string name="language_ar">アラビア語</string>
+    <string name="language_es">スペイン語</string>
+    <string name="language_de">ドイツ語</string>
+    <string name="language_ko">韓国語</string>
+    <string name="language_ja">日本語</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">タスク</string>
+    <string name="widget_task_list_empty">今日が期限のタスクはありません</string>
+    <string name="widget_pomodoro_title">ポモドーロ</string>
+    <string name="widget_pomodoro_start">タップして集中開始</string>
+    <string name="widget_quick_note_title">クイックノート</string>
+    <string name="widget_quick_note_hint">タップしてノートを追加</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">今日のタスク</string>
+    <string name="home_widget_events">今後の予定</string>
+    <string name="home_widget_focus">今日の集中時間</string>
+    <string name="home_widget_notes">最近のノート</string>
+    <string name="home_widget_quote">今日の名言</string>
+    <string name="home_widget_ai">AIアシスタント</string>
+    <string name="home_widget_focus_mode">クイック集中</string>
+    <string name="home_expand">展開</string>
+    <string name="home_collapse">折りたたむ</string>
+    <string name="home_see_all">すべて表示</string>
+    <string name="home_empty_tasks">今日が期限のタスクはありません</string>
+    <string name="home_empty_events">今後の予定はありません</string>
+    <string name="home_empty_notes">最近のノートはありません</string>
+    <string name="home_empty_focus">まだ集中時間がありません</string>
+    <string name="home_focus_mode_active">集中モード</string>
+    <string name="home_focus_mode_inactive">クイック集中</string>
+    <string name="home_focus_mode_desc_active"> distractions を最小化</string>
+    <string name="home_focus_mode_desc_inactive">タップして集中モードへ</string>
+    <string name="home_quick_action_new_note">新しいノート</string>
+    <string name="home_quick_action_new_task">新しいタスク</string>
+    <string name="home_quick_action_start_timer">タイマー開始</string>
+    <string name="home_quick_action_ai_chat">AIチャット</string>
+    <string name="home_voice_prompt">何をしたいですか？</string>
+    <string name="home_voice_listening">聴いています…</string>
+    <string name="home_pull_to_refresh">プルして更新</string>
+    <string name="home_syncing">同期中…</string>
+    <string name="home_refreshed">ダッシュボードを更新しました</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">新しいノート</string>
+    <string name="shortcut_new_task">新しいタスク</string>
+    <string name="shortcut_start_focus">集中開始</string>
+    <string name="shortcut_ai_chat">AIチャット</string>
+    <string name="shortcut_note_short_label">ノート</string>
+    <string name="shortcut_task_short_label">タスク</string>
+    <string name="shortcut_focus_short_label">集中</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>
