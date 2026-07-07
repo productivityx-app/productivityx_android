@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">당신의 작업 공간. 통합된.</string>
+    <string name="app_description">노트, 작업, 캘린더, 집중 타이머, 그리고 당신의 하루를 진정으로 이해하는 AI 어시스턴트.</string>
+
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="save">저장</string>
+    <string name="delete">삭제</string>
+    <string name="edit">편집</string>
+    <string name="done">완료</string>
+    <string name="back">뒤로</string>
+    <string name="close">닫기</string>
+    <string name="confirm">확인</string>
+    <string name="discard">버리기</string>
+    <string name="retry">재시도</string>
+    <string name="skip">건너뛰기</string>
+    <string name="next">다음</string>
+    <string name="previous">이전</string>
+    <string name="continue_action">계속</string>
+    <string name="finish">완료</string>
+    <string name="apply">적용</string>
+    <string name="reset">초기화</string>
+    <string name="clear">지우기</string>
+    <string name="search">검색</string>
+    <string name="filter">필터</string>
+    <string name="sort">정렬</string>
+    <string name="share">공유</string>
+    <string name="copy">복사</string>
+    <string name="paste">붙여넣기</string>
+    <string name="undo">실행 취소</string>
+    <string name="redo">다시 실행</string>
+    <string name="select_all">모두 선택</string>
+    <string name="deselect_all">모두 선택 해제</string>
+    <string name="more_options">더 보기</string>
+    <string name="settings">설정</string>
+    <string name="help">도움말</string>
+    <string name="feedback">피드백</string>
+    <string name="loading">로딩 중…</string>
+    <string name="refreshing">새로고침 중…</string>
+    <string name="saving">저장 중…</string>
+    <string name="deleting">삭제 중…</string>
+    <string name="please_wait">잠시 기다려 주세요…</string>
+    <string name="see_all">모두 보기</string>
+    <string name="show_less">간략히 보기</string>
+    <string name="show_more">더 보기</string>
+    <string name="optional">선택 사항</string>
+    <string name="required">필수</string>
+    <string name="none">없음</string>
+    <string name="unknown">알 수 없음</string>
+    <string name="today">오늘</string>
+    <string name="yesterday">어제</string>
+    <string name="tomorrow">내일</string>
+    <string name="this_week">이번 주</string>
+    <string name="last_week">지난 주</string>
+    <string name="next_week">다음 주</string>
+    <string name="this_month">이번 달</string>
+    <string name="all">전체</string>
+    <string name="new_action">새로 만들기</string>
+    <string name="add">추가</string>
+    <string name="remove">제거</string>
+    <string name="create">생성</string>
+    <string name="update">업데이트</string>
+    <string name="restore">복원</string>
+    <string name="archive">보관</string>
+    <string name="unarchive">보관 해제</string>
+    <string name="pin">고정</string>
+    <string name="unpin">고정 해제</string>
+    <string name="move">이동</string>
+    <string name="rename">이름 변경</string>
+    <string name="duplicate">복제</string>
+    <string name="open">열기</string>
+    <string name="view">보기</string>
+    <string name="preview">미리보기</string>
+    <string name="expand">펼치기</string>
+    <string name="collapse">접기</string>
+    <string name="enable">사용</string>
+    <string name="disable">사용 안 함</string>
+    <string name="turn_on">켜기</string>
+    <string name="turn_off">끄기</string>
+    <string name="yes">예</string>
+    <string name="no">아니요</string>
+    <string name="not_now">나중에</string>
+    <string name="got_it">알겠습니다</string>
+    <string name="learn_more">더 알아보기</string>
+    <string name="send">보내기</string>
+    <string name="submit">제출</string>
+    <string name="upload">업로드</string>
+    <string name="download">다운로드</string>
+    <string name="link">링크</string>
+    <string name="unlink">링크 해제</string>
+    <string name="connect">연결</string>
+    <string name="disconnect">연결 끊기</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">문제가 발생했습니다. 다시 시도해 주세요.</string>
+    <string name="error_network">인터넷에 연결되어 있지 않습니다. 네트워크를 확인하고 다시 시도해 주세요.</string>
+    <string name="error_timeout">요청 시간이 초과되었습니다. 다시 시도해 주세요.</string>
+    <string name="error_server">서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="error_not_found">요청한 항목을 찾을 수 없습니다.</string>
+    <string name="error_unauthorized">세션이 만료되었습니다. 다시 로그인해 주세요.</string>
+    <string name="error_forbidden">이 작업을 수행할 권한이 없습니다.</string>
+    <string name="error_validation">양식을 확인하고 오류를 수정해 주세요.</string>
+    <string name="error_unknown">예기치 않은 오류가 발생했습니다.</string>
+    <string name="error_loading">불러오기에 실패했습니다. 탭하여 재시도하세요.</string>
+    <string name="error_saving">저장에 실패했습니다. 다시 시도해 주세요.</string>
+    <string name="error_deleting">삭제에 실패했습니다. 다시 시도해 주세요.</string>
+    <string name="error_no_data">사용 가능한 데이터가 없습니다.</string>
+    <string name="error_offline_action">이 작업은 인터넷 연결이 필요합니다.</string>
+    <string name="error_conflict">충돌이 발생했습니다. 새로고침 후 다시 시도해 주세요.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">모든 것을 한 곳에서</string>
+    <string name="onboarding_page1_body">노트, 작업, 캘린더가 하나의 작업 공간에 연결됩니다.</string>
+    <string name="onboarding_page2_title">흐름을 유지하세요</string>
+    <string name="onboarding_page2_body">뽀모도로 타이머는 당신이 무엇을 작업 중인지 알고 시간을 자동으로 기록합니다.</string>
+    <string name="onboarding_page3_title">당신을 이해하는 AI</string>
+    <string name="onboarding_page3_body">어시스턴트가 응답하기 전에 활성 작업, 다가오는 일정, 최근 노트를 확인합니다.</string>
+    <string name="onboarding_get_started">시작하기</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_next">다음</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">로그인</string>
+    <string name="auth_sign_up">회원가입</string>
+    <string name="auth_sign_out">로그아웃</string>
+    <string name="auth_log_in">로그인</string>
+    <string name="auth_log_out">로그아웃</string>
+    <string name="auth_create_account">계정 만들기</string>
+    <string name="auth_already_have_account">이미 계정이 있으신가요?</string>
+    <string name="auth_skip_login">계정 없이 계속하기</string>
+    <string name="auth_dont_have_account">계정이 없으신가요?</string>
+    <string name="auth_welcome_back">돌아오신 것을 환영합니다</string>
+    <string name="auth_create_your_account">계정 만들기</string>
+    <string name="auth_join_productivityx">ProductivityX 가입하기</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">비밀번호를 잊으셨나요?</string>
+    <string name="auth_forgot_password_title">비밀번호를 잊으셨나요?</string>
+    <string name="auth_forgot_password_body">이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다.</string>
+    <string name="auth_forgot_password_success_title">재설정 링크 전송됨</string>
+    <string name="auth_forgot_password_success_body">해당 이메일이 존재하는 경우 재설정 링크가 전송되었습니다. 받은편지함을 확인해 주세요.</string>
+
+    <string name="auth_reset_password_title">비밀번호 재설정</string>
+    <string name="auth_reset_password_body">계정의 새 비밀번호를 입력하세요.</string>
+    <string name="auth_reset_password_action">비밀번호 재설정</string>
+    <string name="auth_reset_password_success_title">비밀번호 재설정 완료!</string>
+    <string name="auth_reset_password_success_body">비밀번호가 변경되었습니다. 새 비밀번호로 로그인하세요.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">이메일을 확인해 주세요</string>
+    <string name="auth_verify_email_body">%1$s(으)로 6자리 코드를 보냈습니다</string>
+    <string name="auth_verify">인증</string>
+    <string name="auth_resend_code">코드 재전송</string>
+    <string name="auth_resend_cooldown">%1$s 후에 재전송</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">이메일 주소</string>
+    <string name="field_email_hint">이메일 입력</string>
+    <string name="field_password">비밀번호</string>
+    <string name="field_password_hint">비밀번호 입력</string>
+    <string name="field_password_new">새 비밀번호</string>
+    <string name="field_password_new_hint">새 비밀번호 입력</string>
+    <string name="field_password_confirm">비밀번호 확인</string>
+    <string name="field_password_confirm_hint">비밀번호 다시 입력</string>
+    <string name="field_password_current">현재 비밀번호</string>
+    <string name="field_password_current_hint">현재 비밀번호 입력</string>
+    <string name="field_username">사용자 이름</string>
+    <string name="field_username_hint">사용자 이름 선택</string>
+    <string name="field_first_name">이름</string>
+    <string name="field_first_name_hint">이름을 입력하세요</string>
+    <string name="field_last_name">성</string>
+    <string name="field_last_name_hint">성을 입력하세요</string>
+    <string name="field_phone">전화번호</string>
+    <string name="field_phone_hint">전화번호를 입력하세요</string>
+    <string name="field_birth_date">생년월일</string>
+    <string name="field_birth_date_hint">생년월일을 선택하세요</string>
+    <string name="field_identifier">이메일, 사용자 이름 또는 전화번호</string>
+    <string name="field_identifier_hint">이메일, 사용자 이름 또는 전화번호 입력</string>
+    <string name="field_gender">성별</string>
+    <string name="field_bio">소개</string>
+    <string name="field_bio_hint">자기소개를 입력해 주세요</string>
+    <string name="field_timezone">시간대</string>
+    <string name="field_language">언어</string>
+    <string name="field_theme">테마</string>
+    <string name="field_avatar">프로필 사진</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">비밀번호 표시</string>
+    <string name="password_hide">비밀번호 숨기기</string>
+    <string name="password_strength_weak">약함</string>
+    <string name="password_strength_fair">보통</string>
+    <string name="password_strength_good">좋음</string>
+    <string name="password_strength_strong">강함</string>
+    <string name="password_requirement_length">최소 8자</string>
+    <string name="password_requirement_uppercase">대문자 1개</string>
+    <string name="password_requirement_lowercase">소문자 1개</string>
+    <string name="password_requirement_number">숫자 1개</string>
+    <string name="password_requirement_special">특수 문자 1개</string>
+    <string name="password_forgot">비밀번호를 잊으셨나요?</string>
+    <string name="password_reset">비밀번호 재설정</string>
+    <string name="password_change">비밀번호 변경</string>
+    <string name="password_mismatch">비밀번호가 일치하지 않습니다.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">계정</string>
+    <string name="register_step_profile">프로필</string>
+    <string name="register_step_preferences">환경 설정</string>
+    <string name="register_step_verify">인증</string>
+    <string name="register_step_indicator">%1$d단계 / %2$d</string>
+    <string name="register_change_photo">사진 변경</string>
+    <string name="register_preferences_caption">설정에서 언제든지 변경할 수 있습니다.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">다크</string>
+    <string name="theme_light">라이트</string>
+    <string name="theme_system">시스템</string>
+
+    <string name="profile_theme">테마</string>
+    <string name="profile_theme_hint">설정에서 언제든지 변경할 수 있습니다.</string>
+
+    <string name="gender_male">남성</string>
+    <string name="gender_female">여성</string>
+    <string name="gender_prefer_not_to_say">말하고 싶지 않음</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">홈</string>
+    <string name="nav_notes">노트</string>
+    <string name="nav_tasks">작업</string>
+    <string name="nav_calendar">캘린더</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">뽀모도로</string>
+    <string name="nav_search">검색</string>
+    <string name="nav_profile">프로필</string>
+    <string name="nav_settings">설정</string>
+    <string name="nav_trash">휴지통</string>
+    <string name="nav_history">기록</string>
+    <string name="nav_events">일정</string>
+    <string name="tab_dashboard">대시보드</string>
+    <string name="tab_events">일정</string>
+    <string name="tab_dashboard_desc">하루 개요</string>
+    <string name="tab_notes_desc">생각을 기록하세요</string>
+    <string name="tab_tasks_desc">할 일을 처리하세요</string>
+    <string name="tab_events_desc">일정을 한눈에</string>
+    <string name="tab_pomodoro_desc">흐름을 유지하세요</string>
+    <string name="cd_notifications">알림</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">좋은 아침입니다, %1$s님 👋</string>
+    <string name="home_greeting_afternoon">좋은 오후입니다, %1$s님 👋</string>
+    <string name="home_greeting_evening">좋은 저녁입니다, %1$s님 👋</string>
+    <string name="home_greeting_night">안녕히 주무세요, %1$s님 👋</string>
+    <string name="home_quick_add">빠른 추가</string>
+    <string name="home_due_today">오늘 마감</string>
+    <string name="home_overdue">기한 초과</string>
+    <string name="home_this_week">이번 주</string>
+    <string name="home_total_notes">전체 노트</string>
+    <string name="home_focus_time">오늘의 집중 시간</string>
+    <string name="home_upcoming_events">다가오는 일정</string>
+    <string name="home_recent_notes">최근 노트</string>
+    <string name="home_no_tasks_today">오늘 할 작업이 없습니다.</string>
+    <string name="home_no_events">다가오는 일정이 없습니다.</string>
+    <string name="home_no_notes">최근 노트가 없습니다.</string>
+    <string name="home_sessions_today">오늘의 세션</string>
+    <string name="home_focus_minutes">집중 시간</string>
+    <string name="home_completed_tasks">완료된 작업</string>
+    <string name="home_start_focus">집중 시작</string>
+    <string name="home_tasks_completed">완료된 작업</string>
+    <string name="home_events_upcoming">다가오는 일정</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">노트</string>
+    <string name="notes_new">새 노트</string>
+    <string name="notes_search_hint">노트 검색…</string>
+    <string name="notes_filter_all">전체</string>
+    <string name="notes_filter_pinned">고정됨</string>
+    <string name="notes_empty_title">아직 노트가 없습니다</string>
+    <string name="notes_empty_body">첫 노트를 작성해 보세요.</string>
+    <string name="notes_empty_action">노트 만들기</string>
+    <string name="notes_pinned_section">고정됨</string>
+    <string name="notes_all_section">모든 노트</string>
+    <string name="notes_untitled">제목 없음</string>
+    <string name="notes_word_count">%1$d 단어</string>
+    <string name="notes_reading_time">%1$d분 읽기</string>
+    <string name="notes_pin_success">노트가 고정되었습니다.</string>
+    <string name="notes_unpin_success">노트 고정이 해제되었습니다.</string>
+    <string name="notes_delete_confirm_title">휴지통으로 이동할까요?</string>
+    <string name="notes_delete_confirm_body">이 노트는 휴지통으로 이동되며 30일 후 영구 삭제됩니다.</string>
+    <string name="notes_delete_success">노트가 휴지통으로 이동되었습니다.</string>
+    <string name="notes_restore_success">노트가 복원되었습니다.</string>
+    <string name="notes_hard_delete_confirm_title">영구 삭제할까요?</string>
+    <string name="notes_hard_delete_confirm_body">이 노트는 영구 삭제되며 복구할 수 없습니다.</string>
+    <string name="notes_hard_delete_success">노트가 영구 삭제되었습니다.</string>
+    <string name="notes_create_success">노트가 생성되었습니다.</string>
+    <string name="notes_update_success">노트가 저장되었습니다.</string>
+    <string name="notes_autosave">자동 저장됨</string>
+    <string name="notes_saving">저장 중…</string>
+    <string name="notes_copy_link">링크 복사</string>
+    <string name="notes_link_copied">링크가 복사되었습니다.</string>
+    <string name="notes_link_task">작업 연결</string>
+    <string name="notes_unlink_task">작업 연결 해제</string>
+    <string name="notes_task_linked">연결됨: %1$s</string>
+    <string name="notes_add_tag">태그 추가</string>
+    <string name="notes_no_tags">태그 없음</string>
+    <string name="notes_start_writing">작성 시작…</string>
+    <string name="notes_title_hint">제목</string>
+    <string name="notes_trash_empty_title">휴지통이 비어 있습니다</string>
+    <string name="notes_trash_empty_body">휴지통의 노트는 30일 후 영구 삭제됩니다.</string>
+    <string name="notes_trash_empty_all">휴지통 비우기</string>
+    <string name="notes_trash_empty_all_confirm_title">휴지통을 비울까요?</string>
+    <string name="notes_trash_empty_all_confirm_body">휴지통의 모든 노트가 영구 삭제됩니다.</string>
+    <string name="notes_in_trash">휴지통에 노트 %1$d개</string>
+    <string name="notes_in_trash_plural">휴지통에 노트 %1$d개</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">굵게</string>
+    <string name="editor_format_italic">기울임</string>
+    <string name="editor_format_heading">제목</string>
+    <string name="editor_format_list_bullet">글머리 목록</string>
+    <string name="editor_format_list_numbered">번호 목록</string>
+    <string name="editor_format_code">코드</string>
+    <string name="editor_format_quote">인용</string>
+    <string name="editor_format_link">링크 삽입</string>
+    <string name="editor_insert_link_title">링크 삽입</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">표시 텍스트</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">태그</string>
+    <string name="tags_new">새 태그</string>
+    <string name="tags_name_hint">태그 이름</string>
+    <string name="tags_color">색상</string>
+    <string name="tags_create_success">태그가 생성되었습니다.</string>
+    <string name="tags_update_success">태그가 업데이트되었습니다.</string>
+    <string name="tags_delete_success">태그가 삭제되었습니다.</string>
+    <string name="tags_delete_confirm_title">태그를 삭제할까요?</string>
+    <string name="tags_delete_confirm_body">이 태그는 사용 중인 모든 노트에서 제거됩니다.</string>
+    <string name="tags_already_exists">이 이름의 태그가 이미 존재합니다.</string>
+    <string name="tags_empty_title">아직 태그가 없습니다</string>
+    <string name="tags_empty_body">노트를 정리하려면 태그를 만드세요.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">작업</string>
+    <string name="tasks_new">새 작업</string>
+    <string name="tasks_search_hint">작업 검색…</string>
+    <string name="tasks_tab_all">전체</string>
+    <string name="tasks_tab_today">오늘</string>
+    <string name="tasks_tab_upcoming">예정</string>
+    <string name="tasks_tab_completed">완료</string>
+    <string name="tasks_view_list">리스트 보기</string>
+    <string name="tasks_view_kanban">보드 보기</string>
+    <string name="tasks_empty_title">작업이 없습니다</string>
+    <string name="tasks_empty_body">첫 작업을 만들어 보세요.</string>
+    <string name="tasks_empty_action">작업 만들기</string>
+    <string name="tasks_empty_today">오늘 마감인 작업이 없습니다. 좋은 하루 보내세요!</string>
+    <string name="tasks_empty_upcoming">예정된 작업이 없습니다.</string>
+    <string name="tasks_empty_completed">아직 완료된 작업이 없습니다.</string>
+    <string name="tasks_empty_filter">이 필터와 일치하는 작업이 없습니다.</string>
+    <string name="tasks_field_title">작업 제목</string>
+    <string name="tasks_field_title_hint">무엇을 해야 하나요?</string>
+    <string name="tasks_field_description">설명</string>
+    <string name="tasks_field_description_hint">세부 사항 추가…</string>
+    <string name="tasks_field_due_date">마감일</string>
+    <string name="tasks_field_due_time">마감 시간</string>
+    <string name="tasks_field_priority">우선순위</string>
+    <string name="tasks_field_status">상태</string>
+    <string name="tasks_field_reminder">알림</string>
+    <string name="tasks_field_estimated_time">예상 시간</string>
+    <string name="tasks_field_actual_time">실제 시간</string>
+    <string name="tasks_field_link_event">일정 연결</string>
+    <string name="tasks_field_subtasks">하위 작업</string>
+    <string name="tasks_add_subtask">하위 작업 추가</string>
+    <string name="tasks_subtask_count">하위 작업 %1$d개</string>
+    <string name="tasks_subtask_count_plural">하위 작업 %1$d개</string>
+    <string name="tasks_subtask_completed">%1$d/%2$d 완료</string>
+    <string name="tasks_pomodoro_sessions">집중 세션</string>
+    <string name="tasks_no_due_date">마감일 없음</string>
+    <string name="tasks_no_due_time">시간 설정 안 됨</string>
+    <string name="tasks_no_reminder">알림 없음</string>
+    <string name="tasks_no_estimated">예상 시간 없음</string>
+    <string name="tasks_create_success">작업이 생성되었습니다.</string>
+    <string name="tasks_update_success">작업이 업데이트되었습니다.</string>
+    <string name="tasks_delete_success">작업이 삭제되었습니다.</string>
+    <string name="tasks_restore_success">작업이 복원되었습니다.</string>
+    <string name="tasks_complete_success">작업이 완료되었습니다.</string>
+    <string name="tasks_reorder_success">작업 순서가 변경되었습니다.</string>
+    <string name="tasks_status_updated">상태가 업데이트되었습니다.</string>
+    <string name="tasks_delete_confirm_title">작업을 삭제할까요?</string>
+    <string name="tasks_delete_confirm_body">이 작업이 삭제됩니다.</string>
+    <string name="tasks_minutes">%1$d분</string>
+    <string name="tasks_hours_minutes">%1$dh %2$dm</string>
+    <string name="tasks_swipe_complete">완료</string>
+    <string name="tasks_swipe_delete">삭제</string>
+    <string name="tasks_sort_due_date">마감일</string>
+    <string name="tasks_sort_priority">우선순위</string>
+    <string name="tasks_sort_created">생성일</string>
+    <string name="tasks_sort_title">제목</string>
+    <string name="tasks_filter_priority">우선순위로 필터</string>
+    <string name="tasks_filter_status">상태로 필터</string>
+    <string name="tasks_filter_due">마감일로 필터</string>
+    <string name="tasks_overdue_label">기한 초과</string>
+    <string name="tasks_due_today_label">오늘 마감</string>
+    <string name="tasks_due_tomorrow_label">내일 마감</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">낮음</string>
+    <string name="priority_medium">중간</string>
+    <string name="priority_high">높음</string>
+    <string name="priority_urgent">긴급</string>
+
+    <string name="status_todo">할 일</string>
+    <string name="status_in_progress">진행 중</string>
+    <string name="status_on_hold">보류</string>
+    <string name="status_done">완료</string>
+    <string name="status_cancelled">취소됨</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">할 일</string>
+    <string name="kanban_column_in_progress">진행 중</string>
+    <string name="kanban_column_on_hold">보류</string>
+    <string name="kanban_column_done">완료</string>
+    <string name="kanban_add_task">작업 추가</string>
+    <string name="kanban_drag_hint">길게 누르고 드래그하여 이동</string>
+    <string name="kanban_column_empty">작업이 없습니다</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">캘린더</string>
+    <string name="calendar_view_week">주</string>
+    <string name="calendar_view_month">월</string>
+    <string name="calendar_today">오늘</string>
+    <string name="calendar_new_event">새 일정</string>
+    <string name="calendar_no_events">일정 없음</string>
+    <string name="calendar_all_day">종일</string>
+    <string name="calendar_recurring">반복</string>
+    <string name="calendar_events_count">일정 %1$d개</string>
+    <string name="calendar_events_count_plural">일정 %1$d개</string>
+    <string name="calendar_more_events">+%1$d개 더</string>
+    <string name="calendar_week_header">%1$s 주</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">새 일정</string>
+    <string name="event_edit_title">일정 편집</string>
+    <string name="event_field_title">일정 제목</string>
+    <string name="event_field_title_hint">일정 이름은 무엇인가요?</string>
+    <string name="event_field_description">설명</string>
+    <string name="event_field_description_hint">이 일정에 대한 메모 추가…</string>
+    <string name="event_field_location">장소</string>
+    <string name="event_field_location_hint">장소 추가</string>
+    <string name="event_field_start">시작</string>
+    <string name="event_field_end">종료</string>
+    <string name="event_field_all_day">종일 일정</string>
+    <string name="event_field_color">색상</string>
+    <string name="event_field_recurrence">반복</string>
+    <string name="event_field_reminder">알림</string>
+    <string name="event_field_link_task">작업 연결</string>
+    <string name="event_recurrence_none">반복 안 함</string>
+    <string name="event_recurrence_daily">매일</string>
+    <string name="event_recurrence_weekly">매주</string>
+    <string name="event_recurrence_monthly">매월</string>
+    <string name="event_recurrence_yearly">매년</string>
+    <string name="event_recurrence_custom">사용자 지정</string>
+    <string name="event_recurrence_weekdays">평일마다 (월–금)</string>
+    <string name="event_recurrence_end_date">종료일</string>
+    <string name="event_recurrence_end_never">없음</string>
+    <string name="event_recurrence_label">반복: %1$s</string>
+    <string name="event_reminder_none">알림 없음</string>
+    <string name="event_reminder_at_time">일정 시간에</string>
+    <string name="event_reminder_5_min">5분 전</string>
+    <string name="event_reminder_10_min">10분 전</string>
+    <string name="event_reminder_15_min">15분 전</string>
+    <string name="event_reminder_30_min">30분 전</string>
+    <string name="event_reminder_1_hour">1시간 전</string>
+    <string name="event_reminder_1_day">1일 전</string>
+    <string name="event_create_success">일정이 생성되었습니다.</string>
+    <string name="event_update_success">일정이 업데이트되었습니다.</string>
+    <string name="event_delete_success">일정이 삭제되었습니다.</string>
+    <string name="event_restore_success">일정이 복원되었습니다.</string>
+    <string name="event_delete_confirm_title">일정을 삭제할까요?</string>
+    <string name="event_delete_confirm_body">이 일정이 삭제됩니다.</string>
+    <string name="event_delete_recurring_title">반복 일정 삭제</string>
+    <string name="event_delete_recurring_body">이 일정만 삭제하시겠습니까, 아니면 전체 시리즈를 삭제하시겠습니까?</string>
+    <string name="event_delete_this_only">이 일정만</string>
+    <string name="event_delete_all_in_series">전체 시리즈</string>
+    <string name="event_end_before_start">종료 시간은 시작 시간 이후여야 합니다.</string>
+    <string name="event_location_open_maps">지도에서 열기</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">회의</string>
+    <string name="event_template_focus">집중 시간</string>
+    <string name="event_template_break">휴식</string>
+    <string name="event_template_travel">이동</string>
+    <string name="event_join_meeting">회의 참여</string>
+    <string name="event_navigate">길 찾기</string>
+    <string name="event_share">일정 공유</string>
+    <string name="event_duplicate">복제</string>
+    <string name="event_weather">날씨</string>
+    <string name="event_attendees">참석자</string>
+    <string name="event_timezone">시간대</string>
+    <string name="event_travel_time">이동 시간</string>
+    <string name="event_conflict_detected">시간 충돌이 감지되었습니다</string>
+    <string name="event_reminder_multiple">여러 알림</string>
+    <string name="event_reminder_add">알림 추가</string>
+    <string name="event_reminder_custom">사용자 지정</string>
+    <string name="event_voice_input">음성 입력</string>
+    <string name="event_smart_suggestion">스마트 제안</string>
+    <string name="event_free_busy">약속 있음/없음</string>
+    <string name="event_suggested_times">제안된 시간</string>
+    <string name="calendar_view_day">일</string>
+    <string name="calendar_view_agenda">안건</string>
+    <string name="calendar_view_year">년</string>
+    <string name="calendar_date_jump">날짜로 이동</string>
+    <string name="calendar_swipe_instruction">스와이프하여 이동</string>
+    <string name="calendar_pinch_zoom">핀치하여 확대/축소</string>
+    <string name="calendar_no_events_day">이 날짜에 일정이 없습니다</string>
+    <string name="calendar_all_day_section">종일</string>
+    <string name="calendar_agenda_empty">예정된 일정이 없습니다</string>
+    <string name="calendar_heat_map_label">활동</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">집중</string>
+    <string name="pomodoro_focus">집중</string>
+    <string name="pomodoro_short_break">짧은 휴식</string>
+    <string name="pomodoro_long_break">긴 휴식</string>
+    <string name="pomodoro_session_focus">집중 세션</string>
+    <string name="pomodoro_session_short_break">짧은 휴식</string>
+    <string name="pomodoro_session_long_break">긴 휴식</string>
+    <string name="pomodoro_start">시작</string>
+    <string name="pomodoro_pause">일시 정지</string>
+    <string name="pomodoro_resume">재개</string>
+    <string name="pomodoro_skip">건너뛰기</string>
+    <string name="pomodoro_stop">중지</string>
+    <string name="pomodoro_reset">초기화</string>
+    <string name="pomodoro_link_task">작업 연결</string>
+    <string name="pomodoro_link_task_hint">탭하여 작업 연결</string>
+    <string name="pomodoro_linked_task">집중 중: %1$s</string>
+    <string name="pomodoro_sessions_today">오늘 %1$d회 세션</string>
+    <string name="pomodoro_sessions_today_plural">오늘 %1$d회 세션</string>
+    <string name="pomodoro_focus_time_today">오늘 %1$s 집중함</string>
+    <string name="pomodoro_completed_today">오늘 완료</string>
+    <string name="pomodoro_no_active_session">활성 세션 없음</string>
+    <string name="pomodoro_session_complete_title">세션 완료! 🎉</string>
+    <string name="pomodoro_session_complete_body">훌륭합니다. 휴식을 취하세요!</string>
+    <string name="pomodoro_break_complete_title">휴식 종료</string>
+    <string name="pomodoro_break_complete_body">다시 집중할 준비가 되셨나요?</string>
+    <string name="pomodoro_start_success">세션이 시작되었습니다.</string>
+    <string name="pomodoro_end_success">세션이 완료되었습니다.</string>
+    <string name="pomodoro_interrupt_success">세션이 중단되었습니다.</string>
+    <string name="pomodoro_interrupt_reason_hint">왜 중단하시나요? (선택 사항)</string>
+    <string name="pomodoro_interrupt_confirm_title">세션을 중지할까요?</string>
+    <string name="pomodoro_interrupt_confirm_body">진행 상황은 저장되지만 세션은 중단된 것으로 표시됩니다.</string>
+    <string name="pomodoro_already_active">이미 활성 세션이 있습니다. 새 세션을 시작하기 전에 종료하세요.</string>
+    <string name="pomodoro_stats_title">오늘의 통계</string>
+    <string name="pomodoro_history_title">세션 기록</string>
+    <string name="pomodoro_history_empty_title">아직 세션이 없습니다</string>
+    <string name="pomodoro_history_empty_body">집중 세션을 시작하면 여기에 기록이 표시됩니다.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">중단됨</string>
+    <string name="pomodoro_session_completed">완료됨</string>
+    <string name="pomodoro_dot_current">현재 세션</string>
+    <string name="pomodoro_dot_completed">완료된 세션</string>
+    <string name="pomodoro_dot_upcoming">예정된 세션</string>
+    <string name="pomodoro_notification_channel_name">뽀모도로 타이머</string>
+    <string name="pomodoro_notification_channel_desc">실시간 타이머 업데이트 및 세션 알림.</string>
+    <string name="pomodoro_notification_running">%1$s 남음 — %2$s</string>
+    <string name="pomodoro_notification_action_pause">일시 정지</string>
+    <string name="pomodoro_notification_action_skip">건너뛰기</string>
+    <string name="pomodoro_notification_action_stop">중지</string>
+    <string name="pomodoro_cycle_count">%1$d/%2$d 주기</string>
+    <string name="pomodoro_until_long_break">긴 휴식까지 %1$d회 세션</string>
+    <string name="pomodoro_until_long_break_plural">긴 휴식까지 %1$d회 세션</string>
+
+    <string name="pomodoro_swipe_to_skip">건너뛰려면 스와이프하세요</string>
+    <string name="pomodoro_extend_1min">+1분</string>
+    <string name="pomodoro_focus_analytics">집중 분석</string>
+    <string name="pomodoro_streak_day">%1$d일 연속</string>
+    <string name="pomodoro_best_streak">최고: %1$d일</string>
+    <string name="pomodoro_weekly_intensity">주간 집중도</string>
+    <string name="pomodoro_focus_by_category">카테고리별 집중 시간</string>
+    <string name="pomodoro_quality_score">품질 점수</string>
+    <string name="pomodoro_total_focus_time">전체 집중 시간</string>
+    <string name="pomodoro_daily_goal">일일 목표</string>
+    <string name="pomodoro_weekly_goal">주간 목표</string>
+    <string name="pomodoro_exit_focus_mode">집중 모드 종료</string>
+    <string name="pomodoro_dnd_access_required">방해 금지 접근 권한이 필요합니다. 설정에서 활성화해 주세요.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI 어시스턴트</string>
+    <string name="ai_welcome_title">무엇을 도와드릴까요?</string>
+    <string name="ai_welcome_body">작업 공간의 작업, 일정, 노트를 확인하여 상황에 맞는 답변을 제공합니다.</string>
+    <string name="ai_message_hint">메시지…</string>
+    <string name="ai_send">보내기</string>
+    <string name="ai_new_conversation">새 대화</string>
+    <string name="ai_conversations_title">대화</string>
+    <string name="ai_conversation_empty">아직 메시지가 없습니다</string>
+    <string name="ai_conversations_empty_title">아직 대화가 없습니다</string>
+    <string name="ai_conversations_empty_body">작업 공간에 대한 도움을 받으려면 새 대화를 시작하세요.</string>
+    <string name="ai_delete_conversation_title">대화를 삭제할까요?</string>
+    <string name="ai_delete_conversation_body">이 대화와 모든 메시지가 영구 삭제됩니다.</string>
+    <string name="ai_delete_conversation_success">대화가 삭제되었습니다.</string>
+    <string name="ai_clear_conversation_title">대화를 지울까요?</string>
+    <string name="ai_clear_conversation_body">이 대화의 모든 메시지가 지워집니다.</string>
+    <string name="ai_suggestion_due_today">오늘 마감인 것은?</string>
+    <string name="ai_suggestion_overdue">기한 초과 작업 요약</string>
+    <string name="ai_suggestion_start_focus">집중 세션 시작</string>
+    <string name="ai_suggestion_meeting_agenda">회의 안건 작성</string>
+    <string name="ai_context_title">작업 공간</string>
+    <string name="ai_context_active_tasks">활성 작업</string>
+    <string name="ai_context_events_week">이번 주 일정</string>
+    <string name="ai_context_last_note">마지막 노트</string>
+    <string name="ai_context_focus_today">오늘의 집중 시간</string>
+    <string name="ai_context_overdue">기한 초과</string>
+    <string name="ai_context_caption">이 컨텍스트는 모든 메시지와 함께 AI로 전송됩니다.</string>
+    <string name="ai_context_refresh">컨텍스트 새로고침</string>
+    <string name="ai_typing">AI가 생각 중…</string>
+    <string name="ai_streaming">응답 생성 중…</string>
+    <string name="ai_error_unavailable">AI 어시스턴트를 현재 사용할 수 없습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="ai_error_stream">응답 생성 중 오류가 발생했습니다.</string>
+    <string name="ai_action_create_task">작업 만들기</string>
+    <string name="ai_action_create_note">노트 만들기</string>
+    <string name="ai_action_add_event">일정 추가</string>
+    <string name="ai_action_confirm">확인</string>
+    <string name="ai_action_dismiss">닫기</string>
+    <string name="ai_action_executed">완료! 항목이 생성되었습니다.</string>
+    <string name="ai_action_dismissed">닫혔습니다.</string>
+    <string name="ai_copy_message">메시지 복사</string>
+    <string name="ai_message_copied">메시지가 복사되었습니다.</string>
+    <string name="ai_regenerate">응답 다시 생성</string>
+    <string name="ai_you">나</string>
+    <string name="ai_assistant">어시스턴트</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">검색</string>
+    <string name="search_hint">노트, 작업, 일정 검색…</string>
+    <string name="search_results_notes">노트</string>
+    <string name="search_results_tasks">작업</string>
+    <string name="search_results_events">일정</string>
+    <string name="search_recent">최근 검색</string>
+    <string name="search_clear_recent">지우기</string>
+    <string name="search_empty_title">\'%1$s\'에 대한 결과가 없습니다</string>
+    <string name="search_empty_body">다른 키워드를 시도하거나 철자를 확인해 주세요.</string>
+    <string name="search_results_count">결과 %1$d개</string>
+    <string name="search_results_count_plural">결과 %1$d개</string>
+    <string name="search_type_note">노트</string>
+    <string name="search_type_task">작업</string>
+    <string name="search_type_event">일정</string>
+    <string name="search_offline_notice">로컬에서 검색 중입니다. 전체 결과를 보려면 인터넷에 연결하세요.</string>
+    <string name="search_loading">검색 중…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">프로필</string>
+    <string name="profile_edit_title">프로필 편집</string>
+    <string name="profile_change_photo">사진 변경</string>
+    <string name="profile_remove_photo">사진 제거</string>
+    <string name="profile_photo_updated">프로필 사진이 업데이트되었습니다.</string>
+    <string name="profile_photo_removed">프로필 사진이 제거되었습니다.</string>
+    <string name="profile_photo_pick">갤러리에서 선택</string>
+    <string name="profile_photo_camera">사진 찍기</string>
+    <string name="profile_update_success">프로필이 업데이트되었습니다.</string>
+    <string name="profile_stats_notes">노트</string>
+    <string name="profile_stats_tasks_completed">완료된 작업</string>
+    <string name="profile_stats_focus_this_week">이번 주 집중 시간</string>
+    <string name="profile_member_since">%1$s부터 회원</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">아직 소개가 없습니다.</string>
+    <string name="profile_section_account">계정</string>
+    <string name="profile_section_appearance">외관</string>
+    <string name="profile_section_pomodoro">뽀모도로</string>
+    <string name="profile_section_notifications">알림</string>
+    <string name="profile_section_ai">AI 어시스턴트</string>
+    <string name="profile_section_data">데이터 및 동기화</string>
+    <string name="profile_section_about">정보</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">환경 설정</string>
+    <string name="preferences_update_success">환경 설정이 저장되었습니다.</string>
+    <string name="preferences_pomodoro_focus">집중 시간</string>
+    <string name="preferences_pomodoro_focus_desc">각 집중 세션의 길이</string>
+    <string name="preferences_pomodoro_short_break">짧은 휴식</string>
+    <string name="preferences_pomodoro_short_break_desc">세션 사이의 짧은 휴식 길이</string>
+    <string name="preferences_pomodoro_long_break">긴 휴식</string>
+    <string name="preferences_pomodoro_long_break_desc">전체 주기 후 긴 휴식 길이</string>
+    <string name="preferences_pomodoro_cycles">긴 휴식 전 세션 수</string>
+    <string name="preferences_pomodoro_cycles_desc">긴 휴식 전 집중 세션 수</string>
+    <string name="preferences_pomodoro_auto_start_breaks">휴식 자동 시작</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">세션 종료 시 휴식을 자동으로 시작</string>
+    <string name="preferences_pomodoro_auto_start_focus">집중 자동 시작</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">휴식 후 다음 세션을 자동으로 시작</string>
+    <string name="preferences_pomodoro_sound">소리</string>
+    <string name="preferences_pomodoro_sound_desc">세션 종료 시 소리 재생</string>
+    <string name="preferences_notify_task_reminders">작업 알림</string>
+    <string name="preferences_notify_task_reminders_desc">작업 알림이 있을 때 알림 받기</string>
+    <string name="preferences_notify_event_reminders">일정 알림</string>
+    <string name="preferences_notify_event_reminders_desc">캘린더 일정 전에 알림 받기</string>
+    <string name="preferences_notify_pomodoro_end">뽀모도로 종료</string>
+    <string name="preferences_notify_pomodoro_end_desc">뽀모도로 세션 종료 시 알림 받기</string>
+    <string name="preferences_notify_daily_summary">일일 요약</string>
+    <string name="preferences_notify_daily_summary_desc">아침에 하루 요약 받기</string>
+    <string name="preferences_default_task_view">기본 작업 보기</string>
+    <string name="preferences_default_task_sort">기본 작업 정렬</string>
+    <string name="preferences_show_completed_tasks">완료된 작업 표시</string>
+    <string name="preferences_show_completed_tasks_desc">작업 목록에 완료된 작업 포함</string>
+    <string name="preferences_default_calendar_view">기본 캘린더 보기</string>
+    <string name="preferences_week_starts_on">주 시작일</string>
+    <string name="preferences_week_starts_monday">월요일</string>
+    <string name="preferences_week_starts_sunday">일요일</string>
+    <string name="preferences_ai_context">작업 공간 컨텍스트</string>
+    <string name="preferences_ai_context_desc">작업, 일정, 노트를 AI 어시스턴트와 공유</string>
+    <string name="preferences_ai_model">AI 모델</string>
+    <string name="preferences_ai_model_desc">어시스턴트의 AI 모델 선택</string>
+    <string name="preferences_compact_mode">간결 모드</string>
+    <string name="preferences_compact_mode_desc">더 조밀한 레이아웃으로 더 많은 콘텐츠 표시</string>
+    <string name="preferences_minutes_format">%1$d분</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">동기화됨</string>
+    <string name="sync_status_pending">동기화 대기 중</string>
+    <string name="sync_status_syncing">동기화 중…</string>
+    <string name="sync_status_conflict">동기화 충돌</string>
+    <string name="sync_status_error">동기화 오류</string>
+    <string name="sync_last_synced">마지막 동기화: %1$s</string>
+    <string name="sync_never_synced">동기화되지 않음</string>
+    <string name="sync_conflict_title">동기화 충돌</string>
+    <string name="sync_conflict_body">\'%1$s\'에 대한 충돌이 감지되었습니다. 어떤 버전을 유지하시겠습니까?</string>
+    <string name="sync_conflict_keep_local">로컬 버전 유지</string>
+    <string name="sync_conflict_keep_server">서버 버전 유지</string>
+    <string name="sync_conflict_resolved">충돌이 해결되었습니다.</string>
+    <string name="sync_pending_count">변경 %1$d개 대기 중</string>
+    <string name="sync_pending_count_plural">변경 %1$d개 대기 중</string>
+    <string name="sync_offline_banner">오프라인 상태입니다. 다시 연결되면 변경 사항이 동기화됩니다.</string>
+    <string name="sync_reconnected">온라인으로 복귀했습니다. 동기화 중…</string>
+    <string name="sync_complete">모든 변경 사항이 동기화되었습니다.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">알림</string>
+    <string name="notification_channel_reminders_desc">작업 및 일정 알림.</string>
+    <string name="notification_channel_sync_name">동기화</string>
+    <string name="notification_channel_sync_desc">백그라운드 동기화 상태 알림.</string>
+    <string name="notification_task_reminder_title">작업 알림</string>
+    <string name="notification_task_reminder_body">%1$s 마감이 임박했습니다.</string>
+    <string name="notification_event_reminder_title">다가오는 일정</string>
+    <string name="notification_event_reminder_body">%1$s이(가) %2$s 후에 시작됩니다.</string>
+    <string name="notification_daily_summary_title">하루 개요</string>
+    <string name="notification_daily_summary_body">오늘 마감 %1$d개 작업, 다가오는 일정 %2$d개.</string>
+    <string name="notification_permission_title">알림 활성화</string>
+    <string name="notification_permission_body">알림, 집중 세션 및 일일 요약을 놓치지 마세요.</string>
+    <string name="notification_permission_allow">허용</string>
+    <string name="notification_permission_deny">지금은 안 함</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">카메라 접근</string>
+    <string name="permission_camera_body">ProductivityX가 프로필 사진을 찍기 위해 카메라 접근이 필요합니다.</string>
+    <string name="permission_storage_title">저장소 접근</string>
+    <string name="permission_storage_body">ProductivityX가 프로필 사진을 선택하기 위해 저장소 접근이 필요합니다.</string>
+    <string name="permission_notification_title">알림 접근</string>
+    <string name="permission_notification_body">작업 알림 및 뽀모도로 알림을 받으려면 알림을 허용하세요.</string>
+    <string name="permission_denied_title">권한 필요</string>
+    <string name="permission_denied_body">이 기능은 권한이 필요합니다. 설정에서 활성화해 주세요.</string>
+    <string name="permission_go_to_settings">설정 열기</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">방금</string>
+    <string name="time_minutes_ago">%1$d분 전</string>
+    <string name="time_hours_ago">%1$dh 전</string>
+    <string name="time_yesterday">어제</string>
+    <string name="time_days_ago">%1$d일 전</string>
+    <string name="time_weeks_ago">%1$d주 전</string>
+    <string name="time_weeks_ago_plural">%1$d주 전</string>
+    <string name="time_months_ago">%1$d개월 전</string>
+    <string name="time_months_ago_plural">%1$d개월 전</string>
+    <string name="time_format_date">yyyy. M. d</string>
+    <string name="time_format_date_short">M. d</string>
+    <string name="time_format_time">a h:mm</string>
+    <string name="time_format_datetime">yyyy. M. d a h:mm</string>
+    <string name="time_format_day_month">M. d</string>
+    <string name="time_format_full">yyyy년 M월 d일 EEEE</string>
+    <string name="time_am">오전</string>
+    <string name="time_pm">오후</string>
+    <string name="time_hour_singular">%1$d시간</string>
+    <string name="time_hour_plural">%1$d시간</string>
+    <string name="time_minute_singular">%1$d분</string>
+    <string name="time_minute_plural">%1$d분</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">월</string>
+    <string name="day_tuesday_short">화</string>
+    <string name="day_wednesday_short">수</string>
+    <string name="day_thursday_short">목</string>
+    <string name="day_friday_short">금</string>
+    <string name="day_saturday_short">토</string>
+    <string name="day_sunday_short">일</string>
+    <string name="day_monday">월요일</string>
+    <string name="day_tuesday">화요일</string>
+    <string name="day_wednesday">수요일</string>
+    <string name="day_thursday">목요일</string>
+    <string name="day_friday">금요일</string>
+    <string name="day_saturday">토요일</string>
+    <string name="day_sunday">일요일</string>
+
+    <string name="month_january">1월</string>
+    <string name="month_february">2월</string>
+    <string name="month_march">3월</string>
+    <string name="month_april">4월</string>
+    <string name="month_may">5월</string>
+    <string name="month_june">6월</string>
+    <string name="month_july">7월</string>
+    <string name="month_august">8월</string>
+    <string name="month_september">9월</string>
+    <string name="month_october">10월</string>
+    <string name="month_november">11월</string>
+    <string name="month_december">12월</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">아직 아무것도 없습니다</string>
+    <string name="empty_state_generic_body">새 항목을 만들어 시작하세요.</string>
+    <string name="empty_state_no_results_title">결과를 찾을 수 없습니다</string>
+    <string name="empty_state_no_results_body">다른 검색어나 필터를 시도해 보세요.</string>
+    <string name="empty_state_offline_title">오프라인 상태입니다</string>
+    <string name="empty_state_offline_body">인터넷에 연결하여 콘텐츠를 불러오세요.</string>
+    <string name="empty_state_error_title">문제가 발생했습니다</string>
+    <string name="empty_state_error_body">아래로 당겨 새로고침하거나 아래 버튼을 탭하세요.</string>
+    <string name="empty_state_retry">다시 시도</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">뒤로 이동</string>
+    <string name="cd_close">닫기</string>
+    <string name="cd_more_options">더 보기</string>
+    <string name="cd_search">검색</string>
+    <string name="cd_filter">필터</string>
+    <string name="cd_sort">정렬</string>
+    <string name="cd_add">추가</string>
+    <string name="cd_delete">삭제</string>
+    <string name="cd_edit">편집</string>
+    <string name="cd_restore">복원</string>
+    <string name="cd_pin">노트 고정</string>
+    <string name="cd_unpin">노트 고정 해제</string>
+    <string name="cd_check_task">작업 완료로 표시</string>
+    <string name="cd_uncheck_task">작업 미완료로 표시</string>
+    <string name="cd_profile_picture">프로필 사진</string>
+    <string name="cd_send_message">메시지 보내기</string>
+    <string name="cd_play_pause">타이머 재생 또는 일시 정지</string>
+    <string name="cd_skip_session">세션 건너뛰기</string>
+    <string name="cd_stop_session">세션 중지</string>
+    <string name="cd_sync_status">동기화 상태: %1$s</string>
+    <string name="cd_password_toggle">비밀번호 표시 전환</string>
+    <string name="cd_clear_input">입력 지우기</string>
+    <string name="cd_remove_subtask">하위 작업 제거</string>
+    <string name="cd_notification">알림</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">세션 확인 중…</string>
+    <string name="splash_loading">로딩 중…</string>
+
+    <string name="dialog_unsaved_changes_title">저장되지 않은 변경 사항</string>
+    <string name="dialog_unsaved_changes_body">저장되지 않은 변경 사항이 있습니다. 버리시겠습니까?</string>
+    <string name="dialog_unsaved_changes_save">저장</string>
+    <string name="dialog_unsaved_changes_discard">버리기</string>
+    <string name="dialog_date_picker_title">날짜 선택</string>
+    <string name="dialog_time_picker_title">시간 선택</string>
+    <string name="dialog_color_picker_title">색상 선택</string>
+    <string name="dialog_task_picker_title">작업 연결</string>
+    <string name="dialog_event_picker_title">일정 연결</string>
+    <string name="dialog_tag_manager_title">태그 관리</string>
+
+    <string name="task_view_list">리스트</string>
+    <string name="task_view_kanban">보드</string>
+
+    <string name="snackbar_undo">실행 취소</string>
+    <string name="snackbar_note_deleted">노트 삭제됨</string>
+    <string name="snackbar_task_deleted">작업 삭제됨</string>
+    <string name="snackbar_event_deleted">일정 삭제됨</string>
+    <string name="snackbar_tag_deleted">태그 삭제됨</string>
+    <string name="snackbar_copied">클립보드에 복사됨</string>
+    <string name="snackbar_no_internet">인터넷에 연결되어 있지 않습니다</string>
+    <string name="snackbar_changes_saved">변경 사항이 저장되었습니다</string>
+
+    <string name="about_version">버전 %1$s</string>
+    <string name="about_build">빌드 %1$s</string>
+    <string name="about_privacy_policy">개인정보 처리방침</string>
+    <string name="about_terms_of_service">이용약관</string>
+    <string name="about_open_source_licenses">오픈소스 라이선스</string>
+    <string name="about_rate_app">앱 평가하기</string>
+    <string name="about_send_feedback">피드백 보내기</string>
+    <string name="about_built_by">Oussama Chatri 제작</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">데이터 내보내기</string>
+    <string name="data_export_body">모든 노트, 작업, 일정을 파일로 다운로드하세요.</string>
+    <string name="data_export_action">내보내기</string>
+    <string name="data_export_success">데이터 내보내기가 준비되었습니다.</string>
+    <string name="data_delete_account_title">계정 삭제</string>
+    <string name="data_delete_account_body">계정 및 모든 관련 데이터를 영구 삭제합니다. 되돌릴 수 없습니다.</string>
+    <string name="data_delete_account_action">계정 삭제</string>
+    <string name="data_delete_account_confirm_title">계정을 삭제할까요?</string>
+    <string name="data_delete_account_confirm_body">모든 노트, 작업, 일정, 대화가 영구 삭제됩니다. 이 작업은 되돌릴 수 없습니다.</string>
+    <string name="data_delete_account_type_confirm">확인하려면 삭제 입력</string>
+    <string name="data_delete_account_confirm_word">삭제</string>
+
+    <string name="update_available_title">업데이트 가능</string>
+    <string name="update_available_body">ProductivityX의 새 버전이 있습니다. 최신 기능과 수정 사항을 위해 지금 업데이트하세요.</string>
+    <string name="update_now">지금 업데이트</string>
+    <string name="update_later">나중에</string>
+
+    <string name="auth_check_your_email">이메일을 확인해 주세요</string>
+    <string name="auth_otp_sent_body">%s(으)로 6자리 코드를 보냈습니다</string>
+
+    <string name="language_en">영어</string>
+    <string name="language_fr">프랑스어</string>
+    <string name="language_ar">아랍어</string>
+    <string name="language_es">스페인어</string>
+    <string name="language_de">독일어</string>
+    <string name="language_ko">한국어</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">작업</string>
+    <string name="widget_task_list_empty">오늘 마감인 작업이 없습니다</string>
+    <string name="widget_pomodoro_title">뽀모도로</string>
+    <string name="widget_pomodoro_start">탭하여 집중 시작</string>
+    <string name="widget_quick_note_title">빠른 노트</string>
+    <string name="widget_quick_note_hint">탭하여 노트 추가</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">오늘의 작업</string>
+    <string name="home_widget_events">다가오는 일정</string>
+    <string name="home_widget_focus">오늘의 집중 시간</string>
+    <string name="home_widget_notes">최근 노트</string>
+    <string name="home_widget_quote">일일 명언</string>
+    <string name="home_widget_ai">AI 어시스턴트</string>
+    <string name="home_widget_focus_mode">빠른 집중</string>
+    <string name="home_expand">펼치기</string>
+    <string name="home_collapse">접기</string>
+    <string name="home_see_all">모두 보기</string>
+    <string name="home_empty_tasks">오늘 마감인 작업이 없습니다</string>
+    <string name="home_empty_events">다가오는 일정이 없습니다</string>
+    <string name="home_empty_notes">최근 노트가 없습니다</string>
+    <string name="home_empty_focus">아직 집중 시간이 없습니다</string>
+    <string name="home_focus_mode_active">집중 모드</string>
+    <string name="home_focus_mode_inactive">빠른 집중</string>
+    <string name="home_focus_mode_desc_active">방해 요소 최소화</string>
+    <string name="home_focus_mode_desc_inactive">탭하여 집중 모드 전환</string>
+    <string name="home_quick_action_new_note">새 노트</string>
+    <string name="home_quick_action_new_task">새 작업</string>
+    <string name="home_quick_action_start_timer">타이머 시작</string>
+    <string name="home_quick_action_ai_chat">AI 채팅</string>
+    <string name="home_voice_prompt">무엇을 하시겠습니까?</string>
+    <string name="home_voice_listening">듣는 중…</string>
+    <string name="home_pull_to_refresh">당겨서 새로고침</string>
+    <string name="home_syncing">동기화 중…</string>
+    <string name="home_refreshed">대시보드 업데이트됨</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">새 노트</string>
+    <string name="shortcut_new_task">새 작업</string>
+    <string name="shortcut_start_focus">집중 시작</string>
+    <string name="shortcut_ai_chat">AI 채팅</string>
+    <string name="shortcut_note_short_label">노트</string>
+    <string name="shortcut_task_short_label">작업</string>
+    <string name="shortcut_focus_short_label">집중</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>
