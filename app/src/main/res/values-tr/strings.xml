@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Çalışma alanın. Birleşik.</string>
+    <string name="app_description">Notlar, görevler, takvim, odak zamanlayıcı ve gününü gerçekten anlayan bir AI asistanı.</string>
+
+    <string name="ok">Tamam</string>
+    <string name="cancel">İptal</string>
+    <string name="save">Kaydet</string>
+    <string name="delete">Sil</string>
+    <string name="edit">Düzenle</string>
+    <string name="done">Tamamlandı</string>
+    <string name="back">Geri</string>
+    <string name="close">Kapat</string>
+    <string name="confirm">Onayla</string>
+    <string name="discard">At</string>
+    <string name="retry">Tekrar dene</string>
+    <string name="skip">Geç</string>
+    <string name="next">İleri</string>
+    <string name="previous">Önceki</string>
+    <string name="continue_action">Devam et</string>
+    <string name="finish">Bitir</string>
+    <string name="apply">Uygula</string>
+    <string name="reset">Sıfırla</string>
+    <string name="clear">Temizle</string>
+    <string name="search">Ara</string>
+    <string name="filter">Filtrele</string>
+    <string name="sort">Sırala</string>
+    <string name="share">Paylaş</string>
+    <string name="copy">Kopyala</string>
+    <string name="paste">Yapıştır</string>
+    <string name="undo">Geri al</string>
+    <string name="redo">Yinele</string>
+    <string name="select_all">Tümünü seç</string>
+    <string name="deselect_all">Tüm seçimi kaldır</string>
+    <string name="more_options">Daha fazla seçenek</string>
+    <string name="settings">Ayarlar</string>
+    <string name="help">Yardım</string>
+    <string name="feedback">Geri bildirim</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="refreshing">Yenileniyor…</string>
+    <string name="saving">Kaydediliyor…</string>
+    <string name="deleting">Siliniyor…</string>
+    <string name="please_wait">Lütfen bekle…</string>
+    <string name="see_all">Tümünü gör</string>
+    <string name="show_less">Daha az göster</string>
+    <string name="show_more">Daha fazla göster</string>
+    <string name="optional">İsteğe bağlı</string>
+    <string name="required">Zorunlu</string>
+    <string name="none">Hiçbiri</string>
+    <string name="unknown">Bilinmiyor</string>
+    <string name="today">Bugün</string>
+    <string name="yesterday">Dün</string>
+    <string name="tomorrow">Yarın</string>
+    <string name="this_week">Bu hafta</string>
+    <string name="last_week">Geçen hafta</string>
+    <string name="next_week">Gelecek hafta</string>
+    <string name="this_month">Bu ay</string>
+    <string name="all">Tümü</string>
+    <string name="new_action">Yeni</string>
+    <string name="add">Ekle</string>
+    <string name="remove">Kaldır</string>
+    <string name="create">Oluştur</string>
+    <string name="update">Güncelle</string>
+    <string name="restore">Geri yükle</string>
+    <string name="archive">Arşivle</string>
+    <string name="unarchive">Arşivden çıkar</string>
+    <string name="pin">Sabitle</string>
+    <string name="unpin">Sabitlemeyi kaldır</string>
+    <string name="move">Taşı</string>
+    <string name="rename">Yeniden adlandır</string>
+    <string name="duplicate">Çoğalt</string>
+    <string name="open">Aç</string>
+    <string name="view">Görüntüle</string>
+    <string name="preview">Ön izleme</string>
+    <string name="expand">Genişlet</string>
+    <string name="collapse">Daralt</string>
+    <string name="enable">Etkinleştir</string>
+    <string name="disable">Devre dışı bırak</string>
+    <string name="turn_on">Aç</string>
+    <string name="turn_off">Kapat</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="not_now">Şimdi değil</string>
+    <string name="got_it">Anladım</string>
+    <string name="learn_more">Daha fazla bilgi</string>
+    <string name="send">Gönder</string>
+    <string name="submit">Gönder</string>
+    <string name="upload">Yükle</string>
+    <string name="download">İndir</string>
+    <string name="link">Bağlantı</string>
+    <string name="unlink">Bağlantıyı kaldır</string>
+    <string name="connect">Bağlan</string>
+    <string name="disconnect">Bağlantıyı kes</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Bir şeyler yanlış gitti. Lütfen tekrar dene.</string>
+    <string name="error_network">İnternet bağlantısı yok. Ağını kontrol et ve tekrar dene.</string>
+    <string name="error_timeout">İstek zaman aşımına uğradı. Lütfen tekrar dene.</string>
+    <string name="error_server">Sunucu hatası. Lütfen daha sonra tekrar dene.</string>
+    <string name="error_not_found">İstenen öğe bulunamadı.</string>
+    <string name="error_unauthorized">Oturumun süresi doldu. Lütfen tekrar giriş yap.</string>
+    <string name="error_forbidden">Bu işlemi yapma iznin yok.</string>
+    <string name="error_validation">Lütfen formu kontrol et ve hataları düzelt.</string>
+    <string name="error_unknown">Beklenmeyen bir hata oluştu.</string>
+    <string name="error_loading">Yüklenemedi. Tekrar denemek için dokun.</string>
+    <string name="error_saving">Kaydedilemedi. Lütfen tekrar dene.</string>
+    <string name="error_deleting">Silinemedi. Lütfen tekrar dene.</string>
+    <string name="error_no_data">Kullanılabilir veri yok.</string>
+    <string name="error_offline_action">Bu işlem internet bağlantısı gerektiriyor.</string>
+    <string name="error_conflict">Bir çakışma oluştu. Lütfen yenile ve tekrar dene.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Her şey tek bir yerde</string>
+    <string name="onboarding_page1_body">Notlar, görevler ve takvimin tek bir çalışma alanında birbirine bağlı.</string>
+    <string name="onboarding_page2_title">Akışında kal</string>
+    <string name="onboarding_page2_body">Pomodoro zamanlayıcı ne üzerinde çalıştığını bilir ve zamanını otomatik olarak kaydeder.</string>
+    <string name="onboarding_page3_title">Seni anlayan yapay zeka</string>
+    <string name="onboarding_page3_body">Asistanın, yanıt vermeden önce aktif görevlerini, yaklaşan etkinliklerini ve son notlarını görür.</string>
+    <string name="onboarding_get_started">Başla</string>
+    <string name="onboarding_skip">Geç</string>
+    <string name="onboarding_next">İleri</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Giriş yap</string>
+    <string name="auth_sign_up">Kaydol</string>
+    <string name="auth_sign_out">Çıkış yap</string>
+    <string name="auth_log_in">Oturum aç</string>
+    <string name="auth_log_out">Oturumu kapat</string>
+    <string name="auth_create_account">Hesap oluştur</string>
+    <string name="auth_already_have_account">Zaten bir hesabın var mı?</string>
+    <string name="auth_skip_login">Hesapsız devam et</string>
+    <string name="auth_dont_have_account">Hesabın yok mu?</string>
+    <string name="auth_welcome_back">Tekrar hoş geldin</string>
+    <string name="auth_create_your_account">Hesabını oluştur</string>
+    <string name="auth_join_productivityx">ProductivityX\'e katıl</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Şifreni mi unuttun?</string>
+    <string name="auth_forgot_password_title">Şifreni mi unuttun?</string>
+    <string name="auth_forgot_password_body">E-posta adresini gir, şifreni sıfırlaman için bir link gönderelim.</string>
+    <string name="auth_forgot_password_success_title">Sıfırlama linki gönderildi</string>
+    <string name="auth_forgot_password_success_body">Bu e-posta varsa, bir sıfırlama linki gönderildi. Gelen kutunu kontrol et.</string>
+
+    <string name="auth_reset_password_title">Şifreni sıfırla</string>
+    <string name="auth_reset_password_body">Hesabın için yeni bir şifre gir.</string>
+    <string name="auth_reset_password_action">Şifreyi sıfırla</string>
+    <string name="auth_reset_password_success_title">Şifre sıfırlandı!</string>
+    <string name="auth_reset_password_success_body">Şifren değiştirildi. Yeni şifrenle giriş yap.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">E-postanı kontrol et</string>
+    <string name="auth_verify_email_body">%1$s adresine 6 haneli bir kod gönderdik</string>
+    <string name="auth_verify">Doğrula</string>
+    <string name="auth_resend_code">Kodu tekrar gönder</string>
+    <string name="auth_resend_cooldown">%1$s sonra tekrar gönder</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">E-posta adresi</string>
+    <string name="field_email_hint">E-postanı gir</string>
+    <string name="field_password">Şifre</string>
+    <string name="field_password_hint">Şifreni gir</string>
+    <string name="field_password_new">Yeni şifre</string>
+    <string name="field_password_new_hint">Yeni şifreni gir</string>
+    <string name="field_password_confirm">Şifreyi onayla</string>
+    <string name="field_password_confirm_hint">Şifreni tekrar gir</string>
+    <string name="field_password_current">Mevcut şifre</string>
+    <string name="field_password_current_hint">Mevcut şifreni gir</string>
+    <string name="field_username">Kullanıcı adı</string>
+    <string name="field_username_hint">Bir kullanıcı adı seç</string>
+    <string name="field_first_name">Ad</string>
+    <string name="field_first_name_hint">Adını gir</string>
+    <string name="field_last_name">Soyad</string>
+    <string name="field_last_name_hint">Soyadını gir</string>
+    <string name="field_phone">Telefon numarası</string>
+    <string name="field_phone_hint">Telefon numaranı gir</string>
+    <string name="field_birth_date">Doğum tarihi</string>
+    <string name="field_birth_date_hint">Doğum tarihini seç</string>
+    <string name="field_identifier">E-posta, kullanıcı adı veya telefon</string>
+    <string name="field_identifier_hint">E-posta, kullanıcı adı veya telefon gir</string>
+    <string name="field_gender">Cinsiyet</string>
+    <string name="field_bio">Biyografi</string>
+    <string name="field_bio_hint">Kendinden biraz bahset</string>
+    <string name="field_timezone">Saat dilimi</string>
+    <string name="field_language">Dil</string>
+    <string name="field_theme">Tema</string>
+    <string name="field_avatar">Profil fotoğrafı</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Şifreyi göster</string>
+    <string name="password_hide">Şifreyi gizle</string>
+    <string name="password_strength_weak">Zayıf</string>
+    <string name="password_strength_fair">Orta</string>
+    <string name="password_strength_good">İyi</string>
+    <string name="password_strength_strong">Güçlü</string>
+    <string name="password_requirement_length">En az 8 karakter</string>
+    <string name="password_requirement_uppercase">Bir büyük harf</string>
+    <string name="password_requirement_lowercase">Bir küçük harf</string>
+    <string name="password_requirement_number">Bir rakam</string>
+    <string name="password_requirement_special">Bir özel karakter</string>
+    <string name="password_forgot">Şifreni mi unuttun?</string>
+    <string name="password_reset">Şifre sıfırla</string>
+    <string name="password_change">Şifre değiştir</string>
+    <string name="password_mismatch">Şifreler eşleşmiyor.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Hesap</string>
+    <string name="register_step_profile">Profil</string>
+    <string name="register_step_preferences">Tercihler</string>
+    <string name="register_step_verify">Doğrula</string>
+    <string name="register_step_indicator">Adım %1$d / %2$d</string>
+    <string name="register_change_photo">Fotoğrafı değiştir</string>
+    <string name="register_preferences_caption">Bunu istediğin zaman ayarlardan değiştirebilirsin.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Koyu</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_system">Sistem</string>
+
+    <string name="profile_theme">Tema</string>
+    <string name="profile_theme_hint">Bunu istediğin zaman ayarlardan değiştirebilirsin.</string>
+
+    <string name="gender_male">Erkek</string>
+    <string name="gender_female">Kadın</string>
+    <string name="gender_prefer_not_to_say">Belirtmek istemiyorum</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Ana Sayfa</string>
+    <string name="nav_notes">Notlar</string>
+    <string name="nav_tasks">Görevler</string>
+    <string name="nav_calendar">Takvim</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Ara</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Ayarlar</string>
+    <string name="nav_trash">Çöp</string>
+    <string name="nav_history">Geçmiş</string>
+    <string name="nav_events">Etkinlikler</string>
+    <string name="tab_dashboard">Panel</string>
+    <string name="tab_events">Etkinlikler</string>
+    <string name="tab_dashboard_desc">Gününe genel bakış</string>
+    <string name="tab_notes_desc">Düşüncelerini yakala</string>
+    <string name="tab_tasks_desc">İşleri hallet</string>
+    <string name="tab_events_desc">Takvimine bir bakış</string>
+    <string name="tab_pomodoro_desc">Akışında kal</string>
+    <string name="cd_notifications">Bildirimler</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Günaydın, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Tünaydın, %1$s 👋</string>
+    <string name="home_greeting_evening">İyi akşamlar, %1$s 👋</string>
+    <string name="home_greeting_night">İyi geceler, %1$s 👋</string>
+    <string name="home_quick_add">Hızlı ekle</string>
+    <string name="home_due_today">Bugün son teslim</string>
+    <string name="home_overdue">Gecikmiş</string>
+    <string name="home_this_week">Bu hafta</string>
+    <string name="home_total_notes">Toplam not</string>
+    <string name="home_focus_time">Bugünün odak süresi</string>
+    <string name="home_upcoming_events">Yaklaşan etkinlikler</string>
+    <string name="home_recent_notes">Son notlar</string>
+    <string name="home_no_tasks_today">Bugün için görev yok.</string>
+    <string name="home_no_events">Yaklaşan etkinlik yok.</string>
+    <string name="home_no_notes">Son not yok.</string>
+    <string name="home_sessions_today">Bugünkü oturumlar</string>
+    <string name="home_focus_minutes">Odak süresi</string>
+    <string name="home_completed_tasks">Tamamlanan görevler</string>
+    <string name="home_start_focus">Odağa başla</string>
+    <string name="home_tasks_completed">tamamlanan görev</string>
+    <string name="home_events_upcoming">yaklaşan etkinlik</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Notlar</string>
+    <string name="notes_new">Yeni not</string>
+    <string name="notes_search_hint">Notları ara…</string>
+    <string name="notes_filter_all">Tümü</string>
+    <string name="notes_filter_pinned">Sabitlenenler</string>
+    <string name="notes_empty_title">Henüz not yok</string>
+    <string name="notes_empty_body">İlk notunu yazmaya başla.</string>
+    <string name="notes_empty_action">Not oluştur</string>
+    <string name="notes_pinned_section">Sabitlenenler</string>
+    <string name="notes_all_section">Tüm notlar</string>
+    <string name="notes_untitled">Başlıksız</string>
+    <string name="notes_word_count">%1$d kelime</string>
+    <string name="notes_reading_time">%1$d dk okuma</string>
+    <string name="notes_pin_success">Not sabitlendi.</string>
+    <string name="notes_unpin_success">Not sabitlemesi kaldırıldı.</string>
+    <string name="notes_delete_confirm_title">Çöpe taşınsın mı?</string>
+    <string name="notes_delete_confirm_body">Bu not çöpe taşınacak ve 30 gün sonra kalıcı olarak silinecek.</string>
+    <string name="notes_delete_success">Not çöpe taşındı.</string>
+    <string name="notes_restore_success">Not geri yüklendi.</string>
+    <string name="notes_hard_delete_confirm_title">Kalıcı olarak silinsin mi?</string>
+    <string name="notes_hard_delete_confirm_body">Bu not kalıcı olarak silinecek ve kurtarılamayacak.</string>
+    <string name="notes_hard_delete_success">Not kalıcı olarak silindi.</string>
+    <string name="notes_create_success">Not oluşturuldu.</string>
+    <string name="notes_update_success">Not kaydedildi.</string>
+    <string name="notes_autosave">Otomatik kaydedildi</string>
+    <string name="notes_saving">Kaydediliyor…</string>
+    <string name="notes_copy_link">Bağlantıyı kopyala</string>
+    <string name="notes_link_copied">Bağlantı kopyalandı.</string>
+    <string name="notes_link_task">Görev bağla</string>
+    <string name="notes_unlink_task">Bağlantıyı kaldır</string>
+    <string name="notes_task_linked">Bağlı: %1$s</string>
+    <string name="notes_add_tag">Etiket ekle</string>
+    <string name="notes_no_tags">Etiket yok</string>
+    <string name="notes_start_writing">Yazmaya başla…</string>
+    <string name="notes_title_hint">Başlık</string>
+    <string name="notes_trash_empty_title">Çöp kutusu boş</string>
+    <string name="notes_trash_empty_body">Çöp kutusundaki notlar 30 gün sonra kalıcı olarak silinir.</string>
+    <string name="notes_trash_empty_all">Çöp kutusunu boşalt</string>
+    <string name="notes_trash_empty_all_confirm_title">Çöp kutusu boşaltılsın mı?</string>
+    <string name="notes_trash_empty_all_confirm_body">Çöp kutusundaki tüm notlar kalıcı olarak silinecek.</string>
+    <string name="notes_in_trash">Çöp kutusunda %1$d not</string>
+    <string name="notes_in_trash_plural">Çöp kutusunda %1$d not</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Kalın</string>
+    <string name="editor_format_italic">İtalik</string>
+    <string name="editor_format_heading">Başlık</string>
+    <string name="editor_format_list_bullet">Maddeli liste</string>
+    <string name="editor_format_list_numbered">Numaralı liste</string>
+    <string name="editor_format_code">Kod</string>
+    <string name="editor_format_quote">Alıntı</string>
+    <string name="editor_format_link">Bağlantı ekle</string>
+    <string name="editor_insert_link_title">Bağlantı ekle</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Görünen metin</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Etiketler</string>
+    <string name="tags_new">Yeni etiket</string>
+    <string name="tags_name_hint">Etiket adı</string>
+    <string name="tags_color">Renk</string>
+    <string name="tags_create_success">Etiket oluşturuldu.</string>
+    <string name="tags_update_success">Etiket güncellendi.</string>
+    <string name="tags_delete_success">Etiket silindi.</string>
+    <string name="tags_delete_confirm_title">Etiket silinsin mi?</string>
+    <string name="tags_delete_confirm_body">Bu etiket, onu kullanan tüm notlardan kaldırılacak.</string>
+    <string name="tags_already_exists">Bu ada sahip bir etiket zaten var.</string>
+    <string name="tags_empty_title">Henüz etiket yok</string>
+    <string name="tags_empty_body">Notlarını düzenlemek için etiketler oluştur.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Görevler</string>
+    <string name="tasks_new">Yeni görev</string>
+    <string name="tasks_search_hint">Görevleri ara…</string>
+    <string name="tasks_tab_all">Tümü</string>
+    <string name="tasks_tab_today">Bugün</string>
+    <string name="tasks_tab_upcoming">Yaklaşan</string>
+    <string name="tasks_tab_completed">Tamamlanan</string>
+    <string name="tasks_view_list">Liste görünümü</string>
+    <string name="tasks_view_kanban">Pano görünümü</string>
+    <string name="tasks_empty_title">Burada görev yok</string>
+    <string name="tasks_empty_body">Başlamak için ilk görevini oluştur.</string>
+    <string name="tasks_empty_action">Görev oluştur</string>
+    <string name="tasks_empty_today">Bugün son teslim görev yok. Gününün tadını çıkar!</string>
+    <string name="tasks_empty_upcoming">Yaklaşan görev yok.</string>
+    <string name="tasks_empty_completed">Henüz tamamlanmış görev yok.</string>
+    <string name="tasks_empty_filter">Bu filtreyle eşleşen görev yok.</string>
+    <string name="tasks_field_title">Görev başlığı</string>
+    <string name="tasks_field_title_hint">Ne yapılması gerekiyor?</string>
+    <string name="tasks_field_description">Açıklama</string>
+    <string name="tasks_field_description_hint">Daha fazla ayrıntı ekle…</string>
+    <string name="tasks_field_due_date">Son teslim tarihi</string>
+    <string name="tasks_field_due_time">Son teslim saati</string>
+    <string name="tasks_field_priority">Öncelik</string>
+    <string name="tasks_field_status">Durum</string>
+    <string name="tasks_field_reminder">Hatırlatıcı</string>
+    <string name="tasks_field_estimated_time">Tahmini süre</string>
+    <string name="tasks_field_actual_time">Gerçek süre</string>
+    <string name="tasks_field_link_event">Etkinlik bağla</string>
+    <string name="tasks_field_subtasks">Alt görevler</string>
+    <string name="tasks_add_subtask">Alt görev ekle</string>
+    <string name="tasks_subtask_count">%1$d alt görev</string>
+    <string name="tasks_subtask_count_plural">%1$d alt görev</string>
+    <string name="tasks_subtask_completed">%1$d / %2$d tamamlandı</string>
+    <string name="tasks_pomodoro_sessions">Odak oturumları</string>
+    <string name="tasks_no_due_date">Son teslim tarihi yok</string>
+    <string name="tasks_no_due_time">Saat ayarlanmamış</string>
+    <string name="tasks_no_reminder">Hatırlatıcı yok</string>
+    <string name="tasks_no_estimated">Tahmin yok</string>
+    <string name="tasks_create_success">Görev oluşturuldu.</string>
+    <string name="tasks_update_success">Görev güncellendi.</string>
+    <string name="tasks_delete_success">Görev silindi.</string>
+    <string name="tasks_restore_success">Görev geri yüklendi.</string>
+    <string name="tasks_complete_success">Görev tamamlandı.</string>
+    <string name="tasks_reorder_success">Görevler yeniden sıralandı.</string>
+    <string name="tasks_status_updated">Durum güncellendi.</string>
+    <string name="tasks_delete_confirm_title">Görev silinsin mi?</string>
+    <string name="tasks_delete_confirm_body">Bu görev silinecek.</string>
+    <string name="tasks_minutes">%1$d dk</string>
+    <string name="tasks_hours_minutes">%1$ds %2$dd</string>
+    <string name="tasks_swipe_complete">Tamamla</string>
+    <string name="tasks_swipe_delete">Sil</string>
+    <string name="tasks_sort_due_date">Son teslim tarihi</string>
+    <string name="tasks_sort_priority">Öncelik</string>
+    <string name="tasks_sort_created">Oluşturulma</string>
+    <string name="tasks_sort_title">Başlık</string>
+    <string name="tasks_filter_priority">Önceliğe göre filtrele</string>
+    <string name="tasks_filter_status">Duruma göre filtrele</string>
+    <string name="tasks_filter_due">Son teslim tarihine göre filtrele</string>
+    <string name="tasks_overdue_label">Gecikmiş</string>
+    <string name="tasks_due_today_label">Bugün son teslim</string>
+    <string name="tasks_due_tomorrow_label">Yarın son teslim</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">Düşük</string>
+    <string name="priority_medium">Orta</string>
+    <string name="priority_high">Yüksek</string>
+    <string name="priority_urgent">Acil</string>
+
+    <string name="status_todo">Yapılacak</string>
+    <string name="status_in_progress">Devam ediyor</string>
+    <string name="status_on_hold">Beklemede</string>
+    <string name="status_done">Tamamlandı</string>
+    <string name="status_cancelled">İptal edildi</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">Yapılacak</string>
+    <string name="kanban_column_in_progress">Devam ediyor</string>
+    <string name="kanban_column_on_hold">Beklemede</string>
+    <string name="kanban_column_done">Tamamlandı</string>
+    <string name="kanban_add_task">Görev ekle</string>
+    <string name="kanban_drag_hint">Taşımak için basılı tut ve sürükle</string>
+    <string name="kanban_column_empty">Burada görev yok</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Takvim</string>
+    <string name="calendar_view_week">Hafta</string>
+    <string name="calendar_view_month">Ay</string>
+    <string name="calendar_today">Bugün</string>
+    <string name="calendar_new_event">Yeni etkinlik</string>
+    <string name="calendar_no_events">Etkinlik yok</string>
+    <string name="calendar_all_day">Tüm gün</string>
+    <string name="calendar_recurring">Tekrarlanan</string>
+    <string name="calendar_events_count">%1$d etkinlik</string>
+    <string name="calendar_events_count_plural">%1$d etkinlik</string>
+    <string name="calendar_more_events">+%1$d daha</string>
+    <string name="calendar_week_header">%1$s haftası</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Yeni etkinlik</string>
+    <string name="event_edit_title">Etkinliği düzenle</string>
+    <string name="event_field_title">Etkinlik başlığı</string>
+    <string name="event_field_title_hint">Etkinlik ne?</string>
+    <string name="event_field_description">Açıklama</string>
+    <string name="event_field_description_hint">Bu etkinlikle ilgili not ekle…</string>
+    <string name="event_field_location">Konum</string>
+    <string name="event_field_location_hint">Konum ekle</string>
+    <string name="event_field_start">Başlangıç</string>
+    <string name="event_field_end">Bitiş</string>
+    <string name="event_field_all_day">Tüm gün etkinliği</string>
+    <string name="event_field_color">Renk</string>
+    <string name="event_field_recurrence">Tekrarlama</string>
+    <string name="event_field_reminder">Hatırlatıcı</string>
+    <string name="event_field_link_task">Görev bağla</string>
+    <string name="event_recurrence_none">Tekrarlamaz</string>
+    <string name="event_recurrence_daily">Günlük</string>
+    <string name="event_recurrence_weekly">Haftalık</string>
+    <string name="event_recurrence_monthly">Aylık</string>
+    <string name="event_recurrence_yearly">Yıllık</string>
+    <string name="event_recurrence_custom">Özel</string>
+    <string name="event_recurrence_weekdays">Her hafta içi (Pzt–Cum)</string>
+    <string name="event_recurrence_end_date">Bitiş tarihi</string>
+    <string name="event_recurrence_end_never">Asla</string>
+    <string name="event_recurrence_label">Tekrarlar: %1$s</string>
+    <string name="event_reminder_none">Hatırlatıcı yok</string>
+    <string name="event_reminder_at_time">Etkinlik saatinde</string>
+    <string name="event_reminder_5_min">5 dakika önce</string>
+    <string name="event_reminder_10_min">10 dakika önce</string>
+    <string name="event_reminder_15_min">15 dakika önce</string>
+    <string name="event_reminder_30_min">30 dakika önce</string>
+    <string name="event_reminder_1_hour">1 saat önce</string>
+    <string name="event_reminder_1_day">1 gün önce</string>
+    <string name="event_create_success">Etkinlik oluşturuldu.</string>
+    <string name="event_update_success">Etkinlik güncellendi.</string>
+    <string name="event_delete_success">Etkinlik silindi.</string>
+    <string name="event_restore_success">Etkinlik geri yüklendi.</string>
+    <string name="event_delete_confirm_title">Etkinlik silinsin mi?</string>
+    <string name="event_delete_confirm_body">Bu etkinlik silinecek.</string>
+    <string name="event_delete_recurring_title">Tekrarlanan etkinliği sil</string>
+    <string name="event_delete_recurring_body">Yalnızca bu etkinlik mi yoksa serideki tüm etkinlikler mi silinsin?</string>
+    <string name="event_delete_this_only">Yalnızca bu etkinlik</string>
+    <string name="event_delete_all_in_series">Serideki tüm etkinlikler</string>
+    <string name="event_end_before_start">Bitiş saati, başlangıç saatinden sonra olmalıdır.</string>
+    <string name="event_location_open_maps">Haritalar\'da aç</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Toplantı</string>
+    <string name="event_template_focus">Odak zamanı</string>
+    <string name="event_template_break">Mola</string>
+    <string name="event_template_travel">Seyahat</string>
+    <string name="event_join_meeting">Toplantıya katıl</string>
+    <string name="event_navigate">Yol tarifi</string>
+    <string name="event_share">Etkinliği paylaş</string>
+    <string name="event_duplicate">Çoğalt</string>
+    <string name="event_weather">Hava durumu</string>
+    <string name="event_attendees">Katılımcılar</string>
+    <string name="event_timezone">Saat dilimi</string>
+    <string name="event_travel_time">Seyahat süresi</string>
+    <string name="event_conflict_detected">Zaman çakışması tespit edildi</string>
+    <string name="event_reminder_multiple">Birden çok hatırlatıcı</string>
+    <string name="event_reminder_add">Hatırlatıcı ekle</string>
+    <string name="event_reminder_custom">Özel</string>
+    <string name="event_voice_input">Ses girişi</string>
+    <string name="event_smart_suggestion">Akıllı öneriler</string>
+    <string name="event_free_busy">Boş/Meşgul</string>
+    <string name="event_suggested_times">Önerilen saatler</string>
+    <string name="calendar_view_day">Gün</string>
+    <string name="calendar_view_agenda">Ajanda</string>
+    <string name="calendar_view_year">Yıl</string>
+    <string name="calendar_date_jump">Tarihe git</string>
+    <string name="calendar_swipe_instruction">Kaydırarak gezin</string>
+    <string name="calendar_pinch_zoom">Yakınlaştırmak için kıstır</string>
+    <string name="calendar_no_events_day">Bu günde etkinlik yok</string>
+    <string name="calendar_all_day_section">Tüm gün</string>
+    <string name="calendar_agenda_empty">Yaklaşan etkinlik yok</string>
+    <string name="calendar_heat_map_label">Aktivite</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Odak</string>
+    <string name="pomodoro_focus">Odak</string>
+    <string name="pomodoro_short_break">Kısa mola</string>
+    <string name="pomodoro_long_break">Uzun mola</string>
+    <string name="pomodoro_session_focus">Odak oturumu</string>
+    <string name="pomodoro_session_short_break">Kısa mola</string>
+    <string name="pomodoro_session_long_break">Uzun mola</string>
+    <string name="pomodoro_start">Başlat</string>
+    <string name="pomodoro_pause">Duraklat</string>
+    <string name="pomodoro_resume">Devam et</string>
+    <string name="pomodoro_skip">Geç</string>
+    <string name="pomodoro_stop">Durdur</string>
+    <string name="pomodoro_reset">Sıfırla</string>
+    <string name="pomodoro_link_task">Görev bağla</string>
+    <string name="pomodoro_link_task_hint">Görev bağlamak için dokun</string>
+    <string name="pomodoro_linked_task">Odaklanılan: %1$s</string>
+    <string name="pomodoro_sessions_today">Bugün %1$d oturum</string>
+    <string name="pomodoro_sessions_today_plural">Bugün %1$d oturum</string>
+    <string name="pomodoro_focus_time_today">Bugün %1$s odaklanıldı</string>
+    <string name="pomodoro_completed_today">Bugün tamamlandı</string>
+    <string name="pomodoro_no_active_session">Aktif oturum yok</string>
+    <string name="pomodoro_session_complete_title">Oturum tamamlandı! 🎉</string>
+    <string name="pomodoro_session_complete_body">Harika iş. Biraz mola ver!</string>
+    <string name="pomodoro_break_complete_title">Mola bitti</string>
+    <string name="pomodoro_break_complete_body">Tekrar odaklanmaya hazır mısın?</string>
+    <string name="pomodoro_start_success">Oturum başlatıldı.</string>
+    <string name="pomodoro_end_success">Oturum tamamlandı.</string>
+    <string name="pomodoro_interrupt_success">Oturum kesintiye uğradı.</string>
+    <string name="pomodoro_interrupt_reason_hint">Neden durduruyorsun? (isteğe bağlı)</string>
+    <string name="pomodoro_interrupt_confirm_title">Oturum durdurulsun mu?</string>
+    <string name="pomodoro_interrupt_confirm_body">İlerlemen kaydedilecek ancak oturum kesintiye uğramış olarak işaretlenecek.</string>
+    <string name="pomodoro_already_active">Zaten aktif bir oturumun var. Yenisini başlatmadan önce onu sonlandır.</string>
+    <string name="pomodoro_stats_title">Bugünün istatistikleri</string>
+    <string name="pomodoro_history_title">Oturum geçmişi</string>
+    <string name="pomodoro_history_empty_title">Henüz oturum yok</string>
+    <string name="pomodoro_history_empty_body">Geçmişini burada görmek için bir odak oturumu başlat.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Kesintiye uğradı</string>
+    <string name="pomodoro_session_completed">Tamamlandı</string>
+    <string name="pomodoro_dot_current">Geçerli oturum</string>
+    <string name="pomodoro_dot_completed">Tamamlanan oturum</string>
+    <string name="pomodoro_dot_upcoming">Gelecek oturum</string>
+    <string name="pomodoro_notification_channel_name">Pomodoro Zamanlayıcı</string>
+    <string name="pomodoro_notification_channel_desc">Canlı zamanlayıcı güncellemeleri ve oturum bildirimleri.</string>
+    <string name="pomodoro_notification_running">%1$s kaldı — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Duraklat</string>
+    <string name="pomodoro_notification_action_skip">Geç</string>
+    <string name="pomodoro_notification_action_stop">Durdur</string>
+    <string name="pomodoro_cycle_count">Döngü %1$d / %2$d</string>
+    <string name="pomodoro_until_long_break">Uzun molaya %1$d oturum</string>
+    <string name="pomodoro_until_long_break_plural">Uzun molaya %1$d oturum</string>
+
+    <string name="pomodoro_swipe_to_skip">GEÇMEK İÇİN KAYDIR</string>
+    <string name="pomodoro_extend_1min">+1 dk</string>
+    <string name="pomodoro_focus_analytics">Odak analitiği</string>
+    <string name="pomodoro_streak_day">%1$d günlük seri</string>
+    <string name="pomodoro_best_streak">En iyi: %1$d gün</string>
+    <string name="pomodoro_weekly_intensity">Haftalık yoğunluk</string>
+    <string name="pomodoro_focus_by_category">Kategoriye göre odak</string>
+    <string name="pomodoro_quality_score">Kalite puanı</string>
+    <string name="pomodoro_total_focus_time">Toplam odak</string>
+    <string name="pomodoro_daily_goal">Günlük hedef</string>
+    <string name="pomodoro_weekly_goal">Haftalık hedef</string>
+    <string name="pomodoro_exit_focus_mode">Odak modundan çık</string>
+    <string name="pomodoro_dnd_access_required">Rahatsız Etmeyin erişimi gerekiyor. Lütfen ayarlardan etkinleştir.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI Asistanı</string>
+    <string name="ai_welcome_title">Nasıl yardımcı olabilirim?</string>
+    <string name="ai_welcome_body">Çalışma alanını — görevlerini, etkinliklerini ve notlarını — görerek bağlama uygun yanıtlar verebilirim.</string>
+    <string name="ai_message_hint">Mesaj…</string>
+    <string name="ai_send">Gönder</string>
+    <string name="ai_new_conversation">Yeni sohbet</string>
+    <string name="ai_conversations_title">Sohbetler</string>
+    <string name="ai_conversation_empty">Henüz mesaj yok</string>
+    <string name="ai_conversations_empty_title">Henüz sohbet yok</string>
+    <string name="ai_conversations_empty_body">Çalışma alanınla ilgili yardım almak için yeni bir sohbet başlat.</string>
+    <string name="ai_delete_conversation_title">Sohbet silinsin mi?</string>
+    <string name="ai_delete_conversation_body">Bu sohbet ve tüm mesajları kalıcı olarak silinecek.</string>
+    <string name="ai_delete_conversation_success">Sohbet silindi.</string>
+    <string name="ai_clear_conversation_title">Sohbet temizlensin mi?</string>
+    <string name="ai_clear_conversation_body">Bu sohbeteki tüm mesajlar temizlenecek.</string>
+    <string name="ai_suggestion_due_today">Bugün son teslim ne var?</string>
+    <string name="ai_suggestion_overdue">Gecikmiş görevlerimi özetle</string>
+    <string name="ai_suggestion_start_focus">Bir odak oturumu başlat</string>
+    <string name="ai_suggestion_meeting_agenda">Bir toplantı gündemi hazırla</string>
+    <string name="ai_context_title">Çalışma alanın</string>
+    <string name="ai_context_active_tasks">Aktif görevler</string>
+    <string name="ai_context_events_week">Bu haftaki etkinlikler</string>
+    <string name="ai_context_last_note">Son not</string>
+    <string name="ai_context_focus_today">Bugünkü odak</string>
+    <string name="ai_context_overdue">gecikmiş</string>
+    <string name="ai_context_caption">Bu bağlam her mesajla birlikte AI\'ya gönderilir.</string>
+    <string name="ai_context_refresh">Bağlamı yenile</string>
+    <string name="ai_typing">AI düşünüyor…</string>
+    <string name="ai_streaming">Yanıt oluşturuluyor…</string>
+    <string name="ai_error_unavailable">AI asistanı şu anda kullanılamıyor. Lütfen daha sonra tekrar dene.</string>
+    <string name="ai_error_stream">Yanıt oluşturulurken bir hata oluştu.</string>
+    <string name="ai_action_create_task">Görev oluştur</string>
+    <string name="ai_action_create_note">Not oluştur</string>
+    <string name="ai_action_add_event">Etkinlik ekle</string>
+    <string name="ai_action_confirm">Onayla</string>
+    <string name="ai_action_dismiss">Kapat</string>
+    <string name="ai_action_executed">Tamam! Öğe oluşturuldu.</string>
+    <string name="ai_action_dismissed">Kapatıldı.</string>
+    <string name="ai_copy_message">Mesajı kopyala</string>
+    <string name="ai_message_copied">Mesaj kopyalandı.</string>
+    <string name="ai_regenerate">Yanıtı yeniden oluştur</string>
+    <string name="ai_you">Sen</string>
+    <string name="ai_assistant">Asistan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Ara</string>
+    <string name="search_hint">Notları, görevleri, etkinlikleri ara…</string>
+    <string name="search_results_notes">Notlar</string>
+    <string name="search_results_tasks">Görevler</string>
+    <string name="search_results_events">Etkinlikler</string>
+    <string name="search_recent">Son aramalar</string>
+    <string name="search_clear_recent">Temizle</string>
+    <string name="search_empty_title">\'%1$s\' için sonuç yok</string>
+    <string name="search_empty_body">Farklı anahtar kelimeler dene veya yazımını kontrol et.</string>
+    <string name="search_results_count">%1$d sonuç</string>
+    <string name="search_results_count_plural">%1$d sonuç</string>
+    <string name="search_type_note">Not</string>
+    <string name="search_type_task">Görev</string>
+    <string name="search_type_event">Etkinlik</string>
+    <string name="search_offline_notice">Yerel olarak aranıyor. Tam sonuçlar için internete bağlan.</string>
+    <string name="search_loading">Aranıyor…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Profil</string>
+    <string name="profile_edit_title">Profili düzenle</string>
+    <string name="profile_change_photo">Fotoğrafı değiştir</string>
+    <string name="profile_remove_photo">Fotoğrafı kaldır</string>
+    <string name="profile_photo_updated">Profil fotoğrafı güncellendi.</string>
+    <string name="profile_photo_removed">Profil fotoğrafı kaldırıldı.</string>
+    <string name="profile_photo_pick">Galeriden seç</string>
+    <string name="profile_photo_camera">Fotoğraf çek</string>
+    <string name="profile_update_success">Profil güncellendi.</string>
+    <string name="profile_stats_notes">Notlar</string>
+    <string name="profile_stats_tasks_completed">Tamamlanan görevler</string>
+    <string name="profile_stats_focus_this_week">Bu haftaki odak</string>
+    <string name="profile_member_since">%1$s tarihinden beri üye</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Henüz biyografi yok.</string>
+    <string name="profile_section_account">Hesap</string>
+    <string name="profile_section_appearance">Görünüm</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Bildirimler</string>
+    <string name="profile_section_ai">AI Asistanı</string>
+    <string name="profile_section_data">Veri ve senkronizasyon</string>
+    <string name="profile_section_about">Hakkında</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Tercihler</string>
+    <string name="preferences_update_success">Tercihler kaydedildi.</string>
+    <string name="preferences_pomodoro_focus">Odak süresi</string>
+    <string name="preferences_pomodoro_focus_desc">Her odak oturumunun süresi</string>
+    <string name="preferences_pomodoro_short_break">Kısa mola</string>
+    <string name="preferences_pomodoro_short_break_desc">Oturumlar arasındaki kısa molaların süresi</string>
+    <string name="preferences_pomodoro_long_break">Uzun mola</string>
+    <string name="preferences_pomodoro_long_break_desc">Tam bir döngüden sonraki uzun molaların süresi</string>
+    <string name="preferences_pomodoro_cycles">Uzun mola öncesi oturumlar</string>
+    <string name="preferences_pomodoro_cycles_desc">Uzun moladan önceki odak oturumu sayısı</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Molaları otomatik başlat</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Bir oturum bittiğinde molaları otomatik olarak başlat</string>
+    <string name="preferences_pomodoro_auto_start_focus">Odağı otomatik başlat</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Moladan sonraki oturumu otomatik olarak başlat</string>
+    <string name="preferences_pomodoro_sound">Ses</string>
+    <string name="preferences_pomodoro_sound_desc">Bir oturum bittiğinde ses çal</string>
+    <string name="preferences_notify_task_reminders">Görev hatırlatıcıları</string>
+    <string name="preferences_notify_task_reminders_desc">Bir görev hatırlatıcısı geldiğinde bildirim al</string>
+    <string name="preferences_notify_event_reminders">Etkinlik hatırlatıcıları</string>
+    <string name="preferences_notify_event_reminders_desc">Takvim etkinliklerinden önce bildirim al</string>
+    <string name="preferences_notify_pomodoro_end">Pomodoro bitişi</string>
+    <string name="preferences_notify_pomodoro_end_desc">Bir Pomodoro oturumu bittiğinde bildirim al</string>
+    <string name="preferences_notify_daily_summary">Günlük özet</string>
+    <string name="preferences_notify_daily_summary_desc">Gününün sabah özetini al</string>
+    <string name="preferences_default_task_view">Varsayılan görev görünümü</string>
+    <string name="preferences_default_task_sort">Varsayılan görev sıralaması</string>
+    <string name="preferences_show_completed_tasks">Tamamlanan görevleri göster</string>
+    <string name="preferences_show_completed_tasks_desc">Görev listesinde tamamlanan görevleri göster</string>
+    <string name="preferences_default_calendar_view">Varsayılan takvim görünümü</string>
+    <string name="preferences_week_starts_on">Hafta başlangıcı</string>
+    <string name="preferences_week_starts_monday">Pazartesi</string>
+    <string name="preferences_week_starts_sunday">Pazar</string>
+    <string name="preferences_ai_context">Çalışma alanı bağlamı</string>
+    <string name="preferences_ai_context_desc">Görevlerini, etkinliklerini ve notlarını AI asistanıyla paylaş</string>
+    <string name="preferences_ai_model">AI modeli</string>
+    <string name="preferences_ai_model_desc">Asistan için AI modelini seç</string>
+    <string name="preferences_compact_mode">Kompakt mod</string>
+    <string name="preferences_compact_mode_desc">Daha yoğun bir düzen kullanarak daha fazla içerik göster</string>
+    <string name="preferences_minutes_format">%1$d dk</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Senkronize edildi</string>
+    <string name="sync_status_pending">Senkronizasyon bekliyor</string>
+    <string name="sync_status_syncing">Senkronize ediliyor…</string>
+    <string name="sync_status_conflict">Senkronizasyon çakışması</string>
+    <string name="sync_status_error">Senkronizasyon hatası</string>
+    <string name="sync_last_synced">Son senkronizasyon: %1$s</string>
+    <string name="sync_never_synced">Hiç senkronize edilmedi</string>
+    <string name="sync_conflict_title">Senkronizasyon çakışması</string>
+    <string name="sync_conflict_body">\'%1$s\' için bir çakışma tespit edildi. Hangi sürümü tutmak istersin?</string>
+    <string name="sync_conflict_keep_local">Yerel sürümü tut</string>
+    <string name="sync_conflict_keep_server">Sunucu sürümünü tut</string>
+    <string name="sync_conflict_resolved">Çakışma çözüldü.</string>
+    <string name="sync_pending_count">%1$d değişiklik bekliyor</string>
+    <string name="sync_pending_count_plural">%1$d değişiklik bekliyor</string>
+    <string name="sync_offline_banner">Çevrimdışısın. Tekrar bağlandığında değişiklikler senkronize edilecek.</string>
+    <string name="sync_reconnected">Tekrar çevrimiçi. Senkronize ediliyor…</string>
+    <string name="sync_complete">Tüm değişiklikler senkronize edildi.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Hatırlatıcılar</string>
+    <string name="notification_channel_reminders_desc">Görev ve etkinlik hatırlatıcı bildirimleri.</string>
+    <string name="notification_channel_sync_name">Senkronizasyon</string>
+    <string name="notification_channel_sync_desc">Arka plan senkronizasyon durumu bildirimleri.</string>
+    <string name="notification_task_reminder_title">Görev hatırlatıcı</string>
+    <string name="notification_task_reminder_body">%1$s\'in son teslim tarihi yaklaşıyor.</string>
+    <string name="notification_event_reminder_title">Yaklaşan etkinlik</string>
+    <string name="notification_event_reminder_body">%1$s, %2$s içinde başlıyor.</string>
+    <string name="notification_daily_summary_title">Gününe bir bakış</string>
+    <string name="notification_daily_summary_body">Bugün son teslim %1$d görev, %2$d yaklaşan etkinlik.</string>
+    <string name="notification_permission_title">Bildirimleri etkinleştir</string>
+    <string name="notification_permission_body">Hatırlatıcılar, odak oturumları ve günlük özetlerle güncel kal.</string>
+    <string name="notification_permission_allow">İzin ver</string>
+    <string name="notification_permission_deny">Şimdi değil</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Kamera erişimi</string>
+    <string name="permission_camera_body">ProductivityX\'in profil fotoğrafı çekmen için kamera erişimine ihtiyacı var.</string>
+    <string name="permission_storage_title">Depolama erişimi</string>
+    <string name="permission_storage_body">ProductivityX\'in profil fotoğrafı seçmen için depolama erişimine ihtiyacı var.</string>
+    <string name="permission_notification_title">Bildirim erişimi</string>
+    <string name="permission_notification_body">Görev hatırlatıcıları ve Pomodoro uyarıları almak için bildirimlere izin ver.</string>
+    <string name="permission_denied_title">İzin gerekli</string>
+    <string name="permission_denied_body">Bu özellik izin gerektiriyor. Lütfen ayarlardan etkinleştir.</string>
+    <string name="permission_go_to_settings">Ayarları aç</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Az önce</string>
+    <string name="time_minutes_ago">%1$d dk önce</string>
+    <string name="time_hours_ago">%1$d sa önce</string>
+    <string name="time_yesterday">Dün</string>
+    <string name="time_days_ago">%1$d gün önce</string>
+    <string name="time_weeks_ago">%1$d hafta önce</string>
+    <string name="time_weeks_ago_plural">%1$d hafta önce</string>
+    <string name="time_months_ago">%1$d ay önce</string>
+    <string name="time_months_ago_plural">%1$d ay önce</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">HH:mm</string>
+    <string name="time_format_datetime">d MMM \'saat\' HH:mm</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">d MMMM yyyy EEEE</string>
+    <string name="time_am">ÖÖ</string>
+    <string name="time_pm">ÖS</string>
+    <string name="time_hour_singular">%1$d saat</string>
+    <string name="time_hour_plural">%1$d saat</string>
+    <string name="time_minute_singular">%1$d dakika</string>
+    <string name="time_minute_plural">%1$d dakika</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">Pzt</string>
+    <string name="day_tuesday_short">Sal</string>
+    <string name="day_wednesday_short">Çar</string>
+    <string name="day_thursday_short">Per</string>
+    <string name="day_friday_short">Cum</string>
+    <string name="day_saturday_short">Cmt</string>
+    <string name="day_sunday_short">Paz</string>
+    <string name="day_monday">Pazartesi</string>
+    <string name="day_tuesday">Salı</string>
+    <string name="day_wednesday">Çarşamba</string>
+    <string name="day_thursday">Perşembe</string>
+    <string name="day_friday">Cuma</string>
+    <string name="day_saturday">Cumartesi</string>
+    <string name="day_sunday">Pazar</string>
+
+    <string name="month_january">Ocak</string>
+    <string name="month_february">Şubat</string>
+    <string name="month_march">Mart</string>
+    <string name="month_april">Nisan</string>
+    <string name="month_may">Mayıs</string>
+    <string name="month_june">Haziran</string>
+    <string name="month_july">Temmuz</string>
+    <string name="month_august">Ağustos</string>
+    <string name="month_september">Eylül</string>
+    <string name="month_october">Ekim</string>
+    <string name="month_november">Kasım</string>
+    <string name="month_december">Aralık</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Burada henüz bir şey yok</string>
+    <string name="empty_state_generic_body">Yeni bir şey oluşturarak başla.</string>
+    <string name="empty_state_no_results_title">Sonuç bulunamadı</string>
+    <string name="empty_state_no_results_body">Farklı bir arama veya filtre dene.</string>
+    <string name="empty_state_offline_title">Çevrimdışısın</string>
+    <string name="empty_state_offline_body">İçeriğini yüklemek için internete bağlan.</string>
+    <string name="empty_state_error_title">Bir şeyler yanlış gitti</string>
+    <string name="empty_state_error_body">Yenilemek için aşağı çek veya aşağıdaki düğmeye dokun.</string>
+    <string name="empty_state_retry">Tekrar dene</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Geri git</string>
+    <string name="cd_close">Kapat</string>
+    <string name="cd_more_options">Daha fazla seçenek</string>
+    <string name="cd_search">Ara</string>
+    <string name="cd_filter">Filtrele</string>
+    <string name="cd_sort">Sırala</string>
+    <string name="cd_add">Ekle</string>
+    <string name="cd_delete">Sil</string>
+    <string name="cd_edit">Düzenle</string>
+    <string name="cd_restore">Geri yükle</string>
+    <string name="cd_pin">Notu sabitle</string>
+    <string name="cd_unpin">Not sabitlemesini kaldır</string>
+    <string name="cd_check_task">Görevi tamamlandı olarak işaretle</string>
+    <string name="cd_uncheck_task">Görevi tamamlanmadı olarak işaretle</string>
+    <string name="cd_profile_picture">Profil fotoğrafı</string>
+    <string name="cd_send_message">Mesaj gönder</string>
+    <string name="cd_play_pause">Zamanlayıcıyı oynat veya duraklat</string>
+    <string name="cd_skip_session">Oturumu geç</string>
+    <string name="cd_stop_session">Oturumu durdur</string>
+    <string name="cd_sync_status">Senkronizasyon durumu: %1$s</string>
+    <string name="cd_password_toggle">Şifre görünürlüğünü değiştir</string>
+    <string name="cd_clear_input">Girişi temizle</string>
+    <string name="cd_remove_subtask">Alt görevi kaldır</string>
+    <string name="cd_notification">Bildirim</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Oturumun kontrol ediliyor…</string>
+    <string name="splash_loading">Yükleniyor…</string>
+
+    <string name="dialog_unsaved_changes_title">Kaydedilmemiş değişiklikler</string>
+    <string name="dialog_unsaved_changes_body">Kaydedilmemiş değişikliklerin var. Bunları atmak istiyor musun?</string>
+    <string name="dialog_unsaved_changes_save">Kaydet</string>
+    <string name="dialog_unsaved_changes_discard">At</string>
+    <string name="dialog_date_picker_title">Tarih seç</string>
+    <string name="dialog_time_picker_title">Saat seç</string>
+    <string name="dialog_color_picker_title">Renk seç</string>
+    <string name="dialog_task_picker_title">Görev bağla</string>
+    <string name="dialog_event_picker_title">Etkinlik bağla</string>
+    <string name="dialog_tag_manager_title">Etiketleri yönet</string>
+
+    <string name="task_view_list">Liste</string>
+    <string name="task_view_kanban">Pano</string>
+
+    <string name="snackbar_undo">Geri al</string>
+    <string name="snackbar_note_deleted">Not silindi</string>
+    <string name="snackbar_task_deleted">Görev silindi</string>
+    <string name="snackbar_event_deleted">Etkinlik silindi</string>
+    <string name="snackbar_tag_deleted">Etiket silindi</string>
+    <string name="snackbar_copied">Panoya kopyalandı</string>
+    <string name="snackbar_no_internet">İnternet bağlantısı yok</string>
+    <string name="snackbar_changes_saved">Değişiklikler kaydedildi</string>
+
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_build">Yapı %1$s</string>
+    <string name="about_privacy_policy">Gizlilik politikası</string>
+    <string name="about_terms_of_service">Kullanım koşulları</string>
+    <string name="about_open_source_licenses">Açık kaynak lisansları</string>
+    <string name="about_rate_app">Uygulamayı değerlendir</string>
+    <string name="about_send_feedback">Geri bildirim gönder</string>
+    <string name="about_built_by">Oussama Chatri tarafından yapıldı</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Verileri dışa aktar</string>
+    <string name="data_export_body">Tüm notlarını, görevlerini ve etkinliklerini dosya olarak indir.</string>
+    <string name="data_export_action">Dışa aktar</string>
+    <string name="data_export_success">Veri dışa aktarımın hazır.</string>
+    <string name="data_delete_account_title">Hesabı sil</string>
+    <string name="data_delete_account_body">Hesabını ve ilişkili tüm verileri kalıcı olarak sil. Bu geri alınamaz.</string>
+    <string name="data_delete_account_action">Hesabı sil</string>
+    <string name="data_delete_account_confirm_title">Hesabın silinsin mi?</string>
+    <string name="data_delete_account_confirm_body">Tüm notların, görevlerin, etkinliklerin ve sohbetlerin kalıcı olarak silinecek. Bu işlem geri alınamaz.</string>
+    <string name="data_delete_account_type_confirm">Onaylamak için SİL yaz</string>
+    <string name="data_delete_account_confirm_word">SİL</string>
+
+    <string name="update_available_title">Güncelleme mevcut</string>
+    <string name="update_available_body">ProductivityX\'in yeni bir sürümü mevcut. En son özellikler ve düzeltmeler için şimdi güncelle.</string>
+    <string name="update_now">Şimdi güncelle</string>
+    <string name="update_later">Sonra</string>
+
+    <string name="auth_check_your_email">E-postanı kontrol et</string>
+    <string name="auth_otp_sent_body">%s adresine 6 haneli bir kod gönderdik</string>
+
+    <string name="language_en">İngilizce</string>
+    <string name="language_fr">Fransızca</string>
+    <string name="language_ar">Arapça</string>
+    <string name="language_es">İspanyolca</string>
+    <string name="language_de">Almanca</string>
+    <string name="language_ko">Korece</string>
+    <string name="language_ja">Japonca</string>
+    <string name="language_pt">Portekizce</string>
+    <string name="language_tr">Türkçe</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">Görevler</string>
+    <string name="widget_task_list_empty">Bugün için görev yok</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Odağa başlamak için dokun</string>
+    <string name="widget_quick_note_title">Hızlı not</string>
+    <string name="widget_quick_note_hint">Not eklemek için dokun</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">Bugünün görevleri</string>
+    <string name="home_widget_events">Yaklaşan etkinlikler</string>
+    <string name="home_widget_focus">Bugünkü odak süresi</string>
+    <string name="home_widget_notes">Son notlar</string>
+    <string name="home_widget_quote">Günün sözü</string>
+    <string name="home_widget_ai">AI Asistanı</string>
+    <string name="home_widget_focus_mode">Hızlı odak</string>
+    <string name="home_expand">Genişlet</string>
+    <string name="home_collapse">Daralt</string>
+    <string name="home_see_all">Tümünü gör</string>
+    <string name="home_empty_tasks">Bugün için görev yok</string>
+    <string name="home_empty_events">Yaklaşan etkinlik yok</string>
+    <string name="home_empty_notes">Son not yok</string>
+    <string name="home_empty_focus">Henüz odak süresi yok</string>
+    <string name="home_focus_mode_active">Odak modu</string>
+    <string name="home_focus_mode_inactive">Hızlı odak</string>
+    <string name="home_focus_mode_desc_active">Dikkat dağıtıcıları en aza indir</string>
+    <string name="home_focus_mode_desc_inactive">Odak moduna girmek için dokun</string>
+    <string name="home_quick_action_new_note">Yeni not</string>
+    <string name="home_quick_action_new_task">Yeni görev</string>
+    <string name="home_quick_action_start_timer">Zamanlayıcıyı başlat</string>
+    <string name="home_quick_action_ai_chat">AI Sohbet</string>
+    <string name="home_voice_prompt">Ne yapmak istersin?</string>
+    <string name="home_voice_listening">Dinleniyor…</string>
+    <string name="home_pull_to_refresh">Yenilemek için çek</string>
+    <string name="home_syncing">Senkronize ediliyor…</string>
+    <string name="home_refreshed">Panel güncellendi</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">Yeni not</string>
+    <string name="shortcut_new_task">Yeni görev</string>
+    <string name="shortcut_start_focus">Odağı başlat</string>
+    <string name="shortcut_ai_chat">AI Sohbet</string>
+    <string name="shortcut_note_short_label">Not</string>
+    <string name="shortcut_task_short_label">Görev</string>
+    <string name="shortcut_focus_short_label">Odak</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>
