@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">आपका कार्यक्षेत्र। एकीकृत।</string>
+    <string name="app_description">नोट्स, कार्य, कैलेंडर, फ़ोकस टाइमर, और एक AI सहायक जो वास्तव में आपके दिन को समझता है।</string>
+
+    <string name="ok">ठीक</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="save">सहेजें</string>
+    <string name="delete">हटाएँ</string>
+    <string name="edit">संपादित करें</string>
+    <string name="done">पूर्ण</string>
+    <string name="back">वापस</string>
+    <string name="close">बंद करें</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="discard">त्यागें</string>
+    <string name="retry">पुनः प्रयास करें</string>
+    <string name="skip">छोड़ें</string>
+    <string name="next">अगला</string>
+    <string name="previous">पिछला</string>
+    <string name="continue_action">जारी रखें</string>
+    <string name="finish">समाप्त करें</string>
+    <string name="apply">लागू करें</string>
+    <string name="reset">रीसेट करें</string>
+    <string name="clear">साफ़ करें</string>
+    <string name="search">खोजें</string>
+    <string name="filter">फ़िल्टर</string>
+    <string name="sort">क्रमबद्ध करें</string>
+    <string name="share">साझा करें</string>
+    <string name="copy">कॉपी करें</string>
+    <string name="paste">पेस्ट करें</string>
+    <string name="undo">पूर्ववत करें</string>
+    <string name="redo">पुनः करें</string>
+    <string name="select_all">सभी चुनें</string>
+    <string name="deselect_all">सभी अचयनित करें</string>
+    <string name="more_options">और विकल्प</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="help">सहायता</string>
+    <string name="feedback">प्रतिक्रिया</string>
+    <string name="loading">लोड हो रहा है…</string>
+    <string name="refreshing">रिफ़्रेश हो रहा है…</string>
+    <string name="saving">सहेजा जा रहा है…</string>
+    <string name="deleting">हटाया जा रहा है…</string>
+    <string name="please_wait">कृपया प्रतीक्षा करें…</string>
+    <string name="see_all">सभी देखें</string>
+    <string name="show_less">कम दिखाएँ</string>
+    <string name="show_more">और दिखाएँ</string>
+    <string name="optional">वैकल्पिक</string>
+    <string name="required">आवश्यक</string>
+    <string name="none">कोई नहीं</string>
+    <string name="unknown">अज्ञात</string>
+    <string name="today">आज</string>
+    <string name="yesterday">कल</string>
+    <string name="tomorrow">कल</string>
+    <string name="this_week">इस सप्ताह</string>
+    <string name="last_week">पिछले सप्ताह</string>
+    <string name="next_week">अगले सप्ताह</string>
+    <string name="this_month">इस महीने</string>
+    <string name="all">सभी</string>
+    <string name="new_action">नया</string>
+    <string name="add">जोड़ें</string>
+    <string name="remove">हटाएँ</string>
+    <string name="create">बनाएँ</string>
+    <string name="update">अपडेट करें</string>
+    <string name="restore">पुनर्स्थापित करें</string>
+    <string name="archive">संग्रहित करें</string>
+    <string name="unarchive">संग्रह से निकालें</string>
+    <string name="pin">पिन करें</string>
+    <string name="unpin">पिन हटाएँ</string>
+    <string name="move">स्थानांतरित करें</string>
+    <string name="rename">नाम बदलें</string>
+    <string name="duplicate">डुप्लिकेट</string>
+    <string name="open">खोलें</string>
+    <string name="view">देखें</string>
+    <string name="preview">पूर्वावलोकन</string>
+    <string name="expand">विस्तार करें</string>
+    <string name="collapse">संक्षिप्त करें</string>
+    <string name="enable">सक्षम करें</string>
+    <string name="disable">अक्षम करें</string>
+    <string name="turn_on">चालू करें</string>
+    <string name="turn_off">बंद करें</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="not_now">अभी नहीं</string>
+    <string name="got_it">समझ गया</string>
+    <string name="learn_more">और जानें</string>
+    <string name="send">भेजें</string>
+    <string name="submit">जमा करें</string>
+    <string name="upload">अपलोड करें</string>
+    <string name="download">डाउनलोड करें</string>
+    <string name="link">लिंक करें</string>
+    <string name="unlink">लिंक हटाएँ</string>
+    <string name="connect">कनेक्ट करें</string>
+    <string name="disconnect">डिस्कनेक्ट करें</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">कुछ गलत हो गया। कृपया पुनः प्रयास करें।</string>
+    <string name="error_network">कोई इंटरनेट कनेक्शन नहीं। अपना नेटवर्क जाँचें और पुनः प्रयास करें।</string>
+    <string name="error_timeout">अनुरोध का समय समाप्त हुआ। कृपया पुनः प्रयास करें।</string>
+    <string name="error_server">सर्वर त्रुटि। कृपया बाद में पुनः प्रयास करें।</string>
+    <string name="error_not_found">अनुरोधित आइटम नहीं मिला।</string>
+    <string name="error_unauthorized">आपका सत्र समाप्त हो गया है। कृपया पुनः साइन इन करें।</string>
+    <string name="error_forbidden">आपको यह कार्य करने की अनुमति नहीं है।</string>
+    <string name="error_validation">कृपया फ़ॉर्म जाँचें और त्रुटियाँ ठीक करें।</string>
+    <string name="error_unknown">एक अप्रत्याशित त्रुटि हुई।</string>
+    <string name="error_loading">लोड करने में विफल। पुनः प्रयास के लिए टैप करें।</string>
+    <string name="error_saving">सहेजने में विफल। कृपया पुनः प्रयास करें।</string>
+    <string name="error_deleting">हटाने में विफल। कृपया पुनः प्रयास करें।</string>
+    <string name="error_no_data">कोई डेटा उपलब्ध नहीं।</string>
+    <string name="error_offline_action">इस कार्य के लिए इंटरनेट कनेक्शन आवश्यक है।</string>
+    <string name="error_conflict">एक विरोध हुआ। कृपया रिफ़्रेश करें और पुनः प्रयास करें।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">सब कुछ एक जगह</string>
+    <string name="onboarding_page1_body">नोट्स, कार्य और आपका कैलेंडर एक ही कार्यक्षेत्र में जुड़े हुए।</string>
+    <string name="onboarding_page2_title">अपनी लय में रहें</string>
+    <string name="onboarding_page2_body">पोमोडोरो टाइमर जानता है कि आप किस पर काम कर रहे हैं और आपका समय स्वचालित रूप से ट्रैक करता है।</string>
+    <string name="onboarding_page3_title">AI जो आपको समझता है</string>
+    <string name="onboarding_page3_body">आपका सहायक जवाब देने से पहले आपके सक्रिय कार्यों, आगामी ईवेंट और हाल के नोट्स को देखता है।</string>
+    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_next">अगला</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">साइन इन करें</string>
+    <string name="auth_sign_up">साइन अप करें</string>
+    <string name="auth_sign_out">साइन आउट करें</string>
+    <string name="auth_log_in">लॉग इन करें</string>
+    <string name="auth_log_out">लॉग आउट करें</string>
+    <string name="auth_create_account">खाता बनाएँ</string>
+    <string name="auth_already_have_account">पहले से खाता है?</string>
+    <string name="auth_skip_login">खाते के बिना जारी रखें</string>
+    <string name="auth_dont_have_account">खाता नहीं है?</string>
+    <string name="auth_welcome_back">वापसी पर स्वागत</string>
+    <string name="auth_create_your_account">अपना खाता बनाएँ</string>
+    <string name="auth_join_productivityx">ProductivityX से जुड़ें</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">पासवर्ड भूल गए?</string>
+    <string name="auth_forgot_password_title">अपना पासवर्ड भूल गए?</string>
+    <string name="auth_forgot_password_body">अपना ईमेल पता दर्ज करें और हम आपको पासवर्ड रीसेट करने का लिंक भेजेंगे।</string>
+    <string name="auth_forgot_password_success_title">रीसेट लिंक भेजा गया</string>
+    <string name="auth_forgot_password_success_body">यदि वह ईमेल मौजूद है, तो एक रीसेट लिंक भेजा गया है। अपना इनबॉक्स जाँचें।</string>
+
+    <string name="auth_reset_password_title">अपना पासवर्ड रीसेट करें</string>
+    <string name="auth_reset_password_body">अपने खाते के लिए नया पासवर्ड दर्ज करें।</string>
+    <string name="auth_reset_password_action">पासवर्ड रीसेट करें</string>
+    <string name="auth_reset_password_success_title">पासवर्ड रीसेट!</string>
+    <string name="auth_reset_password_success_body">आपका पासवर्ड बदल दिया गया है। अपने नए पासवर्ड से साइन इन करें।</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">अपना ईमेल जाँचें</string>
+    <string name="auth_verify_email_body">हमने %1$s पर 6 अंकों का कोड भेजा है</string>
+    <string name="auth_verify">सत्यापित करें</string>
+    <string name="auth_resend_code">पुनः कोड भेजें</string>
+    <string name="auth_resend_cooldown">%1$s में पुनः भेजें</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">ईमेल पता</string>
+    <string name="field_email_hint">अपना ईमेल दर्ज करें</string>
+    <string name="field_password">पासवर्ड</string>
+    <string name="field_password_hint">अपना पासवर्ड दर्ज करें</string>
+    <string name="field_password_new">नया पासवर्ड</string>
+    <string name="field_password_new_hint">नया पासवर्ड दर्ज करें</string>
+    <string name="field_password_confirm">पासवर्ड की पुष्टि करें</string>
+    <string name="field_password_confirm_hint">अपना पासवर्ड पुनः दर्ज करें</string>
+    <string name="field_password_current">वर्तमान पासवर्ड</string>
+    <string name="field_password_current_hint">वर्तमान पासवर्ड दर्ज करें</string>
+    <string name="field_username">उपयोगकर्ता नाम</string>
+    <string name="field_username_hint">एक उपयोगकर्ता नाम चुनें</string>
+    <string name="field_first_name">पहला नाम</string>
+    <string name="field_first_name_hint">अपना पहला नाम दर्ज करें</string>
+    <string name="field_last_name">अंतिम नाम</string>
+    <string name="field_last_name_hint">अपना अंतिम नाम दर्ज करें</string>
+    <string name="field_phone">फ़ोन नंबर</string>
+    <string name="field_phone_hint">अपना फ़ोन नंबर दर्ज करें</string>
+    <string name="field_birth_date">जन्म तिथि</string>
+    <string name="field_birth_date_hint">अपनी जन्म तिथि चुनें</string>
+    <string name="field_identifier">ईमेल, उपयोगकर्ता नाम या फ़ोन</string>
+    <string name="field_identifier_hint">ईमेल, उपयोगकर्ता नाम या फ़ोन दर्ज करें</string>
+    <string name="field_gender">लिंग</string>
+    <string name="field_bio">जीवनी</string>
+    <string name="field_bio_hint">अपने बारे में कुछ बताएँ</string>
+    <string name="field_timezone">समय क्षेत्र</string>
+    <string name="field_language">भाषा</string>
+    <string name="field_theme">थीम</string>
+    <string name="field_avatar">प्रोफ़ाइल फ़ोटो</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">पासवर्ड दिखाएँ</string>
+    <string name="password_hide">पासवर्ड छिपाएँ</string>
+    <string name="password_strength_weak">कमज़ोर</string>
+    <string name="password_strength_fair">मध्यम</string>
+    <string name="password_strength_good">अच्छा</string>
+    <string name="password_strength_strong">मज़बूत</string>
+    <string name="password_requirement_length">कम से कम 8 अक्षर</string>
+    <string name="password_requirement_uppercase">एक बड़ा अक्षर</string>
+    <string name="password_requirement_lowercase">एक छोटा अक्षर</string>
+    <string name="password_requirement_number">एक संख्या</string>
+    <string name="password_requirement_special">एक विशेष वर्ण</string>
+    <string name="password_forgot">पासवर्ड भूल गए?</string>
+    <string name="password_reset">पासवर्ड रीसेट करें</string>
+    <string name="password_change">पासवर्ड बदलें</string>
+    <string name="password_mismatch">पासवर्ड मेल नहीं खाते।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">खाता</string>
+    <string name="register_step_profile">प्रोफ़ाइल</string>
+    <string name="register_step_preferences">प्राथमिकताएँ</string>
+    <string name="register_step_verify">सत्यापित करें</string>
+    <string name="register_step_indicator">चरण %1$d का %2$d</string>
+    <string name="register_change_photo">फ़ोटो बदलें</string>
+    <string name="register_preferences_caption">आप इन्हें सेटिंग्स में कभी भी बदल सकते हैं।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">डार्क</string>
+    <string name="theme_light">लाइट</string>
+    <string name="theme_system">सिस्टम</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">थीम</string>
+    <string name="profile_theme_hint">आप इसे सेटिंग्स में कभी भी बदल सकते हैं।</string>
+
+    <!-- Gender -->
+    <string name="gender_male">पुरुष</string>
+    <string name="gender_female">महिला</string>
+    <string name="gender_prefer_not_to_say">कहना पसंद नहीं</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">होम</string>
+    <string name="nav_notes">नोट्स</string>
+    <string name="nav_tasks">कार्य</string>
+    <string name="nav_calendar">कैलेंडर</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">पोमोडोरो</string>
+    <string name="nav_search">खोज</string>
+    <string name="nav_profile">प्रोफ़ाइल</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="nav_trash">कचरा</string>
+    <string name="nav_history">इतिहास</string>
+    <string name="nav_events">ईवेंट</string>
+    <string name="tab_dashboard">डैशबोर्ड</string>
+    <string name="tab_events">ईवेंट</string>
+    <string name="tab_dashboard_desc">आपके दिन का अवलोकन</string>
+    <string name="tab_notes_desc">अपने विचारों को कैद करें</string>
+    <string name="tab_tasks_desc">काम पूरा करें</string>
+    <string name="tab_events_desc">एक नज़र में आपका शेड्यूल</string>
+    <string name="tab_pomodoro_desc">प्रवाह में बने रहें</string>
+    <string name="cd_notifications">सूचनाएँ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">सुप्रभात, %1$s 👋</string>
+    <string name="home_greeting_afternoon">नमस्ते, %1$s 👋</string>
+    <string name="home_greeting_evening">शुभ संध्या, %1$s 👋</string>
+    <string name="home_greeting_night">शुभ रात्रि, %1$s 👋</string>
+    <string name="home_quick_add">त्वरित जोड़ें</string>
+    <string name="home_due_today">आज देय</string>
+    <string name="home_overdue">अतिदेय</string>
+    <string name="home_this_week">इस सप्ताह</string>
+    <string name="home_total_notes">कुल नोट्स</string>
+    <string name="home_focus_time">आज का फ़ोकस</string>
+    <string name="home_upcoming_events">आगामी ईवेंट</string>
+    <string name="home_recent_notes">हाल के नोट्स</string>
+    <string name="home_no_tasks_today">आज कोई कार्य देय नहीं।</string>
+    <string name="home_no_events">कोई आगामी ईवेंट नहीं।</string>
+    <string name="home_no_notes">कोई हाल के नोट्स नहीं।</string>
+    <string name="home_sessions_today">आज के सत्र</string>
+    <string name="home_focus_minutes">फ़ोकस समय</string>
+    <string name="home_completed_tasks">पूर्ण किए गए कार्य</string>
+    <string name="home_start_focus">फ़ोकस शुरू करें</string>
+    <string name="home_tasks_completed">कार्य पूर्ण हुए</string>
+    <string name="home_events_upcoming">ईवेंट आगामी</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">नोट्स</string>
+    <string name="notes_new">नया नोट</string>
+    <string name="notes_search_hint">नोट्स खोजें…</string>
+    <string name="notes_filter_all">सभी</string>
+    <string name="notes_filter_pinned">पिन किए गए</string>
+    <string name="notes_empty_title">अभी तक कोई नोट नहीं</string>
+    <string name="notes_empty_body">अपना पहला नोट लिखना शुरू करें।</string>
+    <string name="notes_empty_action">नोट बनाएँ</string>
+    <string name="notes_pinned_section">पिन किए गए</string>
+    <string name="notes_all_section">सभी नोट्स</string>
+    <string name="notes_untitled">शीर्षकहीन</string>
+    <string name="notes_word_count">%1$d शब्द</string>
+    <string name="notes_reading_time">%1$d मिनट पढ़ने का समय</string>
+    <string name="notes_pin_success">नोट पिन किया गया।</string>
+    <string name="notes_unpin_success">नोट अनपिन किया गया।</string>
+    <string name="notes_delete_confirm_title">कचरे में भेजें?</string>
+    <string name="notes_delete_confirm_body">यह नोट कचरे में भेज दिया जाएगा और 30 दिनों के बाद स्थायी रूप से हटा दिया जाएगा।</string>
+    <string name="notes_delete_success">नोट कचरे में भेजा गया।</string>
+    <string name="notes_restore_success">नोट पुनर्स्थापित किया गया।</string>
+    <string name="notes_hard_delete_confirm_title">स्थायी रूप से हटाएँ?</string>
+    <string name="notes_hard_delete_confirm_body">यह नोट स्थायी रूप से हटा दिया जाएगा और इसे पुनर्प्राप्त नहीं किया जा सकता।</string>
+    <string name="notes_hard_delete_success">नोट स्थायी रूप से हटा दिया गया।</string>
+    <string name="notes_create_success">नोट बनाया गया।</string>
+    <string name="notes_update_success">नोट सहेजा गया।</string>
+    <string name="notes_autosave">ऑटोसेव हो गया</string>
+    <string name="notes_saving">सहेजा जा रहा है…</string>
+    <string name="notes_copy_link">लिंक कॉपी करें</string>
+    <string name="notes_link_copied">लिंक कॉपी हो गया।</string>
+    <string name="notes_link_task">कार्य लिंक करें</string>
+    <string name="notes_unlink_task">कार्य अनलिंक करें</string>
+    <string name="notes_task_linked">लिंक किया गया: %1$s</string>
+    <string name="notes_add_tag">टैग जोड़ें</string>
+    <string name="notes_no_tags">कोई टैग नहीं</string>
+    <string name="notes_start_writing">लिखना शुरू करें…</string>
+    <string name="notes_title_hint">शीर्षक</string>
+    <string name="notes_trash_empty_title">कचरा खाली है</string>
+    <string name="notes_trash_empty_body">कचरे में मौजूद नोट 30 दिनों के बाद स्थायी रूप से हटा दिए जाते हैं।</string>
+    <string name="notes_trash_empty_all">कचरा खाली करें</string>
+    <string name="notes_trash_empty_all_confirm_title">कचरा खाली करें?</string>
+    <string name="notes_trash_empty_all_confirm_body">कचरे के सभी नोट स्थायी रूप से हटा दिए जाएँगे।</string>
+    <string name="notes_in_trash">कचरे में %1$d नोट</string>
+    <string name="notes_in_trash_plural">कचरे में %1$d नोट</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">बोल्ड</string>
+    <string name="editor_format_italic">इटैलिक</string>
+    <string name="editor_format_heading">शीर्षक</string>
+    <string name="editor_format_list_bullet">बुलेटेड सूची</string>
+    <string name="editor_format_list_numbered">क्रमांकित सूची</string>
+    <string name="editor_format_code">कोड</string>
+    <string name="editor_format_quote">उद्धरण</string>
+    <string name="editor_format_link">लिंक डालें</string>
+    <string name="editor_insert_link_title">लिंक डालें</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">प्रदर्शन टेक्स्ट</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">टैग</string>
+    <string name="tags_new">नया टैग</string>
+    <string name="tags_name_hint">टैग का नाम</string>
+    <string name="tags_color">रंग</string>
+    <string name="tags_create_success">टैग बनाया गया।</string>
+    <string name="tags_update_success">टैग अपडेट किया गया।</string>
+    <string name="tags_delete_success">टैग हटाया गया।</string>
+    <string name="tags_delete_confirm_title">टैग हटाएँ?</string>
+    <string name="tags_delete_confirm_body">यह टैग उन सभी नोट्स से हटा दिया जाएगा जो इसका उपयोग करते हैं।</string>
+    <string name="tags_already_exists">इस नाम का एक टैग पहले से मौजूद है।</string>
+    <string name="tags_empty_title">अभी तक कोई टैग नहीं</string>
+    <string name="tags_empty_body">अपने नोट्स को व्यवस्थित करने के लिए टैग बनाएँ।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">कार्य</string>
+    <string name="tasks_new">नया कार्य</string>
+    <string name="tasks_search_hint">कार्य खोजें…</string>
+    <string name="tasks_tab_all">सभी</string>
+    <string name="tasks_tab_today">आज</string>
+    <string name="tasks_tab_upcoming">आगामी</string>
+    <string name="tasks_tab_completed">पूर्ण</string>
+    <string name="tasks_view_list">सूची दृश्य</string>
+    <string name="tasks_view_kanban">बोर्ड दृश्य</string>
+    <string name="tasks_empty_title">यहाँ कोई कार्य नहीं</string>
+    <string name="tasks_empty_body">शुरू करने के लिए अपना पहला कार्य बनाएँ।</string>
+    <string name="tasks_empty_action">कार्य बनाएँ</string>
+    <string name="tasks_empty_today">आज कोई कार्य देय नहीं। अपने दिन का आनंद लें!</string>
+    <string name="tasks_empty_upcoming">कोई आगामी कार्य नहीं।</string>
+    <string name="tasks_empty_completed">अभी तक कोई पूर्ण कार्य नहीं।</string>
+    <string name="tasks_empty_filter">कोई कार्य इस फ़िल्टर से मेल नहीं खाता।</string>
+    <string name="tasks_field_title">कार्य शीर्षक</string>
+    <string name="tasks_field_title_hint">क्या करने की आवश्यकता है?</string>
+    <string name="tasks_field_description">विवरण</string>
+    <string name="tasks_field_description_hint">और विवरण जोड़ें…</string>
+    <string name="tasks_field_due_date">नियत तिथि</string>
+    <string name="tasks_field_due_time">नियत समय</string>
+    <string name="tasks_field_priority">प्राथमिकता</string>
+    <string name="tasks_field_status">स्थिति</string>
+    <string name="tasks_field_reminder">अनुस्मारक</string>
+    <string name="tasks_field_estimated_time">अनुमानित समय</string>
+    <string name="tasks_field_actual_time">वास्तविक समय</string>
+    <string name="tasks_field_link_event">ईवेंट लिंक करें</string>
+    <string name="tasks_field_subtasks">उप-कार्य</string>
+    <string name="tasks_add_subtask">उप-कार्य जोड़ें</string>
+    <string name="tasks_subtask_count">%1$d उप-कार्य</string>
+    <string name="tasks_subtask_count_plural">%1$d उप-कार्य</string>
+    <string name="tasks_subtask_completed">%1$d का %2$d पूर्ण</string>
+    <string name="tasks_pomodoro_sessions">फ़ोकस सत्र</string>
+    <string name="tasks_no_due_date">कोई नियत तिथि नहीं</string>
+    <string name="tasks_no_due_time">कोई समय निर्धारित नहीं</string>
+    <string name="tasks_no_reminder">कोई अनुस्मारक नहीं</string>
+    <string name="tasks_no_estimated">कोई अनुमान नहीं</string>
+    <string name="tasks_create_success">कार्य बनाया गया।</string>
+    <string name="tasks_update_success">कार्य अपडेट किया गया।</string>
+    <string name="tasks_delete_success">कार्य हटाया गया।</string>
+    <string name="tasks_restore_success">कार्य पुनर्स्थापित किया गया।</string>
+    <string name="tasks_complete_success">कार्य पूर्ण हुआ।</string>
+    <string name="tasks_reorder_success">कार्य पुनर्क्रमित किए गए।</string>
+    <string name="tasks_status_updated">स्थिति अपडेट की गई।</string>
+    <string name="tasks_delete_confirm_title">कार्य हटाएँ?</string>
+    <string name="tasks_delete_confirm_body">यह कार्य हटा दिया जाएगा।</string>
+    <string name="tasks_minutes">%1$d मिनट</string>
+    <string name="tasks_hours_minutes">%1$d घंटा %2$d मिनट</string>
+    <string name="tasks_swipe_complete">पूर्ण</string>
+    <string name="tasks_swipe_delete">हटाएँ</string>
+    <string name="tasks_sort_due_date">नियत तिथि</string>
+    <string name="tasks_sort_priority">प्राथमिकता</string>
+    <string name="tasks_sort_created">बनाया गया</string>
+    <string name="tasks_sort_title">शीर्षक</string>
+    <string name="tasks_filter_priority">प्राथमिकता के अनुसार फ़िल्टर करें</string>
+    <string name="tasks_filter_status">स्थिति के अनुसार फ़िल्टर करें</string>
+    <string name="tasks_filter_due">नियत तिथि के अनुसार फ़िल्टर करें</string>
+    <string name="tasks_overdue_label">अतिदेय</string>
+    <string name="tasks_due_today_label">आज देय</string>
+    <string name="tasks_due_tomorrow_label">कल देय</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">कम</string>
+    <string name="priority_medium">मध्यम</string>
+    <string name="priority_high">उच्च</string>
+    <string name="priority_urgent">अत्यावश्यक</string>
+
+    <string name="status_todo">करने के लिए</string>
+    <string name="status_in_progress">प्रगति पर</string>
+    <string name="status_on_hold">रोका हुआ</string>
+    <string name="status_done">पूर्ण</string>
+    <string name="status_cancelled">रद्द</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">करने के लिए</string>
+    <string name="kanban_column_in_progress">प्रगति पर</string>
+    <string name="kanban_column_on_hold">रोका हुआ</string>
+    <string name="kanban_column_done">पूर्ण</string>
+    <string name="kanban_add_task">कार्य जोड़ें</string>
+    <string name="kanban_drag_hint">स्थानांतरित करने के लिए पकड़ें और खींचें</string>
+    <string name="kanban_column_empty">यहाँ कोई कार्य नहीं</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">कैलेंडर</string>
+    <string name="calendar_view_week">सप्ताह</string>
+    <string name="calendar_view_month">महीना</string>
+    <string name="calendar_today">आज</string>
+    <string name="calendar_new_event">नया ईवेंट</string>
+    <string name="calendar_no_events">कोई ईवेंट नहीं</string>
+    <string name="calendar_all_day">पूरे दिन</string>
+    <string name="calendar_recurring">पुनरावर्ती</string>
+    <string name="calendar_events_count">%1$d ईवेंट</string>
+    <string name="calendar_events_count_plural">%1$d ईवेंट</string>
+    <string name="calendar_more_events">+%1$d और</string>
+    <string name="calendar_week_header">%1$s का सप्ताह</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">नया ईवेंट</string>
+    <string name="event_edit_title">ईवेंट संपादित करें</string>
+    <string name="event_field_title">ईवेंट शीर्षक</string>
+    <string name="event_field_title_hint">ईवेंट क्या है?</string>
+    <string name="event_field_description">विवरण</string>
+    <string name="event_field_description_hint">इस ईवेंट के बारे में नोट्स जोड़ें…</string>
+    <string name="event_field_location">स्थान</string>
+    <string name="event_field_location_hint">एक स्थान जोड़ें</string>
+    <string name="event_field_start">आरंभ</string>
+    <string name="event_field_end">समाप्ति</string>
+    <string name="event_field_all_day">पूरे दिन का ईवेंट</string>
+    <string name="event_field_color">रंग</string>
+    <string name="event_field_recurrence">पुनरावृत्ति</string>
+    <string name="event_field_reminder">अनुस्मारक</string>
+    <string name="event_field_link_task">कार्य लिंक करें</string>
+    <string name="event_recurrence_none">दोहराएँ नहीं</string>
+    <string name="event_recurrence_daily">दैनिक</string>
+    <string name="event_recurrence_weekly">साप्ताहिक</string>
+    <string name="event_recurrence_monthly">मासिक</string>
+    <string name="event_recurrence_yearly">वार्षिक</string>
+    <string name="event_recurrence_custom">कस्टम</string>
+    <string name="event_recurrence_weekdays">प्रत्येक कार्यदिवस (सोम–शुक्र)</string>
+    <string name="event_recurrence_end_date">समाप्ति तिथि</string>
+    <string name="event_recurrence_end_never">कभी नहीं</string>
+    <string name="event_recurrence_label">पुनरावृत्ति: %1$s</string>
+    <string name="event_reminder_none">कोई अनुस्मारक नहीं</string>
+    <string name="event_reminder_at_time">ईवेंट के समय</string>
+    <string name="event_reminder_5_min">5 मिनट पहले</string>
+    <string name="event_reminder_10_min">10 मिनट पहले</string>
+    <string name="event_reminder_15_min">15 मिनट पहले</string>
+    <string name="event_reminder_30_min">30 मिनट पहले</string>
+    <string name="event_reminder_1_hour">1 घंटा पहले</string>
+    <string name="event_reminder_1_day">1 दिन पहले</string>
+    <string name="event_create_success">ईवेंट बनाया गया।</string>
+    <string name="event_update_success">ईवेंट अपडेट किया गया।</string>
+    <string name="event_delete_success">ईवेंट हटाया गया।</string>
+    <string name="event_restore_success">ईवेंट पुनर्स्थापित किया गया।</string>
+    <string name="event_delete_confirm_title">ईवेंट हटाएँ?</string>
+    <string name="event_delete_confirm_body">यह ईवेंट हटा दिया जाएगा।</string>
+    <string name="event_delete_recurring_title">पुनरावर्ती ईवेंट हटाएँ</string>
+    <string name="event_delete_recurring_body">क्या आप केवल यह ईवेंट या श्रृंखला के सभी ईवेंट हटाना चाहते हैं?</string>
+    <string name="event_delete_this_only">केवल यह ईवेंट</string>
+    <string name="event_delete_all_in_series">श्रृंखला के सभी ईवेंट</string>
+    <string name="event_end_before_start">समाप्ति का समय आरंभ समय के बाद होना चाहिए।</string>
+    <string name="event_location_open_maps">मैप्स में खोलें</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">मीटिंग</string>
+    <string name="event_template_focus">फ़ोकस समय</string>
+    <string name="event_template_break">ब्रेक</string>
+    <string name="event_template_travel">यात्रा</string>
+    <string name="event_join_meeting">मीटिंग में शामिल हों</string>
+    <string name="event_navigate">नेविगेट करें</string>
+    <string name="event_share">ईवेंट साझा करें</string>
+    <string name="event_duplicate">डुप्लिकेट</string>
+    <string name="event_weather">मौसम</string>
+    <string name="event_attendees">प्रतिभागी</string>
+    <string name="event_timezone">समय क्षेत्र</string>
+    <string name="event_travel_time">यात्रा समय</string>
+    <string name="event_conflict_detected">समय विरोध का पता चला</string>
+    <string name="event_reminder_multiple">एकाधिक अनुस्मारक</string>
+    <string name="event_reminder_add">अनुस्मारक जोड़ें</string>
+    <string name="event_reminder_custom">कस्टम</string>
+    <string name="event_voice_input">वॉइस इनपुट</string>
+    <string name="event_smart_suggestion">स्मार्ट सुझाव</string>
+    <string name="event_free_busy">खाली/व्यस्त</string>
+    <string name="event_suggested_times">सुझाए गए समय</string>
+    <string name="calendar_view_day">दिन</string>
+    <string name="calendar_view_agenda">एजेंडा</string>
+    <string name="calendar_view_year">वर्ष</string>
+    <string name="calendar_date_jump">तिथि पर जाएँ</string>
+    <string name="calendar_swipe_instruction">नेविगेट करने के लिए स्वाइप करें</string>
+    <string name="calendar_pinch_zoom">ज़ूम करने के लिए पिंच करें</string>
+    <string name="calendar_no_events_day">इस दिन कोई ईवेंट नहीं</string>
+    <string name="calendar_all_day_section">पूरे दिन</string>
+    <string name="calendar_agenda_empty">कोई आगामी ईवेंट नहीं</string>
+    <string name="calendar_heat_map_label">गतिविधि</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">फ़ोकस</string>
+    <string name="pomodoro_focus">फ़ोकस</string>
+    <string name="pomodoro_short_break">छोटा ब्रेक</string>
+    <string name="pomodoro_long_break">लंबा ब्रेक</string>
+    <string name="pomodoro_session_focus">फ़ोकस सत्र</string>
+    <string name="pomodoro_session_short_break">छोटा ब्रेक</string>
+    <string name="pomodoro_session_long_break">लंबा ब्रेक</string>
+    <string name="pomodoro_start">शुरू करें</string>
+    <string name="pomodoro_pause">रोकें</string>
+    <string name="pomodoro_resume">जारी रखें</string>
+    <string name="pomodoro_skip">छोड़ें</string>
+    <string name="pomodoro_stop">रोकें</string>
+    <string name="pomodoro_reset">रीसेट करें</string>
+    <string name="pomodoro_link_task">एक कार्य लिंक करें</string>
+    <string name="pomodoro_link_task_hint">कार्य लिंक करने के लिए टैप करें</string>
+    <string name="pomodoro_linked_task">फ़ोकस कर रहे हैं: %1$s</string>
+    <string name="pomodoro_sessions_today">आज %1$d सत्र</string>
+    <string name="pomodoro_sessions_today_plural">आज %1$d सत्र</string>
+    <string name="pomodoro_focus_time_today">आज %1$s फ़ोकस किया</string>
+    <string name="pomodoro_completed_today">आज पूर्ण हुए</string>
+    <string name="pomodoro_no_active_session">कोई सक्रिय सत्र नहीं</string>
+    <string name="pomodoro_session_complete_title">सत्र पूर्ण! 🎉</string>
+    <string name="pomodoro_session_complete_body">बढ़िया काम! एक ब्रेक लें!</string>
+    <string name="pomodoro_break_complete_title">ब्रेक समाप्त</string>
+    <string name="pomodoro_break_complete_body">फिर से फ़ोकस करने के लिए तैयार?</string>
+    <string name="pomodoro_start_success">सत्र शुरू हुआ।</string>
+    <string name="pomodoro_end_success">सत्र पूर्ण हुआ।</string>
+    <string name="pomodoro_interrupt_success">सत्र बाधित हुआ।</string>
+    <string name="pomodoro_interrupt_reason_hint">आप क्यों रोक रहे हैं? (वैकल्पिक)</string>
+    <string name="pomodoro_interrupt_confirm_title">सत्र रोकें?</string>
+    <string name="pomodoro_interrupt_confirm_body">आपकी प्रगति सहेज ली जाएगी लेकिन सत्र बाधित के रूप में चिह्नित होगा।</string>
+    <string name="pomodoro_already_active">आपका पहले से एक सक्रिय सत्र है। नया शुरू करने से पहले इसे समाप्त करें।</string>
+    <string name="pomodoro_stats_title">आज के आँकड़े</string>
+    <string name="pomodoro_history_title">सत्र इतिहास</string>
+    <string name="pomodoro_history_empty_title">अभी तक कोई सत्र नहीं</string>
+    <string name="pomodoro_history_empty_body">अपना इतिहास देखने के लिए एक फ़ोकस सत्र शुरू करें।</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">बाधित</string>
+    <string name="pomodoro_session_completed">पूर्ण</string>
+    <string name="pomodoro_dot_current">वर्तमान सत्र</string>
+    <string name="pomodoro_dot_completed">पूर्ण सत्र</string>
+    <string name="pomodoro_dot_upcoming">आगामी सत्र</string>
+    <string name="pomodoro_notification_channel_name">पोमोडोरो टाइमर</string>
+    <string name="pomodoro_notification_channel_desc">लाइव टाइमर अपडेट और सत्र सूचनाएँ।</string>
+    <string name="pomodoro_notification_running">%1$s शेष — %2$s</string>
+    <string name="pomodoro_notification_action_pause">रोकें</string>
+    <string name="pomodoro_notification_action_skip">छोड़ें</string>
+    <string name="pomodoro_notification_action_stop">रोकें</string>
+    <string name="pomodoro_cycle_count">चक्र %1$d का %2$d</string>
+    <string name="pomodoro_until_long_break">लंबे ब्रेक तक %1$d सत्र</string>
+    <string name="pomodoro_until_long_break_plural">लंबे ब्रेक तक %1$d सत्र</string>
+
+    <string name="pomodoro_swipe_to_skip">छोड़ने के लिए स्वाइप करें</string>
+    <string name="pomodoro_extend_1min">+1 मिनट</string>
+    <string name="pomodoro_focus_analytics">फ़ोकस विश्लेषण</string>
+    <string name="pomodoro_streak_day">%1$d दिन का सिलसिला</string>
+    <string name="pomodoro_best_streak">सर्वश्रेष्ठ: %1$d दिन</string>
+    <string name="pomodoro_weekly_intensity">साप्ताहिक तीव्रता</string>
+    <string name="pomodoro_focus_by_category">श्रेणी के अनुसार फ़ोकस</string>
+    <string name="pomodoro_quality_score">गुणवत्ता स्कोर</string>
+    <string name="pomodoro_total_focus_time">कुल फ़ोकस</string>
+    <string name="pomodoro_daily_goal">दैनिक लक्ष्य</string>
+    <string name="pomodoro_weekly_goal">साप्ताहिक लक्ष्य</string>
+    <string name="pomodoro_exit_focus_mode">फ़ोकस मोड से बाहर निकलें</string>
+    <string name="pomodoro_dnd_access_required">DND पहुँच आवश्यक है। कृपया सेटिंग्स में सक्षम करें।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI सहायक</string>
+    <string name="ai_welcome_title">मैं कैसे मदद कर सकता हूँ?</string>
+    <string name="ai_welcome_body">मैं आपका कार्यक्षेत्र — कार्य, ईवेंट और नोट्स — देख सकता हूँ, ताकि आपको संदर्भ-जागरूक उत्तर दे सकूँ।</string>
+    <string name="ai_message_hint">संदेश…</string>
+    <string name="ai_send">भेजें</string>
+    <string name="ai_new_conversation">नई बातचीत</string>
+    <string name="ai_conversations_title">बातचीतें</string>
+    <string name="ai_conversation_empty">अभी तक कोई संदेश नहीं</string>
+    <string name="ai_conversations_empty_title">अभी तक कोई बातचीत नहीं</string>
+    <string name="ai_conversations_empty_body">अपने कार्यक्षेत्र में सहायता पाने के लिए एक नई बातचीत शुरू करें।</string>
+    <string name="ai_delete_conversation_title">बातचीत हटाएँ?</string>
+    <string name="ai_delete_conversation_body">यह बातचीत और इसके सभी संदेश स्थायी रूप से हटा दिए जाएँगे।</string>
+    <string name="ai_delete_conversation_success">बातचीत हटा दी गई।</string>
+    <string name="ai_clear_conversation_title">बातचीत साफ़ करें?</string>
+    <string name="ai_clear_conversation_body">इस बातचीत के सभी संदेश साफ़ कर दिए जाएँगे।</string>
+    <string name="ai_suggestion_due_today">आज क्या देय है?</string>
+    <string name="ai_suggestion_overdue">मेरे अतिदेय कार्यों का सारांश दें</string>
+    <string name="ai_suggestion_start_focus">एक फ़ोकस सत्र शुरू करें</string>
+    <string name="ai_suggestion_meeting_agenda">एक मीटिंग एजेंडा तैयार करें</string>
+    <string name="ai_context_title">आपका कार्यक्षेत्र</string>
+    <string name="ai_context_active_tasks">सक्रिय कार्य</string>
+    <string name="ai_context_events_week">इस सप्ताह के ईवेंट</string>
+    <string name="ai_context_last_note">अंतिम नोट</string>
+    <string name="ai_context_focus_today">आज का फ़ोकस</string>
+    <string name="ai_context_overdue">अतिदेय</string>
+    <string name="ai_context_caption">यह संदर्भ हर संदेश के साथ AI को भेजा जाता है।</string>
+    <string name="ai_context_refresh">संदर्भ ताज़ा करें</string>
+    <string name="ai_typing">AI सोच रहा है…</string>
+    <string name="ai_streaming">जवाब तैयार हो रहा है…</string>
+    <string name="ai_error_unavailable">AI सहायक अभी उपलब्ध नहीं है। कृपया बाद में पुनः प्रयास करें।</string>
+    <string name="ai_error_stream">जवाब तैयार करते समय एक त्रुटि हुई।</string>
+    <string name="ai_action_create_task">कार्य बनाएँ</string>
+    <string name="ai_action_create_note">नोट बनाएँ</string>
+    <string name="ai_action_add_event">ईवेंट जोड़ें</string>
+    <string name="ai_action_confirm">पुष्टि करें</string>
+    <string name="ai_action_dismiss">खारिज करें</string>
+    <string name="ai_action_executed">पूर्ण! आइटम बनाया गया।</string>
+    <string name="ai_action_dismissed">खारिज किया गया।</string>
+    <string name="ai_copy_message">संदेश कॉपी करें</string>
+    <string name="ai_message_copied">संदेश कॉपी हो गया।</string>
+    <string name="ai_regenerate">जवाब पुनः तैयार करें</string>
+    <string name="ai_you">आप</string>
+    <string name="ai_assistant">सहायक</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">खोज</string>
+    <string name="search_hint">नोट्स, कार्य, ईवेंट खोजें…</string>
+    <string name="search_results_notes">नोट्स</string>
+    <string name="search_results_tasks">कार्य</string>
+    <string name="search_results_events">ईवेंट</string>
+    <string name="search_recent">हाल की खोजें</string>
+    <string name="search_clear_recent">साफ़ करें</string>
+    <string name="search_empty_title">\'%1$s\' के लिए कोई परिणाम नहीं</string>
+    <string name="search_empty_body">अलग कीवर्ड आज़माएँ या अपनी वर्तनी जाँचें।</string>
+    <string name="search_results_count">%1$d परिणाम</string>
+    <string name="search_results_count_plural">%1$d परिणाम</string>
+    <string name="search_type_note">नोट</string>
+    <string name="search_type_task">कार्य</string>
+    <string name="search_type_event">ईवेंट</string>
+    <string name="search_offline_notice">स्थानीय रूप से खोज रहा है। पूर्ण परिणामों के लिए इंटरनेट से कनेक्ट करें।</string>
+    <string name="search_loading">खोज रहा है…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">प्रोफ़ाइल</string>
+    <string name="profile_edit_title">प्रोफ़ाइल संपादित करें</string>
+    <string name="profile_change_photo">फ़ोटो बदलें</string>
+    <string name="profile_remove_photo">फ़ोटो हटाएँ</string>
+    <string name="profile_photo_updated">प्रोफ़ाइल फ़ोटो अपडेट की गई।</string>
+    <string name="profile_photo_removed">प्रोफ़ाइल फ़ोटो हटा दी गई।</string>
+    <string name="profile_photo_pick">गैलरी से चुनें</string>
+    <string name="profile_photo_camera">फ़ोटो लें</string>
+    <string name="profile_update_success">प्रोफ़ाइल अपडेट की गई।</string>
+    <string name="profile_stats_notes">नोट्स</string>
+    <string name="profile_stats_tasks_completed">कार्य पूर्ण हुए</string>
+    <string name="profile_stats_focus_this_week">इस सप्ताह फ़ोकस</string>
+    <string name="profile_member_since">%1$s से सदस्य</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">अभी तक कोई जीवनी नहीं।</string>
+    <string name="profile_section_account">खाता</string>
+    <string name="profile_section_appearance">दिखावट</string>
+    <string name="profile_section_pomodoro">पोमोडोरो</string>
+    <string name="profile_section_notifications">सूचनाएँ</string>
+    <string name="profile_section_ai">AI सहायक</string>
+    <string name="profile_section_data">डेटा और सिंक</string>
+    <string name="profile_section_about">बारे में</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">प्राथमिकताएँ</string>
+    <string name="preferences_update_success">प्राथमिकताएँ सहेजी गईं।</string>
+    <string name="preferences_pomodoro_focus">फ़ोकस अवधि</string>
+    <string name="preferences_pomodoro_focus_desc">प्रत्येक फ़ोकस सत्र की लंबाई</string>
+    <string name="preferences_pomodoro_short_break">छोटा ब्रेक</string>
+    <string name="preferences_pomodoro_short_break_desc">सत्रों के बीच छोटे ब्रेक की लंबाई</string>
+    <string name="preferences_pomodoro_long_break">लंबा ब्रेक</string>
+    <string name="preferences_pomodoro_long_break_desc">पूर्ण चक्र के बाद लंबे ब्रेक की लंबाई</string>
+    <string name="preferences_pomodoro_cycles">लंबे ब्रेक से पहले सत्र</string>
+    <string name="preferences_pomodoro_cycles_desc">लंबे ब्रेक से पहले फ़ोकस सत्रों की संख्या</string>
+    <string name="preferences_pomodoro_auto_start_breaks">ऑटो-स्टार्ट ब्रेक</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">सत्र समाप्त होने पर स्वचालित रूप से ब्रेक शुरू करें</string>
+    <string name="preferences_pomodoro_auto_start_focus">ऑटो-स्टार्ट फ़ोकस</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">ब्रेक के बाद स्वचालित रूप से अगला सत्र शुरू करें</string>
+    <string name="preferences_pomodoro_sound">ध्वनि</string>
+    <string name="preferences_pomodoro_sound_desc">सत्र समाप्त होने पर ध्वनि बजाएँ</string>
+    <string name="preferences_notify_task_reminders">कार्य अनुस्मारक</string>
+    <string name="preferences_notify_task_reminders_desc">जब कोई कार्य अनुस्मारक देय हो तो सूचित करें</string>
+    <string name="preferences_notify_event_reminders">ईवेंट अनुस्मारक</string>
+    <string name="preferences_notify_event_reminders_desc">कैलेंडर ईवेंट से पहले सूचित करें</string>
+    <string name="preferences_notify_pomodoro_end">पोमोडोरो समाप्ति</string>
+    <string name="preferences_notify_pomodoro_end_desc">जब पोमोडोरो सत्र समाप्त हो तो सूचित करें</string>
+    <string name="preferences_notify_daily_summary">दैनिक सारांश</string>
+    <string name="preferences_notify_daily_summary_desc">अपने दिन का सुबह का सारांश प्राप्त करें</string>
+    <string name="preferences_default_task_view">डिफ़ॉल्ट कार्य दृश्य</string>
+    <string name="preferences_default_task_sort">डिफ़ॉल्ट कार्य क्रम</string>
+    <string name="preferences_show_completed_tasks">पूर्ण कार्य दिखाएँ</string>
+    <string name="preferences_show_completed_tasks_desc">कार्य सूची में पूर्ण कार्य शामिल करें</string>
+    <string name="preferences_default_calendar_view">डिफ़ॉल्ट कैलेंडर दृश्य</string>
+    <string name="preferences_week_starts_on">सप्ताह की शुरुआत</string>
+    <string name="preferences_week_starts_monday">सोमवार</string>
+    <string name="preferences_week_starts_sunday">रविवार</string>
+    <string name="preferences_ai_context">कार्यक्षेत्र संदर्भ</string>
+    <string name="preferences_ai_context_desc">अपने कार्यों, ईवेंट और नोट्स को AI सहायक के साथ साझा करें</string>
+    <string name="preferences_ai_model">AI मॉडल</string>
+    <string name="preferences_ai_model_desc">सहायक के लिए AI मॉडल चुनें</string>
+    <string name="preferences_compact_mode">कॉम्पैक्ट मोड</string>
+    <string name="preferences_compact_mode_desc">अधिक सामग्री दिखाने के लिए संक्षिप्त लेआउट का उपयोग करें</string>
+    <string name="preferences_minutes_format">%1$d मिनट</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">सिंक हुआ</string>
+    <string name="sync_status_pending">सिंक लंबित</string>
+    <string name="sync_status_syncing">सिंक हो रहा है…</string>
+    <string name="sync_status_conflict">सिंक विरोध</string>
+    <string name="sync_status_error">सिंक त्रुटि</string>
+    <string name="sync_last_synced">अंतिम सिंक: %1$s</string>
+    <string name="sync_never_synced">कभी सिंक नहीं हुआ</string>
+    <string name="sync_conflict_title">सिंक विरोध</string>
+    <string name="sync_conflict_body">\'%1$s\' के लिए एक विरोध पाया गया। आप कौन सा संस्करण रखना चाहते हैं?</string>
+    <string name="sync_conflict_keep_local">स्थानीय संस्करण रखें</string>
+    <string name="sync_conflict_keep_server">सर्वर संस्करण रखें</string>
+    <string name="sync_conflict_resolved">विरोध हल हो गया।</string>
+    <string name="sync_pending_count">%1$d बदलाव लंबित</string>
+    <string name="sync_pending_count_plural">%1$d बदलाव लंबित</string>
+    <string name="sync_offline_banner">आप ऑफ़लाइन हैं। परिवर्तन पुनः कनेक्ट होने पर सिंक होंगे।</string>
+    <string name="sync_reconnected">वापस ऑनलाइन। सिंक हो रहा है…</string>
+    <string name="sync_complete">सभी परिवर्तन सिंक हो गए।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">अनुस्मारक</string>
+    <string name="notification_channel_reminders_desc">कार्य और ईवेंट अनुस्मारक सूचनाएँ।</string>
+    <string name="notification_channel_sync_name">सिंक</string>
+    <string name="notification_channel_sync_desc">बैकग्राउंड सिंक स्थिति सूचनाएँ।</string>
+    <string name="notification_task_reminder_title">कार्य अनुस्मारक</string>
+    <string name="notification_task_reminder_body">%1$s जल्द ही देय है।</string>
+    <string name="notification_event_reminder_title">आगामी ईवेंट</string>
+    <string name="notification_event_reminder_body">%1$s %2$s में शुरू हो रहा है।</string>
+    <string name="notification_daily_summary_title">आपके दिन पर एक नज़र</string>
+    <string name="notification_daily_summary_body">आज %1$d कार्य देय, %2$d आगामी ईवेंट।</string>
+    <string name="notification_permission_title">सूचनाएँ सक्षम करें</string>
+    <string name="notification_permission_body">अनुस्मारक, फ़ोकस सत्र और दैनिक सारांश से अपडेट रहें।</string>
+    <string name="notification_permission_allow">अनुमति दें</string>
+    <string name="notification_permission_deny">अभी नहीं</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">कैमरा एक्सेस</string>
+    <string name="permission_camera_body">ProductivityX को प्रोफ़ाइल फ़ोटो लेने के लिए कैमरा एक्सेस चाहिए।</string>
+    <string name="permission_storage_title">स्टोरेज एक्सेस</string>
+    <string name="permission_storage_body">ProductivityX को प्रोफ़ाइल फ़ोटो चुनने के लिए स्टोरेज एक्सेस चाहिए।</string>
+    <string name="permission_notification_title">सूचना एक्सेस</string>
+    <string name="permission_notification_body">कार्य अनुस्मारक और पोमोडोरो अलर्ट प्राप्त करने के लिए सूचनाओं की अनुमति दें।</string>
+    <string name="permission_denied_title">अनुमति आवश्यक</string>
+    <string name="permission_denied_body">इस सुविधा के लिए अनुमति आवश्यक है। कृपया इसे सेटिंग्स में सक्षम करें।</string>
+    <string name="permission_go_to_settings">सेटिंग्स खोलें</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">अभी</string>
+    <string name="time_minutes_ago">%1$d मिनट पहले</string>
+    <string name="time_hours_ago">%1$d घंटे पहले</string>
+    <string name="time_yesterday">कल</string>
+    <string name="time_days_ago">%1$d दिन पहले</string>
+    <string name="time_weeks_ago">%1$d सप्ताह पहले</string>
+    <string name="time_weeks_ago_plural">%1$d सप्ताह पहले</string>
+    <string name="time_months_ago">%1$d महीने पहले</string>
+    <string name="time_months_ago_plural">%1$d महीने पहले</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">h:mm a</string>
+    <string name="time_format_datetime">d MMM yyyy h:mm a</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, d MMMM yyyy</string>
+    <string name="time_am">पूर्वाह्न</string>
+    <string name="time_pm">अपराह्न</string>
+    <string name="time_hour_singular">%1$d घंटा</string>
+    <string name="time_hour_plural">%1$d घंटे</string>
+    <string name="time_minute_singular">%1$d मिनट</string>
+    <string name="time_minute_plural">%1$d मिनट</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">सोम</string>
+    <string name="day_tuesday_short">मंगल</string>
+    <string name="day_wednesday_short">बुध</string>
+    <string name="day_thursday_short">गुरु</string>
+    <string name="day_friday_short">शुक्र</string>
+    <string name="day_saturday_short">शनि</string>
+    <string name="day_sunday_short">रवि</string>
+    <string name="day_monday">सोमवार</string>
+    <string name="day_tuesday">मंगलवार</string>
+    <string name="day_wednesday">बुधवार</string>
+    <string name="day_thursday">गुरुवार</string>
+    <string name="day_friday">शुक्रवार</string>
+    <string name="day_saturday">शनिवार</string>
+    <string name="day_sunday">रविवार</string>
+
+    <string name="month_january">जनवरी</string>
+    <string name="month_february">फरवरी</string>
+    <string name="month_march">मार्च</string>
+    <string name="month_april">अप्रैल</string>
+    <string name="month_may">मई</string>
+    <string name="month_june">जून</string>
+    <string name="month_july">जुलाई</string>
+    <string name="month_august">अगस्त</string>
+    <string name="month_september">सितंबर</string>
+    <string name="month_october">अक्टूबर</string>
+    <string name="month_november">नवंबर</string>
+    <string name="month_december">दिसंबर</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">यहाँ अभी कुछ नहीं</string>
+    <string name="empty_state_generic_body">कुछ नया बनाकर शुरू करें।</string>
+    <string name="empty_state_no_results_title">कोई परिणाम नहीं मिला</string>
+    <string name="empty_state_no_results_body">कोई अलग खोज या फ़िल्टर आज़माएँ।</string>
+    <string name="empty_state_offline_title">आप ऑफ़लाइन हैं</string>
+    <string name="empty_state_offline_body">अपनी सामग्री लोड करने के लिए इंटरनेट से कनेक्ट करें।</string>
+    <string name="empty_state_error_title">कुछ गलत हो गया</string>
+    <string name="empty_state_error_body">रिफ़्रेश करने के लिए नीचे खींचें, या नीचे दिए गए बटन को टैप करें।</string>
+    <string name="empty_state_retry">पुनः प्रयास करें</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">वापस नेविगेट करें</string>
+    <string name="cd_close">बंद करें</string>
+    <string name="cd_more_options">और विकल्प</string>
+    <string name="cd_search">खोज</string>
+    <string name="cd_filter">फ़िल्टर</string>
+    <string name="cd_sort">क्रमबद्ध करें</string>
+    <string name="cd_add">जोड़ें</string>
+    <string name="cd_delete">हटाएँ</string>
+    <string name="cd_edit">संपादित करें</string>
+    <string name="cd_restore">पुनर्स्थापित करें</string>
+    <string name="cd_pin">नोट पिन करें</string>
+    <string name="cd_unpin">नोट अनपिन करें</string>
+    <string name="cd_check_task">कार्य पूर्ण चिह्नित करें</string>
+    <string name="cd_uncheck_task">कार्य अपूर्ण चिह्नित करें</string>
+    <string name="cd_profile_picture">प्रोफ़ाइल चित्र</string>
+    <string name="cd_send_message">संदेश भेजें</string>
+    <string name="cd_play_pause">टाइमर चलाएँ या रोकें</string>
+    <string name="cd_skip_session">सत्र छोड़ें</string>
+    <string name="cd_stop_session">सत्र रोकें</string>
+    <string name="cd_sync_status">सिंक स्थिति: %1$s</string>
+    <string name="cd_password_toggle">पासवर्ड दृश्यता टॉगल करें</string>
+    <string name="cd_clear_input">इनपुट साफ़ करें</string>
+    <string name="cd_remove_subtask">उप-कार्य हटाएँ</string>
+    <string name="cd_notification">सूचना</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">आपका सत्र जाँचा जा रहा है…</string>
+    <string name="splash_loading">लोड हो रहा है…</string>
+
+    <string name="dialog_unsaved_changes_title">असहेजे गए परिवर्तन</string>
+    <string name="dialog_unsaved_changes_body">आपके पास असहेजे गए परिवर्तन हैं। क्या आप उन्हें छोड़ना चाहते हैं?</string>
+    <string name="dialog_unsaved_changes_save">सहेजें</string>
+    <string name="dialog_unsaved_changes_discard">त्यागें</string>
+    <string name="dialog_date_picker_title">तिथि चुनें</string>
+    <string name="dialog_time_picker_title">समय चुनें</string>
+    <string name="dialog_color_picker_title">रंग चुनें</string>
+    <string name="dialog_task_picker_title">एक कार्य लिंक करें</string>
+    <string name="dialog_event_picker_title">एक ईवेंट लिंक करें</string>
+    <string name="dialog_tag_manager_title">टैग प्रबंधित करें</string>
+
+    <string name="task_view_list">सूची</string>
+    <string name="task_view_kanban">बोर्ड</string>
+
+    <string name="snackbar_undo">पूर्ववत करें</string>
+    <string name="snackbar_note_deleted">नोट हटाया गया</string>
+    <string name="snackbar_task_deleted">कार्य हटाया गया</string>
+    <string name="snackbar_event_deleted">ईवेंट हटाया गया</string>
+    <string name="snackbar_tag_deleted">टैग हटाया गया</string>
+    <string name="snackbar_copied">क्लिपबोर्ड पर कॉपी किया गया</string>
+    <string name="snackbar_no_internet">कोई इंटरनेट कनेक्शन नहीं</string>
+    <string name="snackbar_changes_saved">परिवर्तन सहेजे गए</string>
+
+    <string name="about_version">संस्करण %1$s</string>
+    <string name="about_build">बिल्ड %1$s</string>
+    <string name="about_privacy_policy">गोपनीयता नीति</string>
+    <string name="about_terms_of_service">सेवा की शर्तें</string>
+    <string name="about_open_source_licenses">ओपन सोर्स लाइसेंस</string>
+    <string name="about_rate_app">ऐप को रेट करें</string>
+    <string name="about_send_feedback">प्रतिक्रिया भेजें</string>
+    <string name="about_built_by">Oussama Chatri द्वारा निर्मित</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">डेटा निर्यात करें</string>
+    <string name="data_export_body">अपने सभी नोट्स, कार्य और ईवेंट एक फ़ाइल के रूप में डाउनलोड करें।</string>
+    <string name="data_export_action">निर्यात करें</string>
+    <string name="data_export_success">आपका डेटा निर्यात तैयार है।</string>
+    <string name="data_delete_account_title">खाता हटाएँ</string>
+    <string name="data_delete_account_body">अपना खाता और सभी संबंधित डेटा स्थायी रूप से हटाएँ। इसे पूर्ववत नहीं किया जा सकता।</string>
+    <string name="data_delete_account_action">खाता हटाएँ</string>
+    <string name="data_delete_account_confirm_title">अपना खाता हटाएँ?</string>
+    <string name="data_delete_account_confirm_body">आपके सभी नोट्स, कार्य, ईवेंट और बातचीत स्थायी रूप से हटा दिए जाएँगे। यह क्रिया वापस नहीं ली जा सकती।</string>
+    <string name="data_delete_account_type_confirm">पुष्टि करने के लिए DELETE टाइप करें</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">अपडेट उपलब्ध</string>
+    <string name="update_available_body">ProductivityX का एक नया संस्करण उपलब्ध है। नवीनतम सुविधाओं और सुधारों के लिए अभी अपडेट करें।</string>
+    <string name="update_now">अभी अपडेट करें</string>
+    <string name="update_later">बाद में</string>
+
+    <string name="auth_check_your_email">अपना ईमेल जाँचें</string>
+    <string name="auth_otp_sent_body">हमने %s पर 6 अंकों का कोड भेजा है</string>
+
+    <string name="language_en">अंग्रेज़ी</string>
+    <string name="language_fr">फ़्रेंच</string>
+    <string name="language_ar">अरबी</string>
+    <string name="language_es">स्पेनिश</string>
+    <string name="language_de">जर्मन</string>
+    <string name="language_pt">पुर्तगाली</string>
+    <string name="language_zh">पारंपरिक चीनी</string>
+    <string name="language_ja">जापानी</string>
+    <string name="language_ko">कोरियाई</string>
+    <string name="language_ru">रूसी</string>
+    <string name="language_tr">तुर्की</string>
+    <string name="language_it">इतालवी</string>
+    <string name="language_hi">हिंदी</string>
+    <string name="language_id">इंडोनेशियाई</string>
+    <string name="language_nl">डच</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">कार्य</string>
+    <string name="widget_task_list_empty">आज कोई कार्य देय नहीं</string>
+    <string name="widget_pomodoro_title">पोमोडोरो</string>
+    <string name="widget_pomodoro_start">फ़ोकस शुरू करने के लिए टैप करें</string>
+    <string name="widget_quick_note_title">त्वरित नोट</string>
+    <string name="widget_quick_note_hint">नोट जोड़ने के लिए टैप करें</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">आज के कार्य</string>
+    <string name="home_widget_events">आगामी ईवेंट</string>
+    <string name="home_widget_focus">आज का फ़ोकस समय</string>
+    <string name="home_widget_notes">हाल के नोट्स</string>
+    <string name="home_widget_quote">दैनिक उद्धरण</string>
+    <string name="home_widget_ai">AI सहायक</string>
+    <string name="home_widget_focus_mode">त्वरित फ़ोकस</string>
+    <string name="home_expand">विस्तार करें</string>
+    <string name="home_collapse">संक्षिप्त करें</string>
+    <string name="home_see_all">सभी देखें</string>
+    <string name="home_empty_tasks">आज कोई कार्य देय नहीं</string>
+    <string name="home_empty_events">कोई आगामी ईवेंट नहीं</string>
+    <string name="home_empty_notes">कोई हाल के नोट्स नहीं</string>
+    <string name="home_empty_focus">अभी तक कोई फ़ोकस समय नहीं</string>
+    <string name="home_focus_mode_active">फ़ोकस मोड</string>
+    <string name="home_focus_mode_inactive">त्वरित फ़ोकस</string>
+    <string name="home_focus_mode_desc_active">विकर्षणों को कम करें</string>
+    <string name="home_focus_mode_desc_inactive">फ़ोकस मोड में प्रवेश के लिए टैप करें</string>
+    <string name="home_quick_action_new_note">नया नोट</string>
+    <string name="home_quick_action_new_task">नया कार्य</string>
+    <string name="home_quick_action_start_timer">टाइमर शुरू करें</string>
+    <string name="home_quick_action_ai_chat">AI चैट</string>
+    <string name="home_voice_prompt">आप क्या करना चाहेंगे?</string>
+    <string name="home_voice_listening">सुन रहा है…</string>
+    <string name="home_pull_to_refresh">रिफ़्रेश करने के लिए खींचें</string>
+    <string name="home_syncing">सिंक हो रहा है…</string>
+    <string name="home_refreshed">डैशबोर्ड अपडेट हुआ</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">नया नोट</string>
+    <string name="shortcut_new_task">नया कार्य</string>
+    <string name="shortcut_start_focus">फ़ोकस शुरू करें</string>
+    <string name="shortcut_ai_chat">AI चैट</string>
+    <string name="shortcut_note_short_label">नोट</string>
+    <string name="shortcut_task_short_label">कार्य</string>
+    <string name="shortcut_focus_short_label">फ़ोकस</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>

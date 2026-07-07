@@ -865,6 +865,9 @@ private fun languageEntries(): List<Pair<String, String>> = listOf(
     "ko" to stringResource(R.string.language_ko),
     "ja" to stringResource(R.string.language_ja),
     "pt" to stringResource(R.string.language_pt),
+    "zh-TW" to stringResource(R.string.language_zh),
+    "hi" to stringResource(R.string.language_hi),
+    "id" to stringResource(R.string.language_id),
 )
 
 @Composable

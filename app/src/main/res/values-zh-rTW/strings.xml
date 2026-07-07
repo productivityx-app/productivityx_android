@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">您的工作空間。統一管理。</string>
+    <string name="app_description">筆記、任務、行事曆、專注計時器，以及真正了解您每日行程的 AI 助理。</string>
+
+    <string name="ok">確定</string>
+    <string name="cancel">取消</string>
+    <string name="save">儲存</string>
+    <string name="delete">刪除</string>
+    <string name="edit">編輯</string>
+    <string name="done">完成</string>
+    <string name="back">返回</string>
+    <string name="close">關閉</string>
+    <string name="confirm">確認</string>
+    <string name="discard">捨棄</string>
+    <string name="retry">重試</string>
+    <string name="skip">跳過</string>
+    <string name="next">下一步</string>
+    <string name="previous">上一步</string>
+    <string name="continue_action">繼續</string>
+    <string name="finish">完成</string>
+    <string name="apply">套用</string>
+    <string name="reset">重設</string>
+    <string name="clear">清除</string>
+    <string name="search">搜尋</string>
+    <string name="filter">篩選</string>
+    <string name="sort">排序</string>
+    <string name="share">分享</string>
+    <string name="copy">複製</string>
+    <string name="paste">貼上</string>
+    <string name="undo">復原</string>
+    <string name="redo">重做</string>
+    <string name="select_all">全選</string>
+    <string name="deselect_all">取消全選</string>
+    <string name="more_options">更多選項</string>
+    <string name="settings">設定</string>
+    <string name="help">說明</string>
+    <string name="feedback">意見回饋</string>
+    <string name="loading">載入中…</string>
+    <string name="refreshing">重新整理中…</string>
+    <string name="saving">儲存中…</string>
+    <string name="deleting">刪除中…</string>
+    <string name="please_wait">請稍候…</string>
+    <string name="see_all">查看全部</string>
+    <string name="show_less">顯示較少</string>
+    <string name="show_more">顯示更多</string>
+    <string name="optional">選填</string>
+    <string name="required">必填</string>
+    <string name="none">無</string>
+    <string name="unknown">未知</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="tomorrow">明天</string>
+    <string name="this_week">本週</string>
+    <string name="last_week">上週</string>
+    <string name="next_week">下週</string>
+    <string name="this_month">本月</string>
+    <string name="all">全部</string>
+    <string name="new_action">新增</string>
+    <string name="add">新增</string>
+    <string name="remove">移除</string>
+    <string name="create">建立</string>
+    <string name="update">更新</string>
+    <string name="restore">還原</string>
+    <string name="archive">封存</string>
+    <string name="unarchive">取消封存</string>
+    <string name="pin">釘選</string>
+    <string name="unpin">取消釘選</string>
+    <string name="move">移動</string>
+    <string name="rename">重新命名</string>
+    <string name="duplicate">複製</string>
+    <string name="open">開啟</string>
+    <string name="view">檢視</string>
+    <string name="preview">預覽</string>
+    <string name="expand">展開</string>
+    <string name="collapse">收合</string>
+    <string name="enable">啟用</string>
+    <string name="disable">停用</string>
+    <string name="turn_on">開啟</string>
+    <string name="turn_off">關閉</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="not_now">暫時不要</string>
+    <string name="got_it">知道了</string>
+    <string name="learn_more">了解更多</string>
+    <string name="send">傳送</string>
+    <string name="submit">提交</string>
+    <string name="upload">上傳</string>
+    <string name="download">下載</string>
+    <string name="link">連結</string>
+    <string name="unlink">取消連結</string>
+    <string name="connect">連線</string>
+    <string name="disconnect">中斷連線</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">發生錯誤，請再試一次。</string>
+    <string name="error_network">無法連線至網路。請檢查網路設定後再試一次。</string>
+    <string name="error_timeout">請求逾時，請再試一次。</string>
+    <string name="error_server">伺服器錯誤，請稍後再試。</string>
+    <string name="error_not_found">找不到請求的項目。</string>
+    <string name="error_unauthorized">工作階段已過期，請重新登入。</string>
+    <string name="error_forbidden">您沒有權限執行此操作。</string>
+    <string name="error_validation">請檢查表單並修正錯誤。</string>
+    <string name="error_unknown">發生未知的錯誤。</string>
+    <string name="error_loading">載入失敗。點擊重試。</string>
+    <string name="error_saving">儲存失敗，請再試一次。</string>
+    <string name="error_deleting">刪除失敗，請再試一次。</string>
+    <string name="error_no_data">無可用資料。</string>
+    <string name="error_offline_action">此操作需要網路連線。</string>
+    <string name="error_conflict">發生衝突，請重新整理後再試一次。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">一切盡在掌握</string>
+    <string name="onboarding_page1_body">筆記、任務和行事曆，整合在單一工作空間中。</string>
+    <string name="onboarding_page2_title">保持專注</string>
+    <string name="onboarding_page2_body">番茄鐘計時器知道您正在做什麼，並自動追蹤您的時間。</string>
+    <string name="onboarding_page3_title">了解您的 AI</string>
+    <string name="onboarding_page3_body">您的助理會在回覆前查看您進行中的任務、即將到來的事件與最近的筆記。</string>
+    <string name="onboarding_get_started">開始使用</string>
+    <string name="onboarding_skip">跳過</string>
+    <string name="onboarding_next">下一步</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">登入</string>
+    <string name="auth_sign_up">註冊</string>
+    <string name="auth_sign_out">登出</string>
+    <string name="auth_log_in">登入</string>
+    <string name="auth_log_out">登出</string>
+    <string name="auth_create_account">建立帳戶</string>
+    <string name="auth_already_have_account">已經有帳戶了？</string>
+    <string name="auth_skip_login">略過登入繼續使用</string>
+    <string name="auth_dont_have_account">還沒有帳戶？</string>
+    <string name="auth_welcome_back">歡迎回來</string>
+    <string name="auth_create_your_account">建立您的帳戶</string>
+    <string name="auth_join_productivityx">加入 ProductivityX</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">忘記密碼？</string>
+    <string name="auth_forgot_password_title">忘記密碼了嗎？</string>
+    <string name="auth_forgot_password_body">請輸入您的電子郵件，我們將發送重設密碼的連結給您。</string>
+    <string name="auth_forgot_password_success_title">重設連結已寄出</string>
+    <string name="auth_forgot_password_success_body">如果該電子郵件存在，重設連結已寄出。請檢查您的收件匣。</string>
+
+    <string name="auth_reset_password_title">重設密碼</string>
+    <string name="auth_reset_password_body">請為您的帳戶輸入新密碼。</string>
+    <string name="auth_reset_password_action">重設密碼</string>
+    <string name="auth_reset_password_success_title">密碼已重設！</string>
+    <string name="auth_reset_password_success_body">您的密碼已變更。請使用新密碼登入。</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">檢查您的電子郵件</string>
+    <string name="auth_verify_email_body">我們已將 6 位數驗證碼寄送至 %1$s</string>
+    <string name="auth_verify">驗證</string>
+    <string name="auth_resend_code">重新發送驗證碼</string>
+    <string name="auth_resend_cooldown">%1$s 後重新發送</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">電子郵件地址</string>
+    <string name="field_email_hint">輸入您的電子郵件</string>
+    <string name="field_password">密碼</string>
+    <string name="field_password_hint">輸入您的密碼</string>
+    <string name="field_password_new">新密碼</string>
+    <string name="field_password_new_hint">輸入新密碼</string>
+    <string name="field_password_confirm">確認密碼</string>
+    <string name="field_password_confirm_hint">再次輸入密碼</string>
+    <string name="field_password_current">目前密碼</string>
+    <string name="field_password_current_hint">輸入目前密碼</string>
+    <string name="field_username">使用者名稱</string>
+    <string name="field_username_hint">選擇使用者名稱</string>
+    <string name="field_first_name">名字</string>
+    <string name="field_first_name_hint">輸入您的名字</string>
+    <string name="field_last_name">姓氏</string>
+    <string name="field_last_name_hint">輸入您的姓氏</string>
+    <string name="field_phone">電話號碼</string>
+    <string name="field_phone_hint">輸入您的電話號碼</string>
+    <string name="field_birth_date">出生日期</string>
+    <string name="field_birth_date_hint">選擇您的出生日期</string>
+    <string name="field_identifier">電子郵件、使用者名稱或電話</string>
+    <string name="field_identifier_hint">輸入電子郵件、使用者名稱或電話</string>
+    <string name="field_gender">性別</string>
+    <string name="field_bio">個人簡介</string>
+    <string name="field_bio_hint">簡單介紹一下您自己</string>
+    <string name="field_timezone">時區</string>
+    <string name="field_language">語言</string>
+    <string name="field_theme">主題</string>
+    <string name="field_avatar">個人照片</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">顯示密碼</string>
+    <string name="password_hide">隱藏密碼</string>
+    <string name="password_strength_weak">弱</string>
+    <string name="password_strength_fair">普通</string>
+    <string name="password_strength_good">良好</string>
+    <string name="password_strength_strong">強</string>
+    <string name="password_requirement_length">至少 8 個字元</string>
+    <string name="password_requirement_uppercase">一個大寫字母</string>
+    <string name="password_requirement_lowercase">一個小寫字母</string>
+    <string name="password_requirement_number">一個數字</string>
+    <string name="password_requirement_special">一個特殊字元</string>
+    <string name="password_forgot">忘記密碼？</string>
+    <string name="password_reset">重設密碼</string>
+    <string name="password_change">變更密碼</string>
+    <string name="password_mismatch">密碼不相符。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">帳戶</string>
+    <string name="register_step_profile">個人檔案</string>
+    <string name="register_step_preferences">偏好設定</string>
+    <string name="register_step_verify">驗證</string>
+    <string name="register_step_indicator">第 %1$d 步，共 %2$d 步</string>
+    <string name="register_change_photo">變更照片</string>
+    <string name="register_preferences_caption">您可以隨時在設定中變更這些選項。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">深色</string>
+    <string name="theme_light">淺色</string>
+    <string name="theme_system">系統預設</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">主題</string>
+    <string name="profile_theme_hint">您可以隨時在設定中變更此選項。</string>
+
+    <!-- Gender -->
+    <string name="gender_male">男性</string>
+    <string name="gender_female">女性</string>
+    <string name="gender_prefer_not_to_say">不想透露</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">首頁</string>
+    <string name="nav_notes">筆記</string>
+    <string name="nav_tasks">任務</string>
+    <string name="nav_calendar">行事曆</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">番茄鐘</string>
+    <string name="nav_search">搜尋</string>
+    <string name="nav_profile">個人檔案</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_trash">垃圾桶</string>
+    <string name="nav_history">歷史記錄</string>
+    <string name="nav_events">事件</string>
+    <string name="tab_dashboard">儀表板</string>
+    <string name="tab_events">事件</string>
+    <string name="tab_dashboard_desc">今日概覽</string>
+    <string name="tab_notes_desc">捕捉您的想法</string>
+    <string name="tab_tasks_desc">完成待辦事項</string>
+    <string name="tab_events_desc">快速查看行程</string>
+    <string name="tab_pomodoro_desc">保持專注</string>
+    <string name="cd_notifications">通知</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">早安，%1$s</string>
+    <string name="home_greeting_afternoon">午安，%1$s</string>
+    <string name="home_greeting_evening">晚安，%1$s</string>
+    <string name="home_greeting_night">該休息了，%1$s</string>
+    <string name="home_quick_add">快速新增</string>
+    <string name="home_due_today">今天到期</string>
+    <string name="home_overdue">逾期</string>
+    <string name="home_this_week">本週</string>
+    <string name="home_total_notes">筆記總數</string>
+    <string name="home_focus_time">今日專注時間</string>
+    <string name="home_upcoming_events">即將到來的事件</string>
+    <string name="home_recent_notes">最近的筆記</string>
+    <string name="home_no_tasks_today">今天沒有到期的任務。</string>
+    <string name="home_no_events">沒有即將到來的事件。</string>
+    <string name="home_no_notes">沒有最近的筆記。</string>
+    <string name="home_sessions_today">今日專注次數</string>
+    <string name="home_focus_minutes">專注時間</string>
+    <string name="home_completed_tasks">已完成任務</string>
+    <string name="home_start_focus">開始專注</string>
+    <string name="home_tasks_completed">任務已完成</string>
+    <string name="home_events_upcoming">即將到來的事件</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">筆記</string>
+    <string name="notes_new">新增筆記</string>
+    <string name="notes_search_hint">搜尋筆記…</string>
+    <string name="notes_filter_all">全部</string>
+    <string name="notes_filter_pinned">已釘選</string>
+    <string name="notes_empty_title">尚無筆記</string>
+    <string name="notes_empty_body">開始寫下您的第一則筆記。</string>
+    <string name="notes_empty_action">建立筆記</string>
+    <string name="notes_pinned_section">已釘選</string>
+    <string name="notes_all_section">所有筆記</string>
+    <string name="notes_untitled">無標題</string>
+    <string name="notes_word_count">%1$d 個字</string>
+    <string name="notes_reading_time">閱讀時間 %1$d 分鐘</string>
+    <string name="notes_pin_success">筆記已釘選。</string>
+    <string name="notes_unpin_success">筆記已取消釘選。</string>
+    <string name="notes_delete_confirm_title">移到垃圾桶？</string>
+    <string name="notes_delete_confirm_body">此筆記將移到垃圾桶，並在 30 天後永久刪除。</string>
+    <string name="notes_delete_success">筆記已移到垃圾桶。</string>
+    <string name="notes_restore_success">筆記已還原。</string>
+    <string name="notes_hard_delete_confirm_title">永久刪除？</string>
+    <string name="notes_hard_delete_confirm_body">此筆記將被永久刪除且無法復原。</string>
+    <string name="notes_hard_delete_success">筆記已永久刪除。</string>
+    <string name="notes_create_success">筆記已建立。</string>
+    <string name="notes_update_success">筆記已儲存。</string>
+    <string name="notes_autosave">已自動儲存</string>
+    <string name="notes_saving">儲存中…</string>
+    <string name="notes_copy_link">複製連結</string>
+    <string name="notes_link_copied">連結已複製。</string>
+    <string name="notes_link_task">連結任務</string>
+    <string name="notes_unlink_task">取消連結任務</string>
+    <string name="notes_task_linked">已連結至：%1$s</string>
+    <string name="notes_add_tag">新增標籤</string>
+    <string name="notes_no_tags">無標籤</string>
+    <string name="notes_start_writing">開始書寫…</string>
+    <string name="notes_title_hint">標題</string>
+    <string name="notes_trash_empty_title">垃圾桶是空的</string>
+    <string name="notes_trash_empty_body">垃圾桶中的筆記將在 30 天後永久刪除。</string>
+    <string name="notes_trash_empty_all">清空垃圾桶</string>
+    <string name="notes_trash_empty_all_confirm_title">清空垃圾桶？</string>
+    <string name="notes_trash_empty_all_confirm_body">垃圾桶中的所有筆記將被永久刪除。</string>
+    <string name="notes_in_trash">%1$d 則筆記在垃圾桶</string>
+    <string name="notes_in_trash_plural">%1$d 則筆記在垃圾桶</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">粗體</string>
+    <string name="editor_format_italic">斜體</string>
+    <string name="editor_format_heading">標題</string>
+    <string name="editor_format_list_bullet">項目符號清單</string>
+    <string name="editor_format_list_numbered">編號清單</string>
+    <string name="editor_format_code">程式碼</string>
+    <string name="editor_format_quote">引用</string>
+    <string name="editor_format_link">插入連結</string>
+    <string name="editor_insert_link_title">插入連結</string>
+    <string name="editor_insert_link_url_hint">網址</string>
+    <string name="editor_insert_link_text_hint">顯示文字</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">標籤</string>
+    <string name="tags_new">新增標籤</string>
+    <string name="tags_name_hint">標籤名稱</string>
+    <string name="tags_color">顏色</string>
+    <string name="tags_create_success">標籤已建立。</string>
+    <string name="tags_update_success">標籤已更新。</string>
+    <string name="tags_delete_success">標籤已刪除。</string>
+    <string name="tags_delete_confirm_title">刪除標籤？</string>
+    <string name="tags_delete_confirm_body">此標籤將從所有使用它的筆記中移除。</string>
+    <string name="tags_already_exists">此名稱的標籤已存在。</string>
+    <string name="tags_empty_title">尚無標籤</string>
+    <string name="tags_empty_body">建立標籤來整理您的筆記。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">任務</string>
+    <string name="tasks_new">新增任務</string>
+    <string name="tasks_search_hint">搜尋任務…</string>
+    <string name="tasks_tab_all">全部</string>
+    <string name="tasks_tab_today">今天</string>
+    <string name="tasks_tab_upcoming">即將到來</string>
+    <string name="tasks_tab_completed">已完成</string>
+    <string name="tasks_view_list">清單檢視</string>
+    <string name="tasks_view_kanban">看板檢視</string>
+    <string name="tasks_empty_title">這裡沒有任務</string>
+    <string name="tasks_empty_body">建立您的第一個任務來開始使用。</string>
+    <string name="tasks_empty_action">建立任務</string>
+    <string name="tasks_empty_today">今天沒有到期的任務。祝您有個愉快的一天！</string>
+    <string name="tasks_empty_upcoming">沒有即將到來的任務。</string>
+    <string name="tasks_empty_completed">尚無完成的任務。</string>
+    <string name="tasks_empty_filter">沒有符合此篩選條件的任務。</string>
+    <string name="tasks_field_title">任務標題</string>
+    <string name="tasks_field_title_hint">需要做什麼？</string>
+    <string name="tasks_field_description">說明</string>
+    <string name="tasks_field_description_hint">新增更多詳細資訊…</string>
+    <string name="tasks_field_due_date">截止日期</string>
+    <string name="tasks_field_due_time">截止時間</string>
+    <string name="tasks_field_priority">優先順序</string>
+    <string name="tasks_field_status">狀態</string>
+    <string name="tasks_field_reminder">提醒</string>
+    <string name="tasks_field_estimated_time">估計時間</string>
+    <string name="tasks_field_actual_time">實際時間</string>
+    <string name="tasks_field_link_event">連結事件</string>
+    <string name="tasks_field_subtasks">子任務</string>
+    <string name="tasks_add_subtask">新增子任務</string>
+    <string name="tasks_subtask_count">%1$d 個子任務</string>
+    <string name="tasks_subtask_count_plural">%1$d 個子任務</string>
+    <string name="tasks_subtask_completed">已完成 %1$d 項，共 %2$d 項</string>
+    <string name="tasks_pomodoro_sessions">專注時段</string>
+    <string name="tasks_no_due_date">無截止日期</string>
+    <string name="tasks_no_due_time">未設定時間</string>
+    <string name="tasks_no_reminder">無提醒</string>
+    <string name="tasks_no_estimated">無估計</string>
+    <string name="tasks_create_success">任務已建立。</string>
+    <string name="tasks_update_success">任務已更新。</string>
+    <string name="tasks_delete_success">任務已刪除。</string>
+    <string name="tasks_restore_success">任務已還原。</string>
+    <string name="tasks_complete_success">任務已完成。</string>
+    <string name="tasks_reorder_success">任務已重新排序。</string>
+    <string name="tasks_status_updated">狀態已更新。</string>
+    <string name="tasks_delete_confirm_title">刪除任務？</string>
+    <string name="tasks_delete_confirm_body">此任務將被刪除。</string>
+    <string name="tasks_minutes">%1$d 分鐘</string>
+    <string name="tasks_hours_minutes">%1$d 小時 %2$d 分鐘</string>
+    <string name="tasks_swipe_complete">完成</string>
+    <string name="tasks_swipe_delete">刪除</string>
+    <string name="tasks_sort_due_date">截止日期</string>
+    <string name="tasks_sort_priority">優先順序</string>
+    <string name="tasks_sort_created">建立日期</string>
+    <string name="tasks_sort_title">標題</string>
+    <string name="tasks_filter_priority">依優先順序篩選</string>
+    <string name="tasks_filter_status">依狀態篩選</string>
+    <string name="tasks_filter_due">依截止日期篩選</string>
+    <string name="tasks_overdue_label">逾期</string>
+    <string name="tasks_due_today_label">今天到期</string>
+    <string name="tasks_due_tomorrow_label">明天到期</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">低</string>
+    <string name="priority_medium">中</string>
+    <string name="priority_high">高</string>
+    <string name="priority_urgent">緊急</string>
+
+    <string name="status_todo">待辦</string>
+    <string name="status_in_progress">進行中</string>
+    <string name="status_on_hold">暫停</string>
+    <string name="status_done">已完成</string>
+    <string name="status_cancelled">已取消</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">待辦</string>
+    <string name="kanban_column_in_progress">進行中</string>
+    <string name="kanban_column_on_hold">暫停</string>
+    <string name="kanban_column_done">已完成</string>
+    <string name="kanban_add_task">新增任務</string>
+    <string name="kanban_drag_hint">按住並拖曳以移動</string>
+    <string name="kanban_column_empty">這裡沒有任務</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">行事曆</string>
+    <string name="calendar_view_week">週</string>
+    <string name="calendar_view_month">月</string>
+    <string name="calendar_today">今天</string>
+    <string name="calendar_new_event">新增事件</string>
+    <string name="calendar_no_events">無事件</string>
+    <string name="calendar_all_day">全天</string>
+    <string name="calendar_recurring">重複</string>
+    <string name="calendar_events_count">%1$d 個事件</string>
+    <string name="calendar_events_count_plural">%1$d 個事件</string>
+    <string name="calendar_more_events">+%1$d 更多</string>
+    <string name="calendar_week_header">%1$s 這一週</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">新事件</string>
+    <string name="event_edit_title">編輯事件</string>
+    <string name="event_field_title">事件標題</string>
+    <string name="event_field_title_hint">事件名稱是什麼？</string>
+    <string name="event_field_description">說明</string>
+    <string name="event_field_description_hint">新增此事件的備註…</string>
+    <string name="event_field_location">地點</string>
+    <string name="event_field_location_hint">新增地點</string>
+    <string name="event_field_start">開始</string>
+    <string name="event_field_end">結束</string>
+    <string name="event_field_all_day">全天事件</string>
+    <string name="event_field_color">顏色</string>
+    <string name="event_field_recurrence">重複</string>
+    <string name="event_field_reminder">提醒</string>
+    <string name="event_field_link_task">連結任務</string>
+    <string name="event_recurrence_none">不重複</string>
+    <string name="event_recurrence_daily">每天</string>
+    <string name="event_recurrence_weekly">每週</string>
+    <string name="event_recurrence_monthly">每月</string>
+    <string name="event_recurrence_yearly">每年</string>
+    <string name="event_recurrence_custom">自訂</string>
+    <string name="event_recurrence_weekdays">每個工作日（週一至週五）</string>
+    <string name="event_recurrence_end_date">結束於</string>
+    <string name="event_recurrence_end_never">永不</string>
+    <string name="event_recurrence_label">重複：%1$s</string>
+    <string name="event_reminder_none">無提醒</string>
+    <string name="event_reminder_at_time">事件開始時</string>
+    <string name="event_reminder_5_min">5 分鐘前</string>
+    <string name="event_reminder_10_min">10 分鐘前</string>
+    <string name="event_reminder_15_min">15 分鐘前</string>
+    <string name="event_reminder_30_min">30 分鐘前</string>
+    <string name="event_reminder_1_hour">1 小時前</string>
+    <string name="event_reminder_1_day">1 天前</string>
+    <string name="event_create_success">事件已建立。</string>
+    <string name="event_update_success">事件已更新。</string>
+    <string name="event_delete_success">事件已刪除。</string>
+    <string name="event_restore_success">事件已還原。</string>
+    <string name="event_delete_confirm_title">刪除事件？</string>
+    <string name="event_delete_confirm_body">此事件將被刪除。</string>
+    <string name="event_delete_recurring_title">刪除重複事件</string>
+    <string name="event_delete_recurring_body">僅刪除此事件，還是刪除系列中的所有事件？</string>
+    <string name="event_delete_this_only">僅此事件</string>
+    <string name="event_delete_all_in_series">系列中的所有事件</string>
+    <string name="event_end_before_start">結束時間必須在開始時間之後。</string>
+    <string name="event_location_open_maps">在地圖中開啟</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">會議</string>
+    <string name="event_template_focus">專注時間</string>
+    <string name="event_template_break">休息</string>
+    <string name="event_template_travel">通勤</string>
+    <string name="event_join_meeting">加入會議</string>
+    <string name="event_navigate">導航</string>
+    <string name="event_share">分享事件</string>
+    <string name="event_duplicate">複製</string>
+    <string name="event_weather">天氣</string>
+    <string name="event_attendees">與會者</string>
+    <string name="event_timezone">時區</string>
+    <string name="event_travel_time">交通時間</string>
+    <string name="event_conflict_detected">偵測到時間衝突</string>
+    <string name="event_reminder_multiple">多個提醒</string>
+    <string name="event_reminder_add">新增提醒</string>
+    <string name="event_reminder_custom">自訂</string>
+    <string name="event_voice_input">語音輸入</string>
+    <string name="event_smart_suggestion">智慧建議</string>
+    <string name="event_free_busy">空閒/忙碌</string>
+    <string name="event_suggested_times">建議時間</string>
+    <string name="calendar_view_day">日</string>
+    <string name="calendar_view_agenda">議程</string>
+    <string name="calendar_view_year">年</string>
+    <string name="calendar_date_jump">跳至日期</string>
+    <string name="calendar_swipe_instruction">滑動以瀏覽</string>
+    <string name="calendar_pinch_zoom">雙指縮放</string>
+    <string name="calendar_no_events_day">這天沒有事件</string>
+    <string name="calendar_all_day_section">全天</string>
+    <string name="calendar_agenda_empty">無即將到來的事件</string>
+    <string name="calendar_heat_map_label">活動量</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">專注</string>
+    <string name="pomodoro_focus">專注</string>
+    <string name="pomodoro_short_break">短暫休息</string>
+    <string name="pomodoro_long_break">長時間休息</string>
+    <string name="pomodoro_session_focus">專注時段</string>
+    <string name="pomodoro_session_short_break">短暫休息</string>
+    <string name="pomodoro_session_long_break">長時間休息</string>
+    <string name="pomodoro_start">開始</string>
+    <string name="pomodoro_pause">暫停</string>
+    <string name="pomodoro_resume">繼續</string>
+    <string name="pomodoro_skip">跳過</string>
+    <string name="pomodoro_stop">停止</string>
+    <string name="pomodoro_reset">重設</string>
+    <string name="pomodoro_link_task">連結任務</string>
+    <string name="pomodoro_link_task_hint">點擊以連結任務</string>
+    <string name="pomodoro_linked_task">正在專注：%1$s</string>
+    <string name="pomodoro_sessions_today">今日 %1$d 次專注</string>
+    <string name="pomodoro_sessions_today_plural">今日 %1$d 次專注</string>
+    <string name="pomodoro_focus_time_today">今日已專注 %1$s</string>
+    <string name="pomodoro_completed_today">今日已完成</string>
+    <string name="pomodoro_no_active_session">無進行中的專注時段</string>
+    <string name="pomodoro_session_complete_title">專注時段完成！</string>
+    <string name="pomodoro_session_complete_body">做得很好，休息一下吧！</string>
+    <string name="pomodoro_break_complete_title">休息結束</string>
+    <string name="pomodoro_break_complete_body">準備好再次專注了嗎？</string>
+    <string name="pomodoro_start_success">專注時段已開始。</string>
+    <string name="pomodoro_end_success">專注時段已完成。</string>
+    <string name="pomodoro_interrupt_success">專注時段已中斷。</string>
+    <string name="pomodoro_interrupt_reason_hint">為什麼停止？（選填）</string>
+    <string name="pomodoro_interrupt_confirm_title">停止專注時段？</string>
+    <string name="pomodoro_interrupt_confirm_body">您的進度將被儲存，但此專注時段將標記為已中斷。</string>
+    <string name="pomodoro_already_active">您已有進行中的專注時段。請先結束再開始新的。</string>
+    <string name="pomodoro_stats_title">今日統計</string>
+    <string name="pomodoro_history_title">專注歷史記錄</string>
+    <string name="pomodoro_history_empty_title">尚無專注時段</string>
+    <string name="pomodoro_history_empty_body">開始一個專注時段來查看您的歷史記錄。</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">已中斷</string>
+    <string name="pomodoro_session_completed">已完成</string>
+    <string name="pomodoro_dot_current">當前時段</string>
+    <string name="pomodoro_dot_completed">已完成時段</string>
+    <string name="pomodoro_dot_upcoming">即將到來</string>
+    <string name="pomodoro_notification_channel_name">番茄鐘計時器</string>
+    <string name="pomodoro_notification_channel_desc">即時計時器更新與專注時段通知。</string>
+    <string name="pomodoro_notification_running">剩餘 %1$s — %2$s</string>
+    <string name="pomodoro_notification_action_pause">暫停</string>
+    <string name="pomodoro_notification_action_skip">跳過</string>
+    <string name="pomodoro_notification_action_stop">停止</string>
+    <string name="pomodoro_cycle_count">第 %1$d 輪，共 %2$d 輪</string>
+    <string name="pomodoro_until_long_break">再 %1$d 次專注後長時間休息</string>
+    <string name="pomodoro_until_long_break_plural">再 %1$d 次專注後長時間休息</string>
+
+    <string name="pomodoro_swipe_to_skip">滑動以跳過</string>
+    <string name="pomodoro_extend_1min">+1 分鐘</string>
+    <string name="pomodoro_focus_analytics">專注分析</string>
+    <string name="pomodoro_streak_day">連續 %1$d 天</string>
+    <string name="pomodoro_best_streak">最佳：%1$d 天</string>
+    <string name="pomodoro_weekly_intensity">每週強度</string>
+    <string name="pomodoro_focus_by_category">依類別專注</string>
+    <string name="pomodoro_quality_score">品質分數</string>
+    <string name="pomodoro_total_focus_time">總專注時間</string>
+    <string name="pomodoro_daily_goal">每日目標</string>
+    <string name="pomodoro_weekly_goal">每週目標</string>
+    <string name="pomodoro_exit_focus_mode">離開專注模式</string>
+    <string name="pomodoro_dnd_access_required">需要勿擾模式權限，請在設定中啟用。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI 助理</string>
+    <string name="ai_welcome_title">有什麼我可以幫忙的嗎？</string>
+    <string name="ai_welcome_body">我可以查看您的工作空間 — 任務、事件和筆記 — 為您提供情境感知的回答。</string>
+    <string name="ai_message_hint">輸入訊息…</string>
+    <string name="ai_send">傳送</string>
+    <string name="ai_new_conversation">新增對話</string>
+    <string name="ai_conversations_title">對話</string>
+    <string name="ai_conversation_empty">尚無訊息</string>
+    <string name="ai_conversations_empty_title">尚無對話</string>
+    <string name="ai_conversations_empty_body">開始一段新對話，取得工作空間的協助。</string>
+    <string name="ai_delete_conversation_title">刪除對話？</string>
+    <string name="ai_delete_conversation_body">此對話及其所有訊息將被永久刪除。</string>
+    <string name="ai_delete_conversation_success">對話已刪除。</string>
+    <string name="ai_clear_conversation_title">清除對話？</string>
+    <string name="ai_clear_conversation_body">此對話中的所有訊息將被清除。</string>
+    <string name="ai_suggestion_due_today">今天有哪些到期？</string>
+    <string name="ai_suggestion_overdue">摘要我的逾期任務</string>
+    <string name="ai_suggestion_start_focus">開始專注時段</string>
+    <string name="ai_suggestion_meeting_agenda">擬定會議議程</string>
+    <string name="ai_context_title">您的工作空間</string>
+    <string name="ai_context_active_tasks">進行中的任務</string>
+    <string name="ai_context_events_week">本週事件</string>
+    <string name="ai_context_last_note">最近的筆記</string>
+    <string name="ai_context_focus_today">今日專注</string>
+    <string name="ai_context_overdue">已逾期</string>
+    <string name="ai_context_caption">此情境資訊會隨每條訊息發送給 AI。</string>
+    <string name="ai_context_refresh">重新整理情境</string>
+    <string name="ai_typing">AI 思考中…</string>
+    <string name="ai_streaming">正在產生回覆…</string>
+    <string name="ai_error_unavailable">AI 助理目前無法使用，請稍後再試。</string>
+    <string name="ai_error_stream">產生回覆時發生錯誤。</string>
+    <string name="ai_action_create_task">建立任務</string>
+    <string name="ai_action_create_note">建立筆記</string>
+    <string name="ai_action_add_event">新增事件</string>
+    <string name="ai_action_confirm">確認</string>
+    <string name="ai_action_dismiss">關閉</string>
+    <string name="ai_action_executed">完成！項目已建立。</string>
+    <string name="ai_action_dismissed">已關閉。</string>
+    <string name="ai_copy_message">複製訊息</string>
+    <string name="ai_message_copied">訊息已複製。</string>
+    <string name="ai_regenerate">重新產生回覆</string>
+    <string name="ai_you">您</string>
+    <string name="ai_assistant">助理</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">搜尋</string>
+    <string name="search_hint">搜尋筆記、任務、事件…</string>
+    <string name="search_results_notes">筆記</string>
+    <string name="search_results_tasks">任務</string>
+    <string name="search_results_events">事件</string>
+    <string name="search_recent">最近搜尋</string>
+    <string name="search_clear_recent">清除</string>
+    <string name="search_empty_title">找不到「%1$s」的結果</string>
+    <string name="search_empty_body">請嘗試不同的關鍵字或檢查拼寫。</string>
+    <string name="search_results_count">%1$d 個結果</string>
+    <string name="search_results_count_plural">%1$d 個結果</string>
+    <string name="search_type_note">筆記</string>
+    <string name="search_type_task">任務</string>
+    <string name="search_type_event">事件</string>
+    <string name="search_offline_notice">正在離線搜尋。連線至網路以獲得完整結果。</string>
+    <string name="search_loading">搜尋中…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">個人檔案</string>
+    <string name="profile_edit_title">編輯個人檔案</string>
+    <string name="profile_change_photo">變更照片</string>
+    <string name="profile_remove_photo">移除照片</string>
+    <string name="profile_photo_updated">個人照片已更新。</string>
+    <string name="profile_photo_removed">個人照片已移除。</string>
+    <string name="profile_photo_pick">從相簿選擇</string>
+    <string name="profile_photo_camera">拍照</string>
+    <string name="profile_update_success">個人檔案已更新。</string>
+    <string name="profile_stats_notes">筆記</string>
+    <string name="profile_stats_tasks_completed">任務已完成</string>
+    <string name="profile_stats_focus_this_week">本週專注時間</string>
+    <string name="profile_member_since">自 %1$s 起加入</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">尚無個人簡介。</string>
+    <string name="profile_section_account">帳戶</string>
+    <string name="profile_section_appearance">外觀</string>
+    <string name="profile_section_pomodoro">番茄鐘</string>
+    <string name="profile_section_notifications">通知</string>
+    <string name="profile_section_ai">AI 助理</string>
+    <string name="profile_section_data">資料與同步</string>
+    <string name="profile_section_about">關於</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">偏好設定</string>
+    <string name="preferences_update_success">偏好設定已儲存。</string>
+    <string name="preferences_pomodoro_focus">專注時間長度</string>
+    <string name="preferences_pomodoro_focus_desc">每次專注時段的長度</string>
+    <string name="preferences_pomodoro_short_break">短暫休息</string>
+    <string name="preferences_pomodoro_short_break_desc">各專注時段間短暫休息的長度</string>
+    <string name="preferences_pomodoro_long_break">長時間休息</string>
+    <string name="preferences_pomodoro_long_break_desc">完成完整週期後長時間休息的長度</string>
+    <string name="preferences_pomodoro_cycles">長時間休息前的專注次數</string>
+    <string name="preferences_pomodoro_cycles_desc">長時間休息前所需的專注時段數</string>
+    <string name="preferences_pomodoro_auto_start_breaks">自動開始休息</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">專注時段結束時自動開始休息</string>
+    <string name="preferences_pomodoro_auto_start_focus">自動開始專注</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">休息結束時自動開始下一個專注時段</string>
+    <string name="preferences_pomodoro_sound">音效</string>
+    <string name="preferences_pomodoro_sound_desc">專注時段結束時播放音效</string>
+    <string name="preferences_notify_task_reminders">任務提醒</string>
+    <string name="preferences_notify_task_reminders_desc">任務提醒到期時收到通知</string>
+    <string name="preferences_notify_event_reminders">事件提醒</string>
+    <string name="preferences_notify_event_reminders_desc">行事曆事件前收到通知</string>
+    <string name="preferences_notify_pomodoro_end">番茄鐘結束</string>
+    <string name="preferences_notify_pomodoro_end_desc">番茄鐘專注時段結束時收到通知</string>
+    <string name="preferences_notify_daily_summary">每日摘要</string>
+    <string name="preferences_notify_daily_summary_desc">在早晨收到每日行程摘要</string>
+    <string name="preferences_default_task_view">預設任務檢視</string>
+    <string name="preferences_default_task_sort">預設任務排序</string>
+    <string name="preferences_show_completed_tasks">顯示已完成任務</string>
+    <string name="preferences_show_completed_tasks_desc">在任務清單中包含已完成的任務</string>
+    <string name="preferences_default_calendar_view">預設行事曆檢視</string>
+    <string name="preferences_week_starts_on">每週開始於</string>
+    <string name="preferences_week_starts_monday">星期一</string>
+    <string name="preferences_week_starts_sunday">星期日</string>
+    <string name="preferences_ai_context">工作空間情境</string>
+    <string name="preferences_ai_context_desc">與 AI 助理分享您的任務、事件和筆記</string>
+    <string name="preferences_ai_model">AI 模型</string>
+    <string name="preferences_ai_model_desc">選擇 AI 助理使用的模型</string>
+    <string name="preferences_compact_mode">緊湊模式</string>
+    <string name="preferences_compact_mode_desc">使用更緊湊的版面配置以顯示更多內容</string>
+    <string name="preferences_minutes_format">%1$d 分鐘</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">已同步</string>
+    <string name="sync_status_pending">待同步</string>
+    <string name="sync_status_syncing">同步中…</string>
+    <string name="sync_status_conflict">同步衝突</string>
+    <string name="sync_status_error">同步錯誤</string>
+    <string name="sync_last_synced">上次同步：%1$s</string>
+    <string name="sync_never_synced">從未同步</string>
+    <string name="sync_conflict_title">同步衝突</string>
+    <string name="sync_conflict_body">偵測到「%1$s」發生衝突。您要保留哪個版本？</string>
+    <string name="sync_conflict_keep_local">保留本機版本</string>
+    <string name="sync_conflict_keep_server">保留伺服器版本</string>
+    <string name="sync_conflict_resolved">衝突已解決。</string>
+    <string name="sync_pending_count">%1$d 項變更待處理</string>
+    <string name="sync_pending_count_plural">%1$d 項變更待處理</string>
+    <string name="sync_offline_banner">您處於離線狀態。變更將在重新連線後同步。</string>
+    <string name="sync_reconnected">已重新連線。同步中…</string>
+    <string name="sync_complete">所有變更已同步。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">提醒</string>
+    <string name="notification_channel_reminders_desc">任務與事件提醒通知。</string>
+    <string name="notification_channel_sync_name">同步</string>
+    <string name="notification_channel_sync_desc">背景同步狀態通知。</string>
+    <string name="notification_task_reminder_title">任務提醒</string>
+    <string name="notification_task_reminder_body">%1$s 即將到期。</string>
+    <string name="notification_event_reminder_title">即將到來的事件</string>
+    <string name="notification_event_reminder_body">%1$s 將在 %2$s 後開始。</string>
+    <string name="notification_daily_summary_title">今日概覽</string>
+    <string name="notification_daily_summary_body">今天有 %1$d 項任務到期，%2$d 個即將到來的事件。</string>
+    <string name="notification_permission_title">啟用通知</string>
+    <string name="notification_permission_body">掌握提醒、專注時段和每日摘要。</string>
+    <string name="notification_permission_allow">允許</string>
+    <string name="notification_permission_deny">暫時不要</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">相機存取</string>
+    <string name="permission_camera_body">ProductivityX 需要存取相機以便您拍攝個人照片。</string>
+    <string name="permission_storage_title">儲存空間存取</string>
+    <string name="permission_storage_body">ProductivityX 需要存取儲存空間以便您選擇個人照片。</string>
+    <string name="permission_notification_title">通知存取</string>
+    <string name="permission_notification_body">允許通知以接收任務提醒和番茄鐘通知。</string>
+    <string name="permission_denied_title">需要權限</string>
+    <string name="permission_denied_body">此功能需要權限，請在設定中啟用。</string>
+    <string name="permission_go_to_settings">開啟設定</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">剛剛</string>
+    <string name="time_minutes_ago">%1$d 分鐘前</string>
+    <string name="time_hours_ago">%1$d 小時前</string>
+    <string name="time_yesterday">昨天</string>
+    <string name="time_days_ago">%1$d 天前</string>
+    <string name="time_weeks_ago">%1$d 週前</string>
+    <string name="time_weeks_ago_plural">%1$d 週前</string>
+    <string name="time_months_ago">%1$d 個月前</string>
+    <string name="time_months_ago_plural">%1$d 個月前</string>
+    <string name="time_format_date">yyyy年M月d日</string>
+    <string name="time_format_date_short">M月d日</string>
+    <string name="time_format_time">a h:mm</string>
+    <string name="time_format_datetime">yyyy年M月d日 a h:mm</string>
+    <string name="time_format_day_month">M月d日</string>
+    <string name="time_format_full">yyyy年M月d日 EEEE</string>
+    <string name="time_am">上午</string>
+    <string name="time_pm">下午</string>
+    <string name="time_hour_singular">%1$d 小時</string>
+    <string name="time_hour_plural">%1$d 小時</string>
+    <string name="time_minute_singular">%1$d 分鐘</string>
+    <string name="time_minute_plural">%1$d 分鐘</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">週一</string>
+    <string name="day_tuesday_short">週二</string>
+    <string name="day_wednesday_short">週三</string>
+    <string name="day_thursday_short">週四</string>
+    <string name="day_friday_short">週五</string>
+    <string name="day_saturday_short">週六</string>
+    <string name="day_sunday_short">週日</string>
+    <string name="day_monday">星期一</string>
+    <string name="day_tuesday">星期二</string>
+    <string name="day_wednesday">星期三</string>
+    <string name="day_thursday">星期四</string>
+    <string name="day_friday">星期五</string>
+    <string name="day_saturday">星期六</string>
+    <string name="day_sunday">星期日</string>
+
+    <string name="month_january">一月</string>
+    <string name="month_february">二月</string>
+    <string name="month_march">三月</string>
+    <string name="month_april">四月</string>
+    <string name="month_may">五月</string>
+    <string name="month_june">六月</string>
+    <string name="month_july">七月</string>
+    <string name="month_august">八月</string>
+    <string name="month_september">九月</string>
+    <string name="month_october">十月</string>
+    <string name="month_november">十一月</string>
+    <string name="month_december">十二月</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">這裡還沒有任何內容</string>
+    <string name="empty_state_generic_body">開始建立一些新內容吧。</string>
+    <string name="empty_state_no_results_title">找不到結果</string>
+    <string name="empty_state_no_results_body">請嘗試不同的搜尋或篩選條件。</string>
+    <string name="empty_state_offline_title">您處於離線狀態</string>
+    <string name="empty_state_offline_body">連線至網路以載入您的內容。</string>
+    <string name="empty_state_error_title">發生錯誤</string>
+    <string name="empty_state_error_body">向下拉以重新整理，或點擊下方的按鈕。</string>
+    <string name="empty_state_retry">再試一次</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">返回上頁</string>
+    <string name="cd_close">關閉</string>
+    <string name="cd_more_options">更多選項</string>
+    <string name="cd_search">搜尋</string>
+    <string name="cd_filter">篩選</string>
+    <string name="cd_sort">排序</string>
+    <string name="cd_add">新增</string>
+    <string name="cd_delete">刪除</string>
+    <string name="cd_edit">編輯</string>
+    <string name="cd_restore">還原</string>
+    <string name="cd_pin">釘選筆記</string>
+    <string name="cd_unpin">取消釘選筆記</string>
+    <string name="cd_check_task">標記任務完成</string>
+    <string name="cd_uncheck_task">標記任務未完成</string>
+    <string name="cd_profile_picture">個人照片</string>
+    <string name="cd_send_message">傳送訊息</string>
+    <string name="cd_play_pause">播放或暫停計時器</string>
+    <string name="cd_skip_session">跳過時段</string>
+    <string name="cd_stop_session">停止時段</string>
+    <string name="cd_sync_status">同步狀態：%1$s</string>
+    <string name="cd_password_toggle">切換密碼可見性</string>
+    <string name="cd_clear_input">清除輸入</string>
+    <string name="cd_remove_subtask">移除子任務</string>
+    <string name="cd_notification">通知</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">正在檢查工作階段…</string>
+    <string name="splash_loading">載入中…</string>
+
+    <string name="dialog_unsaved_changes_title">未儲存的變更</string>
+    <string name="dialog_unsaved_changes_body">您有未儲存的變更。是否要捨棄？</string>
+    <string name="dialog_unsaved_changes_save">儲存</string>
+    <string name="dialog_unsaved_changes_discard">捨棄</string>
+    <string name="dialog_date_picker_title">選擇日期</string>
+    <string name="dialog_time_picker_title">選擇時間</string>
+    <string name="dialog_color_picker_title">選擇顏色</string>
+    <string name="dialog_task_picker_title">連結任務</string>
+    <string name="dialog_event_picker_title">連結事件</string>
+    <string name="dialog_tag_manager_title">管理標籤</string>
+
+    <string name="task_view_list">清單</string>
+    <string name="task_view_kanban">看板</string>
+
+    <string name="snackbar_undo">復原</string>
+    <string name="snackbar_note_deleted">筆記已刪除</string>
+    <string name="snackbar_task_deleted">任務已刪除</string>
+    <string name="snackbar_event_deleted">事件已刪除</string>
+    <string name="snackbar_tag_deleted">標籤已刪除</string>
+    <string name="snackbar_copied">已複製到剪貼簿</string>
+    <string name="snackbar_no_internet">無網路連線</string>
+    <string name="snackbar_changes_saved">變更已儲存</string>
+
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_build">建置 %1$s</string>
+    <string name="about_privacy_policy">隱私權政策</string>
+    <string name="about_terms_of_service">服務條款</string>
+    <string name="about_open_source_licenses">開放原始碼授權</string>
+    <string name="about_rate_app">評價應用程式</string>
+    <string name="about_send_feedback">傳送意見回饋</string>
+    <string name="about_built_by">由 Oussama Chatri 打造</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">匯出資料</string>
+    <string name="data_export_body">下載所有筆記、任務和事件為一個檔案。</string>
+    <string name="data_export_action">匯出</string>
+    <string name="data_export_success">資料匯出已就緒。</string>
+    <string name="data_delete_account_title">刪除帳戶</string>
+    <string name="data_delete_account_body">永久刪除您的帳戶及所有相關資料。此操作無法復原。</string>
+    <string name="data_delete_account_action">刪除帳戶</string>
+    <string name="data_delete_account_confirm_title">刪除您的帳戶？</string>
+    <string name="data_delete_account_confirm_body">您所有的筆記、任務、事件和對話將被永久刪除。此操作無法復原。</string>
+    <string name="data_delete_account_type_confirm">輸入 DELETE 以確認</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">有可用更新</string>
+    <string name="update_available_body">ProductivityX 有新版本可用。立即更新以獲得最新功能與修正。</string>
+    <string name="update_now">立即更新</string>
+    <string name="update_later">稍後</string>
+
+    <string name="auth_check_your_email">檢查您的電子郵件</string>
+    <string name="auth_otp_sent_body">我們已將 6 位數驗證碼寄送至 %s</string>
+
+    <string name="language_en">英文</string>
+    <string name="language_fr">法文</string>
+    <string name="language_ar">阿拉伯文</string>
+    <string name="language_es">西班牙文</string>
+    <string name="language_de">德文</string>
+    <string name="language_pt">葡萄牙文</string>
+    <string name="language_zh">繁體中文</string>
+    <string name="language_ja">日文</string>
+    <string name="language_ko">韓文</string>
+    <string name="language_ru">俄文</string>
+    <string name="language_tr">土耳其文</string>
+    <string name="language_it">義大利文</string>
+    <string name="language_hi">印度文</string>
+    <string name="language_id">印尼文</string>
+    <string name="language_nl">荷蘭文</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">任務</string>
+    <string name="widget_task_list_empty">今天沒有到期的任務</string>
+    <string name="widget_pomodoro_title">番茄鐘</string>
+    <string name="widget_pomodoro_start">點擊開始專注</string>
+    <string name="widget_quick_note_title">快速筆記</string>
+    <string name="widget_quick_note_hint">點擊新增筆記</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">今日任務</string>
+    <string name="home_widget_events">即將到來的事件</string>
+    <string name="home_widget_focus">今日專注時間</string>
+    <string name="home_widget_notes">最近的筆記</string>
+    <string name="home_widget_quote">每日金句</string>
+    <string name="home_widget_ai">AI 助理</string>
+    <string name="home_widget_focus_mode">快速專注</string>
+    <string name="home_expand">展開</string>
+    <string name="home_collapse">收合</string>
+    <string name="home_see_all">查看全部</string>
+    <string name="home_empty_tasks">今天沒有到期的任務</string>
+    <string name="home_empty_events">沒有即將到來的事件</string>
+    <string name="home_empty_notes">沒有最近的筆記</string>
+    <string name="home_empty_focus">尚無專注時間</string>
+    <string name="home_focus_mode_active">專注模式</string>
+    <string name="home_focus_mode_inactive">快速專注</string>
+    <string name="home_focus_mode_desc_active">減少干擾</string>
+    <string name="home_focus_mode_desc_inactive">點擊進入專注模式</string>
+    <string name="home_quick_action_new_note">新增筆記</string>
+    <string name="home_quick_action_new_task">新增任務</string>
+    <string name="home_quick_action_start_timer">開始計時</string>
+    <string name="home_quick_action_ai_chat">AI 對話</string>
+    <string name="home_voice_prompt">您想做什麼？</string>
+    <string name="home_voice_listening">正在聆聽…</string>
+    <string name="home_pull_to_refresh">下拉重新整理</string>
+    <string name="home_syncing">同步中…</string>
+    <string name="home_refreshed">儀表板已更新</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">新增筆記</string>
+    <string name="shortcut_new_task">新增任務</string>
+    <string name="shortcut_start_focus">開始專注</string>
+    <string name="shortcut_ai_chat">AI 對話</string>
+    <string name="shortcut_note_short_label">筆記</string>
+    <string name="shortcut_task_short_label">任務</string>
+    <string name="shortcut_focus_short_label">專注</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>

@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                 newBase.applicationContext.dataStore.data.first()[stringPreferencesKey("language")] ?: "en"
             }.getOrDefault("en")
         }
-        val locale = Locale.Builder().setLanguage(lang).build()
+        val locale = if (lang.contains("-")) Locale.forLanguageTag(lang) else Locale(lang)
         Locale.setDefault(locale)
         val config = Configuration(newBase.resources.configuration)
         config.setLocale(locale)
