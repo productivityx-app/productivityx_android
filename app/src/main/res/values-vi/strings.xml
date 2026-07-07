@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Không gian làm việc của bạn. Hợp nhất.</string>
+    <string name="app_description">Ghi chú, tác vụ, lịch, hẹn giờ tập trung và trợ lý AI thực sự hiểu ngày của bạn.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Huỷ</string>
+    <string name="save">Lưu</string>
+    <string name="delete">Xoá</string>
+    <string name="edit">Sửa</string>
+    <string name="done">Xong</string>
+    <string name="back">Quay lại</string>
+    <string name="close">Đóng</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="discard">Huỷ bỏ</string>
+    <string name="retry">Thử lại</string>
+    <string name="skip">Bỏ qua</string>
+    <string name="next">Tiếp theo</string>
+    <string name="previous">Trước</string>
+    <string name="continue_action">Tiếp tục</string>
+    <string name="finish">Hoàn tất</string>
+    <string name="apply">Áp dụng</string>
+    <string name="reset">Đặt lại</string>
+    <string name="clear">Xoá</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="filter">Bộ lọc</string>
+    <string name="sort">Sắp xếp</string>
+    <string name="share">Chia sẻ</string>
+    <string name="copy">Sao chép</string>
+    <string name="paste">Dán</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="redo">Làm lại</string>
+    <string name="select_all">Chọn tất cả</string>
+    <string name="deselect_all">Bỏ chọn tất cả</string>
+    <string name="more_options">Thêm tuỳ chọn</string>
+    <string name="settings">Cài đặt</string>
+    <string name="help">Trợ giúp</string>
+    <string name="feedback">Phản hồi</string>
+    <string name="loading">Đang tải…</string>
+    <string name="refreshing">Đang làm mới…</string>
+    <string name="saving">Đang lưu…</string>
+    <string name="deleting">Đang xoá…</string>
+    <string name="please_wait">Vui lòng đợi…</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="show_less">Hiển thị ít hơn</string>
+    <string name="show_more">Hiển thị thêm</string>
+    <string name="optional">Tuỳ chọn</string>
+    <string name="required">Bắt buộc</string>
+    <string name="none">Không có</string>
+    <string name="unknown">Không xác định</string>
+    <string name="today">Hôm nay</string>
+    <string name="yesterday">Hôm qua</string>
+    <string name="tomorrow">Ngày mai</string>
+    <string name="this_week">Tuần này</string>
+    <string name="last_week">Tuần trước</string>
+    <string name="next_week">Tuần sau</string>
+    <string name="this_month">Tháng này</string>
+    <string name="all">Tất cả</string>
+    <string name="new_action">Mới</string>
+    <string name="add">Thêm</string>
+    <string name="remove">Xoá</string>
+    <string name="create">Tạo</string>
+    <string name="update">Cập nhật</string>
+    <string name="restore">Khôi phục</string>
+    <string name="archive">Lưu trữ</string>
+    <string name="unarchive">Huỷ lưu trữ</string>
+    <string name="pin">Ghim</string>
+    <string name="unpin">Bỏ ghim</string>
+    <string name="move">Di chuyển</string>
+    <string name="rename">Đổi tên</string>
+    <string name="duplicate">Nhân bản</string>
+    <string name="open">Mở</string>
+    <string name="view">Xem</string>
+    <string name="preview">Xem trước</string>
+    <string name="expand">Mở rộng</string>
+    <string name="collapse">Thu gọn</string>
+    <string name="enable">Bật</string>
+    <string name="disable">Tắt</string>
+    <string name="turn_on">Bật</string>
+    <string name="turn_off">Tắt</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="not_now">Không phải bây giờ</string>
+    <string name="got_it">Đã hiểu</string>
+    <string name="learn_more">Tìm hiểu thêm</string>
+    <string name="send">Gửi</string>
+    <string name="submit">Gửi</string>
+    <string name="upload">Tải lên</string>
+    <string name="download">Tải xuống</string>
+    <string name="link">Liên kết</string>
+    <string name="unlink">Huỷ liên kết</string>
+    <string name="connect">Kết nối</string>
+    <string name="disconnect">Ngắt kết nối</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Đã xảy ra lỗi. Vui lòng thử lại.</string>
+    <string name="error_network">Không có kết nối internet. Kiểm tra mạng và thử lại.</string>
+    <string name="error_timeout">Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.</string>
+    <string name="error_server">Lỗi máy chủ. Vui lòng thử lại sau.</string>
+    <string name="error_not_found">Không tìm thấy mục được yêu cầu.</string>
+    <string name="error_unauthorized">Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại.</string>
+    <string name="error_forbidden">Bạn không có quyền thực hiện hành động này.</string>
+    <string name="error_validation">Vui lòng kiểm tra biểu mẫu và sửa lỗi.</string>
+    <string name="error_unknown">Đã xảy ra lỗi không mong muốn.</string>
+    <string name="error_loading">Tải thất bại. Nhấn để thử lại.</string>
+    <string name="error_saving">Lưu thất bại. Vui lòng thử lại.</string>
+    <string name="error_deleting">Xoá thất bại. Vui lòng thử lại.</string>
+    <string name="error_no_data">Không có dữ liệu.</string>
+    <string name="error_offline_action">Hành động này yêu cầu kết nối internet.</string>
+    <string name="error_conflict">Đã xảy ra xung đột. Vui lòng làm mới và thử lại.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Mọi thứ trong một nơi</string>
+    <string name="onboarding_page1_body">Ghi chú, tác vụ và lịch được kết nối trong một không gian làm việc duy nhất.</string>
+    <string name="onboarding_page2_title">Giữ nhịp độ của bạn</string>
+    <string name="onboarding_page2_body">Đồng hồ Pomodoro biết bạn đang làm gì và tự động theo dõi thời gian của bạn.</string>
+    <string name="onboarding_page3_title">AI hiểu bạn</string>
+    <string name="onboarding_page3_body">Trợ lý của bạn thấy các tác vụ đang hoạt động, sự kiện sắp tới và ghi chú gần đây trước khi trả lời.</string>
+    <string name="onboarding_get_started">Bắt đầu</string>
+    <string name="onboarding_skip">Bỏ qua</string>
+    <string name="onboarding_next">Tiếp theo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Đăng nhập</string>
+    <string name="auth_sign_up">Đăng ký</string>
+    <string name="auth_sign_out">Đăng xuất</string>
+    <string name="auth_log_in">Đăng nhập</string>
+    <string name="auth_log_out">Đăng xuất</string>
+    <string name="auth_create_account">Tạo tài khoản</string>
+    <string name="auth_already_have_account">Đã có tài khoản?</string>
+    <string name="auth_skip_login">Tiếp tục mà không cần tài khoản</string>
+    <string name="auth_dont_have_account">Chưa có tài khoản?</string>
+    <string name="auth_welcome_back">Chào mừng trở lại</string>
+    <string name="auth_create_your_account">Tạo tài khoản của bạn</string>
+    <string name="auth_join_productivityx">Tham gia ProductivityX</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Quên mật khẩu?</string>
+    <string name="auth_forgot_password_title">Quên mật khẩu?</string>
+    <string name="auth_forgot_password_body">Nhập địa chỉ email của bạn và chúng tôi sẽ gửi liên kết để đặt lại mật khẩu.</string>
+    <string name="auth_forgot_password_success_title">Đã gửi liên kết đặt lại</string>
+    <string name="auth_forgot_password_success_body">Nếu email đó tồn tại, liên kết đặt lại đã được gửi. Kiểm tra hộp thư đến của bạn.</string>
+
+    <string name="auth_reset_password_title">Đặt lại mật khẩu</string>
+    <string name="auth_reset_password_body">Nhập mật khẩu mới cho tài khoản của bạn.</string>
+    <string name="auth_reset_password_action">Đặt lại mật khẩu</string>
+    <string name="auth_reset_password_success_title">Đã đặt lại mật khẩu!</string>
+    <string name="auth_reset_password_success_body">Mật khẩu của bạn đã được thay đổi. Đăng nhập bằng mật khẩu mới.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">Kiểm tra email của bạn</string>
+    <string name="auth_verify_email_body">Chúng tôi đã gửi mã 6 chữ số đến %1$s</string>
+    <string name="auth_verify">Xác minh</string>
+    <string name="auth_resend_code">Gửi lại mã</string>
+    <string name="auth_resend_cooldown">Gửi lại sau %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">Địa chỉ email</string>
+    <string name="field_email_hint">Nhập email của bạn</string>
+    <string name="field_password">Mật khẩu</string>
+    <string name="field_password_hint">Nhập mật khẩu của bạn</string>
+    <string name="field_password_new">Mật khẩu mới</string>
+    <string name="field_password_new_hint">Nhập mật khẩu mới</string>
+    <string name="field_password_confirm">Xác nhận mật khẩu</string>
+    <string name="field_password_confirm_hint">Nhập lại mật khẩu của bạn</string>
+    <string name="field_password_current">Mật khẩu hiện tại</string>
+    <string name="field_password_current_hint">Nhập mật khẩu hiện tại</string>
+    <string name="field_username">Tên người dùng</string>
+    <string name="field_username_hint">Chọn tên người dùng</string>
+    <string name="field_first_name">Tên</string>
+    <string name="field_first_name_hint">Nhập tên của bạn</string>
+    <string name="field_last_name">Họ</string>
+    <string name="field_last_name_hint">Nhập họ của bạn</string>
+    <string name="field_phone">Số điện thoại</string>
+    <string name="field_phone_hint">Nhập số điện thoại của bạn</string>
+    <string name="field_birth_date">Ngày sinh</string>
+    <string name="field_birth_date_hint">Chọn ngày sinh của bạn</string>
+    <string name="field_identifier">Email, tên người dùng hoặc số điện thoại</string>
+    <string name="field_identifier_hint">Nhập email, tên người dùng hoặc số điện thoại</string>
+    <string name="field_gender">Giới tính</string>
+    <string name="field_bio">Tiểu sử</string>
+    <string name="field_bio_hint">Hãy cho chúng tôi biết một chút về bạn</string>
+    <string name="field_timezone">Múi giờ</string>
+    <string name="field_language">Ngôn ngữ</string>
+    <string name="field_theme">Giao diện</string>
+    <string name="field_avatar">Ảnh đại diện</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Hiển thị mật khẩu</string>
+    <string name="password_hide">Ẩn mật khẩu</string>
+    <string name="password_strength_weak">Yếu</string>
+    <string name="password_strength_fair">Trung bình</string>
+    <string name="password_strength_good">Tốt</string>
+    <string name="password_strength_strong">Mạnh</string>
+    <string name="password_requirement_length">Ít nhất 8 ký tự</string>
+    <string name="password_requirement_uppercase">Một chữ hoa</string>
+    <string name="password_requirement_lowercase">Một chữ thường</string>
+    <string name="password_requirement_number">Một số</string>
+    <string name="password_requirement_special">Một ký tự đặc biệt</string>
+    <string name="password_forgot">Quên mật khẩu?</string>
+    <string name="password_reset">Đặt lại mật khẩu</string>
+    <string name="password_change">Đổi mật khẩu</string>
+    <string name="password_mismatch">Mật khẩu không khớp.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Tài khoản</string>
+    <string name="register_step_profile">Hồ sơ</string>
+    <string name="register_step_preferences">Tuỳ chỉnh</string>
+    <string name="register_step_verify">Xác minh</string>
+    <string name="register_step_indicator">Bước %1$d trên %2$d</string>
+    <string name="register_change_photo">Đổi ảnh</string>
+    <string name="register_preferences_caption">Bạn có thể thay đổi những tuỳ chọn này bất cứ lúc nào trong cài đặt.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Tối</string>
+    <string name="theme_light">Sáng</string>
+    <string name="theme_system">Hệ thống</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">Giao diện</string>
+    <string name="profile_theme_hint">Bạn có thể thay đổi điều này bất cứ lúc nào trong cài đặt.</string>
+
+    <!-- Gender -->
+    <string name="gender_male">Nam</string>
+    <string name="gender_female">Nữ</string>
+    <string name="gender_prefer_not_to_say">Không muốn tiết lộ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_notes">Ghi chú</string>
+    <string name="nav_tasks">Tác vụ</string>
+    <string name="nav_calendar">Lịch</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Tìm kiếm</string>
+    <string name="nav_profile">Hồ sơ</string>
+    <string name="nav_settings">Cài đặt</string>
+    <string name="nav_trash">Thùng rác</string>
+    <string name="nav_history">Lịch sử</string>
+    <string name="nav_events">Sự kiện</string>
+    <string name="tab_dashboard">Bảng điều khiển</string>
+    <string name="tab_events">Sự kiện</string>
+    <string name="tab_dashboard_desc">Tổng quan về ngày của bạn</string>
+    <string name="tab_notes_desc">Ghi lại suy nghĩ của bạn</string>
+    <string name="tab_tasks_desc">Hoàn thành công việc</string>
+    <string name="tab_events_desc">Lịch trình của bạn trong nháy mắt</string>
+    <string name="tab_pomodoro_desc">Giữ nhịp độ của bạn</string>
+    <string name="cd_notifications">Thông báo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Chào buổi sáng, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Chào buổi chiều, %1$s 👋</string>
+    <string name="home_greeting_evening">Chào buổi tối, %1$s 👋</string>
+    <string name="home_greeting_night">Chúc ngủ ngon, %1$s 👋</string>
+    <string name="home_quick_add">Thêm nhanh</string>
+    <string name="home_due_today">Đến hạn hôm nay</string>
+    <string name="home_overdue">Quá hạn</string>
+    <string name="home_this_week">Tuần này</string>
+    <string name="home_total_notes">Tổng số ghi chú</string>
+    <string name="home_focus_time">Tập trung hôm nay</string>
+    <string name="home_upcoming_events">Sự kiện sắp tới</string>
+    <string name="home_recent_notes">Ghi chú gần đây</string>
+    <string name="home_no_tasks_today">Không có tác vụ nào đến hạn hôm nay.</string>
+    <string name="home_no_events">Không có sự kiện sắp tới.</string>
+    <string name="home_no_notes">Không có ghi chú gần đây.</string>
+    <string name="home_sessions_today">Phiên hôm nay</string>
+    <string name="home_focus_minutes">Thời gian tập trung</string>
+    <string name="home_completed_tasks">Tác vụ đã hoàn thành</string>
+    <string name="home_start_focus">Bắt đầu tập trung</string>
+    <string name="home_tasks_completed">tác vụ đã hoàn thành</string>
+    <string name="home_events_upcoming">sự kiện sắp tới</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Ghi chú</string>
+    <string name="notes_new">Ghi chú mới</string>
+    <string name="notes_search_hint">Tìm kiếm ghi chú…</string>
+    <string name="notes_filter_all">Tất cả</string>
+    <string name="notes_filter_pinned">Đã ghim</string>
+    <string name="notes_empty_title">Chưa có ghi chú</string>
+    <string name="notes_empty_body">Bắt đầu viết ghi chú đầu tiên của bạn.</string>
+    <string name="notes_empty_action">Tạo ghi chú</string>
+    <string name="notes_pinned_section">Đã ghim</string>
+    <string name="notes_all_section">Tất cả ghi chú</string>
+    <string name="notes_untitled">Chưa có tiêu đề</string>
+    <string name="notes_word_count">%1$d từ</string>
+    <string name="notes_reading_time">%1$d phút đọc</string>
+    <string name="notes_pin_success">Đã ghim ghi chú.</string>
+    <string name="notes_unpin_success">Đã bỏ ghim ghi chú.</string>
+    <string name="notes_delete_confirm_title">Chuyển vào thùng rác?</string>
+    <string name="notes_delete_confirm_body">Ghi chú này sẽ được chuyển vào thùng rác và bị xoá vĩnh viễn sau 30 ngày.</string>
+    <string name="notes_delete_success">Đã chuyển ghi chú vào thùng rác.</string>
+    <string name="notes_restore_success">Đã khôi phục ghi chú.</string>
+    <string name="notes_hard_delete_confirm_title">Xoá vĩnh viễn?</string>
+    <string name="notes_hard_delete_confirm_body">Ghi chú này sẽ bị xoá vĩnh viễn và không thể khôi phục.</string>
+    <string name="notes_hard_delete_success">Đã xoá vĩnh viễn ghi chú.</string>
+    <string name="notes_create_success">Đã tạo ghi chú.</string>
+    <string name="notes_update_success">Đã lưu ghi chú.</string>
+    <string name="notes_autosave">Đã tự động lưu</string>
+    <string name="notes_saving">Đang lưu…</string>
+    <string name="notes_copy_link">Sao chép liên kết</string>
+    <string name="notes_link_copied">Đã sao chép liên kết.</string>
+    <string name="notes_link_task">Liên kết tác vụ</string>
+    <string name="notes_unlink_task">Huỷ liên kết tác vụ</string>
+    <string name="notes_task_linked">Đã liên kết với: %1$s</string>
+    <string name="notes_add_tag">Thêm thẻ</string>
+    <string name="notes_no_tags">Không có thẻ</string>
+    <string name="notes_start_writing">Bắt đầu viết…</string>
+    <string name="notes_title_hint">Tiêu đề</string>
+    <string name="notes_trash_empty_title">Thùng rác trống</string>
+    <string name="notes_trash_empty_body">Ghi chú trong thùng rác bị xoá vĩnh viễn sau 30 ngày.</string>
+    <string name="notes_trash_empty_all">Dọn sạch thùng rác</string>
+    <string name="notes_trash_empty_all_confirm_title">Dọn sạch thùng rác?</string>
+    <string name="notes_trash_empty_all_confirm_body">Tất cả ghi chú trong thùng rác sẽ bị xoá vĩnh viễn.</string>
+    <string name="notes_in_trash">%1$d ghi chú trong thùng rác</string>
+    <string name="notes_in_trash_plural">%1$d ghi chú trong thùng rác</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Đậm</string>
+    <string name="editor_format_italic">Nghiêng</string>
+    <string name="editor_format_heading">Tiêu đề</string>
+    <string name="editor_format_list_bullet">Danh sách gạch đầu dòng</string>
+    <string name="editor_format_list_numbered">Danh sách đánh số</string>
+    <string name="editor_format_code">Mã</string>
+    <string name="editor_format_quote">Trích dẫn</string>
+    <string name="editor_format_link">Chèn liên kết</string>
+    <string name="editor_insert_link_title">Chèn liên kết</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Văn bản hiển thị</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Thẻ</string>
+    <string name="tags_new">Thẻ mới</string>
+    <string name="tags_name_hint">Tên thẻ</string>
+    <string name="tags_color">Màu sắc</string>
+    <string name="tags_create_success">Đã tạo thẻ.</string>
+    <string name="tags_update_success">Đã cập nhật thẻ.</string>
+    <string name="tags_delete_success">Đã xoá thẻ.</string>
+    <string name="tags_delete_confirm_title">Xoá thẻ?</string>
+    <string name="tags_delete_confirm_body">Thẻ này sẽ bị xoá khỏi tất cả ghi chú đang sử dụng nó.</string>
+    <string name="tags_already_exists">Thẻ với tên này đã tồn tại.</string>
+    <string name="tags_empty_title">Chưa có thẻ</string>
+    <string name="tags_empty_body">Tạo thẻ để sắp xếp ghi chú của bạn.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Tác vụ</string>
+    <string name="tasks_new">Tác vụ mới</string>
+    <string name="tasks_search_hint">Tìm kiếm tác vụ…</string>
+    <string name="tasks_tab_all">Tất cả</string>
+    <string name="tasks_tab_today">Hôm nay</string>
+    <string name="tasks_tab_upcoming">Sắp tới</string>
+    <string name="tasks_tab_completed">Đã hoàn thành</string>
+    <string name="tasks_view_list">Chế độ danh sách</string>
+    <string name="tasks_view_kanban">Chế độ bảng</string>
+    <string name="tasks_empty_title">Không có tác vụ nào</string>
+    <string name="tasks_empty_body">Tạo tác vụ đầu tiên của bạn để bắt đầu.</string>
+    <string name="tasks_empty_action">Tạo tác vụ</string>
+    <string name="tasks_empty_today">Không có tác vụ nào đến hạn hôm nay. Tận hưởng ngày của bạn!</string>
+    <string name="tasks_empty_upcoming">Không có tác vụ sắp tới.</string>
+    <string name="tasks_empty_completed">Chưa có tác vụ hoàn thành.</string>
+    <string name="tasks_empty_filter">Không có tác vụ nào khớp với bộ lọc này.</string>
+    <string name="tasks_field_title">Tiêu đề tác vụ</string>
+    <string name="tasks_field_title_hint">Cần làm gì?</string>
+    <string name="tasks_field_description">Mô tả</string>
+    <string name="tasks_field_description_hint">Thêm chi tiết…</string>
+    <string name="tasks_field_due_date">Ngày đến hạn</string>
+    <string name="tasks_field_due_time">Giờ đến hạn</string>
+    <string name="tasks_field_priority">Mức ưu tiên</string>
+    <string name="tasks_field_status">Trạng thái</string>
+    <string name="tasks_field_reminder">Nhắc nhở</string>
+    <string name="tasks_field_estimated_time">Thời gian dự kiến</string>
+    <string name="tasks_field_actual_time">Thời gian thực tế</string>
+    <string name="tasks_field_link_event">Liên kết sự kiện</string>
+    <string name="tasks_field_subtasks">Tác vụ con</string>
+    <string name="tasks_add_subtask">Thêm tác vụ con</string>
+    <string name="tasks_subtask_count">%1$d tác vụ con</string>
+    <string name="tasks_subtask_count_plural">%1$d tác vụ con</string>
+    <string name="tasks_subtask_completed">%1$d trên %2$d đã hoàn thành</string>
+    <string name="tasks_pomodoro_sessions">Phiên tập trung</string>
+    <string name="tasks_no_due_date">Không có ngày đến hạn</string>
+    <string name="tasks_no_due_time">Chưa đặt giờ</string>
+    <string name="tasks_no_reminder">Không có nhắc nhở</string>
+    <string name="tasks_no_estimated">Không có dự kiến</string>
+    <string name="tasks_create_success">Đã tạo tác vụ.</string>
+    <string name="tasks_update_success">Đã cập nhật tác vụ.</string>
+    <string name="tasks_delete_success">Đã xoá tác vụ.</string>
+    <string name="tasks_restore_success">Đã khôi phục tác vụ.</string>
+    <string name="tasks_complete_success">Đã hoàn thành tác vụ.</string>
+    <string name="tasks_reorder_success">Đã sắp xếp lại tác vụ.</string>
+    <string name="tasks_status_updated">Đã cập nhật trạng thái.</string>
+    <string name="tasks_delete_confirm_title">Xoá tác vụ?</string>
+    <string name="tasks_delete_confirm_body">Tác vụ này sẽ bị xoá.</string>
+    <string name="tasks_minutes">%1$d ph</string>
+    <string name="tasks_hours_minutes">%1$dg %2$dph</string>
+    <string name="tasks_swipe_complete">Hoàn thành</string>
+    <string name="tasks_swipe_delete">Xoá</string>
+    <string name="tasks_sort_due_date">Ngày đến hạn</string>
+    <string name="tasks_sort_priority">Mức ưu tiên</string>
+    <string name="tasks_sort_created">Ngày tạo</string>
+    <string name="tasks_sort_title">Tiêu đề</string>
+    <string name="tasks_filter_priority">Lọc theo mức ưu tiên</string>
+    <string name="tasks_filter_status">Lọc theo trạng thái</string>
+    <string name="tasks_filter_due">Lọc theo ngày đến hạn</string>
+    <string name="tasks_overdue_label">Quá hạn</string>
+    <string name="tasks_due_today_label">Đến hạn hôm nay</string>
+    <string name="tasks_due_tomorrow_label">Đến hạn ngày mai</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">Thấp</string>
+    <string name="priority_medium">Trung bình</string>
+    <string name="priority_high">Cao</string>
+    <string name="priority_urgent">Khẩn cấp</string>
+
+    <string name="status_todo">Cần làm</string>
+    <string name="status_in_progress">Đang thực hiện</string>
+    <string name="status_on_hold">Tạm dừng</string>
+    <string name="status_done">Hoàn thành</string>
+    <string name="status_cancelled">Đã huỷ</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">Cần làm</string>
+    <string name="kanban_column_in_progress">Đang thực hiện</string>
+    <string name="kanban_column_on_hold">Tạm dừng</string>
+    <string name="kanban_column_done">Hoàn thành</string>
+    <string name="kanban_add_task">Thêm tác vụ</string>
+    <string name="kanban_drag_hint">Giữ và kéo để di chuyển</string>
+    <string name="kanban_column_empty">Không có tác vụ nào</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Lịch</string>
+    <string name="calendar_view_week">Tuần</string>
+    <string name="calendar_view_month">Tháng</string>
+    <string name="calendar_today">Hôm nay</string>
+    <string name="calendar_new_event">Sự kiện mới</string>
+    <string name="calendar_no_events">Không có sự kiện</string>
+    <string name="calendar_all_day">Cả ngày</string>
+    <string name="calendar_recurring">Lặp lại</string>
+    <string name="calendar_events_count">%1$d sự kiện</string>
+    <string name="calendar_events_count_plural">%1$d sự kiện</string>
+    <string name="calendar_more_events">+%1$d khác</string>
+    <string name="calendar_week_header">Tuần của %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Sự kiện mới</string>
+    <string name="event_edit_title">Chỉnh sửa sự kiện</string>
+    <string name="event_field_title">Tiêu đề sự kiện</string>
+    <string name="event_field_title_hint">Sự kiện là gì?</string>
+    <string name="event_field_description">Mô tả</string>
+    <string name="event_field_description_hint">Thêm ghi chú về sự kiện này…</string>
+    <string name="event_field_location">Địa điểm</string>
+    <string name="event_field_location_hint">Thêm địa điểm</string>
+    <string name="event_field_start">Bắt đầu</string>
+    <string name="event_field_end">Kết thúc</string>
+    <string name="event_field_all_day">Sự kiện cả ngày</string>
+    <string name="event_field_color">Màu sắc</string>
+    <string name="event_field_recurrence">Lặp lại</string>
+    <string name="event_field_reminder">Nhắc nhở</string>
+    <string name="event_field_link_task">Liên kết tác vụ</string>
+    <string name="event_recurrence_none">Không lặp lại</string>
+    <string name="event_recurrence_daily">Hàng ngày</string>
+    <string name="event_recurrence_weekly">Hàng tuần</string>
+    <string name="event_recurrence_monthly">Hàng tháng</string>
+    <string name="event_recurrence_yearly">Hàng năm</string>
+    <string name="event_recurrence_custom">Tuỳ chỉnh</string>
+    <string name="event_recurrence_weekdays">Mỗi ngày trong tuần (T2–T6)</string>
+    <string name="event_recurrence_end_date">Kết thúc vào</string>
+    <string name="event_recurrence_end_never">Không bao giờ</string>
+    <string name="event_recurrence_label">Lặp lại: %1$s</string>
+    <string name="event_reminder_none">Không nhắc nhở</string>
+    <string name="event_reminder_at_time">Tại thời điểm sự kiện</string>
+    <string name="event_reminder_5_min">5 phút trước</string>
+    <string name="event_reminder_10_min">10 phút trước</string>
+    <string name="event_reminder_15_min">15 phút trước</string>
+    <string name="event_reminder_30_min">30 phút trước</string>
+    <string name="event_reminder_1_hour">1 giờ trước</string>
+    <string name="event_reminder_1_day">1 ngày trước</string>
+    <string name="event_create_success">Đã tạo sự kiện.</string>
+    <string name="event_update_success">Đã cập nhật sự kiện.</string>
+    <string name="event_delete_success">Đã xoá sự kiện.</string>
+    <string name="event_restore_success">Đã khôi phục sự kiện.</string>
+    <string name="event_delete_confirm_title">Xoá sự kiện?</string>
+    <string name="event_delete_confirm_body">Sự kiện này sẽ bị xoá.</string>
+    <string name="event_delete_recurring_title">Xoá sự kiện lặp lại</string>
+    <string name="event_delete_recurring_body">Xoá sự kiện này hay tất cả sự kiện trong chuỗi?</string>
+    <string name="event_delete_this_only">Chỉ sự kiện này</string>
+    <string name="event_delete_all_in_series">Tất cả sự kiện trong chuỗi</string>
+    <string name="event_end_before_start">Thời gian kết thúc phải sau thời gian bắt đầu.</string>
+    <string name="event_location_open_maps">Mở trong Bản đồ</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Cuộc họp</string>
+    <string name="event_template_focus">Thời gian tập trung</string>
+    <string name="event_template_break">Giải lao</string>
+    <string name="event_template_travel">Di chuyển</string>
+    <string name="event_join_meeting">Tham gia cuộc họp</string>
+    <string name="event_navigate">Chỉ đường</string>
+    <string name="event_share">Chia sẻ sự kiện</string>
+    <string name="event_duplicate">Nhân bản</string>
+    <string name="event_weather">Thời tiết</string>
+    <string name="event_attendees">Người tham dự</string>
+    <string name="event_timezone">Múi giờ</string>
+    <string name="event_travel_time">Thời gian di chuyển</string>
+    <string name="event_conflict_detected">Phát hiện xung đột thời gian</string>
+    <string name="event_reminder_multiple">Nhiều lời nhắc</string>
+    <string name="event_reminder_add">Thêm nhắc nhở</string>
+    <string name="event_reminder_custom">Tuỳ chỉnh</string>
+    <string name="event_voice_input">Nhập liệu bằng giọng nói</string>
+    <string name="event_smart_suggestion">Gợi ý thông minh</string>
+    <string name="event_free_busy">Rảnh/Bận</string>
+    <string name="event_suggested_times">Thời gian đề xuất</string>
+    <string name="calendar_view_day">Ngày</string>
+    <string name="calendar_view_agenda">Chương trình</string>
+    <string name="calendar_view_year">Năm</string>
+    <string name="calendar_date_jump">Đi đến ngày</string>
+    <string name="calendar_swipe_instruction">Vuốt để điều hướng</string>
+    <string name="calendar_pinch_zoom">Chụm để phóng to</string>
+    <string name="calendar_no_events_day">Không có sự kiện trong ngày này</string>
+    <string name="calendar_all_day_section">Cả ngày</string>
+    <string name="calendar_agenda_empty">Không có sự kiện sắp tới</string>
+    <string name="calendar_heat_map_label">Hoạt động</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Tập trung</string>
+    <string name="pomodoro_focus">Tập trung</string>
+    <string name="pomodoro_short_break">Nghỉ ngắn</string>
+    <string name="pomodoro_long_break">Nghỉ dài</string>
+    <string name="pomodoro_session_focus">Phiên tập trung</string>
+    <string name="pomodoro_session_short_break">Nghỉ ngắn</string>
+    <string name="pomodoro_session_long_break">Nghỉ dài</string>
+    <string name="pomodoro_start">Bắt đầu</string>
+    <string name="pomodoro_pause">Tạm dừng</string>
+    <string name="pomodoro_resume">Tiếp tục</string>
+    <string name="pomodoro_skip">Bỏ qua</string>
+    <string name="pomodoro_stop">Dừng</string>
+    <string name="pomodoro_reset">Đặt lại</string>
+    <string name="pomodoro_link_task">Liên kết tác vụ</string>
+    <string name="pomodoro_link_task_hint">Nhấn để liên kết tác vụ</string>
+    <string name="pomodoro_linked_task">Đang tập trung vào: %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d phiên hôm nay</string>
+    <string name="pomodoro_sessions_today_plural">%1$d phiên hôm nay</string>
+    <string name="pomodoro_focus_time_today">%1$s đã tập trung hôm nay</string>
+    <string name="pomodoro_completed_today">Đã hoàn thành hôm nay</string>
+    <string name="pomodoro_no_active_session">Không có phiên hoạt động</string>
+    <string name="pomodoro_session_complete_title">Hoàn thành phiên! 🎉</string>
+    <string name="pomodoro_session_complete_body">Làm tốt lắm. Hãy nghỉ ngơi!</string>
+    <string name="pomodoro_break_complete_title">Kết thúc nghỉ</string>
+    <string name="pomodoro_break_complete_body">Sẵn sàng tập trung lại?</string>
+    <string name="pomodoro_start_success">Đã bắt đầu phiên.</string>
+    <string name="pomodoro_end_success">Đã hoàn thành phiên.</string>
+    <string name="pomodoro_interrupt_success">Đã gián đoạn phiên.</string>
+    <string name="pomodoro_interrupt_reason_hint">Tại sao bạn dừng lại? (không bắt buộc)</string>
+    <string name="pomodoro_interrupt_confirm_title">Dừng phiên?</string>
+    <string name="pomodoro_interrupt_confirm_body">Tiến trình của bạn sẽ được lưu nhưng phiên sẽ được đánh dấu là bị gián đoạn.</string>
+    <string name="pomodoro_already_active">Bạn đã có một phiên đang hoạt động. Kết thúc nó trước khi bắt đầu phiên mới.</string>
+    <string name="pomodoro_stats_title">Thống kê hôm nay</string>
+    <string name="pomodoro_history_title">Lịch sử phiên</string>
+    <string name="pomodoro_history_empty_title">Chưa có phiên nào</string>
+    <string name="pomodoro_history_empty_body">Bắt đầu một phiên tập trung để xem lịch sử của bạn ở đây.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Bị gián đoạn</string>
+    <string name="pomodoro_session_completed">Đã hoàn thành</string>
+    <string name="pomodoro_dot_current">Phiên hiện tại</string>
+    <string name="pomodoro_dot_completed">Phiên đã hoàn thành</string>
+    <string name="pomodoro_dot_upcoming">Phiên sắp tới</string>
+    <string name="pomodoro_notification_channel_name">Đồng hồ Pomodoro</string>
+    <string name="pomodoro_notification_channel_desc">Cập nhật thời gian trực tiếp và thông báo phiên.</string>
+    <string name="pomodoro_notification_running">%1$s còn lại — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Tạm dừng</string>
+    <string name="pomodoro_notification_action_skip">Bỏ qua</string>
+    <string name="pomodoro_notification_action_stop">Dừng</string>
+    <string name="pomodoro_cycle_count">Chu kỳ %1$d trên %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d phiên cho đến khi nghỉ dài</string>
+    <string name="pomodoro_until_long_break_plural">%1$d phiên cho đến khi nghỉ dài</string>
+
+    <string name="pomodoro_swipe_to_skip">VUỐT ĐỂ BỎ QUA</string>
+    <string name="pomodoro_extend_1min">+1 Ph</string>
+    <string name="pomodoro_focus_analytics">Phân tích tập trung</string>
+    <string name="pomodoro_streak_day">Chuỗi %1$d ngày</string>
+    <string name="pomodoro_best_streak">Tốt nhất: %1$d ngày</string>
+    <string name="pomodoro_weekly_intensity">Cường độ hàng tuần</string>
+    <string name="pomodoro_focus_by_category">Tập trung theo danh mục</string>
+    <string name="pomodoro_quality_score">Điểm chất lượng</string>
+    <string name="pomodoro_total_focus_time">Tổng thời gian tập trung</string>
+    <string name="pomodoro_daily_goal">Mục tiêu hàng ngày</string>
+    <string name="pomodoro_weekly_goal">Mục tiêu hàng tuần</string>
+    <string name="pomodoro_exit_focus_mode">Thoát chế độ tập trung</string>
+    <string name="pomodoro_dnd_access_required">Yêu cầu quyền truy cập DND. Vui lòng bật trong cài đặt.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">Trợ lý AI</string>
+    <string name="ai_welcome_title">Tôi có thể giúp gì?</string>
+    <string name="ai_welcome_body">Tôi có thể xem không gian làm việc của bạn — tác vụ, sự kiện và ghi chú — để đưa ra câu trả lời theo ngữ cảnh.</string>
+    <string name="ai_message_hint">Tin nhắn…</string>
+    <string name="ai_send">Gửi</string>
+    <string name="ai_new_conversation">Cuộc trò chuyện mới</string>
+    <string name="ai_conversations_title">Cuộc trò chuyện</string>
+    <string name="ai_conversation_empty">Chưa có tin nhắn</string>
+    <string name="ai_conversations_empty_title">Chưa có cuộc trò chuyện</string>
+    <string name="ai_conversations_empty_body">Bắt đầu một cuộc trò chuyện mới để nhận trợ giúp về không gian làm việc của bạn.</string>
+    <string name="ai_delete_conversation_title">Xoá cuộc trò chuyện?</string>
+    <string name="ai_delete_conversation_body">Cuộc trò chuyện này và tất cả tin nhắn sẽ bị xoá vĩnh viễn.</string>
+    <string name="ai_delete_conversation_success">Đã xoá cuộc trò chuyện.</string>
+    <string name="ai_clear_conversation_title">Xoá cuộc trò chuyện?</string>
+    <string name="ai_clear_conversation_body">Tất cả tin nhắn trong cuộc trò chuyện này sẽ bị xoá.</string>
+    <string name="ai_suggestion_due_today">Việc gì đến hạn hôm nay?</string>
+    <string name="ai_suggestion_overdue">Tổng hợp các tác vụ quá hạn của tôi</string>
+    <string name="ai_suggestion_start_focus">Bắt đầu phiên tập trung</string>
+    <string name="ai_suggestion_meeting_agenda">Soạn thảo chương trình cuộc họp</string>
+    <string name="ai_context_title">Không gian làm việc của bạn</string>
+    <string name="ai_context_active_tasks">Tác vụ đang hoạt động</string>
+    <string name="ai_context_events_week">Sự kiện tuần này</string>
+    <string name="ai_context_last_note">Ghi chú cuối cùng</string>
+    <string name="ai_context_focus_today">Tập trung hôm nay</string>
+    <string name="ai_context_overdue">quá hạn</string>
+    <string name="ai_context_caption">Ngữ cảnh này được gửi đến AI cùng với mỗi tin nhắn.</string>
+    <string name="ai_context_refresh">Làm mới ngữ cảnh</string>
+    <string name="ai_typing">AI đang suy nghĩ…</string>
+    <string name="ai_streaming">Đang tạo phản hồi…</string>
+    <string name="ai_error_unavailable">Trợ lý AI hiện không khả dụng. Vui lòng thử lại sau.</string>
+    <string name="ai_error_stream">Đã xảy ra lỗi khi tạo phản hồi.</string>
+    <string name="ai_action_create_task">Tạo tác vụ</string>
+    <string name="ai_action_create_note">Tạo ghi chú</string>
+    <string name="ai_action_add_event">Thêm sự kiện</string>
+    <string name="ai_action_confirm">Xác nhận</string>
+    <string name="ai_action_dismiss">Bỏ qua</string>
+    <string name="ai_action_executed">Xong! Mục đã được tạo.</string>
+    <string name="ai_action_dismissed">Đã bỏ qua.</string>
+    <string name="ai_copy_message">Sao chép tin nhắn</string>
+    <string name="ai_message_copied">Đã sao chép tin nhắn.</string>
+    <string name="ai_regenerate">Tạo lại phản hồi</string>
+    <string name="ai_you">Bạn</string>
+    <string name="ai_assistant">Trợ lý</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Tìm kiếm</string>
+    <string name="search_hint">Tìm kiếm ghi chú, tác vụ, sự kiện…</string>
+    <string name="search_results_notes">Ghi chú</string>
+    <string name="search_results_tasks">Tác vụ</string>
+    <string name="search_results_events">Sự kiện</string>
+    <string name="search_recent">Tìm kiếm gần đây</string>
+    <string name="search_clear_recent">Xoá</string>
+    <string name="search_empty_title">Không có kết quả cho \'%1$s\'</string>
+    <string name="search_empty_body">Thử từ khoá khác hoặc kiểm tra chính tả.</string>
+    <string name="search_results_count">%1$d kết quả</string>
+    <string name="search_results_count_plural">%1$d kết quả</string>
+    <string name="search_type_note">Ghi chú</string>
+    <string name="search_type_task">Tác vụ</string>
+    <string name="search_type_event">Sự kiện</string>
+    <string name="search_offline_notice">Đang tìm kiếm ngoại tuyến. Kết nối internet để có kết quả đầy đủ.</string>
+    <string name="search_loading">Đang tìm kiếm…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Hồ sơ</string>
+    <string name="profile_edit_title">Chỉnh sửa hồ sơ</string>
+    <string name="profile_change_photo">Đổi ảnh</string>
+    <string name="profile_remove_photo">Xoá ảnh</string>
+    <string name="profile_photo_updated">Đã cập nhật ảnh đại diện.</string>
+    <string name="profile_photo_removed">Đã xoá ảnh đại diện.</string>
+    <string name="profile_photo_pick">Chọn từ thư viện</string>
+    <string name="profile_photo_camera">Chụp ảnh</string>
+    <string name="profile_update_success">Đã cập nhật hồ sơ.</string>
+    <string name="profile_stats_notes">Ghi chú</string>
+    <string name="profile_stats_tasks_completed">Tác vụ đã hoàn thành</string>
+    <string name="profile_stats_focus_this_week">Tập trung tuần này</string>
+    <string name="profile_member_since">Thành viên từ %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Chưa có tiểu sử.</string>
+    <string name="profile_section_account">Tài khoản</string>
+    <string name="profile_section_appearance">Giao diện</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Thông báo</string>
+    <string name="profile_section_ai">Trợ lý AI</string>
+    <string name="profile_section_data">Dữ liệu &amp; Đồng bộ</string>
+    <string name="profile_section_about">Giới thiệu</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Tuỳ chỉnh</string>
+    <string name="preferences_update_success">Đã lưu tuỳ chỉnh.</string>
+    <string name="preferences_pomodoro_focus">Thời gian tập trung</string>
+    <string name="preferences_pomodoro_focus_desc">Độ dài mỗi phiên tập trung</string>
+    <string name="preferences_pomodoro_short_break">Nghỉ ngắn</string>
+    <string name="preferences_pomodoro_short_break_desc">Độ dài nghỉ ngắn giữa các phiên</string>
+    <string name="preferences_pomodoro_long_break">Nghỉ dài</string>
+    <string name="preferences_pomodoro_long_break_desc">Độ dài nghỉ dài sau một chu kỳ đầy đủ</string>
+    <string name="preferences_pomodoro_cycles">Số phiên trước khi nghỉ dài</string>
+    <string name="preferences_pomodoro_cycles_desc">Số phiên tập trung trước khi nghỉ dài</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Tự động bắt đầu nghỉ</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Tự động bắt đầu nghỉ khi một phiên kết thúc</string>
+    <string name="preferences_pomodoro_auto_start_focus">Tự động bắt đầu tập trung</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Tự động bắt đầu phiên tiếp theo sau khi nghỉ</string>
+    <string name="preferences_pomodoro_sound">Âm thanh</string>
+    <string name="preferences_pomodoro_sound_desc">Phát âm thanh khi một phiên kết thúc</string>
+    <string name="preferences_notify_task_reminders">Nhắc nhở tác vụ</string>
+    <string name="preferences_notify_task_reminders_desc">Nhận thông báo khi đến hạn nhắc nhở tác vụ</string>
+    <string name="preferences_notify_event_reminders">Nhắc nhở sự kiện</string>
+    <string name="preferences_notify_event_reminders_desc">Nhận thông báo trước sự kiện lịch</string>
+    <string name="preferences_notify_pomodoro_end">Kết thúc Pomodoro</string>
+    <string name="preferences_notify_pomodoro_end_desc">Nhận thông báo khi phiên Pomodoro kết thúc</string>
+    <string name="preferences_notify_daily_summary">Tổng kết hàng ngày</string>
+    <string name="preferences_notify_daily_summary_desc">Nhận tổng kết buổi sáng về ngày của bạn</string>
+    <string name="preferences_default_task_view">Chế độ xem tác vụ mặc định</string>
+    <string name="preferences_default_task_sort">Sắp xếp tác vụ mặc định</string>
+    <string name="preferences_show_completed_tasks">Hiển thị tác vụ đã hoàn thành</string>
+    <string name="preferences_show_completed_tasks_desc">Bao gồm tác vụ đã hoàn thành trong danh sách tác vụ</string>
+    <string name="preferences_default_calendar_view">Chế độ xem lịch mặc định</string>
+    <string name="preferences_week_starts_on">Tuần bắt đầu từ</string>
+    <string name="preferences_week_starts_monday">Thứ Hai</string>
+    <string name="preferences_week_starts_sunday">Chủ Nhật</string>
+    <string name="preferences_ai_context">Ngữ cảnh không gian làm việc</string>
+    <string name="preferences_ai_context_desc">Chia sẻ tác vụ, sự kiện và ghi chú của bạn với trợ lý AI</string>
+    <string name="preferences_ai_model">Mô hình AI</string>
+    <string name="preferences_ai_model_desc">Chọn mô hình AI cho trợ lý</string>
+    <string name="preferences_compact_mode">Chế độ thu gọn</string>
+    <string name="preferences_compact_mode_desc">Sử dụng bố cục dày đặc hơn để hiển thị nhiều nội dung hơn</string>
+    <string name="preferences_minutes_format">%1$d ph</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Đã đồng bộ</string>
+    <string name="sync_status_pending">Chờ đồng bộ</string>
+    <string name="sync_status_syncing">Đang đồng bộ…</string>
+    <string name="sync_status_conflict">Xung đột đồng bộ</string>
+    <string name="sync_status_error">Lỗi đồng bộ</string>
+    <string name="sync_last_synced">Đồng bộ lần cuối: %1$s</string>
+    <string name="sync_never_synced">Chưa đồng bộ</string>
+    <string name="sync_conflict_title">Xung đột đồng bộ</string>
+    <string name="sync_conflict_body">Đã phát hiện xung đột cho \'%1$s\'. Bạn muốn giữ phiên bản nào?</string>
+    <string name="sync_conflict_keep_local">Giữ phiên bản cục bộ</string>
+    <string name="sync_conflict_keep_server">Giữ phiên bản máy chủ</string>
+    <string name="sync_conflict_resolved">Đã giải quyết xung đột.</string>
+    <string name="sync_pending_count">%1$d thay đổi đang chờ</string>
+    <string name="sync_pending_count_plural">%1$d thay đổi đang chờ</string>
+    <string name="sync_offline_banner">Bạn đang ngoại tuyến. Thay đổi sẽ được đồng bộ khi bạn kết nối lại.</string>
+    <string name="sync_reconnected">Đã trực tuyến trở lại. Đang đồng bộ…</string>
+    <string name="sync_complete">Tất cả thay đổi đã được đồng bộ.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Nhắc nhở</string>
+    <string name="notification_channel_reminders_desc">Thông báo nhắc nhở tác vụ và sự kiện.</string>
+    <string name="notification_channel_sync_name">Đồng bộ</string>
+    <string name="notification_channel_sync_desc">Thông báo trạng thái đồng bộ nền.</string>
+    <string name="notification_task_reminder_title">Nhắc nhở tác vụ</string>
+    <string name="notification_task_reminder_body">%1$s sắp đến hạn.</string>
+    <string name="notification_event_reminder_title">Sự kiện sắp tới</string>
+    <string name="notification_event_reminder_body">%1$s bắt đầu sau %2$s.</string>
+    <string name="notification_daily_summary_title">Tổng quan ngày của bạn</string>
+    <string name="notification_daily_summary_body">%1$d tác vụ đến hạn hôm nay, %2$d sự kiện sắp tới.</string>
+    <string name="notification_permission_title">Bật thông báo</string>
+    <string name="notification_permission_body">Theo dõi nhắc nhở, phiên tập trung và tổng kết hàng ngày.</string>
+    <string name="notification_permission_allow">Cho phép</string>
+    <string name="notification_permission_deny">Không phải bây giờ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Truy cập máy ảnh</string>
+    <string name="permission_camera_body">ProductivityX cần quyền truy cập máy ảnh để cho phép bạn chụp ảnh đại diện.</string>
+    <string name="permission_storage_title">Truy cập bộ nhớ</string>
+    <string name="permission_storage_body">ProductivityX cần quyền truy cập bộ nhớ để cho phép bạn chọn ảnh đại diện.</string>
+    <string name="permission_notification_title">Truy cập thông báo</string>
+    <string name="permission_notification_body">Cho phép thông báo để nhận nhắc nhở tác vụ và cảnh báo Pomodoro.</string>
+    <string name="permission_denied_title">Yêu cầu quyền</string>
+    <string name="permission_denied_body">Tính năng này yêu cầu quyền. Vui lòng bật nó trong cài đặt.</string>
+    <string name="permission_go_to_settings">Mở cài đặt</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Vừa xong</string>
+    <string name="time_minutes_ago">%1$d ph trước</string>
+    <string name="time_hours_ago">%1$dg trước</string>
+    <string name="time_yesterday">Hôm qua</string>
+    <string name="time_days_ago">%1$d ngày trước</string>
+    <string name="time_weeks_ago">%1$d tuần trước</string>
+    <string name="time_weeks_ago_plural">%1$d tuần trước</string>
+    <string name="time_months_ago">%1$d tháng trước</string>
+    <string name="time_months_ago_plural">%1$d tháng trước</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">HH:mm</string>
+    <string name="time_format_datetime">HH:mm d MMM yyyy</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, d MMMM yyyy</string>
+    <string name="time_am">SA</string>
+    <string name="time_pm">CH</string>
+    <string name="time_hour_singular">%1$d giờ</string>
+    <string name="time_hour_plural">%1$d giờ</string>
+    <string name="time_minute_singular">%1$d phút</string>
+    <string name="time_minute_plural">%1$d phút</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">T2</string>
+    <string name="day_tuesday_short">T3</string>
+    <string name="day_wednesday_short">T4</string>
+    <string name="day_thursday_short">T5</string>
+    <string name="day_friday_short">T6</string>
+    <string name="day_saturday_short">T7</string>
+    <string name="day_sunday_short">CN</string>
+    <string name="day_monday">Thứ Hai</string>
+    <string name="day_tuesday">Thứ Ba</string>
+    <string name="day_wednesday">Thứ Tư</string>
+    <string name="day_thursday">Thứ Năm</string>
+    <string name="day_friday">Thứ Sáu</string>
+    <string name="day_saturday">Thứ Bảy</string>
+    <string name="day_sunday">Chủ Nhật</string>
+
+    <string name="month_january">Tháng 1</string>
+    <string name="month_february">Tháng 2</string>
+    <string name="month_march">Tháng 3</string>
+    <string name="month_april">Tháng 4</string>
+    <string name="month_may">Tháng 5</string>
+    <string name="month_june">Tháng 6</string>
+    <string name="month_july">Tháng 7</string>
+    <string name="month_august">Tháng 8</string>
+    <string name="month_september">Tháng 9</string>
+    <string name="month_october">Tháng 10</string>
+    <string name="month_november">Tháng 11</string>
+    <string name="month_december">Tháng 12</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Chưa có gì ở đây</string>
+    <string name="empty_state_generic_body">Bắt đầu bằng cách tạo nội dung mới.</string>
+    <string name="empty_state_no_results_title">Không tìm thấy kết quả</string>
+    <string name="empty_state_no_results_body">Thử tìm kiếm hoặc bộ lọc khác.</string>
+    <string name="empty_state_offline_title">Bạn đang ngoại tuyến</string>
+    <string name="empty_state_offline_body">Kết nối internet để tải nội dung của bạn.</string>
+    <string name="empty_state_error_title">Đã xảy ra lỗi</string>
+    <string name="empty_state_error_body">Kéo xuống để làm mới hoặc nhấn nút bên dưới.</string>
+    <string name="empty_state_retry">Thử lại</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Điều hướng quay lại</string>
+    <string name="cd_close">Đóng</string>
+    <string name="cd_more_options">Thêm tuỳ chọn</string>
+    <string name="cd_search">Tìm kiếm</string>
+    <string name="cd_filter">Bộ lọc</string>
+    <string name="cd_sort">Sắp xếp</string>
+    <string name="cd_add">Thêm</string>
+    <string name="cd_delete">Xoá</string>
+    <string name="cd_edit">Sửa</string>
+    <string name="cd_restore">Khôi phục</string>
+    <string name="cd_pin">Ghim ghi chú</string>
+    <string name="cd_unpin">Bỏ ghim ghi chú</string>
+    <string name="cd_check_task">Đánh dấu tác vụ hoàn thành</string>
+    <string name="cd_uncheck_task">Đánh dấu tác vụ chưa hoàn thành</string>
+    <string name="cd_profile_picture">Ảnh đại diện</string>
+    <string name="cd_send_message">Gửi tin nhắn</string>
+    <string name="cd_play_pause">Phát hoặc tạm dừng đồng hồ</string>
+    <string name="cd_skip_session">Bỏ qua phiên</string>
+    <string name="cd_stop_session">Dừng phiên</string>
+    <string name="cd_sync_status">Trạng thái đồng bộ: %1$s</string>
+    <string name="cd_password_toggle">Chuyển đổi hiển thị mật khẩu</string>
+    <string name="cd_clear_input">Xoá đầu vào</string>
+    <string name="cd_remove_subtask">Xoá tác vụ con</string>
+    <string name="cd_notification">Thông báo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Đang kiểm tra phiên của bạn…</string>
+    <string name="splash_loading">Đang tải…</string>
+
+    <string name="dialog_unsaved_changes_title">Thay đổi chưa lưu</string>
+    <string name="dialog_unsaved_changes_body">Bạn có thay đổi chưa lưu. Bạn có muốn huỷ bỏ chúng không?</string>
+    <string name="dialog_unsaved_changes_save">Lưu</string>
+    <string name="dialog_unsaved_changes_discard">Huỷ bỏ</string>
+    <string name="dialog_date_picker_title">Chọn ngày</string>
+    <string name="dialog_time_picker_title">Chọn giờ</string>
+    <string name="dialog_color_picker_title">Chọn màu</string>
+    <string name="dialog_task_picker_title">Liên kết tác vụ</string>
+    <string name="dialog_event_picker_title">Liên kết sự kiện</string>
+    <string name="dialog_tag_manager_title">Quản lý thẻ</string>
+
+    <string name="task_view_list">Danh sách</string>
+    <string name="task_view_kanban">Bảng</string>
+
+    <string name="snackbar_undo">Hoàn tác</string>
+    <string name="snackbar_note_deleted">Đã xoá ghi chú</string>
+    <string name="snackbar_task_deleted">Đã xoá tác vụ</string>
+    <string name="snackbar_event_deleted">Đã xoá sự kiện</string>
+    <string name="snackbar_tag_deleted">Đã xoá thẻ</string>
+    <string name="snackbar_copied">Đã sao chép vào bảng tạm</string>
+    <string name="snackbar_no_internet">Không có kết nối internet</string>
+    <string name="snackbar_changes_saved">Đã lưu thay đổi</string>
+
+    <string name="about_version">Phiên bản %1$s</string>
+    <string name="about_build">Bản dựng %1$s</string>
+    <string name="about_privacy_policy">Chính sách bảo mật</string>
+    <string name="about_terms_of_service">Điều khoản dịch vụ</string>
+    <string name="about_open_source_licenses">Giấy phép mã nguồn mở</string>
+    <string name="about_rate_app">Đánh giá ứng dụng</string>
+    <string name="about_send_feedback">Gửi phản hồi</string>
+    <string name="about_built_by">Được xây dựng bởi Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Xuất dữ liệu</string>
+    <string name="data_export_body">Tải xuống tất cả ghi chú, tác vụ và sự kiện của bạn dưới dạng tệp.</string>
+    <string name="data_export_action">Xuất</string>
+    <string name="data_export_success">Dữ liệu xuất của bạn đã sẵn sàng.</string>
+    <string name="data_delete_account_title">Xoá tài khoản</string>
+    <string name="data_delete_account_body">Xoá vĩnh viễn tài khoản và tất cả dữ liệu liên quan. Hành động này không thể hoàn tác.</string>
+    <string name="data_delete_account_action">Xoá tài khoản</string>
+    <string name="data_delete_account_confirm_title">Xoá tài khoản của bạn?</string>
+    <string name="data_delete_account_confirm_body">Tất cả ghi chú, tác vụ, sự kiện và cuộc trò chuyện của bạn sẽ bị xoá vĩnh viễn. Hành động này không thể đảo ngược.</string>
+    <string name="data_delete_account_type_confirm">Nhập DELETE để xác nhận</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">Có bản cập nhật</string>
+    <string name="update_available_body">Một phiên bản mới của ProductivityX đã có sẵn. Cập nhật ngay để nhận tính năng và bản sửa lỗi mới nhất.</string>
+    <string name="update_now">Cập nhật ngay</string>
+    <string name="update_later">Để sau</string>
+
+    <string name="auth_check_your_email">Kiểm tra email của bạn</string>
+    <string name="auth_otp_sent_body">Chúng tôi đã gửi mã 6 chữ số đến %s</string>
+
+    <string name="language_en">Tiếng Anh</string>
+    <string name="language_fr">Tiếng Pháp</string>
+    <string name="language_ar">Tiếng Ả Rập</string>
+    <string name="language_es">Tiếng Tây Ban Nha</string>
+    <string name="language_de">Tiếng Đức</string>
+    <string name="language_pt">Tiếng Bồ Đào Nha</string>
+    <string name="language_zh">Tiếng Trung (Phồn thể)</string>
+    <string name="language_ja">Tiếng Nhật</string>
+    <string name="language_ko">Tiếng Hàn</string>
+    <string name="language_ru">Tiếng Nga</string>
+    <string name="language_tr">Tiếng Thổ Nhĩ Kỳ</string>
+    <string name="language_it">Tiếng Ý</string>
+    <string name="language_hi">Tiếng Hindi</string>
+    <string name="language_id">Tiếng Indonesia</string>
+    <string name="language_nl">Tiếng Hà Lan</string>
+    <string name="language_vi">Tiếng Việt</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">Tác vụ</string>
+    <string name="widget_task_list_empty">Không có tác vụ nào đến hạn hôm nay</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Nhấn để bắt đầu tập trung</string>
+    <string name="widget_quick_note_title">Ghi chú nhanh</string>
+    <string name="widget_quick_note_hint">Nhấn để thêm ghi chú</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">Tác vụ hôm nay</string>
+    <string name="home_widget_events">Sự kiện sắp tới</string>
+    <string name="home_widget_focus">Thời gian tập trung hôm nay</string>
+    <string name="home_widget_notes">Ghi chú gần đây</string>
+    <string name="home_widget_quote">Câu nói hàng ngày</string>
+    <string name="home_widget_ai">Trợ lý AI</string>
+    <string name="home_widget_focus_mode">Tập trung nhanh</string>
+    <string name="home_expand">Mở rộng</string>
+    <string name="home_collapse">Thu gọn</string>
+    <string name="home_see_all">Xem tất cả</string>
+    <string name="home_empty_tasks">Không có tác vụ nào đến hạn hôm nay</string>
+    <string name="home_empty_events">Không có sự kiện sắp tới</string>
+    <string name="home_empty_notes">Không có ghi chú gần đây</string>
+    <string name="home_empty_focus">Chưa có thời gian tập trung</string>
+    <string name="home_focus_mode_active">Chế độ tập trung</string>
+    <string name="home_focus_mode_inactive">Tập trung nhanh</string>
+    <string name="home_focus_mode_desc_active">Giảm thiểu phiền nhiễu</string>
+    <string name="home_focus_mode_desc_inactive">Nhấn để vào chế độ tập trung</string>
+    <string name="home_quick_action_new_note">Ghi chú mới</string>
+    <string name="home_quick_action_new_task">Tác vụ mới</string>
+    <string name="home_quick_action_start_timer">Bắt đầu hẹn giờ</string>
+    <string name="home_quick_action_ai_chat">AI Trò chuyện</string>
+    <string name="home_voice_prompt">Bạn muốn làm gì?</string>
+    <string name="home_voice_listening">Đang nghe…</string>
+    <string name="home_pull_to_refresh">Kéo để làm mới</string>
+    <string name="home_syncing">Đang đồng bộ…</string>
+    <string name="home_refreshed">Đã cập nhật bảng điều khiển</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">Ghi chú mới</string>
+    <string name="shortcut_new_task">Tác vụ mới</string>
+    <string name="shortcut_start_focus">Bắt đầu tập trung</string>
+    <string name="shortcut_ai_chat">AI Trò chuyện</string>
+    <string name="shortcut_note_short_label">Ghi chú</string>
+    <string name="shortcut_task_short_label">Tác vụ</string>
+    <string name="shortcut_focus_short_label">Tập trung</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>

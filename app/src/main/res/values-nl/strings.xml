@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Jouw werkplek. Gebundeld.</string>
+    <string name="app_description">Notities, taken, agenda, focustimer en een AI-assistent die jouw dag echt begrijpt.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Annuleren</string>
+    <string name="save">Opslaan</string>
+    <string name="delete">Verwijderen</string>
+    <string name="edit">Bewerken</string>
+    <string name="done">Gereed</string>
+    <string name="back">Terug</string>
+    <string name="close">Sluiten</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="discard">Niet opslaan</string>
+    <string name="retry">Opnieuw</string>
+    <string name="skip">Overslaan</string>
+    <string name="next">Volgende</string>
+    <string name="previous">Vorige</string>
+    <string name="continue_action">Doorgaan</string>
+    <string name="finish">Voltooien</string>
+    <string name="apply">Toepassen</string>
+    <string name="reset">Herstellen</string>
+    <string name="clear">Wissen</string>
+    <string name="search">Zoeken</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sorteren</string>
+    <string name="share">Delen</string>
+    <string name="copy">Kopiëren</string>
+    <string name="paste">Plakken</string>
+    <string name="undo">Ongedaan maken</string>
+    <string name="redo">Opnieuw uitvoeren</string>
+    <string name="select_all">Alles selecteren</string>
+    <string name="deselect_all">Alles deselecteren</string>
+    <string name="more_options">Meer opties</string>
+    <string name="settings">Instellingen</string>
+    <string name="help">Help</string>
+    <string name="feedback">Feedback</string>
+    <string name="loading">Laden…</string>
+    <string name="refreshing">Vernieuwen…</string>
+    <string name="saving">Opslaan…</string>
+    <string name="deleting">Verwijderen…</string>
+    <string name="please_wait">Even geduld…</string>
+    <string name="see_all">Alles tonen</string>
+    <string name="show_less">Minder tonen</string>
+    <string name="show_more">Meer tonen</string>
+    <string name="optional">Optioneel</string>
+    <string name="required">Vereist</string>
+    <string name="none">Geen</string>
+    <string name="unknown">Onbekend</string>
+    <string name="today">Vandaag</string>
+    <string name="yesterday">Gisteren</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="this_week">Deze week</string>
+    <string name="last_week">Vorige week</string>
+    <string name="next_week">Volgende week</string>
+    <string name="this_month">Deze maand</string>
+    <string name="all">Alle</string>
+    <string name="new_action">Nieuw</string>
+    <string name="add">Toevoegen</string>
+    <string name="remove">Verwijderen</string>
+    <string name="create">Aanmaken</string>
+    <string name="update">Bijwerken</string>
+    <string name="restore">Herstellen</string>
+    <string name="archive">Archiveren</string>
+    <string name="unarchive">Dearchiveren</string>
+    <string name="pin">Vastpinnen</string>
+    <string name="unpin">Losmaken</string>
+    <string name="move">Verplaatsen</string>
+    <string name="rename">Hernoemen</string>
+    <string name="duplicate">Dupliceren</string>
+    <string name="open">Openen</string>
+    <string name="view">Bekijken</string>
+    <string name="preview">Voorbeeld</string>
+    <string name="expand">Uitklappen</string>
+    <string name="collapse">Inklappen</string>
+    <string name="enable">Inschakelen</string>
+    <string name="disable">Uitschakelen</string>
+    <string name="turn_on">Inschakelen</string>
+    <string name="turn_off">Uitschakelen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="not_now">Niet nu</string>
+    <string name="got_it">Begrepen</string>
+    <string name="learn_more">Meer informatie</string>
+    <string name="send">Verzenden</string>
+    <string name="submit">Verzenden</string>
+    <string name="upload">Uploaden</string>
+    <string name="download">Downloaden</string>
+    <string name="link">Koppelen</string>
+    <string name="unlink">Ontkoppelen</string>
+    <string name="connect">Verbinden</string>
+    <string name="disconnect">Verbinding verbreken</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Er is iets misgegaan. Probeer het opnieuw.</string>
+    <string name="error_network">Geen internetverbinding. Controleer je netwerk en probeer het opnieuw.</string>
+    <string name="error_timeout">Het verzoek is verlopen. Probeer het opnieuw.</string>
+    <string name="error_server">Serverfout. Probeer het later opnieuw.</string>
+    <string name="error_not_found">Het gevraagde item is niet gevonden.</string>
+    <string name="error_unauthorized">Je sessie is verlopen. Log opnieuw in.</string>
+    <string name="error_forbidden">Je hebt geen toestemming om deze actie uit te voeren.</string>
+    <string name="error_validation">Controleer het formulier en los de fouten op.</string>
+    <string name="error_unknown">Er is een onverwachte fout opgetreden.</string>
+    <string name="error_loading">Laden mislukt. Tik om opnieuw te proberen.</string>
+    <string name="error_saving">Opslaan mislukt. Probeer het opnieuw.</string>
+    <string name="error_deleting">Verwijderen mislukt. Probeer het opnieuw.</string>
+    <string name="error_no_data">Geen gegevens beschikbaar.</string>
+    <string name="error_offline_action">Voor deze actie is een internetverbinding vereist.</string>
+    <string name="error_conflict">Er is een conflict opgetreden. Vernieuw en probeer het opnieuw.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Alles op één plek</string>
+    <string name="onboarding_page1_body">Notities, taken en je agenda verbonden in één werkruimte.</string>
+    <string name="onboarding_page2_title">Blijf in je flow</string>
+    <string name="onboarding_page2_body">De Pomodoro-timer weet waar je aan werkt en volgt automatisch je tijd.</string>
+    <string name="onboarding_page3_title">AI die je begrijpt</string>
+    <string name="onboarding_page3_body">Je assistent ziet je actieve taken, aankomende gebeurtenissen en recente notities voordat hij reageert.</string>
+    <string name="onboarding_get_started">Aan de slag</string>
+    <string name="onboarding_skip">Overslaan</string>
+    <string name="onboarding_next">Volgende</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Inloggen</string>
+    <string name="auth_sign_up">Registreren</string>
+    <string name="auth_sign_out">Uitloggen</string>
+    <string name="auth_log_in">Inloggen</string>
+    <string name="auth_log_out">Uitloggen</string>
+    <string name="auth_create_account">Account aanmaken</string>
+    <string name="auth_already_have_account">Heb je al een account?</string>
+    <string name="auth_skip_login">Doorgaan zonder account</string>
+    <string name="auth_dont_have_account">Nog geen account?</string>
+    <string name="auth_welcome_back">Welkom terug</string>
+    <string name="auth_create_your_account">Maak je account aan</string>
+    <string name="auth_join_productivityx">Word lid van ProductivityX</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Wachtwoord vergeten?</string>
+    <string name="auth_forgot_password_title">Wachtwoord vergeten?</string>
+    <string name="auth_forgot_password_body">Voer je e-mailadres in en we sturen je een link om je wachtwoord te resetten.</string>
+    <string name="auth_forgot_password_success_title">Resetlink verzonden</string>
+    <string name="auth_forgot_password_success_body">Als dat e-mailadres bestaat, is er een resetlink verzonden. Controleer je inbox.</string>
+
+    <string name="auth_reset_password_title">Reset je wachtwoord</string>
+    <string name="auth_reset_password_body">Voer een nieuw wachtwoord in voor je account.</string>
+    <string name="auth_reset_password_action">Wachtwoord resetten</string>
+    <string name="auth_reset_password_success_title">Wachtwoord gereset!</string>
+    <string name="auth_reset_password_success_body">Je wachtwoord is gewijzigd. Log in met je nieuwe wachtwoord.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">Controleer je e-mail</string>
+    <string name="auth_verify_email_body">We hebben een 6-cijferige code gestuurd naar %1$s</string>
+    <string name="auth_verify">Verifiëren</string>
+    <string name="auth_resend_code">Code opnieuw verzenden</string>
+    <string name="auth_resend_cooldown">Opnieuw verzenden over %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">E-mailadres</string>
+    <string name="field_email_hint">Voer je e-mail in</string>
+    <string name="field_password">Wachtwoord</string>
+    <string name="field_password_hint">Voer je wachtwoord in</string>
+    <string name="field_password_new">Nieuw wachtwoord</string>
+    <string name="field_password_new_hint">Voer nieuw wachtwoord in</string>
+    <string name="field_password_confirm">Bevestig wachtwoord</string>
+    <string name="field_password_confirm_hint">Voer je wachtwoord opnieuw in</string>
+    <string name="field_password_current">Huidig wachtwoord</string>
+    <string name="field_password_current_hint">Voer huidig wachtwoord in</string>
+    <string name="field_username">Gebruikersnaam</string>
+    <string name="field_username_hint">Kies een gebruikersnaam</string>
+    <string name="field_first_name">Voornaam</string>
+    <string name="field_first_name_hint">Voer je voornaam in</string>
+    <string name="field_last_name">Achternaam</string>
+    <string name="field_last_name_hint">Voer je achternaam in</string>
+    <string name="field_phone">Telefoonnummer</string>
+    <string name="field_phone_hint">Voer je telefoonnummer in</string>
+    <string name="field_birth_date">Geboortedatum</string>
+    <string name="field_birth_date_hint">Selecteer je geboortedatum</string>
+    <string name="field_identifier">E-mail, gebruikersnaam of telefoon</string>
+    <string name="field_identifier_hint">Voer e-mail, gebruikersnaam of telefoon in</string>
+    <string name="field_gender">Geslacht</string>
+    <string name="field_bio">Bio</string>
+    <string name="field_bio_hint">Vertel iets over jezelf</string>
+    <string name="field_timezone">Tijdzone</string>
+    <string name="field_language">Taal</string>
+    <string name="field_theme">Thema</string>
+    <string name="field_avatar">Profielfoto</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Toon wachtwoord</string>
+    <string name="password_hide">Verberg wachtwoord</string>
+    <string name="password_strength_weak">Zwak</string>
+    <string name="password_strength_fair">Redelijk</string>
+    <string name="password_strength_good">Goed</string>
+    <string name="password_strength_strong">Sterk</string>
+    <string name="password_requirement_length">Minstens 8 tekens</string>
+    <string name="password_requirement_uppercase">Eén hoofdletter</string>
+    <string name="password_requirement_lowercase">Eén kleine letter</string>
+    <string name="password_requirement_number">Eén cijfer</string>
+    <string name="password_requirement_special">Eén speciaal teken</string>
+    <string name="password_forgot">Wachtwoord vergeten?</string>
+    <string name="password_reset">Reset wachtwoord</string>
+    <string name="password_change">Wachtwoord wijzigen</string>
+    <string name="password_mismatch">Wachtwoorden komen niet overeen.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Account</string>
+    <string name="register_step_profile">Profiel</string>
+    <string name="register_step_preferences">Voorkeuren</string>
+    <string name="register_step_verify">Verifiëren</string>
+    <string name="register_step_indicator">Stap %1$d van %2$d</string>
+    <string name="register_change_photo">Foto wijzigen</string>
+    <string name="register_preferences_caption">Je kunt deze altijd wijzigen in de instellingen.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Donker</string>
+    <string name="theme_light">Licht</string>
+    <string name="theme_system">Systeem</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">Thema</string>
+    <string name="profile_theme_hint">Je kunt dit altijd wijzigen in de instellingen.</string>
+
+    <!-- Gender -->
+    <string name="gender_male">Man</string>
+    <string name="gender_female">Vrouw</string>
+    <string name="gender_prefer_not_to_say">Zeg ik liever niet</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Start</string>
+    <string name="nav_notes">Notities</string>
+    <string name="nav_tasks">Taken</string>
+    <string name="nav_calendar">Agenda</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Zoeken</string>
+    <string name="nav_profile">Profiel</string>
+    <string name="nav_settings">Instellingen</string>
+    <string name="nav_trash">Prullenbak</string>
+    <string name="nav_history">Geschiedenis</string>
+    <string name="nav_events">Gebeurtenissen</string>
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_events">Gebeurtenissen</string>
+    <string name="tab_dashboard_desc">Overzicht van je dag</string>
+    <string name="tab_notes_desc">Leg je gedachten vast</string>
+    <string name="tab_tasks_desc">Dingen gedaan krijgen</string>
+    <string name="tab_events_desc">Je schema in één oogopslag</string>
+    <string name="tab_pomodoro_desc">Blijf in de flow</string>
+    <string name="cd_notifications">Meldingen</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Goedemorgen, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Goedemiddag, %1$s 👋</string>
+    <string name="home_greeting_evening">Goedenavond, %1$s 👋</string>
+    <string name="home_greeting_night">Goedenacht, %1$s 👋</string>
+    <string name="home_quick_add">Snel toevoegen</string>
+    <string name="home_due_today">Vandaag verlopen</string>
+    <string name="home_overdue">Te laat</string>
+    <string name="home_this_week">Deze week</string>
+    <string name="home_total_notes">Totaal notities</string>
+    <string name="home_focus_time">Focus vandaag</string>
+    <string name="home_upcoming_events">Aankomende gebeurtenissen</string>
+    <string name="home_recent_notes">Recente notities</string>
+    <string name="home_no_tasks_today">Geen taken voor vandaag.</string>
+    <string name="home_no_events">Geen aankomende gebeurtenissen.</string>
+    <string name="home_no_notes">Geen recente notities.</string>
+    <string name="home_sessions_today">Sessies vandaag</string>
+    <string name="home_focus_minutes">Focus tijd</string>
+    <string name="home_completed_tasks">Voltooide taken</string>
+    <string name="home_start_focus">Start focus</string>
+    <string name="home_tasks_completed">taken voltooid</string>
+    <string name="home_events_upcoming">binnenkort gebeurtenissen</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Notities</string>
+    <string name="notes_new">Nieuwe notitie</string>
+    <string name="notes_search_hint">Notities doorzoeken…</string>
+    <string name="notes_filter_all">Alle</string>
+    <string name="notes_filter_pinned">Vastgepind</string>
+    <string name="notes_empty_title">Nog geen notities</string>
+    <string name="notes_empty_body">Begin met het schrijven van je eerste notitie.</string>
+    <string name="notes_empty_action">Notitie aanmaken</string>
+    <string name="notes_pinned_section">Vastgepind</string>
+    <string name="notes_all_section">Alle notities</string>
+    <string name="notes_untitled">Zonder titel</string>
+    <string name="notes_word_count">%1$d woorden</string>
+    <string name="notes_reading_time">%1$d min leestijd</string>
+    <string name="notes_pin_success">Notitie vastgepind.</string>
+    <string name="notes_unpin_success">Notitie losgemaakt.</string>
+    <string name="notes_delete_confirm_title">Naar prullenbak verplaatsen?</string>
+    <string name="notes_delete_confirm_body">Deze notitie wordt naar de prullenbak verplaatst en na 30 dagen permanent verwijderd.</string>
+    <string name="notes_delete_success">Notitie naar prullenbak verplaatst.</string>
+    <string name="notes_restore_success">Notitie hersteld.</string>
+    <string name="notes_hard_delete_confirm_title">Permanent verwijderen?</string>
+    <string name="notes_hard_delete_confirm_body">Deze notitie wordt permanent verwijderd en kan niet worden hersteld.</string>
+    <string name="notes_hard_delete_success">Notitie permanent verwijderd.</string>
+    <string name="notes_create_success">Notitie aangemaakt.</string>
+    <string name="notes_update_success">Notitie opgeslagen.</string>
+    <string name="notes_autosave">Automatisch opgeslagen</string>
+    <string name="notes_saving">Opslaan…</string>
+    <string name="notes_copy_link">Koppeling kopiëren</string>
+    <string name="notes_link_copied">Koppeling gekopieerd.</string>
+    <string name="notes_link_task">Taak koppelen</string>
+    <string name="notes_unlink_task">Taak ontkoppelen</string>
+    <string name="notes_task_linked">Gekoppeld aan: %1$s</string>
+    <string name="notes_add_tag">Tag toevoegen</string>
+    <string name="notes_no_tags">Geen tags</string>
+    <string name="notes_start_writing">Begin met schrijven…</string>
+    <string name="notes_title_hint">Titel</string>
+    <string name="notes_trash_empty_title">Prullenbak is leeg</string>
+    <string name="notes_trash_empty_body">Notities in de prullenbak worden na 30 dagen permanent verwijderd.</string>
+    <string name="notes_trash_empty_all">Prullenbak legen</string>
+    <string name="notes_trash_empty_all_confirm_title">Prullenbak legen?</string>
+    <string name="notes_trash_empty_all_confirm_body">Alle notities in de prullenbak worden permanent verwijderd.</string>
+    <string name="notes_in_trash">%1$d notitie in prullenbak</string>
+    <string name="notes_in_trash_plural">%1$d notities in prullenbak</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Vet</string>
+    <string name="editor_format_italic">Cursief</string>
+    <string name="editor_format_heading">Koptekst</string>
+    <string name="editor_format_list_bullet">Opsommingstekens</string>
+    <string name="editor_format_list_numbered">Genummerde lijst</string>
+    <string name="editor_format_code">Code</string>
+    <string name="editor_format_quote">Citaat</string>
+    <string name="editor_format_link">Koppeling invoegen</string>
+    <string name="editor_insert_link_title">Koppeling invoegen</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Weergavetekst</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Tags</string>
+    <string name="tags_new">Nieuwe tag</string>
+    <string name="tags_name_hint">Tagnaam</string>
+    <string name="tags_color">Kleur</string>
+    <string name="tags_create_success">Tag aangemaakt.</string>
+    <string name="tags_update_success">Tag bijgewerkt.</string>
+    <string name="tags_delete_success">Tag verwijderd.</string>
+    <string name="tags_delete_confirm_title">Tag verwijderen?</string>
+    <string name="tags_delete_confirm_body">Deze tag wordt verwijderd van alle notities die hem gebruiken.</string>
+    <string name="tags_already_exists">Er bestaat al een tag met deze naam.</string>
+    <string name="tags_empty_title">Nog geen tags</string>
+    <string name="tags_empty_body">Maak tags aan om je notities te ordenen.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Taken</string>
+    <string name="tasks_new">Nieuwe taak</string>
+    <string name="tasks_search_hint">Taken doorzoeken…</string>
+    <string name="tasks_tab_all">Alle</string>
+    <string name="tasks_tab_today">Vandaag</string>
+    <string name="tasks_tab_upcoming">Binnenkort</string>
+    <string name="tasks_tab_completed">Voltooid</string>
+    <string name="tasks_view_list">Lijstweergave</string>
+    <string name="tasks_view_kanban">Bordweergave</string>
+    <string name="tasks_empty_title">Geen taken hier</string>
+    <string name="tasks_empty_body">Maak je eerste taak aan om te beginnen.</string>
+    <string name="tasks_empty_action">Taak aanmaken</string>
+    <string name="tasks_empty_today">Geen taken voor vandaag. Geniet van je dag!</string>
+    <string name="tasks_empty_upcoming">Geen aankomende taken.</string>
+    <string name="tasks_empty_completed">Nog geen voltooide taken.</string>
+    <string name="tasks_empty_filter">Geen taken die overeenkomen met dit filter.</string>
+    <string name="tasks_field_title">Taaktitel</string>
+    <string name="tasks_field_title_hint">Wat moet er gebeuren?</string>
+    <string name="tasks_field_description">Beschrijving</string>
+    <string name="tasks_field_description_hint">Voeg meer details toe…</string>
+    <string name="tasks_field_due_date">Uiterlijke datum</string>
+    <string name="tasks_field_due_time">Uiterlijke tijd</string>
+    <string name="tasks_field_priority">Prioriteit</string>
+    <string name="tasks_field_status">Status</string>
+    <string name="tasks_field_reminder">Herinnering</string>
+    <string name="tasks_field_estimated_time">Geschatte tijd</string>
+    <string name="tasks_field_actual_time">Werkelijke tijd</string>
+    <string name="tasks_field_link_event">Gebeurtenis koppelen</string>
+    <string name="tasks_field_subtasks">Subtaken</string>
+    <string name="tasks_add_subtask">Subtaak toevoegen</string>
+    <string name="tasks_subtask_count">%1$d subtaak</string>
+    <string name="tasks_subtask_count_plural">%1$d subtaken</string>
+    <string name="tasks_subtask_completed">%1$d van %2$d voltooid</string>
+    <string name="tasks_pomodoro_sessions">Focus sessies</string>
+    <string name="tasks_no_due_date">Geen uiterlijke datum</string>
+    <string name="tasks_no_due_time">Geen tijd ingesteld</string>
+    <string name="tasks_no_reminder">Geen herinnering</string>
+    <string name="tasks_no_estimated">Geen schatting</string>
+    <string name="tasks_create_success">Taak aangemaakt.</string>
+    <string name="tasks_update_success">Taak bijgewerkt.</string>
+    <string name="tasks_delete_success">Taak verwijderd.</string>
+    <string name="tasks_restore_success">Taak hersteld.</string>
+    <string name="tasks_complete_success">Taak voltooid.</string>
+    <string name="tasks_reorder_success">Taken herschikt.</string>
+    <string name="tasks_status_updated">Status bijgewerkt.</string>
+    <string name="tasks_delete_confirm_title">Taak verwijderen?</string>
+    <string name="tasks_delete_confirm_body">Deze taak wordt verwijderd.</string>
+    <string name="tasks_minutes">%1$d min</string>
+    <string name="tasks_hours_minutes">%1$du %2$dm</string>
+    <string name="tasks_swipe_complete">Voltooien</string>
+    <string name="tasks_swipe_delete">Verwijderen</string>
+    <string name="tasks_sort_due_date">Uiterlijke datum</string>
+    <string name="tasks_sort_priority">Prioriteit</string>
+    <string name="tasks_sort_created">Aangemaakt</string>
+    <string name="tasks_sort_title">Titel</string>
+    <string name="tasks_filter_priority">Filter op prioriteit</string>
+    <string name="tasks_filter_status">Filter op status</string>
+    <string name="tasks_filter_due">Filter op uiterlijke datum</string>
+    <string name="tasks_overdue_label">Te laat</string>
+    <string name="tasks_due_today_label">Vandaag verlopen</string>
+    <string name="tasks_due_tomorrow_label">Morgen verlopen</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">Laag</string>
+    <string name="priority_medium">Gemiddeld</string>
+    <string name="priority_high">Hoog</string>
+    <string name="priority_urgent">Urgent</string>
+
+    <string name="status_todo">Te doen</string>
+    <string name="status_in_progress">Bezig</string>
+    <string name="status_on_hold">In wacht</string>
+    <string name="status_done">Voltooid</string>
+    <string name="status_cancelled">Geannuleerd</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">Te doen</string>
+    <string name="kanban_column_in_progress">Bezig</string>
+    <string name="kanban_column_on_hold">In wacht</string>
+    <string name="kanban_column_done">Voltooid</string>
+    <string name="kanban_add_task">Taak toevoegen</string>
+    <string name="kanban_drag_hint">Houd vast en sleep om te verplaatsen</string>
+    <string name="kanban_column_empty">Geen taken hier</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Agenda</string>
+    <string name="calendar_view_week">Week</string>
+    <string name="calendar_view_month">Maand</string>
+    <string name="calendar_today">Vandaag</string>
+    <string name="calendar_new_event">Nieuwe gebeurtenis</string>
+    <string name="calendar_no_events">Geen gebeurtenissen</string>
+    <string name="calendar_all_day">Hele dag</string>
+    <string name="calendar_recurring">Terugkerend</string>
+    <string name="calendar_events_count">%1$d gebeurtenis</string>
+    <string name="calendar_events_count_plural">%1$d gebeurtenissen</string>
+    <string name="calendar_more_events">+%1$d meer</string>
+    <string name="calendar_week_header">Week van %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Nieuwe gebeurtenis</string>
+    <string name="event_edit_title">Gebeurtenis bewerken</string>
+    <string name="event_field_title">Gebeurtenistitel</string>
+    <string name="event_field_title_hint">Wat is de gebeurtenis?</string>
+    <string name="event_field_description">Beschrijving</string>
+    <string name="event_field_description_hint">Voeg notities over deze gebeurtenis toe…</string>
+    <string name="event_field_location">Locatie</string>
+    <string name="event_field_location_hint">Locatie toevoegen</string>
+    <string name="event_field_start">Begint</string>
+    <string name="event_field_end">Eindigt</string>
+    <string name="event_field_all_day">Hele dag</string>
+    <string name="event_field_color">Kleur</string>
+    <string name="event_field_recurrence">Herhaling</string>
+    <string name="event_field_reminder">Herinnering</string>
+    <string name="event_field_link_task">Taak koppelen</string>
+    <string name="event_recurrence_none">Herhaalt niet</string>
+    <string name="event_recurrence_daily">Dagelijks</string>
+    <string name="event_recurrence_weekly">Wekelijks</string>
+    <string name="event_recurrence_monthly">Maandelijks</string>
+    <string name="event_recurrence_yearly">Jaarlijks</string>
+    <string name="event_recurrence_custom">Aangepast</string>
+    <string name="event_recurrence_weekdays">Elke werkdag (ma–vr)</string>
+    <string name="event_recurrence_end_date">Eindigt op</string>
+    <string name="event_recurrence_end_never">Nooit</string>
+    <string name="event_recurrence_label">Herhaalt: %1$s</string>
+    <string name="event_reminder_none">Geen herinnering</string>
+    <string name="event_reminder_at_time">Op tijdstip van gebeurtenis</string>
+    <string name="event_reminder_5_min">5 minuten van tevoren</string>
+    <string name="event_reminder_10_min">10 minuten van tevoren</string>
+    <string name="event_reminder_15_min">15 minuten van tevoren</string>
+    <string name="event_reminder_30_min">30 minuten van tevoren</string>
+    <string name="event_reminder_1_hour">1 uur van tevoren</string>
+    <string name="event_reminder_1_day">1 dag van tevoren</string>
+    <string name="event_create_success">Gebeurtenis aangemaakt.</string>
+    <string name="event_update_success">Gebeurtenis bijgewerkt.</string>
+    <string name="event_delete_success">Gebeurtenis verwijderd.</string>
+    <string name="event_restore_success">Gebeurtenis hersteld.</string>
+    <string name="event_delete_confirm_title">Gebeurtenis verwijderen?</string>
+    <string name="event_delete_confirm_body">Deze gebeurtenis wordt verwijderd.</string>
+    <string name="event_delete_recurring_title">Terugkerende gebeurtenis verwijderen</string>
+    <string name="event_delete_recurring_body">Deze gebeurtenis verwijderen of alle gebeurtenissen in de reeks?</string>
+    <string name="event_delete_this_only">Alleen deze gebeurtenis</string>
+    <string name="event_delete_all_in_series">Alle gebeurtenissen in de reeks</string>
+    <string name="event_end_before_start">Eindtijd moet na begintijd liggen.</string>
+    <string name="event_location_open_maps">Openen in Kaarten</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Vergadering</string>
+    <string name="event_template_focus">FocusTijd</string>
+    <string name="event_template_break">Pauze</string>
+    <string name="event_template_travel">Reizen</string>
+    <string name="event_join_meeting">Deelnemen aan vergadering</string>
+    <string name="event_navigate">Navigeren</string>
+    <string name="event_share">Gebeurtenis delen</string>
+    <string name="event_duplicate">Dupliceren</string>
+    <string name="event_weather">Weer</string>
+    <string name="event_attendees">Deelnemers</string>
+    <string name="event_timezone">Tijdzone</string>
+    <string name="event_travel_time">Reistijd</string>
+    <string name="event_conflict_detected">Tijdsconflict gedetecteerd</string>
+    <string name="event_reminder_multiple">Meerdere herinneringen</string>
+    <string name="event_reminder_add">Herinnering toevoegen</string>
+    <string name="event_reminder_custom">Aangepast</string>
+    <string name="event_voice_input">Spraakinvoer</string>
+    <string name="event_smart_suggestion">Slimme suggesties</string>
+    <string name="event_free_busy">Beschikbaar/Bezet</string>
+    <string name="event_suggested_times">Voorgestelde tijden</string>
+    <string name="calendar_view_day">Dag</string>
+    <string name="calendar_view_agenda">Agenda</string>
+    <string name="calendar_view_year">Jaar</string>
+    <string name="calendar_date_jump">Ga naar datum</string>
+    <string name="calendar_swipe_instruction">Veeg om te navigeren</string>
+    <string name="calendar_pinch_zoom">Knijp om te zoomen</string>
+    <string name="calendar_no_events_day">Geen gebeurtenissen op deze dag</string>
+    <string name="calendar_all_day_section">Hele dag</string>
+    <string name="calendar_agenda_empty">Geen aankomende gebeurtenissen</string>
+    <string name="calendar_heat_map_label">Activiteit</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Focus</string>
+    <string name="pomodoro_focus">Focus</string>
+    <string name="pomodoro_short_break">Korte pauze</string>
+    <string name="pomodoro_long_break">Lange pauze</string>
+    <string name="pomodoro_session_focus">Focusessie</string>
+    <string name="pomodoro_session_short_break">Korte pauze</string>
+    <string name="pomodoro_session_long_break">Lange pauze</string>
+    <string name="pomodoro_start">Start</string>
+    <string name="pomodoro_pause">Pauzeren</string>
+    <string name="pomodoro_resume">Hervatten</string>
+    <string name="pomodoro_skip">Overslaan</string>
+    <string name="pomodoro_stop">Stoppen</string>
+    <string name="pomodoro_reset">Resetten</string>
+    <string name="pomodoro_link_task">Taak koppelen</string>
+    <string name="pomodoro_link_task_hint">Tik om een taak te koppelen</string>
+    <string name="pomodoro_linked_task">Bezig met: %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d sessie vandaag</string>
+    <string name="pomodoro_sessions_today_plural">%1$d sessies vandaag</string>
+    <string name="pomodoro_focus_time_today">%1$s gefocust vandaag</string>
+    <string name="pomodoro_completed_today">Vandaag voltooid</string>
+    <string name="pomodoro_no_active_session">Geen actieve sessie</string>
+    <string name="pomodoro_session_complete_title">Sessie voltooid! 🎉</string>
+    <string name="pomodoro_session_complete_body">Goed werk. Neem een pauze!</string>
+    <string name="pomodoro_break_complete_title">Pauze voorbij</string>
+    <string name="pomodoro_break_complete_body">Klaar om je weer te focussen?</string>
+    <string name="pomodoro_start_success">Sessie gestart.</string>
+    <string name="pomodoro_end_success">Sessie voltooid.</string>
+    <string name="pomodoro_interrupt_success">Sessie onderbroken.</string>
+    <string name="pomodoro_interrupt_reason_hint">Waarom stop je? (optioneel)</string>
+    <string name="pomodoro_interrupt_confirm_title">Sessie stoppen?</string>
+    <string name="pomodoro_interrupt_confirm_body">Je voortgang wordt opgeslagen, maar de sessie wordt gemarkeerd als onderbroken.</string>
+    <string name="pomodoro_already_active">Je hebt al een actieve sessie. Beëindig deze voordat je een nieuwe start.</string>
+    <string name="pomodoro_stats_title">Statistieken van vandaag</string>
+    <string name="pomodoro_history_title">Sessiegeschiedenis</string>
+    <string name="pomodoro_history_empty_title">Nog geen sessies</string>
+    <string name="pomodoro_history_empty_body">Start een focusessie om hier je geschiedenis te zien.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Onderbroken</string>
+    <string name="pomodoro_session_completed">Voltooid</string>
+    <string name="pomodoro_dot_current">Huidige sessie</string>
+    <string name="pomodoro_dot_completed">Voltooide sessie</string>
+    <string name="pomodoro_dot_upcoming">Aankomende sessie</string>
+    <string name="pomodoro_notification_channel_name">Pomodoro Timer</string>
+    <string name="pomodoro_notification_channel_desc">Live timerupdates en sessiemeldingen.</string>
+    <string name="pomodoro_notification_running">%1$s resterend — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Pauzeren</string>
+    <string name="pomodoro_notification_action_skip">Overslaan</string>
+    <string name="pomodoro_notification_action_stop">Stoppen</string>
+    <string name="pomodoro_cycle_count">Cyclus %1$d van %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d sessie tot lange pauze</string>
+    <string name="pomodoro_until_long_break_plural">%1$d sessies tot lange pauze</string>
+
+    <string name="pomodoro_swipe_to_skip">VEEG OM OVER TE SLAAN</string>
+    <string name="pomodoro_extend_1min">+1 min</string>
+    <string name="pomodoro_focus_analytics">Focusanalyse</string>
+    <string name="pomodoro_streak_day">%1$d dagen streak</string>
+    <string name="pomodoro_best_streak">Beste: %1$d dagen</string>
+    <string name="pomodoro_weekly_intensity">Wekelijkse intensiteit</string>
+    <string name="pomodoro_focus_by_category">Focus per categorie</string>
+    <string name="pomodoro_quality_score">Kwaliteitsscore</string>
+    <string name="pomodoro_total_focus_time">Totale focus</string>
+    <string name="pomodoro_daily_goal">Dagelijks doel</string>
+    <string name="pomodoro_weekly_goal">Weektarget</string>
+    <string name="pomodoro_exit_focus_mode">Focusmodus verlaten</string>
+    <string name="pomodoro_dnd_access_required">Niet-storen-toegang vereist. Schakel dit in in de instellingen.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI-assistent</string>
+    <string name="ai_welcome_title">Hoe kan ik helpen?</string>
+    <string name="ai_welcome_body">Ik kan je werkruimte zien — taken, gebeurtenissen en notities — om je contextbewuste antwoorden te geven.</string>
+    <string name="ai_message_hint">Bericht…</string>
+    <string name="ai_send">Verzenden</string>
+    <string name="ai_new_conversation">Nieuw gesprek</string>
+    <string name="ai_conversations_title">Gesprekken</string>
+    <string name="ai_conversation_empty">Nog geen berichten</string>
+    <string name="ai_conversations_empty_title">Nog geen gesprekken</string>
+    <string name="ai_conversations_empty_body">Start een nieuw gesprek om hulp te krijgen met je werkruimte.</string>
+    <string name="ai_delete_conversation_title">Gesprek verwijderen?</string>
+    <string name="ai_delete_conversation_body">Dit gesprek en alle berichten worden permanent verwijderd.</string>
+    <string name="ai_delete_conversation_success">Gesprek verwijderd.</string>
+    <string name="ai_clear_conversation_title">Gesprek wissen?</string>
+    <string name="ai_clear_conversation_body">Alle berichten in dit gesprek worden gewist.</string>
+    <string name="ai_suggestion_due_today">Wat is er vandaag?</string>
+    <string name="ai_suggestion_overdue">Vat mijn achterstallige taken samen</string>
+    <string name="ai_suggestion_start_focus">Start een focusessie</string>
+    <string name="ai_suggestion_meeting_agenda">Stel een vergaderagenda op</string>
+    <string name="ai_context_title">Jouw werkruimte</string>
+    <string name="ai_context_active_tasks">Actieve taken</string>
+    <string name="ai_context_events_week">Gebeurtenissen deze week</string>
+    <string name="ai_context_last_note">Laatste notitie</string>
+    <string name="ai_context_focus_today">Focus vandaag</string>
+    <string name="ai_context_overdue">achterstallig</string>
+    <string name="ai_context_caption">Deze context wordt met elk bericht naar de AI gestuurd.</string>
+    <string name="ai_context_refresh">Context vernieuwen</string>
+    <string name="ai_typing">AI is aan het nadenken…</string>
+    <string name="ai_streaming">Antwoord genereren…</string>
+    <string name="ai_error_unavailable">De AI-assistent is momenteel niet beschikbaar. Probeer het later opnieuw.</string>
+    <string name="ai_error_stream">Er is een fout opgetreden tijdens het genereren van het antwoord.</string>
+    <string name="ai_action_create_task">Taak aanmaken</string>
+    <string name="ai_action_create_note">Notitie aanmaken</string>
+    <string name="ai_action_add_event">Gebeurtenis toevoegen</string>
+    <string name="ai_action_confirm">Bevestigen</string>
+    <string name="ai_action_dismiss">Sluiten</string>
+    <string name="ai_action_executed">Gereed! Item aangemaakt.</string>
+    <string name="ai_action_dismissed">Gesloten.</string>
+    <string name="ai_copy_message">Bericht kopiëren</string>
+    <string name="ai_message_copied">Bericht gekopieerd.</string>
+    <string name="ai_regenerate">Antwoord opnieuw genereren</string>
+    <string name="ai_you">Jij</string>
+    <string name="ai_assistant">Assistent</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Zoeken</string>
+    <string name="search_hint">Zoek notities, taken, gebeurtenissen…</string>
+    <string name="search_results_notes">Notities</string>
+    <string name="search_results_tasks">Taken</string>
+    <string name="search_results_events">Gebeurtenissen</string>
+    <string name="search_recent">Recente zoekopdrachten</string>
+    <string name="search_clear_recent">Wissen</string>
+    <string name="search_empty_title">Geen resultaten voor \'%1$s\'</string>
+    <string name="search_empty_body">Probeer andere trefwoorden of controleer je spelling.</string>
+    <string name="search_results_count">%1$d resultaat</string>
+    <string name="search_results_count_plural">%1$d resultaten</string>
+    <string name="search_type_note">Notitie</string>
+    <string name="search_type_task">Taak</string>
+    <string name="search_type_event">Gebeurtenis</string>
+    <string name="search_offline_notice">Lokaal zoeken. Maak verbinding met internet voor volledige resultaten.</string>
+    <string name="search_loading">Zoeken…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Profiel</string>
+    <string name="profile_edit_title">Profiel bewerken</string>
+    <string name="profile_change_photo">Foto wijzigen</string>
+    <string name="profile_remove_photo">Foto verwijderen</string>
+    <string name="profile_photo_updated">Profielfoto bijgewerkt.</string>
+    <string name="profile_photo_removed">Profielfoto verwijderd.</string>
+    <string name="profile_photo_pick">Kies uit galerij</string>
+    <string name="profile_photo_camera">Foto maken</string>
+    <string name="profile_update_success">Profiel bijgewerkt.</string>
+    <string name="profile_stats_notes">Notities</string>
+    <string name="profile_stats_tasks_completed">Taken voltooid</string>
+    <string name="profile_stats_focus_this_week">Focus deze week</string>
+    <string name="profile_member_since">Lid sinds %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Nog geen bio.</string>
+    <string name="profile_section_account">Account</string>
+    <string name="profile_section_appearance">Weergave</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Meldingen</string>
+    <string name="profile_section_ai">AI-assistent</string>
+    <string name="profile_section_data">Gegevens &amp; synchronisatie</string>
+    <string name="profile_section_about">Over</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Voorkeuren</string>
+    <string name="preferences_update_success">Voorkeuren opgeslagen.</string>
+    <string name="preferences_pomodoro_focus">Focusduur</string>
+    <string name="preferences_pomodoro_focus_desc">Lengte van elke focusessie</string>
+    <string name="preferences_pomodoro_short_break">Korte pauze</string>
+    <string name="preferences_pomodoro_short_break_desc">Lengte van korte pauzes tussen sessies</string>
+    <string name="preferences_pomodoro_long_break">Lange pauze</string>
+    <string name="preferences_pomodoro_long_break_desc">Lengte van lange pauzes na een volledige cyclus</string>
+    <string name="preferences_pomodoro_cycles">Sessies voor lange pauze</string>
+    <string name="preferences_pomodoro_cycles_desc">Aantal focusessies voor een lange pauze</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Pauzes automatisch starten</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Begin pauzes automatisch wanneer een sessie eindigt</string>
+    <string name="preferences_pomodoro_auto_start_focus">Focus automatisch starten</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Begin de volgende sessie automatisch na een pauze</string>
+    <string name="preferences_pomodoro_sound">Geluid</string>
+    <string name="preferences_pomodoro_sound_desc">Speel een geluid af wanneer een sessie eindigt</string>
+    <string name="preferences_notify_task_reminders">Taakherinneringen</string>
+    <string name="preferences_notify_task_reminders_desc">Ontvang een melding wanneer een taakherinnering verloopt</string>
+    <string name="preferences_notify_event_reminders">Gebeurtenisherinneringen</string>
+    <string name="preferences_notify_event_reminders_desc">Ontvang een melding voor agenda gebeurtenissen</string>
+    <string name="preferences_notify_pomodoro_end">Pomodoro-einde</string>
+    <string name="preferences_notify_pomodoro_end_desc">Ontvang een melding wanneer een Pomodoro-sessie eindigt</string>
+    <string name="preferences_notify_daily_summary">Dagelijkse samenvatting</string>
+    <string name="preferences_notify_daily_summary_desc">Ontvang een ochtendsamenvatting van je dag</string>
+    <string name="preferences_default_task_view">Standaard taakweergave</string>
+    <string name="preferences_default_task_sort">Standaard taaksortering</string>
+    <string name="preferences_show_completed_tasks">Voltooide taken tonen</string>
+    <string name="preferences_show_completed_tasks_desc">Voltooide taken opnemen in de takenlijst</string>
+    <string name="preferences_default_calendar_view">Standaard agendaweergave</string>
+    <string name="preferences_week_starts_on">Week begint op</string>
+    <string name="preferences_week_starts_monday">Maandag</string>
+    <string name="preferences_week_starts_sunday">Zondag</string>
+    <string name="preferences_ai_context">Werkruimte context</string>
+    <string name="preferences_ai_context_desc">Deel je taken, gebeurtenissen en notities met de AI-assistent</string>
+    <string name="preferences_ai_model">AI-model</string>
+    <string name="preferences_ai_model_desc">Kies het AI-model voor de assistent</string>
+    <string name="preferences_compact_mode">Compacte modus</string>
+    <string name="preferences_compact_mode_desc">Gebruik een compactere lay-out om meer inhoud te tonen</string>
+    <string name="preferences_minutes_format">%1$d min</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Gesynchroniseerd</string>
+    <string name="sync_status_pending">Wacht op synchronisatie</string>
+    <string name="sync_status_syncing">Synchroniseren…</string>
+    <string name="sync_status_conflict">Sync conflict</string>
+    <string name="sync_status_error">Sync fout</string>
+    <string name="sync_last_synced">Laatst gesynchroniseerd: %1$s</string>
+    <string name="sync_never_synced">Nooit gesynchroniseerd</string>
+    <string name="sync_conflict_title">Sync conflict</string>
+    <string name="sync_conflict_body">Er is een conflict gedetecteerd voor \'%1$s\'. Welke versie wil je behouden?</string>
+    <string name="sync_conflict_keep_local">Lokale versie behouden</string>
+    <string name="sync_conflict_keep_server">Serverversie behouden</string>
+    <string name="sync_conflict_resolved">Conflict opgelost.</string>
+    <string name="sync_pending_count">%1$d wijziging in behandeling</string>
+    <string name="sync_pending_count_plural">%1$d wijzigingen in behandeling</string>
+    <string name="sync_offline_banner">Je bent offline. Wijzigingen worden gesynchroniseerd wanneer je weer verbinding maakt.</string>
+    <string name="sync_reconnected">Weer online. Synchroniseren…</string>
+    <string name="sync_complete">Alle wijzigingen gesynchroniseerd.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Herinneringen</string>
+    <string name="notification_channel_reminders_desc">Taak- en gebeurtenisherinneringsmeldingen.</string>
+    <string name="notification_channel_sync_name">Synchronisatie</string>
+    <string name="notification_channel_sync_desc">Statusmeldingen voor synchronisatie op de achtergrond.</string>
+    <string name="notification_task_reminder_title">Taakherinnering</string>
+    <string name="notification_task_reminder_body">%1$s verloopt binnenkort.</string>
+    <string name="notification_event_reminder_title">Aankomende gebeurtenis</string>
+    <string name="notification_event_reminder_body">%1$s begint over %2$s.</string>
+    <string name="notification_daily_summary_title">Jouw dag in één oogopslag</string>
+    <string name="notification_daily_summary_body">%1$d taken vandaag, %2$d aankomende gebeurtenissen.</string>
+    <string name="notification_permission_title">Meldingen inschakelen</string>
+    <string name="notification_permission_body">Blijf op de hoogte van herinneringen, focussessies en dagelijkse samenvattingen.</string>
+    <string name="notification_permission_allow">Toestaan</string>
+    <string name="notification_permission_deny">Niet nu</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Cameratoegang</string>
+    <string name="permission_camera_body">ProductivityX heeft cameratoegang nodig om een profielfoto te kunnen maken.</string>
+    <string name="permission_storage_title">Opslagtoegang</string>
+    <string name="permission_storage_body">ProductivityX heeft opslagtoegang nodig om een profielfoto te kunnen kiezen.</string>
+    <string name="permission_notification_title">Meldingstoegang</string>
+    <string name="permission_notification_body">Sta meldingen toe om taakherinneringen en Pomodoro-waarschuwingen te ontvangen.</string>
+    <string name="permission_denied_title">Toestemming vereist</string>
+    <string name="permission_denied_body">Voor deze functie is toestemming vereist. Schakel deze in in de instellingen.</string>
+    <string name="permission_go_to_settings">Open instellingen</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Zojuist</string>
+    <string name="time_minutes_ago">%1$d min geleden</string>
+    <string name="time_hours_ago">%1$d uur geleden</string>
+    <string name="time_yesterday">Gisteren</string>
+    <string name="time_days_ago">%1$d dagen geleden</string>
+    <string name="time_weeks_ago">%1$d week geleden</string>
+    <string name="time_weeks_ago_plural">%1$d weken geleden</string>
+    <string name="time_months_ago">%1$d maand geleden</string>
+    <string name="time_months_ago_plural">%1$d maanden geleden</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">HH:mm</string>
+    <string name="time_format_datetime">d MMM yyyy HH:mm</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE d MMMM yyyy</string>
+    <string name="time_am">a.m.</string>
+    <string name="time_pm">p.m.</string>
+    <string name="time_hour_singular">%1$d uur</string>
+    <string name="time_hour_plural">%1$d uur</string>
+    <string name="time_minute_singular">%1$d minuut</string>
+    <string name="time_minute_plural">%1$d minuten</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">ma</string>
+    <string name="day_tuesday_short">di</string>
+    <string name="day_wednesday_short">wo</string>
+    <string name="day_thursday_short">do</string>
+    <string name="day_friday_short">vr</string>
+    <string name="day_saturday_short">za</string>
+    <string name="day_sunday_short">zo</string>
+    <string name="day_monday">Maandag</string>
+    <string name="day_tuesday">Dinsdag</string>
+    <string name="day_wednesday">Woensdag</string>
+    <string name="day_thursday">Donderdag</string>
+    <string name="day_friday">Vrijdag</string>
+    <string name="day_saturday">Zaterdag</string>
+    <string name="day_sunday">Zondag</string>
+
+    <string name="month_january">Januari</string>
+    <string name="month_february">Februari</string>
+    <string name="month_march">Maart</string>
+    <string name="month_april">April</string>
+    <string name="month_may">Mei</string>
+    <string name="month_june">Juni</string>
+    <string name="month_july">Juli</string>
+    <string name="month_august">Augustus</string>
+    <string name="month_september">September</string>
+    <string name="month_october">Oktober</string>
+    <string name="month_november">November</string>
+    <string name="month_december">December</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Nog niets hier</string>
+    <string name="empty_state_generic_body">Begin met het aanmaken van iets nieuws.</string>
+    <string name="empty_state_no_results_title">Geen resultaten gevonden</string>
+    <string name="empty_state_no_results_body">Probeer een andere zoekopdracht of filter.</string>
+    <string name="empty_state_offline_title">Je bent offline</string>
+    <string name="empty_state_offline_body">Maak verbinding met internet om je inhoud te laden.</string>
+    <string name="empty_state_error_title">Er is iets misgegaan</string>
+    <string name="empty_state_error_body">Trek omlaag om te vernieuwen, of tik op de knop hieronder.</string>
+    <string name="empty_state_retry">Opnieuw proberen</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Terug navigeren</string>
+    <string name="cd_close">Sluiten</string>
+    <string name="cd_more_options">Meer opties</string>
+    <string name="cd_search">Zoeken</string>
+    <string name="cd_filter">Filter</string>
+    <string name="cd_sort">Sorteren</string>
+    <string name="cd_add">Toevoegen</string>
+    <string name="cd_delete">Verwijderen</string>
+    <string name="cd_edit">Bewerken</string>
+    <string name="cd_restore">Herstellen</string>
+    <string name="cd_pin">Notitie vastpinnen</string>
+    <string name="cd_unpin">Notitie losmaken</string>
+    <string name="cd_check_task">Markeer taak als voltooid</string>
+    <string name="cd_uncheck_task">Markeer taak als onvoltooid</string>
+    <string name="cd_profile_picture">Profielfoto</string>
+    <string name="cd_send_message">Bericht verzenden</string>
+    <string name="cd_play_pause">Timer afspelen of pauzeren</string>
+    <string name="cd_skip_session">Sessie overslaan</string>
+    <string name="cd_stop_session">Sessie stoppen</string>
+    <string name="cd_sync_status">Synchronisatiestatus: %1$s</string>
+    <string name="cd_password_toggle">Wachtwoordzichtbaarheid schakelen</string>
+    <string name="cd_clear_input">Invoer wissen</string>
+    <string name="cd_remove_subtask">Subtaak verwijderen</string>
+    <string name="cd_notification">Melding</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Sessie controleren…</string>
+    <string name="splash_loading">Laden…</string>
+
+    <string name="dialog_unsaved_changes_title">Niet-opgeslagen wijzigingen</string>
+    <string name="dialog_unsaved_changes_body">Je hebt niet-opgeslagen wijzigingen. Wil je deze verwijderen?</string>
+    <string name="dialog_unsaved_changes_save">Opslaan</string>
+    <string name="dialog_unsaved_changes_discard">Niet opslaan</string>
+    <string name="dialog_date_picker_title">Datum selecteren</string>
+    <string name="dialog_time_picker_title">Tijd selecteren</string>
+    <string name="dialog_color_picker_title">Kleur kiezen</string>
+    <string name="dialog_task_picker_title">Taak koppelen</string>
+    <string name="dialog_event_picker_title">Gebeurtenis koppelen</string>
+    <string name="dialog_tag_manager_title">Tags beheren</string>
+
+    <string name="task_view_list">Lijst</string>
+    <string name="task_view_kanban">Bord</string>
+
+    <string name="snackbar_undo">Ongedaan maken</string>
+    <string name="snackbar_note_deleted">Notitie verwijderd</string>
+    <string name="snackbar_task_deleted">Taak verwijderd</string>
+    <string name="snackbar_event_deleted">Gebeurtenis verwijderd</string>
+    <string name="snackbar_tag_deleted">Tag verwijderd</string>
+    <string name="snackbar_copied">Gekopieerd naar klembord</string>
+    <string name="snackbar_no_internet">Geen internetverbinding</string>
+    <string name="snackbar_changes_saved">Wijzigingen opgeslagen</string>
+
+    <string name="about_version">Versie %1$s</string>
+    <string name="about_build">Build %1$s</string>
+    <string name="about_privacy_policy">Privacybeleid</string>
+    <string name="about_terms_of_service">Algemene voorwaarden</string>
+    <string name="about_open_source_licenses">Open source licenties</string>
+    <string name="about_rate_app">App beoordelen</string>
+    <string name="about_send_feedback">Feedback sturen</string>
+    <string name="about_built_by">Gebouwd door Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Gegevens exporteren</string>
+    <string name="data_export_body">Download al je notities, taken en gebeurtenissen als bestand.</string>
+    <string name="data_export_action">Exporteren</string>
+    <string name="data_export_success">Je gegevensexport is gereed.</string>
+    <string name="data_delete_account_title">Account verwijderen</string>
+    <string name="data_delete_account_body">Verwijder je account en alle bijbehorende gegevens permanent. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="data_delete_account_action">Account verwijderen</string>
+    <string name="data_delete_account_confirm_title">Account verwijderen?</string>
+    <string name="data_delete_account_confirm_body">Al je notities, taken, gebeurtenissen en gesprekken worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.</string>
+    <string name="data_delete_account_type_confirm">Typ DELETE om te bevestigen</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">Update beschikbaar</string>
+    <string name="update_available_body">Er is een nieuwe versie van ProductivityX beschikbaar. Update nu voor de nieuwste functies en oplossingen.</string>
+    <string name="update_now">Nu updaten</string>
+    <string name="update_later">Later</string>
+
+    <string name="auth_check_your_email">Controleer je e-mail</string>
+    <string name="auth_otp_sent_body">We hebben een 6-cijferige code gestuurd naar %s</string>
+
+    <string name="language_en">Engels</string>
+    <string name="language_fr">Frans</string>
+    <string name="language_ar">Arabisch</string>
+    <string name="language_es">Spaans</string>
+    <string name="language_de">Duits</string>
+    <string name="language_pt">Portugees</string>
+    <string name="language_zh">Traditioneel Chinees</string>
+    <string name="language_ja">Japans</string>
+    <string name="language_ko">Koreaans</string>
+    <string name="language_ru">Russisch</string>
+    <string name="language_tr">Turks</string>
+    <string name="language_it">Italiaans</string>
+    <string name="language_hi">Hindi</string>
+    <string name="language_id">Indonesisch</string>
+    <string name="language_nl">Nederlands</string>
+    <string name="language_vi">Vietnamees</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- WIDGETS                                      -->
+    <!-- ������������������������������������������� -->
+    <string name="widget_task_list_title">Taken</string>
+    <string name="widget_task_list_empty">Geen taken voor vandaag</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Tik om focus te starten</string>
+    <string name="widget_quick_note_title">Snelnotitie</string>
+    <string name="widget_quick_note_hint">Tik om een notitie toe te voegen</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ������������������������������������������� -->
+    <string name="home_widget_tasks">Taken vandaag</string>
+    <string name="home_widget_events">Aankomende gebeurtenissen</string>
+    <string name="home_widget_focus">Focus tijd vandaag</string>
+    <string name="home_widget_notes">Recente notities</string>
+    <string name="home_widget_quote">Dagelijks citaat</string>
+    <string name="home_widget_ai">AI-assistent</string>
+    <string name="home_widget_focus_mode">Snelle focus</string>
+    <string name="home_expand">Uitklappen</string>
+    <string name="home_collapse">Inklappen</string>
+    <string name="home_see_all">Alles tonen</string>
+    <string name="home_empty_tasks">Geen taken voor vandaag</string>
+    <string name="home_empty_events">Geen aankomende gebeurtenissen</string>
+    <string name="home_empty_notes">Geen recente notities</string>
+    <string name="home_empty_focus">Nog geen focustijd</string>
+    <string name="home_focus_mode_active">Focusmodus</string>
+    <string name="home_focus_mode_inactive">Snelle focus</string>
+    <string name="home_focus_mode_desc_active">Verminder afleiding</string>
+    <string name="home_focus_mode_desc_inactive">Tik om focusmodus te starten</string>
+    <string name="home_quick_action_new_note">Nieuwe notitie</string>
+    <string name="home_quick_action_new_task">Nieuwe taak</string>
+    <string name="home_quick_action_start_timer">Timer starten</string>
+    <string name="home_quick_action_ai_chat">AI-chat</string>
+    <string name="home_voice_prompt">Wat wil je doen?</string>
+    <string name="home_voice_listening">Luisteren…</string>
+    <string name="home_pull_to_refresh">Trek omlaag om te vernieuwen</string>
+    <string name="home_syncing">Synchroniseren…</string>
+    <string name="home_refreshed">Dashboard bijgewerkt</string>
+
+    <!-- ������������������������������������������� -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ������������������������������������������� -->
+    <string name="shortcut_new_note">Nieuwe notitie</string>
+    <string name="shortcut_new_task">Nieuwe taak</string>
+    <string name="shortcut_start_focus">Focus starten</string>
+    <string name="shortcut_ai_chat">AI-chat</string>
+    <string name="shortcut_note_short_label">Notitie</string>
+    <string name="shortcut_task_short_label">Taak</string>
+    <string name="shortcut_focus_short_label">Focus</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+</resources>
