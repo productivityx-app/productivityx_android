@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.features.events.presentation.state.WeatherData
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @Composable
 fun WeatherWidget(
@@ -37,7 +38,7 @@ fun WeatherWidget(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.SurfaceVariant)
             .padding(12.dp)
     ) {
         if (weather != null) {
@@ -57,13 +58,13 @@ fun WeatherWidget(
                     Text(
                         text = "${weather.temperature}°",
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold),
-                        color = Color(0xFFEEEEF5)
+                        color = PxColors.OnBackground
                     )
                 }
                 Text(
                     text = weather.condition,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
             }
         } else {
@@ -74,13 +75,13 @@ fun WeatherWidget(
                 Icon(
                     imageVector = Icons.Outlined.WbSunny,
                     contentDescription = null,
-                    tint = Color(0xFF888899),
+                    tint = PxColors.OnSurfaceDim,
                     modifier = Modifier.size(20.dp)
                 )
                 Text(
                     text = "Weather",
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
             }
         }

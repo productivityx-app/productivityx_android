@@ -84,12 +84,19 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.ActivityResultLauncher
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -98,7 +105,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.oussama_chatri.productivityx.R
+import kotlinx.coroutines.launch
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.settings.presentation.components.MinuteStepper
 import com.oussama_chatri.productivityx.features.settings.presentation.components.SelectionChipRow
 import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingRow
@@ -107,20 +116,56 @@ import com.oussama_chatri.productivityx.features.settings.presentation.component
 import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
 import com.oussama_chatri.productivityx.features.settings.presentation.preferences.event.PreferencesUiEvent
 
-private val SurfaceColor = Color(0xFF1A1A24)
-private val CardColor = Color(0xFF1E1E2A)
-private val Accent = Color(0xFF6366F1)
-private val ErrorColor = Color(0xFFEF4444)
+private val Accent get() = PxColors.Primary
+private val ErrorColor get() = PxColors.Error
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PreferencesScreen(
     onNavigateBack: () -> Unit,
+    onNavigateToLicenses: () -> Unit = {},
+    onNavigateToCredits: () -> Unit = {},
+    onNavigateToFaq: () -> Unit = {},
+    onNavigateToTermsAndConditions: () -> Unit = {},
+    onNavigateToPrivacyPolicy: () -> Unit = {},
     viewModel: PreferencesViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    val exportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/json")
+    ) { uri ->
+        uri?.let {
+            scope.launch {
+                val tempFile = java.io.File(context.cacheDir, "productivityx_export.json")
+                viewModel.onEvent(PreferencesUiEvent.ExportData(tempFile))
+                tempFile.inputStream().use { inp -> context.contentResolver.openOutputStream(it)?.use { out -> inp.copyTo(out) } }
+                tempFile.delete()
+            }
+        }
+    }
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        uri?.let {
+            scope.launch {
+                val tempFile = java.io.File(context.cacheDir, "productivityx_import.json")
+                context.contentResolver.openInputStream(it)?.use { inp -> tempFile.outputStream().use { out -> inp.copyTo(out) } }
+                viewModel.onEvent(PreferencesUiEvent.ImportDataFile(tempFile))
+            }
+        }
+    }
+
+    LaunchedEffect(state.successMessage) {
+        state.successMessage?.let {
+            snackbarHostState.showSnackbar(it)
+            viewModel.onEvent(PreferencesUiEvent.DismissSuccess)
+        }
+    }
 
     LaunchedEffect(state.errorMessage) {
         state.errorMessage?.let {
@@ -130,7 +175,7 @@ fun PreferencesScreen(
     }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -142,10 +187,10 @@ fun PreferencesScreen(
                 title = { Text("Settings") },
                 actions = {
                     if (state.isSaving) {
-                        CircularProgressIndicator(modifier = Modifier.size(20.dp).padding(end = 16.dp), strokeWidth = 2.dp, color = MaterialTheme.colorScheme.primary)
+                        CircularProgressIndicator(modifier = Modifier.size(20.dp).padding(end = 16.dp), strokeWidth = 2.dp, color = PxColors.Primary)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
     ) { innerPadding ->
@@ -156,7 +201,7 @@ fun PreferencesScreen(
                 .navigationBarsPadding()
         ) {
             if (state.isLoading) {
-                LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colorScheme.primary)
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = PxColors.Primary)
             }
 
             val scrollState = rememberScrollState()
@@ -174,17 +219,17 @@ fun PreferencesScreen(
                 OutlinedTextField(
                     value = state.settingsSearchQuery,
                     onValueChange = { viewModel.onEvent(PreferencesUiEvent.SettingsSearchQueryChanged(it)) },
-                    placeholder = { Text("Search settings…", color = Color(0xFF888899)) },
-                    leadingIcon = { Icon(Icons.Outlined.Search, null, tint = Color(0xFF888899)) },
+                    placeholder = { Text("Search settings…", color = PxColors.OnSurfaceDim) },
+                    leadingIcon = { Icon(Icons.Outlined.Search, null, tint = PxColors.OnSurfaceDim) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = { focusManager.clearFocus() }),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = Accent,
-                        unfocusedBorderColor = Color(0xFF2A2A38),
-                        focusedContainerColor = CardColor,
-                        unfocusedContainerColor = CardColor,
+                        unfocusedBorderColor = PxColors.Outline,
+                        focusedContainerColor = PxColors.Surface,
+                        unfocusedContainerColor = PxColors.Surface,
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -194,7 +239,18 @@ fun PreferencesScreen(
                 if (isSearching) {
                     SettingsSearchResults(state = state, searchQuery = searchQuery, viewModel = viewModel)
                 } else {
-                    SettingsContent(state = state, viewModel = viewModel)
+                    SettingsContent(
+                        state = state,
+                        viewModel = viewModel,
+                        exportLauncher = exportLauncher,
+                        importLauncher = importLauncher,
+                        onNavigateToLicenses = onNavigateToLicenses,
+                        onNavigateToCredits = onNavigateToCredits,
+                        onNavigateToTermsAndConditions = onNavigateToTermsAndConditions,
+                        onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
+                        onNavigateToFaq = onNavigateToFaq,
+                        context = context
+                    )
                 }
 
                 Spacer(Modifier.height(32.dp))
@@ -243,7 +299,7 @@ private fun SettingsSearchResults(
         Text(
             text = "No results found for \"$searchQuery\"",
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF888899),
+            color = PxColors.OnSurfaceDim,
             modifier = Modifier.padding(vertical = 24.dp)
         )
     } else {
@@ -256,9 +312,9 @@ private fun SettingsSearchResults(
                     .clickable { }
                     .padding(vertical = 14.dp, horizontal = 4.dp)
             ) {
-                Icon(Icons.Outlined.Search, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp))
+                Icon(Icons.Outlined.Search, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp))
                 Spacer(Modifier.width(12.dp))
-                Text(text = label, style = MaterialTheme.typography.bodyMedium, color = Color(0xFFEEEEF5))
+                Text(text = label, style = MaterialTheme.typography.bodyMedium, color = PxColors.OnBackground)
             }
         }
     }
@@ -267,7 +323,15 @@ private fun SettingsSearchResults(
 @Composable
 private fun SettingsContent(
     state: com.oussama_chatri.productivityx.features.settings.presentation.preferences.state.PreferencesUiState,
-    viewModel: PreferencesViewModel
+    viewModel: PreferencesViewModel,
+    exportLauncher: ActivityResultLauncher<String>,
+    importLauncher: ActivityResultLauncher<Array<String>>,
+    onNavigateToLicenses: () -> Unit,
+    onNavigateToCredits: () -> Unit,
+    onNavigateToTermsAndConditions: () -> Unit,
+    onNavigateToPrivacyPolicy: () -> Unit,
+    onNavigateToFaq: () -> Unit,
+    context: android.content.Context
 ) {
     // ── Account ──
     SettingsSectionHeader("Account")
@@ -323,11 +387,11 @@ private fun SettingsContent(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            Icon(Icons.Outlined.FontDownload, null, tint = Color(0xFF888899), modifier = Modifier.size(22.dp))
+            Icon(Icons.Outlined.FontDownload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(22.dp))
             Spacer(Modifier.width(14.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text("Font size", style = MaterialTheme.typography.bodyMedium, color = Color(0xFFEEEEF5))
-                Text("${(state.fontScale * 100).toInt()}%", style = MaterialTheme.typography.labelSmall, color = Color(0xFF888899))
+                Text("Font size", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnBackground)
+                Text("${(state.fontScale * 100).toInt()}%", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
             }
             Slider(
                 value = state.fontScale,
@@ -338,7 +402,7 @@ private fun SettingsContent(
                 colors = SliderDefaults.colors(
                     thumbColor = Accent,
                     activeTrackColor = Accent,
-                    inactiveTrackColor = Color(0xFF2A2A38),
+                    inactiveTrackColor = PxColors.SurfaceVariant,
                 )
             )
         }
@@ -397,7 +461,7 @@ private fun SettingsContent(
             trailing = {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     HourChip(state.quietHoursStart, "Start") { viewModel.onEvent(PreferencesUiEvent.QuietHoursStartChanged(it)) }
-                    Text("-", color = Color(0xFF888899))
+                    Text("-", color = PxColors.OnSurfaceDim)
                     HourChip(state.quietHoursEnd, "End") { viewModel.onEvent(PreferencesUiEvent.QuietHoursEndChanged(it)) }
                 }
             }
@@ -426,14 +490,16 @@ private fun SettingsContent(
             icon = Icons.Outlined.FileUpload,
             label = "Export data",
             subtitle = "Save a backup of all your data",
-            trailing = { Icon(Icons.Outlined.FileUpload, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = { exportLauncher.launch("productivityx_backup.json") },
+            trailing = { Icon(Icons.Outlined.FileUpload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.FileDownload,
             label = "Import data",
             subtitle = "Restore data from a backup file",
             showDivider = false,
-            trailing = { Icon(Icons.Outlined.FileDownload, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = { importLauncher.launch(arrayOf("application/json")) },
+            trailing = { Icon(Icons.Outlined.FileDownload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
     }
 
@@ -623,20 +689,36 @@ private fun SettingsContent(
             label = "Version",
             subtitle = "1.2.0 (build 42)",
             trailing = {
-                Text("Latest", style = MaterialTheme.typography.labelSmall, color = Color(0xFF22C55E))
+                Text("Latest", style = MaterialTheme.typography.labelSmall, color = PxColors.Success)
             }
         )
         SettingRow(
             icon = Icons.Outlined.DataObject,
             label = "Licenses",
             subtitle = "Open source libraries",
-            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = onNavigateToLicenses,
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.AutoAwesome,
             label = "Credits",
+            onClick = onNavigateToCredits,
+            showDivider = true,
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
+        )
+        SettingRow(
+            icon = Icons.Outlined.Info,
+            label = "Terms & Conditions",
+            onClick = onNavigateToTermsAndConditions,
+            showDivider = true,
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
+        )
+        SettingRow(
+            icon = Icons.Outlined.Info,
+            label = "Privacy Policy",
+            onClick = onNavigateToPrivacyPolicy,
             showDivider = false,
-            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
     }
 
@@ -647,20 +729,34 @@ private fun SettingsContent(
             icon = Icons.AutoMirrored.Outlined.Help,
             label = "FAQ",
             subtitle = "Frequently asked questions",
-            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = onNavigateToFaq,
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.NotificationsActive,
             label = "Contact us",
             subtitle = "Get in touch with the team",
-            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = {
+                val intent = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("mailto:productivityx7@gmail.com")
+                }
+                context.startActivity(intent)
+            },
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.AutoAwesome,
             label = "Send feedback",
             subtitle = "Help us improve ProductivityX",
             showDivider = false,
-            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) }
+            onClick = {
+                val intent = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("mailto:productivityx7@gmail.com")
+                    putExtra(Intent.EXTRA_SUBJECT, "ProductivityX Feedback")
+                }
+                context.startActivity(intent)
+            },
+            trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
     }
 }
@@ -673,14 +769,14 @@ private fun HourChip(hour: Int, label: String, onChange: (Int) -> Unit) {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .clip(RoundedCornerShape(8.dp))
-            .background(Color(0xFF2A2A38))
+            .background(PxColors.SurfaceVariant)
             .clickable { showPicker = true }
             .padding(horizontal = 10.dp, vertical = 6.dp)
     ) {
         Text(
             text = "${hour.toString().padStart(2, '0')}:00",
             style = MaterialTheme.typography.labelMedium,
-            color = Color(0xFFEEEEF5)
+            color = PxColors.OnBackground
         )
     }
 
@@ -708,14 +804,14 @@ private fun HourChip(hour: Int, label: String, onChange: (Int) -> Unit) {
                             Text(
                                 text = "${h.toString().padStart(2, '0')}:00",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = if (isSelected) Color(0xFFEEEEF5) else Color(0xFF888899)
+                                color = if (isSelected) PxColors.OnBackground else PxColors.OnSurfaceDim
                             )
                         }
                     }
                 }
             },
             confirmButton = { TextButton(onClick = { showPicker = false }) { Text("Close") } },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.Surface,
             shape = RoundedCornerShape(20.dp),
         )
     }

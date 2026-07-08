@@ -48,7 +48,7 @@ fun GreetingSection(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
             .padding(16.dp),
     ) {
         Row(
@@ -66,14 +66,14 @@ fun GreetingSection(
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.Bold,
                         ),
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = PxColors.OnBackground,
                     )
                 }
                 Spacer(Modifier.height(2.dp))
                 Text(
                     text = dateText,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = PxColors.OnSurfaceDim,
                 )
                 if (weatherTemp != null) {
                     Spacer(Modifier.height(4.dp))
@@ -88,7 +88,7 @@ fun GreetingSection(
                         Text(
                             text = "$weatherTemp${weatherCondition?.let { " - $it" } ?: ""}",
                             style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = PxColors.OnSurfaceDim,
                         )
                     }
                 }

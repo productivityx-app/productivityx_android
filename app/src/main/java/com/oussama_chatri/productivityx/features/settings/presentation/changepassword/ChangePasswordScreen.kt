@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -71,7 +72,7 @@ fun ChangePasswordScreen(
     }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -82,7 +83,7 @@ fun ChangePasswordScreen(
                 },
                 title = { Text("Change Password") },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
+                    containerColor = PxColors.Background
                 )
             )
         }
@@ -148,8 +149,8 @@ fun ChangePasswordScreen(
                 enabled = state.canSave,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    disabledContainerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
+                    containerColor = PxColors.Primary,
+                    disabledContainerColor = PxColors.OnSurface.copy(alpha = 0.12f)
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -191,7 +192,7 @@ private fun PasswordField(
         label = { Text(label) },
         isError = errorMessage != null,
         supportingText = errorMessage?.let { msg ->
-            { Text(msg, color = MaterialTheme.colorScheme.error) }
+            { Text(msg, color = PxColors.Error) }
         },
         singleLine = true,
         visualTransformation = if (isVisible) VisualTransformation.None
@@ -200,7 +201,7 @@ private fun PasswordField(
             Icon(
                 Icons.Outlined.Lock,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                tint = PxColors.OnSurface.copy(alpha = 0.5f)
             )
         },
         trailingIcon = {
@@ -209,17 +210,17 @@ private fun PasswordField(
                     imageVector = if (isVisible) Icons.Outlined.Visibility
                     else Icons.Outlined.VisibilityOff,
                     contentDescription = if (isVisible) "Hide password" else "Show password",
-                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                    tint = PxColors.OnSurface.copy(alpha = 0.5f)
                 )
             }
         },
         shape = RoundedCornerShape(10.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f),
-            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
+            focusedBorderColor = PxColors.Primary,
+            unfocusedBorderColor = PxColors.OnSurface.copy(alpha = 0.15f),
+            focusedContainerColor = PxColors.SurfaceVariant,
+            unfocusedContainerColor = PxColors.SurfaceVariant,
+            errorContainerColor = PxColors.SurfaceVariant
         ),
         modifier = modifier
     )

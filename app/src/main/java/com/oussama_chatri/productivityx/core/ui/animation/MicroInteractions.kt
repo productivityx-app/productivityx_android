@@ -45,6 +45,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 data class MicroAnimationConfig(
     val scaleOnPress: Boolean = true,
@@ -79,8 +80,8 @@ fun PxAnimatedToggle(
         label = "toggleThumb",
     )
     val trackColor by animateColorAsState(
-        targetValue = if (checked) MaterialTheme.colorScheme.primary
-        else MaterialTheme.colorScheme.surfaceVariant,
+        targetValue = if (checked) PxColors.Primary
+        else PxColors.SurfaceVariant,
         animationSpec = spring(),
         label = "toggleTrack",
     )
@@ -132,8 +133,8 @@ fun PxAnimatedCheckbox(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    checkedColor: Color = MaterialTheme.colorScheme.primary,
-    uncheckedColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+    checkedColor: Color = PxColors.Primary,
+    uncheckedColor: Color = PxColors.OnSurface.copy(alpha = 0.3f),
     iconSize: Dp = 22.dp,
 ) {
     val checkAnim = remember { Animatable(if (checked) 1f else 0f) }
@@ -197,8 +198,8 @@ fun PxAnimatedRadio(
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unselectedColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+    selectedColor: Color = PxColors.Primary,
+    unselectedColor: Color = PxColors.OnSurface.copy(alpha = 0.3f),
     size: Dp = 22.dp,
 ) {
     val scale by animateFloatAsState(

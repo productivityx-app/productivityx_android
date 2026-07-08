@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 object Spacing {
     val xxs  = 2.dp
@@ -82,7 +83,7 @@ fun PxScaffold(
         topBar = topBar,
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
-        containerColor = androidx.compose.material3.MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         contentWindowInsets = ScaffoldDefaults.contentWindowInsets,
         content = content,
     )

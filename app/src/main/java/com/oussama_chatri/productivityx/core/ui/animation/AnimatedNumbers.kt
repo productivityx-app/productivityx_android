@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.material3.MaterialTheme
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @Composable
 fun AnimatedCounter(
@@ -18,7 +19,7 @@ fun AnimatedCounter(
     modifier: Modifier = Modifier,
     prefix: String = "",
     suffix: String = "",
-    color: Color = MaterialTheme.colorScheme.onSurface,
+    color: Color = PxColors.OnSurface,
     fontWeight: FontWeight = FontWeight.Bold,
 ) {
     val animatedValue = remember { Animatable(0f) }
@@ -51,7 +52,7 @@ fun AnimatedCounterFloat(
     prefix: String = "",
     suffix: String = "",
     decimalPlaces: Int = 1,
-    color: Color = MaterialTheme.colorScheme.onSurface,
+    color: Color = PxColors.OnSurface,
     fontWeight: FontWeight = FontWeight.Bold,
 ) {
     val animatedValue = remember { Animatable(0f) }

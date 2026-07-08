@@ -41,6 +41,7 @@ import java.time.YearMonth
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private val monthFormatter = DateTimeFormatter.ofPattern("MMM")
 
@@ -73,16 +74,16 @@ fun YearView(
             horizontalArrangement = Arrangement.Center
         ) {
             IconButton(onClick = { onYearChanged(selectedYear - 1) }) {
-                Icon(Icons.Outlined.ChevronLeft, "Previous year", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.ChevronLeft, "Previous year", tint = PxColors.OnSurface)
             }
             Text(
                 text = selectedYear.toString(),
                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             IconButton(onClick = { onYearChanged(selectedYear + 1) }) {
-                Icon(Icons.Outlined.ChevronRight, "Next year", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.ChevronRight, "Next year", tint = PxColors.OnSurface)
             }
         }
 
@@ -120,13 +121,13 @@ private fun MonthHeatMap(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.SurfaceVariant)
             .padding(6.dp)
     ) {
         Text(
             text = runCatching { monthFormatter.format(firstDay) }.getOrElse { "-" },
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-            color = Color(0xFFEEEEF5),
+            color = PxColors.OnBackground,
             modifier = Modifier.padding(bottom = 4.dp)
         )
 
@@ -157,7 +158,7 @@ private fun MonthHeatMap(
                             Text(
                                 text = day.dayOfMonth.toString(),
                                 style = MaterialTheme.typography.labelSmall.copy(fontSize = 8.sp),
-                                color = Color(0xFFCCCCD8).copy(alpha = if (intensity > 0.3f) 0.9f else 0.5f),
+                                color = PxColors.OnSurface.copy(alpha = if (intensity > 0.3f) 0.9f else 0.5f),
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -170,10 +171,10 @@ private fun MonthHeatMap(
 
 private fun heatMapColor(intensity: Float): Color {
     return when {
-        intensity <= 0f -> Color(0xFF1A1A24)
-        intensity <= 0.25f -> Color(0xFF6366F1).copy(alpha = 0.2f)
-        intensity <= 0.5f -> Color(0xFF6366F1).copy(alpha = 0.4f)
-        intensity <= 0.75f -> Color(0xFF6366F1).copy(alpha = 0.65f)
-        else -> Color(0xFF6366F1).copy(alpha = 0.9f)
+        intensity <= 0f -> PxColors.SurfaceVariant
+        intensity <= 0.25f -> PxColors.Primary.copy(alpha = 0.2f)
+        intensity <= 0.5f -> PxColors.Primary.copy(alpha = 0.4f)
+        intensity <= 0.75f -> PxColors.Primary.copy(alpha = 0.65f)
+        else -> PxColors.Primary.copy(alpha = 0.9f)
     }
 }

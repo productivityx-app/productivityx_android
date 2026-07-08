@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.oussama_chatri.productivityx.core.ui.components.PxBottomNavBar
 import com.oussama_chatri.productivityx.features.home.presentation.HomeScreen
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @Composable
 private fun HomeTab(rootNavController: NavHostController) {
@@ -18,7 +19,7 @@ private fun HomeTab(rootNavController: NavHostController) {
     val currentRoute  = rootBackStack?.destination?.route
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         bottomBar = {
             PxBottomNavBar(
                 currentRoute   = currentRoute,

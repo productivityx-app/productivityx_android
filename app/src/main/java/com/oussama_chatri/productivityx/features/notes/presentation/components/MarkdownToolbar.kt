@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 sealed class MarkdownAction(val prefix: String, val suffix: String = "") {
     data object Bold : MarkdownAction("**", "**")
@@ -54,10 +55,10 @@ fun MarkdownToolbar(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        color = Color(0xFF252533),
+        color = PxColors.SurfaceVariant,
         modifier = modifier.fillMaxWidth()
     ) {
-        HorizontalDivider(color = Color(0xFF252533).copy(alpha = 0.5f), thickness = 1.dp)
+        HorizontalDivider(color = PxColors.Outline.copy(alpha = 0.5f), thickness = 1.dp)
         Row(
             modifier = Modifier
                 .horizontalScroll(rememberScrollState())
@@ -93,7 +94,7 @@ private fun ToolbarButton(
         Icon(
             imageVector = icon,
             contentDescription = description,
-            tint = Color(0xFFCCCCD8),
+            tint = PxColors.OnSurface,
             modifier = Modifier.size(20.dp)
         )
     }

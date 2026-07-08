@@ -22,12 +22,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ fun SettingsSectionCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
     ) {
         content()
     }
@@ -58,7 +59,7 @@ fun SettingsSectionHeader(title: String) {
     Text(
         text = title.uppercase(),
         style = MaterialTheme.typography.labelSmall.copy(letterSpacing = 0.8.sp),
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+        color = PxColors.OnSurface.copy(alpha = 0.5f),
         modifier = Modifier.padding(start = 4.dp, top = 24.dp, bottom = 8.dp)
     )
 }
@@ -69,7 +70,7 @@ fun SettingRow(
     label: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
-    iconTint: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+    iconTint: Color = PxColors.OnSurface.copy(alpha = 0.6f),
     onClick: (() -> Unit)? = null,
     showDivider: Boolean = true,
     trailing: @Composable (() -> Unit)? = null
@@ -100,13 +101,13 @@ fun SettingRow(
                 Text(
                     text = label,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = PxColors.OnSurface
                 )
                 if (subtitle != null) {
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                        color = PxColors.OnSurface.copy(alpha = 0.5f),
                         modifier = Modifier.padding(top = 2.dp)
                     )
                 }
@@ -119,7 +120,7 @@ fun SettingRow(
         if (showDivider) {
             HorizontalDivider(
                 modifier = Modifier.padding(start = 52.dp),
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.06f)
+                color = PxColors.OnSurface.copy(alpha = 0.06f)
             )
         }
     }
@@ -147,9 +148,9 @@ fun SettingRowSwitch(
                 onCheckedChange = onCheckedChange,
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.White,
-                    checkedTrackColor = MaterialTheme.colorScheme.primary,
-                    uncheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
-                    uncheckedTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
+                    checkedTrackColor = PxColors.Primary,
+                    uncheckedThumbColor = PxColors.OnSurface.copy(alpha = 0.4f),
+                    uncheckedTrackColor = PxColors.OnSurface.copy(alpha = 0.12f)
                 )
             )
         }
@@ -176,13 +177,13 @@ fun MinuteStepper(
             Text(
                 text = "−",
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary
+                color = PxColors.Primary
             )
         }
         Text(
             text = "$value $suffix",
             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colorScheme.onSurface,
+            color = PxColors.OnSurface,
             modifier = Modifier.width(52.dp),
         )
         IconButton(
@@ -192,7 +193,7 @@ fun MinuteStepper(
             Text(
                 text = "+",
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary
+                color = PxColors.Primary
             )
         }
     }
@@ -207,7 +208,7 @@ fun <T> SelectionChipRow(
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier
+        modifier = modifier.horizontalScroll(rememberScrollState())
     ) {
         options.forEach { (value, label) ->
             SelectionChip(
@@ -227,14 +228,14 @@ fun SelectionChip(
     modifier: Modifier = Modifier
 ) {
     val bgColor by animateColorAsState(
-        targetValue = if (selected) MaterialTheme.colorScheme.primary
-        else MaterialTheme.colorScheme.surfaceVariant,
+        targetValue = if (selected) PxColors.Primary
+        else PxColors.SurfaceVariant,
         animationSpec = spring(),
         label = "chip_bg"
     )
     val textColor by animateColorAsState(
         targetValue = if (selected) Color.White
-        else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+        else PxColors.OnSurface.copy(alpha = 0.7f),
         animationSpec = spring(),
         label = "chip_text"
     )
@@ -266,7 +267,7 @@ fun AvatarInitials(
         modifier = modifier
             .size(size.dp)
             .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.primary)
+            .background(PxColors.Primary)
     ) {
         Text(
             text = initials.take(2).uppercase(),
@@ -344,14 +345,14 @@ fun ThemeSelector(
                 Text(
                     text = theme.label,
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (isSelected) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    color = if (isSelected) PxColors.Primary
+                    else PxColors.OnSurface.copy(alpha = 0.7f),
                 )
                 if (theme.key == "DYNAMIC") {
                     Text(
                         text = "Android 12+",
                         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
+                        color = PxColors.OnSurface.copy(alpha = 0.4f),
                     )
                 }
             }
@@ -375,7 +376,7 @@ fun PasswordStrengthIndicator(strength: Int, modifier: Modifier = Modifier) {
             val filled = index < strength
             val color by animateColorAsState(
                 targetValue = if (filled) colors[strength - 1]
-                else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f),
+                else PxColors.OnSurface.copy(alpha = 0.15f),
                 animationSpec = spring(),
                 label = "strength_$index"
             )

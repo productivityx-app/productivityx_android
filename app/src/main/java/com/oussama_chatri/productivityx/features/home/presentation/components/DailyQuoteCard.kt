@@ -50,7 +50,7 @@ fun DailyQuoteCard(
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontStyle = FontStyle.Italic,
                 ),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = PxColors.OnBackground,
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(6.dp))

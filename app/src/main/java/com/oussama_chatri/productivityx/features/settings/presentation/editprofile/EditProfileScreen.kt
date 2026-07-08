@@ -29,6 +29,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -87,7 +88,7 @@ fun EditProfileScreen(
     }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -104,20 +105,20 @@ fun EditProfileScreen(
                                 .size(20.dp)
                                 .padding(end = 16.dp),
                             strokeWidth = 2.dp,
-                            color = MaterialTheme.colorScheme.primary
+                            color = PxColors.Primary
                         )
                     } else {
                         TextButton(onClick = { viewModel.onEvent(EditProfileUiEvent.SaveClicked) }) {
                             Text(
                                 "Save",
-                                color = MaterialTheme.colorScheme.primary,
+                                color = PxColors.Primary,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
+                    containerColor = PxColors.Background
                 )
             )
         }
@@ -151,7 +152,7 @@ fun EditProfileScreen(
                             modifier = Modifier
                                 .size(88.dp)
                                 .clip(CircleShape)
-                                .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                                .border(2.dp, PxColors.Primary, CircleShape)
                         )
                     } else {
                         AvatarInitials(initials = initials.ifEmpty { "?" }, size = 88)
@@ -163,7 +164,7 @@ fun EditProfileScreen(
                             .size(28.dp)
                             .align(Alignment.BottomEnd)
                             .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.primary)
+                            .background(PxColors.Primary)
                             .clickable { photoPickerLauncher.launch("image/*") }
                     ) {
                         Icon(
@@ -215,7 +216,7 @@ fun EditProfileScreen(
             Text(
                 text = "Theme",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
@@ -229,7 +230,7 @@ fun EditProfileScreen(
             Text(
                 text = "Language",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
@@ -243,7 +244,7 @@ fun EditProfileScreen(
             Text(
                 text = "Timezone",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
@@ -280,10 +281,10 @@ private fun PxSettingsTextField(
         isError = errorMessage != null,
         supportingText = {
             when {
-                errorMessage != null -> Text(errorMessage, color = MaterialTheme.colorScheme.error)
+                errorMessage != null -> Text(errorMessage, color = PxColors.Error)
                 supportingText != null -> Text(
                     supportingText,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+                    color = PxColors.OnSurface.copy(alpha = 0.4f)
                 )
             }
         },
@@ -291,11 +292,11 @@ private fun PxSettingsTextField(
         maxLines = maxLines,
         shape = RoundedCornerShape(10.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f),
-            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
+            focusedBorderColor = PxColors.Primary,
+            unfocusedBorderColor = PxColors.OnSurface.copy(alpha = 0.15f),
+            focusedContainerColor = PxColors.SurfaceVariant,
+            unfocusedContainerColor = PxColors.SurfaceVariant,
+            errorContainerColor = PxColors.SurfaceVariant
         ),
         modifier = modifier
     )

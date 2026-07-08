@@ -239,7 +239,7 @@ private fun CompletionRateSection(
                         progress = { weeklyRate },
                         modifier = Modifier.size(80.dp),
                         color = PxColors.Primary,
-                        trackColor = Color(0xFF252533),
+                        trackColor = PxColors.SurfaceVariant,
                         strokeWidth = 6.dp
                     )
                     Text(
@@ -268,7 +268,7 @@ private fun CompletionRateSection(
                         progress = { monthlyRate },
                         modifier = Modifier.size(80.dp),
                         color = PxColors.Secondary,
-                        trackColor = Color(0xFF252533),
+                        trackColor = PxColors.SurfaceVariant,
                         strokeWidth = 6.dp
                     )
                     Text(
@@ -334,7 +334,7 @@ private fun TimePerCategoryChart(
                                 .weight(1f)
                                 .height(8.dp)
                                 .clip(RoundedCornerShape(4.dp))
-                                .background(Color(0xFF252533))
+                                .background(PxColors.SurfaceVariant)
                         ) {
                             Box(
                                 modifier = Modifier
@@ -411,7 +411,7 @@ private fun BadgeItem(
         modifier = Modifier
             .width(72.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF252533).copy(alpha = alpha))
+            .background(PxColors.SurfaceVariant.copy(alpha = alpha))
             .padding(8.dp)
     ) {
         Icon(
@@ -455,7 +455,7 @@ private fun WeeklyReviewCard(
             }
 
             if (suggestedFocus.isNotBlank()) {
-                HorizontalDivider(color = Color(0xFF252533))
+                HorizontalDivider(color = PxColors.Outline)
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.Top
@@ -549,7 +549,7 @@ private fun ProductivityPatternsSection(
                                                     intensity > 0.7f -> PxColors.Primary
                                                     intensity > 0.4f -> PxColors.Primary.copy(alpha = 0.6f)
                                                     intensity > 0.1f -> PxColors.Primary.copy(alpha = 0.3f)
-                                                    else -> Color(0xFF1A1A24)
+                                                    else -> PxColors.SurfaceVariant
                                                 }
                                             )
                                     )

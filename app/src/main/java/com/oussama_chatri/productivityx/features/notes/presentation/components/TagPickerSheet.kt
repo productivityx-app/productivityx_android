@@ -40,6 +40,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.notes.domain.model.Tag
 
 private val tagColorPalette = listOf(
@@ -65,7 +66,7 @@ fun TagPickerSheet(
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState       = sheetState,
-        containerColor   = Color(0xFF1A1A24),
+        containerColor   = PxColors.SurfaceVariant,
         shape            = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
         modifier         = modifier
     ) {
@@ -78,7 +79,7 @@ fun TagPickerSheet(
             Text(
                 text  = "Tags",
                 style = MaterialTheme.typography.titleMedium,
-                color = Color(0xFFEEEEF5)
+                color = PxColors.OnBackground
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -87,7 +88,7 @@ fun TagPickerSheet(
                 Text(
                     text  = "No tags yet. Create your first one.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
             } else {
                 FlowRow(
@@ -97,12 +98,12 @@ fun TagPickerSheet(
                     allTags.forEach { tag ->
                         val isSelected = tag.id in selectedTagIds
                         val tagColor   = runCatching { Color(android.graphics.Color.parseColor(tag.color)) }
-                            .getOrDefault(Color(0xFF6366F1))
+                            .getOrDefault(PxColors.Primary)
 
                         Row(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(50.dp))
-                                .background(if (isSelected) tagColor.copy(0.2f) else Color(0xFF252533))
+                                .background(if (isSelected) tagColor.copy(0.2f) else PxColors.SurfaceVariant)
                                 .border(1.dp, if (isSelected) tagColor else Color.Transparent, RoundedCornerShape(50.dp))
                                 .clickable { onTagToggle(tag.id) }
                                 .padding(horizontal = 12.dp, vertical = 7.dp),
@@ -120,7 +121,7 @@ fun TagPickerSheet(
                             Text(
                                 text  = tag.name,
                                 style = MaterialTheme.typography.labelMedium,
-                                color = if (isSelected) tagColor else Color(0xFFCCCCD8)
+                                color = if (isSelected) tagColor else PxColors.OnSurface
                             )
                         }
                     }
@@ -134,18 +135,18 @@ fun TagPickerSheet(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
-                        .background(Color(0xFF252533))
+                        .background(PxColors.SurfaceVariant)
                         .padding(12.dp)
                 ) {
                     BasicTextField(
                         value          = newTagName,
                         onValueChange  = { newTagName = it },
-                        textStyle      = MaterialTheme.typography.bodyMedium.copy(color = Color(0xFFEEEEF5)),
-                        cursorBrush    = SolidColor(Color(0xFF6366F1)),
+                        textStyle      = MaterialTheme.typography.bodyMedium.copy(color = PxColors.OnBackground),
+                        cursorBrush    = SolidColor(PxColors.Primary),
                         singleLine     = true,
                         decorationBox  = { inner ->
                             if (newTagName.isEmpty()) {
-                                Text("Tag name", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF888899))
+                                Text("Tag name", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurfaceDim)
                             }
                             inner()
                         },
@@ -178,7 +179,7 @@ fun TagPickerSheet(
 
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         TextButton(onClick = { showCreate = false; newTagName = "" }) {
-                            Text("Cancel", color = Color(0xFF888899))
+                            Text("Cancel", color = PxColors.OnSurfaceDim)
                         }
                         TextButton(
                             onClick = {
@@ -190,7 +191,7 @@ fun TagPickerSheet(
                             },
                             enabled = newTagName.isNotBlank()
                         ) {
-                            Text("Create", color = Color(0xFF6366F1))
+                            Text("Create", color = PxColors.Primary)
                         }
                     }
                 }
@@ -206,13 +207,13 @@ fun TagPickerSheet(
                     Icon(
                         imageVector        = Icons.Outlined.Add,
                         contentDescription = "New tag",
-                        tint               = Color(0xFF6366F1),
+                        tint               = PxColors.Primary,
                         modifier           = Modifier.size(16.dp)
                     )
                     Text(
                         text  = "New tag",
                         style = MaterialTheme.typography.labelMedium,
-                        color = Color(0xFF6366F1)
+                        color = PxColors.Primary
                     )
                 }
             }

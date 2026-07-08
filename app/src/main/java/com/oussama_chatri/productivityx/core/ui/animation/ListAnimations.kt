@@ -59,6 +59,7 @@ import kotlinx.coroutines.flow.map
 import kotlin.math.max
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 object StaggerDefaults {
     val staggerDelayMs = 50
@@ -219,14 +220,14 @@ private fun PullIndicator(
         modifier = Modifier
             .size(24.dp)
             .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f + progress * 0.8f)),
+            .background(PxColors.Primary.copy(alpha = 0.2f + progress * 0.8f)),
         contentAlignment = Alignment.Center,
     ) {
         Box(
             modifier = Modifier
                 .size(8.dp)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primary),
+                .background(PxColors.Primary),
         )
     }
 }
@@ -278,7 +279,7 @@ fun AnimatedSectionHeader(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Row(
@@ -289,7 +290,7 @@ fun AnimatedSectionHeader(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = PxColors.OnSurface,
             )
         }
     }

@@ -81,20 +81,20 @@ fun SearchScreen(
     var recentSearches by rememberSaveable { mutableStateOf(listOf<String>()) }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.search_title), color = MaterialTheme.colorScheme.onBackground) },
+                title = { Text(stringResource(R.string.search_title), color = PxColors.OnBackground) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = stringResource(R.string.cd_back),
-                            tint = MaterialTheme.colorScheme.onSurface
+                            tint = PxColors.OnSurface
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
     ) { innerPadding ->
@@ -108,26 +108,26 @@ fun SearchScreen(
                 value = state.query,
                 onValueChange = { viewModel.onQueryChanged(it) },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(stringResource(R.string.search_hint), color = MaterialTheme.colorScheme.onSurfaceVariant) },
+                placeholder = { Text(stringResource(R.string.search_hint), color = PxColors.OnSurfaceDim) },
                 leadingIcon = {
-                    Icon(Icons.Outlined.Search, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Icon(Icons.Outlined.Search, contentDescription = null, tint = PxColors.OnSurfaceDim)
                 },
                 trailingIcon = {
                     if (state.query.isNotEmpty()) {
                         IconButton(onClick = { viewModel.onQueryChanged("") }) {
-                            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.cd_clear_input), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.cd_clear_input), tint = PxColors.OnSurfaceDim)
                         }
                     }
                 },
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = MaterialTheme.colorScheme.onBackground,
-                    unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+                    focusedTextColor = PxColors.OnBackground,
+                    unfocusedTextColor = PxColors.OnBackground,
                     cursorColor = PxColors.Primary,
                     focusedBorderColor = PxColors.Primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.surfaceVariant,
-                    focusedContainerColor = MaterialTheme.colorScheme.surface,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surface
+                    unfocusedBorderColor = PxColors.SurfaceVariant,
+                    focusedContainerColor = PxColors.Surface,
+                    unfocusedContainerColor = PxColors.Surface
                 )
             )
 
@@ -137,7 +137,7 @@ fun SearchScreen(
                 state.isLoading -> PxLoadingState()
                 state.error != null && state.results.isEmpty() -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(state.error!!, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(state.error!!, color = PxColors.OnSurfaceDim)
                     }
                 }
                 state.query.isEmpty() -> {
@@ -258,14 +258,14 @@ private fun RecentSearchesSection(
                 Icon(
                     Icons.Outlined.History,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    tint = PxColors.OnSurfaceDim,
                     modifier = Modifier.size(16.dp)
                 )
                 Spacer(Modifier.width(6.dp))
                 Text(
                     stringResource(R.string.search_recent),
                     style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = PxColors.OnSurfaceDim
                 )
             }
             if (searches.isNotEmpty()) {
@@ -300,14 +300,14 @@ private fun RecentSearchesSection(
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(20.dp))
-                                .background(MaterialTheme.colorScheme.surfaceVariant)
+                                .background(PxColors.SurfaceVariant)
                                 .clickable { onSearch(query) }
                                 .padding(horizontal = 14.dp, vertical = 8.dp)
                         ) {
                             Text(
                                 text = query,
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                color = PxColors.OnSurfaceDim,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -351,7 +351,7 @@ private fun SectionHeader(
         Text(
             text = label,
             style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colorScheme.onBackground
+            color = PxColors.OnBackground
         )
         Box(
             modifier = Modifier
@@ -418,7 +418,7 @@ private fun SearchResultCard(
         Spacer(Modifier.width(0.dp))
         Card(
             modifier = Modifier.weight(1f),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            colors = CardDefaults.cardColors(containerColor = PxColors.Surface),
             shape = MaterialTheme.shapes.medium
         ) {
             Row(
@@ -436,7 +436,7 @@ private fun SearchResultCard(
                     Text(
                         text = result.title,
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = PxColors.OnBackground,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -445,7 +445,7 @@ private fun SearchResultCard(
                         Text(
                             text = result.snippet,
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = PxColors.OnSurfaceDim,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )

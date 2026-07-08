@@ -2,6 +2,7 @@ package com.oussama_chatri.productivityx.features.settings.presentation.preferen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussama_chatri.productivityx.core.data.DataExportImportManager
 import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.core.util.Resource
 import com.oussama_chatri.productivityx.features.settings.domain.repository.UpdatePreferencesParams
@@ -24,7 +25,8 @@ import javax.inject.Inject
 class PreferencesViewModel @Inject constructor(
     private val getPreferencesUseCase: GetPreferencesUseCase,
     private val updatePreferencesUseCase: UpdatePreferencesUseCase,
-    private val prefs: PreferencesDataStore
+    private val prefs: PreferencesDataStore,
+    private val exportImportManager: DataExportImportManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PreferencesUiState(isLoading = true))
@@ -112,6 +114,26 @@ class PreferencesViewModel @Inject constructor(
                 _uiState.update { it.copy(errorMessage = null) }
             PreferencesUiEvent.DismissSuccess ->
                 _uiState.update { it.copy(successMessage = null) }
+            is PreferencesUiEvent.ExportData -> {
+                viewModelScope.launch {
+                    try {
+                        exportImportManager.exportToFile(event.file)
+                        _uiState.update { it.copy(successMessage = "Data exported successfully") }
+                    } catch (e: Exception) {
+                        _uiState.update { it.copy(errorMessage = "Export failed: ${e.message}") }
+                    }
+                }
+            }
+            is PreferencesUiEvent.ImportDataFile -> {
+                viewModelScope.launch {
+                    try {
+                        exportImportManager.importFromFile(event.file)
+                        _uiState.update { it.copy(successMessage = "Data imported successfully") }
+                    } catch (e: Exception) {
+                        _uiState.update { it.copy(errorMessage = "Import failed: ${e.message}") }
+                    }
+                }
+            }
         }
     }
 

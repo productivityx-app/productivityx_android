@@ -217,7 +217,7 @@ private fun StreakCard(stats: PomodoroStats) {
                 Icon(
                     Icons.Outlined.LocalFireDepartment,
                     contentDescription = null,
-                    tint = Color(0xFFF97316),
+                    tint = PxColors.Warning,
                     modifier = Modifier.size(32.dp)
                 )
             }
@@ -234,7 +234,7 @@ private fun StreakCard(stats: PomodoroStats) {
                     color = PxColors.OnSurfaceDim
                 )
             }
-            Icon(Icons.Outlined.EmojiEvents, contentDescription = null, tint = Color(0xFFFACC15))
+            Icon(Icons.Outlined.EmojiEvents, contentDescription = null, tint = PxColors.Warning)
         }
     }
 }
@@ -375,7 +375,7 @@ private fun SummaryStats(stats: PomodoroStats) {
             label = "Quality Score",
             value = "${(stats.focusQualityScore * 100).roundToInt()}%",
             icon = Icons.Outlined.TrendingUp,
-            color = Color(0xFF22C55E)
+            color = PxColors.Success
         )
         StatMiniCard(
             modifier = Modifier.weight(1f),

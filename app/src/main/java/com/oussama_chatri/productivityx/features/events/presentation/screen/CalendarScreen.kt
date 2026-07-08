@@ -339,7 +339,7 @@ private fun CalendarModernTopBar(
             Text(
                 text = headerText,
                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 modifier = Modifier.weight(1f).padding(start = 8.dp)
             )
 
@@ -348,26 +348,26 @@ private fun CalendarModernTopBar(
                     .scale(pulseScale)
                     .clip(CircleShape)
                     .background(
-                        if (isTodayPulsing) Color(0xFF6366F1).copy(alpha = 0.15f)
+                        if (isTodayPulsing) PxColors.Primary.copy(alpha = 0.15f)
                         else Color.Transparent
                     )
             ) {
                 IconButton(onClick = onToday) {
-                    Icon(Icons.Outlined.Today, "Today", tint = Color(0xFF6366F1))
+                    Icon(Icons.Outlined.Today, "Today", tint = PxColors.Primary)
                 }
             }
 
             IconButton(onClick = onVoiceInput) {
-                Icon(Icons.Outlined.Mic, "Voice input", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.Mic, "Voice input", tint = PxColors.OnSurface)
             }
             IconButton(onClick = onDatePicker) {
-                Icon(Icons.Outlined.DateRange, "Date picker", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.DateRange, "Date picker", tint = PxColors.OnSurface)
             }
             IconButton(onClick = onPrevious) {
-                Icon(Icons.Outlined.ChevronLeft, "Previous", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.ChevronLeft, "Previous", tint = PxColors.OnSurface)
             }
             IconButton(onClick = onNext) {
-                Icon(Icons.Outlined.ChevronRight, "Next", tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.ChevronRight, "Next", tint = PxColors.OnSurface)
             }
         }
 
@@ -397,7 +397,7 @@ private fun ViewSwitcherRow(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.SurfaceVariant)
             .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
@@ -405,7 +405,7 @@ private fun ViewSwitcherRow(
             val isSelected = currentView == view
 
             val bgColor by animateColorAsState(
-                targetValue = if (isSelected) Color(0xFF6366F1) else Color.Transparent,
+                targetValue = if (isSelected) PxColors.Primary else Color.Transparent,
                 animationSpec = tween(200),
                 label = "viewBg"
             )
@@ -421,13 +421,13 @@ private fun ViewSwitcherRow(
                 Icon(
                     imageVector = icon,
                     contentDescription = label,
-                    tint = if (isSelected) Color.White else Color(0xFF888899),
+                    tint = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                     modifier = Modifier.size(18.dp)
                 )
                 Text(
                     text = label,
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (isSelected) Color.White else Color(0xFF888899)
+                    color = if (isSelected) Color.White else PxColors.OnSurfaceDim
                 )
             }
         }

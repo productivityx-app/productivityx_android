@@ -129,14 +129,14 @@ fun AddEditTaskSheet(
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = sheetState,
-        containerColor = Color(0xFF1A1A24),
+        containerColor = PxColors.SurfaceVariant,
         dragHandle = {
             Box(
                 modifier = Modifier
                     .padding(top = 12.dp, bottom = 8.dp)
                     .size(width = 40.dp, height = 4.dp)
                     .clip(RoundedCornerShape(50.dp))
-                    .background(Color(0xFF252533))
+                    .background(PxColors.SurfaceVariant)
             )
         }
     ) {
@@ -181,11 +181,11 @@ private fun AddEditTaskContent(
             value = uiState.title,
             onValueChange = { onEvent(AddEditTaskEvent.TitleChanged(it)) },
             textStyle = TextStyle(
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold
             ),
-            cursorBrush = SolidColor(Color(0xFF6366F1)),
+            cursorBrush = SolidColor(PxColors.Primary),
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences,
                 imeAction = ImeAction.Next
@@ -199,7 +199,7 @@ private fun AddEditTaskContent(
                     if (uiState.title.isEmpty()) {
                         Text(
                             "Task title\u2026",
-                            color = Color(0xFF888899),
+                            color = PxColors.OnSurfaceDim,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -212,20 +212,20 @@ private fun AddEditTaskContent(
         if (uiState.titleError != null) {
             Text(
                 text = uiState.titleError,
-                color = Color(0xFFEF4444),
+                color = PxColors.Error,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(horizontal = 20.dp)
             )
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Description field
         BasicTextField(
             value = uiState.description,
             onValueChange = { onEvent(AddEditTaskEvent.DescriptionChanged(it)) },
-            textStyle = TextStyle(color = Color(0xFFCCCCD8), fontSize = 15.sp),
-            cursorBrush = SolidColor(Color(0xFF6366F1)),
+            textStyle = TextStyle(color = PxColors.OnSurface, fontSize = 15.sp),
+            cursorBrush = SolidColor(PxColors.Primary),
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences,
                 imeAction = ImeAction.Default
@@ -236,14 +236,14 @@ private fun AddEditTaskContent(
             decorationBox = { innerTextField ->
                 Box {
                     if (uiState.description.isEmpty()) {
-                        Text("Add description\u2026", color = Color(0xFF888899), fontSize = 15.sp)
+                        Text("Add description\u2026", color = PxColors.OnSurfaceDim, fontSize = 15.sp)
                     }
                     innerTextField()
                 }
             }
         )
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Priority row with visual matrix
         TaskSettingRow(
@@ -287,7 +287,7 @@ private fun AddEditTaskContent(
                     ) {
                         Text(
                             text = priority.displayLabel,
-                            color = if (selected) color else Color(0xFF888899),
+                            color = if (selected) color else PxColors.OnSurfaceDim,
                             fontSize = 12.sp,
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
                         )
@@ -296,11 +296,11 @@ private fun AddEditTaskContent(
             }
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Tags section
         TaskSettingRow(
-            icon = { Icon(Icons.Outlined.Label, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            icon = { Icon(Icons.Outlined.Label, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
             label = "Tags",
             onClick = { showTagsExpanded = !showTagsExpanded },
             trailing = {
@@ -310,11 +310,11 @@ private fun AddEditTaskContent(
                             TagChip(tag = tag)
                         }
                         if (uiState.tags.size > 3) {
-                            Text("+${uiState.tags.size - 3}", color = Color(0xFF888899), fontSize = 11.sp)
+                            Text("+${uiState.tags.size - 3}", color = PxColors.OnSurfaceDim, fontSize = 11.sp)
                         }
                     }
                 } else {
-                    Text("Add tags", color = Color(0xFF888899), fontSize = 14.sp)
+                    Text("Add tags", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                 }
             }
         )
@@ -339,7 +339,7 @@ private fun AddEditTaskContent(
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(50.dp))
-                                    .background(Color(0xFF252533))
+                                    .background(PxColors.SurfaceVariant)
                                     .clickable { onEvent(AddEditTaskEvent.RemoveTag(tag)) }
                                     .padding(horizontal = 8.dp, vertical = 4.dp)
                             ) {
@@ -347,8 +347,8 @@ private fun AddEditTaskContent(
                                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(tag, color = Color(0xFFCCCCD8), fontSize = 12.sp)
-                                    Icon(Icons.Outlined.Close, null, tint = Color(0xFF888899), modifier = Modifier.size(12.dp))
+                                    Text(tag, color = PxColors.OnSurface, fontSize = 12.sp)
+                                    Icon(Icons.Outlined.Close, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(12.dp))
                                 }
                             }
                         }
@@ -360,7 +360,7 @@ private fun AddEditTaskContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0xFF252533))
+                        .background(PxColors.SurfaceVariant)
                         .padding(horizontal = 12.dp, vertical = 6.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -368,8 +368,8 @@ private fun AddEditTaskContent(
                     BasicTextField(
                         value = uiState.newTag,
                         onValueChange = { onEvent(AddEditTaskEvent.NewTagChanged(it)) },
-                        textStyle = TextStyle(color = Color(0xFFCCCCD8), fontSize = 14.sp),
-                        cursorBrush = SolidColor(Color(0xFF6366F1)),
+                        textStyle = TextStyle(color = PxColors.OnSurface, fontSize = 14.sp),
+                        cursorBrush = SolidColor(PxColors.Primary),
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Words,
                             imeAction = ImeAction.Done
@@ -383,7 +383,7 @@ private fun AddEditTaskContent(
                         decorationBox = { inner ->
                             Box {
                                 if (uiState.newTag.isEmpty()) {
-                                    Text("Add tag\u2026", color = Color(0xFF888899), fontSize = 14.sp)
+                                    Text("Add tag\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                                 }
                                 inner()
                             }
@@ -401,7 +401,7 @@ private fun AddEditTaskContent(
                         Icon(
                             Icons.Outlined.Add,
                             "Add tag",
-                            tint = if (uiState.newTag.isNotBlank()) Color(0xFF6366F1) else Color(0xFF888899),
+                            tint = if (uiState.newTag.isNotBlank()) PxColors.Primary else PxColors.OnSurfaceDim,
                             modifier = Modifier.size(16.dp)
                         )
                     }
@@ -409,11 +409,11 @@ private fun AddEditTaskContent(
             }
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Due date row
         TaskSettingRow(
-            icon = { Icon(Icons.Outlined.CalendarMonth, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            icon = { Icon(Icons.Outlined.CalendarMonth, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
             label = "Due date",
             onClick = { showDatePicker = true },
             trailing = {
@@ -423,7 +423,7 @@ private fun AddEditTaskContent(
                 ) {
                     Text(
                         text = uiState.dueDate?.toString() ?: "Set date",
-                        color = if (uiState.dueDate != null) Color(0xFFCCCCD8) else Color(0xFF888899),
+                        color = if (uiState.dueDate != null) PxColors.OnSurface else PxColors.OnSurfaceDim,
                         fontSize = 14.sp
                     )
                     if (uiState.dueDate != null) {
@@ -431,7 +431,7 @@ private fun AddEditTaskContent(
                             onClick = { onEvent(AddEditTaskEvent.DueDateChanged(null)) },
                             modifier = Modifier.size(20.dp)
                         ) {
-                            Icon(Icons.Outlined.Close, stringResource(R.string.cd_clear_input), tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
+                            Icon(Icons.Outlined.Close, stringResource(R.string.cd_clear_input), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(14.dp))
                         }
                     }
                 }
@@ -441,15 +441,15 @@ private fun AddEditTaskContent(
         // Due time row (only visible if date is set)
         AnimatedVisibility(visible = uiState.dueDate != null) {
             Column {
-                Divider(color = Color(0xFF252533), thickness = 1.dp)
+                Divider(color = PxColors.Outline, thickness = 1.dp)
                 TaskSettingRow(
-                    icon = { Icon(Icons.Outlined.AccessTime, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+                    icon = { Icon(Icons.Outlined.AccessTime, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
                     label = "Due time",
                     onClick = { showTimePicker = true },
                     trailing = {
                         Text(
                             text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "\u2014" } } ?: "Set time",
-                            color = if (uiState.dueTime != null) Color(0xFFCCCCD8) else Color(0xFF888899),
+                            color = if (uiState.dueTime != null) PxColors.OnSurface else PxColors.OnSurfaceDim,
                             fontSize = 14.sp
                         )
                     }
@@ -457,11 +457,11 @@ private fun AddEditTaskContent(
             }
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Reminder row
         TaskSettingRow(
-            icon = { Icon(Icons.Outlined.Notifications, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            icon = { Icon(Icons.Outlined.Notifications, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
             label = "Reminder",
             trailing = {
                 Switch(
@@ -475,7 +475,7 @@ private fun AddEditTaskContent(
                     },
                     colors = SwitchDefaults.colors(
                         checkedThumbColor = Color.White,
-                        checkedTrackColor = Color(0xFF6366F1)
+                        checkedTrackColor = PxColors.Primary
                     )
                 )
             }
@@ -483,9 +483,9 @@ private fun AddEditTaskContent(
 
         // Reminder minutes (smart defaults)
         if (uiState.reminderAt != null) {
-            Divider(color = Color(0xFF252533), thickness = 1.dp)
+            Divider(color = PxColors.Outline, thickness = 1.dp)
             TaskSettingRow(
-                icon = { Icon(Icons.Outlined.Notifications, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+                icon = { Icon(Icons.Outlined.Notifications, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
                 label = "Remind before",
                 trailing = {
                     Row(
@@ -497,13 +497,13 @@ private fun AddEditTaskContent(
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(4.dp))
-                                    .background(if (isSelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                    .background(if (isSelected) PxColors.Primary else PxColors.SurfaceVariant)
                                     .clickable { onEvent(AddEditTaskEvent.ReminderMinutesChanged(mins)) }
                                     .padding(horizontal = 8.dp, vertical = 4.dp)
                             ) {
                                 Text(
                                     "${mins}m",
-                                    color = if (isSelected) Color.White else Color(0xFF888899),
+                                    color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                                     fontSize = 11.sp,
                                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
                                 )
@@ -514,11 +514,11 @@ private fun AddEditTaskContent(
             )
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Recurrence section
         TaskSettingRow(
-            icon = { Icon(Icons.Outlined.Repeat, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            icon = { Icon(Icons.Outlined.Repeat, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
             label = "Repeat",
             onClick = { showRecurrenceExpanded = !showRecurrenceExpanded },
             trailing = {
@@ -526,7 +526,7 @@ private fun AddEditTaskContent(
                     text = if (uiState.recurrenceType != RecurrenceType.NONE) {
                         uiState.recurrenceType.name.lowercase().replaceFirstChar { it.uppercase() }
                     } else "Never",
-                    color = Color(0xFFCCCCD8),
+                    color = PxColors.OnSurface,
                     fontSize = 14.sp
                 )
             }
@@ -561,13 +561,13 @@ private fun AddEditTaskContent(
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(6.dp))
-                                .background(if (isSelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                .background(if (isSelected) PxColors.Primary else PxColors.SurfaceVariant)
                                 .clickable { onEvent(AddEditTaskEvent.RecurrenceTypeChanged(type)) }
                                 .padding(horizontal = 10.dp, vertical = 6.dp)
                         ) {
                             Text(
                                 text = label,
-                                color = if (isSelected) Color.White else Color(0xFF888899),
+                                color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                                 fontSize = 12.sp,
                                 fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
                             )
@@ -588,7 +588,7 @@ private fun AddEditTaskContent(
                                 modifier = Modifier
                                     .size(32.dp)
                                     .clip(RoundedCornerShape(50.dp))
-                                    .background(if (isDaySelected) Color(0xFF6366F1) else Color(0xFF252533))
+                                    .background(if (isDaySelected) PxColors.Primary else PxColors.SurfaceVariant)
                                     .clickable {
                                         val currentDays = uiState.recurrenceDaysOfWeek?.toMutableList() ?: mutableListOf()
                                         if (isDaySelected) currentDays.remove(dayNum) else currentDays.add(dayNum)
@@ -596,7 +596,7 @@ private fun AddEditTaskContent(
                                     },
                                 contentAlignment = Alignment.Center
                             ) {
-                                Text(label, color = if (isDaySelected) Color.White else Color(0xFF888899), fontSize = 11.sp, fontWeight = if (isDaySelected) FontWeight.Bold else FontWeight.Normal)
+                                Text(label, color = if (isDaySelected) Color.White else PxColors.OnSurfaceDim, fontSize = 11.sp, fontWeight = if (isDaySelected) FontWeight.Bold else FontWeight.Normal)
                             }
                         }
                     }
@@ -604,11 +604,11 @@ private fun AddEditTaskContent(
             }
         }
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Estimated time row
         TaskSettingRow(
-            icon = { Icon(Icons.Outlined.Timer, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+            icon = { Icon(Icons.Outlined.Timer, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
             label = "Estimated time",
             trailing = {
                 MinuteStepper(
@@ -618,17 +618,17 @@ private fun AddEditTaskContent(
             }
         )
 
-        Divider(color = Color(0xFF252533), thickness = 1.dp)
+        Divider(color = PxColors.Outline, thickness = 1.dp)
 
         // Status row (only in edit mode)
         if (uiState.isEditMode) {
             TaskSettingRow(
-                icon = { Icon(Icons.Outlined.Timer, null, tint = Color(0xFF888899), modifier = Modifier.size(20.dp)) },
+                icon = { Icon(Icons.Outlined.Timer, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
                 label = "Status",
                 trailing = {
                     Text(
                         text = uiState.status.displayLabel,
-                        color = Color(0xFFCCCCD8),
+                        color = PxColors.OnSurface,
                         fontSize = 14.sp
                     )
                 }
@@ -648,7 +648,7 @@ private fun AddEditTaskContent(
                 }
             }
 
-            Divider(color = Color(0xFF252533), thickness = 1.dp)
+            Divider(color = PxColors.Outline, thickness = 1.dp)
         }
 
         // Subtasks (only in edit mode)
@@ -660,7 +660,7 @@ private fun AddEditTaskContent(
                 onAddSubtask = { onEvent(AddEditTaskEvent.AddSubtask) },
                 onRemoveSubtask = { id -> onEvent(AddEditTaskEvent.RemoveSubtask(id)) }
             )
-            Divider(color = Color(0xFF252533), thickness = 1.dp)
+            Divider(color = PxColors.Outline, thickness = 1.dp)
         }
 
         // Bottom action buttons
@@ -674,7 +674,7 @@ private fun AddEditTaskContent(
             if (uiState.isEditMode) {
                 TextButton(
                     onClick = { showDeleteConfirm = true },
-                    colors = ButtonDefaults.textButtonColors(contentColor = Color(0xFFEF4444))
+                    colors = ButtonDefaults.textButtonColors(contentColor = PxColors.Error)
                 ) {
                     Icon(Icons.Outlined.Delete, null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
@@ -687,7 +687,7 @@ private fun AddEditTaskContent(
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(10.dp))
-                    .background(if (uiState.canSave) Color(0xFF6366F1) else Color(0xFF252533))
+                    .background(if (uiState.canSave) PxColors.Primary else PxColors.SurfaceVariant)
                     .clickable(enabled = uiState.canSave && !uiState.isSaving) {
                         onEvent(AddEditTaskEvent.Save)
                     }
@@ -703,7 +703,7 @@ private fun AddEditTaskContent(
                 } else {
                     Text(
                         text = if (uiState.isEditMode) "Update" else "Create",
-                        color = if (uiState.canSave) Color.White else Color(0xFF888899),
+                        color = if (uiState.canSave) Color.White else PxColors.OnSurfaceDim,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 15.sp
                     )
@@ -733,11 +733,11 @@ private fun AddEditTaskContent(
                         if (date != null) onEvent(AddEditTaskEvent.DueDateChanged(date))
                     }
                     showDatePicker = false
-                }) { Text("OK", color = Color(0xFF6366F1)) }
+                }) { Text("OK", color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         ) { DatePicker(state = datePickerState) }
@@ -751,18 +751,18 @@ private fun AddEditTaskContent(
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(AddEditTaskEvent.DueTimeChanged(
                         LocalTime.of(timePickerState.hour, timePickerState.minute)
                     ))
                     showTimePicker = false
-                }) { Text("OK", color = Color(0xFF6366F1)) }
+                }) { Text("OK", color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showTimePicker = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             },
             text = { TimePicker(state = timePickerState) }
@@ -773,22 +773,22 @@ private fun AddEditTaskContent(
     if (showDeleteConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             title = {
-                Text("Delete task?", color = Color(0xFFEEEEF5), fontWeight = FontWeight.SemiBold)
+                Text("Delete task?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
             },
             text = {
-                Text("This task will be moved to trash.", color = Color(0xFF888899))
+                Text("This task will be moved to trash.", color = PxColors.OnSurfaceDim)
             },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteConfirm = false
                     onEvent(AddEditTaskEvent.Delete)
-                }) { Text("Delete", color = Color(0xFFEF4444), fontWeight = FontWeight.SemiBold) }
+                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -816,7 +816,7 @@ private fun PriorityButton(
     ) {
         Text(
             text = label,
-            color = if (isSelected) color else Color(0xFF888899),
+            color = if (isSelected) color else PxColors.OnSurfaceDim,
             fontSize = 12.sp,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
         )
@@ -841,7 +841,7 @@ private fun SubtaskSection(
     ) {
         Text(
             "Subtasks",
-            color = Color(0xFF888899),
+            color = PxColors.OnSurfaceDim,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium
         )
@@ -854,7 +854,7 @@ private fun SubtaskSection(
             ) {
                 Text(
                     text = subtask.title,
-                    color = Color(0xFFCCCCD8),
+                    color = PxColors.OnSurface,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f)
                 )
@@ -862,7 +862,7 @@ private fun SubtaskSection(
                     onClick = { onRemoveSubtask(subtask.id) },
                     modifier = Modifier.size(28.dp)
                 ) {
-                    Icon(Icons.Outlined.Close, stringResource(R.string.cd_remove_subtask), tint = Color(0xFF888899), modifier = Modifier.size(14.dp))
+                    Icon(Icons.Outlined.Close, stringResource(R.string.cd_remove_subtask), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(14.dp))
                 }
             }
         }
@@ -872,7 +872,7 @@ private fun SubtaskSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color(0xFF252533))
+                .background(PxColors.SurfaceVariant)
                 .padding(horizontal = 12.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -880,8 +880,8 @@ private fun SubtaskSection(
             BasicTextField(
                 value = newSubtaskTitle,
                 onValueChange = onNewTitleChange,
-                textStyle = TextStyle(color = Color(0xFFCCCCD8), fontSize = 14.sp),
-                cursorBrush = SolidColor(Color(0xFF6366F1)),
+                textStyle = TextStyle(color = PxColors.OnSurface, fontSize = 14.sp),
+                cursorBrush = SolidColor(PxColors.Primary),
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.Sentences,
                     imeAction = ImeAction.Done
@@ -891,7 +891,7 @@ private fun SubtaskSection(
                 decorationBox = { inner ->
                     Box {
                         if (newSubtaskTitle.isEmpty()) {
-                            Text("Add subtask\u2026", color = Color(0xFF888899), fontSize = 14.sp)
+                            Text("Add subtask\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                         }
                         inner()
                     }
@@ -905,7 +905,7 @@ private fun SubtaskSection(
                 Icon(
                     Icons.Outlined.Add,
                     stringResource(R.string.cd_add),
-                    tint = if (newSubtaskTitle.isNotBlank()) Color(0xFF6366F1) else Color(0xFF888899),
+                    tint = if (newSubtaskTitle.isNotBlank()) PxColors.Primary else PxColors.OnSurfaceDim,
                     modifier = Modifier.size(18.dp)
                 )
             }
@@ -921,8 +921,8 @@ private fun StatusChipCompact(
     selected: Boolean,
     onClick: () -> Unit
 ) {
-    val bgColor = if (selected) Color(0xFF6366F1) else Color(0xFF252533)
-    val textColor = if (selected) Color.White else Color(0xFF888899)
+    val bgColor = if (selected) PxColors.Primary else PxColors.SurfaceVariant
+    val textColor = if (selected) Color.White else PxColors.OnSurfaceDim
 
     Box(
         modifier = Modifier

@@ -136,14 +136,14 @@ fun AddEditEventSheet(
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = sheetState,
-        containerColor = Color(0xFF1A1A24),
+        containerColor = PxColors.SurfaceVariant,
         dragHandle = {
             Box(
                 modifier = Modifier
                     .padding(vertical = 12.dp)
                     .size(width = 36.dp, height = 4.dp)
                     .clip(RoundedCornerShape(50.dp))
-                    .background(Color(0xFF252533))
+                    .background(PxColors.SurfaceVariant)
             )
         }
     ) {
@@ -262,7 +262,7 @@ private fun AddEditEventSheetContent(
             )
         }
 
-        HorizontalDivider(color = Color(0xFF252533), modifier = Modifier.padding(vertical = 4.dp))
+        HorizontalDivider(color = PxColors.Outline, modifier = Modifier.padding(vertical = 4.dp))
 
         SheetRow(
             icon = Icons.Outlined.CalendarMonth,
@@ -276,17 +276,17 @@ private fun AddEditEventSheetContent(
                 Text(
                     text = runCatching { dateFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "-" },
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFEEEEF5)
+                    color = PxColors.OnBackground
                 )
                 if (!state.isAllDay) {
-                    Text("·", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF888899))
+                    Text("·", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurfaceDim)
                     Text(
                         text = runCatching { timeFormatter.format(Instant.ofEpochMilli(state.startMs)) }.getOrElse { "-" },
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFFEEEEF5)
+                        color = PxColors.OnBackground
                     )
                 }
-                Icon(Icons.Outlined.ChevronRight, null, tint = Color(0xFF888899), modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.ChevronRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
             }
         }
 
@@ -302,17 +302,17 @@ private fun AddEditEventSheetContent(
                 Text(
                     text = runCatching { dateFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "-" },
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFEEEEF5)
+                    color = PxColors.OnBackground
                 )
                 if (!state.isAllDay) {
-                    Text("·", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF888899))
+                    Text("·", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurfaceDim)
                     Text(
                         text = runCatching { timeFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "-" },
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFFEEEEF5)
+                        color = PxColors.OnBackground
                     )
                 }
-                Icon(Icons.Outlined.ChevronRight, null, tint = Color(0xFF888899), modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.ChevronRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
             }
         }
 
@@ -322,14 +322,14 @@ private fun AddEditEventSheetContent(
                 onCheckedChange = { onEvent(AddEditEventUiEvent.AllDayToggled(it)) },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.White,
-                    checkedTrackColor = Color(0xFF6366F1),
-                    uncheckedThumbColor = Color(0xFF888899),
-                    uncheckedTrackColor = Color(0xFF252533)
+                    checkedTrackColor = PxColors.Primary,
+                    uncheckedThumbColor = PxColors.OnSurfaceDim,
+                    uncheckedTrackColor = PxColors.SurfaceVariant
                 )
             )
         }
 
-        HorizontalDivider(color = Color(0xFF252533), modifier = Modifier.padding(vertical = 4.dp))
+        HorizontalDivider(color = PxColors.Outline, modifier = Modifier.padding(vertical = 4.dp))
 
         SheetRow(
             icon = Icons.Outlined.LocationOn,
@@ -342,7 +342,7 @@ private fun AddEditEventSheetContent(
             Text(
                 text = state.location.ifBlank { "Add location" },
                 style = MaterialTheme.typography.bodySmall,
-                color = if (state.location.isBlank()) Color(0xFF888899) else Color(0xFFEEEEF5)
+                color = if (state.location.isBlank()) PxColors.OnSurfaceDim else PxColors.OnBackground
             )
         }
 
@@ -357,7 +357,7 @@ private fun AddEditEventSheetContent(
             Text(
                 text = state.description.ifBlank { "Add description" },
                 style = MaterialTheme.typography.bodySmall,
-                color = if (state.description.isBlank()) Color(0xFF888899) else Color(0xFFEEEEF5)
+                color = if (state.description.isBlank()) PxColors.OnSurfaceDim else PxColors.OnBackground
             )
         }
 
@@ -370,13 +370,13 @@ private fun AddEditEventSheetContent(
                 Text(
                     text = "${state.attendees.size} attendee(s)",
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFFEEEEF5)
+                    color = PxColors.OnBackground
                 )
             } else {
                 Text(
                     text = "Add attendees",
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
             }
         }
@@ -392,7 +392,7 @@ private fun AddEditEventSheetContent(
             Text(
                 text = state.meetingUrl?.take(30)?.plus("...") ?: "Add link",
                 style = MaterialTheme.typography.bodySmall,
-                color = if (state.meetingUrl != null) Color(0xFFEEEEF5) else Color(0xFF888899)
+                color = if (state.meetingUrl != null) PxColors.OnBackground else PxColors.OnSurfaceDim
             )
         }
 
@@ -407,11 +407,11 @@ private fun AddEditEventSheetContent(
             Text(
                 text = if (state.travelTimeMinutes != null) "${state.travelTimeMinutes} min" else "Add estimate",
                 style = MaterialTheme.typography.bodySmall,
-                color = if (state.travelTimeMinutes != null) Color(0xFFEEEEF5) else Color(0xFF888899)
+                color = if (state.travelTimeMinutes != null) PxColors.OnBackground else PxColors.OnSurfaceDim
             )
         }
 
-        HorizontalDivider(color = Color(0xFF252533), modifier = Modifier.padding(vertical = 4.dp))
+        HorizontalDivider(color = PxColors.Outline, modifier = Modifier.padding(vertical = 4.dp))
 
         SheetRow(
             icon = Icons.Outlined.Repeat,
@@ -422,9 +422,9 @@ private fun AddEditEventSheetContent(
                 Text(
                     text = recurrenceLabel(state.recurrenceRule),
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
-                Icon(Icons.Outlined.ChevronRight, null, tint = Color(0xFF888899), modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.ChevronRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
             }
         }
 
@@ -452,9 +452,9 @@ private fun AddEditEventSheetContent(
                 Text(
                     text = reminderLabel,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
-                Icon(Icons.Outlined.ChevronRight, null, tint = Color(0xFF888899), modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.ChevronRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
             }
         }
 
@@ -558,7 +558,7 @@ private fun AddEditEventSheetContent(
                 onDismissRequest = { showStartTimePicker = false },
                 title = { Text("Select time", color = Color.White) },
                 text = { TimePicker(state = timePickerState) },
-                containerColor = Color(0xFF1A1A24),
+                containerColor = PxColors.SurfaceVariant,
                 confirmButton = {
                     TextButton(onClick = {
                         val date = LocalDate.ofInstant(safeInstant, ZoneId.systemDefault())
@@ -618,7 +618,7 @@ private fun AddEditEventSheetContent(
                 onDismissRequest = { showEndTimePicker = false },
                 title = { Text("Select time", color = Color.White) },
                 text = { TimePicker(state = timePickerState) },
-                containerColor = Color(0xFF1A1A24),
+                containerColor = PxColors.SurfaceVariant,
                 confirmButton = {
                     TextButton(onClick = {
                         val date = LocalDate.ofInstant(safeEndInstant, ZoneId.systemDefault())
@@ -648,11 +648,11 @@ private fun AddEditEventSheetContent(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
-                        cursorColor = Color(0xFF6366F1)
+                        cursorColor = PxColors.Primary
                     )
                 )
             },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.LocationChanged(locationDraft))
@@ -677,12 +677,12 @@ private fun AddEditEventSheetContent(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
-                        cursorColor = Color(0xFF6366F1)
+                        cursorColor = PxColors.Primary
                     ),
                     modifier = Modifier.height(120.dp)
                 )
             },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.DescriptionChanged(descriptionDraft))
@@ -709,7 +709,7 @@ private fun AddEditEventSheetContent(
                             Text(
                                 text = email,
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = Color(0xFFEEEEF5),
+                                color = PxColors.OnBackground,
                                 modifier = Modifier.weight(1f)
                             )
                             IconButton(onClick = { onEvent(AddEditEventUiEvent.RemoveAttendee(email)) }) {
@@ -733,7 +733,7 @@ private fun AddEditEventSheetContent(
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedTextColor = Color.White,
                                 unfocusedTextColor = Color.White,
-                                cursorColor = Color(0xFF6366F1)
+                                cursorColor = PxColors.Primary
                             ),
                             modifier = Modifier.weight(1f)
                         )
@@ -743,12 +743,12 @@ private fun AddEditEventSheetContent(
                                 attendeeDraft = ""
                             }
                         }) {
-                            Icon(Icons.Outlined.Add, "Add", tint = Color(0xFF6366F1))
+                            Icon(Icons.Outlined.Add, "Add", tint = PxColors.Primary)
                         }
                     }
                 }
             },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = { showAttendeeDialog = false }) { Text("Done") }
             }
@@ -768,11 +768,11 @@ private fun AddEditEventSheetContent(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
-                        cursorColor = Color(0xFF6366F1)
+                        cursorColor = PxColors.Primary
                     )
                 )
             },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.MeetingUrlChanged(meetingUrlDraft))
@@ -799,11 +799,11 @@ private fun AddEditEventSheetContent(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
-                        cursorColor = Color(0xFF6366F1)
+                        cursorColor = PxColors.Primary
                     )
                 )
             },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.TravelTimeChanged(travelTimeDraft.toIntOrNull()))
@@ -833,7 +833,7 @@ private fun TemplateQuickApply(
         Text(
             text = "Quick templates",
             style = MaterialTheme.typography.labelMedium,
-            color = Color(0xFF888899),
+            color = PxColors.OnSurfaceDim,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Row(
@@ -847,8 +847,8 @@ private fun TemplateQuickApply(
                         .weight(1f)
                         .clip(RoundedCornerShape(8.dp))
                         .background(
-                            if (isSelected) Color(0xFF6366F1).copy(alpha = 0.2f)
-                            else Color(0xFF252533)
+                            if (isSelected) PxColors.Primary.copy(alpha = 0.2f)
+                            else PxColors.SurfaceVariant
                         )
                         .clickable { onTemplateSelected(template) }
                         .padding(vertical = 8.dp),
@@ -858,13 +858,13 @@ private fun TemplateQuickApply(
                         Icon(
                             imageVector = icon,
                             contentDescription = template.label,
-                            tint = if (isSelected) Color(0xFF6366F1) else Color(0xFF888899),
+                            tint = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                             modifier = Modifier.size(20.dp)
                         )
                         Text(
                             text = template.label,
                             style = MaterialTheme.typography.labelSmall,
-                            color = if (isSelected) Color(0xFF6366F1) else Color(0xFF888899)
+                            color = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim
                         )
                     }
                 }
@@ -885,7 +885,7 @@ private fun SmartTitleSuggestions(
             Text(
                 text = "Suggestions",
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         }
         Spacer(Modifier.height(4.dp))
@@ -897,14 +897,14 @@ private fun SmartTitleSuggestions(
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(50.dp))
-                        .background(Color(0xFF252533))
+                        .background(PxColors.SurfaceVariant)
                         .clickable { onSuggestion(suggestion) }
                         .padding(horizontal = 10.dp, vertical = 4.dp)
                 ) {
                     Text(
                         text = suggestion,
                         style = MaterialTheme.typography.labelSmall,
-                        color = Color(0xFF888899)
+                        color = PxColors.OnSurfaceDim
                     )
                 }
             }
@@ -960,14 +960,14 @@ private fun SheetRow(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color(0xFF888899),
+            tint = PxColors.OnSurfaceDim,
             modifier = Modifier.size(20.dp)
         )
         Spacer(Modifier.width(12.dp))
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
             modifier = Modifier.weight(1f)
         )
         trailing()
@@ -1010,11 +1010,11 @@ private fun RecurrenceChip(
     onClick: () -> Unit
 ) {
     val bgColor by animateColorAsState(
-        targetValue = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533),
+        targetValue = if (isSelected) PxColors.Primary else PxColors.SurfaceVariant,
         label = "chipBg"
     )
     val textColor by animateColorAsState(
-        targetValue = if (isSelected) Color.White else Color(0xFF888899),
+        targetValue = if (isSelected) Color.White else PxColors.OnSurfaceDim,
         label = "chipText"
     )
 

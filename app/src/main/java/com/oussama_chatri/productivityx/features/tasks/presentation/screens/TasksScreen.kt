@@ -422,7 +422,7 @@ private fun SearchBar(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(Color(0xFF252533))
+            .background(PxColors.SurfaceVariant)
             .clickable { }
             .padding(horizontal = 12.dp, vertical = 8.dp)
     ) {
@@ -433,12 +433,12 @@ private fun SearchBar(
             Icon(
                 Icons.Outlined.FilterList,
                 contentDescription = "Search",
-                tint = Color(0xFF888899),
+                tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(16.dp)
             )
             Text(
                 text = if (query.isBlank()) "Search or filter tasks\u2026" else query,
-                color = if (query.isBlank()) Color(0xFF888899) else Color(0xFFCCCCD8),
+                color = if (query.isBlank()) PxColors.OnSurfaceDim else PxColors.OnSurface,
                 fontSize = 14.sp
             )
         }
@@ -578,7 +578,7 @@ private fun SwipeableTaskItem(
                     .background(
                         when {
                             isCompleteSwipe -> PxColors.Success
-                            isDeleteSwipe -> MaterialTheme.colorScheme.error
+                            isDeleteSwipe -> PxColors.Error
                             else -> Color.Transparent
                         }
                     )

@@ -34,6 +34,7 @@ import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 data class TimeSlot(
     val startHour: Int,
@@ -94,13 +95,13 @@ fun AvailabilityView(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFF1A1A24))
+            .background(PxColors.SurfaceVariant)
             .padding(12.dp)
     ) {
         Text(
             text = "Free/Busy & Suggested Times",
             style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-            color = Color(0xFFEEEEF5)
+            color = PxColors.OnBackground
         )
         Spacer(Modifier.height(8.dp))
 
@@ -108,7 +109,7 @@ fun AvailabilityView(
             Text(
                 text = "No available slots found for this week",
                 style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         } else {
             suggestedSlots.forEach { (day, slot) ->
@@ -129,7 +130,7 @@ fun AvailabilityView(
                     Text(
                         text = "$dayAbbr ${slot.startHour}:00 - ${slot.endHour}:00",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFFCCCCD8)
+                        color = PxColors.OnSurface
                     )
                     Text(
                         text = "Free",

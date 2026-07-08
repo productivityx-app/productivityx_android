@@ -137,7 +137,7 @@ fun TaskDetailScreen(
     }
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -146,7 +146,7 @@ fun TaskDetailScreen(
                         text = uiState.task?.title?.take(30)?.plus(
                             if ((uiState.task?.title?.length ?: 0) > 30) "\u2026" else ""
                         ) ?: "Task",
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = PxColors.OnBackground,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 1
@@ -154,7 +154,7 @@ fun TaskDetailScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = MaterialTheme.colorScheme.onSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
                 actions = {
@@ -164,7 +164,7 @@ fun TaskDetailScreen(
                                 Icon(Icons.Outlined.Edit, stringResource(R.string.cd_edit), tint = PxColors.Primary)
                             }
                             IconButton(onClick = { showDeleteConfirm = true }) {
-                                Icon(Icons.Outlined.Delete, stringResource(R.string.cd_delete), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Icon(Icons.Outlined.Delete, stringResource(R.string.cd_delete), tint = PxColors.OnSurfaceDim)
                             }
                         } else {
                             IconButton(onClick = { viewModel.onEvent(TaskDetailEvent.RestoreTask) }) {
@@ -211,18 +211,18 @@ fun TaskDetailScreen(
     if (showDeleteConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
-            containerColor = MaterialTheme.colorScheme.surface,
-            title = { Text("Delete task?", color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight.SemiBold) },
-            text = { Text("This task will be moved to trash.", color = MaterialTheme.colorScheme.onSurfaceVariant) },
+            containerColor = PxColors.Surface,
+            title = { Text("Delete task?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold) },
+            text = { Text("This task will be moved to trash.", color = PxColors.OnSurfaceDim) },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteConfirm = false
                     viewModel.onEvent(TaskDetailEvent.DeleteTask)
-                }) { Text("Delete", color = MaterialTheme.colorScheme.error, fontWeight = FontWeight.SemiBold) }
+                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -281,12 +281,12 @@ private fun TaskDetailContent(
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(50.dp))
-                        .background(Color(0xFF252533))
+                        .background(PxColors.SurfaceVariant)
                         .padding(horizontal = 8.dp, vertical = 3.dp)
                 ) {
                     Text(
                         text = task.recurrenceType.name.lowercase().replaceFirstChar { it.uppercase() },
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Medium
                     )
@@ -341,7 +341,7 @@ private fun TaskDetailContent(
                         icon = Icons.Outlined.CalendarMonth,
                         label = "Due date",
                         value = task.dueDate.toString(),
-                        valueColor = if (task.isOverdue) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface,
+                        valueColor = if (task.isOverdue) PxColors.Error else PxColors.OnSurface,
                         onClick = { showDatePicker = true }
                     )
                 }
@@ -435,11 +435,11 @@ private fun TaskDetailContent(
                         if (date != null) onEvent(TaskDetailEvent.UpdateDueDate(date))
                     }
                     showDatePicker = false
-                }) { Text("OK", color = Color(0xFF6366F1)) }
+                }) { Text("OK", color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             }
         ) { DatePicker(state = datePickerState) }
@@ -452,18 +452,18 @@ private fun TaskDetailContent(
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
-            containerColor = Color(0xFF1A1A24),
+            containerColor = PxColors.SurfaceVariant,
             confirmButton = {
                 TextButton(onClick = {
                     onEvent(TaskDetailEvent.UpdateDueTime(
                         LocalTime.of(timePickerState.hour, timePickerState.minute)
                     ))
                     showTimePicker = false
-                }) { Text("OK", color = Color(0xFF6366F1)) }
+                }) { Text("OK", color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showTimePicker = false }) {
-                    Text("Cancel", color = Color(0xFF888899))
+                    Text("Cancel", color = PxColors.OnSurfaceDim)
                 }
             },
             text = { TimePicker(state = timePickerState) }
@@ -489,7 +489,7 @@ private fun TitleSection(
                 value = editingTitle,
                 onValueChange = onTitleChanged,
                 textStyle = TextStyle(
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = PxColors.OnBackground,
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold
                 ),
@@ -518,7 +518,7 @@ private fun TitleSection(
         Column {
             Text(
                 text = task.title,
-                color = if (task.status == TaskStatus.DONE) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onBackground,
+                color = if (task.status == TaskStatus.DONE) PxColors.OnSurfaceDim else PxColors.OnBackground,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 textDecoration = if (task.status == TaskStatus.DONE) TextDecoration.LineThrough else TextDecoration.None,
@@ -546,7 +546,7 @@ private fun DescriptionSection(
                 value = editingDescription,
                 onValueChange = onDescriptionChanged,
                 textStyle = TextStyle(
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = PxColors.OnSurface,
                     fontSize = 15.sp,
                     lineHeight = 22.sp
                 ),
@@ -554,7 +554,7 @@ private fun DescriptionSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(PxColors.Surface)
                     .padding(16.dp)
                     .height(120.dp),
                 decorationBox = { innerTextField ->
@@ -581,7 +581,7 @@ private fun DescriptionSection(
             ) {
                 Text(
                     text = task.description,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = PxColors.OnSurface,
                     fontSize = 15.sp,
                     lineHeight = 22.sp,
                     modifier = Modifier.padding(16.dp)
@@ -592,7 +592,7 @@ private fun DescriptionSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(PxColors.Surface)
                     .clickable(onClick = onStartEdit)
                     .padding(16.dp)
             ) {
@@ -633,7 +633,7 @@ private fun PriorityMatrixSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.Flag, null, tint = priorityAccentColor(currentPriority), modifier = Modifier.size(18.dp))
-                    Text("Priority", color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+                    Text("Priority", color = PxColors.OnSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
                 }
                 Text(currentPriority.name.lowercase().replaceFirstChar { it.uppercase() }, color = priorityAccentColor(currentPriority), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             }
@@ -645,7 +645,7 @@ private fun PriorityMatrixSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(PxColors.Surface)
                     .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -798,7 +798,7 @@ private fun SubtaskSection(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Subtasks", color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                    Text("Subtasks", color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                     if (task.hasSubtasks) {
                         Box(
                             modifier = Modifier
@@ -822,7 +822,7 @@ private fun SubtaskSection(
                     Box(modifier = Modifier.size(20.dp)) {
                         Canvas(modifier = Modifier.size(20.dp)) {
                             drawCircle(
-                                color = Color(0xFF252533),
+                                color = PxColors.SurfaceVariant,
                                 radius = size.minDimension / 2
                             )
                             drawArc(
@@ -854,7 +854,7 @@ private fun SubtaskSection(
                             .fillMaxWidth()
                             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 12.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(Color(0xFF252533))
+                            .background(PxColors.SurfaceVariant)
                             .padding(horizontal = 12.dp, vertical = 8.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -862,8 +862,8 @@ private fun SubtaskSection(
                         BasicTextField(
                             value = newSubtaskTitle,
                             onValueChange = onNewTitleChange,
-                            textStyle = TextStyle(color = Color(0xFFCCCCD8), fontSize = 14.sp),
-                            cursorBrush = SolidColor(Color(0xFF6366F1)),
+                            textStyle = TextStyle(color = PxColors.OnSurface, fontSize = 14.sp),
+                            cursorBrush = SolidColor(PxColors.Primary),
                             keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                                 capitalization = KeyboardCapitalization.Sentences,
                                 imeAction = androidx.compose.ui.text.input.ImeAction.Done
@@ -873,7 +873,7 @@ private fun SubtaskSection(
                             decorationBox = { inner ->
                                 Box {
                                     if (newSubtaskTitle.isEmpty()) {
-                                        Text("Add subtask\u2026", color = Color(0xFF888899), fontSize = 14.sp)
+                                        Text("Add subtask\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                                     }
                                     inner()
                                 }
@@ -887,7 +887,7 @@ private fun SubtaskSection(
                             Icon(
                                 Icons.Outlined.Add,
                                 "Add subtask",
-                                tint = if (newSubtaskTitle.isNotBlank()) Color(0xFF6366F1) else Color(0xFF888899),
+                                tint = if (newSubtaskTitle.isNotBlank()) PxColors.Primary else PxColors.OnSurfaceDim,
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -924,7 +924,7 @@ private fun ActivityLogSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.History, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
-                    Text("Activity", color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                    Text("Activity", color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Text(
                     text = if (expanded) "Hide" else "${activityLog.size} events",
@@ -954,7 +954,7 @@ private fun ActivityLogSection(
                             Column {
                                 Text(
                                     text = entry.action,
-                                    color = MaterialTheme.colorScheme.onSurface,
+                                    color = PxColors.OnSurface,
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.Medium
                                 )
@@ -990,7 +990,7 @@ private fun DetailCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
     ) {
         content()
     }
@@ -1001,7 +1001,7 @@ private fun DetailRow(
     icon: ImageVector,
     label: String,
     value: String,
-    valueColor: Color = MaterialTheme.colorScheme.onSurface,
+    valueColor: Color = PxColors.OnSurface,
     onClick: (() -> Unit)? = null
 ) {
     Row(
@@ -1012,8 +1012,8 @@ private fun DetailRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Icon(icon, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
-        Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp, modifier = Modifier.width(80.dp))
+        Icon(icon, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
+        Text(label, color = PxColors.OnSurfaceDim, fontSize = 14.sp, modifier = Modifier.width(80.dp))
         Text(value, color = valueColor, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
     }
 }
@@ -1023,12 +1023,12 @@ private fun OverdueBadge() {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(50.dp))
-            .background(MaterialTheme.colorScheme.error.copy(alpha = 0.15f))
+            .background(PxColors.Error.copy(alpha = 0.15f))
             .padding(horizontal = 8.dp, vertical = 3.dp)
     ) {
         Text(
             "Overdue",
-            color = MaterialTheme.colorScheme.error,
+            color = PxColors.Error,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold
         )

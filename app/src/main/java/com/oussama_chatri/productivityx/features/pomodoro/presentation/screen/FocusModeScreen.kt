@@ -57,7 +57,7 @@ fun FocusModeScreen(
     val quote = remember { getDailyQuoteUseCase.getQuote() }
 
     val bgColor by animateColorAsState(
-        targetValue = if (state.selectedType == PomodoroType.FOCUS) Color(0xFF0F172A) else Color(0xFF1E1B4B),
+        targetValue = if (state.selectedType == PomodoroType.FOCUS) PxColors.Surface else PxColors.SurfaceVariant,
         animationSpec = tween(1000),
         label = "focusBg"
     )

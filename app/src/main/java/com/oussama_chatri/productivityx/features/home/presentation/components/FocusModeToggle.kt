@@ -61,7 +61,7 @@ fun FocusModeToggle(
                 Icon(
                     imageVector = if (isFocusMode) Icons.Filled.DarkMode else Icons.Filled.LightMode,
                     contentDescription = null,
-                    tint = if (isFocusMode) PxColors.Primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    tint = if (isFocusMode) PxColors.Primary else PxColors.OnSurfaceDim,
                     modifier = Modifier.size(20.dp),
                 )
                 Spacer(Modifier.width(10.dp))
@@ -71,12 +71,12 @@ fun FocusModeToggle(
                         style = MaterialTheme.typography.titleSmall.copy(
                             fontWeight = FontWeight.SemiBold,
                         ),
-                        color = if (isFocusMode) PxColors.Primary else MaterialTheme.colorScheme.onBackground,
+                        color = if (isFocusMode) PxColors.Primary else PxColors.OnBackground,
                     )
                     Text(
                         text = if (isFocusMode) "Minimize distractions" else "Tap to enter focus mode",
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = PxColors.OnSurfaceDim,
                     )
                 }
             }
@@ -87,7 +87,7 @@ fun FocusModeToggle(
                     .clip(CircleShape)
                     .background(
                         if (isFocusMode) PxColors.Primary
-                        else MaterialTheme.colorScheme.surfaceVariant,
+                        else PxColors.SurfaceVariant,
                     ),
                 contentAlignment = Alignment.Center,
             ) {
@@ -97,7 +97,7 @@ fun FocusModeToggle(
                         .clip(CircleShape)
                         .background(
                             if (isFocusMode) Color.White
-                            else MaterialTheme.colorScheme.onSurfaceVariant,
+                            else PxColors.OnSurfaceDim,
                         ),
                 )
             }

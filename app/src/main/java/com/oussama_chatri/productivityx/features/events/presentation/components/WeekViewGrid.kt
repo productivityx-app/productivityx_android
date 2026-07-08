@@ -44,6 +44,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private val gutterWidth = 52.dp
 private val dayHeaderHeight = 56.dp
@@ -81,19 +82,19 @@ fun WeekViewGrid(
             selectedDay = selectedDay,
             onDaySelected = onDaySelected
         )
-        HorizontalDivider(color = Color(0xFF252533))
+        HorizontalDivider(color = PxColors.Outline)
 
         if (allDayEvents.isNotEmpty()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFF1A1A24))
+                    .background(PxColors.SurfaceVariant)
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ) {
                 Text(
                     text = "All day",
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                     modifier = Modifier.padding(bottom = 4.dp, start = gutterWidth)
                 )
                 Row(modifier = Modifier.fillMaxWidth()) {
@@ -106,7 +107,7 @@ fun WeekViewGrid(
                         Column(modifier = Modifier.weight(1f).padding(horizontal = 1.dp)) {
                             dayAllDay.forEach { event ->
                                 val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-                                    .getOrDefault(Color(0xFF6366F1))
+                                    .getOrDefault(PxColors.Primary)
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -131,7 +132,7 @@ fun WeekViewGrid(
                     }
                 }
             }
-            HorizontalDivider(color = Color(0xFF252533))
+            HorizontalDivider(color = PxColors.Outline)
         }
 
         Row(
@@ -159,7 +160,7 @@ fun WeekViewGrid(
                                     )
                                 }.getOrElse { "-" },
                                 style = MaterialTheme.typography.labelSmall,
-                                color = Color(0xFF888899),
+                                color = PxColors.OnSurfaceDim,
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                         }
@@ -215,7 +216,7 @@ private fun WeekDayHeader(
                 Text(
                     text = runCatching { dayAbbrFormatter.format(day).uppercase() }.getOrElse { "-" },
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899)
+                    color = PxColors.OnSurfaceDim
                 )
                 Spacer(Modifier.height(2.dp))
                 Box(
@@ -225,8 +226,8 @@ private fun WeekDayHeader(
                         .clip(CircleShape)
                         .background(
                             when {
-                                isSelected && isToday -> Color(0xFF6366F1)
-                                isSelected -> Color(0xFF252533)
+                                isSelected && isToday -> PxColors.Primary
+                                isSelected -> PxColors.SurfaceVariant
                                 else -> Color.Transparent
                             }
                         )
@@ -238,8 +239,8 @@ private fun WeekDayHeader(
                         ),
                         color = when {
                             isSelected -> Color.White
-                            isToday -> Color(0xFF6366F1)
-                            else -> Color(0xFFCCCCD8)
+                            isToday -> PxColors.Primary
+                            else -> PxColors.OnSurface
                         }
                     )
                 }
@@ -267,7 +268,7 @@ private fun DayColumn(
                         .fillMaxWidth()
                         .border(
                             width = 0.5.dp,
-                            color = Color(0xFF252533).copy(alpha = 0.6f),
+                            color = PxColors.SurfaceVariant.copy(alpha = 0.6f),
                             shape = RoundedCornerShape(0.dp)
                         )
                         .clickable { onSlotClick(hour) }
@@ -292,7 +293,7 @@ private fun DayColumn(
                 val hOffset = group.indexOf(event) * widthFraction
 
                 val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-                    .getOrDefault(Color(0xFF6366F1))
+                    .getOrDefault(PxColors.Primary)
 
                 Box(
                     modifier = Modifier

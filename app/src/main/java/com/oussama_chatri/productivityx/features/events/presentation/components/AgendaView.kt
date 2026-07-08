@@ -34,6 +34,7 @@ import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private val dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d").withZone(ZoneId.systemDefault())
 private val timeFormatter = DateTimeFormatter.ofPattern("h:mm a").withZone(ZoneId.systemDefault())
@@ -66,7 +67,7 @@ fun AgendaView(
             Text(
                 text = "No upcoming events",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         }
         return
@@ -114,26 +115,26 @@ private fun AgendaDateHeader(date: LocalDate, today: LocalDate) {
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .background(if (isToday) Color(0xFF6366F1) else Color(0xFF252533)),
+                .background(if (isToday) PxColors.Primary else PxColors.SurfaceVariant),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = date.dayOfMonth.toString(),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                color = if (isToday) Color.White else Color(0xFFCCCCD8)
+                color = if (isToday) Color.White else PxColors.OnSurface
             )
         }
         Spacer(Modifier.width(12.dp))
         Text(
             text = label,
             style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-            color = if (isToday) Color(0xFF6366F1) else Color(0xFFEEEEF5)
+            color = if (isToday) PxColors.Primary else PxColors.OnBackground
         )
         Spacer(Modifier.width(8.dp))
         Text(
             text = runCatching { DateTimeFormatter.ofPattern("MMM").format(date) }.getOrElse { "-" },
             style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF888899)
+            color = PxColors.OnSurfaceDim
         )
     }
 }
@@ -141,7 +142,7 @@ private fun AgendaDateHeader(date: LocalDate, today: LocalDate) {
 @Composable
 private fun AgendaEventRow(event: Event, onClick: () -> Unit) {
     val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-        .getOrDefault(Color(0xFF6366F1))
+        .getOrDefault(PxColors.Primary)
 
     Row(
         modifier = Modifier
@@ -164,7 +165,7 @@ private fun AgendaEventRow(event: Event, onClick: () -> Unit) {
             Text(
                 text = event.title,
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -178,13 +179,13 @@ private fun AgendaEventRow(event: Event, onClick: () -> Unit) {
             Text(
                 text = timeStr,
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
             if (!event.location.isNullOrBlank()) {
                 Text(
                     text = event.location,
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899).copy(alpha = 0.7f),
+                    color = PxColors.OnSurfaceDim.copy(alpha = 0.7f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )

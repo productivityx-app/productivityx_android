@@ -183,7 +183,7 @@ fun NoteEditorScreen(
                     value = uiState.title,
                     onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
                     textStyle = MaterialTheme.typography.titleLarge.copy(
-                        color = if (isFocusMode) Color(0xFFEEEEF5) else PxColors.OnBackground,
+                        color = if (isFocusMode) PxColors.OnBackground else PxColors.OnBackground,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.SemiBold
                     ),
@@ -238,7 +238,7 @@ fun NoteEditorScreen(
                         viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
                     },
                     textStyle = MaterialTheme.typography.bodyLarge.copy(
-                        color = if (isFocusMode) Color(0xFFCCCCD8) else PxColors.OnSurface,
+                        color = if (isFocusMode) PxColors.OnSurface else PxColors.OnSurface,
                         lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
                     ),
                     cursorBrush = SolidColor(PxColors.Primary),
@@ -320,7 +320,7 @@ fun NoteEditorScreen(
                     .align(Alignment.TopEnd)
                     .padding(top = 48.dp, end = 16.dp)
                     .background(
-                        color = Color(0xFF252533),
+                        color = PxColors.SurfaceVariant,
                         shape = RoundedCornerShape(20.dp)
                     )
                     .padding(8.dp)

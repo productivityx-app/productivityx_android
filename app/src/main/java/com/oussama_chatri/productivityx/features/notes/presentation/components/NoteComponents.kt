@@ -126,7 +126,7 @@ fun NoteGridCard(
                 )
             },
         shape = RoundedCornerShape(12.dp),
-        color = if (isSelected) PxColors.Primary.copy(alpha = 0.12f) else Color(0xFF1A1A24),
+        color = if (isSelected) PxColors.Primary.copy(alpha = 0.12f) else PxColors.SurfaceVariant,
         tonalElevation = 0.dp
     ) {
         Box {
@@ -170,7 +170,7 @@ fun NoteGridCard(
                         text = note.title,
                         query = if (isSelectionMode) "" else searchQuery,
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color(0xFFEEEEF5),
+                        color = PxColors.OnBackground,
                         maxLines = 1
                     )
                     Spacer(modifier = Modifier.height(4.dp))
@@ -181,7 +181,7 @@ fun NoteGridCard(
                         text = note.firstThreeLines,
                         query = if (isSelectionMode) "" else searchQuery,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                         maxLines = 3
                     )
                     Spacer(modifier = Modifier.height(6.dp))
@@ -223,7 +223,7 @@ fun NoteGridCard(
                     Text(
                         text = relativeTime(note.updatedAt),
                         style = MaterialTheme.typography.labelSmall,
-                        color = Color(0xFF888899)
+                        color = PxColors.OnSurfaceDim
                     )
                     SyncDot(syncStatus = note.syncStatus)
                 }
@@ -311,7 +311,7 @@ fun NoteListCard(
                         text = note.title.ifBlank { "Untitled" },
                         query = if (isSelectionMode) "" else searchQuery,
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color(0xFFEEEEF5),
+                        color = PxColors.OnBackground,
                         maxLines = 1
                     )
                 }
@@ -322,7 +322,7 @@ fun NoteListCard(
                         text = note.firstThreeLines,
                         query = if (isSelectionMode) "" else searchQuery,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                         maxLines = 2
                     )
                     Spacer(modifier = Modifier.height(4.dp))
@@ -332,7 +332,7 @@ fun NoteListCard(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(relativeTime(note.updatedAt), style = MaterialTheme.typography.labelSmall, color = Color(0xFF888899))
+                    Text(relativeTime(note.updatedAt), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
                     SyncDot(syncStatus = note.syncStatus)
                     if (note.imageUrls.isNotEmpty()) {
                         Icon(Icons.Outlined.Image, contentDescription = null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(12.dp))
@@ -399,7 +399,7 @@ fun NoteCompactCard(
                 text = note.title.ifBlank { "Untitled" },
                 query = if (isSelectionMode) "" else searchQuery,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 maxLines = 1,
                 modifier = Modifier.weight(1f)
             )
@@ -408,7 +408,7 @@ fun NoteCompactCard(
             Text(
                 text = relativeTime(note.updatedAt),
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
         }
     }
@@ -465,7 +465,7 @@ fun NoteTagChip(
     modifier: Modifier = Modifier
 ) {
     val tagColor = runCatching { Color(android.graphics.Color.parseColor(tag.color)) }
-        .getOrDefault(Color(0xFF6366F1))
+        .getOrDefault(PxColors.Primary)
 
     Box(
         modifier = modifier
@@ -494,12 +494,12 @@ fun FilterTagChip(
         label = "chipBg"
     )
     val contentColor by animateColorAsState(
-        targetValue = if (isSelected) Color.White else Color(0xFF888899),
+        targetValue = if (isSelected) Color.White else PxColors.OnSurfaceDim,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "chipContent"
     )
     val borderColor by animateColorAsState(
-        targetValue = if (isSelected) PxColors.Primary else Color(0xFF252533),
+        targetValue = if (isSelected) PxColors.Primary else PxColors.SurfaceVariant,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "chipBorder"
     )

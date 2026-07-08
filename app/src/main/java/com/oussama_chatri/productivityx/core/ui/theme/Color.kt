@@ -1,5 +1,8 @@
 package com.oussama_chatri.productivityx.core.ui.theme
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import com.oussama_chatri.productivityx.core.enums.AppTheme
@@ -96,24 +99,24 @@ fun appColorScheme(theme: AppTheme, isSystemInDarkTheme: Boolean): PxColorScheme
 }
 
 object PxColors {
-    var Primary:        Color = DarkScheme.Primary;        internal set
-    var PrimaryVariant: Color = DarkScheme.PrimaryVariant; internal set
-    var Secondary:      Color = DarkScheme.Secondary;      internal set
-    var Background:     Color = DarkScheme.Background;     internal set
-    var Surface:        Color = DarkScheme.Surface;        internal set
-    var SurfaceVariant: Color = DarkScheme.SurfaceVariant; internal set
-    var OnPrimary:      Color = DarkScheme.OnPrimary;      internal set
-    var OnBackground:   Color = DarkScheme.OnBackground;   internal set
-    var OnSurface:      Color = DarkScheme.OnSurface;      internal set
-    var OnSurfaceDim:   Color = DarkScheme.OnSurfaceDim;   internal set
-    var Outline:        Color = DarkScheme.Outline;        internal set
-    var Error:          Color = DarkScheme.Error;          internal set
-    var ErrorVariant:   Color = DarkScheme.ErrorVariant;   internal set
-    var Success:        Color = DarkScheme.Success;        internal set
-    var SuccessVariant: Color = DarkScheme.SuccessVariant; internal set
-    var Warning:        Color = DarkScheme.Warning;        internal set
-    var WarningVariant: Color = DarkScheme.WarningVariant; internal set
-    var Info:           Color = DarkScheme.Info;           internal set
+    var Primary:        Color by mutableStateOf(DarkScheme.Primary);        internal set
+    var PrimaryVariant: Color by mutableStateOf(DarkScheme.PrimaryVariant); internal set
+    var Secondary:      Color by mutableStateOf(DarkScheme.Secondary);      internal set
+    var Background:     Color by mutableStateOf(DarkScheme.Background);     internal set
+    var Surface:        Color by mutableStateOf(DarkScheme.Surface);        internal set
+    var SurfaceVariant: Color by mutableStateOf(DarkScheme.SurfaceVariant); internal set
+    var OnPrimary:      Color by mutableStateOf(DarkScheme.OnPrimary);      internal set
+    var OnBackground:   Color by mutableStateOf(DarkScheme.OnBackground);   internal set
+    var OnSurface:      Color by mutableStateOf(DarkScheme.OnSurface);      internal set
+    var OnSurfaceDim:   Color by mutableStateOf(DarkScheme.OnSurfaceDim);   internal set
+    var Outline:        Color by mutableStateOf(DarkScheme.Outline);        internal set
+    var Error:          Color by mutableStateOf(DarkScheme.Error);          internal set
+    var ErrorVariant:   Color by mutableStateOf(DarkScheme.ErrorVariant);   internal set
+    var Success:        Color by mutableStateOf(DarkScheme.Success);        internal set
+    var SuccessVariant: Color by mutableStateOf(DarkScheme.SuccessVariant); internal set
+    var Warning:        Color by mutableStateOf(DarkScheme.Warning);        internal set
+    var WarningVariant: Color by mutableStateOf(DarkScheme.WarningVariant); internal set
+    var Info:           Color by mutableStateOf(DarkScheme.Info);           internal set
 
     internal fun applyScheme(scheme: PxColorScheme) {
         Primary        = scheme.Primary

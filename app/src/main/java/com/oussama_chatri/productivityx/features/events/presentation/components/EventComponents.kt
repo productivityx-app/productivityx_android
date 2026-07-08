@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 val eventColorPalette = listOf(
     "#6366F1", "#8B5CF6", "#EC4899", "#EF4444",
@@ -49,7 +50,7 @@ fun EventBlock(
     showLocation: Boolean = false,
 ) {
     val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-        .getOrDefault(Color(0xFF6366F1))
+        .getOrDefault(PxColors.Primary)
 
     Row(
         modifier = modifier
@@ -72,7 +73,7 @@ fun EventBlock(
             Text(
                 text = event.title,
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -86,13 +87,13 @@ fun EventBlock(
             Text(
                 text = timeLabel,
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFF888899)
+                color = PxColors.OnSurfaceDim
             )
             if (showLocation && !event.location.isNullOrBlank()) {
                 Text(
                     text = event.location,
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899).copy(alpha = 0.7f),
+                    color = PxColors.OnSurfaceDim.copy(alpha = 0.7f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -145,8 +146,8 @@ fun RecurrenceChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val bg = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533)
-    val content = if (isSelected) Color.White else Color(0xFF888899)
+    val bg = if (isSelected) PxColors.Primary else PxColors.SurfaceVariant
+    val content = if (isSelected) Color.White else PxColors.OnSurfaceDim
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(50.dp))

@@ -148,8 +148,8 @@ fun dueDateUrgencyColor(task: Task): Color = when {
     task.status == TaskStatus.DONE -> Color(0xFF22C55E)
     task.isOverdue -> Color(0xFFEF4444)
     task.isDueToday -> Color(0xFFF59E0B)
-    task.dueDate != null -> Color(0xFF888899)
-    else -> Color(0xFF888899)
+    task.dueDate != null -> PxColors.OnSurfaceDim
+    else -> PxColors.OnSurfaceDim
 }
 
 // ─── Status Chip ─────────────────────────────────────────────────────────────
@@ -162,12 +162,12 @@ fun StatusChip(
     modifier: Modifier = Modifier
 ) {
     val bgColor by animateColorAsState(
-        targetValue = if (selected) Color(0xFF6366F1) else Color(0xFF252533),
+        targetValue = if (selected) PxColors.Primary else PxColors.SurfaceVariant,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "statusChipBg"
     )
     val textColor by animateColorAsState(
-        targetValue = if (selected) Color.White else Color(0xFF888899),
+        targetValue = if (selected) Color.White else PxColors.OnSurfaceDim,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "statusChipText"
     )
@@ -252,12 +252,12 @@ fun TagChip(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(50.dp))
-            .background(Color(0xFF252533))
+            .background(PxColors.SurfaceVariant)
             .padding(horizontal = 8.dp, vertical = 3.dp)
     ) {
         Text(
             text = tag,
-            color = Color(0xFF888899),
+            color = PxColors.OnSurfaceDim,
             fontSize = 11.sp,
             fontWeight = FontWeight.Medium
         )
@@ -277,7 +277,7 @@ fun AssigneeAvatar(
         modifier = modifier
             .size(24.dp)
             .clip(CircleShape)
-            .background(Color(0xFF6366F1))
+            .background(PxColors.Primary)
             .clickable(enabled = false) {},
         contentAlignment = Alignment.Center
     ) {
@@ -309,7 +309,7 @@ fun SubtaskProgressBar(
         ) {
             Text(
                 text = "$completed/$total",
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
                 fontSize = 10.sp
             )
         }
@@ -319,8 +319,8 @@ fun SubtaskProgressBar(
                 .fillMaxWidth()
                 .height(3.dp)
                 .clip(RoundedCornerShape(2.dp)),
-            color = Color(0xFF6366F1),
-            trackColor = Color(0xFF252533)
+            color = PxColors.Primary,
+            trackColor = PxColors.SurfaceVariant
         )
     }
 }
@@ -348,11 +348,11 @@ fun CompletionCelebration(
         Canvas(modifier = Modifier.size(80.dp)) {
             val strokeWidth = 6.dp.toPx()
             drawCircle(
-                color = Color(0xFF6366F1).copy(alpha = 0.2f),
+                color = PxColors.Primary.copy(alpha = 0.2f),
                 radius = size.minDimension / 2
             )
             drawArc(
-                color = Color(0xFF6366F1),
+                color = PxColors.Primary,
                 startAngle = -90f,
                 sweepAngle = 360f,
                 useCenter = false,
@@ -362,7 +362,7 @@ fun CompletionCelebration(
         Icon(
             imageVector = Icons.Filled.Check,
             contentDescription = "Completed",
-            tint = Color(0xFF22C55E),
+            tint = PxColors.Success,
             modifier = Modifier.size(32.dp)
         )
     }
@@ -384,7 +384,7 @@ fun DragHandle(
                 modifier = Modifier
                     .size(width = 16.dp, height = 2.dp)
                     .clip(RoundedCornerShape(1.dp))
-                    .background(Color(0xFF555566))
+                    .background(PxColors.OnSurfaceDim)
             )
         }
     }
@@ -406,12 +406,12 @@ fun RecurrenceBadge(
             Icon(
                 imageVector = Icons.Outlined.Repeat,
                 contentDescription = "Recurring",
-                tint = Color(0xFF888899),
+                tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(11.dp)
             )
             Text(
                 text = task.recurrenceType.name.lowercase().replaceFirstChar { it.uppercase() },
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
                 fontSize = 10.sp
             )
         }
@@ -431,11 +431,11 @@ fun TaskListItem(
 ) {
     val isDone = task.status == TaskStatus.DONE
     val titleColor by animateColorAsState(
-        targetValue = if (isDone) Color(0xFF888899) else Color(0xFFEEEEF5),
+        targetValue = if (isDone) PxColors.OnSurfaceDim else PxColors.OnBackground,
         label = "titleColor"
     )
     val bgColor by animateColorAsState(
-        targetValue = if (isSelected) Color(0xFF6366F1).copy(alpha = 0.1f) else Color.Transparent,
+        targetValue = if (isSelected) PxColors.Primary.copy(alpha = 0.1f) else Color.Transparent,
         label = "selectedBg"
     )
 
@@ -485,7 +485,7 @@ fun TaskListItem(
                     Icon(
                         imageVector = Icons.Outlined.Repeat,
                         contentDescription = null,
-                        tint = Color(0xFF888899),
+                        tint = PxColors.OnSurfaceDim,
                         modifier = Modifier.size(14.dp)
                     )
                 }
@@ -524,7 +524,7 @@ fun TaskListItem(
                 if (task.tags.size > 2) {
                     Text(
                         text = "+${task.tags.size - 2}",
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                         fontSize = 10.sp
                     )
                 }
@@ -590,7 +590,7 @@ fun KanbanTaskCard(
                 translationY = if (isDragging) (-4).dp.toPx() else 0f
             }
             .clickable(onClick = onClick),
-        color = Color(0xFF252533),
+        color = PxColors.SurfaceVariant,
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(modifier = Modifier.padding(start = 0.dp, top = 12.dp, end = 12.dp, bottom = 12.dp)) {
@@ -616,7 +616,7 @@ fun KanbanTaskCard(
                 )
                 Text(
                     text = task.title,
-                    color = Color(0xFFEEEEF5),
+                    color = PxColors.OnBackground,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 2,
@@ -680,7 +680,7 @@ fun KanbanTaskCard(
                     )
                     Text(
                         text = task.assigneeName ?: "Assigned",
-                        color = Color(0xFF888899),
+                        color = PxColors.OnSurfaceDim,
                         fontSize = 10.sp
                     )
                 }
@@ -704,14 +704,14 @@ fun KanbanColumnHeader(
     ) {
         Text(
             text = status.displayLabel,
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold
         )
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(50.dp))
-                .background(Color(0xFF6366F1))
+                .background(PxColors.Primary)
                 .padding(horizontal = 8.dp, vertical = 2.dp),
             contentAlignment = Alignment.Center
         ) {
@@ -734,11 +734,11 @@ fun DropZone(
     modifier: Modifier = Modifier
 ) {
     val bgColor by animateColorAsState(
-        targetValue = if (isActive) Color(0xFF6366F1).copy(alpha = 0.15f) else Color.Transparent,
+        targetValue = if (isActive) PxColors.Primary.copy(alpha = 0.15f) else Color.Transparent,
         label = "dropZoneBg"
     )
     val borderColor by animateColorAsState(
-        targetValue = if (isActive) Color(0xFF6366F1) else Color(0xFF3A3A50),
+        targetValue = if (isActive) PxColors.Primary else PxColors.Outline,
         label = "dropZoneBorder"
     )
 
@@ -753,7 +753,7 @@ fun DropZone(
     ) {
         Text(
             text = label,
-            color = if (isActive) Color(0xFF6366F1) else Color(0xFF888899),
+            color = if (isActive) PxColors.Primary else PxColors.OnSurfaceDim,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium
         )
@@ -784,7 +784,7 @@ fun SubtaskRow(
         )
         Text(
             text = task.title,
-            color = if (isDone) Color(0xFF888899) else Color(0xFFCCCCD8),
+            color = if (isDone) PxColors.OnSurfaceDim else PxColors.OnSurface,
             fontSize = 13.sp,
             textDecoration = if (isDone) TextDecoration.LineThrough else TextDecoration.None,
             maxLines = 1,
@@ -821,11 +821,11 @@ fun MinuteStepper(
             },
             modifier = Modifier.size(32.dp)
         ) {
-            Text("\u2212", color = Color(0xFF6366F1), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text("\u2212", color = PxColors.Primary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
         Text(
             text = if (value != null) "$value min" else "\u2014",
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium
         )
@@ -833,7 +833,7 @@ fun MinuteStepper(
             onClick = { onValueChange((value ?: 20) + 5) },
             modifier = Modifier.size(32.dp)
         ) {
-            Text("+", color = Color(0xFF6366F1), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text("+", color = PxColors.Primary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -860,7 +860,7 @@ fun TaskSettingRow(
         Box(modifier = Modifier.size(24.dp)) { icon() }
         Text(
             text = label,
-            color = Color(0xFFCCCCD8),
+            color = PxColors.OnSurface,
             fontSize = 15.sp,
             modifier = Modifier.weight(1f)
         )
@@ -882,8 +882,8 @@ fun CalendarDayCell(
 ) {
     val bgColor by animateColorAsState(
         targetValue = when {
-            isSelected -> Color(0xFF6366F1)
-            isToday -> Color(0xFF6366F1).copy(alpha = 0.2f)
+            isSelected -> PxColors.Primary
+            isToday -> PxColors.Primary.copy(alpha = 0.2f)
             else -> Color.Transparent
         },
         label = "dayCellBg"
@@ -905,8 +905,8 @@ fun CalendarDayCell(
                 text = day.toString(),
                 color = when {
                     isSelected -> Color.White
-                    isToday -> Color(0xFF6366F1)
-                    else -> Color(0xFFCCCCD8)
+                    isToday -> PxColors.Primary
+                    else -> PxColors.OnSurface
                 },
                 fontSize = 13.sp,
                 fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal
@@ -916,7 +916,7 @@ fun CalendarDayCell(
                     modifier = Modifier
                         .size(4.dp)
                         .clip(CircleShape)
-                        .background(if (isSelected) Color.White else Color(0xFF6366F1))
+                        .background(if (isSelected) Color.White else PxColors.Primary)
                 )
             }
         }
@@ -956,7 +956,7 @@ fun TimelineTaskBar(
             )
             Text(
                 text = task.title,
-                color = Color(0xFFEEEEF5),
+                color = PxColors.OnBackground,
                 fontSize = 11.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -1008,18 +1008,18 @@ fun TaskEmptyState(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = Color(0xFF888899),
+                tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(48.dp)
             )
             Text(
                 text = title,
-                color = Color(0xFFCCCCD8),
+                color = PxColors.OnSurface,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium
             )
             Text(
                 text = subtitle,
-                color = Color(0xFF888899),
+                color = PxColors.OnSurfaceDim,
                 fontSize = 13.sp
             )
         }
@@ -1037,7 +1037,7 @@ fun SmartFilterChip(
     modifier: Modifier = Modifier
 ) {
     val bgColor by animateColorAsState(
-        targetValue = if (isSelected) Color(0xFF6366F1) else Color(0xFF252533),
+        targetValue = if (isSelected) PxColors.Primary else PxColors.SurfaceVariant,
         label = "filterChipBg"
     )
 
@@ -1054,14 +1054,14 @@ fun SmartFilterChip(
         ) {
             Text(
                 text = label,
-                color = if (isSelected) Color.White else Color(0xFF888899),
+                color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                 fontSize = 12.sp,
                 fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
             )
             if (count != null) {
                 Text(
                     text = count.toString(),
-                    color = if (isSelected) Color.White.copy(alpha = 0.7f) else Color(0xFF666677),
+                    color = if (isSelected) Color.White.copy(alpha = 0.7f) else PxColors.OnSurfaceDim,
                     fontSize = 11.sp
                 )
             }

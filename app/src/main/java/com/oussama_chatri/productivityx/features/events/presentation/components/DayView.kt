@@ -38,6 +38,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 private val hourHeight = 60.dp
 private val gutterWidth = 52.dp
@@ -71,18 +72,18 @@ fun DayView(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFF1A1A24))
+                    .background(PxColors.SurfaceVariant)
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ) {
                 Text(
                     text = "All day",
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
                 allDayEvents.forEach { event ->
                     val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-                        .getOrDefault(Color(0xFF6366F1))
+                        .getOrDefault(PxColors.Primary)
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -104,7 +105,7 @@ fun DayView(
                     }
                 }
             }
-            HorizontalDivider(color = Color(0xFF252533))
+            HorizontalDivider(color = PxColors.Outline)
         }
 
         Row(
@@ -127,7 +128,7 @@ fun DayView(
                                     )
                                 }.getOrElse { "-" },
                                 style = MaterialTheme.typography.labelSmall,
-                                color = Color(0xFF888899),
+                                color = PxColors.OnSurfaceDim,
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                         }
@@ -144,7 +145,7 @@ fun DayView(
                                 .fillMaxWidth()
                                 .border(
                                     width = 0.5.dp,
-                                    color = Color(0xFF252533).copy(alpha = 0.6f),
+                                    color = PxColors.SurfaceVariant.copy(alpha = 0.6f),
                                     shape = RoundedCornerShape(0.dp)
                                 )
                                 .clickable { onSlotClick(day, hour) }
@@ -163,7 +164,7 @@ fun DayView(
                     val blockHeight = (duration * hourHeight.value).coerceAtLeast(30f).dp
 
                     val eventColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-                        .getOrDefault(Color(0xFF6366F1))
+                        .getOrDefault(PxColors.Primary)
 
                     Box(
                         modifier = Modifier
@@ -215,7 +216,7 @@ private fun DayHeader(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(if (isSelected) Color(0xFF6366F1).copy(alpha = 0.1f) else Color.Transparent)
+            .background(if (isSelected) PxColors.Primary.copy(alpha = 0.1f) else Color.Transparent)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -224,12 +225,12 @@ private fun DayHeader(
             Text(
                 text = runCatching { formatter.format(day) }.getOrElse { "-" },
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-                color = Color(0xFFEEEEF5)
+                color = PxColors.OnBackground
             )
             Text(
                 text = if (isToday) "Today" else runCatching { abbrFormatter.format(day) }.getOrElse { "-" },
                 style = MaterialTheme.typography.labelSmall,
-                color = if (isToday) Color(0xFF6366F1) else Color(0xFF888899)
+                color = if (isToday) PxColors.Primary else PxColors.OnSurfaceDim
             )
         }
         Box(
@@ -237,16 +238,16 @@ private fun DayHeader(
             modifier = Modifier
                 .size(40.dp)
                 .clip(CircleShape)
-                .background(if (isToday) Color(0xFF6366F1) else Color.Transparent)
+                .background(if (isToday) PxColors.Primary else Color.Transparent)
         ) {
             Text(
                 text = day.dayOfMonth.toString(),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = if (isToday) Color.White else Color(0xFFCCCCD8)
+                color = if (isToday) Color.White else PxColors.OnSurface
             )
         }
     }
-    HorizontalDivider(color = Color(0xFF252533))
+    HorizontalDivider(color = PxColors.Outline)
 }
 
 

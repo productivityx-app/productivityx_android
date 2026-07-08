@@ -149,7 +149,7 @@ private fun HomeContent(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
+                .background(PxColors.Background),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
@@ -262,7 +262,7 @@ private fun HomeErrorState(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(PxColors.Background)
             .padding(32.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -270,21 +270,21 @@ private fun HomeErrorState(
             Icon(
                 imageVector = Icons.Filled.AutoAwesome,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                tint = PxColors.OnSurfaceDim,
                 modifier = Modifier
                     .padding(bottom = 16.dp),
             )
             Text(
                 text = "Something went wrong",
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = PxColors.OnBackground,
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(8.dp))
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center,
             )
         }
@@ -320,7 +320,7 @@ private fun QuickActionSnackbar(
                     .clip(RoundedCornerShape(12.dp))
                     .background(PxColors.SurfaceVariant)
                     .padding(horizontal = 20.dp, vertical = 12.dp),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = PxColors.OnBackground,
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

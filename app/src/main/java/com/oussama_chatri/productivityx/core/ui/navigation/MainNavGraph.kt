@@ -264,7 +264,7 @@ private fun TabScaffold(
             )
         }
         Scaffold(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = PxColors.Background,
             modifier = Modifier.weight(1f),
             topBar = {
                 if (showTopBar) {
@@ -281,7 +281,7 @@ private fun TabScaffold(
                                         Text(
                                             text = stringResource(config.descriptionRes),
                                             style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            color = PxColors.OnSurfaceDim,
                                         )
                                     }
                                 }
@@ -322,7 +322,7 @@ private fun TabScaffold(
                             },
                             colors = TopAppBarDefaults.topAppBarColors(
                                 containerColor = PxColors.Surface.copy(alpha = 0.45f),
-                                titleContentColor = MaterialTheme.colorScheme.onBackground,
+                                titleContentColor = PxColors.OnBackground,
                             ),
                         )
                         HorizontalDivider(
@@ -360,8 +360,8 @@ private fun PxNavRail(
 ) {
     NavigationRail(
         modifier = modifier,
-        containerColor = MaterialTheme.colorScheme.surface,
-        contentColor = MaterialTheme.colorScheme.onSurface,
+        containerColor = PxColors.Surface,
+        contentColor = PxColors.OnSurface,
         header = {
             Icon(
                 imageVector = Icons.Outlined.AutoAwesome,
@@ -420,14 +420,14 @@ private fun FabStack(
         ) {
             FloatingActionButton(
                 onClick      = onFabAi,
-                containerColor = MaterialTheme.colorScheme.primary,
+                containerColor = PxColors.Primary,
             ) {
                 Icon(Icons.Outlined.AutoAwesome, contentDescription = stringResource(R.string.nav_ai), tint = Color.White)
             }
             if (onFabAdd != null) {
                 FloatingActionButton(
                     onClick      = onFabAdd,
-                    containerColor = MaterialTheme.colorScheme.primary,
+                    containerColor = PxColors.Primary,
                 ) {
                     Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.cd_add), tint = Color.White)
                 }
@@ -444,7 +444,7 @@ private fun FabStack(
 private fun SingleFab(icon: ImageVector, onClick: () -> Unit) {
     FloatingActionButton(
         onClick      = onClick,
-        containerColor = MaterialTheme.colorScheme.primary,
+        containerColor = PxColors.Primary,
     ) {
         Icon(icon, contentDescription = null, tint = Color.White)
     }
@@ -505,7 +505,7 @@ private fun NotesTab(rootNavController: NavHostController) {
         showBottomBar       = isTopLevel,
         additionalActions   = {
             IconButton(onClick = { notesNavController.navigate(NotesRoute.Trash) }) {
-                Icon(Icons.Outlined.DeleteOutline, contentDescription = stringResource(R.string.nav_trash), tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.DeleteOutline, contentDescription = stringResource(R.string.nav_trash), tint = PxColors.OnSurface)
             }
         },
     ) { modifier ->
@@ -621,7 +621,7 @@ private fun PomodoroTab(rootNavController: NavHostController) {
         showBottomBar       = isTopLevel,
         additionalActions   = {
             IconButton(onClick = { pomodoroNavController.navigate(PomodoroRoute.History) }) {
-                Icon(Icons.Outlined.History, contentDescription = stringResource(R.string.nav_history), tint = Color(0xFFCCCCD8))
+                Icon(Icons.Outlined.History, contentDescription = stringResource(R.string.nav_history), tint = PxColors.OnSurface)
             }
         },
     ) { modifier ->
@@ -683,7 +683,7 @@ private fun AiTab(rootNavController: NavHostController) {
     val rootBackStack by rootNavController.currentBackStackEntryAsState()
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = PxColors.Background,
         bottomBar = {
             if (isTopLevel) {
                 PxBottomNavBar(

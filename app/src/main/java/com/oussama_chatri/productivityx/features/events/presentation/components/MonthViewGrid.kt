@@ -40,6 +40,7 @@ import java.time.ZoneId
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @Composable
 fun MonthViewGrid(
@@ -66,7 +67,7 @@ fun MonthViewGrid(
                 Text(
                     text = label,
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                     modifier = Modifier.weight(1f),
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
@@ -111,7 +112,7 @@ fun MonthViewGrid(
             }
         }
 
-        HorizontalDivider(color = Color(0xFF252533), modifier = Modifier.padding(vertical = 8.dp))
+        HorizontalDivider(color = PxColors.Outline, modifier = Modifier.padding(vertical = 8.dp))
 
         val selectedDayEvents = events.filter { event ->
             event.startAt.atZone(zone).toLocalDate() == selectedDay && !event.isDeleted
@@ -154,8 +155,8 @@ private fun MonthDayCell(
             .clip(RoundedCornerShape(8.dp))
             .clickable(enabled = day != null, onClick = onClick)
             .background(
-                if (selected && day != null && day == today) Color(0xFF6366F1).copy(alpha = 0.2f)
-                else if (selected) Color(0xFF6366F1).copy(alpha = 0.15f)
+                if (selected && day != null && day == today) PxColors.Primary.copy(alpha = 0.2f)
+                else if (selected) PxColors.Primary.copy(alpha = 0.15f)
                 else Color.Transparent
             )
             .padding(4.dp),
@@ -169,8 +170,8 @@ private fun MonthDayCell(
                     .clip(CircleShape)
                     .background(
                         when {
-                            selected && day == today -> Color(0xFF6366F1)
-                            day == today -> Color(0xFF6366F1).copy(alpha = 0.2f)
+                            selected && day == today -> PxColors.Primary
+                            day == today -> PxColors.Primary.copy(alpha = 0.2f)
                             else -> Color.Transparent
                         }
                     )
@@ -182,9 +183,9 @@ private fun MonthDayCell(
                     ),
                     color = when {
                         selected && day == today -> Color.White
-                        day == today -> Color(0xFF6366F1)
-                        selected -> Color(0xFFEEEEF5)
-                        else -> Color(0xFFCCCCD8)
+                        day == today -> PxColors.Primary
+                        selected -> PxColors.OnBackground
+                        else -> PxColors.OnSurface
                     }
                 )
             }
@@ -192,7 +193,7 @@ private fun MonthDayCell(
             val allIndicators = events.take(2) + multiDayEvents.take(1)
             allIndicators.take(3).forEach { event ->
                 val dotColor = runCatching { Color(android.graphics.Color.parseColor(event.color)) }
-                    .getOrDefault(Color(0xFF6366F1))
+                    .getOrDefault(PxColors.Primary)
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
@@ -208,7 +209,7 @@ private fun MonthDayCell(
                 Text(
                     text = "+${totalCount - 3}",
                     style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFF888899),
+                    color = PxColors.OnSurfaceDim,
                     overflow = TextOverflow.Clip,
                     maxLines = 1
                 )

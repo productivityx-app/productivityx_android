@@ -972,7 +972,9 @@ fun LanguagePickerDialog(
             Text(stringResource(R.string.field_language), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
         },
         text = {
-            Column {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
                 languageEntries().forEach { (code, label) ->
                     val isSelected = code == currentLanguage
 

@@ -128,9 +128,9 @@ fun PomodoroScreen(
     // Phase-based background color shift
     val backgroundColor by animateColorAsState(
         targetValue = when {
-            state.isFocusMode -> Color(0xFF0F172A)
-            state.selectedType == PomodoroType.FOCUS -> PxColors.Background.copy(alpha = 0.95f)
-            else -> Color(0xFF0F252A) // Cool break color
+            state.isFocusMode -> PxColors.Surface
+            state.selectedType == PomodoroType.FOCUS -> PxColors.Background
+            else -> PxColors.SurfaceVariant
         },
         animationSpec = tween(1000),
         label = "phaseBackground"
@@ -455,8 +455,8 @@ private fun CircularTimer(
     val trackColor   = PxColors.SurfaceVariant.copy(alpha = if (isFocusMode) 0.1f else 0.3f)
     val mainColor    = typeColor(type)
     val secondaryColor = when(type) {
-        PomodoroType.FOCUS -> Color(0xFFFACC15) 
-        else -> Color(0xFF6EE7B7) 
+        PomodoroType.FOCUS -> PxColors.Warning 
+        else -> PxColors.Success 
     }
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
@@ -963,9 +963,9 @@ private fun InterruptDialog(
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 fun typeColor(type: PomodoroType): Color = when (type) {
-    PomodoroType.FOCUS       -> Color(0xFF6366F1) 
-    PomodoroType.SHORT_BREAK -> Color(0xFF10B981) 
-    PomodoroType.LONG_BREAK  -> Color(0xFF0EA5E9)
+    PomodoroType.FOCUS       -> PxColors.Primary 
+    PomodoroType.SHORT_BREAK -> PxColors.Success 
+    PomodoroType.LONG_BREAK  -> PxColors.Info
 }
 
 @Composable

@@ -43,4 +43,6 @@ sealed class PreferencesUiEvent {
     // Actions
     data object DismissError : PreferencesUiEvent()
     data object DismissSuccess : PreferencesUiEvent()
+    data class ExportData(val file: java.io.File) : PreferencesUiEvent()
+    data class ImportDataFile(val file: java.io.File) : PreferencesUiEvent()
 }

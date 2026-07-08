@@ -91,7 +91,7 @@ fun TasksWidget(
                 size = 48.dp,
                 strokeWidth = 4.dp,
                 color = PxColors.Primary,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                trackColor = PxColors.SurfaceVariant,
             )
         },
         modifier = modifier,
@@ -178,12 +178,12 @@ fun FocusTimeWidget(
                     size = 56.dp,
                     strokeWidth = 5.dp,
                     color = PxColors.Warning,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    trackColor = PxColors.SurfaceVariant,
                 )
                 Text(
                     text = "${focusMinutes}",
                     style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = PxColors.OnBackground,
                 )
             }
         },
@@ -193,13 +193,13 @@ fun FocusTimeWidget(
             Text(
                 text = "${focusMinutes}m / ${totalMinutes}m",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PxColors.OnSurfaceDim,
             )
             Spacer(Modifier.height(4.dp))
             Text(
                 text = "$completedSessions sessions completed",
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                color = PxColors.OnSurfaceDim.copy(alpha = 0.7f),
             )
             if (isExpanded) {
                 Spacer(Modifier.height(8.dp))
@@ -210,7 +210,7 @@ fun FocusTimeWidget(
                         .height(6.dp)
                         .clip(CircleShape),
                     color = PxColors.Warning,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    trackColor = PxColors.SurfaceVariant,
                 )
             }
         }
@@ -275,7 +275,7 @@ fun AiQuickActionWidget(
             Text(
                 text = "What can I help you with?",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(8.dp))
@@ -318,7 +318,7 @@ private fun WidgetCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(PxColors.Surface)
             .clickable { onToggleExpand() }
             .padding(14.dp),
     ) {
@@ -336,7 +336,7 @@ private fun WidgetCard(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = PxColors.OnBackground,
                 modifier = Modifier.weight(1f),
             )
             if (headerContent != null) {
@@ -396,7 +396,7 @@ private fun WidgetEmptyState(message: String) {
         Text(
             text = message,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+            color = PxColors.OnSurfaceDim.copy(alpha = 0.7f),
         )
     }
 }
@@ -413,7 +413,7 @@ private fun TaskMiniRow(task: Task) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            .background(PxColors.SurfaceVariant.copy(alpha = 0.4f))
             .padding(horizontal = 10.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -427,7 +427,7 @@ private fun TaskMiniRow(task: Task) {
         Text(
             text = task.title,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = PxColors.OnBackground,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f),
@@ -477,7 +477,7 @@ private fun TimelineView(events: List<Event>) {
                     Text(
                         text = event.title,
                         style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium),
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = PxColors.OnBackground,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -485,14 +485,14 @@ private fun TimelineView(events: List<Event>) {
                         Icon(
                             imageVector = Icons.Outlined.EventAvailable,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            tint = PxColors.OnSurfaceDim,
                             modifier = Modifier.size(10.dp),
                         )
                         Spacer(Modifier.width(3.dp))
                         Text(
                             text = "${DateTimeUtils.formatTime(event.startAt)} - ${DateTimeUtils.formatTime(event.endAt)}",
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = PxColors.OnSurfaceDim,
                         )
                     }
                 }
@@ -507,13 +507,13 @@ private fun NoteMiniCard(note: Note) {
         modifier = Modifier
             .size(width = 150.dp, height = 100.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+            .background(PxColors.SurfaceVariant.copy(alpha = 0.5f))
             .padding(10.dp),
     ) {
         Text(
             text = note.title.ifBlank { "Untitled" },
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colorScheme.onBackground,
+            color = PxColors.OnBackground,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -521,7 +521,7 @@ private fun NoteMiniCard(note: Note) {
         Text(
             text = note.preview,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = PxColors.OnSurfaceDim,
             maxLines = 3,
             overflow = TextOverflow.Ellipsis,
         )
@@ -534,7 +534,7 @@ private fun NoteExpandedRow(note: Note) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            .background(PxColors.SurfaceVariant.copy(alpha = 0.4f))
             .padding(10.dp),
         verticalAlignment = Alignment.Top,
     ) {
@@ -549,14 +549,14 @@ private fun NoteExpandedRow(note: Note) {
             Text(
                 text = note.title.ifBlank { "Untitled" },
                 style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = PxColors.OnBackground,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
                 text = note.preview,
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PxColors.OnSurfaceDim,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
