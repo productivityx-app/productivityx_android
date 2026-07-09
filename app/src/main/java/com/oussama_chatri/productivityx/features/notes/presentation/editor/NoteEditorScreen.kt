@@ -66,12 +66,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.PickVisualMediaRequest
 import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.notes.presentation.util.PdfGenerator
 import kotlinx.coroutines.launch
 import android.content.Intent
-import android.os.Build
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -113,29 +111,17 @@ fun NoteEditorScreen(
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val context = LocalContext.current
 
-    val photoPicker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.PickVisualMedia(),
-            onResult = { uri ->
-                if (uri != null) {
-                    val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    context.contentResolver.takePersistableUriPermission(uri, flag)
-                    viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
-                }
+    val photoPicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri ->
+            if (uri != null) {
+                try {
+                    context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                } catch (_: SecurityException) { }
+                viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
             }
-        )
-    } else {
-        rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.GetContent(),
-            onResult = { uri ->
-                if (uri != null) {
-                    val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    context.contentResolver.takePersistableUriPermission(uri, flag)
-                    viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
-                }
-            }
-        )
-    }
+        }
+    )
 
     val pdfScope = androidx.compose.runtime.rememberCoroutineScope()
     val pdfCreator = rememberLauncherForActivityResult(
@@ -219,11 +205,7 @@ fun NoteEditorScreen(
                                 viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
                             },
                             onAddImageClick = {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                    photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                                } else {
-                                    photoPicker.launch("image/*")
-                                }
+                                photoPicker.launch("image/*")
                             }
                         )
                         Spacer(modifier = Modifier.navigationBarsPadding())
