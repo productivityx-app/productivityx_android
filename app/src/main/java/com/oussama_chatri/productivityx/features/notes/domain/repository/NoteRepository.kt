@@ -26,7 +26,8 @@ interface NoteRepository {
         content: String?,
         tagIds: Set<String>?,
         pinned: Boolean?,
-        folderId: String? = null
+        folderId: String? = null,
+        imageUrls: List<String>? = null
     ): Resource<Note>
 
     suspend fun updateNote(
@@ -35,7 +36,8 @@ interface NoteRepository {
         content: String?,
         tagIds: Set<String>?,
         pinned: Boolean?,
-        folderId: String? = null
+        folderId: String? = null,
+        imageUrls: List<String>? = null
     ): Resource<Note>
 
     suspend fun pinNote(noteId: String): Resource<Note>

@@ -77,7 +77,10 @@ class PomodoroViewModel @Inject constructor(
         observeTasksUseCase()
             .map { it.filter { task -> !task.isDeleted && task.status != TaskStatus.DONE && task.status != TaskStatus.CANCELLED } }
             .onEach { _tasks.value = it }
-            .catch { }
+            .launchIn(viewModelScope)
+            
+        preferencesDataStore.pomodoroBackgroundImageUri
+            .onEach { uri -> _uiState.update { it.copy(backgroundImageUri = uri) } }
             .launchIn(viewModelScope)
     }
 
@@ -155,6 +158,11 @@ class PomodoroViewModel @Inject constructor(
             }
             PomodoroUiEvent.ToggleDnd -> toggleDnd()
             PomodoroUiEvent.Extend1Min -> extendTimer(60)
+            is PomodoroUiEvent.SelectBackground -> {
+                viewModelScope.launch {
+                    preferencesDataStore.setPomodoroBackgroundImageUri(event.uri)
+                }
+            }
         }
     }
 

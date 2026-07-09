@@ -45,6 +45,7 @@ class HomeViewModel @Inject constructor(
             is HomeEvent.ReorderWidgets -> reorderWidgets(event.newOrder)
             is HomeEvent.ToggleWidgetVisibility -> toggleWidgetVisibility(event.widget, event.visible)
             HomeEvent.ToggleRadialMenu -> toggleRadialMenu()
+            HomeEvent.ToggleCalculator -> toggleCalculator()
             is HomeEvent.QuickActionSelected -> handleQuickAction(event.action)
             HomeEvent.DismissQuickAction -> dismissQuickAction()
             is HomeEvent.VoiceCommandResult -> handleVoiceCommand(event.text)
@@ -120,8 +121,16 @@ class HomeViewModel @Inject constructor(
         _uiState.update { it.copy(showRadialMenu = !it.showRadialMenu) }
     }
 
+    private fun toggleCalculator() {
+        _uiState.update { it.copy(showCalculator = !it.showCalculator) }
+    }
+
     private fun handleQuickAction(action: QuickAction) {
-        _uiState.update { it.copy(selectedQuickAction = action, showRadialMenu = false) }
+        if (action == QuickAction.CALCULATOR) {
+            _uiState.update { it.copy(selectedQuickAction = null, showRadialMenu = false, showCalculator = true) }
+        } else {
+            _uiState.update { it.copy(selectedQuickAction = action, showRadialMenu = false) }
+        }
     }
 
     fun dismissQuickAction() {

@@ -17,6 +17,8 @@ object VoiceCommandHandler {
                 QuickAction.START_TIMER
             lower.contains("ai") || lower.contains("chat") || lower.contains("assistant") ->
                 QuickAction.AI_CHAT
+            lower.contains("calculator") || lower.contains("calc") || lower.contains("math") ->
+                QuickAction.CALCULATOR
             else -> null
         }
     }
@@ -26,6 +28,7 @@ object VoiceCommandHandler {
         QuickAction.NEW_TASK -> MainRoute.Tasks
         QuickAction.START_TIMER -> MainRoute.Pomodoro
         QuickAction.AI_CHAT -> MainRoute.Ai
+        QuickAction.CALCULATOR -> MainRoute.Home // Calculator is a bottom sheet on Home
     }
 
     fun getDeepLink(action: QuickAction): String = when (action) {
@@ -33,5 +36,6 @@ object VoiceCommandHandler {
         QuickAction.NEW_TASK -> "productivityx://tasks/new"
         QuickAction.START_TIMER -> "productivityx://pomodoro/start"
         QuickAction.AI_CHAT -> "productivityx://ai/chat"
+        QuickAction.CALCULATOR -> "productivityx://calculator"
     }
 }

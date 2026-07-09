@@ -51,6 +51,7 @@ import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.SkipNext
 import androidx.compose.material.icons.outlined.Stop
 import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.Wallpaper
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -60,6 +61,12 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.PickVisualMediaRequest
+import coil3.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
+import android.content.Intent
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -81,6 +88,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -115,9 +123,21 @@ fun PomodoroScreen(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val tasks by viewModel.tasks.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
 
     val onEvent = viewModel::onEvent
     var showSoundPicker by remember { mutableStateOf(false) }
+
+    val bgPicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { uri ->
+            if (uri != null) {
+                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                context.contentResolver.takePersistableUriPermission(uri, flag)
+                onEvent(PomodoroUiEvent.SelectBackground(uri.toString()))
+            }
+        }
+    )
 
     LaunchedEffect(viewModel.snackbar) {
         viewModel.snackbar.collect { message ->
@@ -137,6 +157,22 @@ fun PomodoroScreen(
     )
 
         Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
+            // Background Image & Scrim
+            if (state.backgroundImageUri != null) {
+                AsyncImage(
+                    model = state.backgroundImageUri,
+                    contentDescription = "Background",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+                // Scrim
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.6f))
+                )
+            }
+            
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -158,6 +194,9 @@ fun PomodoroScreen(
                             contentDescription = "DND",
                             tint = if (state.isDndEnabled) PxColors.Primary else Color.White.copy(alpha = 0.6f)
                         )
+                    }
+                    IconButton(onClick = { bgPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) {
+                        Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = Color.White.copy(alpha = 0.6f))
                     }
                     IconButton(onClick = { showSoundPicker = true }) {
                         Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = Color.White.copy(alpha = 0.6f))

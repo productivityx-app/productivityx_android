@@ -35,8 +35,9 @@ class CreateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
         content: String? = null,
         tagIds: Set<String>? = null,
         pinned: Boolean? = null,
-        folderId: String? = null
-    ): Resource<Note> = repo.createNote(title, content, tagIds, pinned, folderId)
+        folderId: String? = null,
+        imageUrls: List<String>? = null
+    ): Resource<Note> = repo.createNote(title, content, tagIds, pinned, folderId, imageUrls)
 }
 
 class UpdateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
@@ -46,8 +47,9 @@ class UpdateNoteUseCase @Inject constructor(private val repo: NoteRepository) {
         content: String? = null,
         tagIds: Set<String>? = null,
         pinned: Boolean? = null,
-        folderId: String? = null
-    ): Resource<Note> = repo.updateNote(noteId, title, content, tagIds, pinned, folderId)
+        folderId: String? = null,
+        imageUrls: List<String>? = null
+    ): Resource<Note> = repo.updateNote(noteId, title, content, tagIds, pinned, folderId, imageUrls)
 }
 
 class PinNoteUseCase @Inject constructor(private val repo: NoteRepository) {

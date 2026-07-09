@@ -7,6 +7,8 @@ sealed class NoteEditorUiEvent {
     data class ContentChanged(val value: String) : NoteEditorUiEvent()
     data class AddTag(val tagId: String) : NoteEditorUiEvent()
     data class RemoveTag(val tagId: String) : NoteEditorUiEvent()
+    data class AddImage(val uri: String) : NoteEditorUiEvent()
+    data class RemoveImage(val uri: String) : NoteEditorUiEvent()
     data class CreateTag(val name: String, val color: String) : NoteEditorUiEvent()
     data object TogglePin : NoteEditorUiEvent()
     data object Save : NoteEditorUiEvent()

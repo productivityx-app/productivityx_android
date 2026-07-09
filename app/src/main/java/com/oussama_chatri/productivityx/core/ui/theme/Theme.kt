@@ -44,6 +44,7 @@ private fun PxColorScheme.toM3Light() = lightColorScheme(
 fun ProductivityXTheme(
     appTheme: AppTheme = AppTheme.DARK,
     fontScale: Float = 1f,
+    fontFamily: String = "Nunito",
     content: @Composable () -> Unit
 ) {
     val isSystemDark = isSystemInDarkTheme()
@@ -60,7 +61,7 @@ fun ProductivityXTheme(
 
     val m3Colors = if (isDark) scheme.toM3Dark() else scheme.toM3Light()
 
-    val scaledTypography = getScaledTypography(fontScale)
+    val scaledTypography = getScaledTypography(fontScale, fontFamily)
 
     MaterialTheme(
         colorScheme = m3Colors,

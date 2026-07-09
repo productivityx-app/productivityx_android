@@ -12,6 +12,7 @@ data class NoteEditorUiState(
     val content: String = "",
     val plainTextContent: String = "",
     val tags: Set<Tag> = emptySet(),
+    val imageUrls: List<String> = emptyList(),
     val isPinned: Boolean = false,
     val isDeleted: Boolean = false,
     val hasUnsavedChanges: Boolean = false,

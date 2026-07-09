@@ -22,4 +22,5 @@ sealed class PomodoroUiEvent {
     data class SelectAmbientSound(val sound: AmbientSound) : PomodoroUiEvent()
     data object ToggleDnd : PomodoroUiEvent()
     data object Extend1Min : PomodoroUiEvent()
+    data class SelectBackground(val uri: String?) : PomodoroUiEvent()
 }

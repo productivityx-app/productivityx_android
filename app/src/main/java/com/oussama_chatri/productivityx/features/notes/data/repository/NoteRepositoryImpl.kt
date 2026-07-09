@@ -113,7 +113,8 @@ class NoteRepositoryImpl @Inject constructor(
         content: String?,
         tagIds: Set<String>?,
         pinned: Boolean?,
-        folderId: String?
+        folderId: String?,
+        imageUrls: List<String>?
     ): Resource<Note> {
         val userId = cachedUserId()
         val clientId = UUID.randomUUID().toString()
@@ -136,6 +137,7 @@ class NoteRepositoryImpl @Inject constructor(
             createdAt = now,
             updatedAt = now,
             folderId = folderId,
+            imageUrls = imageUrls?.joinToString(",") ?: "",
             pendingOperation = "CREATE"
         )
         noteDao.upsert(entity)
@@ -168,7 +170,8 @@ class NoteRepositoryImpl @Inject constructor(
         content: String?,
         tagIds: Set<String>?,
         pinned: Boolean?,
-        folderId: String?
+        folderId: String?,
+        imageUrls: List<String>?
     ): Resource<Note> {
         val userId = cachedUserId()
         val now = Instant.now().toEpochMilli()
@@ -189,6 +192,7 @@ class NoteRepositoryImpl @Inject constructor(
                 readingTimeSeconds = readingTimeSeconds(wordCount(plain)),
                 isPinned = pinned ?: local.note.isPinned,
                 folderId = folderId ?: local.note.folderId,
+                imageUrls = imageUrls?.joinToString(",") ?: local.note.imageUrls,
                 version = local.note.version + 1,
                 syncStatus = SyncStatus.PENDING,
                 updatedAt = now,

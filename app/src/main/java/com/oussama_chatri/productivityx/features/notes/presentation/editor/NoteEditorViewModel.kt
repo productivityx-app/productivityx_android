@@ -79,6 +79,7 @@ class NoteEditorViewModel @Inject constructor(
                             content = note.content,
                             plainTextContent = note.plainTextContent,
                             tags = note.tags,
+                            imageUrls = note.imageUrls,
                             isPinned = note.isPinned,
                             isDeleted = note.isDeleted,
                             hasUnsavedChanges = false,
@@ -116,6 +117,19 @@ class NoteEditorViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(
                         tags = it.tags.filterNot { t -> t.id == event.tagId }.toSet(),
+                        hasUnsavedChanges = true
+                    )
+                }
+                scheduleAutoSave()
+            }
+            is NoteEditorUiEvent.AddImage -> {
+                _uiState.update { it.copy(imageUrls = it.imageUrls + event.uri, hasUnsavedChanges = true) }
+                scheduleAutoSave()
+            }
+            is NoteEditorUiEvent.RemoveImage -> {
+                _uiState.update {
+                    it.copy(
+                        imageUrls = it.imageUrls.filterNot { uri -> uri == event.uri },
                         hasUnsavedChanges = true
                     )
                 }
@@ -199,7 +213,8 @@ class NoteEditorViewModel @Inject constructor(
                     title = state.title.trim().ifBlank { null },
                     content = state.content.ifBlank { null },
                     tagIds = tagIds.ifEmpty { null },
-                    pinned = if (state.isPinned) true else null
+                    pinned = if (state.isPinned) true else null,
+                    imageUrls = state.imageUrls.ifEmpty { null }
                 )
             } else {
                 updateNote(
@@ -207,7 +222,8 @@ class NoteEditorViewModel @Inject constructor(
                     title = state.title.trim(),
                     content = state.content,
                     tagIds = tagIds,
-                    pinned = state.isPinned
+                    pinned = state.isPinned,
+                    imageUrls = state.imageUrls
                 )
             }
             when (result) {

@@ -40,7 +40,8 @@ data class PomodoroUiState(
     val motivationalQuote: String?      = null,
     val sessionTimeline: List<SessionHistoryItem> = emptyList(),
     val focusGoalMinutes: Int           = 120,
-    val completedFocusMinutesToday: Int = 0
+    val completedFocusMinutesToday: Int = 0,
+    val backgroundImageUri: String?     = null
 ) {
     val totalSeconds: Int
         get() = when (selectedType) {

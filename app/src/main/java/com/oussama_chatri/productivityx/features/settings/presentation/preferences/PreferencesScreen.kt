@@ -383,6 +383,22 @@ private fun SettingsContent(
                 )
             }
         )
+        SettingRow(
+            icon = Icons.Outlined.FontDownload,
+            label = "Font Family",
+            trailing = {
+                SelectionChipRow(
+                    options = listOf(
+                        "Nunito" to "Nunito",
+                        "System Default" to "System",
+                        "Serif" to "Serif",
+                        "Monospace" to "Mono"
+                    ),
+                    selected = state.fontFamily,
+                    onSelect = { viewModel.onEvent(PreferencesUiEvent.FontFamilyChanged(it)) }
+                )
+            }
+        )
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)

@@ -110,9 +110,16 @@ fun HomeScreen(
                     QuickAction.NEW_TASK -> onNavigateToTasks()
                     QuickAction.START_TIMER -> onNavigateToPomodoro()
                     QuickAction.AI_CHAT -> onNavigateToAi()
+                    QuickAction.CALCULATOR -> { /* handled by viewmodel */ }
                 }
             },
             modifier = Modifier.align(Alignment.BottomEnd),
+        )
+    }
+
+    if (uiState.showCalculator) {
+        com.oussama_chatri.productivityx.features.home.presentation.components.CalculatorBottomSheet(
+            onDismiss = { viewModel.onEvent(HomeEvent.ToggleCalculator) }
         )
     }
 
@@ -306,6 +313,7 @@ private fun QuickActionSnackbar(
             QuickAction.NEW_TASK -> "Opening new task..."
             QuickAction.START_TIMER -> "Starting timer..."
             QuickAction.AI_CHAT -> "Opening AI chat..."
+            QuickAction.CALCULATOR -> "Opening calculator..."
             null -> ""
         }
         Box(

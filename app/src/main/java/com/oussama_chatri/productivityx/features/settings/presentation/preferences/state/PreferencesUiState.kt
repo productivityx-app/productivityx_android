@@ -36,6 +36,7 @@ data class PreferencesUiState(
     val appTheme: String = "DARK",
     val language: String = "en",
     val fontScale: Float = 1f,
+    val fontFamily: String = "Nunito",
     val density: String = "COMFORTABLE",
     // Privacy
     val localOnlyMode: Boolean = true,

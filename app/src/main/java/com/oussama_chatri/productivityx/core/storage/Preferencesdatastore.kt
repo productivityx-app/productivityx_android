@@ -48,6 +48,8 @@ class PreferencesDataStore @Inject constructor(
     
     val fontScale: Flow<Float> = store.data.map { it[KEY_FONT_SCALE] ?: 1f }
     
+    val fontFamily: Flow<String> = store.data.map { it[KEY_FONT_FAMILY] ?: "Nunito" }
+    
     val compactMode: Flow<Boolean> = store.data.map { it[KEY_COMPACT_MODE] ?: false }
     
     val quietHoursStart: Flow<Int> = store.data.map { it[KEY_QUIET_HOURS_START] ?: 22 }
@@ -98,6 +100,10 @@ class PreferencesDataStore @Inject constructor(
         store.edit { it[KEY_FONT_SCALE] = scale }
     }
     
+    suspend fun setFontFamily(family: String) {
+        store.edit { it[KEY_FONT_FAMILY] = family }
+    }
+    
     suspend fun setCompactMode(enabled: Boolean) {
         store.edit { it[KEY_COMPACT_MODE] = enabled }
     }
@@ -138,6 +144,15 @@ class PreferencesDataStore @Inject constructor(
     }
 
     // ── Pomodoro active timer ──────────────────────────────────────────────────
+
+    val pomodoroBackgroundImageUri: Flow<String?> = store.data.map { it[KEY_POMODORO_BACKGROUND_IMAGE_URI] }
+
+    suspend fun setPomodoroBackgroundImageUri(uri: String?) {
+        store.edit {
+            if (uri != null) it[KEY_POMODORO_BACKGROUND_IMAGE_URI] = uri
+            else it.remove(KEY_POMODORO_BACKGROUND_IMAGE_URI)
+        }
+    }
 
     val pomodoroSessionId: Flow<String?> = store.data.map { it[KEY_POMODORO_SESSION_ID] }
     val pomodoroType: Flow<String?> = store.data.map { it[KEY_POMODORO_TYPE] }
@@ -222,6 +237,7 @@ class PreferencesDataStore @Inject constructor(
 
         private val KEY_HAPTIC_FEEDBACK = booleanPreferencesKey("haptic_feedback")
         private val KEY_FONT_SCALE = androidx.datastore.preferences.core.floatPreferencesKey("font_scale")
+        private val KEY_FONT_FAMILY = stringPreferencesKey("font_family")
         private val KEY_COMPACT_MODE = booleanPreferencesKey("compact_mode")
         private val KEY_QUIET_HOURS_START = intPreferencesKey("quiet_hours_start")
         private val KEY_QUIET_HOURS_END = intPreferencesKey("quiet_hours_end")
@@ -230,6 +246,7 @@ class PreferencesDataStore @Inject constructor(
 
         private val KEY_POMODORO_DAILY_GOAL = intPreferencesKey("pomodoro_daily_goal")
         private val KEY_POMODORO_WEEKLY_GOAL = intPreferencesKey("pomodoro_weekly_goal")
+        private val KEY_POMODORO_BACKGROUND_IMAGE_URI = stringPreferencesKey("pomodoro_background_image_uri")
 
         private val KEY_POMODORO_SESSION_ID = stringPreferencesKey("pomodoro_session_id")
         private val KEY_POMODORO_TYPE = stringPreferencesKey("pomodoro_type")

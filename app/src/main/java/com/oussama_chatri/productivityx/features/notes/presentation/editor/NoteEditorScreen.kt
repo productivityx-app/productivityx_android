@@ -25,8 +25,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CenterFocusWeak
 import androidx.compose.material.icons.outlined.CheckCircle
@@ -62,6 +64,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.PickVisualMediaRequest
+import coil3.compose.AsyncImage
+import com.oussama_chatri.productivityx.features.notes.presentation.util.PdfGenerator
+import kotlinx.coroutines.launch
 import android.content.Intent
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -102,6 +110,41 @@ fun NoteEditorScreen(
     val snackbar = remember { SnackbarHostState() }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val context = LocalContext.current
+
+    val photoPicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { uri ->
+            if (uri != null) {
+                // We must take persistable URI permission so we can read it later
+                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                context.contentResolver.takePersistableUriPermission(uri, flag)
+                viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
+            }
+        }
+    )
+
+    val pdfScope = androidx.compose.runtime.rememberCoroutineScope()
+    val pdfCreator = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/pdf"),
+        onResult = { uri ->
+            if (uri != null) {
+                pdfScope.launch {
+                    val result = PdfGenerator.generatePdf(
+                        context = context,
+                        uri = uri,
+                        title = uiState.title,
+                        content = uiState.content
+                    )
+                    if (result.isSuccess) {
+                        viewModel.onEvent(NoteEditorUiEvent.HideExportSheet)
+                        // Could show a success snackbar here
+                    } else {
+                        // Could show an error snackbar here
+                    }
+                }
+            }
+        }
+    )
 
     var showTagSheet by rememberSaveable { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
@@ -160,6 +203,9 @@ fun NoteEditorScreen(
                                 val (newText, newCursor) = applyMarkdownAction(action, contentValue)
                                 contentValue = TextFieldValue(newText, TextRange(newCursor))
                                 viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
+                            },
+                            onAddImageClick = {
+                                photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                             }
                         )
                         Spacer(modifier = Modifier.navigationBarsPadding())
@@ -228,6 +274,42 @@ fun NoteEditorScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     HorizontalDivider(color = PxColors.Outline)
                     Spacer(modifier = Modifier.height(12.dp))
+                }
+                
+                // Images
+                if (uiState.imageUrls.isNotEmpty()) {
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                    ) {
+                        uiState.imageUrls.forEach { uri ->
+                            Box {
+                                AsyncImage(
+                                    model = uri,
+                                    contentDescription = "Note image",
+                                    modifier = Modifier
+                                        .height(160.dp)
+                                        .clip(RoundedCornerShape(8.dp))
+                                )
+                                IconButton(
+                                    onClick = { viewModel.onEvent(NoteEditorUiEvent.RemoveImage(uri)) },
+                                    modifier = Modifier
+                                        .align(Alignment.TopEnd)
+                                        .padding(4.dp)
+                                        .size(24.dp)
+                                        .background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                                ) {
+                                    Icon(
+                                        imageVector = androidx.compose.material.icons.Icons.Default.Close,
+                                        contentDescription = "Remove image",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
                 }
 
                 // Content field
@@ -367,7 +449,7 @@ fun NoteEditorScreen(
     if (uiState.showExportSheet) {
         ExportSheet(
             onDismiss = { viewModel.onEvent(NoteEditorUiEvent.HideExportSheet) },
-            onExportPdf = { viewModel.onEvent(NoteEditorUiEvent.ShowExportSheet) }, // Placeholder
+            onExportPdf = { pdfCreator.launch("${uiState.title.ifBlank { "Note" }}.pdf") },
             onShare = {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"

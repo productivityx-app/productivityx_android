@@ -107,6 +107,10 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(fontScale = event.value.coerceIn(0.7f, 1.5f)) }
                 viewModelScope.launch { prefs.setFontScale(event.value.coerceIn(0.7f, 1.5f)) }
             }
+            is PreferencesUiEvent.FontFamilyChanged -> {
+                mutate { it.copy(fontFamily = event.value) }
+                viewModelScope.launch { prefs.setFontFamily(event.value) }
+            }
             is PreferencesUiEvent.DensityChanged ->
                 mutate { it.copy(density = event.value) }
             is PreferencesUiEvent.LanguageChanged -> {
@@ -169,6 +173,8 @@ class PreferencesViewModel @Inject constructor(
     private fun load() {
         viewModelScope.launch {
             val localOnly = prefs.localOnlyMode.first()
+            val fontFamily = prefs.fontFamily.first()
+            val fontScale = prefs.fontScale.first()
             when (val result = getPreferencesUseCase()) {
                 is Resource.Success -> {
                     val d = result.data
@@ -176,6 +182,8 @@ class PreferencesViewModel @Inject constructor(
                         it.copy(
                             isLoading = false,
                             localOnlyMode = localOnly,
+                            fontFamily = fontFamily,
+                            fontScale = fontScale,
                             pomodoroFocusMinutes = d.pomodoroFocusMinutes,
                             pomodoroShortBreakMinutes = d.pomodoroShortBreakMinutes,
                             pomodoroLongBreakMinutes = d.pomodoroLongBreakMinutes,
@@ -200,7 +208,7 @@ class PreferencesViewModel @Inject constructor(
                     }
                 }
                 is Resource.Error -> _uiState.update {
-                    it.copy(isLoading = false, errorMessage = result.message)
+                    it.copy(isLoading = false, errorMessage = result.message, fontFamily = fontFamily, fontScale = fontScale)
                 }
                 Resource.Loading -> Unit
             }

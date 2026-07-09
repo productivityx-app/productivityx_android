@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.TaskAlt
+import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -104,6 +105,7 @@ private fun RadialMenuItems(
     val items = listOf(
         RadialMenuItem("New Note", Icons.Filled.Edit, QuickAction.NEW_NOTE, PxColors.Info),
         RadialMenuItem("New Task", Icons.Filled.TaskAlt, QuickAction.NEW_TASK, PxColors.Success),
+        RadialMenuItem("Calculator", Icons.Filled.Calculate, QuickAction.CALCULATOR, PxColors.Primary),
         RadialMenuItem("Start Timer", Icons.Filled.PlayArrow, QuickAction.START_TIMER, PxColors.Warning),
         RadialMenuItem("AI Chat", Icons.Filled.AutoAwesome, QuickAction.AI_CHAT, PxColors.Primary),
     )

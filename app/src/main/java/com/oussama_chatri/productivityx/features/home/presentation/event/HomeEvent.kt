@@ -10,6 +10,7 @@ sealed interface HomeEvent {
     data class ReorderWidgets(val newOrder: List<WidgetType>) : HomeEvent
     data class ToggleWidgetVisibility(val widget: WidgetType, val visible: Boolean) : HomeEvent
     data object ToggleRadialMenu : HomeEvent
+    data object ToggleCalculator : HomeEvent
     data class QuickActionSelected(val action: QuickAction) : HomeEvent
     data object DismissQuickAction : HomeEvent
     data class VoiceCommandResult(val text: String) : HomeEvent

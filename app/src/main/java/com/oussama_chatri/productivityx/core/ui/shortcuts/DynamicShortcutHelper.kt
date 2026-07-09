@@ -22,6 +22,7 @@ object DynamicShortcutHelper {
                 QuickAction.NEW_TASK -> android.net.Uri.parse("productivityx://tasks/new")
                 QuickAction.START_TIMER -> android.net.Uri.parse("productivityx://pomodoro/start")
                 QuickAction.AI_CHAT -> android.net.Uri.parse("productivityx://ai/chat")
+                QuickAction.CALCULATOR -> android.net.Uri.parse("productivityx://calculator")
             }
         }
 

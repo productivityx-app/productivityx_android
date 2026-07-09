@@ -11,11 +11,12 @@ data class HomeUiState(
     val expandedWidget: WidgetType? = null,
     val widgetOrder: List<WidgetType> = WidgetType.defaultOrder(),
     val showRadialMenu: Boolean = false,
+    val showCalculator: Boolean = false,
     val selectedQuickAction: QuickAction? = null,
     val voiceCommandActive: Boolean = false,
     val voiceCommandText: String = "",
 )
 
 enum class QuickAction {
-    NEW_NOTE, NEW_TASK, START_TIMER, AI_CHAT
+    NEW_NOTE, NEW_TASK, START_TIMER, AI_CHAT, CALCULATOR
 }

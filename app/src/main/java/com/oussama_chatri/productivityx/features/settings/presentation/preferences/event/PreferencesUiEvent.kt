@@ -32,6 +32,7 @@ sealed class PreferencesUiEvent {
     data class CompactModeChanged(val value: Boolean) : PreferencesUiEvent()
     data class AppThemeChanged(val value: String) : PreferencesUiEvent()
     data class FontScaleChanged(val value: Float) : PreferencesUiEvent()
+    data class FontFamilyChanged(val value: String) : PreferencesUiEvent()
     data class DensityChanged(val value: String) : PreferencesUiEvent()
     data class LanguageChanged(val value: String) : PreferencesUiEvent()
     // Privacy & Sync

@@ -126,11 +126,12 @@ class MainActivity : ComponentActivity() {
             
             // Collect fontScale and apply it to typography
             val fontScale by prefs.fontScale.collectAsStateWithLifecycle(initialValue = 1f)
+            val fontFamily by prefs.fontFamily.collectAsStateWithLifecycle(initialValue = "Nunito")
             
             // Collect compactMode
             val compactMode by prefs.compactMode.collectAsStateWithLifecycle(initialValue = false)
 
-            ProductivityXTheme(appTheme = appTheme, fontScale = fontScale) {
+            ProductivityXTheme(appTheme = appTheme, fontScale = fontScale, fontFamily = fontFamily) {
                 CompositionLocalProvider(
                     LocalNotificationState provides notificationState,
                     com.oussama_chatri.productivityx.core.ui.theme.LocalCompactMode provides compactMode

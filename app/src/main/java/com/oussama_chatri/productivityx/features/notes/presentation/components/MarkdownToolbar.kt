@@ -20,6 +20,7 @@ import androidx.compose.material.icons.outlined.FormatUnderlined
 import androidx.compose.material.icons.outlined.HorizontalRule
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Title
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -52,6 +53,7 @@ sealed class MarkdownAction(val prefix: String, val suffix: String = "") {
 @Composable
 fun MarkdownToolbar(
     onAction: (MarkdownAction) -> Unit,
+    onAddImageClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -66,6 +68,7 @@ fun MarkdownToolbar(
                 .padding(horizontal = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            ToolbarButton(Icons.Outlined.Image, "Add image", onAddImageClick)
             ToolbarButton(Icons.Outlined.FormatBold, "Bold") { onAction(MarkdownAction.Bold) }
             ToolbarButton(Icons.Outlined.FormatItalic, "Italic") { onAction(MarkdownAction.Italic) }
             ToolbarButton(Icons.Outlined.FormatUnderlined, "Underline") { onAction(MarkdownAction.Underline) }
