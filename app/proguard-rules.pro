@@ -8,6 +8,25 @@
 -dontwarn com.google.errorprone.**
 -keep class com.google.errorprone.** { *; }
 
+# Kotlinx Serialization
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt
+
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class com.oussama_chatri.productivityx.**$$serializer { *; }
+-keepclassmembers class com.oussama_chatri.productivityx.** {
+    *** Companion;
+}
+-keepclasseswithmembers class com.oussama_chatri.productivityx.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
