@@ -818,8 +818,7 @@ fun MinuteStepper(
             onClick = {
                 val current = value ?: 25
                 if (current > 5) onValueChange(current - 5)
-            },
-            modifier = Modifier.size(32.dp)
+            }
         ) {
             Text("\u2212", color = PxColors.Primary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
@@ -830,8 +829,7 @@ fun MinuteStepper(
             fontWeight = FontWeight.Medium
         )
         IconButton(
-            onClick = { onValueChange((value ?: 20) + 5) },
-            modifier = Modifier.size(32.dp)
+            onClick = { onValueChange((value ?: 20) + 5) }
         ) {
             Text("+", color = PxColors.Primary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }

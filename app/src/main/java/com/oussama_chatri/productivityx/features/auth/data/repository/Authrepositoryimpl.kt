@@ -221,7 +221,7 @@ class AuthRepositoryImpl @Inject constructor(
     // Logout — always clears local storage regardless of network outcome
 
     override suspend fun logout(): Resource<Unit> {
-        runCatching { safeApiCall { api.logout() } }
+        safeApiCall { api.logout() }
         localDataSource.clearAll()
         return Resource.Success(Unit)
     }

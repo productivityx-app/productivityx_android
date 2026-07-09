@@ -115,6 +115,7 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.components.K
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.KanbanTaskCard
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.SmartFilterChip
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskEmptyState
+import com.oussama_chatri.productivityx.core.ui.components.ListSkeleton
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskListItem
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TimelineTaskBar
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.TasksEvent
@@ -203,6 +204,7 @@ fun TasksScreen(
                 ) { mode ->
                     when (mode) {
                         TaskView.LIST -> TaskListView(
+                            isLoading = uiState.isLoading,
                             tasks = uiState.filteredTasks,
                             isMultiSelectMode = uiState.isMultiSelectMode,
                             selectedTaskIds = uiState.selectedTaskIds,
@@ -498,6 +500,7 @@ private fun SmartFilterRow(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TaskListView(
+    isLoading: Boolean,
     tasks: List<Task>,
     isMultiSelectMode: Boolean,
     selectedTaskIds: Set<String>,
@@ -507,6 +510,11 @@ private fun TaskListView(
     onToggleSelect: (String) -> Unit,
     onAddTask: () -> Unit
 ) {
+    if (isLoading && tasks.isEmpty()) {
+        ListSkeleton()
+        return
+    }
+
     if (tasks.isEmpty()) {
         TaskEmptyState(viewMode = TaskView.LIST, onAddTask = onAddTask)
         return

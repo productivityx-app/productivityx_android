@@ -17,7 +17,8 @@ import com.oussama_chatri.productivityx.features.notes.domain.repository.TagRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.util.UUID
 import javax.inject.Inject
@@ -30,13 +31,14 @@ class TagRepositoryImpl @Inject constructor(
     private val preferencesDataStore: PreferencesDataStore
 ) : TagRepository {
 
-    override fun observeTags(): Flow<List<Tag>> {
-        val userId = cachedUserId()
-        return tagDao.observeTags(userId).map { list -> list.map { it.toDomain() } }
-    }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeTags(): Flow<List<Tag>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            tagDao.observeTags(userId).map { list -> list.map { it.toDomain() } }
+        }
 
     override suspend fun getTags(): Resource<List<Tag>> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val local  = tagDao.getTags(userId)
         if (local.isNotEmpty()) return Resource.Success(local.map { it.toDomain() })
 
@@ -56,7 +58,7 @@ class TagRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createTag(name: String, color: String?): Resource<Tag> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val tagEntity = TagEntity(
             id = UUID.randomUUID().toString(),
             userId = userId,
@@ -133,10 +135,7 @@ class TagRepositoryImpl @Inject constructor(
         is Resource.Loading -> Resource.Loading
     }
 
-    private fun cachedUserId(): String =
-        runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
-
-    private suspend fun cachedUserIdSuspend(): String =
+    private suspend fun cachedUserId(): String =
         preferencesDataStore.cachedUserId.first() ?: ""
 
     private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()

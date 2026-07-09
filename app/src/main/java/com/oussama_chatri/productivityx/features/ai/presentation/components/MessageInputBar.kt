@@ -102,7 +102,7 @@ fun MessageInputBar(
                 ) {
                     Icon(
                         Icons.Outlined.Reply,
-                        contentDescription = null,
+                        contentDescription = "Send message",
                         tint = PxColors.Primary,
                         modifier = Modifier.size(16.dp),
                     )

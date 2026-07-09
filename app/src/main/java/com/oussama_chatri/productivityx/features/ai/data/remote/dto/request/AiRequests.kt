@@ -10,4 +10,6 @@ data class CreateConversationRequest(
 @Serializable
 data class SendMessageRequest(
     val content: String,
+    val model: String? = null,
+    val contextEnabled: Boolean? = null
 )

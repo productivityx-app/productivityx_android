@@ -37,6 +37,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 import java.time.Instant
+import kotlinx.coroutines.flow.flatMapLatest
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -52,42 +53,50 @@ class NoteRepositoryImpl @Inject constructor(
     private val gson: Gson
 ) : NoteRepository {
 
-    override fun observeActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<List<Note>> {
-        val userId = cachedUserId()
-        val flow = when {
-            tagId != null -> noteDao.observeNotesByTag(userId, tagId)
-            !tagIds.isNullOrEmpty() -> noteDao.observeNotesByTags(userId, tagIds)
-            folderId != null -> noteDao.observeNotesByFolder(userId, folderId)
-            pinnedOnly -> noteDao.observePinnedNotes(userId)
-            else -> noteDao.observeActiveNotes(userId)
-        }
-        return flow.map { list -> list.map { it.toDomain() } }
-    }
-
-    override fun getPagedActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<PagingData<Note>> {
-        val userId = cachedUserId()
-        return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = true),
-            pagingSourceFactory = {
-                when {
-                    tagId != null -> noteDao.getPagedNotesByTag(userId, tagId)
-                    !tagIds.isNullOrEmpty() -> noteDao.getPagedNotesByTags(userId, tagIds)
-                    folderId != null -> noteDao.getPagedNotesByFolder(userId, folderId)
-                    pinnedOnly -> noteDao.getPagedPinnedNotes(userId)
-                    else -> noteDao.getPagedActiveNotes(userId)
-                }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<List<Note>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            val flow = when {
+                tagId != null -> noteDao.observeNotesByTag(userId, tagId)
+                !tagIds.isNullOrEmpty() -> noteDao.observeNotesByTags(userId, tagIds)
+                folderId != null -> noteDao.observeNotesByFolder(userId, folderId)
+                pinnedOnly -> noteDao.observePinnedNotes(userId)
+                else -> noteDao.observeActiveNotes(userId)
             }
-        ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
-    }
+            flow.map { list -> list.map { it.toDomain() } }
+        }
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun getPagedActiveNotes(tagId: String?, pinnedOnly: Boolean, tagIds: List<String>?, folderId: String?): Flow<PagingData<Note>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            Pager(
+                config = PagingConfig(pageSize = 20, enablePlaceholders = true),
+                pagingSourceFactory = {
+                    when {
+                        tagId != null -> noteDao.getPagedNotesByTag(userId, tagId)
+                        !tagIds.isNullOrEmpty() -> noteDao.getPagedNotesByTags(userId, tagIds)
+                        folderId != null -> noteDao.getPagedNotesByFolder(userId, folderId)
+                        pinnedOnly -> noteDao.getPagedPinnedNotes(userId)
+                        else -> noteDao.getPagedActiveNotes(userId)
+                    }
+                }
+            ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
+        }
+
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     override fun observeTrash(): Flow<List<Note>> =
-        noteDao.observeTrash(cachedUserId()).map { list -> list.map { it.toDomain() } }
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            noteDao.observeTrash(userId).map { list -> list.map { it.toDomain() } }
+        }
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     override fun observeSearch(query: String): Flow<List<Note>> =
-        noteDao.observeSearchNotes(cachedUserId(), query).map { list -> list.map { it.toDomain() } }
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            noteDao.observeSearchNotes(userId, query).map { list -> list.map { it.toDomain() } }
+        }
 
     override suspend fun getNoteById(noteId: String): Resource<Note> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val local = noteDao.getNoteByIdAndUser(noteId, userId)
         if (local != null) return Resource.Success(local.toDomain())
 
@@ -106,7 +115,7 @@ class NoteRepositoryImpl @Inject constructor(
         pinned: Boolean?,
         folderId: String?
     ): Resource<Note> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val clientId = UUID.randomUUID().toString()
         val now = Instant.now().toEpochMilli()
         val plain = stripMarkdown(content ?: "")
@@ -161,7 +170,7 @@ class NoteRepositoryImpl @Inject constructor(
         pinned: Boolean?,
         folderId: String?
     ): Resource<Note> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val now = Instant.now().toEpochMilli()
 
         var originalVersion: Int? = null
@@ -215,7 +224,7 @@ class NoteRepositoryImpl @Inject constructor(
         togglePinnedLocally(noteId, true)
         if (isSyncEnabled()) {
             val remote = safeApiCall { noteApi.pinNote(noteId) }
-            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
         }
         return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
             ?: Resource.Error("Note not found")
@@ -225,7 +234,7 @@ class NoteRepositoryImpl @Inject constructor(
         togglePinnedLocally(noteId, false)
         if (isSyncEnabled()) {
             val remote = safeApiCall { noteApi.unpinNote(noteId) }
-            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
         }
         return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
             ?: Resource.Error("Note not found")
@@ -249,7 +258,7 @@ class NoteRepositoryImpl @Inject constructor(
             enqueueSync(noteId, SyncOperation.DELETE, "{}")
             val remote = safeApiCall { noteApi.softDeleteNote(noteId) }
             return handleNoteResponse(remote) { dto ->
-                noteDao.upsert(dto.toEntity(cachedUserIdSuspend()))
+                noteDao.upsert(dto.toEntity(cachedUserId()))
                 syncQueueDao.deleteByEntity(noteId, EntityType.NOTE)
             }
         }
@@ -272,7 +281,7 @@ class NoteRepositoryImpl @Inject constructor(
         }
         if (isSyncEnabled()) {
             val remote = safeApiCall { noteApi.restoreNote(noteId) }
-            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserIdSuspend())) }
+            return handleNoteResponse(remote) { dto -> noteDao.upsert(dto.toEntity(cachedUserId())) }
         }
         return noteDao.getNoteById(noteId)?.let { Resource.Success(it.toDomain()) }
             ?: Resource.Error("Note not found")
@@ -297,7 +306,7 @@ class NoteRepositoryImpl @Inject constructor(
         if (isSyncEnabled()) {
             val remote = safeApiCall { noteApi.addTagToNote(noteId, AddTagToNoteRequestDto(tagId)) }
             return handleNoteResponse(remote) { dto ->
-                val (entity, refs) = dto.toEntityWithRefs(cachedUserIdSuspend())
+                val (entity, refs) = dto.toEntityWithRefs(cachedUserId())
                 noteDao.upsert(entity)
                 noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
             }
@@ -315,7 +324,7 @@ class NoteRepositoryImpl @Inject constructor(
         if (isSyncEnabled()) {
             val remote = safeApiCall { noteApi.removeTagFromNote(noteId, tagId) }
             return handleNoteResponse(remote) { dto ->
-                val (entity, refs) = dto.toEntityWithRefs(cachedUserIdSuspend())
+                val (entity, refs) = dto.toEntityWithRefs(cachedUserId())
                 noteDao.upsert(entity)
                 noteDao.replaceNoteTags(dto.id, refs.map { it.tagId })
             }
@@ -326,7 +335,7 @@ class NoteRepositoryImpl @Inject constructor(
 
     override suspend fun refreshNotes(): Resource<Unit> {
         if (!isSyncEnabled()) return Resource.Success(Unit)
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val result = safeApiCall { noteApi.listActiveNotes(size = 100) }
         if (result is Resource.Success && result.data.isSuccessful) {
             result.data.body()?.data?.content?.forEach { dto ->
@@ -396,7 +405,7 @@ class NoteRepositoryImpl @Inject constructor(
                 val dto = response.body()?.data
                 if (dto != null) {
                     onSuccess(dto)
-                    Resource.Success(dto.toDomain(cachedUserIdSuspend()))
+                    Resource.Success(dto.toDomain(cachedUserId()))
                 } else Resource.Error("Empty response body")
             } else Resource.Error(parseError(response.errorBody()?.string()))
         }
@@ -404,10 +413,7 @@ class NoteRepositoryImpl @Inject constructor(
         is Resource.Loading -> Resource.Loading
     }
 
-    private fun cachedUserId(): String =
-        runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
-
-    private suspend fun cachedUserIdSuspend(): String =
+    private suspend fun cachedUserId(): String =
         preferencesDataStore.cachedUserId.first() ?: ""
 
     private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
@@ -441,3 +447,4 @@ class NoteRepositoryImpl @Inject constructor(
     private fun readingTimeSeconds(words: Int): Int =
         if (words == 0) 0 else (words.toDouble() / 200.0 * 60).toInt().coerceAtLeast(1)
 }
+

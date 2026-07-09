@@ -10,7 +10,8 @@ import com.oussama_chatri.productivityx.features.notes.domain.repository.Templat
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.util.UUID
 import javax.inject.Inject
@@ -22,13 +23,14 @@ class TemplateRepositoryImpl @Inject constructor(
     private val preferencesDataStore: PreferencesDataStore
 ) : TemplateRepository {
 
-    override fun observeTemplates(): Flow<List<NoteTemplate>> {
-        val userId = cachedUserId()
-        return templateDao.observeTemplates(userId).map { list -> list.map { it.toDomain() } }
-    }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeTemplates(): Flow<List<NoteTemplate>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            templateDao.observeTemplates(userId).map { list -> list.map { it.toDomain() } }
+        }
 
     override suspend fun createTemplate(name: String, content: String, icon: String?): Resource<NoteTemplate> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val entity = TemplateEntity(
             id = UUID.randomUUID().toString(),
             userId = userId,
@@ -46,9 +48,6 @@ class TemplateRepositoryImpl @Inject constructor(
         return Resource.Success(Unit)
     }
 
-    private fun cachedUserId(): String =
-        runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
-
-    private suspend fun cachedUserIdSuspend(): String =
+    private suspend fun cachedUserId(): String =
         preferencesDataStore.cachedUserId.first() ?: ""
 }

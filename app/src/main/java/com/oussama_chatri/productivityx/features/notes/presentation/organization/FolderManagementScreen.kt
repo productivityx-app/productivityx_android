@@ -201,10 +201,10 @@ private fun FolderCard(
                     color = PxColors.OnSurfaceDim
                 )
             }
-            IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
+            IconButton(onClick = onEdit) {
                 Icon(Icons.Outlined.Edit, contentDescription = "Edit", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
             }
-            IconButton(onClick = onDelete, modifier = Modifier.size(32.dp)) {
+            IconButton(onClick = onDelete) {
                 Icon(Icons.Outlined.Delete, contentDescription = "Delete", tint = PxColors.Error, modifier = Modifier.size(18.dp))
             }
         }

@@ -167,28 +167,22 @@ private fun MessageActions(
     ) {
         IconButton(
             onClick = { onCopy?.invoke() },
-            modifier = Modifier
-                .size(32.dp)
-                .background(PxColors.SurfaceVariant, CircleShape),
+            modifier = Modifier.background(PxColors.SurfaceVariant, CircleShape),
         ) {
-            Icon(Icons.Outlined.ContentCopy, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
+            Icon(Icons.Outlined.ContentCopy, contentDescription = "Copy", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
         }
         IconButton(
             onClick = { onReply?.invoke() },
-            modifier = Modifier
-                .size(32.dp)
-                .background(PxColors.SurfaceVariant, CircleShape),
+            modifier = Modifier.background(PxColors.SurfaceVariant, CircleShape),
         ) {
-            Icon(Icons.Outlined.Reply, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
+            Icon(Icons.Outlined.Reply, contentDescription = "Reply", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
         }
         if (message.role == MessageRole.ASSISTANT) {
             IconButton(
                 onClick = { onRegenerate?.invoke() },
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(PxColors.SurfaceVariant, CircleShape),
+                modifier = Modifier.background(PxColors.SurfaceVariant, CircleShape),
             ) {
-                Icon(Icons.Outlined.Refresh, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.Refresh, contentDescription = "Regenerate", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
             }
         }
     }

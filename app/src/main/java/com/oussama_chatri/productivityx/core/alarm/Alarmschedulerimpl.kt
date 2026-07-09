@@ -10,6 +10,7 @@ import androidx.core.content.getSystemService
 import com.oussama_chatri.productivityx.core.notifications.NotificationHelper
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -83,16 +84,24 @@ class AlarmReceiver : BroadcastReceiver() {
 
     @Inject lateinit var notificationHelper: NotificationHelper
 
+    @OptIn(kotlinx.coroutines.DelicateCoroutinesApi::class)
     override fun onReceive(context: Context, intent: Intent) {
         val type = intent.getStringExtra(AlarmSchedulerImpl.EXTRA_TYPE) ?: return
         val entityId = intent.getStringExtra(AlarmSchedulerImpl.EXTRA_ENTITY_ID) ?: return
         val title = intent.getStringExtra(AlarmSchedulerImpl.EXTRA_TITLE) ?: return
 
-        when (type) {
-            AlarmSchedulerImpl.EXTRA_TYPE_TASK ->
-                notificationHelper.showTaskReminder(entityId.hashCode(), title)
-            AlarmSchedulerImpl.EXTRA_TYPE_EVENT ->
-                notificationHelper.showEventReminder(entityId.hashCode(), title, "")
+        val pendingResult = goAsync()
+        kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+            try {
+                when (type) {
+                    AlarmSchedulerImpl.EXTRA_TYPE_TASK ->
+                        notificationHelper.showTaskReminder(entityId.hashCode(), title)
+                    AlarmSchedulerImpl.EXTRA_TYPE_EVENT ->
+                        notificationHelper.showEventReminder(entityId.hashCode(), title, "")
+                }
+            } finally {
+                pendingResult.finish()
+            }
         }
     }
 }

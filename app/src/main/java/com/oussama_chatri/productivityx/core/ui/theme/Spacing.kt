@@ -12,7 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.compositionLocalOf
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
+
+val LocalCompactMode = compositionLocalOf { false }
 
 object Spacing {
     val xxs  = 2.dp
@@ -34,12 +37,27 @@ object LayoutTokens {
     val gridGap  = 16.dp
     val contentMaxWidth = 600.dp
 
-    val ItemSpacing    = Spacing.sm
-    val SectionSpacing = Spacing.section
-    val ScreenPadding  = PaddingValues(horizontal = Spacing.lg, vertical = Spacing.sm)
-    val CardPadding    = PaddingValues(Spacing.lg)
-    val ListPadding    = PaddingValues(horizontal = Spacing.lg)
-    val DialogPadding  = PaddingValues(Spacing.xxl)
+    val ItemSpacing: Dp
+        @Composable get() = if (LocalCompactMode.current) Spacing.xs else Spacing.sm
+    
+    val SectionSpacing: Dp
+        @Composable get() = if (LocalCompactMode.current) Spacing.md else Spacing.section
+    
+    val ScreenPadding: PaddingValues
+        @Composable get() = if (LocalCompactMode.current) PaddingValues(horizontal = Spacing.md, vertical = Spacing.xs)
+                            else PaddingValues(horizontal = Spacing.lg, vertical = Spacing.sm)
+    
+    val CardPadding: PaddingValues
+        @Composable get() = if (LocalCompactMode.current) PaddingValues(Spacing.md)
+                            else PaddingValues(Spacing.lg)
+    
+    val ListPadding: PaddingValues
+        @Composable get() = if (LocalCompactMode.current) PaddingValues(horizontal = Spacing.md)
+                            else PaddingValues(horizontal = Spacing.lg)
+                            
+    val DialogPadding: PaddingValues
+        @Composable get() = if (LocalCompactMode.current) PaddingValues(Spacing.lg)
+                            else PaddingValues(Spacing.xxl)
 }
 
 object Breakpoints {

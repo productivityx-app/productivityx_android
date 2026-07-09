@@ -126,3 +126,24 @@ val PxTypography = Typography(
         letterSpacing = 0.5.sp
     ),
 )
+
+fun getScaledTypography(scale: Float): Typography {
+    if (scale == 1f) return PxTypography
+    return Typography(
+        displayLarge = PxTypography.displayLarge.copy(fontSize = PxTypography.displayLarge.fontSize * scale, lineHeight = PxTypography.displayLarge.lineHeight * scale),
+        displayMedium = PxTypography.displayMedium.copy(fontSize = PxTypography.displayMedium.fontSize * scale, lineHeight = PxTypography.displayMedium.lineHeight * scale),
+        displaySmall = PxTypography.displaySmall.copy(fontSize = PxTypography.displaySmall.fontSize * scale, lineHeight = PxTypography.displaySmall.lineHeight * scale),
+        headlineLarge = PxTypography.headlineLarge.copy(fontSize = PxTypography.headlineLarge.fontSize * scale, lineHeight = PxTypography.headlineLarge.lineHeight * scale),
+        headlineMedium = PxTypography.headlineMedium.copy(fontSize = PxTypography.headlineMedium.fontSize * scale, lineHeight = PxTypography.headlineMedium.lineHeight * scale),
+        headlineSmall = PxTypography.headlineSmall.copy(fontSize = PxTypography.headlineSmall.fontSize * scale, lineHeight = PxTypography.headlineSmall.lineHeight * scale),
+        titleLarge = PxTypography.titleLarge.copy(fontSize = PxTypography.titleLarge.fontSize * scale, lineHeight = PxTypography.titleLarge.lineHeight * scale),
+        titleMedium = PxTypography.titleMedium.copy(fontSize = PxTypography.titleMedium.fontSize * scale, lineHeight = PxTypography.titleMedium.lineHeight * scale),
+        titleSmall = PxTypography.titleSmall.copy(fontSize = PxTypography.titleSmall.fontSize * scale, lineHeight = PxTypography.titleSmall.lineHeight * scale),
+        bodyLarge = PxTypography.bodyLarge.copy(fontSize = PxTypography.bodyLarge.fontSize * scale, lineHeight = PxTypography.bodyLarge.lineHeight * scale),
+        bodyMedium = PxTypography.bodyMedium.copy(fontSize = PxTypography.bodyMedium.fontSize * scale, lineHeight = PxTypography.bodyMedium.lineHeight * scale),
+        bodySmall = PxTypography.bodySmall.copy(fontSize = PxTypography.bodySmall.fontSize * scale, lineHeight = PxTypography.bodySmall.lineHeight * scale),
+        labelLarge = PxTypography.labelLarge.copy(fontSize = PxTypography.labelLarge.fontSize * scale, lineHeight = PxTypography.labelLarge.lineHeight * scale),
+        labelMedium = PxTypography.labelMedium.copy(fontSize = PxTypography.labelMedium.fontSize * scale, lineHeight = PxTypography.labelMedium.lineHeight * scale),
+        labelSmall = PxTypography.labelSmall.copy(fontSize = PxTypography.labelSmall.fontSize * scale, lineHeight = PxTypography.labelSmall.lineHeight * scale)
+    )
+}

@@ -9,12 +9,14 @@ import com.oussama_chatri.productivityx.features.ai.data.remote.api.AiApiService
 import com.oussama_chatri.productivityx.features.ai.data.remote.dto.request.CreateConversationRequest
 import com.oussama_chatri.productivityx.features.ai.data.remote.dto.request.SendMessageRequest
 import com.oussama_chatri.productivityx.features.ai.data.remote.dto.response.toEntity
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
 import com.oussama_chatri.productivityx.features.ai.domain.model.Message
 import com.oussama_chatri.productivityx.features.ai.domain.repository.AiRepository
 import com.oussama_chatri.productivityx.features.ai.domain.repository.StreamChunk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.first
@@ -43,6 +45,7 @@ class AiRepositoryImpl @Inject constructor(
     private val okHttpClient        : OkHttpClient,
     @Named("base_url") hostUrl       : String,
     private val json                : Json,
+    private val prefs               : PreferencesDataStore
 ) : AiRepository {
 
     private val baseUrl = hostUrl.trimEnd('/')
@@ -65,7 +68,7 @@ class AiRepositoryImpl @Inject constructor(
 
     override suspend fun deleteConversation(id: UUID): Unit = withContext(Dispatchers.IO) {
         conversationDao.deleteById(id)
-        runCatching { apiService.deleteConversation(id.toString()) }
+        com.oussama_chatri.productivityx.core.network.safeApiCall { apiService.deleteConversation(id.toString()) }
     }
 
     override suspend fun archiveConversation(id: UUID): Unit = withContext(Dispatchers.IO) {
@@ -101,8 +104,11 @@ class AiRepositoryImpl @Inject constructor(
         messageDao.insert(userEntity)
         conversationDao.refreshSummary(conversationId, content, Instant.now())
 
+        val aiModel = prefs.aiModel.first()
+        val aiContextEnabled = prefs.aiContextEnabled.first()
+
         val requestBody = json.encodeToString(
-            SendMessageRequest(content = content)
+            SendMessageRequest(content = content, model = aiModel, contextEnabled = aiContextEnabled)
         ).toRequestBody("application/json".toMediaType())
 
         val request = Request.Builder()
@@ -151,12 +157,12 @@ class AiRepositoryImpl @Inject constructor(
                             tokenCount      = null,
                             createdAt       = now,
                         )
-                        kotlinx.coroutines.runBlocking {
+                        launch {
                             messageDao.insert(assistantEntity)
                             conversationDao.refreshSummary(conversationId, fullContent, now)
+                            trySend(StreamChunk.Done(assistantEntity.toDomain()))
+                            close()
                         }
-                        trySend(StreamChunk.Done(assistantEntity.toDomain()))
-                        close()
                     }
                 }
             }

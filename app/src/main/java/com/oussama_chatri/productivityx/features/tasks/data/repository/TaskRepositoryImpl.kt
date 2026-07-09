@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
+import kotlinx.coroutines.flow.flatMapLatest
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -45,61 +46,55 @@ class TaskRepositoryImpl @Inject constructor(
     private val gson: Gson
 ) : TaskRepository {
 
-    override fun observeTasks(status: TaskStatus?, priority: Priority?): Flow<List<Task>> {
-        val userId = runCatching {
-            kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" }
-        }.getOrDefault("")
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeTasks(status: TaskStatus?, priority: Priority?): Flow<List<Task>> =
+        prefsDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            val topLevelFlow = when {
+                status != null -> taskDao.observeTopLevelTasksByStatus(userId, status)
+                priority != null -> taskDao.observeTopLevelTasksByPriority(userId, priority)
+                else -> taskDao.observeTopLevelTasks(userId)
+            }
 
-        val topLevelFlow = when {
-            status != null -> taskDao.observeTopLevelTasksByStatus(userId, status)
-            priority != null -> taskDao.observeTopLevelTasksByPriority(userId, priority)
-            else -> taskDao.observeTopLevelTasks(userId)
+            topLevelFlow.map { entities ->
+                entities.map { entity ->
+                    // Eagerly load subtasks for each top-level task
+                    val subtaskEntities = taskDao.getSubtasksByParentId(entity.id)
+                    entity.toDomain(subtaskEntities.map { it.toDomain() })
+                }
+            }
         }
 
-        return topLevelFlow.map { entities ->
-            entities.map { entity ->
-                // Eagerly load subtasks for each top-level task
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun getPagedTasks(status: TaskStatus?, priority: Priority?): Flow<PagingData<Task>> =
+        prefsDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            Pager(
+                config = PagingConfig(pageSize = 20, enablePlaceholders = true),
+                pagingSourceFactory = {
+                    when {
+                        status != null -> taskDao.getPagedTopLevelTasksByStatus(userId, status)
+                        priority != null -> taskDao.getPagedTopLevelTasksByPriority(userId, priority)
+                        else -> taskDao.getPagedTopLevelTasks(userId)
+                    }
+                }
+            ).flow
+        }.map { pagingData ->
+            pagingData.map { entity ->
+                // PagingData.map takes a suspend lambda, so no runBlocking needed!
                 val subtaskEntities = taskDao.getSubtasksByParentId(entity.id)
                 entity.toDomain(subtaskEntities.map { it.toDomain() })
             }
         }
-    }
-
-    override fun getPagedTasks(status: TaskStatus?, priority: Priority?): Flow<PagingData<Task>> {
-        val userId = runCatching {
-            kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" }
-        }.getOrDefault("")
-
-        return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = true),
-            pagingSourceFactory = {
-                when {
-                    status != null -> taskDao.getPagedTopLevelTasksByStatus(userId, status)
-                    priority != null -> taskDao.getPagedTopLevelTasksByPriority(userId, priority)
-                    else -> taskDao.getPagedTopLevelTasks(userId)
-                }
-            }
-        ).flow.map { pagingData ->
-            pagingData.map { entity ->
-                // Note: This might be slightly inefficient if paging source doesn't handle suspend properly
-                // But Room PagingSource handles it well. Subtasks are loaded here.
-                val subtaskEntities = kotlinx.coroutines.runBlocking { taskDao.getSubtasksByParentId(entity.id) }
-                entity.toDomain(subtaskEntities.map { it.toDomain() })
-            }
-        }
-    }
 
     override fun observeSubtasks(parentTaskId: String): Flow<List<Task>> =
         taskDao.observeSubtasks(parentTaskId).map { entities ->
             entities.map { it.toDomain() }
         }
 
-    override fun observeTrash(): Flow<List<Task>> {
-        val userId = runCatching {
-            kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" }
-        }.getOrDefault("")
-        return taskDao.observeTrash(userId).map { entities -> entities.map { it.toDomain() } }
-    }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeTrash(): Flow<List<Task>> =
+        prefsDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            taskDao.observeTrash(userId).map { entities -> entities.map { it.toDomain() } }
+        }
 
     override suspend fun getTaskById(taskId: String): Resource<Task> {
         val local = taskDao.getById(taskId)
@@ -431,8 +426,8 @@ class TaskRepositoryImpl @Inject constructor(
         )
     }
 
-    private fun cachedUserId(): String =
-        runCatching { kotlinx.coroutines.runBlocking { prefsDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
+    private suspend fun cachedUserId(): String =
+        prefsDataStore.cachedUserId.first() ?: ""
 
     private suspend fun isSyncEnabled(): Boolean = prefsDataStore.isSyncEnabled()
 }

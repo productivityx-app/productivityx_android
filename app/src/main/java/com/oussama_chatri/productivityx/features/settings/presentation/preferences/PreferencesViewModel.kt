@@ -64,12 +64,18 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(notifyPomodoroEnd = event.value) }
             is PreferencesUiEvent.NotifyDailySummaryChanged ->
                 mutate { it.copy(notifyDailySummary = event.value) }
-            is PreferencesUiEvent.HapticFeedbackChanged ->
+            is PreferencesUiEvent.HapticFeedbackChanged -> {
                 mutate { it.copy(hapticFeedback = event.value) }
-            is PreferencesUiEvent.QuietHoursStartChanged ->
+                viewModelScope.launch { prefs.setHapticFeedback(event.value) }
+            }
+            is PreferencesUiEvent.QuietHoursStartChanged -> {
                 mutate { it.copy(quietHoursStart = event.value.coerceIn(0, 23)) }
-            is PreferencesUiEvent.QuietHoursEndChanged ->
+                viewModelScope.launch { prefs.setQuietHours(event.value.coerceIn(0, 23), _uiState.value.quietHoursEnd) }
+            }
+            is PreferencesUiEvent.QuietHoursEndChanged -> {
                 mutate { it.copy(quietHoursEnd = event.value.coerceIn(0, 23)) }
+                viewModelScope.launch { prefs.setQuietHours(_uiState.value.quietHoursStart, event.value.coerceIn(0, 23)) }
+            }
             is PreferencesUiEvent.DefaultTaskViewChanged ->
                 mutate { it.copy(defaultTaskView = event.value) }
             is PreferencesUiEvent.DefaultTaskSortChanged ->
@@ -80,19 +86,27 @@ class PreferencesViewModel @Inject constructor(
                 mutate { it.copy(defaultCalendarView = event.value) }
             is PreferencesUiEvent.WeekStartsOnChanged ->
                 mutate { it.copy(weekStartsOn = event.value) }
-            is PreferencesUiEvent.AiContextEnabledChanged ->
+            is PreferencesUiEvent.AiContextEnabledChanged -> {
                 mutate { it.copy(aiContextEnabled = event.value) }
-            is PreferencesUiEvent.AiModelChanged ->
+                viewModelScope.launch { prefs.setAiContextEnabled(event.value) }
+            }
+            is PreferencesUiEvent.AiModelChanged -> {
                 mutate { it.copy(aiModel = event.value) }
-            is PreferencesUiEvent.CompactModeChanged ->
+                viewModelScope.launch { prefs.setAiModel(event.value) }
+            }
+            is PreferencesUiEvent.CompactModeChanged -> {
                 mutate { it.copy(compactMode = event.value) }
+                viewModelScope.launch { prefs.setCompactMode(event.value) }
+            }
             is PreferencesUiEvent.AppThemeChanged -> {
                 _uiState.update { it.copy(appTheme = event.value) }
                 viewModelScope.launch { prefs.setTheme(event.value) }
                 scheduleSave()
             }
-            is PreferencesUiEvent.FontScaleChanged ->
+            is PreferencesUiEvent.FontScaleChanged -> {
                 mutate { it.copy(fontScale = event.value.coerceIn(0.7f, 1.5f)) }
+                viewModelScope.launch { prefs.setFontScale(event.value.coerceIn(0.7f, 1.5f)) }
+            }
             is PreferencesUiEvent.DensityChanged ->
                 mutate { it.copy(density = event.value) }
             is PreferencesUiEvent.LanguageChanged -> {
@@ -104,8 +118,10 @@ class PreferencesViewModel @Inject constructor(
                 _uiState.update { it.copy(localOnlyMode = event.value) }
                 viewModelScope.launch { prefs.setLocalOnlyMode(event.value) }
             }
-            is PreferencesUiEvent.OfflineModeChanged ->
+            is PreferencesUiEvent.OfflineModeChanged -> {
                 mutate { it.copy(offlineMode = event.value) }
+                viewModelScope.launch { prefs.setOfflineMode(event.value) }
+            }
             is PreferencesUiEvent.AutoSyncChanged ->
                 mutate { it.copy(autoSync = event.value) }
             is PreferencesUiEvent.FeatureFlagToggled ->

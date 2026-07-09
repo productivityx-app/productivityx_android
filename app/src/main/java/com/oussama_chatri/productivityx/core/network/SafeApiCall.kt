@@ -39,6 +39,8 @@ suspend fun <T> safeApiCall(call: suspend () -> T): Resource<T> {
         Resource.Error(message = message, code = parsed?.errorCode ?: httpCode.toString())
     } catch (e: IOException) {
         Resource.Error(message = "No internet connection. Please check your network.")
+    } catch (e: kotlinx.coroutines.CancellationException) {
+        throw e
     } catch (e: Exception) {
         Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred.")
     }

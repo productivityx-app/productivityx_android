@@ -100,12 +100,11 @@ fun ActionCard(
                         modifier = Modifier.weight(1f),
                     )
                     IconButton(
-                        onClick = { isExpanded = !isExpanded },
-                        modifier = Modifier.size(20.dp),
+                        onClick = { isExpanded = !isExpanded }
                     ) {
                         Icon(
                             imageVector = if (isExpanded) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,
-                            contentDescription = null,
+                            contentDescription = if (isExpanded) "Collapse" else "Expand",
                             tint = PxColors.OnSurfaceDim,
                             modifier = Modifier.size(16.dp).rotate(rotation),
                         )

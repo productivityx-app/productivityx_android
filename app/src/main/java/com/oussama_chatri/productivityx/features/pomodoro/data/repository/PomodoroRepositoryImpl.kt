@@ -24,6 +24,7 @@ import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroS
 import com.oussama_chatri.productivityx.features.pomodoro.domain.repository.PomodoroRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.time.LocalDate
@@ -323,14 +324,13 @@ class PomodoroRepositoryImpl @Inject constructor(
         return Resource.Success(Unit)
     }
 
-    override fun observeSessions(): Flow<List<PomodoroSession>> {
-        val userId = runCatching {
-            kotlinx.coroutines.runBlocking { preferencesDataStore.cachedUserId.first() ?: "" }
-        }.getOrDefault("")
-        return pomodoroDao.observeSessions(userId).map { entities ->
-            entities.map { it.toDomain() }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeSessions(): Flow<List<PomodoroSession>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            pomodoroDao.observeSessions(userId).map { entities ->
+                entities.map { it.toDomain() }
+            }
         }
-    }
 
     private fun PomodoroSessionResponseDto.toEntity(userId: String) = PomodoroSessionEntity(
         id = id,
@@ -360,8 +360,8 @@ class PomodoroRepositoryImpl @Inject constructor(
         )
     }
 
-    private fun cachedUserId(): String =
-        runCatching { kotlinx.coroutines.runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
+    private suspend fun cachedUserId(): String =
+        preferencesDataStore.cachedUserId.first() ?: ""
 
     private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
 

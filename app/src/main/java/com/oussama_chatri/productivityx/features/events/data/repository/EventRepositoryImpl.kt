@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 import java.time.Instant
+import kotlinx.coroutines.flow.flatMapLatest
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,13 +42,19 @@ class EventRepositoryImpl @Inject constructor(
     private val alarmScheduler: AlarmScheduler
 ) : EventRepository {
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     override fun observeEvents(from: Instant, to: Instant): Flow<List<Event>> =
-        eventDao.observeEvents(cachedUserId(), from.toEpochMilli(), to.toEpochMilli())
-            .map { list -> list.map { it.toDomain() } }
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            eventDao.observeEvents(userId, from.toEpochMilli(), to.toEpochMilli())
+                .map { list -> list.map { it.toDomain() } }
+        }
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     override fun observeUpcomingEvents(limit: Int): Flow<List<Event>> =
-        eventDao.observeUpcomingEvents(cachedUserId(), Instant.now().toEpochMilli(), limit)
-            .map { list -> list.map { it.toDomain() } }
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            eventDao.observeUpcomingEvents(userId, Instant.now().toEpochMilli(), limit)
+                .map { list -> list.map { it.toDomain() } }
+        }
 
     override suspend fun getEventById(eventId: String): Resource<Event> {
         val userId = cachedUserId()
@@ -355,8 +362,8 @@ class EventRepositoryImpl @Inject constructor(
         is Resource.Loading -> Resource.Loading
     }
 
-    private fun cachedUserId(): String =
-        runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
+    private suspend fun cachedUserId(): String =
+        runCatching { preferencesDataStore.cachedUserId.first() ?: "" }.getOrDefault("")
 
     private suspend fun isSyncEnabled(): Boolean = preferencesDataStore.isSyncEnabled()
 

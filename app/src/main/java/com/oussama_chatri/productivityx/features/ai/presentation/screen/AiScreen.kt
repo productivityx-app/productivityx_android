@@ -27,6 +27,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FormatListBulleted
 import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.Stop
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,6 +37,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -88,6 +91,14 @@ fun AiScreen(
         }
     }
 
+    // Show error as snackbar and dismiss
+    LaunchedEffect(state.error) {
+        state.error?.let { error ->
+            snackbarState.showSnackbar(error)
+            viewModel.onEvent(AiUiEvent.DismissError)
+        }
+    }
+
     LaunchedEffect(state.messages.size, state.isStreaming) {
         val itemCount = state.messages.size + if (state.isStreaming) 1 else 0
         if (itemCount > 0) listState.animateScrollToItem(itemCount - 1)
@@ -123,6 +134,29 @@ fun AiScreen(
         },
         bottomBar = {
             Column(modifier = Modifier.navigationBarsPadding().imePadding()) {
+                AnimatedVisibility(
+                    visible = state.isStreaming,
+                    enter = fadeIn() + slideInVertically { it },
+                    exit = fadeOut(),
+                ) {
+                    TextButton(
+                        onClick = { viewModel.onEvent(AiUiEvent.StopGenerating) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        colors = ButtonDefaults.textButtonColors(
+                            contentColor = PxColors.Error
+                        )
+                    ) {
+                        Icon(
+                            Icons.Outlined.Stop,
+                            contentDescription = "Stop generating",
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(Modifier.size(4.dp))
+                        Text("Stop Generating", style = MaterialTheme.typography.labelLarge)
+                    }
+                }
                 MessageInputBar(
                     value = state.inputText,
                     onValueChange = { viewModel.onEvent(AiUiEvent.InputChanged(it)) },

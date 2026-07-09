@@ -11,7 +11,8 @@ import com.oussama_chatri.productivityx.features.notes.domain.repository.FolderR
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.util.UUID
 import javax.inject.Inject
@@ -24,18 +25,19 @@ class FolderRepositoryImpl @Inject constructor(
     private val preferencesDataStore: PreferencesDataStore
 ) : FolderRepository {
 
-    override fun observeFolders(): Flow<List<NoteFolder>> {
-        val userId = cachedUserId()
-        return folderDao.observeFolders(userId).map { entities ->
-            entities.map { folder ->
-                val count = runBlocking { folderDao.countNotesInFolder(folder.id) }
-                folder.toDomain(count.toInt())
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun observeFolders(): Flow<List<NoteFolder>> =
+        preferencesDataStore.cachedUserId.map { it ?: "" }.flatMapLatest { userId ->
+            folderDao.observeFolders(userId).map { entities ->
+                entities.map { folder ->
+                    val count = folderDao.countNotesInFolder(folder.id)
+                    folder.toDomain(count.toInt())
+                }
             }
         }
-    }
 
     override suspend fun createFolder(name: String, color: String?, parentFolderId: String?): Resource<NoteFolder> {
-        val userId = cachedUserIdSuspend()
+        val userId = cachedUserId()
         val entity = FolderEntity(
             id = UUID.randomUUID().toString(),
             userId = userId,
@@ -61,9 +63,6 @@ class FolderRepositoryImpl @Inject constructor(
         return Resource.Success(Unit)
     }
 
-    private fun cachedUserId(): String =
-        runCatching { runBlocking { preferencesDataStore.cachedUserId.first() ?: "" } }.getOrDefault("")
-
-    private suspend fun cachedUserIdSuspend(): String =
+    private suspend fun cachedUserId(): String =
         preferencesDataStore.cachedUserId.first() ?: ""
 }

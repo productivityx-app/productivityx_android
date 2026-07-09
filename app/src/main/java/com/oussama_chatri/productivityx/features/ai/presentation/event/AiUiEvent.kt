@@ -14,6 +14,7 @@ sealed class AiUiEvent {
         val action: com.oussama_chatri.productivityx.features.ai.domain.model.AiActionBlock
     )                                                       : AiUiEvent()
     data object DismissAction                               : AiUiEvent()
+    data object StopGenerating                               : AiUiEvent()
     data class CopyMessage(val messageId: java.util.UUID)   : AiUiEvent()
     data class RegenerateResponse(val messageId: java.util.UUID) : AiUiEvent()
     data class AddReaction(val messageId: java.util.UUID, val emoji: String) : AiUiEvent()

@@ -136,7 +136,7 @@ fun TagManagementScreen(
                                 color = PxColors.OnSurface,
                                 modifier = Modifier.weight(1f)
                             )
-                            IconButton(onClick = { deleteTagId = tag.id }, modifier = Modifier.size(24.dp)) {
+                            IconButton(onClick = { deleteTagId = tag.id }) {
                                 Icon(Icons.Outlined.Close, contentDescription = "Delete", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
                             }
                         }

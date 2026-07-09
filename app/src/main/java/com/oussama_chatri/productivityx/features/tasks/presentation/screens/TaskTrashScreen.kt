@@ -176,7 +176,7 @@ private fun TrashTaskItem(
 
         PriorityChip(priority = task.priority)
 
-        IconButton(onClick = onRestore, modifier = Modifier.size(36.dp)) {
+        IconButton(onClick = onRestore) {
             Icon(
                 Icons.Outlined.Refresh,
                 contentDescription = "Restore",
@@ -185,7 +185,7 @@ private fun TrashTaskItem(
             )
         }
 
-        IconButton(onClick = { showConfirm = true }, modifier = Modifier.size(36.dp)) {
+        IconButton(onClick = { showConfirm = true }) {
             Icon(
                 Icons.Outlined.DeleteForever,
                 contentDescription = "Delete permanently",

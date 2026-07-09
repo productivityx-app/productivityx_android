@@ -38,11 +38,29 @@ class PreferencesDataStore @Inject constructor(
 
     val localOnlyMode: Flow<Boolean> = store.data.map { it[KEY_LOCAL_ONLY] ?: true }
 
+    val offlineMode: Flow<Boolean> = store.data.map { it[KEY_OFFLINE_MODE] ?: false }
+
     val authSkipCompleted: Flow<Boolean> = store.data.map { it[KEY_AUTH_SKIP] ?: false }
 
     val language: Flow<String> = store.data.map { it[KEY_LANGUAGE] ?: "en" }
 
+    val hapticFeedback: Flow<Boolean> = store.data.map { it[KEY_HAPTIC_FEEDBACK] ?: true }
+    
+    val fontScale: Flow<Float> = store.data.map { it[KEY_FONT_SCALE] ?: 1f }
+    
+    val compactMode: Flow<Boolean> = store.data.map { it[KEY_COMPACT_MODE] ?: false }
+    
+    val quietHoursStart: Flow<Int> = store.data.map { it[KEY_QUIET_HOURS_START] ?: 22 }
+    
+    val quietHoursEnd: Flow<Int> = store.data.map { it[KEY_QUIET_HOURS_END] ?: 8 }
+    
+    val aiModel: Flow<String> = store.data.map { it[KEY_AI_MODEL] ?: "gemini-2.0-flash" }
+    
+    val aiContextEnabled: Flow<Boolean> = store.data.map { it[KEY_AI_CONTEXT_ENABLED] ?: true }
+
     suspend fun isLocalOnly(): Boolean = store.data.map { it[KEY_LOCAL_ONLY] ?: true }.first()
+    
+    suspend fun isOfflineMode(): Boolean = store.data.map { it[KEY_OFFLINE_MODE] ?: false }.first()
 
     suspend fun setOnboardingCompleted(completed: Boolean) {
         store.edit { it[KEY_ONBOARDING_COMPLETED] = completed }
@@ -70,6 +88,37 @@ class PreferencesDataStore @Inject constructor(
 
     suspend fun setLanguage(lang: String) {
         store.edit { it[KEY_LANGUAGE] = lang }
+    }
+
+    suspend fun setHapticFeedback(enabled: Boolean) {
+        store.edit { it[KEY_HAPTIC_FEEDBACK] = enabled }
+    }
+    
+    suspend fun setFontScale(scale: Float) {
+        store.edit { it[KEY_FONT_SCALE] = scale }
+    }
+    
+    suspend fun setCompactMode(enabled: Boolean) {
+        store.edit { it[KEY_COMPACT_MODE] = enabled }
+    }
+    
+    suspend fun setQuietHours(start: Int, end: Int) {
+        store.edit { 
+            it[KEY_QUIET_HOURS_START] = start
+            it[KEY_QUIET_HOURS_END] = end
+        }
+    }
+    
+    suspend fun setAiModel(model: String) {
+        store.edit { it[KEY_AI_MODEL] = model }
+    }
+    
+    suspend fun setAiContextEnabled(enabled: Boolean) {
+        store.edit { it[KEY_AI_CONTEXT_ENABLED] = enabled }
+    }
+    
+    suspend fun setOfflineMode(enabled: Boolean) {
+        store.edit { it[KEY_OFFLINE_MODE] = enabled }
     }
 
     suspend fun setAuthSkipCompleted(completed: Boolean) {
@@ -167,8 +216,17 @@ class PreferencesDataStore @Inject constructor(
         private val KEY_USER_FIRST_NAME = stringPreferencesKey("user_first_name")
         private val KEY_USER_EMAIL = stringPreferencesKey("user_email")
         private val KEY_LOCAL_ONLY = booleanPreferencesKey("local_only")
+        private val KEY_OFFLINE_MODE = booleanPreferencesKey("offline_mode")
         private val KEY_AUTH_SKIP = booleanPreferencesKey("auth_skip_completed")
         private val KEY_LANGUAGE = stringPreferencesKey("language")
+
+        private val KEY_HAPTIC_FEEDBACK = booleanPreferencesKey("haptic_feedback")
+        private val KEY_FONT_SCALE = androidx.datastore.preferences.core.floatPreferencesKey("font_scale")
+        private val KEY_COMPACT_MODE = booleanPreferencesKey("compact_mode")
+        private val KEY_QUIET_HOURS_START = intPreferencesKey("quiet_hours_start")
+        private val KEY_QUIET_HOURS_END = intPreferencesKey("quiet_hours_end")
+        private val KEY_AI_MODEL = stringPreferencesKey("ai_model")
+        private val KEY_AI_CONTEXT_ENABLED = booleanPreferencesKey("ai_context_enabled")
 
         private val KEY_POMODORO_DAILY_GOAL = intPreferencesKey("pomodoro_daily_goal")
         private val KEY_POMODORO_WEEKLY_GOAL = intPreferencesKey("pomodoro_weekly_goal")

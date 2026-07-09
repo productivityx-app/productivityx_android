@@ -10,13 +10,17 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.oussama_chatri.productivityx.MainActivity
 import com.oussama_chatri.productivityx.R
+import com.oussama_chatri.productivityx.core.storage.PreferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.first
+import java.util.Calendar
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NotificationHelper @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val prefs: PreferencesDataStore
 ) {
     private val manager = NotificationManagerCompat.from(context)
 
@@ -35,35 +39,33 @@ class NotificationHelper @Inject constructor(
         isRunning: Boolean
     ): Notification = NotificationCompat.Builder(context, NotificationChannels.CHANNEL_POMODORO)
         // FIX: Use android.R.drawable fallbacks so the project compiles before custom drawables
-        // are added. Replace these with your actual drawable resources once they exist:
-        //   R.drawable.ic_pomodoro, R.drawable.ic_pause, R.drawable.ic_play,
-        //   R.drawable.ic_skip, R.drawable.ic_stop
-        .setSmallIcon(android.R.drawable.ic_media_play)
+        .setSmallIcon(R.drawable.ic_pomodoro)
         .setContentTitle(title)
         .setContentText(text)
         .setContentIntent(launchIntent())
         .setOngoing(true)
         .setSilent(true)
         .addAction(
-            if (isRunning) android.R.drawable.ic_media_pause else android.R.drawable.ic_media_play,
+            if (isRunning) R.drawable.ic_pause else R.drawable.ic_play,
             if (isRunning) context.getString(R.string.pomodoro_pause)
             else context.getString(R.string.pomodoro_resume),
             playPauseIntent
         )
         .addAction(
-            android.R.drawable.ic_media_next,
+            R.drawable.ic_skip,
             context.getString(R.string.pomodoro_skip),
             skipIntent
         )
         .addAction(
-            android.R.drawable.ic_delete,
+            R.drawable.ic_stop,
             context.getString(R.string.pomodoro_stop),
             stopIntent
         )
         .build()
 
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
-    fun showTaskReminder(id: Int, taskTitle: String) {
+    suspend fun showTaskReminder(id: Int, taskTitle: String) {
+        if (isQuietHours()) return
         val notification = NotificationCompat.Builder(context, NotificationChannels.CHANNEL_TASK_REMINDER)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle(context.getString(R.string.notification_task_reminder_title))
@@ -75,7 +77,8 @@ class NotificationHelper @Inject constructor(
     }
 
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
-    fun showEventReminder(id: Int, eventTitle: String, timeLabel: String) {
+    suspend fun showEventReminder(id: Int, eventTitle: String, timeLabel: String) {
+        if (isQuietHours()) return
         val notification = NotificationCompat.Builder(context, NotificationChannels.CHANNEL_EVENT_REMINDER)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle(context.getString(R.string.notification_event_reminder_title))
@@ -84,6 +87,20 @@ class NotificationHelper @Inject constructor(
             .setAutoCancel(true)
             .build()
         manager.notify(id, notification)
+    }
+
+    @androidx.annotation.VisibleForTesting(otherwise = androidx.annotation.VisibleForTesting.PRIVATE)
+    internal suspend fun isQuietHours(calendar: Calendar = Calendar.getInstance()): Boolean {
+        val start = prefs.quietHoursStart.first()
+        val end = prefs.quietHoursEnd.first()
+        if (start == end) return false
+
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        return if (start < end) {
+            currentHour in start until end
+        } else {
+            currentHour >= start || currentHour < end
+        }
     }
 
     fun cancel(id: Int) = manager.cancel(id)

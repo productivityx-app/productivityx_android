@@ -43,6 +43,7 @@ import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.Locale
@@ -105,13 +106,35 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        lifecycleScope.launch {
+            prefs.hapticFeedback.collectLatest { enabled ->
+                val level = if (enabled) com.oussama_chatri.productivityx.core.ui.animation.FeedbackLevel.ALL else com.oussama_chatri.productivityx.core.ui.animation.FeedbackLevel.NONE
+                com.oussama_chatri.productivityx.core.ui.animation.FeedbackManager.init(
+                    com.oussama_chatri.productivityx.core.ui.animation.FeedbackConfig(
+                        level = level,
+                        soundEnabled = true,
+                        reduceMotion = false
+                    )
+                )
+            }
+        }
+
         setContent {
             val themeName by prefs.appTheme.collectAsStateWithLifecycle(initialValue = "DARK")
             val appTheme = try { AppTheme.valueOf(themeName) } catch (_: Exception) { AppTheme.DARK }
             val notificationState = remember { NotificationState() }
+            
+            // Collect fontScale and apply it to typography
+            val fontScale by prefs.fontScale.collectAsStateWithLifecycle(initialValue = 1f)
+            
+            // Collect compactMode
+            val compactMode by prefs.compactMode.collectAsStateWithLifecycle(initialValue = false)
 
-            ProductivityXTheme(appTheme = appTheme) {
-                CompositionLocalProvider(LocalNotificationState provides notificationState) {
+            ProductivityXTheme(appTheme = appTheme, fontScale = fontScale) {
+                CompositionLocalProvider(
+                    LocalNotificationState provides notificationState,
+                    com.oussama_chatri.productivityx.core.ui.theme.LocalCompactMode provides compactMode
+                ) {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()

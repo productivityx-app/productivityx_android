@@ -10,6 +10,7 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.TimerState
 import dagger.hilt.android.AndroidEntryPoint
@@ -263,15 +264,15 @@ class PomodoroForegroundService : Service() {
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
-            .setSmallIcon(android.R.drawable.ic_media_play)
+            .setSmallIcon(R.drawable.ic_pomodoro)
             .setOngoing(ongoing)
             .setSilent(true)
             .addAction(
-                if (isPaused) android.R.drawable.ic_media_play else android.R.drawable.ic_media_pause,
+                if (isPaused) R.drawable.ic_play else R.drawable.ic_pause,
                 if (isPaused) "Resume" else "Pause",
                 if (isPaused) resumePi else pausePi
             )
-            .addAction(android.R.drawable.ic_media_next, "Skip", skipPi)
+            .addAction(R.drawable.ic_skip, "Skip", skipPi)
             .setCategory(NotificationCompat.CATEGORY_PROGRESS)
             .build()
     }
