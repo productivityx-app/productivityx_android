@@ -23,12 +23,21 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BASE_URL", "\"${localProps["BASE_URL"] ?: ""}\"")
         buildConfigField("String", "WS_URL",   "\"${localProps["WS_URL"]   ?: ""}\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(System.getenv("KEYSTORE_PATH") ?: "${System.getenv("RUNNER_TEMP") ?: rootProject.projectDir}/release.keystore")
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "android"
+            keyAlias = System.getenv("KEY_ALIAS") ?: "release"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
+        }
     }
 
     buildTypes {
@@ -46,6 +55,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs["release"]
             buildConfigField("String", "BASE_URL", "\"https://api.yourproduction.com/\"")
             buildConfigField("String", "WS_URL",   "\"wss://api.yourproduction.com/\"")
         }
