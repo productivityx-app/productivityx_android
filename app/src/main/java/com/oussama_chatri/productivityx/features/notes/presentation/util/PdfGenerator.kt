@@ -1,100 +1,66 @@
 package com.oussama_chatri.productivityx.features.notes.presentation.util
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 object PdfGenerator {
+
     suspend fun generatePdf(
         context: Context,
         uri: Uri,
         title: String,
-        content: String
+        content: String,
+        imageUrls: List<String> = emptyList()
     ): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
-            val document = PdfDocument()
-            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4 size
-            var page = document.startPage(pageInfo)
-            var canvas = page.canvas
-
-            val titlePaint = Paint().apply {
-                color = Color.BLACK
-                textSize = 24f
-                isFakeBoldText = true
-                isAntiAlias = true
-            }
-
-            val contentPaint = Paint().apply {
-                color = Color.DKGRAY
-                textSize = 14f
-                isAntiAlias = true
-            }
-
+            val doc = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
             val margin = 50f
-            var currentY = margin + 24f
+            val engine = PdfEngine(doc, pageInfo, margin)
 
-            // Draw title
-            canvas.drawText(title.ifBlank { "Untitled Note" }, margin, currentY, titlePaint)
-            currentY += 40f
+            engine.addTitle(title.ifBlank { "Untitled Note" })
+            engine.addHorizontalRule(8f)
 
-            // Draw content (very basic line wrapping)
-            val maxWidth = pageInfo.pageWidth - (margin * 2)
-            val lines = content.split("\n")
+            val blocks = PdfMarkdownBlockParser.parse(content)
 
-            for (line in lines) {
-                if (line.isBlank()) {
-                    currentY += 20f
-                    continue
-                }
+            val inlineRenderer = PdfInlineRenderer()
+            val blockRenderer = PdfBlockRenderer(engine, inlineRenderer)
+            val imageHandler = PdfImageHandler(context)
+            val tableRenderer = PdfTableRenderer(engine, inlineRenderer)
 
-                val words = line.split(" ")
-                var currentLine = ""
-
-                for (word in words) {
-                    val testLine = if (currentLine.isEmpty()) word else "$currentLine $word"
-                    val measureWidth = contentPaint.measureText(testLine)
-
-                    if (measureWidth > maxWidth) {
-                        // Check if we need a new page
-                        if (currentY + 20f > pageInfo.pageHeight - margin) {
-                            document.finishPage(page)
-                            page = document.startPage(pageInfo)
-                            canvas = page.canvas
-                            currentY = margin + 20f
+            for (block in blocks) {
+                when (block) {
+                    is PdfBlock.Heading -> blockRenderer.renderHeading(block)
+                    is PdfBlock.Paragraph -> blockRenderer.renderParagraph(block)
+                    is PdfBlock.BulletItem -> blockRenderer.renderBulletItem(block)
+                    is PdfBlock.OrderedItem -> blockRenderer.renderOrderedItem(block)
+                    is PdfBlock.Blockquote -> blockRenderer.renderBlockquote(block)
+                    is PdfBlock.CodeBlock -> blockRenderer.renderCodeBlock(block)
+                    is PdfBlock.Divider -> engine.addHorizontalRule(4f)
+                    is PdfBlock.Table -> tableRenderer.renderTable(block)
+                    is PdfBlock.Image -> {
+                        val bitmap = imageHandler.loadImage(block.uri)
+                        if (bitmap != null) {
+                            blockRenderer.renderImageBitmap(bitmap, block.caption)
                         }
-
-                        canvas.drawText(currentLine, margin, currentY, contentPaint)
-                        currentLine = word
-                        currentY += 20f
-                    } else {
-                        currentLine = testLine
                     }
-                }
-
-                if (currentLine.isNotEmpty()) {
-                    if (currentY + 20f > pageInfo.pageHeight - margin) {
-                        document.finishPage(page)
-                        page = document.startPage(pageInfo)
-                        canvas = page.canvas
-                        currentY = margin + 20f
-                    }
-                    canvas.drawText(currentLine, margin, currentY, contentPaint)
-                    currentY += 20f
                 }
             }
 
-            document.finishPage(page)
+            if (imageUrls.isNotEmpty()) {
+                engine.addVerticalSpace(16f)
+                blockRenderer.renderImageGallery(imageUrls, imageHandler)
+            }
 
-            context.contentResolver.openOutputStream(uri)?.use { outputStream ->
-                document.writeTo(outputStream)
-            } ?: throw IllegalStateException("Could not open output stream")
+            engine.addFooter()
+            engine.finish()
 
-            document.close()
+            context.contentResolver.openOutputStream(uri)?.use { os -> doc.writeTo(os) }
+                ?: throw IllegalStateException("Could not open output stream")
+            doc.close()
         }
     }
 }

@@ -152,6 +152,7 @@ class NoteEditorViewModel @Inject constructor(
             NoteEditorUiEvent.ToggleMetadata -> _uiState.update { it.copy(showMetadata = !it.showMetadata) }
             NoteEditorUiEvent.ShowExportSheet -> _uiState.update { it.copy(showExportSheet = true) }
             NoteEditorUiEvent.HideExportSheet -> _uiState.update { it.copy(showExportSheet = false) }
+            NoteEditorUiEvent.TogglePreviewMode -> _uiState.update { it.copy(isPreviewMode = !it.isPreviewMode) }
             NoteEditorUiEvent.RequestFocus -> {}
         }
     }

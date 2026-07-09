@@ -23,6 +23,7 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -63,7 +64,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.PickVisualMediaRequest
 import coil3.compose.AsyncImage
 import androidx.compose.ui.layout.ContentScale
 import android.content.Intent
@@ -129,11 +129,12 @@ fun PomodoroScreen(
     var showSoundPicker by remember { mutableStateOf(false) }
 
     val bgPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.PickVisualMedia(),
+        contract = ActivityResultContracts.GetContent(),
         onResult = { uri ->
             if (uri != null) {
-                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                context.contentResolver.takePersistableUriPermission(uri, flag)
+                try {
+                    context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                } catch (_: SecurityException) { }
                 onEvent(PomodoroUiEvent.SelectBackground(uri.toString()))
             }
         }
@@ -156,159 +157,208 @@ fun PomodoroScreen(
         label = "phaseBackground"
     )
 
-        Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
-            // Background Image & Scrim
-            if (state.backgroundImageUri != null) {
-                AsyncImage(
-                    model = state.backgroundImageUri,
-                    contentDescription = "Background",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-                // Scrim
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.6f))
-                )
-            }
-            
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            if (!state.isFocusMode) {
-                Spacer(Modifier.height(16.dp))
-
-                // Icons row inside the scrollable column
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
-                        Icon(
-                            Icons.Outlined.DoNotDisturbOn,
-                            contentDescription = "DND",
-                            tint = if (state.isDndEnabled) PxColors.Primary else Color.White.copy(alpha = 0.6f)
-                        )
-                    }
-                    IconButton(onClick = { bgPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) {
-                        Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = Color.White.copy(alpha = 0.6f))
-                    }
-                    IconButton(onClick = { showSoundPicker = true }) {
-                        Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = Color.White.copy(alpha = 0.6f))
-                    }
-                    IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
-                        Icon(
-                            Icons.Outlined.AutoAwesome,
-                            contentDescription = "Focus Mode",
-                            tint = if (state.isFocusMode) PxColors.Primary else Color.White.copy(alpha = 0.6f)
-                        )
-                    }
-                }
-
-                // Session type selector chips
-                SessionTypeSelector(
-                    selected = state.selectedType,
-                    enabled = state.isIdle,
-                    onSelect = { onEvent(PomodoroUiEvent.SelectType(it)) }
-                )
-            } else {
-                Spacer(Modifier.height(48.dp))
-            }
-
-            Spacer(Modifier.height(32.dp))
-
-            // Circular timer with breathing animation
-            val isBreak = state.selectedType != PomodoroType.FOCUS
-            val breathingScale by if ((isBreak || state.isFocusMode) && (state.isRunning || state.isPaused)) {
-                val infiniteTransition = rememberInfiniteTransition(label = "breathing")
-                infiniteTransition.animateFloat(
-                    initialValue = 1f,
-                    targetValue = 1.05f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(4000, easing = EaseInOutCubic),
-                        repeatMode = RepeatMode.Reverse
-                    ),
-                    label = "breathingScale"
-                )
-            } else {
-                remember { mutableStateOf(1f) }
-            }
-
-            CircularTimer(
-                timerState = state.timerState,
-                type = state.selectedType,
-                totalSecs = state.totalSeconds,
-                isFocusMode = state.isFocusMode,
-                modifier = Modifier.size(if (state.isFocusMode) 320.dp else 300.dp).scale(breathingScale)
-            )
-
-            if (state.isFocusMode) {
-                Spacer(Modifier.height(48.dp))
-                state.motivationalQuote?.let { quote ->
-                    Text(
-                        text = "\"$quote\"",
-                        style = MaterialTheme.typography.titleMedium.copy(fontStyle = FontStyle.Italic),
-                        color = Color.White.copy(alpha = 0.8f),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(horizontal = 40.dp)
-                    )
-                }
-            } else {
-                Spacer(Modifier.height(24.dp))
-                // Cycle dots
-                CycleDots(
-                    total = state.cyclesBeforeLongBreak,
-                    current = state.cycleIndex % state.cyclesBeforeLongBreak
-                )
-                Spacer(Modifier.height(24.dp))
-                // Linked task card
-                LinkedTaskCard(
-                    taskTitle = state.linkedTaskTitle,
-                    isRunning = state.isRunning || state.isPaused,
-                    onLinkTap = { onEvent(PomodoroUiEvent.ShowTaskPicker) },
-                    onUnlink = { onEvent(PomodoroUiEvent.UnlinkTask) },
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                )
-            }
-
-            Spacer(Modifier.height(32.dp))
-
-            // Timer controls
-            TimerControls(
-                state = state,
-                onEvent = onEvent
-            )
-
-            if (!state.isFocusMode) {
-                Spacer(Modifier.height(32.dp))
-                // Today's stats strip
-                state.todayStats?.let { stats ->
-                    TodayStatsStrip(
-                        stats = stats,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                    )
-                }
-                Spacer(Modifier.height(24.dp))
-                
-                // History timeline preview
-                HistoryTimelinePreview(
-                    items = state.sessionTimeline,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                )
-            }
-
-            Spacer(Modifier.height(48.dp))
+    BoxWithConstraints(modifier = modifier.fillMaxSize().background(backgroundColor)) {
+        val isTablet = maxWidth >= 600.dp
+        val timerSize = when {
+            state.isFocusMode -> if (isTablet) 400.dp else 320.dp
+            isTablet -> 380.dp
+            else -> 300.dp
         }
 
-        SnackbarHost(
-            hostState = snackbarHostState,
-            modifier = Modifier.align(Alignment.BottomCenter),
-        )
+        // Background Image & Scrim
+        if (state.backgroundImageUri != null) {
+            AsyncImage(
+                model = state.backgroundImageUri,
+                contentDescription = "Background",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.6f))
+            )
+        }
+
+        if (isTablet && !state.isFocusMode) {
+            // ── TABLET LAYOUT ──
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Left: Timer area
+                Column(
+                    modifier = Modifier
+                        .weight(0.6f)
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(Modifier.height(24.dp))
+
+                    // Icons row
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
+                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = "DND",
+                                tint = if (state.isDndEnabled) PxColors.Primary else PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { bgPicker.launch("image/*") }) {
+                            Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { showSoundPicker = true }) {
+                            Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
+                            Icon(Icons.Outlined.AutoAwesome, contentDescription = "Focus Mode",
+                                tint = if (state.isFocusMode) PxColors.Primary else PxColors.OnSurfaceDim)
+                        }
+                    }
+
+                    SessionTypeSelector(
+                        selected = state.selectedType,
+                        enabled = state.isIdle,
+                        onSelect = { onEvent(PomodoroUiEvent.SelectType(it)) }
+                    )
+
+                    Spacer(Modifier.height(32.dp))
+
+                    val isBreak = state.selectedType != PomodoroType.FOCUS
+                    val breathingScale by if ((isBreak || state.isFocusMode) && (state.isRunning || state.isPaused)) {
+                        val infiniteTransition = rememberInfiniteTransition(label = "breathing")
+                        infiniteTransition.animateFloat(
+                            initialValue = 1f, targetValue = 1.05f,
+                            animationSpec = infiniteRepeatable(animation = tween(4000, easing = EaseInOutCubic), repeatMode = RepeatMode.Reverse),
+                            label = "breathingScale"
+                        )
+                    } else { remember { mutableStateOf(1f) } }
+
+                    CircularTimer(
+                        timerState = state.timerState, type = state.selectedType,
+                        totalSecs = state.totalSeconds, isFocusMode = state.isFocusMode,
+                        modifier = Modifier.size(timerSize).scale(breathingScale)
+                    )
+
+                    Spacer(Modifier.height(24.dp))
+                    CycleDots(total = state.cyclesBeforeLongBreak, current = state.cycleIndex % state.cyclesBeforeLongBreak)
+                    Spacer(Modifier.height(24.dp))
+                    LinkedTaskCard(taskTitle = state.linkedTaskTitle, isRunning = state.isRunning || state.isPaused,
+                        onLinkTap = { onEvent(PomodoroUiEvent.ShowTaskPicker) }, onUnlink = { onEvent(PomodoroUiEvent.UnlinkTask) },
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp))
+
+                    Spacer(Modifier.height(32.dp))
+                    TimerControls(state = state, onEvent = onEvent)
+                    Spacer(Modifier.height(48.dp))
+                }
+
+                // Right: Stats area
+                Column(
+                    modifier = Modifier
+                        .weight(0.4f)
+                        .verticalScroll(rememberScrollState())
+                        .padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(Modifier.height(48.dp))
+                    state.todayStats?.let { stats ->
+                        TodayStatsStrip(stats = stats, modifier = Modifier.fillMaxWidth())
+                    }
+                    Spacer(Modifier.height(32.dp))
+                    HistoryTimelinePreview(items = state.sessionTimeline, modifier = Modifier.fillMaxWidth())
+                }
+            }
+        } else {
+            // ── PHONE / FOCUS MODE LAYOUT ──
+            Column(
+                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (!state.isFocusMode) {
+                    Spacer(Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
+                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = "DND",
+                                tint = if (state.isDndEnabled) PxColors.Primary else PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { bgPicker.launch("image/*") }) {
+                            Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { showSoundPicker = true }) {
+                            Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = PxColors.OnSurfaceDim)
+                        }
+                        IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
+                            Icon(Icons.Outlined.AutoAwesome, contentDescription = "Focus Mode",
+                                tint = if (state.isFocusMode) PxColors.Primary else PxColors.OnSurfaceDim)
+                        }
+                    }
+
+                    SessionTypeSelector(
+                        selected = state.selectedType,
+                        enabled = state.isIdle,
+                        onSelect = { onEvent(PomodoroUiEvent.SelectType(it)) }
+                    )
+                } else {
+                    Spacer(Modifier.height(48.dp))
+                }
+
+                Spacer(Modifier.height(32.dp))
+
+                val isBreak = state.selectedType != PomodoroType.FOCUS
+                val breathingScale by if ((isBreak || state.isFocusMode) && (state.isRunning || state.isPaused)) {
+                    val infiniteTransition = rememberInfiniteTransition(label = "breathing")
+                    infiniteTransition.animateFloat(
+                        initialValue = 1f, targetValue = 1.05f,
+                        animationSpec = infiniteRepeatable(animation = tween(4000, easing = EaseInOutCubic), repeatMode = RepeatMode.Reverse),
+                        label = "breathingScale"
+                    )
+                } else { remember { mutableStateOf(1f) } }
+
+                CircularTimer(
+                    timerState = state.timerState, type = state.selectedType,
+                    totalSecs = state.totalSeconds, isFocusMode = state.isFocusMode,
+                    modifier = Modifier.size(timerSize).scale(breathingScale)
+                )
+
+                if (state.isFocusMode) {
+                    Spacer(Modifier.height(48.dp))
+                    state.motivationalQuote?.let { quote ->
+                        Text(text = "\"$quote\"", style = MaterialTheme.typography.titleMedium.copy(fontStyle = FontStyle.Italic),
+                            color = PxColors.OnBackground.copy(alpha = 0.8f), textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = 40.dp))
+                    }
+                } else {
+                    Spacer(Modifier.height(24.dp))
+                    CycleDots(total = state.cyclesBeforeLongBreak, current = state.cycleIndex % state.cyclesBeforeLongBreak)
+                    Spacer(Modifier.height(24.dp))
+                    LinkedTaskCard(taskTitle = state.linkedTaskTitle, isRunning = state.isRunning || state.isPaused,
+                        onLinkTap = { onEvent(PomodoroUiEvent.ShowTaskPicker) }, onUnlink = { onEvent(PomodoroUiEvent.UnlinkTask) },
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp))
+                }
+
+                Spacer(Modifier.height(32.dp))
+                TimerControls(state = state, onEvent = onEvent)
+
+                if (!state.isFocusMode) {
+                    Spacer(Modifier.height(32.dp))
+                    state.todayStats?.let { stats ->
+                        TodayStatsStrip(stats = stats, modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp))
+                    }
+                    Spacer(Modifier.height(24.dp))
+                    HistoryTimelinePreview(items = state.sessionTimeline, modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp))
+                }
+
+                Spacer(Modifier.height(48.dp))
+            }
+        }
+
+        SnackbarHost(hostState = snackbarHostState, modifier = Modifier.align(Alignment.BottomCenter))
     }
 
     // Task picker sheet
@@ -434,7 +484,7 @@ private fun SessionTypeSelector(
                 label         = "chipBg"
             )
             val textColor by animateColorAsState(
-                targetValue   = if (isSelected) Color.White else PxColors.OnSurfaceDim,
+                targetValue   = if (isSelected) PxColors.OnBackground else PxColors.OnSurfaceDim,
                 animationSpec = tween(200),
                 label         = "chipText"
             )
@@ -582,7 +632,7 @@ private fun CircularTimer(
             Text(
                 text      = sessionLabel.uppercase(),
                 style     = MaterialTheme.typography.labelLarge.copy(letterSpacing = 2.sp),
-                color     = Color.White.copy(alpha = 0.6f),
+                color     = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center
             )
         }
@@ -620,8 +670,8 @@ private fun HistoryTimelinePreview(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Today's Sessions", style = MaterialTheme.typography.titleSmall, color = Color.White)
-            Icon(Icons.Outlined.History, contentDescription = null, tint = Color.White.copy(alpha = 0.6f), modifier = Modifier.size(16.dp))
+            Text("Today's Sessions", style = MaterialTheme.typography.titleSmall, color = PxColors.OnBackground)
+            Icon(Icons.Outlined.History, contentDescription = null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
         }
         Spacer(Modifier.height(12.dp))
         
@@ -634,7 +684,7 @@ private fun HistoryTimelinePreview(
                     .background(PxColors.Surface.copy(alpha = 0.3f)),
                 contentAlignment = Alignment.Center
             ) {
-                Text("No sessions yet today", style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.4f))
+                Text("No sessions yet today", style = MaterialTheme.typography.bodySmall, color = PxColors.OnBackground.copy(alpha = 0.4f))
             }
         } else {
             items.take(3).forEachIndexed { index, item ->
@@ -647,13 +697,13 @@ private fun HistoryTimelinePreview(
                     Text(
                         item.startTime.format(DateTimeFormatter.ofPattern("HH:mm")),
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.6f)
+                        color = PxColors.OnSurfaceDim
                     )
                     Spacer(Modifier.width(12.dp))
                     Text(
                         item.taskTitle ?: "General Focus",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White,
+                        color = PxColors.OnBackground,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f)
@@ -661,11 +711,11 @@ private fun HistoryTimelinePreview(
                     Text(
                         "${item.durationMinutes}m",
                         style = MaterialTheme.typography.labelSmall,
-                        color = Color.White.copy(alpha = 0.6f)
+                        color = PxColors.OnSurfaceDim
                     )
                 }
                 if (index < items.size - 1 && index < 2) {
-                    HorizontalDivider(color = Color.White.copy(alpha = 0.05f), modifier = Modifier.padding(start = 20.dp))
+                    HorizontalDivider(color = PxColors.Outline.copy(alpha = 0.2f), modifier = Modifier.padding(start = 20.dp))
                 }
             }
         }
@@ -698,7 +748,7 @@ private fun CycleDots(
                     .size(12.dp)
                     .clip(CircleShape)
                     .background(color)
-                    .then(if (isActive) Modifier.border(2.dp, Color.White, CircleShape) else Modifier)
+                    .then(if (isActive) Modifier.border(2.dp, PxColors.OnBackground, CircleShape) else Modifier)
             )
         }
     }
@@ -812,7 +862,7 @@ private fun TimerControls(
                     label = "playPause"
                 ) { isRunning ->
                     val icon = if (isRunning) Icons.Outlined.Pause else Icons.Outlined.PlayArrow
-                    Icon(icon, contentDescription = "Play/Pause", tint = Color.White, modifier = Modifier.size(40.dp))
+                    Icon(icon, contentDescription = "Play/Pause", tint = PxColors.OnBackground, modifier = Modifier.size(40.dp))
                 }
             }
 
@@ -849,7 +899,7 @@ private fun TimerControls(
                         .offset { IntOffset(offsetX.roundToInt(), 0) }
                         .size(56.dp)
                         .clip(CircleShape)
-                        .background(Color.White.copy(alpha = 0.2f))
+                        .background(PxColors.OnBackground.copy(alpha = 0.15f))
                         .draggable(
                             orientation = Orientation.Horizontal,
                             state = rememberDraggableState { delta ->
@@ -865,7 +915,7 @@ private fun TimerControls(
                         .padding(12.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(Icons.Outlined.SkipNext, contentDescription = null, tint = Color.White)
+                    Icon(Icons.Outlined.SkipNext, contentDescription = null, tint = PxColors.OnBackground)
                 }
             }
         }

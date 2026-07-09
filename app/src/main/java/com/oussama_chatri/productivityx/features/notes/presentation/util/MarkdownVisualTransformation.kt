@@ -140,6 +140,78 @@ class MarkdownVisualTransformation : VisualTransformation {
                 }
             }
 
+            // Table row
+            if ((i == 0 || originalText[i - 1] == '\n') && remaining.startsWith("|") && remaining.length > 3) {
+                val tableLines = mutableListOf<Int>()
+                var scanIdx = i
+                while (scanIdx < originalText.length) {
+                    val lineEnd = originalText.indexOf('\n', scanIdx)
+                    val lineLen = if (lineEnd == -1) originalText.length - scanIdx else lineEnd - scanIdx
+                    val lineContent = originalText.substring(scanIdx, scanIdx + lineLen).trimStart()
+                    if (lineContent.startsWith("|") && lineContent.endsWith("|")) {
+                        tableLines.add(scanIdx)
+                        scanIdx = if (lineEnd == -1) originalText.length else lineEnd + 1
+                    } else break
+                }
+
+                if (tableLines.size >= 2) {
+                    // Consume all table lines
+                    val tableStartIdx = transformedText.length
+                    val tableStartI = i
+                    var renderedChars = 0
+
+                    for ((rowIdx, lineStart) in tableLines.withIndex()) {
+                        val lineEnd = originalText.indexOf('\n', lineStart).let { if (it == -1) originalText.length else it }
+                        val rawLine = originalText.substring(lineStart, lineEnd)
+
+                        val cells = rawLine.trim().removeSurrounding("|").split("|").map { it.trim() }
+
+                        // Skip separator line (|---|)
+                        if (rowIdx == 1 && cells.all { it.all { c -> c == '-' || c == ':' } }) {
+                            // Skip separator - consume it without rendering
+                            for (j in lineStart until lineEnd) {
+                                mappingToTransformed[j] = transformedText.length
+                            }
+                            mappingToTransformed[lineEnd] = transformedText.length
+                            continue
+                        }
+
+                        if (rowIdx > 0 && cells.all { it.all { c -> c == '-' || c == ':' } }) break
+
+                        // Render cells
+                        for ((colIdx, cell) in cells.withIndex()) {
+                            if (colIdx > 0) transformedText += " │ "
+                            val isHeader = rowIdx == 0
+                            val cellStart = transformedText.length
+                            for (ch in cell) {
+                                val charIdx = lineStart + rawLine.indexOf(ch, if (colIdx == 0) rawLine.indexOf('|') + 1 else rawLine.indexOf('|', rawLine.indexOf("|$cell") + 1))
+                                // Approximate mapping
+                                transformedText += ch
+                            }
+                            val cellEnd = transformedText.length
+                            if (isHeader && cell.isNotEmpty()) {
+                                styles.add(SpanStyle(fontWeight = FontWeight.Bold) to (cellStart until cellEnd))
+                            }
+                        }
+
+                        // Map original positions
+                        for (j in lineStart until lineEnd) {
+                            mappingToTransformed[j] = transformedText.length
+                        }
+                        if (rowIdx < tableLines.size - 1) {
+                            mappingToTransformed[lineEnd] = transformedText.length
+                        }
+                        transformedText += '\n'
+                    }
+
+                    i = if (tableLines.last() + 1 < originalText.length) {
+                        val lastLineEnd = originalText.indexOf('\n', tableLines.last())
+                        if (lastLineEnd == -1) originalText.length else lastLineEnd + 1
+                    } else originalText.length
+                    continue
+                }
+            }
+
             // ---- INLINE ----
 
             // Code block ```...```

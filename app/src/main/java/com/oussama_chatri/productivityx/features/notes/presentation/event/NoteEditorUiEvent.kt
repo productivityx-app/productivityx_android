@@ -19,5 +19,6 @@ sealed class NoteEditorUiEvent {
     data object ToggleMetadata : NoteEditorUiEvent()
     data object ShowExportSheet : NoteEditorUiEvent()
     data object HideExportSheet : NoteEditorUiEvent()
+    data object TogglePreviewMode : NoteEditorUiEvent()
     data object RequestFocus : NoteEditorUiEvent()
 }

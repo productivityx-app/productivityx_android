@@ -24,6 +24,7 @@ data class NoteEditorUiState(
     val syncStatus: SyncStatus = SyncStatus.SYNCED,
     val focusMode: EditorFocusMode = EditorFocusMode.NORMAL,
     val showMetadata: Boolean = false,
+    val isPreviewMode: Boolean = false,
     val showExportSheet: Boolean = false,
     val error: String? = null,
     val linkedNoteTitles: List<String> = emptyList(),

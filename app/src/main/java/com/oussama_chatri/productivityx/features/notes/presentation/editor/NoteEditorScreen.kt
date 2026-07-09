@@ -37,6 +37,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.DropdownMenu
@@ -70,16 +71,23 @@ import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.notes.presentation.util.PdfGenerator
 import kotlinx.coroutines.launch
 import android.content.Intent
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
@@ -91,6 +99,7 @@ import com.oussama_chatri.productivityx.features.notes.presentation.components.S
 import com.oussama_chatri.productivityx.features.notes.presentation.components.TagPickerSheet
 import com.oussama_chatri.productivityx.features.notes.presentation.state.EditorFocusMode
 import com.oussama_chatri.productivityx.features.notes.presentation.event.NoteEditorUiEvent
+import com.oussama_chatri.productivityx.features.notes.presentation.util.PreviewModeRenderer
 import kotlinx.coroutines.flow.collectLatest
 import java.time.Instant
 import java.time.ZoneId
@@ -133,7 +142,8 @@ fun NoteEditorScreen(
                         context = context,
                         uri = uri,
                         title = uiState.title,
-                        content = uiState.content
+                        content = uiState.content,
+                        imageUrls = uiState.imageUrls
                     )
                     if (result.isSuccess) {
                         viewModel.onEvent(NoteEditorUiEvent.HideExportSheet)
@@ -150,6 +160,11 @@ fun NoteEditorScreen(
     var showMenu by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
     var contentValue by remember { mutableStateOf(TextFieldValue(uiState.content)) }
+
+    var zoomScale by remember { mutableStateOf(1f) }
+    var zoomOffsetX by remember { mutableStateOf(0f) }
+    var zoomOffsetY by remember { mutableStateOf(0f) }
+    var fullscreenImageUri by remember { mutableStateOf<String?>(null) }
 
     val isFocusMode = uiState.focusMode != EditorFocusMode.NORMAL
 
@@ -181,6 +196,7 @@ fun NoteEditorScreen(
                     EditorTopAppBar(
                         title = uiState.title,
                         isPinned = uiState.isPinned,
+                        isPreviewMode = uiState.isPreviewMode,
                         hasUnsavedChanges = uiState.hasUnsavedChanges,
                         showMenu = showMenu,
                         onBack = onNavigateBack,
@@ -190,6 +206,7 @@ fun NoteEditorScreen(
                         onMenuDismiss = { showMenu = false },
                         onDelete = { showMenu = false; showDeleteConfirm = true },
                         onToggleFocus = { viewModel.onEvent(NoteEditorUiEvent.ToggleFocusMode) },
+                        onTogglePreview = { viewModel.onEvent(NoteEditorUiEvent.TogglePreviewMode) },
                         onToggleMetadata = { viewModel.onEvent(NoteEditorUiEvent.ToggleMetadata) },
                         onExport = { viewModel.onEvent(NoteEditorUiEvent.ShowExportSheet) }
                     )
@@ -213,185 +230,270 @@ fun NoteEditorScreen(
                 }
             }
         ) { innerPadding ->
-            Column(
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
-                    .imePadding()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = if (isFocusMode) 24.dp else 20.dp)
-                    .then(if (isFocusMode) Modifier.background(Color(0xFF0A0A0F)) else Modifier)
-            ) {
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Title field
-                BasicTextField(
-                    value = uiState.title,
-                    onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
-                        color = if (isFocusMode) PxColors.OnBackground else PxColors.OnBackground,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                    cursorBrush = SolidColor(PxColors.Primary),
-                    singleLine = false,
-                    maxLines = 3,
-                    decorationBox = { inner ->
-                        if (uiState.title.isEmpty()) {
-                            Text(
-                                text = "Untitled",
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    color = PxColors.OnSurfaceDim,
-                                    fontSize = 22.sp
-                                )
-                            )
+                    .clipToBounds()
+                    .pointerInput(Unit) {
+                        detectTransformGestures { _, pan, gestureZoom, _ ->
+                            val newScale = (zoomScale * gestureZoom).coerceIn(1f, 3f)
+                            zoomScale = newScale
+                            if (newScale > 1f) {
+                                zoomOffsetX += pan.x
+                                zoomOffsetY += pan.y
+                            } else {
+                                zoomOffsetX = 0f
+                                zoomOffsetY = 0f
+                            }
                         }
-                        inner()
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                // Tag row
-                if (!isFocusMode) {
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                        verticalArrangement = Arrangement.spacedBy(6.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        uiState.tags.forEach { tag ->
-                            NoteTagChip(
-                                tag = tag,
-                                modifier = Modifier.clickable {
-                                    viewModel.onEvent(NoteEditorUiEvent.RemoveTag(tag.id))
+                    }
+                    .pointerInput(Unit) {
+                        detectTapGestures(
+                            onDoubleTap = {
+                                if (zoomScale > 1.1f) {
+                                    zoomScale = 1f
+                                    zoomOffsetX = 0f
+                                    zoomOffsetY = 0f
+                                } else {
+                                    zoomScale = 2f
                                 }
-                            )
+                            }
+                        )
+                    }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                        .imePadding()
+                        .graphicsLayer {
+                            scaleX = zoomScale
+                            scaleY = zoomScale
+                            translationX = zoomOffsetX
+                            translationY = zoomOffsetY
+                            transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0f, 0f)
                         }
-                        AddTagChip(onClick = { showTagSheet = true })
+                        .then(
+                            if (zoomScale <= 1.01f) Modifier.verticalScroll(rememberScrollState())
+                            else Modifier
+                        )
+                        .padding(horizontal = if (isFocusMode) 24.dp else 20.dp)
+                        .then(if (isFocusMode) Modifier.background(Color(0xFF0A0A0F)) else Modifier)
+                ) {
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // Title field
+                    if (uiState.isPreviewMode) {
+                        Text(
+                            text = uiState.title.ifBlank { "Untitled" },
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontSize = 22.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = PxColors.OnBackground
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    } else {
+                        BasicTextField(
+                            value = uiState.title,
+                            onValueChange = { viewModel.onEvent(NoteEditorUiEvent.TitleChanged(it)) },
+                            textStyle = MaterialTheme.typography.titleLarge.copy(
+                                color = PxColors.OnBackground,
+                                fontSize = 22.sp,
+                                fontWeight = FontWeight.SemiBold
+                            ),
+                            cursorBrush = SolidColor(PxColors.Primary),
+                            singleLine = false,
+                            maxLines = 3,
+                            decorationBox = { inner ->
+                                if (uiState.title.isEmpty()) {
+                                    Text(
+                                        text = "Untitled",
+                                        style = MaterialTheme.typography.titleLarge.copy(
+                                            color = PxColors.OnSurfaceDim,
+                                            fontSize = 22.sp
+                                        )
+                                    )
+                                }
+                                inner()
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))
-                    HorizontalDivider(color = PxColors.Outline)
-                    Spacer(modifier = Modifier.height(12.dp))
-                }
-                
-                // Images
-                if (uiState.imageUrls.isNotEmpty()) {
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-                    ) {
-                        uiState.imageUrls.forEach { uri ->
-                            Box {
-                                AsyncImage(
-                                    model = uri,
-                                    contentDescription = "Note image",
-                                    modifier = Modifier
-                                        .height(160.dp)
-                                        .clip(RoundedCornerShape(8.dp))
+
+                    // Tag row
+                    if (!isFocusMode) {
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            verticalArrangement = Arrangement.spacedBy(6.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            uiState.tags.forEach { tag ->
+                                NoteTagChip(
+                                    tag = tag,
+                                    modifier = Modifier.clickable {
+                                        viewModel.onEvent(NoteEditorUiEvent.RemoveTag(tag.id))
+                                    }
                                 )
-                                IconButton(
-                                    onClick = { viewModel.onEvent(NoteEditorUiEvent.RemoveImage(uri)) },
-                                    modifier = Modifier
-                                        .align(Alignment.TopEnd)
-                                        .padding(4.dp)
-                                        .size(24.dp)
-                                        .background(Color.Black.copy(alpha = 0.5f), CircleShape)
-                                ) {
-                                    Icon(
-                                        imageVector = androidx.compose.material.icons.Icons.Default.Close,
-                                        contentDescription = "Remove image",
-                                        tint = Color.White,
-                                        modifier = Modifier.size(16.dp)
+                            }
+                            AddTagChip(onClick = { showTagSheet = true })
+                        }
+
+                        Spacer(modifier = Modifier.height(12.dp))
+                        HorizontalDivider(color = PxColors.Outline)
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+
+                    // Images
+                    if (uiState.imageUrls.isNotEmpty()) {
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                        ) {
+                            uiState.imageUrls.forEach { uri ->
+                                Box {
+                                    AsyncImage(
+                                        model = uri,
+                                        contentDescription = "Note image",
+                                        modifier = Modifier
+                                            .height(160.dp)
+                                            .clip(RoundedCornerShape(8.dp))
+                                            .clickable { fullscreenImageUri = uri }
                                     )
+                                    IconButton(
+                                        onClick = { viewModel.onEvent(NoteEditorUiEvent.RemoveImage(uri)) },
+                                        modifier = Modifier
+                                            .align(Alignment.TopEnd)
+                                            .padding(4.dp)
+                                            .size(24.dp)
+                                            .background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                                    ) {
+                                        Icon(
+                                            imageVector = androidx.compose.material.icons.Icons.Default.Close,
+                                            contentDescription = "Remove image",
+                                            tint = Color.White,
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                // Content field
-                BasicTextField(
-                    value = contentValue,
-                    onValueChange = { newVal ->
-                        contentValue = newVal
-                        viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
-                    },
-                    textStyle = MaterialTheme.typography.bodyLarge.copy(
-                        color = if (isFocusMode) PxColors.OnSurface else PxColors.OnSurface,
-                        lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
-                    ),
-                    cursorBrush = SolidColor(PxColors.Primary),
-                    visualTransformation = MarkdownVisualTransformation(),
-                    decorationBox = { inner ->
-                        if (contentValue.text.isEmpty()) {
+                    // Content
+                    if (uiState.isPreviewMode) {
+                        Text(
+                            text = PreviewModeRenderer.render(uiState.content),
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                color = PxColors.OnSurface
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    } else {
+                        BasicTextField(
+                            value = contentValue,
+                            onValueChange = { newVal ->
+                                contentValue = newVal
+                                viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
+                            },
+                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                color = PxColors.OnSurface,
+                                lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
+                            ),
+                            cursorBrush = SolidColor(PxColors.Primary),
+                            visualTransformation = MarkdownVisualTransformation(),
+                            decorationBox = { inner ->
+                                if (contentValue.text.isEmpty()) {
+                                    Text(
+                                        text = "Start writing...",
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = PxColors.OnSurfaceDim
+                                    )
+                                }
+                                inner()
+                            },
+                            modifier = Modifier.fillMaxWidth().animateContentSize()
+                        )
+                    }
+
+                    // Metadata bar
+                    AnimatedVisibility(visible = uiState.showMetadata && !isFocusMode) {
+                        MetadataBar(
+                            wordCount = uiState.wordCount,
+                            characterCount = uiState.characterCount,
+                            readingTimeLabel = uiState.readingTimeLabel,
+                            lastSavedAt = uiState.lastSavedAt,
+                            syncStatus = uiState.syncStatus,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                    }
+
+                    // Auto-save indicator
+                    if (!isFocusMode && uiState.hasUnsavedChanges) {
+                        Row(
+                            modifier = Modifier.padding(top = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Outlined.Edit,
+                                contentDescription = null,
+                                tint = PxColors.Warning,
+                                modifier = Modifier.size(12.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = "Start writing...",
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = PxColors.OnSurfaceDim
+                                text = "Unsaved changes",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = PxColors.Warning
                             )
                         }
-                        inner()
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize()
-                )
+                    } else if (!isFocusMode && uiState.lastSavedAt != null) {
+                        Row(
+                            modifier = Modifier.padding(top = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Outlined.CheckCircle,
+                                contentDescription = null,
+                                tint = PxColors.Success,
+                                modifier = Modifier.size(12.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "Saved",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = PxColors.Success
+                            )
+                        }
+                    }
 
-                // Metadata bar
-                AnimatedVisibility(visible = uiState.showMetadata && !isFocusMode) {
-                    MetadataBar(
-                        wordCount = uiState.wordCount,
-                        characterCount = uiState.characterCount,
-                        readingTimeLabel = uiState.readingTimeLabel,
-                        lastSavedAt = uiState.lastSavedAt,
-                        syncStatus = uiState.syncStatus,
-                        modifier = Modifier.padding(top = 16.dp)
-                    )
+                    Spacer(modifier = Modifier.height(120.dp))
                 }
 
-                // Auto-save indicator
-                if (!isFocusMode && uiState.hasUnsavedChanges) {
-                    Row(
-                        modifier = Modifier.padding(top = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                // Zoom reset FAB
+                if (zoomScale > 1.05f) {
+                    IconButton(
+                        onClick = {
+                            zoomScale = 1f
+                            zoomOffsetX = 0f
+                            zoomOffsetY = 0f
+                        },
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(16.dp)
+                            .size(40.dp)
+                            .background(PxColors.SurfaceVariant, CircleShape)
                     ) {
                         Icon(
-                            Icons.Outlined.Edit,
-                            contentDescription = null,
-                            tint = PxColors.Warning,
-                            modifier = Modifier.size(12.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "Unsaved changes",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = PxColors.Warning
-                        )
-                    }
-                } else if (!isFocusMode && uiState.lastSavedAt != null) {
-                    Row(
-                        modifier = Modifier.padding(top = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Outlined.CheckCircle,
-                            contentDescription = null,
-                            tint = PxColors.Success,
-                            modifier = Modifier.size(12.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "Saved",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = PxColors.Success
+                            Icons.Outlined.CenterFocusWeak,
+                            contentDescription = "Reset zoom",
+                            tint = PxColors.OnSurface
                         )
                     }
                 }
-
-                Spacer(modifier = Modifier.height(120.dp))
             }
         }
 
@@ -413,6 +515,46 @@ fun NoteEditorScreen(
                     contentDescription = "Exit focus mode",
                     tint = PxColors.OnSurface
                 )
+            }
+        }
+    }
+
+    // Fullscreen image dialog
+    if (fullscreenImageUri != null) {
+        val dialogUri = fullscreenImageUri!!
+        Dialog(
+            onDismissRequest = { fullscreenImageUri = null },
+            properties = DialogProperties(usePlatformDefaultWidth = false)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.9f))
+                    .clickable { fullscreenImageUri = null },
+                contentAlignment = Alignment.Center
+            ) {
+                AsyncImage(
+                    model = dialogUri,
+                    contentDescription = "Fullscreen image",
+                    contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(24.dp)
+                        .clickable { /* prevent dismiss on image tap */ }
+                )
+                IconButton(
+                    onClick = { fullscreenImageUri = null },
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(16.dp)
+                        .background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                ) {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = "Close",
+                        tint = Color.White
+                    )
+                }
             }
         }
     }
@@ -469,6 +611,7 @@ fun NoteEditorScreen(
 private fun EditorTopAppBar(
     title: String,
     isPinned: Boolean,
+    isPreviewMode: Boolean,
     hasUnsavedChanges: Boolean,
     showMenu: Boolean,
     onBack: () -> Unit,
@@ -478,6 +621,7 @@ private fun EditorTopAppBar(
     onMenuDismiss: () -> Unit,
     onDelete: () -> Unit,
     onToggleFocus: () -> Unit,
+    onTogglePreview: () -> Unit,
     onToggleMetadata: () -> Unit,
     onExport: () -> Unit
 ) {
@@ -501,6 +645,13 @@ private fun EditorTopAppBar(
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
         actions = {
+            IconButton(onClick = onTogglePreview) {
+                Icon(
+                    if (isPreviewMode) Icons.Outlined.Edit else Icons.Outlined.Visibility,
+                    contentDescription = if (isPreviewMode) "Edit mode" else "Preview mode",
+                    tint = if (isPreviewMode) PxColors.Primary else PxColors.OnSurfaceDim
+                )
+            }
             IconButton(onClick = onToggleFocus) {
                 Icon(Icons.Outlined.CenterFocusWeak, contentDescription = "Focus mode", tint = PxColors.OnSurfaceDim)
             }
