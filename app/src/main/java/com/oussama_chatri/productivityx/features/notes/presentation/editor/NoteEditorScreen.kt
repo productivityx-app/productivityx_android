@@ -71,6 +71,7 @@ import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.notes.presentation.util.PdfGenerator
 import kotlinx.coroutines.launch
 import android.content.Intent
+import android.os.Build
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -96,6 +97,7 @@ import kotlinx.coroutines.flow.collectLatest
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import com.oussama_chatri.productivityx.features.notes.presentation.util.MarkdownVisualTransformation
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -111,17 +113,29 @@ fun NoteEditorScreen(
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val context = LocalContext.current
 
-    val photoPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri ->
-            if (uri != null) {
-                // We must take persistable URI permission so we can read it later
-                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                context.contentResolver.takePersistableUriPermission(uri, flag)
-                viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
+    val photoPicker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.PickVisualMedia(),
+            onResult = { uri ->
+                if (uri != null) {
+                    val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    context.contentResolver.takePersistableUriPermission(uri, flag)
+                    viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
+                }
             }
-        }
-    )
+        )
+    } else {
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.GetContent(),
+            onResult = { uri ->
+                if (uri != null) {
+                    val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    context.contentResolver.takePersistableUriPermission(uri, flag)
+                    viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
+                }
+            }
+        )
+    }
 
     val pdfScope = androidx.compose.runtime.rememberCoroutineScope()
     val pdfCreator = rememberLauncherForActivityResult(
@@ -205,7 +219,11 @@ fun NoteEditorScreen(
                                 viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
                             },
                             onAddImageClick = {
-                                photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                    photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                                } else {
+                                    photoPicker.launch("image/*")
+                                }
                             }
                         )
                         Spacer(modifier = Modifier.navigationBarsPadding())
@@ -324,6 +342,7 @@ fun NoteEditorScreen(
                         lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
                     ),
                     cursorBrush = SolidColor(PxColors.Primary),
+                    visualTransformation = MarkdownVisualTransformation(),
                     decorationBox = { inner ->
                         if (contentValue.text.isEmpty()) {
                             Text(
