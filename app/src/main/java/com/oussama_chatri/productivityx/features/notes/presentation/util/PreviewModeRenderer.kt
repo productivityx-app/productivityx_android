@@ -334,7 +334,7 @@ object PreviewModeRenderer {
                     remaining = remaining.substring(fsCloseMatch.range.last + 1)
                 }
                 else -> {
-                    val nextTag = Regex("""==color:|\\{color:|\\{size:|\\{/color}|\\{/size}""").find(remaining)
+                    val nextTag = Regex("""==color:|\Q{color:\E|\Q{size:\E|\Q{/color}\E|\Q{/size}\E""").find(remaining)
                     val segment = if (nextTag != null) remaining.substring(0, nextTag.range.first) else remaining
                     appendInlineParsed(segment)
                     remaining = if (nextTag != null) remaining.substring(nextTag.range.first) else ""

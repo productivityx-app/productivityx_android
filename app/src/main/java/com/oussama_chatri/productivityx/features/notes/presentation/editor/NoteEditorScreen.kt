@@ -441,7 +441,16 @@ fun NoteEditorScreen(
                                                             )
                                                         }
                                                     }
-                                                    contentValue = TextFieldValue(fullText, TextRange(fullText.length))
+                                                    val offsetBefore = segments.take(index).sumOf { seg ->
+                                                        when (seg) {
+                                                            is EditSegment.Text -> seg.text.length
+                                                            is EditSegment.Image -> "![${seg.alt}](${seg.uri})".length
+                                                        }
+                                                    }
+                                                    contentValue = TextFieldValue(fullText, TextRange(
+                                                        offsetBefore + newVal.selection.start,
+                                                        offsetBefore + newVal.selection.end
+                                                    ))
                                                     viewModel.onEvent(NoteEditorUiEvent.ContentChanged(fullText))
                                                 },
                                                 textStyle = MaterialTheme.typography.bodyLarge.copy(
