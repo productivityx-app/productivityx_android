@@ -39,7 +39,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.notes.domain.model.Tag
 
@@ -77,7 +79,7 @@ fun TagPickerSheet(
                 .padding(horizontal = 20.dp, vertical = 8.dp)
         ) {
             Text(
-                text  = "Tags",
+                text  = stringResource(R.string.tags_title),
                 style = MaterialTheme.typography.titleMedium,
                 color = PxColors.OnBackground
             )
@@ -86,7 +88,7 @@ fun TagPickerSheet(
 
             if (allTags.isEmpty() && !showCreate) {
                 Text(
-                    text  = "No tags yet. Create your first one.",
+                    text  = stringResource(R.string.tags_empty_body),
                     style = MaterialTheme.typography.bodyMedium,
                     color = PxColors.OnSurfaceDim
                 )
@@ -146,7 +148,7 @@ fun TagPickerSheet(
                         singleLine     = true,
                         decorationBox  = { inner ->
                             if (newTagName.isEmpty()) {
-                                Text("Tag name", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurfaceDim)
+                                Text(stringResource(R.string.tags_name_hint), style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurfaceDim)
                             }
                             inner()
                         },
@@ -179,7 +181,7 @@ fun TagPickerSheet(
 
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         TextButton(onClick = { showCreate = false; newTagName = "" }) {
-                            Text("Cancel", color = PxColors.OnSurfaceDim)
+                            Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                         }
                         TextButton(
                             onClick = {
@@ -191,7 +193,7 @@ fun TagPickerSheet(
                             },
                             enabled = newTagName.isNotBlank()
                         ) {
-                            Text("Create", color = PxColors.Primary)
+                            Text(stringResource(R.string.create), color = PxColors.Primary)
                         }
                     }
                 }
@@ -206,12 +208,12 @@ fun TagPickerSheet(
                 ) {
                     Icon(
                         imageVector        = Icons.Outlined.Add,
-                        contentDescription = "New tag",
+                        contentDescription = stringResource(R.string.cd_new_tag),
                         tint               = PxColors.Primary,
                         modifier           = Modifier.size(16.dp)
                     )
                     Text(
-                        text  = "New tag",
+                        text  = stringResource(R.string.tags_new),
                         style = MaterialTheme.typography.labelMedium,
                         color = PxColors.Primary
                     )

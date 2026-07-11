@@ -53,7 +53,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import com.oussama_chatri.productivityx.R
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -80,14 +82,14 @@ fun TagManagementScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back", tint = PxColors.OnSurface)
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
-                title = { Text("Tags", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
+                title = { Text(stringResource(R.string.tag_screen_title), style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
-                        Icon(Icons.Outlined.Add, contentDescription = "Create tag", tint = PxColors.Primary)
+                        Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.tag_create_cd), tint = PxColors.Primary)
                     }
                 }
             )
@@ -98,7 +100,7 @@ fun TagManagementScreen(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("No tags yet. Tap + to create one.", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.tag_empty), color = PxColors.OnSurfaceDim)
             }
         } else {
             // Tag cloud visualization
@@ -137,7 +139,7 @@ fun TagManagementScreen(
                                 modifier = Modifier.weight(1f)
                             )
                             IconButton(onClick = { deleteTagId = tag.id }) {
-                                Icon(Icons.Outlined.Close, contentDescription = "Delete", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
+                                Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.tag_delete_cd), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
                             }
                         }
                     }
@@ -149,7 +151,7 @@ fun TagManagementScreen(
     // Create dialog
     if (showCreateDialog) {
         TagFormDialog(
-            title = "Create tag",
+            title = stringResource(R.string.tag_create_dialog_title),
             initialName = "",
             initialColor = "#6366F1",
             onConfirm = { name, color ->
@@ -163,7 +165,7 @@ fun TagManagementScreen(
     // Edit dialog
     editingTag?.let { tag ->
         TagFormDialog(
-            title = "Edit tag",
+            title = stringResource(R.string.tag_edit_dialog_title),
             initialName = tag.name,
             initialColor = tag.color,
             onConfirm = { name, color ->
@@ -180,10 +182,10 @@ fun TagManagementScreen(
         AlertDialog(
             onDismissRequest = { deleteTagId = null },
             containerColor = PxColors.Surface,
-            title = { Text("Delete tag?", color = PxColors.OnBackground) },
+            title = { Text(stringResource(R.string.tag_delete_title), color = PxColors.OnBackground) },
             text = {
                 Text(
-                    "The tag \"${tag?.name}\" will be removed from all notes.",
+                    stringResource(R.string.tag_delete_message, tag?.name ?: ""),
                     color = PxColors.OnSurfaceDim
                 )
             },
@@ -192,12 +194,12 @@ fun TagManagementScreen(
                     viewModel.deleteTag(tagId)
                     deleteTagId = null
                 }) {
-                    Text("Delete", color = PxColors.Error)
+                    Text(stringResource(R.string.tag_delete), color = PxColors.Error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { deleteTagId = null }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -229,7 +231,7 @@ private fun TagFormDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Tag name") },
+                    label = { Text(stringResource(R.string.tag_name_label)) },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = PxColors.Primary,
@@ -241,7 +243,7 @@ private fun TagFormDialog(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                Text("Color", style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.tag_color_label), style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
                 Spacer(modifier = Modifier.height(8.dp))
                 @OptIn(ExperimentalLayoutApi::class) FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     presetColors.forEach { preset ->
@@ -256,7 +258,7 @@ private fun TagFormDialog(
                             contentAlignment = Alignment.Center
                         ) {
                             if (isSelected) {
-                                Icon(Icons.Outlined.Check, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Outlined.Check, contentDescription = null, tint = PxColors.OnPrimary, modifier = Modifier.size(18.dp))
                             }
                         }
                     }
@@ -265,12 +267,12 @@ private fun TagFormDialog(
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(name, color) }, enabled = name.isNotBlank()) {
-                Text("Save", color = PxColors.Primary)
+                Text(stringResource(R.string.tag_save), color = PxColors.Primary)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )

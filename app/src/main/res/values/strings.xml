@@ -8,6 +8,30 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="export">Export</string>
+    <string name="note_info">Note info</string>
+    <string name="show_metadata">Show metadata</string>
+    <string name="focus_mode">Focus mode</string>
+    <string name="reset_zoom">Reset zoom</string>
+    <string name="exit_focus_mode">Exit focus mode</string>
+    <string name="fullscreen_image">Fullscreen image</string>
+    <string name="more">More</string>
+    <string name="add_tag">Add tag</string>
+    <string name="move_to_trash">Move to trash</string>
+    <string name="move_to_trash_confirm">Move to trash?</string>
+    <string name="edit_mode">Edit mode</string>
+    <string name="preview_mode">Preview mode</string>
+    <string name="words">Words</string>
+    <string name="characters">Characters</string>
+    <string name="reading_time">Reading time</string>
+    <string name="export_as_pdf">Export as PDF</string>
+    <string name="print">Print</string>
+    <string name="move_to_trash_message">This note will be moved to trash. You can restore it within 30 days.</string>
+    <string name="export_as_pdf_subtitle">Save a PDF copy of this note</string>
+    <string name="share_subtitle">Share via other apps</string>
+    <string name="print_subtitle">Print this note</string>
+    <string name="untitled">Untitled</string>
+    <string name="last_saved">Last saved: %s</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="done">Done</string>
@@ -141,6 +165,8 @@
     <string name="auth_welcome_back">Welcome back</string>
     <string name="auth_create_your_account">Create your account</string>
     <string name="auth_join_productivityx">Join ProductivityX</string>
+    <string name="auth_welcome_aboard">Welcome aboard!</string>
+    <string name="auth_account_created_success">Your account has been created successfully</string>
 
     <!-- AUTH — Forgot / Reset password -->
     <string name="auth_forgot_password">Forgot password?</string>
@@ -223,6 +249,7 @@
     <string name="register_step_verify">Verify</string>
     <string name="register_step_indicator">Step %1$d of %2$d</string>
     <string name="register_change_photo">Change photo</string>
+    <string name="register_profile_photo_hint">Tap to add profile photo</string>
     <string name="register_preferences_caption">You can change these anytime in settings.</string>
 
     <!-- ═══════════════════════════════════════════ -->
@@ -289,6 +316,18 @@
     <string name="home_start_focus">Start focus</string>
     <string name="home_tasks_completed">tasks completed</string>
     <string name="home_events_upcoming">events upcoming</string>
+    <string name="home_quick_actions_cd">Quick actions</string>
+    <string name="home_quick_action_new_note">New Note</string>
+    <string name="home_quick_action_new_task">New Task</string>
+    <string name="home_quick_action_calculator">Calculator</string>
+    <string name="home_quick_action_start_timer">Start Timer</string>
+    <string name="home_quick_action_ai_chat">AI Chat</string>
+    <string name="home_error_something_wrong">Something went wrong</string>
+    <string name="home_opening_new_note">Opening new note…</string>
+    <string name="home_opening_new_task">Opening new task…</string>
+    <string name="home_starting_timer">Starting timer…</string>
+    <string name="home_opening_ai_chat">Opening AI chat…</string>
+    <string name="home_opening_calculator">Opening calculator…</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- NOTES                                       -->
@@ -335,6 +374,15 @@
     <string name="notes_trash_empty_all_confirm_body">All notes in the trash will be permanently deleted.</string>
     <string name="notes_in_trash">%1$d note in trash</string>
     <string name="notes_in_trash_plural">%1$d notes in trash</string>
+    <string name="notes_voice_memo">Voice memo</string>
+    <string name="notes_selected_count">%1$d selected</string>
+    <string name="notes_search_no_results">No notes match "%1$s"</string>
+    <string name="notes_links_title">Note Links</string>
+    <string name="notes_links_empty">No linked notes</string>
+    <string name="trash_days_left">%1$d days left</string>
+    <string name="trash_expiring_soon">Expiring soon</string>
+    <string name="trash_delete_permanently">Delete permanently</string>
+    <string name="trash_empty_confirm_body">%1$s will be permanently deleted and cannot be recovered.</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- EDITOR                                      -->
@@ -350,6 +398,31 @@
     <string name="editor_insert_link_title">Insert link</string>
     <string name="editor_insert_link_url_hint">URL</string>
     <string name="editor_insert_link_text_hint">Display text</string>
+    <string name="editor_format_underline">Underline</string>
+    <string name="editor_format_strikethrough">Strikethrough</string>
+    <string name="editor_format_heading1">Heading 1</string>
+    <string name="editor_format_heading2">Heading 2</string>
+    <string name="editor_format_heading3">Heading 3</string>
+    <string name="editor_format_code_block">Code block</string>
+    <string name="editor_format_divider">Divider</string>
+    <string name="editor_format_image">Add image</string>
+    <string name="editor_format_table">Insert table</string>
+    <string name="editor_format_highlight">Highlight</string>
+    <string name="editor_highlight_color">Highlight color</string>
+    <string name="editor_highlight_default">Default highlight</string>
+    <string name="editor_text_color">Text color</string>
+    <string name="editor_font_size">Font size</string>
+    <string name="editor_start_writing">Start writing…</string>
+    <string name="editor_saved">Saved</string>
+    <string name="editor_share_note">Share Note</string>
+    <string name="editor_pdf_filename">Note</string>
+    <string name="editor_content_hint">Start writing…</string>
+    <string name="editor_insert_table_title">Insert Table</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">Header row</string>
+    <string name="editor_table_header_template">Header %1$d</string>
+    <string name="editor_table_cell_template">Cell</string>
+    <string name="editor_insert_table_btn">Insert</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- TAGS                                        -->
@@ -372,13 +445,12 @@
     <!-- ═══════════════════════════════════════════ -->
     <string name="tasks_title">Tasks</string>
     <string name="tasks_new">New task</string>
-    <string name="tasks_search_hint">Search tasks…</string>
+    <string name="tasks_search_hint">Search or filter tasks…</string>
     <string name="tasks_tab_all">All</string>
     <string name="tasks_tab_today">Today</string>
     <string name="tasks_tab_upcoming">Upcoming</string>
     <string name="tasks_tab_completed">Completed</string>
-    <string name="tasks_view_list">List view</string>
-    <string name="tasks_view_kanban">Board view</string>
+    <string name="tasks_view_list">List</string>
     <string name="tasks_empty_title">No tasks here</string>
     <string name="tasks_empty_body">Create your first task to get started.</string>
     <string name="tasks_empty_action">Create task</string>
@@ -487,6 +559,164 @@
     <string name="event_field_recurrence">Recurrence</string>
     <string name="event_field_reminder">Reminder</string>
     <string name="event_field_link_task">Link task</string>
+    <string name="event_attendees">Attendees</string>
+    <string name="event_meeting_link">Meeting link</string>
+    <string name="event_travel_time">Travel time</string>
+    <string name="event_quick_templates">Quick templates</string>
+    <string name="event_suggestions">Suggestions</string>
+    <string name="event_select_time">Select time</string>
+    <string name="event_conflict">Time conflict</string>
+    <string name="event_conflict_with">Time conflict with %d event(s)</string>
+    <string name="event_add_attendee_hint">Email address</string>
+    <string name="event_enter_location_hint">Enter location</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">Minutes</string>
+    <string name="event_add_location">Add location</string>
+    <string name="event_add_description">Add description</string>
+    <string name="event_add_attendees">Add attendees</string>
+    <string name="event_add_link">Add link</string>
+    <string name="event_add_estimate">Add estimate</string>
+    <string name="event_attendee_count">%d attendee(s)</string>
+    <string name="event_reminder_multiple">Multiple (%d)</string>
+    <string name="event_speak_prompt">Speak the event title</string>
+    <string name="task_delete_confirm">Delete task?</string>
+    <string name="task_delete_message">This task will be moved to trash.</string>
+    <string name="task_not_found">Task not found</string>
+    <string name="task_overdue">Overdue</string>
+    <string name="task_due_date">Due date</string>
+    <string name="task_due_time">Due time</string>
+    <string name="task_reminder">Reminder</string>
+    <string name="task_reminder_set">Set</string>
+    <string name="task_time">Time</string>
+    <string name="task_assignee">Assignee</string>
+    <string name="task_assigned">Assigned</string>
+    <string name="task_completed">Completed</string>
+    <string name="task_priority">Priority</string>
+    <string name="task_subtasks">Subtasks</string>
+    <string name="task_activity">Activity</string>
+    <string name="task_hide">Hide</string>
+    <string name="task_events">%d events</string>
+    <string name="task_add_description">Add description</string>
+    <string name="task_add_subtask">Add subtask</string>
+    <string name="task_add_subtask_placeholder">Add subtask…</string>
+    <string name="priority_low_importance">Low Importance</string>
+    <string name="priority_high_importance">High Importance</string>
+    <string name="priority_not_urgent">Not Urgent</string>
+    <string name="priority_urgent_low">Urgent + Low Importance</string>
+    <string name="priority_urgent_high">Urgent + High Importance</string>
+    <string name="priority_not_urgent_low">Not Urgent + Low Importance</string>
+    <string name="priority_not_urgent_high">Not Urgent + High Importance</string>
+    <string name="task_title_placeholder">Task title</string>
+    <string name="task_tags">Tags</string>
+    <string name="task_add_tag">Add tag</string>
+    <string name="task_set_date">Set date</string>
+    <string name="task_set_time">Set time</string>
+    <string name="task_remind_before">Remind before</string>
+    <string name="task_repeat">Repeat</string>
+    <string name="task_never">Never</string>
+    <string name="task_estimated_time">Estimated time</string>
+    <string name="task_status">Status</string>
+    <string name="task_update">Update</string>
+    <string name="task_create">Create</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">Weak</string>
+    <string name="password_fair">Fair</string>
+    <string name="password_good">Good</string>
+    <string name="password_strong">Strong</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">min</string>
+    <string name="cd_recurring">Recurring</string>
+    <string name="empty_tasks_list">No tasks yet</string>
+    <string name="empty_tasks_list_hint">Tap + to create your first task</string>
+    <string name="empty_tasks_kanban">No tasks on the board</string>
+    <string name="empty_tasks_kanban_hint">Add tasks to get started</string>
+    <string name="empty_tasks_calendar">No tasks on this day</string>
+    <string name="empty_tasks_calendar_hint">Select another day or add a task</string>
+    <string name="empty_tasks_timeline">No tasks in this period</string>
+    <string name="empty_tasks_timeline_hint">Adjust the timeline or add tasks</string>
+
+    <!-- Preferences -->
+    <string name="pref_section_account">Account</string>
+    <string name="pref_section_appearance">Appearance</string>
+    <string name="pref_section_notifications">Notifications</string>
+    <string name="pref_section_data_sync">Data &amp; Sync</string>
+    <string name="pref_section_beta">Beta Features</string>
+    <string name="pref_section_about">About</string>
+    <string name="pref_section_help">Help &amp; Support</string>
+    <string name="pref_search_placeholder">Search settings…</string>
+    <string name="pref_no_results">No results found for \"%s\"</string>
+    <string name="pref_theme">Theme</string>
+    <string name="pref_local_only_mode">Local-only mode</string>
+    <string name="pref_local_only_mode_desc">Keep all data on this device</string>
+    <string name="pref_subscription">Subscription</string>
+    <string name="pref_free_plan">Free plan</string>
+    <string name="pref_free">Free</string>
+    <string name="pref_font_family">Font Family</string>
+    <string name="pref_font_size">Font size</string>
+    <string name="pref_density">Density</string>
+    <string name="pref_haptic_feedback">Haptic feedback</string>
+    <string name="pref_haptic_feedback_desc">Vibrate on interactions</string>
+    <string name="pref_quiet_hours">Quiet hours</string>
+    <string name="pref_quiet_hours_start">Start</string>
+    <string name="pref_quiet_hours_end">End</string>
+    <string name="pref_auto_sync">Auto-sync</string>
+    <string name="pref_auto_sync_desc">Automatically sync data when connected</string>
+    <string name="pref_offline_mode">Offline mode</string>
+    <string name="pref_offline_mode_desc">Work without internet connection</string>
+    <string name="pref_export_data">Export data</string>
+    <string name="pref_export_data_desc">Save a backup of all your data</string>
+    <string name="pref_import_data">Import data</string>
+    <string name="pref_import_data_desc">Restore data from a backup file</string>
+    <string name="pref_version">Version</string>
+    <string name="pref_version_value">1.2.0 (build 42)</string>
+    <string name="pref_latest">Latest</string>
+    <string name="pref_licenses">Licenses</string>
+    <string name="pref_licenses_desc">Open source libraries</string>
+    <string name="pref_credits">Credits</string>
+    <string name="pref_terms">Terms &amp; Conditions</string>
+    <string name="pref_privacy">Privacy Policy</string>
+    <string name="pref_faq">FAQ</string>
+    <string name="pref_faq_desc">Frequently asked questions</string>
+    <string name="pref_contact">Contact us</string>
+    <string name="pref_contact_desc">Get in touch with the team</string>
+    <string name="pref_feedback">Send feedback</string>
+    <string name="pref_feedback_desc">Help us improve ProductivityX</string>
+    <string name="pref_feedback_subject">ProductivityX Feedback</string>
+    <string name="pref_select_hour">Select %s hour</string>
+    <string name="pref_settings">Settings</string>
+    <string name="pref_close">Close</string>
+    <string name="pref_enabled">Enabled</string>
+    <string name="pref_disabled">Disabled</string>
+    <string name="pref_theme_dark">Dark</string>
+    <string name="pref_theme_light">Light</string>
+    <string name="pref_theme_system">System</string>
+    <string name="pref_theme_ocean">Ocean</string>
+    <string name="pref_theme_amber">Amber</string>
+    <string name="pref_theme_forest">Forest</string>
+    <string name="pref_theme_rose">Rose</string>
+    <string name="pref_theme_midnight">Midnight</string>
+    <string name="pref_theme_dynamic">Dynamic</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">System</string>
+    <string name="pref_font_serif">Serif</string>
+    <string name="pref_font_mono">Mono</string>
+    <string name="pref_density_compact">Compact</string>
+    <string name="pref_density_comfortable">Comfortable</string>
+    <string name="pref_density_spacious">Spacious</string>
+    <string name="pref_view_list">List</string>
+    <string name="pref_view_kanban">Kanban</string>
+    <string name="pref_sort_due">Due</string>
+    <string name="pref_sort_priority">Priority</string>
+    <string name="pref_sort_created">Created</string>
+    <string name="pref_calendar_week">Week</string>
+    <string name="pref_calendar_month">Month</string>
+    <string name="pref_week_mon">Mon</string>
+    <string name="pref_week_sun">Sun</string>
+    <string name="pref_week_sat">Sat</string>
+    <string name="pref_ai_flash">Flash</string>
+    <string name="pref_ai_pro">Pro</string>
+    <string name="minute_abbrev">min</string>
+
     <string name="event_recurrence_none">Does not repeat</string>
     <string name="event_recurrence_daily">Daily</string>
     <string name="event_recurrence_weekly">Weekly</string>
@@ -509,7 +739,24 @@
     <string name="event_update_success">Event updated.</string>
     <string name="event_delete_success">Event deleted.</string>
     <string name="event_restore_success">Event restored.</string>
+    <string name="event_untitled">Untitled Event</string>
+    <string name="event_delete_cannot_undo">This action cannot be undone.</string>
+    <string name="event_repeats">Repeats</string>
+    <string name="event_detail_ends">Ends %1$s</string>
+    <string name="event_detail_timezone">Timezone: %1$s</string>
+    <string name="event_detail_min_before">%1$d min before</string>
+    <string name="event_detail_reminders">Reminders: %1$s</string>
+    <string name="event_detail_attendees_count">%1$d attendees</string>
+    <string name="event_detail_travel_time">Travel time: %1$d min</string>
+    <string name="event_reminder_short_at_time">At time</string>
+    <string name="event_reminder_short_min">%1$d min</string>
+    <string name="event_reminder_short_1_hour">1 hour</string>
+    <string name="event_reminder_short_1_day">1 day</string>
     <string name="event_delete_confirm_title">Delete event?</string>
+    <string name="cd_date_picker">Date picker</string>
+    <string name="cd_join">Join</string>
+    <string name="cd_previous_year">Previous year</string>
+    <string name="cd_next_year">Next year</string>
     <string name="event_delete_confirm_body">This event will be deleted.</string>
     <string name="event_delete_recurring_title">Delete recurring event</string>
     <string name="event_delete_recurring_body">Delete this event or all events in the series?</string>
@@ -527,11 +774,8 @@
     <string name="event_share">Share event</string>
     <string name="event_duplicate">Duplicate</string>
     <string name="event_weather">Weather</string>
-    <string name="event_attendees">Attendees</string>
     <string name="event_timezone">Timezone</string>
-    <string name="event_travel_time">Travel time</string>
     <string name="event_conflict_detected">Time conflict detected</string>
-    <string name="event_reminder_multiple">Multiple reminders</string>
     <string name="event_reminder_add">Add reminder</string>
     <string name="event_reminder_custom">Custom</string>
     <string name="event_voice_input">Voice input</string>
@@ -548,6 +792,10 @@
     <string name="calendar_all_day_section">All day</string>
     <string name="calendar_agenda_empty">No upcoming events</string>
     <string name="calendar_heat_map_label">Activity</string>
+    <string name="calendar_upcoming_events">Upcoming Events</string>
+    <string name="calendar_free_busy_suggested">Free/Busy &amp; Suggested Times</string>
+    <string name="calendar_no_available_slots">No available slots found for this week</string>
+    <string name="calendar_free">Free</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- POMODORO                                    -->
@@ -616,7 +864,35 @@
     <string name="pomodoro_daily_goal">Daily Goal</string>
     <string name="pomodoro_weekly_goal">Weekly Target</string>
     <string name="pomodoro_exit_focus_mode">Exit Focus Mode</string>
+    <string name="pomodoro_dnd">DND</string>
+    <string name="pomodoro_background">Background</string>
+    <string name="pomodoro_sounds">Sounds</string>
+    <string name="pomodoro_focus_mode">Focus Mode</string>
+    <string name="pomodoro_unlink">Unlink</string>
+    <string name="pomodoro_play_pause">Play/Pause</string>
+    <string name="pomodoro_no_active_tasks">No active tasks available.</string>
+    <string name="pomodoro_ambient_sound">Ambient Sound</string>
+    <string name="pomodoro_today_sessions">Today\'s Sessions</string>
+    <string name="pomodoro_no_sessions_today">No sessions yet today</string>
+    <string name="pomodoro_interrupt_button">Interrupt</string>
     <string name="pomodoro_dnd_access_required">DND Access required. Please enable in settings.</string>
+    <string name="pomodoro_ambient_rain">Rain</string>
+    <string name="pomodoro_ambient_cafe">Cafe</string>
+    <string name="pomodoro_ambient_white_noise">White Noise</string>
+    <string name="pomodoro_ambient_nature">Nature</string>
+    <string name="pomodoro_paused">Paused</string>
+    <string name="pomodoro_done">Done! 🎉</string>
+    <string name="pomodoro_general_focus">General Focus</string>
+    <string name="pomodoro_sessions_label">SESSIONS</string>
+    <string name="pomodoro_focus_time_label">FOCUS TIME</string>
+    <string name="pomodoro_streak_label">STREAK</string>
+    <string name="pomodoro_less">Less</string>
+    <string name="pomodoro_more">More</string>
+    <string name="pomodoro_no_category_data">No category data available</string>
+    <string name="pomodoro_ongoing">Ongoing</string>
+    <string name="pomodoro_duration_min">%d min</string>
+    <string name="pomodoro_toggle">Toggle</string>
+    <string name="pomodoro_ambient_sounds">Ambient Sounds</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- AI                                          -->
@@ -664,6 +940,17 @@
     <string name="ai_regenerate">Regenerate response</string>
     <string name="ai_you">You</string>
     <string name="ai_assistant">Assistant</string>
+    <string name="ai_stop_generating">Stop Generating</string>
+    <string name="ai_conversations_search_hint">Search conversations…</string>
+    <string name="ai_conversations_close_search">Close search</string>
+    <string name="ai_conversations_no_results">No results for \"%s\"</string>
+    <string name="ai_conversations_section_pinned">Pinned</string>
+    <string name="ai_conversations_section_earlier">Earlier</string>
+    <string name="ai_conversations_quick_action">Quick Action</string>
+    <string name="ai_conversations_new_chat">New Chat</string>
+    <string name="ai_suggestion_plan_day">Plan my day</string>
+    <string name="ai_suggestion_summarize_notes">Summarize notes</string>
+    <string name="ai_suggestion_brainstorm">Brainstorm ideas</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- SEARCH                                      -->
@@ -865,7 +1152,7 @@
     <!-- ═══════════════════════════════════════════ -->
     <string name="empty_state_generic_title">Nothing here yet</string>
     <string name="empty_state_generic_body">Get started by creating something new.</string>
-    <string name="empty_state_no_results_title">No results found</string>
+    <string name="empty_state_no_results_title">No results</string>
     <string name="empty_state_no_results_body">Try a different search or filter.</string>
     <string name="empty_state_offline_title">You\'re offline</string>
     <string name="empty_state_offline_body">Connect to the internet to load your content.</string>
@@ -900,6 +1187,14 @@
     <string name="cd_clear_input">Clear input</string>
     <string name="cd_remove_subtask">Remove subtask</string>
     <string name="cd_notification">Notification</string>
+    <string name="cd_selected">Selected</string>
+    <string name="cd_not_selected">Not selected</string>
+    <string name="cd_clear_selection">Clear selection</string>
+    <string name="cd_grid_view">Grid view</string>
+    <string name="cd_list_view">List view</string>
+    <string name="cd_note_image">Note image</string>
+    <string name="cd_new_tag">New tag</string>
+    <string name="cd_biometric_login">Biometric login</string>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- MISC                                        -->
@@ -1008,10 +1303,6 @@
     <string name="home_focus_mode_inactive">Quick Focus</string>
     <string name="home_focus_mode_desc_active">Minimize distractions</string>
     <string name="home_focus_mode_desc_inactive">Tap to enter focus mode</string>
-    <string name="home_quick_action_new_note">New Note</string>
-    <string name="home_quick_action_new_task">New Task</string>
-    <string name="home_quick_action_start_timer">Start Timer</string>
-    <string name="home_quick_action_ai_chat">AI Chat</string>
     <string name="home_voice_prompt">What would you like to do?</string>
     <string name="home_voice_listening">Listening…</string>
     <string name="home_pull_to_refresh">Pull to refresh</string>
@@ -1029,5 +1320,256 @@
     <string name="shortcut_task_short_label">Task</string>
     <string name="shortcut_focus_short_label">Focus</string>
     <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- Folder Management -->
+    <string name="folder_screen_title">Folders</string>
+    <string name="folder_empty">No folders yet</string>
+    <string name="folder_create_dialog_title">Create folder</string>
+    <string name="folder_edit_dialog_title">Edit folder</string>
+    <string name="folder_delete_title">Delete folder?</string>
+    <string name="folder_delete_message">Notes in \"%s\" will not be deleted.</string>
+    <string name="folder_name_label">Folder name</string>
+    <string name="folder_color_label">Color</string>
+    <string name="folder_save">Save</string>
+    <string name="folder_delete">Delete</string>
+    <string name="folder_note_count">%d notes</string>
+    <string name="folder_note_count_one">%d note</string>
+    <string name="folder_create_cd">Create folder</string>
+    <string name="folder_edit_cd">Edit</string>
+    <string name="folder_delete_cd">Delete</string>
+
+    <!-- Tag Management -->
+    <string name="tag_screen_title">Tags</string>
+    <string name="tag_empty">No tags yet. Tap + to create one.</string>
+    <string name="tag_create_dialog_title">Create tag</string>
+    <string name="tag_edit_dialog_title">Edit tag</string>
+    <string name="tag_delete_title">Delete tag?</string>
+    <string name="tag_delete_message">The tag \"%s\" will be removed from all notes.</string>
+    <string name="tag_name_label">Tag name</string>
+    <string name="tag_color_label">Color</string>
+    <string name="tag_save">Save</string>
+    <string name="tag_delete">Delete</string>
+    <string name="tag_create_cd">Create tag</string>
+    <string name="tag_delete_cd">Delete</string>
+
+    <!-- Terms & Conditions -->
+    <string name="terms_title">Terms &amp; Conditions</string>
+    <string name="terms_subtitle">Terms of Service</string>
+    <string name="terms_last_updated">Last updated: July 2026</string>
+    <string name="terms_section_1_title">1. Acceptance of Terms</string>
+    <string name="terms_section_1_body">By accessing or using ProductivityX, you agree to be bound by these Terms of Service. If you do not agree, do not use the app.</string>
+    <string name="terms_section_2_title">2. Description of Service</string>
+    <string name="terms_section_2_body">ProductivityX provides a unified workspace including notes, tasks, calendar, focus timer (Pomodoro), and AI assistant features. We reserve the right to modify or discontinue any feature at any time.</string>
+    <string name="terms_section_3_title">3. User Accounts</string>
+    <string name="terms_section_3_body">You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You must notify us immediately of any unauthorized access.</string>
+    <string name="terms_section_4_title">4. Acceptable Use</string>
+    <string name="terms_section_4_body">You agree not to use ProductivityX for any unlawful purpose or in violation of any applicable laws. You may not attempt to disrupt, damage, or gain unauthorized access to our systems.</string>
+    <string name="terms_section_5_title">5. Data &amp; Privacy</string>
+    <string name="terms_section_5_body">Your use of ProductivityX is also governed by our Privacy Policy. We take data security seriously and implement industry-standard measures to protect your information.</string>
+    <string name="terms_section_6_title">6. Intellectual Property</string>
+    <string name="terms_section_6_body">ProductivityX and its original content, features, and functionality are owned by Oussama Chatri and are protected by applicable copyright and intellectual property laws.</string>
+    <string name="terms_section_7_title">7. Limitation of Liability</string>
+    <string name="terms_section_7_body">ProductivityX is provided &quot;as is&quot; without warranties of any kind. We shall not be liable for any damages arising from your use of the app.</string>
+    <string name="terms_section_8_title">8. Changes to Terms</string>
+    <string name="terms_section_8_body">We reserve the right to update these terms at any time. We will notify users of material changes via the app or email.</string>
+    <string name="terms_section_9_title">9. Contact</string>
+    <string name="terms_section_9_body">For questions about these terms, contact us at productivityx7@gmail.com.</string>
+
+    <!-- Privacy Policy -->
+    <string name="privacy_title">Privacy Policy</string>
+    <string name="privacy_subtitle">Privacy Policy</string>
+    <string name="privacy_last_updated">Last updated: July 2026</string>
+    <string name="privacy_section_1_title">1. Information We Collect</string>
+    <string name="privacy_section_1_body">We collect information you provide when creating an account, including your name, email address, and profile picture. We also collect data you create within the app such as notes, tasks, events, and focus sessions.</string>
+    <string name="privacy_section_2_title">2. How We Use Your Information</string>
+    <string name="privacy_section_2_body">Your data is used to provide and improve ProductivityX features, sync across devices, and send relevant notifications. We do not sell your personal information to third parties.</string>
+    <string name="privacy_section_3_title">3. Data Storage &amp; Security</string>
+    <string name="privacy_section_3_body">Your data is encrypted in transit and at rest. We use industry-standard security measures to protect your information. You can choose to keep data local-only without cloud sync.</string>
+    <string name="privacy_section_4_title">4. Third-Party Services</string>
+    <string name="privacy_section_4_body">ProductivityX may use third-party services for AI assistance, push notifications, and analytics. These services are contractually bound to protect your data and use it only for the intended purposes.</string>
+    <string name="privacy_section_5_title">5. Your Rights</string>
+    <string name="privacy_section_5_body">You can access, modify, or delete your data at any time through the app settings. You can request a full export of your data or permanently delete your account.</string>
+    <string name="privacy_section_6_title">6. Data Retention</string>
+    <string name="privacy_section_6_body">We retain your data for as long as your account is active. Deleted items are kept in trash for 30 days before permanent deletion. Account deletion removes all associated data within 90 days.</string>
+    <string name="privacy_section_7_title">7. Children\'s Privacy</string>
+    <string name="privacy_section_7_body">ProductivityX is not intended for users under 13. We do not knowingly collect data from children. If we become aware of such data, we will delete it promptly.</string>
+    <string name="privacy_section_8_title">8. Changes to This Policy</string>
+    <string name="privacy_section_8_body">We may update this Privacy Policy. We will notify you of material changes through the app or via email.</string>
+    <string name="privacy_section_9_title">9. Contact Us</string>
+    <string name="privacy_section_9_body">For privacy-related inquiries, contact us at productivityx7@gmail.com.</string>
+
+    <!-- Tasks Screen -->
+    <!-- Task Stats Screen -->
+    <string name="tasks_statistics">Statistics</string>
+    <string name="tasks_stats_score">Score</string>
+    <string name="tasks_stats_streak">Streak</string>
+    <string name="tasks_stats_days">days</string>
+    <string name="tasks_stats_best">Best</string>
+    <string name="tasks_stats_completion_rate">Completion Rate</string>
+    <string name="tasks_stats_this_week">This Week</string>
+    <string name="tasks_stats_this_month">This Month</string>
+    <string name="tasks_stats_monthly_progress">Monthly progress</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d done</string>
+    <string name="tasks_stats_time_by_priority">Time Spent by Priority</string>
+    <string name="tasks_stats_no_data">No data yet</string>
+    <string name="tasks_stats_achievements">Achievements</string>
+    <string name="tasks_stats_unlock_badges">Complete tasks to unlock badges</string>
+    <string name="tasks_stats_weekly_review">Weekly Review</string>
+    <string name="tasks_stats_created">Created</string>
+    <string name="tasks_stats_completed">Completed</string>
+    <string name="tasks_stats_overdue">Overdue</string>
+    <string name="tasks_stats_suggested_focus">Suggested Focus</string>
+    <string name="tasks_stats_patterns">Productivity Patterns</string>
+    <string name="tasks_stats_velocity">Completion Velocity</string>
+    <string name="tasks_stats_productive_hours">Most Productive Hours</string>
+    <string name="tasks_stats_category_breakdown">Category Breakdown</string>
+    <string name="tasks_stats_complete_more">Complete more tasks to see your productivity patterns</string>
+
+    <!-- Recurrence labels -->
+    <string name="task_recurrence_none">None</string>
+    <string name="task_recurrence_daily">Daily</string>
+    <string name="task_recurrence_weekdays">Weekdays</string>
+    <string name="task_recurrence_weekly">Weekly</string>
+    <string name="task_recurrence_biweekly">Biweekly</string>
+    <string name="task_recurrence_monthly">Monthly</string>
+    <string name="task_recurrence_yearly">Yearly</string>
+
+    <!-- Task Detail Screen -->
+    <string name="task_label">Task</string>
+    <string name="task_estimated_abbrev">Est.</string>
+    <string name="task_actual_abbrev">Actual</string>
+
+    <!-- Task Trash Screen -->
+    <string name="tasks_trash_empty_title">Trash is empty</string>
+    <string name="tasks_trash_empty_body">Deleted tasks appear here.</string>
+    <string name="tasks_trash_due">Due %1$s</string>
+    <string name="tasks_trash_hard_delete_title">Delete permanently?</string>
+    <string name="tasks_trash_hard_delete_body">This task cannot be recovered.</string>
+
+    <string name="tasks_no_tasks_day">No tasks on this day</string>
+    <string name="tasks_add_task">Add task</string>
+    <string name="tasks_drop_here">Drop tasks here</string>
+    <string name="tasks_set_priority">Set Priority</string>
+    <string name="tasks_ok">OK</string>
+    <string name="tasks_cancel">Cancel</string>
+    <string name="tasks_selected_count">%d selected</string>
+    <string name="tasks_filter_all">All</string>
+    <string name="tasks_filter_today">Today</string>
+    <string name="tasks_filter_upcoming">Upcoming</string>
+    <string name="tasks_filter_overdue">Overdue</string>
+    <string name="tasks_filter_no_date">No Date</string>
+    <string name="tasks_filter_done">Done</string>
+    <string name="tasks_view_board">Board</string>
+    <string name="tasks_view_calendar">Calendar</string>
+    <string name="tasks_view_timeline">Timeline</string>
+    <string name="tasks_bulk_complete">Complete</string>
+    <string name="tasks_bulk_delete">Delete</string>
+    <string name="tasks_bulk_reschedule">Reschedule</string>
+    <string name="tasks_bulk_priority">Priority</string>
+    <string name="tasks_weekday_sun">S</string>
+    <string name="tasks_weekday_mon">M</string>
+    <string name="tasks_weekday_tue">T</string>
+    <string name="tasks_weekday_wed">W</string>
+    <string name="tasks_weekday_thu">T</string>
+    <string name="tasks_weekday_fri">F</string>
+    <string name="tasks_weekday_sat">S</string>
+    <string name="tasks_picker_day_mon">M</string>
+    <string name="tasks_picker_day_tue">T</string>
+    <string name="tasks_picker_day_wed">W</string>
+    <string name="tasks_picker_day_thu">Th</string>
+    <string name="tasks_picker_day_fri">F</string>
+    <string name="tasks_picker_day_sat">Sa</string>
+    <string name="tasks_picker_day_sun">Su</string>
+    <string name="tasks_minutes_abbrev">%1$dm</string>
+    <string name="tasks_for_date">Tasks for %s</string>
+    <string name="cd_exit_multiselect">Exit multi-select</string>
+    <string name="cd_select_all">Select all</string>
+    <string name="cd_statistics">Statistics</string>
+    <string name="cd_previous">Previous</string>
+    <string name="cd_drop_here">Drop here</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_sign_out_desc">You\'ll need to sign in again to access your workspace.</string>
+    <string name="profile_delete_account_title">Delete Account</string>
+    <string name="profile_delete_account_warning">This action cannot be undone. All your data will be permanently deleted.</string>
+    <string name="profile_delete_bullet_notes">All notes, tasks, and events will be removed</string>
+    <string name="profile_delete_bullet_account">Your account and subscription will be cancelled</string>
+    <string name="profile_delete_bullet_irreversible">This cannot be reversed</string>
+    <string name="profile_section_actions">Actions</string>
+    <string name="profile_notification_preferences">Notification preferences</string>
+    <string name="profile_section_account_subscription">Account &amp; Subscription</string>
+    <string name="profile_storage">Storage</string>
+    <string name="profile_connected_devices">Connected devices</string>
+    <string name="profile_section_danger_zone">Danger Zone</string>
+    <string name="profile_delete_subtitle">Permanently remove all data</string>
+    <string name="profile_stat_ai_chats">AI chats</string>
+    <string name="profile_recent_activity">Recent activity</string>
+    <string name="profile_productivity_trend">Productivity trend</string>
+    <string name="profile_this_week_percent">%1$d%% this week</string>
+    <string name="profile_local_mode">Local Mode</string>
+    <string name="profile_local_mode_desc">You\'re using ProductivityX without an account.\nYour data stays on this device only.</string>
+    <string name="profile_theme_pro">Pro theme</string>
+
+    <!-- Edit Profile Screen -->
+    <string name="pref_section_locale">Locale</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- Change Password Screen -->
+    <string name="password_change_success">Password changed successfully</string>
+    <string name="password_confirm_new">Confirm new password</string>
+    <string name="password_update">Update Password</string>
+
+    <!-- Preferences Screen (search results) -->
+    <string name="pref_search_pomodoro">Pomodoro Timer</string>
+    <string name="pref_search_appearance">Appearance &amp; Theme</string>
+    <string name="pref_search_notifications">Notifications &amp; Quiet Hours</string>
+    <string name="pref_search_display">Display &amp; Font Size</string>
+    <string name="pref_search_feature_flags">Feature Flags (Beta)</string>
+
+    <!-- FAQ Screen -->
+    <string name="faq_q_what_is">What is ProductivityX?</string>
+    <string name="faq_a_what_is">ProductivityX is a unified workspace app that combines notes, tasks, calendar, a Pomodoro focus timer, and an AI assistant in one place.</string>
+    <string name="faq_q_data_secure">Is my data secure?</string>
+    <string name="faq_a_data_secure">Yes. Your data is encrypted in transit and at rest. You can also enable local-only mode to keep all data on your device without cloud sync.</string>
+    <string name="faq_q_ai_work">How does the AI assistant work?</string>
+    <string name="faq_a_ai_work">The AI assistant can see your active tasks, upcoming events, and recent notes to provide context-aware answers. It uses Google Gemini models.</string>
+    <string name="faq_q_offline">Can I use ProductivityX offline?</string>
+    <string name="faq_a_offline">Yes. You can enable offline mode in settings. Changes will sync automatically when you reconnect to the internet.</string>
+    <string name="faq_q_export">How do I export my data?</string>
+    <string name="faq_a_export">Go to Settings &gt; Data &amp; Sync and tap \'Export data\'. Your notes, tasks, events, and settings will be saved as an encrypted backup file.</string>
+    <string name="faq_q_pomodoro">How does the Pomodoro timer work?</string>
+    <string name="faq_a_pomodoro">The Pomodoro timer alternates between focus sessions and breaks. You can customize durations, auto-start breaks, and link tasks to track focus time per task.</string>
+    <string name="faq_q_language">Can I change the app language?</string>
+    <string name="faq_a_language">Yes. Go to your profile and tap the language setting. ProductivityX supports multiple languages including English, French, Arabic, Spanish, German, and more.</string>
+    <string name="faq_q_password">How do I reset my password?</string>
+    <string name="faq_a_password">Tap \'Forgot password\' on the login screen. A reset link will be sent to your email address.</string>
+    <string name="faq_q_delete_account">What happens when I delete my account?</string>
+    <string name="faq_a_delete_account">All your data (notes, tasks, events, conversations) will be permanently deleted. This action cannot be undone.</string>
+    <string name="faq_q_contact">How do I contact support?</string>
+    <string name="faq_a_contact">You can reach us at productivityx7@gmail.com or use the \'Send feedback\' option in Settings &gt; Help &amp; Support.</string>
+
+    <!-- Licenses Screen -->
+    <string name="licenses_intro">ProductivityX uses the following open source libraries:</string>
+
+    <!-- Credits Screen -->
+    <string name="credits_role_development">Development</string>
+    <string name="credits_role_design">Design</string>
+    <string name="credits_role_ai_integration">AI Integration</string>
+    <string name="credits_role_icons">Icons</string>
+    <string name="credits_built_with">Built with ❤️ using Kotlin &amp; Jetpack Compose</string>
+    <string name="credits_copyright">© 2026 ProductivityX. All rights reserved.</string>
+
+    <!-- Edit Profile Screen — extra -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- Preferences Search — extra -->
+    <string name="pref_search_data_sync">Data &amp; Sync</string>
+    <string name="pref_search_ai">AI Assistant</string>
+    <string name="pref_search_about">About</string>
+    <string name="pref_search_help">Help &amp; Support</string>
 
 </resources>

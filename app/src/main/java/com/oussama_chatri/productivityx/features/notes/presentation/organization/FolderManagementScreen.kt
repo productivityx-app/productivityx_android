@@ -51,7 +51,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import com.oussama_chatri.productivityx.R
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -76,14 +78,14 @@ fun FolderManagementScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back", tint = PxColors.OnSurface)
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
-                title = { Text("Folders", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
+                title = { Text(stringResource(R.string.folder_screen_title), style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
-                        Icon(Icons.Outlined.Add, contentDescription = "Create folder", tint = PxColors.Primary)
+                        Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.folder_create_cd), tint = PxColors.Primary)
                     }
                 }
             )
@@ -97,7 +99,7 @@ fun FolderManagementScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Outlined.CreateNewFolder, contentDescription = null, tint = PxColors.SurfaceVariant, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("No folders yet", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.folder_empty), color = PxColors.OnSurfaceDim)
                 }
             }
         } else {
@@ -120,7 +122,7 @@ fun FolderManagementScreen(
 
     if (showCreateDialog) {
         FolderFormDialog(
-            title = "Create folder",
+            title = stringResource(R.string.folder_create_dialog_title),
             initialName = "",
             initialColor = "#6366F1",
             onConfirm = { name, color -> viewModel.createFolder(name, color); showCreateDialog = false },
@@ -130,7 +132,7 @@ fun FolderManagementScreen(
 
     editingFolder?.let { folder ->
         FolderFormDialog(
-            title = "Edit folder",
+            title = stringResource(R.string.folder_edit_dialog_title),
             initialName = folder.name,
             initialColor = folder.color,
             onConfirm = { name, color -> viewModel.updateFolder(folder.id, name, color); editingFolder = null },
@@ -143,21 +145,21 @@ fun FolderManagementScreen(
         AlertDialog(
             onDismissRequest = { deleteFolderId = null },
             containerColor = PxColors.Surface,
-            title = { Text("Delete folder?", color = PxColors.OnBackground) },
+            title = { Text(stringResource(R.string.folder_delete_title), color = PxColors.OnBackground) },
             text = {
                 Text(
-                    "Notes in \"${folder?.name}\" will not be deleted.",
+                    stringResource(R.string.folder_delete_message, folder?.name ?: ""),
                     color = PxColors.OnSurfaceDim
                 )
             },
             confirmButton = {
                 TextButton(onClick = { viewModel.deleteFolder(id); deleteFolderId = null }) {
-                    Text("Delete", color = PxColors.Error)
+                    Text(stringResource(R.string.folder_delete), color = PxColors.Error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { deleteFolderId = null }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -196,16 +198,16 @@ private fun FolderCard(
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = folder.name, style = MaterialTheme.typography.bodyLarge, color = PxColors.OnSurface)
                 Text(
-                    text = "${folder.noteCount} ${if (folder.noteCount == 1) "note" else "notes"}",
+                    text = stringResource(if (folder.noteCount == 1) R.string.folder_note_count_one else R.string.folder_note_count, folder.noteCount),
                     style = MaterialTheme.typography.labelSmall,
                     color = PxColors.OnSurfaceDim
                 )
             }
             IconButton(onClick = onEdit) {
-                Icon(Icons.Outlined.Edit, contentDescription = "Edit", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
+                Icon(Icons.Outlined.Edit, contentDescription = stringResource(R.string.folder_edit_cd), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
             }
             IconButton(onClick = onDelete) {
-                Icon(Icons.Outlined.Delete, contentDescription = "Delete", tint = PxColors.Error, modifier = Modifier.size(18.dp))
+                Icon(Icons.Outlined.Delete, contentDescription = stringResource(R.string.folder_delete_cd), tint = PxColors.Error, modifier = Modifier.size(18.dp))
             }
         }
     }
@@ -236,7 +238,7 @@ private fun FolderFormDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Folder name") },
+                    label = { Text(stringResource(R.string.folder_name_label)) },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = PxColors.Primary,
@@ -248,7 +250,7 @@ private fun FolderFormDialog(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                Text("Color", style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.folder_color_label), style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     presetColors.forEach { preset ->
@@ -263,7 +265,7 @@ private fun FolderFormDialog(
                             contentAlignment = Alignment.Center
                         ) {
                             if (isSelected) {
-                                Icon(Icons.Outlined.Check, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Outlined.Check, contentDescription = null, tint = PxColors.OnPrimary, modifier = Modifier.size(18.dp))
                             }
                         }
                     }
@@ -272,12 +274,12 @@ private fun FolderFormDialog(
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(name, color) }, enabled = name.isNotBlank()) {
-                Text("Save", color = PxColors.Primary)
+                Text(stringResource(R.string.folder_save), color = PxColors.Primary)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )

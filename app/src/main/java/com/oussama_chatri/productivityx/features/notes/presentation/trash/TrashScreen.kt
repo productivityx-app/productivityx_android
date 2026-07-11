@@ -54,6 +54,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
@@ -96,17 +98,17 @@ fun TrashScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.back),
                             tint = PxColors.OnSurface
                         )
                     }
                 },
-                title = { Text("Trash", style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
+                title = { Text(stringResource(R.string.nav_trash), style = MaterialTheme.typography.titleLarge, color = PxColors.OnBackground) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
                 actions = {
                     if (uiState.notes.isNotEmpty()) {
                         TextButton(onClick = { showEmptyConfirm = true }) {
-                            Text("Empty trash", color = PxColors.Error, style = MaterialTheme.typography.labelMedium)
+                            Text(stringResource(R.string.notes_trash_empty_all), color = PxColors.Error, style = MaterialTheme.typography.labelMedium)
                         }
                     }
                 }
@@ -129,7 +131,7 @@ fun TrashScreen(
             ) {
                 item {
                     Text(
-                        text = "${uiState.notes.size} ${if (uiState.notes.size == 1) "note" else "notes"} in trash",
+                        text = stringResource(if (uiState.notes.size == 1) R.string.notes_in_trash else R.string.notes_in_trash_plural, uiState.notes.size),
                         style = MaterialTheme.typography.labelMedium,
                         color = PxColors.OnSurfaceDim,
                         modifier = Modifier.padding(bottom = 4.dp)
@@ -202,7 +204,7 @@ private fun TrashNoteCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = if (daysRemaining > 0) "$daysRemaining days left" else "Expiring soon",
+                        text = if (daysRemaining > 0) stringResource(R.string.trash_days_left, daysRemaining) else stringResource(R.string.trash_expiring_soon),
                         style = MaterialTheme.typography.labelSmall,
                         color = if (daysRemaining <= 3) PxColors.Error else PxColors.OnSurfaceDim
                     )
@@ -231,7 +233,7 @@ private fun TrashNoteCard(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.RestoreFromTrash,
-                        contentDescription = "Restore",
+                        contentDescription = stringResource(R.string.restore),
                         tint = PxColors.Success,
                         modifier = Modifier.size(18.dp)
                     )
@@ -242,7 +244,7 @@ private fun TrashNoteCard(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.DeleteForever,
-                        contentDescription = "Delete permanently",
+                        contentDescription = stringResource(R.string.trash_delete_permanently),
                         tint = PxColors.Error,
                         modifier = Modifier.size(18.dp)
                     )
@@ -267,14 +269,14 @@ private fun TrashEmptyState(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Trash is empty",
+            text = stringResource(R.string.notes_trash_empty_title),
             style = MaterialTheme.typography.bodyLarge,
             color = PxColors.OnSurface,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Deleted notes appear here for 30 days",
+            text = stringResource(R.string.notes_trash_empty_body),
             style = MaterialTheme.typography.bodyMedium,
             color = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center
@@ -293,24 +295,24 @@ private fun EmptyTrashDialog(
         containerColor = PxColors.Surface,
         title = {
             Text(
-                text = "Empty trash?",
+                text = stringResource(R.string.notes_trash_empty_all_confirm_title),
                 color = PxColors.OnBackground
             )
         },
         text = {
             Text(
-                text = "$noteCount ${if (noteCount == 1) "note" else "notes"} will be permanently deleted and cannot be recovered.",
+                text = stringResource(R.string.trash_empty_confirm_body, "$noteCount ${if (noteCount == 1) "note" else "notes"}"),
                 color = PxColors.OnSurfaceDim
             )
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Empty trash", color = PxColors.Error)
+                Text(stringResource(R.string.notes_trash_empty_all), color = PxColors.Error)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )

@@ -59,7 +59,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.SyncStatus
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.ui.theme.ProductivityXTheme
@@ -139,7 +141,7 @@ fun NoteGridCard(
                     if (note.isPinned) {
                         Icon(
                             imageVector = Icons.Outlined.PushPin,
-                            contentDescription = "Pinned",
+                            contentDescription = stringResource(R.string.cd_pin),
                             tint = PxColors.Primary,
                             modifier = Modifier.size(14.dp)
                         )
@@ -157,7 +159,7 @@ fun NoteGridCard(
                         )
                         Icon(
                             imageVector = if (isSelected) Icons.Outlined.CheckCircle else Icons.Outlined.RadioButtonUnchecked,
-                            contentDescription = if (isSelected) "Selected" else "Not selected",
+                            contentDescription = if (isSelected) stringResource(R.string.cd_selected) else stringResource(R.string.cd_not_selected),
                             tint = if (isSelected) PxColors.Primary else PxColors.OnSurfaceDim,
                             modifier = Modifier.size(20.dp).scale(scale)
                         )
@@ -200,7 +202,7 @@ fun NoteGridCard(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Outlined.Mic, contentDescription = null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(14.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Voice memo", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+                        Text(stringResource(R.string.notes_voice_memo), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                 }
@@ -237,7 +239,7 @@ fun NoteGridCard(
                         .clickable { onSwipeLeft() },
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(Icons.Outlined.Archive, contentDescription = "Archive", tint = Color.White, modifier = Modifier.size(24.dp))
+                    Icon(Icons.Outlined.Archive, contentDescription = stringResource(R.string.archive), tint = Color.White, modifier = Modifier.size(24.dp))
                 }
             }
             if (offsetX > 50) {
@@ -248,7 +250,7 @@ fun NoteGridCard(
                         .clickable { onSwipeRight() },
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(Icons.Outlined.PushPin, contentDescription = "Pin", tint = Color.White, modifier = Modifier.size(24.dp))
+                    Icon(Icons.Outlined.PushPin, contentDescription = stringResource(R.string.pin), tint = Color.White, modifier = Modifier.size(24.dp))
                 }
             }
         }
@@ -305,10 +307,10 @@ fun NoteListCard(
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     if (note.isPinned) {
-                        Icon(Icons.Outlined.PushPin, contentDescription = "Pinned", tint = PxColors.Primary, modifier = Modifier.size(14.dp))
+                        Icon(Icons.Outlined.PushPin, contentDescription = stringResource(R.string.cd_pin), tint = PxColors.Primary, modifier = Modifier.size(14.dp))
                     }
                     HighlightedText(
-                        text = note.title.ifBlank { "Untitled" },
+                        text = note.title.ifBlank { stringResource(R.string.untitled) },
                         query = if (isSelectionMode) "" else searchQuery,
                         style = MaterialTheme.typography.titleMedium,
                         color = PxColors.OnBackground,
@@ -391,12 +393,12 @@ fun NoteCompactCard(
             }
 
             if (note.isPinned) {
-                Icon(Icons.Outlined.PushPin, contentDescription = "Pinned", tint = PxColors.Primary, modifier = Modifier.size(12.dp))
+                Icon(Icons.Outlined.PushPin, contentDescription = stringResource(R.string.cd_pin), tint = PxColors.Primary, modifier = Modifier.size(12.dp))
                 Spacer(modifier = Modifier.width(4.dp))
             }
 
             HighlightedText(
-                text = note.title.ifBlank { "Untitled" },
+                text = note.title.ifBlank { stringResource(R.string.untitled) },
                 query = if (isSelectionMode) "" else searchQuery,
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnBackground,
@@ -537,14 +539,15 @@ fun SyncDot(syncStatus: SyncStatus, modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
 fun relativeTime(instant: Instant): String {
     val now = Instant.now()
     val seconds = now.epochSecond - instant.epochSecond
     return when {
-        seconds < 60 -> "Just now"
-        seconds < 3600 -> "${seconds / 60}m ago"
-        seconds < 86400 -> "${seconds / 3600}h ago"
-        seconds < 604800 -> "${seconds / 86400}d ago"
+        seconds < 60 -> stringResource(R.string.time_just_now)
+        seconds < 3600 -> stringResource(R.string.time_minutes_ago, seconds / 60)
+        seconds < 86400 -> stringResource(R.string.time_hours_ago, seconds / 3600)
+        seconds < 604800 -> stringResource(R.string.time_days_ago, seconds / 86400)
         else -> {
             val formatter = java.time.format.DateTimeFormatter
                 .ofPattern("MMM d")

@@ -18,12 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.notes.domain.model.NoteLink
 import kotlin.math.cos
@@ -47,7 +49,7 @@ fun NoteLinkingGraph(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Note Links",
+                text = stringResource(R.string.notes_links_title),
                 style = MaterialTheme.typography.labelMedium,
                 color = PxColors.OnSurfaceDim
             )
@@ -55,7 +57,7 @@ fun NoteLinkingGraph(
 
             if (links.isEmpty()) {
                 Text(
-                    text = "No linked notes",
+                    text = stringResource(R.string.notes_links_empty),
                     style = MaterialTheme.typography.bodySmall,
                     color = PxColors.OnSurfaceDim,
                     modifier = Modifier.padding(vertical = 24.dp)

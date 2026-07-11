@@ -144,8 +144,8 @@ fun NotesScreen(
                 } else if (uiState.isSearchActive && uiState.searchResults.isEmpty() && uiState.searchQuery.isNotBlank()) {
                     PxEmptyState(
                         icon = Icons.Outlined.StickyNote2,
-                        title = "No results",
-                        subtitle = "No notes match \"${uiState.searchQuery}\"",
+                        title = stringResource(R.string.empty_state_no_results_title),
+                        subtitle = stringResource(R.string.notes_search_no_results, uiState.searchQuery),
                         modifier = Modifier.fillMaxSize()
                     )
                 } else {
@@ -227,7 +227,7 @@ private fun SearchBar(
         TextField(
             value = query,
             onValueChange = onQueryChange,
-            placeholder = { Text("Search notes...", color = PxColors.OnSurfaceDim) },
+            placeholder = { Text(stringResource(R.string.notes_search_hint), color = PxColors.OnSurfaceDim) },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = PxColors.SurfaceVariant,
                 unfocusedContainerColor = PxColors.SurfaceVariant,
@@ -241,7 +241,7 @@ private fun SearchBar(
         )
         Spacer(modifier = Modifier.width(8.dp))
         IconButton(onClick = onClose) {
-            Icon(Icons.Filled.Close, contentDescription = "Close", tint = PxColors.OnSurface)
+            Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.close), tint = PxColors.OnSurface)
         }
     }
 }
@@ -264,23 +264,23 @@ private fun BulkActionBar(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onClearSelection) {
-                Icon(Icons.Filled.Close, contentDescription = "Clear selection", tint = PxColors.OnSurface)
+                Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_clear_selection), tint = PxColors.OnSurface)
             }
             Text(
-                "$selectedCount selected",
+                stringResource(R.string.notes_selected_count, selectedCount),
                 style = MaterialTheme.typography.labelLarge,
                 color = PxColors.OnSurface
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             IconButton(onClick = onPin) {
-                Icon(Icons.Outlined.PushPin, contentDescription = "Pin", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.PushPin, contentDescription = stringResource(R.string.pin), tint = PxColors.OnSurface)
             }
             IconButton(onClick = onArchive) {
-                Icon(Icons.Outlined.Archive, contentDescription = "Archive", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.Archive, contentDescription = stringResource(R.string.archive), tint = PxColors.OnSurface)
             }
             IconButton(onClick = onDelete) {
-                Icon(Icons.Outlined.Delete, contentDescription = "Delete", tint = PxColors.Error)
+                Icon(Icons.Outlined.Delete, contentDescription = stringResource(R.string.delete), tint = PxColors.Error)
             }
         }
     }
@@ -480,19 +480,19 @@ private fun NotesToolbar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = onToggleSearch) {
-                Icon(Icons.Filled.Search, contentDescription = "Search", tint = PxColors.OnSurface)
+                Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.search), tint = PxColors.OnSurface)
             }
             IconButton(onClick = { onSetViewMode(NoteViewMode.GRID) }) {
                 Icon(
                     Icons.Filled.GridView,
-                    contentDescription = "Grid view",
+                    contentDescription = stringResource(R.string.cd_grid_view),
                     tint = if (currentViewMode == NoteViewMode.GRID) PxColors.Primary else PxColors.OnSurfaceDim
                 )
             }
             IconButton(onClick = { onSetViewMode(NoteViewMode.LIST) }) {
                 Icon(
                     Icons.Filled.ViewList,
-                    contentDescription = "List view",
+                    contentDescription = stringResource(R.string.cd_list_view),
                     tint = if (currentViewMode == NoteViewMode.LIST) PxColors.Primary else PxColors.OnSurfaceDim
                 )
             }
@@ -525,14 +525,14 @@ private fun FilterChipsRow(
     ) {
         item {
             FilterTagChip(
-                label = "All",
+                label = stringResource(R.string.notes_filter_all),
                 isSelected = selectedTagId == null && !showPinnedOnly,
                 onClick = { onTagSelected(null) }
             )
         }
         item {
             FilterTagChip(
-                label = "Pinned",
+                label = stringResource(R.string.notes_filter_pinned),
                 isSelected = showPinnedOnly,
                 onClick = onPinnedToggle
             )
