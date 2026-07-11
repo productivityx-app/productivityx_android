@@ -99,7 +99,6 @@ import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownAction
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownToolbar
 import com.oussama_chatri.productivityx.features.notes.presentation.components.NoteTagChip
-import com.oussama_chatri.productivityx.features.notes.presentation.components.TableCreationDialog
 import com.oussama_chatri.productivityx.features.notes.presentation.components.SyncDot
 import com.oussama_chatri.productivityx.features.notes.presentation.components.TagPickerSheet
 import com.oussama_chatri.productivityx.features.notes.presentation.state.EditorFocusMode
@@ -169,7 +168,6 @@ fun NoteEditorScreen(
     var showTagSheet by rememberSaveable { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
-    var showTableDialog by rememberSaveable { mutableStateOf(false) }
     var contentValue by remember { mutableStateOf(TextFieldValue(uiState.content)) }
 
     var zoomScale by remember { mutableStateOf(1f) }
@@ -233,16 +231,13 @@ fun NoteEditorScreen(
                     Column {
                         MarkdownToolbar(
                             onAction = { action ->
-                                val (newText, newCursor) = applyMarkdownAction(action, contentValue, editorTableHeaderTemplate, editorTableCellTemplate)
-                                contentValue = TextFieldValue(newText, TextRange(newCursor))
+                                val (newText, newSelection) = applyMarkdownAction(action, contentValue, editorTableHeaderTemplate, editorTableCellTemplate)
+                                contentValue = TextFieldValue(newText, newSelection)
                                 viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
                             },
                             onAddImageClick = {
                                 pendingImageCursor = contentValue.selection.start
                                 photoPicker.launch("image/*")
-                            },
-                            onAddTableClick = {
-                                showTableDialog = true
                             }
                         )
                         Spacer(modifier = Modifier.navigationBarsPadding())
@@ -420,9 +415,19 @@ fun NoteEditorScreen(
                                             var segmentValue by remember {
                                                 mutableStateOf(TextFieldValue(segment.text, TextRange(segment.text.length)))
                                             }
+                                            val segOffset = remember(segments, index) {
+                                                segments.take(index).sumOf { seg ->
+                                                    when (seg) {
+                                                        is EditSegment.Text -> seg.text.length
+                                                        is EditSegment.Image -> "![${seg.alt}](${seg.uri})".length
+                                                    }
+                                                }
+                                            }
                                             LaunchedEffect(segment.text) {
                                                 if (segmentValue.text != segment.text) {
-                                                    segmentValue = TextFieldValue(segment.text, TextRange(segment.text.length))
+                                                    val localStart = (contentValue.selection.start - segOffset).coerceIn(0, segment.text.length)
+                                                    val localEnd = (contentValue.selection.end - segOffset).coerceIn(0, segment.text.length)
+                                                    segmentValue = TextFieldValue(segment.text, TextRange(localStart, localEnd))
                                                 }
                                             }
                                             BasicTextField(
@@ -656,22 +661,6 @@ fun NoteEditorScreen(
                 viewModel.onEvent(NoteEditorUiEvent.DeleteNote)
             },
             onDismiss = { showDeleteConfirm = false }
-        )
-    }
-
-    // Table creation dialog
-    if (showTableDialog) {
-        TableCreationDialog(
-            onDismiss = { showTableDialog = false },
-            onConfirm = { rows, cols, hasHeader ->
-                showTableDialog = false
-                val tableMarkdown = buildTableMarkdown(rows, cols, hasHeader, editorTableHeaderTemplate, editorTableCellTemplate)
-                val cursor = contentValue.selection.start
-                val newText = contentValue.text.substring(0, cursor) +
-                    tableMarkdown + contentValue.text.substring(contentValue.selection.end)
-                contentValue = TextFieldValue(newText, TextRange(cursor + tableMarkdown.length))
-                viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
-            }
         )
     }
 
@@ -937,61 +926,50 @@ private fun DeleteNoteDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
     )
 }
 
-private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue, headerTemplate: String = "Header %d", cellLabel: String = "Cell"): Pair<String, Int> {
+private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue, headerTemplate: String = "Header %d", cellLabel: String = "Cell"): Pair<String, TextRange> {
     val text = current.text
     val start = current.selection.start
     val end = current.selection.end
-    val selected = runCatching { text.substring(start, end) }.getOrElse { return text to start }
+    val selected = runCatching { text.substring(start, end) }.getOrElse { return text to TextRange(start) }
+
+    fun wrapAndSelect(prefix: String, content: String, suffix: String): Pair<String, TextRange> {
+        val wrapped = "$prefix$content$suffix"
+        val newText = text.substring(0, start) + wrapped + text.substring(end)
+        val selStart = start + prefix.length
+        val selEnd = selStart + content.length
+        return newText to TextRange(selStart, selEnd)
+    }
 
     return when (action) {
         is MarkdownAction.InsertTable -> {
             val tableStr = buildTableMarkdown(action.rows, action.cols, action.hasHeader, headerTemplate, cellLabel)
             val newText = text.substring(0, start) + tableStr + text.substring(end)
-            newText to (start + tableStr.length)
+            newText to TextRange(start + tableStr.length)
         }
         is MarkdownAction.HighlightColor -> {
             val hex = action.color.toArgbHex()
-            val prefix = "==color:$hex:"
-            val suffix = "=="
-            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
-            val newText = text.substring(0, start) + wrapped + text.substring(end)
-            val cursor = if (selected.isEmpty()) start + prefix.length + 4
-            else start + wrapped.length
-            newText to cursor
+            val content = selected.ifEmpty { "text" }
+            wrapAndSelect("==color:$hex:", content, "==")
         }
         is MarkdownAction.TextColor -> {
             val hex = action.color.toArgbHex()
-            val prefix = "{color:$hex}"
-            val suffix = "{/color}"
-            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
-            val newText = text.substring(0, start) + wrapped + text.substring(end)
-            val cursor = if (selected.isEmpty()) start + prefix.length + 4
-            else start + wrapped.length
-            newText to cursor
+            val content = selected.ifEmpty { "text" }
+            wrapAndSelect("{color:$hex}", content, "{/color}")
         }
         is MarkdownAction.FontSize -> {
-            val prefix = "{size:${action.size}}"
-            val suffix = "{/size}"
-            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
-            val newText = text.substring(0, start) + wrapped + text.substring(end)
-            val cursor = if (selected.isEmpty()) start + prefix.length + 4
-            else start + wrapped.length
-            newText to cursor
+            val content = selected.ifEmpty { "text" }
+            wrapAndSelect("{size:${action.size}}", content, "{/size}")
         }
         else -> {
             when {
                 action.suffix.isNotEmpty() -> {
-                    val wrapped = "${action.prefix}${selected.ifEmpty { "text" }}${action.suffix}"
-                    val newText = runCatching { text.substring(0, start) + wrapped + text.substring(end) }.getOrElse { return text to start }
-                    val cursor = if (selected.isEmpty()) start + action.prefix.length + 4
-                    else start + wrapped.length
-                    newText to cursor
+                    val content = selected.ifEmpty { "text" }
+                    runCatching { wrapAndSelect(action.prefix, content, action.suffix) }.getOrElse { return text to TextRange(start) }
                 }
                 else -> {
                     val lineStart = text.lastIndexOf('\n', start - 1) + 1
-                    val newText = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
-                    val cursor = start + action.prefix.length
-                    newText to cursor
+                    val newText = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to TextRange(start) }
+                    newText to TextRange(start + action.prefix.length)
                 }
             }
         }

@@ -104,7 +104,6 @@ object MarkdownFontSizes {
 fun MarkdownToolbar(
     onAction: (MarkdownAction) -> Unit,
     onAddImageClick: () -> Unit,
-    onAddTableClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var showColorMenu by remember { mutableStateOf(false) }
@@ -125,7 +124,6 @@ fun MarkdownToolbar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ToolbarButton(Icons.Outlined.Image, stringResource(R.string.editor_format_image), onAddImageClick)
-                ToolbarButton(Icons.Outlined.TableChart, stringResource(R.string.editor_format_table), onAddTableClick)
 
                 SectionDivider()
                 ToolbarButton(Icons.Outlined.FormatBold, stringResource(R.string.editor_format_bold)) { onAction(MarkdownAction.Bold) }
