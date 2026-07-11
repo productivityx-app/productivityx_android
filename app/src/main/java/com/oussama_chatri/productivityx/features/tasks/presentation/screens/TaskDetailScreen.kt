@@ -145,7 +145,7 @@ fun TaskDetailScreen(
                     Text(
                         text = uiState.task?.title?.take(30)?.plus(
                             if ((uiState.task?.title?.length ?: 0) > 30) "\u2026" else ""
-                        ) ?: "Task",
+                        ) ?: stringResource(R.string.task_label),
                         color = PxColors.OnBackground,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -194,8 +194,8 @@ fun TaskDetailScreen(
 
                 uiState.error != null -> PxEmptyState(
                     icon = Icons.Outlined.Flag,
-                    title = "Task not found",
-                    subtitle = uiState.error ?: "Something went wrong"
+                    title = stringResource(R.string.task_not_found),
+                    subtitle = uiState.error ?: stringResource(R.string.error_generic)
                 )
 
                 uiState.task != null -> TaskDetailContent(
@@ -212,17 +212,17 @@ fun TaskDetailScreen(
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
             containerColor = PxColors.Surface,
-            title = { Text("Delete task?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold) },
-            text = { Text("This task will be moved to trash.", color = PxColors.OnSurfaceDim) },
+            title = { Text(stringResource(R.string.task_delete_confirm), color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold) },
+            text = { Text(stringResource(R.string.task_delete_message), color = PxColors.OnSurfaceDim) },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteConfirm = false
                     viewModel.onEvent(TaskDetailEvent.DeleteTask)
-                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
+                }) { Text(stringResource(R.string.delete), color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -339,7 +339,7 @@ private fun TaskDetailContent(
                 if (task.dueDate != null) {
                     DetailRow(
                         icon = Icons.Outlined.CalendarMonth,
-                        label = "Due date",
+                        label = stringResource(R.string.task_due_date),
                         value = task.dueDate.toString(),
                         valueColor = if (task.isOverdue) PxColors.Error else PxColors.OnSurface,
                         onClick = { showDatePicker = true }
@@ -348,7 +348,7 @@ private fun TaskDetailContent(
                 if (task.dueTime != null) {
                     DetailRow(
                         icon = Icons.Outlined.AccessTime,
-                        label = "Due time",
+                        label = stringResource(R.string.task_due_time),
                         value = runCatching { task.dueTime.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "\u2014" },
                         onClick = { showTimePicker = true }
                     )
@@ -356,32 +356,34 @@ private fun TaskDetailContent(
                 if (task.reminderAt != null) {
                     DetailRow(
                         icon = Icons.Outlined.Notifications,
-                        label = "Reminder",
-                        value = "Set"
+                        label = stringResource(R.string.task_reminder),
+                        value = stringResource(R.string.task_reminder_set)
                     )
                 }
                 if (task.estimatedMinutes != null || task.actualMinutes > 0) {
+                    val estLabel = stringResource(R.string.task_estimated_abbrev)
+                    val actualLabel = stringResource(R.string.task_actual_abbrev)
                     DetailRow(
                         icon = Icons.Outlined.Timer,
-                        label = "Time",
+                        label = stringResource(R.string.task_time),
                         value = buildString {
-                            if (task.estimatedMinutes != null) append("Est. ${task.estimatedMinutes}m")
+                            if (task.estimatedMinutes != null) append("$estLabel ${task.estimatedMinutes}m")
                             if (task.estimatedMinutes != null && task.actualMinutes > 0) append(" \u00B7 ")
-                            if (task.actualMinutes > 0) append("Actual ${task.actualMinutes}m")
+                            if (task.actualMinutes > 0) append("$actualLabel ${task.actualMinutes}m")
                         }
                     )
                 }
                 if (task.assigneeId != null) {
                     DetailRow(
                         icon = Icons.Outlined.Person,
-                        label = "Assignee",
-                        value = task.assigneeName ?: "Assigned"
+                        label = stringResource(R.string.task_assignee),
+                        value = task.assigneeName ?: stringResource(R.string.task_assigned)
                     )
                 }
                 if (task.completedAt != null) {
                     DetailRow(
                         icon = Icons.Outlined.CheckCircle,
-                        label = "Completed",
+                        label = stringResource(R.string.task_completed),
                         value = task.completedAt.toString().take(10),
                         valueColor = PxColors.Success
                     )
@@ -435,11 +437,11 @@ private fun TaskDetailContent(
                         if (date != null) onEvent(TaskDetailEvent.UpdateDueDate(date))
                     }
                     showDatePicker = false
-                }) { Text("OK", color = PxColors.Primary) }
+                }) { Text(stringResource(R.string.ok), color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         ) { DatePicker(state = datePickerState) }
@@ -459,11 +461,11 @@ private fun TaskDetailContent(
                         LocalTime.of(timePickerState.hour, timePickerState.minute)
                     ))
                     showTimePicker = false
-                }) { Text("OK", color = PxColors.Primary) }
+                }) { Text(stringResource(R.string.ok), color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showTimePicker = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             },
             text = { TimePicker(state = timePickerState) }
@@ -507,10 +509,10 @@ private fun TitleSection(
             Spacer(modifier = Modifier.height(4.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 TextButton(onClick = onCancelEdit) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim, fontSize = 13.sp)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim, fontSize = 13.sp)
                 }
                 TextButton(onClick = onSaveTitle) {
-                    Text("Save", color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.save), color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }
@@ -560,7 +562,7 @@ private fun DescriptionSection(
                 decorationBox = { innerTextField ->
                     Box {
                         if (editingDescription.isEmpty()) {
-                            Text("Add description\u2026", color = PxColors.OnSurfaceDim, fontSize = 15.sp)
+                            Text(stringResource(R.string.task_add_description), color = PxColors.OnSurfaceDim, fontSize = 15.sp)
                         }
                         innerTextField()
                     }
@@ -569,10 +571,10 @@ private fun DescriptionSection(
             Spacer(modifier = Modifier.height(4.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 TextButton(onClick = onCancelEdit) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim, fontSize = 13.sp)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim, fontSize = 13.sp)
                 }
                 TextButton(onClick = onSaveDescription) {
-                    Text("Save", color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.save), color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         } else if (!task.description.isNullOrBlank()) {
@@ -601,7 +603,7 @@ private fun DescriptionSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.Edit, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
-                    Text("Add description\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
+                    Text(stringResource(R.string.task_add_description), color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                 }
             }
         }
@@ -633,7 +635,7 @@ private fun PriorityMatrixSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.Flag, null, tint = priorityAccentColor(currentPriority), modifier = Modifier.size(18.dp))
-                    Text("Priority", color = PxColors.OnSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+                    Text(stringResource(R.string.task_priority), color = PxColors.OnSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
                 }
                 Text(currentPriority.name.lowercase().replaceFirstChar { it.uppercase() }, color = priorityAccentColor(currentPriority), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             }
@@ -654,8 +656,8 @@ private fun PriorityMatrixSection(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text("Low Importance", color = PxColors.OnSurfaceDim, fontSize = 10.sp)
-                    Text("High Importance", color = PxColors.OnSurfaceDim, fontSize = 10.sp)
+                    Text(stringResource(R.string.priority_low_importance), color = PxColors.OnSurfaceDim, fontSize = 10.sp)
+                    Text(stringResource(R.string.priority_high_importance), color = PxColors.OnSurfaceDim, fontSize = 10.sp)
                 }
                 Spacer(modifier = Modifier.height(4.dp))
 
@@ -664,9 +666,9 @@ private fun PriorityMatrixSection(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("Urgent", color = PxColors.OnSurfaceDim, fontSize = 10.sp, modifier = Modifier.width(40.dp))
+                    Text(stringResource(R.string.priority_urgent), color = PxColors.OnSurfaceDim, fontSize = 10.sp, modifier = Modifier.width(40.dp))
                     PriorityQuadrant(
-                        label = "Urgent + Low Importance",
+                        label = stringResource(R.string.priority_urgent_low),
                         priority = Priority.HIGH,
                         isSelected = currentPriority == Priority.HIGH,
                         color = Color(0xFFF59E0B),
@@ -674,7 +676,7 @@ private fun PriorityMatrixSection(
                         modifier = Modifier.weight(1f)
                     )
                     PriorityQuadrant(
-                        label = "Urgent + High Importance",
+                        label = stringResource(R.string.priority_urgent_high),
                         priority = Priority.URGENT,
                         isSelected = currentPriority == Priority.URGENT,
                         color = Color(0xFFEF4444),
@@ -688,9 +690,9 @@ private fun PriorityMatrixSection(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("Not Urgent", color = PxColors.OnSurfaceDim, fontSize = 10.sp, modifier = Modifier.width(40.dp))
+                    Text(stringResource(R.string.priority_not_urgent), color = PxColors.OnSurfaceDim, fontSize = 10.sp, modifier = Modifier.width(40.dp))
                     PriorityQuadrant(
-                        label = "Not Urgent + Low Importance",
+                        label = stringResource(R.string.priority_not_urgent_low),
                         priority = Priority.LOW,
                         isSelected = currentPriority == Priority.LOW,
                         color = Color(0xFF6B7280),
@@ -698,7 +700,7 @@ private fun PriorityMatrixSection(
                         modifier = Modifier.weight(1f)
                     )
                     PriorityQuadrant(
-                        label = "Not Urgent + High Importance",
+                        label = stringResource(R.string.priority_not_urgent_high),
                         priority = Priority.MEDIUM,
                         isSelected = currentPriority == Priority.MEDIUM,
                         color = Color(0xFF3B82F6),
@@ -798,7 +800,7 @@ private fun SubtaskSection(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Subtasks", color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.task_subtasks), color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                     if (task.hasSubtasks) {
                         Box(
                             modifier = Modifier
@@ -873,7 +875,7 @@ private fun SubtaskSection(
                             decorationBox = { inner ->
                                 Box {
                                     if (newSubtaskTitle.isEmpty()) {
-                                        Text("Add subtask\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
+                                        Text(stringResource(R.string.task_add_subtask), color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                                     }
                                     inner()
                                 }
@@ -886,7 +888,7 @@ private fun SubtaskSection(
                         ) {
                             Icon(
                                 Icons.Outlined.Add,
-                                "Add subtask",
+                                stringResource(R.string.task_add_subtask),
                                 tint = if (newSubtaskTitle.isNotBlank()) PxColors.Primary else PxColors.OnSurfaceDim,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -924,10 +926,10 @@ private fun ActivityLogSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.History, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
-                    Text("Activity", color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.task_activity), color = PxColors.OnSurface, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Text(
-                    text = if (expanded) "Hide" else "${activityLog.size} events",
+                    text = if (expanded) stringResource(R.string.task_hide) else stringResource(R.string.task_events, activityLog.size),
                     color = PxColors.Primary,
                     fontSize = 12.sp
                 )
@@ -1027,7 +1029,7 @@ private fun OverdueBadge() {
             .padding(horizontal = 8.dp, vertical = 3.dp)
     ) {
         Text(
-            "Overdue",
+            stringResource(R.string.task_overdue),
             color = PxColors.Error,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold

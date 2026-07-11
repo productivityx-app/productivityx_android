@@ -160,6 +160,7 @@ class PomodoroViewModel @Inject constructor(
             PomodoroUiEvent.Extend1Min -> extendTimer(60)
             is PomodoroUiEvent.SelectBackground -> {
                 viewModelScope.launch {
+                    preferencesDataStore.setPomodoroBackgroundImageUri(null)
                     preferencesDataStore.setPomodoroBackgroundImageUri(event.uri)
                 }
             }

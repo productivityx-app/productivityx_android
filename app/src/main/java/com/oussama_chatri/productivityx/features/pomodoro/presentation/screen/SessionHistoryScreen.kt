@@ -35,10 +35,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.core.ui.components.PxEmptyState
@@ -82,18 +84,18 @@ private fun SessionHistoryContent(
             TopAppBar(
                 title = {
                     Text(
-                        "Session History",
+                        stringResource(R.string.pomodoro_history_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = PxColors.OnBackground
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(
-                            Icons.Outlined.ArrowBack,
-                            contentDescription = "Back",
-                            tint = PxColors.OnSurface
-                        )
+                    Icon(
+                        Icons.Outlined.ArrowBack,
+                        contentDescription = stringResource(R.string.back),
+                        tint = PxColors.OnSurface
+                    )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -106,8 +108,8 @@ private fun SessionHistoryContent(
         if (sessions.isEmpty() && !isLoading) {
             PxEmptyState(
                 icon     = Icons.Outlined.History,
-                title    = "No sessions yet",
-                subtitle = "Start a focus session to see your history here",
+                title    = stringResource(R.string.pomodoro_history_empty_title),
+                subtitle = stringResource(R.string.pomodoro_history_empty_body),
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
@@ -174,7 +176,7 @@ private fun StatsSummaryCard(stats: PomodoroStats) {
                 fontWeight = FontWeight.Bold,
                 color      = PxColors.Primary
             )
-            Text("Today's sessions", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+            Text(stringResource(R.string.pomodoro_today_sessions), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
         }
 
         Box(modifier = Modifier.height(32.dp).width(1.dp).background(PxColors.Outline))
@@ -186,7 +188,7 @@ private fun StatsSummaryCard(stats: PomodoroStats) {
                 fontWeight = FontWeight.Bold,
                 color      = PxColors.Warning
             )
-            Text("Focus time", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+            Text(stringResource(R.string.pomodoro_focus_time_label), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
         }
     }
 }
@@ -196,8 +198,8 @@ private fun DateGroupHeader(date: LocalDate) {
     val today     = LocalDate.now()
     val yesterday = today.minusDays(1)
     val label = when (date) {
-        today     -> "Today"
-        yesterday -> "Yesterday"
+        today     -> stringResource(R.string.today)
+        yesterday -> stringResource(R.string.yesterday)
         else      -> runCatching { DateTimeFormatter.ofPattern("EEEE, MMM d").format(date) }.getOrElse { "—" }
     }
     Text(
@@ -217,7 +219,7 @@ fun SessionHistoryItem(session: PomodoroSession) {
 
     val formatter = DateTimeFormatter.ofPattern("h:mm a").withZone(ZoneId.systemDefault())
     val startStr  = runCatching { formatter.format(session.startedAt) }.getOrElse { "—" }
-    val endStr    = session.endedAt?.let { runCatching { formatter.format(it) }.getOrElse { "—" } } ?: "Ongoing"
+    val endStr    = session.endedAt?.let { runCatching { formatter.format(it) }.getOrElse { "—" } } ?: stringResource(R.string.pomodoro_ongoing)
     val duration  = session.actualMinutes ?: session.plannedMinutes
 
     Row(
@@ -252,7 +254,7 @@ fun SessionHistoryItem(session: PomodoroSession) {
                     Spacer(Modifier.width(6.dp))
                     Icon(
                         imageVector        = Icons.Outlined.Warning,
-                        contentDescription = "Interrupted",
+                        contentDescription = stringResource(R.string.pomodoro_session_interrupted),
                         tint               = PxColors.Warning,
                         modifier           = Modifier.size(14.dp)
                     )
@@ -283,7 +285,7 @@ fun SessionHistoryItem(session: PomodoroSession) {
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         ) {
             Text(
-                text       = "$duration min",
+                text       = stringResource(R.string.pomodoro_duration_min, duration),
                 style      = MaterialTheme.typography.labelSmall,
                 color      = barColor,
                 fontWeight = FontWeight.SemiBold
@@ -293,10 +295,11 @@ fun SessionHistoryItem(session: PomodoroSession) {
 }
 
 // Scoped to this file only — avoids conflict with the public typeLabel in PomodoroScreen
+@Composable
 private fun sessionTypeLabel(type: PomodoroType) = when (type) {
-    PomodoroType.FOCUS       -> "Focus"
-    PomodoroType.SHORT_BREAK -> "Short Break"
-    PomodoroType.LONG_BREAK  -> "Long Break"
+    PomodoroType.FOCUS       -> stringResource(R.string.pomodoro_focus)
+    PomodoroType.SHORT_BREAK -> stringResource(R.string.pomodoro_short_break)
+    PomodoroType.LONG_BREAK  -> stringResource(R.string.pomodoro_long_break)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0F0F14)

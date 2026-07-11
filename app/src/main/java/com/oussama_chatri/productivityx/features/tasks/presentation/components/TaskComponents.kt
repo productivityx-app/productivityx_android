@@ -65,6 +65,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -145,9 +146,9 @@ fun priorityAccentColor(priority: Priority): Color = when (priority) {
 }
 
 fun dueDateUrgencyColor(task: Task): Color = when {
-    task.status == TaskStatus.DONE -> Color(0xFF22C55E)
-    task.isOverdue -> Color(0xFFEF4444)
-    task.isDueToday -> Color(0xFFF59E0B)
+    task.status == TaskStatus.DONE -> PxColors.Success
+    task.isOverdue -> PxColors.Error
+    task.isDueToday -> PxColors.Warning
     task.dueDate != null -> PxColors.OnSurfaceDim
     else -> PxColors.OnSurfaceDim
 }
@@ -167,7 +168,7 @@ fun StatusChip(
         label = "statusChipBg"
     )
     val textColor by animateColorAsState(
-        targetValue = if (selected) Color.White else PxColors.OnSurfaceDim,
+        targetValue = if (selected) PxColors.OnPrimary else PxColors.OnSurfaceDim,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "statusChipText"
     )
@@ -209,7 +210,7 @@ fun TaskCheckbox(
         label = "checkboxScale"
     )
 
-    val description = if (checked) "Uncheck task" else "Check task"
+    val description = if (checked) stringResource(R.string.cd_uncheck_task) else stringResource(R.string.cd_check_task)
 
     Box(
         modifier = modifier
@@ -232,7 +233,7 @@ fun TaskCheckbox(
             Icon(
                 imageVector = Icons.Filled.Check,
                 contentDescription = null,
-                tint = Color.White,
+                tint = PxColors.OnPrimary,
                 modifier = Modifier
                     .size(16.dp)
                     .scale(scale)
@@ -283,9 +284,9 @@ fun AssigneeAvatar(
     ) {
         if (avatarUrl != null) {
             // Placeholder for Coil async image loading
-            Text(initial, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+            Text(initial, color = PxColors.OnPrimary, fontSize = 10.sp, fontWeight = FontWeight.Bold)
         } else {
-            Text(initial, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+            Text(initial, color = PxColors.OnPrimary, fontSize = 10.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -361,7 +362,7 @@ fun CompletionCelebration(
         }
         Icon(
             imageVector = Icons.Filled.Check,
-            contentDescription = "Completed",
+            contentDescription = stringResource(R.string.task_completed),
             tint = PxColors.Success,
             modifier = Modifier.size(32.dp)
         )
@@ -405,7 +406,7 @@ fun RecurrenceBadge(
         ) {
             Icon(
                 imageVector = Icons.Outlined.Repeat,
-                contentDescription = "Recurring",
+                contentDescription = stringResource(R.string.cd_recurring),
                 tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(11.dp)
             )
@@ -554,12 +555,16 @@ fun TaskListItem(
     }
 }
 
+@Composable
 private fun formatDueDate(task: Task): String {
     val date = task.dueDate ?: return ""
+    val overdueLabel = stringResource(R.string.task_overdue)
+    val todayLabel = stringResource(R.string.today)
+    val tomorrowLabel = stringResource(R.string.tomorrow)
     return when {
-        task.isOverdue -> "Overdue"
-        task.isDueToday -> "Today"
-        date == LocalDate.now().plusDays(1) -> "Tomorrow"
+        task.isOverdue -> overdueLabel
+        task.isDueToday -> todayLabel
+        date == LocalDate.now().plusDays(1) -> tomorrowLabel
         else -> "${date.month.name.lowercase().replaceFirstChar { it.uppercase() }.take(3)} ${date.dayOfMonth}"
     }
 }
@@ -679,7 +684,7 @@ fun KanbanTaskCard(
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = task.assigneeName ?: "Assigned",
+                        text = task.assigneeName ?: stringResource(R.string.task_assigned),
                         color = PxColors.OnSurfaceDim,
                         fontSize = 10.sp
                     )
@@ -717,7 +722,7 @@ fun KanbanColumnHeader(
         ) {
             Text(
                 text = count.toString(),
-                color = Color.White,
+                color = PxColors.OnPrimary,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -823,7 +828,7 @@ fun MinuteStepper(
             Text("\u2212", color = PxColors.Primary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
         Text(
-            text = if (value != null) "$value min" else "\u2014",
+            text = if (value != null) stringResource(R.string.tasks_minutes, value) else "\u2014",
             color = PxColors.OnSurface,
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium
@@ -902,7 +907,7 @@ fun CalendarDayCell(
             Text(
                 text = day.toString(),
                 color = when {
-                    isSelected -> Color.White
+                    isSelected -> PxColors.OnPrimary
                     isToday -> PxColors.Primary
                     else -> PxColors.OnSurface
                 },
@@ -914,7 +919,7 @@ fun CalendarDayCell(
                     modifier = Modifier
                         .size(4.dp)
                         .clip(CircleShape)
-                        .background(if (isSelected) Color.White else PxColors.Primary)
+                        .background(if (isSelected) PxColors.OnPrimary else PxColors.Primary)
                 )
             }
         }
@@ -975,23 +980,23 @@ fun TaskEmptyState(
     val (icon, title, subtitle) = when (viewMode) {
         com.oussama_chatri.productivityx.core.enums.TaskView.LIST -> Triple(
             Icons.Outlined.CheckCircle,
-            "No tasks yet",
-            "Tap + to create your first task"
+            stringResource(R.string.empty_tasks_list),
+            stringResource(R.string.empty_tasks_list_hint)
         )
         com.oussama_chatri.productivityx.core.enums.TaskView.KANBAN -> Triple(
             Icons.Outlined.CheckCircle,
-            "No tasks on the board",
-            "Add tasks to get started"
+            stringResource(R.string.empty_tasks_kanban),
+            stringResource(R.string.empty_tasks_kanban_hint)
         )
         com.oussama_chatri.productivityx.core.enums.TaskView.CALENDAR -> Triple(
             Icons.Outlined.CalendarMonth,
-            "No tasks on this day",
-            "Select another day or add a task"
+            stringResource(R.string.empty_tasks_calendar),
+            stringResource(R.string.empty_tasks_calendar_hint)
         )
         com.oussama_chatri.productivityx.core.enums.TaskView.TIMELINE -> Triple(
             Icons.Outlined.AccessTime,
-            "No tasks in this period",
-            "Adjust the timeline or add tasks"
+            stringResource(R.string.empty_tasks_timeline),
+            stringResource(R.string.empty_tasks_timeline_hint)
         )
     }
 
@@ -1052,14 +1057,14 @@ fun SmartFilterChip(
         ) {
             Text(
                 text = label,
-                color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
+                color = if (isSelected) PxColors.OnPrimary else PxColors.OnSurfaceDim,
                 fontSize = 12.sp,
                 fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
             )
             if (count != null) {
                 Text(
                     text = count.toString(),
-                    color = if (isSelected) Color.White.copy(alpha = 0.7f) else PxColors.OnSurfaceDim,
+                    color = if (isSelected) PxColors.OnPrimary.copy(alpha = 0.7f) else PxColors.OnSurfaceDim,
                     fontSize = 11.sp
                 )
             }

@@ -49,10 +49,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.pomodoro.domain.model.PomodoroStats
@@ -72,15 +74,15 @@ fun PomodoroStatsScreen(
         containerColor = PxColors.Background,
         topBar = {
             TopAppBar(
-                title = { Text("Focus Analytics", style = MaterialTheme.typography.titleLarge) },
+                title = { Text(stringResource(R.string.pomodoro_focus_analytics), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Outlined.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 actions = {
                     IconButton(onClick = { /* Share stats image */ }) {
-                        Icon(Icons.Outlined.Share, contentDescription = "Share")
+                        Icon(Icons.Outlined.Share, contentDescription = stringResource(R.string.share))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
@@ -163,7 +165,7 @@ private fun GoalProgressCard(currentMinutes: Int, goalMinutes: Int) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column {
-                    Text("Daily Goal", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.pomodoro_daily_goal), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
                     Text(
                         "${currentMinutes / 60}h ${currentMinutes % 60}m / ${goalMinutes / 60}h",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
@@ -224,12 +226,12 @@ private fun StreakCard(stats: PomodoroStats) {
             Spacer(Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "${stats.currentStreak} Day Streak",
+                    text = stringResource(R.string.pomodoro_streak_day, stats.currentStreak),
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                     color = PxColors.OnSurface
                 )
                 Text(
-                    text = "Best: ${stats.longestStreak} days",
+                    text = stringResource(R.string.pomodoro_best_streak, stats.longestStreak),
                     style = MaterialTheme.typography.bodySmall,
                     color = PxColors.OnSurfaceDim
                 )
@@ -249,7 +251,7 @@ private fun WeeklyHeatMap(heatMap: Map<LocalDate, Int>) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Weekly Intensity",
+                stringResource(R.string.pomodoro_weekly_intensity),
                 style = MaterialTheme.typography.titleMedium,
                 color = PxColors.OnBackground
             )
@@ -279,12 +281,12 @@ private fun WeeklyHeatMap(heatMap: Map<LocalDate, Int>) {
                 }
                 Spacer(Modifier.height(12.dp))
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Less", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.pomodoro_less), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
                     HeatMapBox(0)
                     HeatMapBox(25)
                     HeatMapBox(50)
                     HeatMapBox(100)
-                    Text("More", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.pomodoro_more), style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
                 }
             }
         }
@@ -311,7 +313,7 @@ private fun HeatMapBox(minutes: Int) {
 private fun CategoryDistribution(dist: Map<String, Int>) {
     Column {
         Text(
-            "Focus by Category",
+                stringResource(R.string.pomodoro_focus_by_category),
             style = MaterialTheme.typography.titleMedium,
             color = PxColors.OnBackground
         )
@@ -328,7 +330,7 @@ private fun CategoryDistribution(dist: Map<String, Int>) {
                     CategoryRow(cat, mins, fraction)
                 }
                 if (dist.isEmpty()) {
-                    Text("No category data available", color = PxColors.OnSurfaceDim, style = MaterialTheme.typography.bodySmall)
+                    Text(stringResource(R.string.pomodoro_no_category_data), color = PxColors.OnSurfaceDim, style = MaterialTheme.typography.bodySmall)
                 }
             }
         }
@@ -372,14 +374,14 @@ private fun SummaryStats(stats: PomodoroStats) {
     ) {
         StatMiniCard(
             modifier = Modifier.weight(1f),
-            label = "Quality Score",
+            label = stringResource(R.string.pomodoro_quality_score),
             value = "${(stats.focusQualityScore * 100).roundToInt()}%",
             icon = Icons.Outlined.TrendingUp,
             color = PxColors.Success
         )
         StatMiniCard(
             modifier = Modifier.weight(1f),
-            label = "Total Focus",
+            label = stringResource(R.string.pomodoro_total_focus_time),
             value = "${stats.totalFocusTimeAllTime / 3600}h",
             icon = Icons.Outlined.PieChart,
             color = PxColors.Primary

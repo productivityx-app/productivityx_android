@@ -84,7 +84,7 @@ fun TaskTrashScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "Trash",
+                        stringResource(R.string.nav_trash),
                         color = PxColors.OnBackground,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
@@ -116,8 +116,8 @@ fun TaskTrashScreen(
 
                 uiState.tasks.isEmpty() -> PxEmptyState(
                     icon = Icons.Outlined.DeleteForever,
-                    title = "Trash is empty",
-                    subtitle = "Deleted tasks appear here."
+                    title = stringResource(R.string.tasks_trash_empty_title),
+                    subtitle = stringResource(R.string.tasks_trash_empty_body)
                 )
 
                 else -> LazyColumn(
@@ -167,7 +167,7 @@ private fun TrashTaskItem(
             )
             if (task.dueDate != null) {
                 Text(
-                    text = "Due ${task.dueDate}",
+                    text = stringResource(R.string.tasks_trash_due, task.dueDate.toString()),
                     color = PxColors.OnSurfaceDim,
                     fontSize = 12.sp
                 )
@@ -179,7 +179,7 @@ private fun TrashTaskItem(
         IconButton(onClick = onRestore) {
             Icon(
                 Icons.Outlined.Refresh,
-                contentDescription = "Restore",
+                contentDescription = stringResource(R.string.restore),
                 tint = PxColors.Success,
                 modifier = Modifier.size(18.dp)
             )
@@ -188,7 +188,7 @@ private fun TrashTaskItem(
         IconButton(onClick = { showConfirm = true }) {
             Icon(
                 Icons.Outlined.DeleteForever,
-                contentDescription = "Delete permanently",
+                contentDescription = stringResource(R.string.trash_delete_permanently),
                 tint = PxColors.Error,
                 modifier = Modifier.size(18.dp)
             )
@@ -200,20 +200,20 @@ private fun TrashTaskItem(
             onDismissRequest = { showConfirm = false },
             containerColor = PxColors.Surface,
             title = {
-                Text("Delete permanently?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.tasks_trash_hard_delete_title), color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
             },
             text = {
-                Text("This task cannot be recovered.", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.tasks_trash_hard_delete_body), color = PxColors.OnSurfaceDim)
             },
             confirmButton = {
                 TextButton(onClick = {
                     showConfirm = false
                     onHardDelete()
-                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
+                }) { Text(stringResource(R.string.delete), color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showConfirm = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )

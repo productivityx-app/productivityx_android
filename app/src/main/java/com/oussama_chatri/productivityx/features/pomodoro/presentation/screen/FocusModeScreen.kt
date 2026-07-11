@@ -34,12 +34,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.PomodoroType
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.home.domain.usecase.GetDailyQuoteUseCase
@@ -76,7 +78,7 @@ fun FocusModeScreen(
             onClick = onClose,
             modifier = Modifier.align(Alignment.TopEnd).padding(16.dp)
         ) {
-            Icon(Icons.Outlined.Close, contentDescription = "Exit Focus Mode", tint = Color.White.copy(alpha = 0.6f))
+            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.pomodoro_exit_focus_mode), tint = Color.White.copy(alpha = 0.6f))
         }
 
         Column(
@@ -140,7 +142,7 @@ fun FocusModeScreen(
                 IconButton(onClick = { viewModel.onEvent(PomodoroUiEvent.ToggleDnd) }) {
                     Icon(
                         Icons.Outlined.DoNotDisturbOn,
-                        contentDescription = "DND",
+                        contentDescription = stringResource(R.string.pomodoro_dnd),
                         tint = if (state.isDndEnabled) PxColors.Primary else Color.White.copy(alpha = 0.4f),
                         modifier = Modifier.size(32.dp)
                     )
@@ -155,13 +157,13 @@ fun FocusModeScreen(
                     modifier = Modifier.size(64.dp).background(Color.White.copy(alpha = 0.1f), CircleShape)
                 ) {
                     val icon = if (state.isRunning) Icons.Outlined.Close else Icons.Outlined.PlayArrow
-                    Icon(icon, contentDescription = "Toggle", tint = Color.White, modifier = Modifier.size(32.dp))
+                    Icon(icon, contentDescription = stringResource(R.string.pomodoro_toggle), tint = Color.White, modifier = Modifier.size(32.dp))
                 }
 
                 IconButton(onClick = { /* Ambient sound picker or toggle */ }) {
                     Icon(
                         Icons.Outlined.VolumeUp,
-                        contentDescription = "Ambient Sounds",
+                        contentDescription = stringResource(R.string.pomodoro_ambient_sounds),
                         tint = Color.White.copy(alpha = 0.4f),
                         modifier = Modifier.size(32.dp)
                     )

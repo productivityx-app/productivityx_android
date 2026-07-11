@@ -116,6 +116,7 @@ import com.oussama_chatri.productivityx.features.tasks.presentation.components.K
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.SmartFilterChip
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskEmptyState
 import com.oussama_chatri.productivityx.core.ui.components.ListSkeleton
+import com.oussama_chatri.productivityx.core.ui.theme.PriorityColors
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TaskListItem
 import com.oussama_chatri.productivityx.features.tasks.presentation.components.TimelineTaskBar
 import com.oussama_chatri.productivityx.features.tasks.presentation.event.TasksEvent
@@ -265,7 +266,7 @@ fun TasksScreen(
             DatePickerDialog(
                 onDismissRequest = { showReschedulePicker = false },
                 confirmButton = {
-                    TextButton(onClick = { showReschedulePicker = false }) { Text("OK") }
+                    TextButton(onClick = { showReschedulePicker = false }) { Text(stringResource(R.string.tasks_ok)) }
                 }
             ) {
                 val datePickerState = rememberDatePickerState()
@@ -282,7 +283,7 @@ fun TasksScreen(
         if (showPriorityPicker) {
             AlertDialog(
                 onDismissRequest = { showPriorityPicker = false },
-                title = { Text("Set Priority") },
+                title = { Text(stringResource(R.string.tasks_set_priority)) },
                 text = {
                     Column {
                         Priority.entries.forEach { priority ->
@@ -307,7 +308,7 @@ fun TasksScreen(
                     }
                 },
                 confirmButton = {
-                    TextButton(onClick = { showPriorityPicker = false }) { Text("Cancel") }
+                    TextButton(onClick = { showPriorityPicker = false }) { Text(stringResource(R.string.tasks_cancel)) }
                 },
                 containerColor = PxColors.Surface
             )
@@ -349,17 +350,17 @@ private fun TaskViewToggle(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = onExitMultiSelect) {
-                        Icon(Icons.Filled.Close, "Exit multi-select", tint = PxColors.OnSurface)
+                        Icon(Icons.Filled.Close, stringResource(R.string.cd_exit_multiselect), tint = PxColors.OnSurface)
                     }
                     Text(
-                        "$selectedCount selected",
+                        stringResource(R.string.tasks_selected_count, selectedCount),
                         color = PxColors.OnSurface,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(onClick = onSelectAll) {
-                        Icon(Icons.Outlined.SelectAll, "Select all", tint = PxColors.Primary)
+                        Icon(Icons.Outlined.SelectAll, stringResource(R.string.cd_select_all), tint = PxColors.Primary)
                     }
                 }
             } else {
@@ -369,10 +370,10 @@ private fun TaskViewToggle(
                 ) {
                     Text(
                         text = when (viewMode) {
-                            TaskView.LIST -> "List"
-                            TaskView.KANBAN -> "Board"
-                            TaskView.CALENDAR -> "Calendar"
-                            TaskView.TIMELINE -> "Timeline"
+                            TaskView.LIST -> stringResource(R.string.tasks_view_list)
+                            TaskView.KANBAN -> stringResource(R.string.tasks_view_board)
+                            TaskView.CALENDAR -> stringResource(R.string.tasks_view_calendar)
+                            TaskView.TIMELINE -> stringResource(R.string.tasks_view_timeline)
                         },
                         color = PxColors.OnBackground,
                         fontSize = 20.sp,
@@ -385,7 +386,7 @@ private fun TaskViewToggle(
         Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
             // Stats button
             IconButton(onClick = onNavigateToStats) {
-                Icon(Icons.Outlined.BarChart, "Statistics", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp))
+                Icon(Icons.Outlined.BarChart, stringResource(R.string.cd_statistics), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp))
             }
 
             // View mode switcher
@@ -434,12 +435,12 @@ private fun SearchBar(
         ) {
             Icon(
                 Icons.Outlined.FilterList,
-                contentDescription = "Search",
+                contentDescription = stringResource(R.string.cd_search),
                 tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(16.dp)
             )
             Text(
-                text = if (query.isBlank()) "Search or filter tasks\u2026" else query,
+                text = if (query.isBlank()) stringResource(R.string.tasks_search_hint) else query,
                 color = if (query.isBlank()) PxColors.OnSurfaceDim else PxColors.OnSurface,
                 fontSize = 14.sp
             )
@@ -455,16 +456,14 @@ private fun SmartFilterRow(
     tasks: List<Task>,
     onFilterSelected: (TaskSmartFilter) -> Unit
 ) {
-    val filters = remember {
-        listOf(
-            TaskSmartFilter.ALL to "All",
-            TaskSmartFilter.TODAY to "Today",
-            TaskSmartFilter.UPCOMING to "Upcoming",
-            TaskSmartFilter.OVERDUE to "Overdue",
-            TaskSmartFilter.NO_DATE to "No Date",
-            TaskSmartFilter.COMPLETED to "Done"
-        )
-    }
+    val filters = listOf(
+        TaskSmartFilter.ALL to stringResource(R.string.tasks_filter_all),
+        TaskSmartFilter.TODAY to stringResource(R.string.tasks_filter_today),
+        TaskSmartFilter.UPCOMING to stringResource(R.string.tasks_filter_upcoming),
+        TaskSmartFilter.OVERDUE to stringResource(R.string.tasks_filter_overdue),
+        TaskSmartFilter.NO_DATE to stringResource(R.string.tasks_filter_no_date),
+        TaskSmartFilter.COMPLETED to stringResource(R.string.tasks_filter_done)
+    )
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -599,7 +598,7 @@ private fun SwipeableTaskItem(
                 Icon(
                     imageVector = if (isCompleteSwipe) Icons.Outlined.CheckCircle else Icons.Outlined.Delete,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = PxColors.OnPrimary,
                     modifier = Modifier.size(24.dp)
                 )
             }
@@ -679,7 +678,7 @@ private fun KanbanColumn(
         androidx.compose.animation.AnimatedVisibility(visible = dropActive) {
             com.oussama_chatri.productivityx.features.tasks.presentation.components.DropZone(
                 isActive = dropActive,
-                label = "Drop here"
+                label = stringResource(R.string.cd_drop_here)
             )
         }
 
@@ -691,7 +690,7 @@ private fun KanbanColumn(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    "Drop tasks here",
+                    stringResource(R.string.tasks_drop_here),
                     color = PxColors.OnSurfaceDim,
                     fontSize = 13.sp
                 )
@@ -720,7 +719,7 @@ private fun KanbanColumn(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(Icons.Outlined.Add, contentDescription = null, tint = PxColors.Primary, modifier = Modifier.size(16.dp))
-                Text("Add task", color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                Text(stringResource(R.string.tasks_add_task), color = PxColors.Primary, fontSize = 13.sp, fontWeight = FontWeight.Medium)
             }
         }
     }
@@ -761,7 +760,7 @@ private fun CalendarView(
             )
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(onClick = { onNavigateMonth(-1) }) {
-                    Icon(Icons.Filled.Close, "Previous", tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
+                    Icon(Icons.Filled.Close, stringResource(R.string.cd_previous), tint = PxColors.OnSurfaceDim, modifier = Modifier.size(18.dp))
                 }
                 // Use a simple text-based nav instead
                 Box(
@@ -790,7 +789,15 @@ private fun CalendarView(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            listOf("S", "M", "T", "W", "T", "F", "S").forEach { day ->
+            listOf(
+                stringResource(R.string.tasks_weekday_sun),
+                stringResource(R.string.tasks_weekday_mon),
+                stringResource(R.string.tasks_weekday_tue),
+                stringResource(R.string.tasks_weekday_wed),
+                stringResource(R.string.tasks_weekday_thu),
+                stringResource(R.string.tasks_weekday_fri),
+                stringResource(R.string.tasks_weekday_sat)
+            ).forEach { day ->
                 Text(
                     text = day,
                     color = PxColors.OnSurfaceDim,
@@ -846,7 +853,7 @@ private fun CalendarView(
         val dayTasks = tasks.filter { it.dueDate == dateToShow }
 
         Text(
-            text = "Tasks for ${dateToShow.format(DateTimeFormatter.ofPattern("MMM d, yyyy"))}",
+            text = stringResource(R.string.tasks_for_date, dateToShow.format(DateTimeFormatter.ofPattern("MMM d, yyyy"))),
             color = PxColors.OnBackground,
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold
@@ -862,7 +869,7 @@ private fun CalendarView(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    "No tasks on this day",
+                    stringResource(R.string.tasks_no_tasks_day),
                     color = PxColors.OnSurfaceDim,
                     fontSize = 13.sp
                 )
@@ -1026,10 +1033,10 @@ private fun TimelineView(
                             .clip(RoundedCornerShape(4.dp))
                             .background(
                                 when (task.priority) {
-                                    Priority.LOW -> Color(0xFF6B7280)
-                                    Priority.MEDIUM -> Color(0xFF3B82F6)
-                                    Priority.HIGH -> Color(0xFFF59E0B)
-                                    Priority.URGENT -> Color(0xFFEF4444)
+                                    Priority.LOW -> PriorityColors.Low
+                                    Priority.MEDIUM -> PriorityColors.Medium
+                                    Priority.HIGH -> PriorityColors.High
+                                    Priority.URGENT -> PriorityColors.Urgent
                                 }.copy(alpha = 0.3f)
                             ),
                         contentAlignment = Alignment.CenterStart
@@ -1070,22 +1077,22 @@ private fun BulkActionBar(
     ) {
         BulkActionButton(
             icon = Icons.Outlined.CheckCircle,
-            label = "Complete",
+            label = stringResource(R.string.tasks_bulk_complete),
             onClick = onComplete
         )
         BulkActionButton(
             icon = Icons.Outlined.Delete,
-            label = "Delete",
+            label = stringResource(R.string.tasks_bulk_delete),
             onClick = onDelete
         )
         BulkActionButton(
             icon = Icons.Outlined.Schedule,
-            label = "Reschedule",
+            label = stringResource(R.string.tasks_bulk_reschedule),
             onClick = onReschedule
         )
         BulkActionButton(
             icon = Icons.Outlined.Edit,
-            label = "Priority",
+            label = stringResource(R.string.tasks_bulk_priority),
             onClick = onSetPriority
         )
     }

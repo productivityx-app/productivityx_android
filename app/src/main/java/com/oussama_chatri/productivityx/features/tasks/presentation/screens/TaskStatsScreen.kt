@@ -67,7 +67,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.enums.Badge
 import com.oussama_chatri.productivityx.core.enums.BadgeType
 import com.oussama_chatri.productivityx.core.enums.Priority
@@ -89,7 +91,7 @@ fun TaskStatsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "Statistics",
+                        stringResource(R.string.tasks_statistics),
                         color = PxColors.OnBackground,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
@@ -97,7 +99,7 @@ fun TaskStatsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
@@ -187,7 +189,7 @@ private fun ProductivityHeader(
         StatsCard(
             modifier = Modifier.weight(1f),
             icon = Icons.Outlined.AutoGraph,
-            title = "Score",
+            title = stringResource(R.string.tasks_stats_score),
             value = "${(productivityScore * 100).toInt()}",
             subValue = "${if (productivityTrend >= 0) "+" else ""}${(productivityTrend * 100).toInt()}%",
             subValueColor = if (productivityTrend >= 0) PxColors.Success else PxColors.Error
@@ -197,9 +199,9 @@ private fun ProductivityHeader(
         StatsCard(
             modifier = Modifier.weight(1f),
             icon = Icons.Outlined.LocalFireDepartment,
-            title = "Streak",
+            title = stringResource(R.string.tasks_stats_streak),
             value = "$currentStreak",
-            subValue = "days",
+            subValue = stringResource(R.string.tasks_stats_days),
             valueColor = Color(0xFFF97316)
         )
 
@@ -207,9 +209,9 @@ private fun ProductivityHeader(
         StatsCard(
             modifier = Modifier.weight(1f),
             icon = Icons.Outlined.EmojiEvents,
-            title = "Best",
+            title = stringResource(R.string.tasks_stats_best),
             value = "$longestStreak",
-            subValue = "days",
+            subValue = stringResource(R.string.tasks_stats_days),
             valueColor = Color(0xFFF59E0B)
         )
     }
@@ -224,7 +226,7 @@ private fun CompletionRateSection(
     weeklyCompleted: Int,
     weeklyTotal: Int
 ) {
-    SectionCard(title = "Completion Rate") {
+    SectionCard(title = stringResource(R.string.tasks_stats_completion_rate)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -249,9 +251,9 @@ private fun CompletionRateSection(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Text("This Week", color = PxColors.OnSurfaceDim, fontSize = 12.sp)
+                Text(stringResource(R.string.tasks_stats_this_week), color = PxColors.OnSurfaceDim, fontSize = 12.sp)
                 Text(
-                    text = "$weeklyCompleted/$weeklyTotal done",
+                    text = stringResource(R.string.tasks_stats_done_count, weeklyCompleted, weeklyTotal),
                     color = PxColors.OnSurface,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium
@@ -278,9 +280,9 @@ private fun CompletionRateSection(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Text("This Month", color = PxColors.OnSurfaceDim, fontSize = 12.sp)
+                Text(stringResource(R.string.tasks_stats_this_month), color = PxColors.OnSurfaceDim, fontSize = 12.sp)
                 Text(
-                    text = "Monthly progress",
+                    text = stringResource(R.string.tasks_stats_monthly_progress),
                     color = PxColors.OnSurface,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium
@@ -296,10 +298,10 @@ private fun CompletionRateSection(
 private fun TimePerCategoryChart(
     timePerPriority: Map<Priority, Int>
 ) {
-    SectionCard(title = "Time Spent by Priority") {
+    SectionCard(title = stringResource(R.string.tasks_stats_time_by_priority)) {
         if (timePerPriority.isEmpty()) {
             Text(
-                "No data yet",
+                stringResource(R.string.tasks_stats_no_data),
                 color = PxColors.OnSurfaceDim,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(vertical = 16.dp)
@@ -345,7 +347,7 @@ private fun TimePerCategoryChart(
                             )
                         }
                         Text(
-                            text = "${minutes}m",
+                            text = stringResource(R.string.tasks_minutes_abbrev, minutes),
                             color = PxColors.OnSurfaceDim,
                             fontSize = 12.sp,
                             modifier = Modifier.width(36.dp),
@@ -365,7 +367,7 @@ private fun TimePerCategoryChart(
 private fun AchievementsSection(
     badges: List<Badge>
 ) {
-    SectionCard(title = "Achievements") {
+    SectionCard(title = stringResource(R.string.tasks_stats_achievements)) {
         if (badges.isEmpty()) {
             Column(
                 modifier = Modifier
@@ -381,7 +383,7 @@ private fun AchievementsSection(
                     modifier = Modifier.size(32.dp)
                 )
                 Text(
-                    "Complete tasks to unlock badges",
+                    stringResource(R.string.tasks_stats_unlock_badges),
                     color = PxColors.OnSurfaceDim,
                     fontSize = 13.sp
                 )
@@ -441,7 +443,7 @@ private fun WeeklyReviewCard(
     overdueCount: Int,
     suggestedFocus: String
 ) {
-    SectionCard(title = "Weekly Review") {
+    SectionCard(title = stringResource(R.string.tasks_stats_weekly_review)) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
@@ -449,9 +451,9 @@ private fun WeeklyReviewCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                MiniStat(label = "Created", value = "$createdCount", icon = Icons.Outlined.BarChart)
-                MiniStat(label = "Completed", value = "$completedCount", icon = Icons.Outlined.CheckCircle)
-                MiniStat(label = "Overdue", value = "$overdueCount", icon = Icons.Outlined.AccessTime, valueColor = PxColors.Error)
+                MiniStat(label = stringResource(R.string.tasks_stats_created), value = "$createdCount", icon = Icons.Outlined.BarChart)
+                MiniStat(label = stringResource(R.string.tasks_stats_completed), value = "$completedCount", icon = Icons.Outlined.CheckCircle)
+                MiniStat(label = stringResource(R.string.tasks_stats_overdue), value = "$overdueCount", icon = Icons.Outlined.AccessTime, valueColor = PxColors.Error)
             }
 
             if (suggestedFocus.isNotBlank()) {
@@ -463,7 +465,7 @@ private fun WeeklyReviewCard(
                     Icon(Icons.Outlined.TrendingUp, null, tint = PxColors.Primary, modifier = Modifier.size(16.dp))
                     Column {
                         Text(
-                            "Suggested Focus",
+                            stringResource(R.string.tasks_stats_suggested_focus),
                             color = PxColors.OnSurface,
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold
@@ -488,7 +490,7 @@ private fun ProductivityPatternsSection(
     categoryBreakdown: Map<Priority, Float>,
     completionVelocity: List<Pair<LocalDate, Int>>
 ) {
-    SectionCard(title = "Productivity Patterns") {
+    SectionCard(title = stringResource(R.string.tasks_stats_patterns)) {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -496,7 +498,7 @@ private fun ProductivityPatternsSection(
             if (completionVelocity.isNotEmpty()) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        "Completion Velocity",
+                        stringResource(R.string.tasks_stats_velocity),
                         color = PxColors.OnSurface,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold
@@ -514,13 +516,21 @@ private fun ProductivityPatternsSection(
             if (hourlyHeatmap.isNotEmpty()) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        "Most Productive Hours",
+                        stringResource(R.string.tasks_stats_productive_hours),
                         color = PxColors.OnSurface,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold
                     )
 
-                    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+                    val days = listOf(
+                        stringResource(R.string.day_monday_short),
+                        stringResource(R.string.day_tuesday_short),
+                        stringResource(R.string.day_wednesday_short),
+                        stringResource(R.string.day_thursday_short),
+                        stringResource(R.string.day_friday_short),
+                        stringResource(R.string.day_saturday_short),
+                        stringResource(R.string.day_sunday_short)
+                    )
                     val maxCount = hourlyHeatmap.values.flatMap { it.values }.maxOrNull() ?: 1
 
                     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -564,7 +574,7 @@ private fun ProductivityPatternsSection(
             if (categoryBreakdown.isNotEmpty()) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        "Category Breakdown",
+                        stringResource(R.string.tasks_stats_category_breakdown),
                         color = PxColors.OnSurface,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold
@@ -580,7 +590,7 @@ private fun ProductivityPatternsSection(
 
             if (hourlyHeatmap.isEmpty() && categoryBreakdown.isEmpty() && completionVelocity.isEmpty()) {
                 Text(
-                    "Complete more tasks to see your productivity patterns",
+                    stringResource(R.string.tasks_stats_complete_more),
                     color = PxColors.OnSurfaceDim,
                     fontSize = 13.sp,
                     modifier = Modifier.padding(vertical = 8.dp)

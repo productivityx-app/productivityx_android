@@ -198,7 +198,7 @@ private fun AddEditTaskContent(
                 Box {
                     if (uiState.title.isEmpty()) {
                         Text(
-                            "Task title\u2026",
+                            stringResource(R.string.task_title_placeholder),
                             color = PxColors.OnSurfaceDim,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.SemiBold
@@ -236,7 +236,7 @@ private fun AddEditTaskContent(
             decorationBox = { innerTextField ->
                 Box {
                     if (uiState.description.isEmpty()) {
-                        Text("Add description\u2026", color = PxColors.OnSurfaceDim, fontSize = 15.sp)
+                        Text(stringResource(R.string.task_add_description), color = PxColors.OnSurfaceDim, fontSize = 15.sp)
                     }
                     innerTextField()
                 }
@@ -248,7 +248,7 @@ private fun AddEditTaskContent(
         // Priority row with visual matrix
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Flag, null, tint = priorityAccentColor(uiState.priority), modifier = Modifier.size(20.dp)) },
-            label = "Priority",
+            label = stringResource(R.string.task_priority),
             onClick = { showPriorityExpanded = !showPriorityExpanded },
             trailing = {
                 PriorityChip(priority = uiState.priority)
@@ -301,7 +301,7 @@ private fun AddEditTaskContent(
         // Tags section
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Label, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-            label = "Tags",
+            label = stringResource(R.string.task_tags),
             onClick = { showTagsExpanded = !showTagsExpanded },
             trailing = {
                 if (uiState.tags.isNotEmpty()) {
@@ -310,11 +310,11 @@ private fun AddEditTaskContent(
                             TagChip(tag = tag)
                         }
                         if (uiState.tags.size > 3) {
-                            Text("+${uiState.tags.size - 3}", color = PxColors.OnSurfaceDim, fontSize = 11.sp)
+                            Text(stringResource(R.string.plus_count, uiState.tags.size - 3), color = PxColors.OnSurfaceDim, fontSize = 11.sp)
                         }
                     }
                 } else {
-                    Text("Add tags", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
+                    Text(stringResource(R.string.task_add_tag), color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                 }
             }
         )
@@ -383,7 +383,7 @@ private fun AddEditTaskContent(
                         decorationBox = { inner ->
                             Box {
                                 if (uiState.newTag.isEmpty()) {
-                                    Text("Add tag\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
+                                    Text(stringResource(R.string.task_add_tag), color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                                 }
                                 inner()
                             }
@@ -400,7 +400,7 @@ private fun AddEditTaskContent(
                     ) {
                         Icon(
                             Icons.Outlined.Add,
-                            "Add tag",
+                            stringResource(R.string.task_add_tag),
                             tint = if (uiState.newTag.isNotBlank()) PxColors.Primary else PxColors.OnSurfaceDim,
                             modifier = Modifier.size(16.dp)
                         )
@@ -414,7 +414,7 @@ private fun AddEditTaskContent(
         // Due date row
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.CalendarMonth, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-            label = "Due date",
+            label = stringResource(R.string.task_due_date),
             onClick = { showDatePicker = true },
             trailing = {
                 Row(
@@ -422,7 +422,7 @@ private fun AddEditTaskContent(
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
-                        text = uiState.dueDate?.toString() ?: "Set date",
+                        text = uiState.dueDate?.toString() ?: stringResource(R.string.task_set_date),
                         color = if (uiState.dueDate != null) PxColors.OnSurface else PxColors.OnSurfaceDim,
                         fontSize = 14.sp
                     )
@@ -444,11 +444,11 @@ private fun AddEditTaskContent(
                 Divider(color = PxColors.Outline, thickness = 1.dp)
                 TaskSettingRow(
                     icon = { Icon(Icons.Outlined.AccessTime, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-                    label = "Due time",
+                    label = stringResource(R.string.task_due_time),
                     onClick = { showTimePicker = true },
                     trailing = {
                         Text(
-                            text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "\u2014" } } ?: "Set time",
+                            text = uiState.dueTime?.let { runCatching { it.format(DateTimeFormatter.ofPattern("h:mm a")) }.getOrElse { "\u2014" } } ?: stringResource(R.string.task_set_time),
                             color = if (uiState.dueTime != null) PxColors.OnSurface else PxColors.OnSurfaceDim,
                             fontSize = 14.sp
                         )
@@ -462,7 +462,7 @@ private fun AddEditTaskContent(
         // Reminder row
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Notifications, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-            label = "Reminder",
+            label = stringResource(R.string.task_reminder),
             trailing = {
                 Switch(
                     checked = uiState.reminderAt != null,
@@ -486,7 +486,7 @@ private fun AddEditTaskContent(
             Divider(color = PxColors.Outline, thickness = 1.dp)
             TaskSettingRow(
                 icon = { Icon(Icons.Outlined.Notifications, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-                label = "Remind before",
+                label = stringResource(R.string.task_remind_before),
                 trailing = {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -502,7 +502,7 @@ private fun AddEditTaskContent(
                                     .padding(horizontal = 8.dp, vertical = 4.dp)
                             ) {
                                 Text(
-                                    "${mins}m",
+                                    stringResource(R.string.tasks_minutes_abbrev, mins),
                                     color = if (isSelected) Color.White else PxColors.OnSurfaceDim,
                                     fontSize = 11.sp,
                                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
@@ -519,13 +519,13 @@ private fun AddEditTaskContent(
         // Recurrence section
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Repeat, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-            label = "Repeat",
+            label = stringResource(R.string.task_repeat),
             onClick = { showRecurrenceExpanded = !showRecurrenceExpanded },
             trailing = {
                 Text(
                     text = if (uiState.recurrenceType != RecurrenceType.NONE) {
                         uiState.recurrenceType.name.lowercase().replaceFirstChar { it.uppercase() }
-                    } else "Never",
+                    } else stringResource(R.string.task_never),
                     color = PxColors.OnSurface,
                     fontSize = 14.sp
                 )
@@ -549,13 +549,13 @@ private fun AddEditTaskContent(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     listOf(
-                        RecurrenceType.NONE to "None",
-                        RecurrenceType.DAILY to "Daily",
-                        RecurrenceType.WEEKDAYS to "Weekdays",
-                        RecurrenceType.WEEKLY to "Weekly",
-                        RecurrenceType.BIWEEKLY to "Biweekly",
-                        RecurrenceType.MONTHLY to "Monthly",
-                        RecurrenceType.YEARLY to "Yearly"
+                        RecurrenceType.NONE to stringResource(R.string.task_recurrence_none),
+                        RecurrenceType.DAILY to stringResource(R.string.task_recurrence_daily),
+                        RecurrenceType.WEEKDAYS to stringResource(R.string.task_recurrence_weekdays),
+                        RecurrenceType.WEEKLY to stringResource(R.string.task_recurrence_weekly),
+                        RecurrenceType.BIWEEKLY to stringResource(R.string.task_recurrence_biweekly),
+                        RecurrenceType.MONTHLY to stringResource(R.string.task_recurrence_monthly),
+                        RecurrenceType.YEARLY to stringResource(R.string.task_recurrence_yearly)
                     ).forEach { (type, label) ->
                         val isSelected = uiState.recurrenceType == type
                         Box(
@@ -581,7 +581,15 @@ private fun AddEditTaskContent(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        val days = listOf("M" to 1, "T" to 2, "W" to 3, "Th" to 4, "F" to 5, "Sa" to 6, "Su" to 7)
+                        val days = listOf(
+                            stringResource(R.string.tasks_picker_day_mon) to 1,
+                            stringResource(R.string.tasks_picker_day_tue) to 2,
+                            stringResource(R.string.tasks_picker_day_wed) to 3,
+                            stringResource(R.string.tasks_picker_day_thu) to 4,
+                            stringResource(R.string.tasks_picker_day_fri) to 5,
+                            stringResource(R.string.tasks_picker_day_sat) to 6,
+                            stringResource(R.string.tasks_picker_day_sun) to 7
+                        )
                         days.forEach { (label, dayNum) ->
                             val isDaySelected = uiState.recurrenceDaysOfWeek?.contains(dayNum) == true
                             Box(
@@ -609,7 +617,7 @@ private fun AddEditTaskContent(
         // Estimated time row
         TaskSettingRow(
             icon = { Icon(Icons.Outlined.Timer, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-            label = "Estimated time",
+            label = stringResource(R.string.task_estimated_time),
             trailing = {
                 MinuteStepper(
                     value = uiState.estimatedMinutes,
@@ -624,7 +632,7 @@ private fun AddEditTaskContent(
         if (uiState.isEditMode) {
             TaskSettingRow(
                 icon = { Icon(Icons.Outlined.Timer, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) },
-                label = "Status",
+                label = stringResource(R.string.task_status),
                 trailing = {
                     Text(
                         text = uiState.status.displayLabel,
@@ -678,7 +686,7 @@ private fun AddEditTaskContent(
                 ) {
                     Icon(Icons.Outlined.Delete, null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Delete", fontWeight = FontWeight.Medium)
+                    Text(stringResource(R.string.delete), fontWeight = FontWeight.Medium)
                 }
             } else {
                 Spacer(modifier = Modifier.weight(1f))
@@ -702,7 +710,7 @@ private fun AddEditTaskContent(
                     )
                 } else {
                     Text(
-                        text = if (uiState.isEditMode) "Update" else "Create",
+                        text = if (uiState.isEditMode) stringResource(R.string.task_update) else stringResource(R.string.task_create),
                         color = if (uiState.canSave) Color.White else PxColors.OnSurfaceDim,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 15.sp
@@ -733,11 +741,11 @@ private fun AddEditTaskContent(
                         if (date != null) onEvent(AddEditTaskEvent.DueDateChanged(date))
                     }
                     showDatePicker = false
-                }) { Text("OK", color = PxColors.Primary) }
+                }) { Text(stringResource(R.string.ok), color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         ) { DatePicker(state = datePickerState) }
@@ -758,11 +766,11 @@ private fun AddEditTaskContent(
                         LocalTime.of(timePickerState.hour, timePickerState.minute)
                     ))
                     showTimePicker = false
-                }) { Text("OK", color = PxColors.Primary) }
+                }) { Text(stringResource(R.string.ok), color = PxColors.Primary) }
             },
             dismissButton = {
                 TextButton(onClick = { showTimePicker = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             },
             text = { TimePicker(state = timePickerState) }
@@ -775,20 +783,20 @@ private fun AddEditTaskContent(
             onDismissRequest = { showDeleteConfirm = false },
             containerColor = PxColors.SurfaceVariant,
             title = {
-                Text("Delete task?", color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.task_delete_confirm), color = PxColors.OnBackground, fontWeight = FontWeight.SemiBold)
             },
             text = {
-                Text("This task will be moved to trash.", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.task_delete_message), color = PxColors.OnSurfaceDim)
             },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteConfirm = false
                     onEvent(AddEditTaskEvent.Delete)
-                }) { Text("Delete", color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
+                }) { Text(stringResource(R.string.delete), color = PxColors.Error, fontWeight = FontWeight.SemiBold) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -840,7 +848,7 @@ private fun SubtaskSection(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            "Subtasks",
+            stringResource(R.string.task_subtasks),
             color = PxColors.OnSurfaceDim,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium
@@ -891,7 +899,7 @@ private fun SubtaskSection(
                 decorationBox = { inner ->
                     Box {
                         if (newSubtaskTitle.isEmpty()) {
-                            Text("Add subtask\u2026", color = PxColors.OnSurfaceDim, fontSize = 14.sp)
+                            Text(stringResource(R.string.task_add_subtask_placeholder), color = PxColors.OnSurfaceDim, fontSize = 14.sp)
                         }
                         inner()
                     }

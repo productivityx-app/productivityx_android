@@ -169,7 +169,7 @@ fun PomodoroScreen(
         if (state.backgroundImageUri != null) {
             AsyncImage(
                 model = state.backgroundImageUri,
-                contentDescription = "Background",
+                contentDescription = stringResource(R.string.pomodoro_background),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
@@ -203,17 +203,17 @@ fun PomodoroScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
-                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = "DND",
+                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = stringResource(R.string.pomodoro_dnd),
                                 tint = if (state.isDndEnabled) PxColors.Primary else PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { bgPicker.launch("image/*") }) {
-                            Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.Wallpaper, contentDescription = stringResource(R.string.pomodoro_background), tint = PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { showSoundPicker = true }) {
-                            Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.MusicNote, contentDescription = stringResource(R.string.pomodoro_sounds), tint = PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
-                            Icon(Icons.Outlined.AutoAwesome, contentDescription = "Focus Mode",
+                            Icon(Icons.Outlined.AutoAwesome, contentDescription = stringResource(R.string.pomodoro_focus_mode),
                                 tint = if (state.isFocusMode) PxColors.Primary else PxColors.OnSurfaceDim)
                         }
                     }
@@ -285,17 +285,17 @@ fun PomodoroScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleDnd) }) {
-                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = "DND",
+                            Icon(Icons.Outlined.DoNotDisturbOn, contentDescription = stringResource(R.string.pomodoro_dnd),
                                 tint = if (state.isDndEnabled) PxColors.Primary else PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { bgPicker.launch("image/*") }) {
-                            Icon(Icons.Outlined.Wallpaper, contentDescription = "Background", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.Wallpaper, contentDescription = stringResource(R.string.pomodoro_background), tint = PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { showSoundPicker = true }) {
-                            Icon(Icons.Outlined.MusicNote, contentDescription = "Sounds", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.MusicNote, contentDescription = stringResource(R.string.pomodoro_sounds), tint = PxColors.OnSurfaceDim)
                         }
                         IconButton(onClick = { onEvent(PomodoroUiEvent.ToggleFocusMode) }) {
-                            Icon(Icons.Outlined.AutoAwesome, contentDescription = "Focus Mode",
+                            Icon(Icons.Outlined.AutoAwesome, contentDescription = stringResource(R.string.pomodoro_focus_mode),
                                 tint = if (state.isFocusMode) PxColors.Primary else PxColors.OnSurfaceDim)
                         }
                     }
@@ -366,11 +366,11 @@ fun PomodoroScreen(
         AlertDialog(
             onDismissRequest = { onEvent(PomodoroUiEvent.SelectTask("", "")) },
             containerColor = PxColors.Surface,
-            title = { Text("Link a Task", color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.pomodoro_link_task), color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
             text = {
                 Column {
                     if (tasks.isEmpty()) {
-                        Text("No active tasks available.", color = PxColors.OnSurfaceDim)
+                        Text(stringResource(R.string.pomodoro_no_active_tasks), color = PxColors.OnSurfaceDim)
                     } else {
                         tasks.forEach { task ->
                             Row(
@@ -390,18 +390,17 @@ fun PomodoroScreen(
             },
             confirmButton = {
                 TextButton(onClick = { onEvent(PomodoroUiEvent.SelectTask("", "")) }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
     }
 
-    // Sound picker sheet
+    // Ambient Sound Picker
     if (showSoundPicker) {
         AlertDialog(
             onDismissRequest = { showSoundPicker = false },
-            containerColor = PxColors.Surface,
-            title = { Text("Ambient Sound", color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.pomodoro_ambient_sound), color = PxColors.OnBackground, fontWeight = FontWeight.Bold) },
             text = {
                 Column {
                     AmbientSound.entries.forEach { sound ->
@@ -425,11 +424,11 @@ fun PomodoroScreen(
                             )
                             Text(
                                 text = when (sound) {
-                                    AmbientSound.NONE -> "None"
-                                    AmbientSound.RAIN -> "Rain"
-                                    AmbientSound.CAFE -> "Cafe"
-                                    AmbientSound.WHITE_NOISE -> "White Noise"
-                                    AmbientSound.NATURE -> "Nature"
+                                    AmbientSound.NONE -> stringResource(R.string.none)
+                                    AmbientSound.RAIN -> stringResource(R.string.pomodoro_ambient_rain)
+                                    AmbientSound.CAFE -> stringResource(R.string.pomodoro_ambient_cafe)
+                                    AmbientSound.WHITE_NOISE -> stringResource(R.string.pomodoro_ambient_white_noise)
+                                    AmbientSound.NATURE -> stringResource(R.string.pomodoro_ambient_nature)
                                 },
                                 color = if (isSelected) PxColors.Primary else PxColors.OnSurface,
                                 fontSize = 14.sp
@@ -440,7 +439,7 @@ fun PomodoroScreen(
             },
             confirmButton = {
                 TextButton(onClick = { showSoundPicker = false }) {
-                    Text("Close", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.close), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -499,9 +498,9 @@ private fun SessionTypeSelector(
             ) {
                 Text(
                     text     = when (type) {
-                        PomodoroType.FOCUS -> "Focus"
-                        PomodoroType.SHORT_BREAK -> "Short Break"
-                        PomodoroType.LONG_BREAK -> "Long Break"
+                        PomodoroType.FOCUS -> stringResource(R.string.pomodoro_focus)
+                        PomodoroType.SHORT_BREAK -> stringResource(R.string.pomodoro_short_break)
+                        PomodoroType.LONG_BREAK -> stringResource(R.string.pomodoro_long_break)
                     },
                     style    = MaterialTheme.typography.labelMedium,
                     color    = textColor,
@@ -624,8 +623,8 @@ private fun CircularTimer(
 
             val sessionLabel = when (timerState) {
                 is TimerState.Running  -> typeLabel(timerState.type)
-                is TimerState.Paused   -> "Paused"
-                is TimerState.Completed -> "Done! 🎉"
+                is TimerState.Paused   -> stringResource(R.string.pomodoro_paused)
+                is TimerState.Completed -> stringResource(R.string.pomodoro_done)
                 TimerState.Idle         -> typeLabel(type)
             }
 
@@ -670,7 +669,7 @@ private fun HistoryTimelinePreview(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Today's Sessions", style = MaterialTheme.typography.titleSmall, color = PxColors.OnBackground)
+            Text(stringResource(R.string.pomodoro_today_sessions), style = MaterialTheme.typography.titleSmall, color = PxColors.OnBackground)
             Icon(Icons.Outlined.History, contentDescription = null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(16.dp))
         }
         Spacer(Modifier.height(12.dp))
@@ -684,7 +683,7 @@ private fun HistoryTimelinePreview(
                     .background(PxColors.Surface.copy(alpha = 0.3f)),
                 contentAlignment = Alignment.Center
             ) {
-                Text("No sessions yet today", style = MaterialTheme.typography.bodySmall, color = PxColors.OnBackground.copy(alpha = 0.4f))
+                Text(stringResource(R.string.pomodoro_no_sessions_today), style = MaterialTheme.typography.bodySmall, color = PxColors.OnBackground.copy(alpha = 0.4f))
             }
         } else {
             items.take(3).forEachIndexed { index, item ->
@@ -701,7 +700,7 @@ private fun HistoryTimelinePreview(
                     )
                     Spacer(Modifier.width(12.dp))
                     Text(
-                        item.taskTitle ?: "General Focus",
+                        item.taskTitle ?: stringResource(R.string.pomodoro_general_focus),
                         style = MaterialTheme.typography.bodySmall,
                         color = PxColors.OnBackground,
                         maxLines = 1,
@@ -797,7 +796,7 @@ private fun LinkedTaskCard(
                 )
                 if (!isRunning) {
                     IconButton(onClick = onUnlink) {
-                        Icon(Icons.Outlined.Close, contentDescription = "Unlink", tint = PxColors.OnSurfaceDim)
+                        Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.pomodoro_unlink), tint = PxColors.OnSurfaceDim)
                     }
                 }
             }
@@ -810,7 +809,7 @@ private fun LinkedTaskCard(
                 Icon(Icons.Outlined.Add, contentDescription = null, tint = PxColors.OnSurfaceDim)
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text  = "Link a Task",
+                    text  = stringResource(R.string.pomodoro_link_task),
                     style = MaterialTheme.typography.bodyMedium,
                     color = PxColors.OnSurfaceDim
                 )
@@ -839,7 +838,7 @@ private fun TimerControls(
             // Stop / interrupt
             AnimatedVisibility(visible = !state.isIdle) {
                 OutlinedCircleButton(size = 56.dp, onClick = { onEvent(PomodoroUiEvent.StopAndInterrupt) }) {
-                    Icon(Icons.Outlined.Stop, contentDescription = "Stop", tint = PxColors.Error)
+                    Icon(Icons.Outlined.Stop, contentDescription = stringResource(R.string.pomodoro_stop), tint = PxColors.Error)
                 }
             }
 
@@ -862,14 +861,14 @@ private fun TimerControls(
                     label = "playPause"
                 ) { isRunning ->
                     val icon = if (isRunning) Icons.Outlined.Pause else Icons.Outlined.PlayArrow
-                    Icon(icon, contentDescription = "Play/Pause", tint = PxColors.OnBackground, modifier = Modifier.size(40.dp))
+                    Icon(icon, contentDescription = stringResource(R.string.pomodoro_play_pause), tint = PxColors.OnBackground, modifier = Modifier.size(40.dp))
                 }
             }
 
             // Add 1 minute extension
             AnimatedVisibility(visible = !state.isIdle) {
                 OutlinedCircleButton(size = 56.dp, onClick = { onEvent(PomodoroUiEvent.Extend1Min) }) {
-                    Icon(Icons.Outlined.MoreTime, contentDescription = "+1 Min", tint = PxColors.OnSurface)
+                    Icon(Icons.Outlined.MoreTime, contentDescription = stringResource(R.string.pomodoro_extend_1min), tint = PxColors.OnSurface)
                 }
             }
         }
@@ -887,7 +886,7 @@ private fun TimerControls(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Text(
-                    "SWIPE TO SKIP",
+                    stringResource(R.string.pomodoro_swipe_to_skip),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelLarge,
@@ -979,11 +978,11 @@ private fun TodayStatsStrip(
         val minutes = stats.totalFocusMinutesToday % 60
         val focusLabel = if (hours > 0) "${hours}h ${minutes}m" else "${minutes}m"
 
-        StatColumn(value = "${stats.completedFocusSessionsToday}",  label = "SESSIONS")
+        StatColumn(value = "${stats.completedFocusSessionsToday}",  label = stringResource(R.string.pomodoro_sessions_label))
         Box(modifier = Modifier.height(30.dp).width(1.dp).background(PxColors.Outline))
-        StatColumn(value = focusLabel,                               label = "FOCUS TIME")
+        StatColumn(value = focusLabel,                               label = stringResource(R.string.pomodoro_focus_time_label))
         Box(modifier = Modifier.height(30.dp).width(1.dp).background(PxColors.Outline))
-        StatColumn(value = "${stats.currentStreak}",                 label = "STREAK")
+        StatColumn(value = "${stats.currentStreak}",                 label = stringResource(R.string.pomodoro_streak_label))
     }
 }
 
@@ -1018,15 +1017,15 @@ private fun InterruptDialog(
         onDismissRequest  = onDismiss,
         containerColor    = PxColors.Surface,
         icon              = { Icon(Icons.Outlined.Warning, contentDescription = null, tint = PxColors.Warning) },
-        title             = { Text("Interrupt session?") },
+        title             = { Text(stringResource(R.string.pomodoro_interrupt_confirm_title)) },
         text              = {
             Column {
-                Text("Your partial focus time will still be credited to the linked task.", style = MaterialTheme.typography.bodySmall, color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.pomodoro_interrupt_confirm_body), style = MaterialTheme.typography.bodySmall, color = PxColors.OnSurfaceDim)
                 Spacer(Modifier.height(12.dp))
                 OutlinedTextField(
                     value         = localReason,
                     onValueChange = { localReason = it },
-                    placeholder   = { Text("Reason (optional)") },
+                    placeholder   = { Text(stringResource(R.string.pomodoro_interrupt_reason_hint)) },
                     shape         = RoundedCornerShape(10.dp),
                     colors        = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor   = PxColors.SurfaceVariant,
@@ -1038,12 +1037,12 @@ private fun InterruptDialog(
         },
         confirmButton     = {
             TextButton(onClick = { onConfirm(localReason) }) {
-                Text("Interrupt", color = PxColors.Error)
+                Text(stringResource(R.string.pomodoro_interrupt_button), color = PxColors.Error)
             }
         },
         dismissButton     = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )
@@ -1059,9 +1058,9 @@ fun typeColor(type: PomodoroType): Color = when (type) {
 
 @Composable
 fun typeLabel(type: PomodoroType): String = when (type) {
-    PomodoroType.FOCUS       -> "Focus"
-    PomodoroType.SHORT_BREAK -> "Short Break"
-    PomodoroType.LONG_BREAK  -> "Long Break"
+    PomodoroType.FOCUS       -> stringResource(R.string.pomodoro_focus)
+    PomodoroType.SHORT_BREAK -> stringResource(R.string.pomodoro_short_break)
+    PomodoroType.LONG_BREAK  -> stringResource(R.string.pomodoro_long_break)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0F0F14)
