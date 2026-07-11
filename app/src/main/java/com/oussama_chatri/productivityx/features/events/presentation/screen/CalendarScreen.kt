@@ -260,12 +260,12 @@ fun CalendarScreen(
             onDismissRequest = { viewModel.onEvent(CalendarUiEvent.ToggleDatePicker) },
             confirmButton = {
                 TextButton(onClick = { viewModel.onEvent(CalendarUiEvent.ToggleDatePicker) }) {
-                    Text("OK", color = PxColors.Primary)
+                    Text(stringResource(R.string.ok), color = PxColors.Primary)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { viewModel.onEvent(CalendarUiEvent.ToggleDatePicker) }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         ) {
@@ -314,7 +314,7 @@ private fun CalendarModernTopBar(
             val day = today.plusDays(weekOffset.toLong())
             runCatching { dayHeaderFormatter.format(day) }.getOrElse { "-" }
         }
-        CalendarView.AGENDA -> "Upcoming Events"
+        CalendarView.AGENDA -> stringResource(R.string.calendar_upcoming_events)
         CalendarView.YEAR -> runCatching { yearHeaderFormatter.format(today) }.getOrElse { "-" }
     }
 
@@ -353,21 +353,21 @@ private fun CalendarModernTopBar(
                     )
             ) {
                 IconButton(onClick = onToday) {
-                    Icon(Icons.Outlined.Today, "Today", tint = PxColors.Primary)
+                    Icon(Icons.Outlined.Today, stringResource(R.string.calendar_today), tint = PxColors.Primary)
                 }
             }
 
             IconButton(onClick = onVoiceInput) {
-                Icon(Icons.Outlined.Mic, "Voice input", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.Mic, stringResource(R.string.event_voice_input), tint = PxColors.OnSurface)
             }
             IconButton(onClick = onDatePicker) {
-                Icon(Icons.Outlined.DateRange, "Date picker", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.DateRange, stringResource(R.string.cd_date_picker), tint = PxColors.OnSurface)
             }
             IconButton(onClick = onPrevious) {
-                Icon(Icons.Outlined.ChevronLeft, "Previous", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.ChevronLeft, stringResource(R.string.previous), tint = PxColors.OnSurface)
             }
             IconButton(onClick = onNext) {
-                Icon(Icons.Outlined.ChevronRight, "Next", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.ChevronRight, stringResource(R.string.next), tint = PxColors.OnSurface)
             }
         }
 
@@ -386,11 +386,11 @@ private fun ViewSwitcherRow(
     modifier: Modifier = Modifier,
 ) {
     val views = listOf(
-        Triple(CalendarView.DAY, Icons.Outlined.ViewDay, "Day"),
-        Triple(CalendarView.WEEK, Icons.Outlined.DateRange, "Week"),
-        Triple(CalendarView.MONTH, Icons.Outlined.DateRange, "Month"),
-        Triple(CalendarView.AGENDA, Icons.Outlined.ViewAgenda, "Agenda"),
-        Triple(CalendarView.YEAR, Icons.Outlined.DateRange, "Year"),
+        Triple(CalendarView.DAY, Icons.Outlined.ViewDay, stringResource(R.string.calendar_view_day)),
+        Triple(CalendarView.WEEK, Icons.Outlined.DateRange, stringResource(R.string.calendar_view_week)),
+        Triple(CalendarView.MONTH, Icons.Outlined.DateRange, stringResource(R.string.calendar_view_month)),
+        Triple(CalendarView.AGENDA, Icons.Outlined.ViewAgenda, stringResource(R.string.calendar_view_agenda)),
+        Triple(CalendarView.YEAR, Icons.Outlined.DateRange, stringResource(R.string.calendar_view_year)),
     )
 
     Row(

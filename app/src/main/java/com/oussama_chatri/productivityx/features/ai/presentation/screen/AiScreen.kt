@@ -150,11 +150,11 @@ fun AiScreen(
                     ) {
                         Icon(
                             Icons.Outlined.Stop,
-                            contentDescription = "Stop generating",
+                            contentDescription = stringResource(R.string.ai_stop_generating),
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(Modifier.size(4.dp))
-                        Text("Stop Generating", style = MaterialTheme.typography.labelLarge)
+                        Text(stringResource(R.string.ai_stop_generating), style = MaterialTheme.typography.labelLarge)
                     }
                 }
                 MessageInputBar(

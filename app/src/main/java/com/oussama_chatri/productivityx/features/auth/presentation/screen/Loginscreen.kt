@@ -295,7 +295,7 @@ private fun LoginContent(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Fingerprint,
-                        contentDescription = "Biometric login",
+                        contentDescription = stringResource(R.string.cd_biometric_login),
                         tint = PxColors.Primary,
                         modifier = Modifier.size(24.dp),
                     )

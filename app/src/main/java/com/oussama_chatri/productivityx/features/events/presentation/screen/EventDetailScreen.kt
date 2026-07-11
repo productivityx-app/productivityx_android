@@ -115,20 +115,20 @@ fun EventDetailScreen(
                 title = {},
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.ArrowBack, stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                     }
                 },
                 actions = {
                     IconButton(onClick = {
                         clipboardManager.setText(AnnotatedString("${state.title} - ${state.location}"))
                     }) {
-                        Icon(Icons.Outlined.Share, "Share", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.Share, stringResource(R.string.share), tint = PxColors.OnSurface)
                     }
                     IconButton(onClick = { onEdit(eventId) }) {
-                        Icon(Icons.Outlined.Edit, "Edit", tint = PxColors.OnSurface)
+                        Icon(Icons.Outlined.Edit, stringResource(R.string.cd_edit), tint = PxColors.OnSurface)
                     }
                     IconButton(onClick = { showDeleteDialog = true }) {
-                        Icon(Icons.Outlined.Delete, "Delete", tint = PxColors.Error)
+                        Icon(Icons.Outlined.Delete, stringResource(R.string.cd_delete), tint = PxColors.Error)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
@@ -158,7 +158,7 @@ fun EventDetailScreen(
             ) {
                 Column(modifier = Modifier.padding(start = 20.dp, bottom = 20.dp)) {
                     Text(
-                        text = state.title.ifBlank { "Untitled Event" },
+                        text = state.title.ifBlank { stringResource(R.string.event_untitled) },
                         style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
                         color = Color.White
                     )
@@ -196,11 +196,11 @@ fun EventDetailScreen(
                             )
                             DetailRow(
                                 icon = Icons.Outlined.AccessTime,
-                                label = "Ends ${runCatching { timeOnlyFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "-" }}"
+                                label = stringResource(R.string.event_detail_ends, runCatching { timeOnlyFormatter.format(Instant.ofEpochMilli(state.endMs)) }.getOrElse { "-" })
                             )
                             DetailRow(
                                 icon = Icons.Outlined.Schedule,
-                                label = "Timezone: ${ZoneId.systemDefault().id}"
+                                label = stringResource(R.string.event_detail_timezone, ZoneId.systemDefault().id)
                             )
                         }
 
@@ -212,7 +212,7 @@ fun EventDetailScreen(
                                 trailing = {
                                     Icon(
                                         Icons.Outlined.NearMe,
-                                        contentDescription = "Navigate",
+                                        contentDescription = stringResource(R.string.event_navigate),
                                         tint = PxColors.Primary,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -233,11 +233,12 @@ fun EventDetailScreen(
                             )
                         }
 
-                        if (state.reminderMinutes != null) {
+                        val reminderMinutes = state.reminderMinutes
+                        if (reminderMinutes != null) {
                             Spacer(Modifier.height(2.dp))
                             DetailRow(
                                 icon = Icons.Outlined.NotificationsActive,
-                                label = "${state.reminderMinutes} min before"
+                                label = stringResource(R.string.event_detail_min_before, reminderMinutes)
                             )
                         }
 
@@ -245,7 +246,7 @@ fun EventDetailScreen(
                             Spacer(Modifier.height(2.dp))
                             DetailRow(
                                 icon = Icons.Outlined.NotificationsActive,
-                                label = "Reminders: ${state.reminderTimes.joinToString(", ") { "${it}min" }}"
+                                label = stringResource(R.string.event_detail_reminders, state.reminderTimes.joinToString(", ") { "${it}min" })
                             )
                         }
 
@@ -253,15 +254,16 @@ fun EventDetailScreen(
                             Spacer(Modifier.height(2.dp))
                             DetailRow(
                                 icon = Icons.Outlined.Person,
-                                label = "${state.attendees.size} attendees"
+                                label = stringResource(R.string.event_detail_attendees_count, state.attendees.size)
                             )
                         }
 
-                        if (state.travelTimeMinutes != null) {
+                        val travelTimeMinutes = state.travelTimeMinutes
+                        if (travelTimeMinutes != null) {
                             Spacer(Modifier.height(2.dp))
                             DetailRow(
                                 icon = Icons.Outlined.Schedule,
-                                label = "Travel time: ${state.travelTimeMinutes} min"
+                                label = stringResource(R.string.event_detail_travel_time, travelTimeMinutes)
                             )
                         }
 
@@ -273,7 +275,7 @@ fun EventDetailScreen(
                                 trailing = {
                                     Icon(
                                         Icons.Outlined.Videocam,
-                                        contentDescription = "Join",
+                                        contentDescription = stringResource(R.string.cd_join),
                                         tint = PxColors.Primary,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -314,22 +316,22 @@ fun EventDetailScreen(
             onDismissRequest = { showDeleteDialog = false },
             containerColor = PxColors.Surface,
             title = {
-                Text("Delete event?", color = PxColors.OnBackground, style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.event_delete_confirm_title), color = PxColors.OnBackground, style = MaterialTheme.typography.titleMedium)
             },
             text = {
-                Text("This action cannot be undone.", color = PxColors.OnSurfaceDim, style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.event_delete_cannot_undo), color = PxColors.OnSurfaceDim, style = MaterialTheme.typography.bodyMedium)
             },
             confirmButton = {
                 TextButton(onClick = {
                     showDeleteDialog = false
                     viewModel.onEvent(AddEditEventUiEvent.Delete)
                 }) {
-                    Text("Delete", color = PxColors.Error)
+                    Text(stringResource(R.string.delete), color = PxColors.Error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) {
-                    Text("Cancel", color = PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
                 }
             }
         )
@@ -396,14 +398,14 @@ private fun ActionButtonsRow(
     ) {
         ActionChip(
             icon = Icons.Outlined.ContentCopy,
-            label = "Duplicate",
+            label = stringResource(R.string.duplicate),
             onClick = onDuplicate,
             modifier = Modifier.weight(1f)
         )
         if (onJoinMeeting != null) {
             ActionChip(
                 icon = Icons.Outlined.Videocam,
-                label = "Join Meeting",
+                label = stringResource(R.string.event_join_meeting),
                 onClick = onJoinMeeting,
                 modifier = Modifier.weight(1f)
             )
@@ -411,7 +413,7 @@ private fun ActionButtonsRow(
         if (onNavigate != null) {
             ActionChip(
                 icon = Icons.Outlined.NearMe,
-                label = "Navigate",
+                label = stringResource(R.string.event_navigate),
                 onClick = onNavigate,
                 modifier = Modifier.weight(1f)
             )
@@ -451,10 +453,11 @@ private fun ActionChip(
     }
 }
 
+@Composable
 private fun recurrenceLabelFromRule(rule: String?) = when (rule) {
-    "FREQ=DAILY" -> "Repeats daily"
-    "FREQ=WEEKLY" -> "Repeats weekly"
-    "FREQ=MONTHLY" -> "Repeats monthly"
-    "FREQ=YEARLY" -> "Repeats yearly"
-    else -> "Custom recurrence"
+    "FREQ=DAILY" -> stringResource(R.string.event_recurrence_daily)
+    "FREQ=WEEKLY" -> stringResource(R.string.event_recurrence_weekly)
+    "FREQ=MONTHLY" -> stringResource(R.string.event_recurrence_monthly)
+    "FREQ=YEARLY" -> stringResource(R.string.event_recurrence_yearly)
+    else -> stringResource(R.string.event_recurrence_custom)
 }

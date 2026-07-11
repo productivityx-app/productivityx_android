@@ -189,17 +189,17 @@ private fun RegistrationCelebration(onContinue: () -> Unit) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            Text(
-                text = "Welcome aboard!",
-                style = MaterialTheme.typography.headlineMedium,
-                color = PxColors.OnBackground,
-                fontWeight = FontWeight.Bold,
-            )
+                Text(
+                    text = stringResource(R.string.auth_welcome_aboard),
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = PxColors.OnBackground,
+                    fontWeight = FontWeight.Bold,
+                )
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Your account has been created successfully",
+                text = stringResource(R.string.auth_account_created_success),
                 style = MaterialTheme.typography.bodyLarge,
                 color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center,
@@ -208,7 +208,7 @@ private fun RegistrationCelebration(onContinue: () -> Unit) {
             Spacer(modifier = Modifier.height(32.dp))
 
             PxButton(
-                text = "Continue",
+                text = stringResource(R.string.continue_action),
                 onClick = onContinue,
                 modifier = Modifier.fillMaxWidth(0.7f),
             )
@@ -271,10 +271,10 @@ private fun RegisterContent(
 
                 Text(
                     text = when (uiState.currentStep) {
-                        0 -> "Create Account"
-                        1 -> "Your Profile"
-                        2 -> "Preferences"
-                        3 -> "Verify Email"
+                        0 -> stringResource(R.string.auth_create_account)
+                        1 -> stringResource(R.string.register_step_profile)
+                        2 -> stringResource(R.string.register_step_preferences)
+                        3 -> stringResource(R.string.register_step_verify)
                         else -> ""
                     },
                     style = MaterialTheme.typography.titleLarge,
@@ -463,12 +463,12 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(
                     imageVector = Icons.Outlined.CameraAlt,
-                    contentDescription = "Add photo",
+                    contentDescription = stringResource(R.string.field_avatar),
                     tint = Color.White,
                     modifier = Modifier.size(24.dp),
                 )
                 Text(
-                    text = "Photo",
+                    text = stringResource(R.string.field_avatar),
                     style = MaterialTheme.typography.labelSmall,
                     color = Color.White,
                 )
@@ -478,7 +478,7 @@ private fun Step1Profile(uiState: RegisterUiState, onEvent: (RegisterUiEvent) ->
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Tap to add profile photo",
+            text = stringResource(R.string.register_profile_photo_hint),
             style = MaterialTheme.typography.bodySmall,
             color = PxColors.OnSurfaceDim,
         )
@@ -586,10 +586,14 @@ private fun Step2Preferences(uiState: RegisterUiState, onEvent: (RegisterUiEvent
     )
 
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        listOf("DARK", "LIGHT", "SYSTEM").forEach { theme ->
+        listOf(
+            "DARK" to R.string.theme_dark,
+            "LIGHT" to R.string.theme_light,
+            "SYSTEM" to R.string.theme_system,
+        ).forEach { (theme, labelRes) ->
             val isSelected = uiState.selectedTheme == theme
             PxButton(
-                text = theme.lowercase().replaceFirstChar { it.uppercase() },
+                text = stringResource(labelRes),
                 onClick = { onEvent(RegisterUiEvent.ThemeSelected(theme)) },
                 modifier = Modifier.weight(1f),
                 variant = if (isSelected) PxButtonVariant.Primary else PxButtonVariant.Outlined,

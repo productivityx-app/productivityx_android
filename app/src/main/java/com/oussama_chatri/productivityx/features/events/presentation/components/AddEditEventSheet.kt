@@ -214,6 +214,7 @@ private fun AddEditEventSheetContent(
             Spacer(Modifier.height(8.dp))
         }
 
+        val speakPrompt = stringResource(R.string.event_speak_prompt)
         PxTextField(
             value = state.title,
             onValueChange = { onEvent(AddEditEventUiEvent.TitleChanged(it)) },
@@ -224,7 +225,7 @@ private fun AddEditEventSheetContent(
             onVoiceInput = {
                 val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                     putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-                    putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the event title")
+                    putExtra(RecognizerIntent.EXTRA_PROMPT, speakPrompt)
                 }
                 try {
                     speechLauncher.launch(intent)
@@ -246,7 +247,7 @@ private fun AddEditEventSheetContent(
                     Icon(Icons.Outlined.Warning, null, tint = Color(0xFFEF4444), modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        text = "Time conflict with ${state.conflictingEvents.size} event(s)",
+                        text = stringResource(R.string.event_conflict, state.conflictingEvents.size),
                         style = MaterialTheme.typography.bodySmall,
                         color = Color(0xFFEF4444)
                     )
@@ -340,7 +341,7 @@ private fun AddEditEventSheetContent(
             }
         ) {
             Text(
-                text = state.location.ifBlank { "Add location" },
+                text = state.location.ifBlank { stringResource(R.string.event_add_location) },
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.location.isBlank()) PxColors.OnSurfaceDim else PxColors.OnBackground
             )
@@ -355,7 +356,7 @@ private fun AddEditEventSheetContent(
             }
         ) {
             Text(
-                text = state.description.ifBlank { "Add description" },
+                text = state.description.ifBlank { stringResource(R.string.event_add_description) },
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.description.isBlank()) PxColors.OnSurfaceDim else PxColors.OnBackground
             )
@@ -363,18 +364,18 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon = Icons.Outlined.Person,
-            label = "Attendees",
+            label = stringResource(R.string.event_attendees),
             onClick = { showAttendeeDialog = true }
         ) {
             if (state.attendees.isNotEmpty()) {
                 Text(
-                    text = "${state.attendees.size} attendee(s)",
+                    text = stringResource(R.string.event_attendee_count, state.attendees.size),
                     style = MaterialTheme.typography.bodySmall,
                     color = PxColors.OnBackground
                 )
             } else {
                 Text(
-                    text = "Add attendees",
+                    text = stringResource(R.string.event_add_attendees),
                     style = MaterialTheme.typography.bodySmall,
                     color = PxColors.OnSurfaceDim
                 )
@@ -383,14 +384,14 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon = Icons.Outlined.Videocam,
-            label = "Meeting link",
+            label = stringResource(R.string.event_meeting_link),
             onClick = {
                 meetingUrlDraft = state.meetingUrl ?: ""
                 showMeetingUrlDialog = true
             }
         ) {
             Text(
-                text = state.meetingUrl?.take(30)?.plus("...") ?: "Add link",
+                text = state.meetingUrl?.take(30)?.plus("...") ?: stringResource(R.string.event_add_link),
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.meetingUrl != null) PxColors.OnBackground else PxColors.OnSurfaceDim
             )
@@ -398,14 +399,14 @@ private fun AddEditEventSheetContent(
 
         SheetRow(
             icon = Icons.Outlined.Schedule,
-            label = "Travel time",
+            label = stringResource(R.string.event_travel_time),
             onClick = {
                 travelTimeDraft = state.travelTimeMinutes?.toString() ?: ""
                 showTravelTimeDialog = true
             }
         ) {
             Text(
-                text = if (state.travelTimeMinutes != null) "${state.travelTimeMinutes} min" else "Add estimate",
+                text = if (state.travelTimeMinutes != null) "${state.travelTimeMinutes} min" else stringResource(R.string.event_add_estimate),
                 style = MaterialTheme.typography.bodySmall,
                 color = if (state.travelTimeMinutes != null) PxColors.OnBackground else PxColors.OnSurfaceDim
             )
@@ -445,7 +446,7 @@ private fun AddEditEventSheetContent(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val reminderLabel = if (state.reminderTimes.isNotEmpty()) {
-                    "Multiple (${state.reminderTimes.size})"
+                    stringResource(R.string.event_reminder_multiple, state.reminderTimes.size)
                 } else {
                     reminderLabel(state.reminderMinutes)
                 }
@@ -522,10 +523,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     showStartDatePicker = false
                     if (!state.isAllDay) showStartTimePicker = true
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showStartDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showStartDatePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         ) {
             val datePickerState = rememberDatePickerState(initialSelectedDateMillis = state.startMs)
@@ -556,7 +557,7 @@ private fun AddEditEventSheetContent(
             )
             AlertDialog(
                 onDismissRequest = { showStartTimePicker = false },
-                title = { Text("Select time", color = Color.White) },
+                title = { Text(stringResource(R.string.event_select_time), color = Color.White) },
                 text = { TimePicker(state = timePickerState) },
                 containerColor = PxColors.SurfaceVariant,
                 confirmButton = {
@@ -566,10 +567,10 @@ private fun AddEditEventSheetContent(
                         val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
                         onEvent(AddEditEventUiEvent.StartDateTimeChanged(combined.toEpochMilli()))
                         showStartTimePicker = false
-                    }) { Text("OK") }
+                    }) { Text(stringResource(R.string.ok)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showStartTimePicker = false }) { Text("Cancel") }
+                    TextButton(onClick = { showStartTimePicker = false }) { Text(stringResource(R.string.cancel)) }
                 }
             )
         }
@@ -582,10 +583,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     showEndDatePicker = false
                     if (!state.isAllDay) showEndTimePicker = true
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showEndDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showEndDatePicker = false }) { Text(stringResource(R.string.cancel)) }
             }
         ) {
             val datePickerState = rememberDatePickerState(initialSelectedDateMillis = state.endMs)
@@ -616,7 +617,7 @@ private fun AddEditEventSheetContent(
             )
             AlertDialog(
                 onDismissRequest = { showEndTimePicker = false },
-                title = { Text("Select time", color = Color.White) },
+                title = { Text(stringResource(R.string.event_select_time), color = Color.White) },
                 text = { TimePicker(state = timePickerState) },
                 containerColor = PxColors.SurfaceVariant,
                 confirmButton = {
@@ -626,10 +627,10 @@ private fun AddEditEventSheetContent(
                         val combined = date.atTime(newTime).toInstant(ZoneOffset.UTC)
                         onEvent(AddEditEventUiEvent.EndDateTimeChanged(combined.toEpochMilli()))
                         showEndTimePicker = false
-                    }) { Text("OK") }
+                    }) { Text(stringResource(R.string.ok)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showEndTimePicker = false }) { Text("Cancel") }
+                    TextButton(onClick = { showEndTimePicker = false }) { Text(stringResource(R.string.cancel)) }
                 }
             )
         }
@@ -638,12 +639,12 @@ private fun AddEditEventSheetContent(
     if (showLocationDialog) {
         AlertDialog(
             onDismissRequest = { showLocationDialog = false },
-            title = { Text("Location", color = Color.White) },
+            title = { Text(stringResource(R.string.event_field_location), color = Color.White) },
             text = {
                 OutlinedTextField(
                     value = locationDraft,
                     onValueChange = { locationDraft = it },
-                    placeholder = { Text("Enter location") },
+                    placeholder = { Text(stringResource(R.string.event_enter_location_hint)) },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
@@ -657,10 +658,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.LocationChanged(locationDraft))
                     showLocationDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showLocationDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showLocationDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -668,12 +669,12 @@ private fun AddEditEventSheetContent(
     if (showDescriptionDialog) {
         AlertDialog(
             onDismissRequest = { showDescriptionDialog = false },
-            title = { Text("Description", color = Color.White) },
+            title = { Text(stringResource(R.string.event_field_description), color = Color.White) },
             text = {
                 OutlinedTextField(
                     value = descriptionDraft,
                     onValueChange = { descriptionDraft = it },
-                    placeholder = { Text("Add notes about this event...") },
+                    placeholder = { Text(stringResource(R.string.event_field_description_hint)) },
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
@@ -687,10 +688,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.DescriptionChanged(descriptionDraft))
                     showDescriptionDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDescriptionDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showDescriptionDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -698,7 +699,7 @@ private fun AddEditEventSheetContent(
     if (showAttendeeDialog) {
         AlertDialog(
             onDismissRequest = { showAttendeeDialog = false },
-            title = { Text("Attendees", color = Color.White) },
+            title = { Text(stringResource(R.string.event_attendees), color = Color.White) },
             text = {
                 Column {
                     state.attendees.forEach { email ->
@@ -713,7 +714,7 @@ private fun AddEditEventSheetContent(
                                 modifier = Modifier.weight(1f)
                             )
                             IconButton(onClick = { onEvent(AddEditEventUiEvent.RemoveAttendee(email)) }) {
-                                Icon(Icons.Outlined.Close, "Remove", tint = Color(0xFFEF4444), modifier = Modifier.size(16.dp))
+                                Icon(Icons.Outlined.Close, stringResource(R.string.remove), tint = Color(0xFFEF4444), modifier = Modifier.size(16.dp))
                             }
                         }
                     }
@@ -721,7 +722,7 @@ private fun AddEditEventSheetContent(
                         OutlinedTextField(
                             value = attendeeDraft,
                             onValueChange = { attendeeDraft = it },
-                            placeholder = { Text("Email address") },
+                            placeholder = { Text(stringResource(R.string.event_add_attendee_hint)) },
                             singleLine = true,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = {
@@ -743,14 +744,14 @@ private fun AddEditEventSheetContent(
                                 attendeeDraft = ""
                             }
                         }) {
-                            Icon(Icons.Outlined.Add, "Add", tint = PxColors.Primary)
+                            Icon(Icons.Outlined.Add, stringResource(R.string.add), tint = PxColors.Primary)
                         }
                     }
                 }
             },
             containerColor = PxColors.SurfaceVariant,
             confirmButton = {
-                TextButton(onClick = { showAttendeeDialog = false }) { Text("Done") }
+                TextButton(onClick = { showAttendeeDialog = false }) { Text(stringResource(R.string.done)) }
             }
         )
     }
@@ -758,12 +759,12 @@ private fun AddEditEventSheetContent(
     if (showMeetingUrlDialog) {
         AlertDialog(
             onDismissRequest = { showMeetingUrlDialog = false },
-            title = { Text("Meeting link", color = Color.White) },
+            title = { Text(stringResource(R.string.event_meeting_link), color = Color.White) },
             text = {
                 OutlinedTextField(
                     value = meetingUrlDraft,
                     onValueChange = { meetingUrlDraft = it },
-                    placeholder = { Text("https://meet.google.com/...") },
+                    placeholder = { Text(stringResource(R.string.event_meeting_url_hint)) },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
@@ -777,10 +778,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.MeetingUrlChanged(meetingUrlDraft))
                     showMeetingUrlDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showMeetingUrlDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showMeetingUrlDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -788,12 +789,12 @@ private fun AddEditEventSheetContent(
     if (showTravelTimeDialog) {
         AlertDialog(
             onDismissRequest = { showTravelTimeDialog = false },
-            title = { Text("Travel time", color = Color.White) },
+            title = { Text(stringResource(R.string.event_travel_time), color = Color.White) },
             text = {
                 OutlinedTextField(
                     value = travelTimeDraft,
                     onValueChange = { travelTimeDraft = it },
-                    placeholder = { Text("Minutes") },
+                    placeholder = { Text(stringResource(R.string.event_travel_minutes_hint)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     colors = OutlinedTextFieldDefaults.colors(
@@ -808,10 +809,10 @@ private fun AddEditEventSheetContent(
                 TextButton(onClick = {
                     onEvent(AddEditEventUiEvent.TravelTimeChanged(travelTimeDraft.toIntOrNull()))
                     showTravelTimeDialog = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showTravelTimeDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showTravelTimeDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }
@@ -831,7 +832,7 @@ private fun TemplateQuickApply(
 
     Column {
         Text(
-            text = "Quick templates",
+            text = stringResource(R.string.event_quick_templates),
             style = MaterialTheme.typography.labelMedium,
             color = PxColors.OnSurfaceDim,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -883,7 +884,7 @@ private fun SmartTitleSuggestions(
             Icon(Icons.Outlined.Lightbulb, null, tint = Color(0xFFF59E0B), modifier = Modifier.size(14.dp))
             Spacer(Modifier.width(4.dp))
             Text(
-                text = "Suggestions",
+                text = stringResource(R.string.event_suggestions),
                 style = MaterialTheme.typography.labelSmall,
                 color = PxColors.OnSurfaceDim
             )
@@ -918,13 +919,13 @@ private fun MultipleReminderPicker(
     onToggle: (Int) -> Unit,
 ) {
     val options = listOf(
-        0 to "At time",
-        5 to "5 min",
-        10 to "10 min",
-        15 to "15 min",
-        30 to "30 min",
-        60 to "1 hour",
-        1440 to "1 day",
+        0 to stringResource(R.string.event_reminder_short_at_time),
+        5 to stringResource(R.string.event_reminder_short_min, 5),
+        10 to stringResource(R.string.event_reminder_short_min, 10),
+        15 to stringResource(R.string.event_reminder_short_min, 15),
+        30 to stringResource(R.string.event_reminder_short_min, 30),
+        60 to stringResource(R.string.event_reminder_short_1_hour),
+        1440 to stringResource(R.string.event_reminder_short_1_day),
     )
 
     @OptIn(ExperimentalLayoutApi::class) FlowRow(
@@ -980,11 +981,11 @@ private fun RecurrencePickerRow(
     onSelect: (String?) -> Unit,
 ) {
     val options = listOf(
-        null to "None",
-        "FREQ=DAILY" to "Daily",
-        "FREQ=WEEKLY" to "Weekly",
-        "FREQ=MONTHLY" to "Monthly",
-        "FREQ=YEARLY" to "Yearly",
+        null to stringResource(R.string.event_recurrence_none),
+        "FREQ=DAILY" to stringResource(R.string.event_recurrence_daily),
+        "FREQ=WEEKLY" to stringResource(R.string.event_recurrence_weekly),
+        "FREQ=MONTHLY" to stringResource(R.string.event_recurrence_monthly),
+        "FREQ=YEARLY" to stringResource(R.string.event_recurrence_yearly),
     )
     Row(
         modifier = Modifier
@@ -1035,23 +1036,23 @@ private fun RecurrenceChip(
 
 @Composable
 private fun recurrenceLabel(rule: String?) = when (rule) {
-    null -> "None"
-    "FREQ=DAILY" -> "Daily"
-    "FREQ=WEEKLY" -> "Weekly"
-    "FREQ=MONTHLY" -> "Monthly"
-    "FREQ=YEARLY" -> "Yearly"
-    else -> "Custom"
+    null -> stringResource(R.string.event_recurrence_none)
+    "FREQ=DAILY" -> stringResource(R.string.event_recurrence_daily)
+    "FREQ=WEEKLY" -> stringResource(R.string.event_recurrence_weekly)
+    "FREQ=MONTHLY" -> stringResource(R.string.event_recurrence_monthly)
+    "FREQ=YEARLY" -> stringResource(R.string.event_recurrence_yearly)
+    else -> stringResource(R.string.event_recurrence_custom)
 }
 
 @Composable
 private fun reminderLabel(minutes: Int?) = when (minutes) {
-    null -> "None"
-    0 -> "At time"
-    5 -> "5 min before"
-    10 -> "10 min before"
-    15 -> "15 min before"
-    30 -> "30 min before"
-    60 -> "1 hour before"
-    1440 -> "1 day before"
-    else -> "Custom"
+    null -> stringResource(R.string.event_reminder_none)
+    0 -> stringResource(R.string.event_reminder_at_time)
+    5 -> stringResource(R.string.event_reminder_5_min)
+    10 -> stringResource(R.string.event_reminder_10_min)
+    15 -> stringResource(R.string.event_reminder_15_min)
+    30 -> stringResource(R.string.event_reminder_30_min)
+    60 -> stringResource(R.string.event_reminder_1_hour)
+    1440 -> stringResource(R.string.event_reminder_1_day)
+    else -> stringResource(R.string.event_reminder_custom)
 }

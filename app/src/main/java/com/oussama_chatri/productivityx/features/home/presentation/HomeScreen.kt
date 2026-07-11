@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -58,6 +59,7 @@ import com.oussama_chatri.productivityx.features.home.presentation.components.Ta
 import com.oussama_chatri.productivityx.features.home.presentation.event.HomeEvent
 import com.oussama_chatri.productivityx.features.home.presentation.state.HomeUiState
 import com.oussama_chatri.productivityx.features.home.presentation.state.QuickAction
+import com.oussama_chatri.productivityx.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -282,7 +284,7 @@ private fun HomeErrorState(
                     .padding(bottom = 16.dp),
             )
             Text(
-                text = "Something went wrong",
+                text = stringResource(R.string.home_error_something_wrong),
                 style = MaterialTheme.typography.titleMedium,
                 color = PxColors.OnBackground,
                 textAlign = TextAlign.Center,
@@ -309,11 +311,11 @@ private fun QuickActionSnackbar(
         exit = slideOutVertically { it } + fadeOut(),
     ) {
         val message = when (selectedAction) {
-            QuickAction.NEW_NOTE -> "Opening new note..."
-            QuickAction.NEW_TASK -> "Opening new task..."
-            QuickAction.START_TIMER -> "Starting timer..."
-            QuickAction.AI_CHAT -> "Opening AI chat..."
-            QuickAction.CALCULATOR -> "Opening calculator..."
+            QuickAction.NEW_NOTE -> stringResource(R.string.home_opening_new_note)
+            QuickAction.NEW_TASK -> stringResource(R.string.home_opening_new_task)
+            QuickAction.START_TIMER -> stringResource(R.string.home_starting_timer)
+            QuickAction.AI_CHAT -> stringResource(R.string.home_opening_ai_chat)
+            QuickAction.CALCULATOR -> stringResource(R.string.home_opening_calculator)
             null -> ""
         }
         Box(

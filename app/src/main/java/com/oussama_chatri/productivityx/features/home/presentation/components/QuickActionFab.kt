@@ -41,9 +41,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.features.home.presentation.state.QuickAction
 import kotlin.math.cos
@@ -88,7 +90,7 @@ fun QuickActionFab(
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
-                    contentDescription = "Quick actions",
+                    contentDescription = stringResource(R.string.home_quick_actions_cd),
                     tint = Color.White,
                     modifier = Modifier.rotate(rotation),
                 )
@@ -103,11 +105,11 @@ private fun RadialMenuItems(
     density: androidx.compose.ui.unit.Density,
 ) {
     val items = listOf(
-        RadialMenuItem("New Note", Icons.Filled.Edit, QuickAction.NEW_NOTE, PxColors.Info),
-        RadialMenuItem("New Task", Icons.Filled.TaskAlt, QuickAction.NEW_TASK, PxColors.Success),
-        RadialMenuItem("Calculator", Icons.Filled.Calculate, QuickAction.CALCULATOR, PxColors.Primary),
-        RadialMenuItem("Start Timer", Icons.Filled.PlayArrow, QuickAction.START_TIMER, PxColors.Warning),
-        RadialMenuItem("AI Chat", Icons.Filled.AutoAwesome, QuickAction.AI_CHAT, PxColors.Primary),
+        RadialMenuItem(stringResource(R.string.home_quick_action_new_note), Icons.Filled.Edit, QuickAction.NEW_NOTE, PxColors.Info),
+        RadialMenuItem(stringResource(R.string.home_quick_action_new_task), Icons.Filled.TaskAlt, QuickAction.NEW_TASK, PxColors.Success),
+        RadialMenuItem(stringResource(R.string.home_quick_action_calculator), Icons.Filled.Calculate, QuickAction.CALCULATOR, PxColors.Primary),
+        RadialMenuItem(stringResource(R.string.home_quick_action_start_timer), Icons.Filled.PlayArrow, QuickAction.START_TIMER, PxColors.Warning),
+        RadialMenuItem(stringResource(R.string.home_quick_action_ai_chat), Icons.Filled.AutoAwesome, QuickAction.AI_CHAT, PxColors.Primary),
     )
 
     val radiusPx = with(density) { 120.dp.toPx() }

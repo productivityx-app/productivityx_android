@@ -32,6 +32,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -76,7 +78,7 @@ fun DayView(
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "All day",
+                    text = stringResource(R.string.calendar_all_day),
                     style = MaterialTheme.typography.labelSmall,
                     color = PxColors.OnSurfaceDim,
                     modifier = Modifier.padding(bottom = 4.dp)
@@ -228,7 +230,7 @@ private fun DayHeader(
                 color = PxColors.OnBackground
             )
             Text(
-                text = if (isToday) "Today" else runCatching { abbrFormatter.format(day) }.getOrElse { "-" },
+                text = if (isToday) stringResource(R.string.today) else runCatching { abbrFormatter.format(day) }.getOrElse { "-" },
                 style = MaterialTheme.typography.labelSmall,
                 color = if (isToday) PxColors.Primary else PxColors.OnSurfaceDim
             )

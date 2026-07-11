@@ -67,6 +67,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
@@ -75,6 +76,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import com.oussama_chatri.productivityx.core.util.DateTimeUtils
 import com.oussama_chatri.productivityx.features.ai.domain.model.Conversation
@@ -110,19 +112,19 @@ fun ConversationListScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Conversations",
+                            text = stringResource(R.string.ai_conversations_title),
                             style = MaterialTheme.typography.titleLarge,
                             color = PxColors.OnBackground,
                         )
                     },
                     navigationIcon = {
                         IconButton(onClick = onBack) {
-                            Icon(Icons.Outlined.ArrowBack, "Back", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.ArrowBack, stringResource(R.string.back), tint = PxColors.OnSurfaceDim)
                         }
                     },
                     actions = {
                         IconButton(onClick = { viewModel.onEvent(ConversationListUiEvent.ToggleSearch) }) {
-                            Icon(Icons.Outlined.Search, "Search", tint = PxColors.OnSurfaceDim)
+                            Icon(Icons.Outlined.Search, stringResource(R.string.cd_search), tint = PxColors.OnSurfaceDim)
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background),
@@ -149,7 +151,7 @@ fun ConversationListScreen(
                             contentAlignment = Alignment.Center,
                         ) {
                             Text(
-                                text = "No results for \"${state.searchQuery}\"",
+                                text = stringResource(R.string.ai_conversations_no_results, state.searchQuery),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = PxColors.OnSurfaceDim,
                             )
@@ -159,7 +161,7 @@ fun ConversationListScreen(
 
                 if (state.pinnedConversations.isNotEmpty() && state.searchQuery.isBlank()) {
                     item {
-                        SectionHeader(title = "Pinned")
+                        SectionHeader(title = stringResource(R.string.ai_conversations_section_pinned))
                     }
                     items(state.pinnedConversations, key = { it.id }) { conversation ->
                         ConversationItem(
@@ -176,7 +178,7 @@ fun ConversationListScreen(
 
                 if (state.todayConversations.isNotEmpty() && state.searchQuery.isBlank()) {
                     item {
-                        SectionHeader(title = "Today")
+                        SectionHeader(title = stringResource(R.string.today))
                     }
                     items(state.todayConversations, key = { it.id }) { conversation ->
                         ConversationItem(
@@ -192,7 +194,7 @@ fun ConversationListScreen(
 
                 if (state.yesterdayConversations.isNotEmpty() && state.searchQuery.isBlank()) {
                     item {
-                        SectionHeader(title = "Yesterday")
+                        SectionHeader(title = stringResource(R.string.yesterday))
                     }
                     items(state.yesterdayConversations, key = { it.id }) { conversation ->
                         ConversationItem(
@@ -208,7 +210,7 @@ fun ConversationListScreen(
 
                 if (state.earlierConversations.isNotEmpty() && state.searchQuery.isBlank()) {
                     item {
-                        SectionHeader(title = "Earlier")
+                        SectionHeader(title = stringResource(R.string.ai_conversations_section_earlier))
                     }
                     items(state.earlierConversations, key = { it.id }) { conversation ->
                         ConversationItem(
@@ -257,7 +259,7 @@ private fun SearchTopBar(
         Box(modifier = Modifier.weight(1f)) {
             if (query.isEmpty()) {
                 Text(
-                    text = "Search conversations...",
+                    text = stringResource(R.string.ai_conversations_search_hint),
                     style = MaterialTheme.typography.bodyMedium,
                     color = PxColors.OnSurfaceDim,
                 )
@@ -271,7 +273,7 @@ private fun SearchTopBar(
             )
         }
         IconButton(onClick = onClose) {
-            Icon(Icons.Outlined.Close, "Close search", tint = PxColors.OnSurfaceDim)
+            Icon(Icons.Outlined.Close, stringResource(R.string.ai_conversations_close_search), tint = PxColors.OnSurfaceDim)
         }
     }
 }
@@ -382,7 +384,7 @@ private fun ConversationItem(
                         Spacer(Modifier.width(4.dp))
                     }
                     Text(
-                        text = highlightText(conversation.title ?: "New conversation", searchQuery),
+                        text = highlightText(conversation.title ?: stringResource(R.string.ai_new_conversation), searchQuery),
                         style = MaterialTheme.typography.bodyMedium,
                         color = PxColors.OnBackground,
                         maxLines = 1,
@@ -478,7 +480,7 @@ private fun FabWithOptions(
             Column(horizontalAlignment = Alignment.End) {
                 FabOption(
                     icon = Icons.Outlined.Bolt,
-                    label = "Quick Action",
+                    label = stringResource(R.string.ai_conversations_quick_action),
                     onClick = {
                         onQuickAction()
                         onToggle()
@@ -487,7 +489,7 @@ private fun FabWithOptions(
                 Spacer(Modifier.height(8.dp))
                 FabOption(
                     icon = Icons.Outlined.Add,
-                    label = "New Chat",
+                    label = stringResource(R.string.ai_conversations_new_chat),
                     onClick = {
                         onNewChat()
                         onToggle()
@@ -505,7 +507,7 @@ private fun FabWithOptions(
         ) {
             Icon(
                 imageVector = if (isExpanded) Icons.Outlined.Close else Icons.Outlined.Add,
-                contentDescription = if (isExpanded) "Close" else "New conversation",
+                contentDescription = if (isExpanded) stringResource(R.string.close) else stringResource(R.string.ai_new_conversation),
             )
         }
     }
@@ -576,7 +578,7 @@ private fun EmptyConversations(modifier: Modifier = Modifier) {
             Spacer(Modifier.height(20.dp))
 
             Text(
-                text = "No conversations yet",
+                text = stringResource(R.string.ai_conversations_empty_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = PxColors.OnBackground,
                 textAlign = TextAlign.Center,
@@ -585,7 +587,7 @@ private fun EmptyConversations(modifier: Modifier = Modifier) {
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Start a conversation with your AI assistant",
+                text = stringResource(R.string.ai_conversations_empty_body),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center,
@@ -597,7 +599,7 @@ private fun EmptyConversations(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                listOf("Plan my day", "Summarize notes", "Brainstorm ideas").forEach { text ->
+                listOf(stringResource(R.string.ai_suggestion_plan_day), stringResource(R.string.ai_suggestion_summarize_notes), stringResource(R.string.ai_suggestion_brainstorm)).forEach { text ->
                     Box(
                         modifier = Modifier
                             .weight(1f)

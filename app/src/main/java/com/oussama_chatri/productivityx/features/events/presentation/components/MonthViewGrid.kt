@@ -33,6 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -63,7 +65,15 @@ fun MonthViewGrid(
 
     Column(modifier = modifier) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").forEach { label ->
+            listOf(
+                stringResource(R.string.day_monday_short),
+                stringResource(R.string.day_tuesday_short),
+                stringResource(R.string.day_wednesday_short),
+                stringResource(R.string.day_thursday_short),
+                stringResource(R.string.day_friday_short),
+                stringResource(R.string.day_saturday_short),
+                stringResource(R.string.day_sunday_short)
+            ).forEach { label ->
                 Text(
                     text = label,
                     style = MaterialTheme.typography.labelSmall,

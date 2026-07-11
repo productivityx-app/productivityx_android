@@ -26,6 +26,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.DayOfWeek
 import java.time.Instant
@@ -99,7 +101,7 @@ fun AvailabilityView(
             .padding(12.dp)
     ) {
         Text(
-            text = "Free/Busy & Suggested Times",
+            text = stringResource(R.string.calendar_free_busy_suggested),
             style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
             color = PxColors.OnBackground
         )
@@ -107,7 +109,7 @@ fun AvailabilityView(
 
         if (suggestedSlots.isEmpty()) {
             Text(
-                text = "No available slots found for this week",
+                text = stringResource(R.string.calendar_no_available_slots),
                 style = MaterialTheme.typography.bodySmall,
                 color = PxColors.OnSurfaceDim
             )
@@ -133,7 +135,7 @@ fun AvailabilityView(
                         color = PxColors.OnSurface
                     )
                     Text(
-                        text = "Free",
+                        text = stringResource(R.string.calendar_free),
                         style = MaterialTheme.typography.labelSmall,
                         color = Color(0xFF22C55E)
                     )

@@ -34,6 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -74,7 +76,7 @@ fun YearView(
             horizontalArrangement = Arrangement.Center
         ) {
             IconButton(onClick = { onYearChanged(selectedYear - 1) }) {
-                Icon(Icons.Outlined.ChevronLeft, "Previous year", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.ChevronLeft, stringResource(R.string.cd_previous_year), tint = PxColors.OnSurface)
             }
             Text(
                 text = selectedYear.toString(),
@@ -83,7 +85,7 @@ fun YearView(
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             IconButton(onClick = { onYearChanged(selectedYear + 1) }) {
-                Icon(Icons.Outlined.ChevronRight, "Next year", tint = PxColors.OnSurface)
+                Icon(Icons.Outlined.ChevronRight, stringResource(R.string.cd_next_year), tint = PxColors.OnSurface)
             }
         }
 

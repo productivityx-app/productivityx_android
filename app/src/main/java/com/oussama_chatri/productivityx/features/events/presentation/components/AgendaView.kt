@@ -30,6 +30,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.LocalDate
 import java.time.ZoneId
@@ -65,7 +67,7 @@ fun AgendaView(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "No upcoming events",
+                text = stringResource(R.string.calendar_agenda_empty),
                 style = MaterialTheme.typography.bodyLarge,
                 color = PxColors.OnSurfaceDim
             )
@@ -96,11 +98,11 @@ fun AgendaView(
 private fun AgendaDateHeader(date: LocalDate, today: LocalDate) {
     val isToday = date == today
     val label = if (isToday) {
-        "Today"
+        stringResource(R.string.today)
     } else if (date == today.plusDays(1)) {
-        "Tomorrow"
+        stringResource(R.string.tomorrow)
     } else if (date == today.minusDays(1)) {
-        "Yesterday"
+        stringResource(R.string.yesterday)
     } else {
         runCatching { dateFormatter.format(date) }.getOrElse { "-" }
     }
@@ -171,7 +173,7 @@ private fun AgendaEventRow(event: Event, onClick: () -> Unit) {
             )
             Spacer(Modifier.height(2.dp))
             val timeStr = if (event.isAllDay) {
-                "All day"
+                stringResource(R.string.calendar_all_day)
             } else {
                 runCatching { "${timeFormatter.format(event.startAt)} - ${timeFormatter.format(event.endAt)}" }
                     .getOrElse { "-" }
@@ -193,7 +195,7 @@ private fun AgendaEventRow(event: Event, onClick: () -> Unit) {
         }
         if (event.isRecurring) {
             Text(
-                text = "Repeats",
+                text = stringResource(R.string.event_repeats),
                 style = MaterialTheme.typography.labelSmall,
                 color = eventColor.copy(alpha = 0.7f)
             )

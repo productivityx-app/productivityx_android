@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.events.domain.model.Event
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -80,7 +82,7 @@ fun EventBlock(
             val timeLabel = if (showDate) {
                 runCatching { dateTimeFormatter.format(event.startAt) }.getOrElse { "-" }
             } else {
-                if (event.isAllDay) "All day"
+                if (event.isAllDay) stringResource(R.string.calendar_all_day)
                 else runCatching { "${timeFormatter.format(event.startAt)} - ${timeFormatter.format(event.endAt)}" }
                     .getOrElse { "-" }
             }
@@ -102,7 +104,7 @@ fun EventBlock(
         if (event.isRecurring) {
             Icon(
                 imageVector = Icons.Outlined.Repeat,
-                contentDescription = "Recurring",
+                contentDescription = stringResource(R.string.cd_recurring),
                 tint = eventColor.copy(alpha = 0.7f),
                 modifier = Modifier.size(14.dp)
             )
