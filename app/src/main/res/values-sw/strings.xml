@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Kazi yako. Moja kwa moja.</string>
+    <string name="app_description">Vidokezo, kazi, kalenda, kipima muda wa kufokusia, na msaidizi wa AI unaoelewa siku yako.</string>
+
+    <string name="ok">Sawa</string>
+    <string name="cancel">Ghairi</string>
+    <string name="save">Hifadhi</string>
+    <string name="export">Hamisha</string>
+    <string name="note_info">Taarifa ya kidokezo</string>
+    <string name="show_metadata">Onyesha metadata</string>
+    <string name="focus_mode">Hali ya kufokusia</string>
+    <string name="reset_zoom">Weka upya ukubwa wa kuona</string>
+    <string name="exit_focus_mode">Ondoka kwenye hali ya kufokusia</string>
+    <string name="fullscreen_image">Picha kamili</string>
+    <string name="more">Zaidi</string>
+    <string name="add_tag">Ongeza lebo</string>
+    <string name="move_to_trash">Hamisha kwenye takataka</string>
+    <string name="move_to_trash_confirm">Hamisha kwenye takataka?</string>
+    <string name="edit_mode">Hali ya kuhariri</string>
+    <string name="preview_mode">Hali ya kukagua</string>
+    <string name="words">Maneno</string>
+    <string name="characters">Herufi</string>
+    <string name="reading_time">Muda wa kusoma</string>
+    <string name="export_as_pdf">Hamisha kama PDF</string>
+    <string name="print">Chapisha</string>
+    <string name="move_to_trash_message">Kidokezo hiki kitaelekezwa kwenye takataka. Unaweza kikirejesha ndani ya siku 30.</string>
+    <string name="export_as_pdf_subtitle">Hifadhi nakala ya PDF ya kidokezo hiki</string>
+    <string name="share_subtitle">Shirikisha kupitia programu nyingine</string>
+    <string name="print_subtitle">Chapisha kidokezo hiki</string>
+    <string name="untitled">Baina</string>
+    <string name="last_saved">Ilifadhiwa mara ya mwisho: %s</string>
+    <string name="delete">Futa</string>
+    <string name="edit">Hariri</string>
+    <string name="done">Imekamilika</string>
+    <string name="back">Rudi</string>
+    <string name="close">Funga</string>
+    <string name="confirm">Thibitisha</string>
+    <string name="discard">Tupa</string>
+    <string name="retry">Jaribu tena</string>
+    <string name="skip">Ruka</string>
+    <string name="next">Ifuatayo</string>
+    <string name="previous">Iliyotangulia</string>
+    <string name="continue_action">Endelea</string>
+    <string name="finish">Maliza</string>
+    <string name="apply">Tumia</string>
+    <string name="reset">Weka upya</string>
+    <string name="clear">Safisha</string>
+    <string name="search">Tafuta</string>
+    <string name="filter">Chuja</string>
+    <string name="sort">Panga</string>
+    <string name="share">Shirikisha</string>
+    <string name="copy">Nakili</string>
+    <string name="paste">Bandika</string>
+    <string name="undo">Tendua</string>
+    <string name="redo">Fanya tena</string>
+    <string name="select_all">Chagua zote</string>
+    <string name="deselect_all">Ondoa uchaguzi wote</string>
+    <string name="more_options">Chaguzi zaidi</string>
+    <string name="settings">Mipangilio</string>
+    <string name="help">Msaada</string>
+    <string name="feedback">Maoni</string>
+    <string name="loading">Inapakia…</string>
+    <string name="refreshing">Inasasisha…</string>
+    <string name="saving">Inahifadhi…</string>
+    <string name="deleting">Inafuta…</string>
+    <string name="please_wait">Tafadhali subiri…</string>
+    <string name="see_all">Ona zote</string>
+    <string name="show_less">Onyesha kidogo</string>
+    <string name="show_more">Onyesha zaidi</string>
+    <string name="optional">Hiari</string>
+    <string name="required">Inahitajika</string>
+    <string name="none">Hakuna</string>
+    <string name="unknown">Haijulikani</string>
+    <string name="today">Leo</string>
+    <string name="yesterday">Jana</string>
+    <string name="tomorrow">Kesho</string>
+    <string name="this_week">Wiki hii</string>
+    <string name="last_week">Wiki iliyopita</string>
+    <string name="next_week">Wiki ijayo</string>
+    <string name="this_month">Mwezi huu</string>
+    <string name="all">Zote</string>
+    <string name="new_action">Mpya</string>
+    <string name="add">Ongeza</string>
+    <string name="remove">Ondoa</string>
+    <string name="create">Unda</string>
+    <string name="update">Sasisha</string>
+    <string name="restore">Rejesha</string>
+    <string name="archive">Hifadhi</string>
+    <string name="unarchive">Ondoa kutoka kwenye akiba</string>
+    <string name="pin">Bandika</string>
+    <string name="unpin">Ondoa bandiko</string>
+    <string name="move">Hamisha</string>
+    <string name="rename">Badilisha jina</string>
+    <string name="duplicate">Nakili</string>
+    <string name="open">Fungua</string>
+    <string name="view">Tazama</string>
+    <string name="preview">Kagua</string>
+    <string name="expand">Panua</string>
+    <string name="collapse">Kata</string>
+    <string name="enable">Washa</string>
+    <string name="disable">Zima</string>
+    <string name="turn_on">Washa</string>
+    <string name="turn_off">Zima</string>
+    <string name="yes">Ndiyo</string>
+    <string name="no">Hapana</string>
+    <string name="not_now">Si sasa</string>
+    <string name="got_it">Naelewa</string>
+    <string name="learn_more">Jifunze zaidi</string>
+    <string name="send">Tuma</string>
+    <string name="submit">Wasilisha</string>
+    <string name="upload">Pakia</string>
+    <string name="download">Pakua</string>
+    <string name="link">Unganisha</string>
+    <string name="unlink">Ondoa muunganisho</string>
+    <string name="connect">Unganisha</string>
+    <string name="disconnect">Tenganisha</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ERRORS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Kuna hitilafu. Tafadhali jaribu tena.</string>
+    <string name="error_network">Hakuna muunganisho wa mtandao. Angalia muunganisho wako na jaribu tena.</string>
+    <string name="error_timeout">Ombi limeisha muda. Tafadhali jaribu tena.</string>
+    <string name="error_server">Hitilafu ya seva. Tafadhali jaribu tena baadaye.</string>
+    <string name="error_not_found">Kitu kilichohitajika hakikupatikana.</string>
+    <string name="error_unauthorized">Kipindi chako kimeisha. Tafadhali ingia tena.</string>
+    <string name="error_forbidden">Huna ruhusa ya kufanya kitendo hiki.</string>
+    <string name="error_validation">Tafadhali angalia fomu na ukashe hitilafu zozote.</string>
+    <string name="error_unknown">Hitilafu isiyotarajika imetokea.</string>
+    <string name="error_loading">Imeshindwa kupakia. Gonga ili ujaribu tena.</string>
+    <string name="error_saving">Imeshindwa kuhifadhi. Tafadhali jaribu tena.</string>
+    <string name="error_deleting">Imeshindwa kufuta. Tafadhali jaribu tena.</string>
+    <string name="error_no_data">Hakuna data inayopatikana.</string>
+    <string name="error_offline_action">Kitendo hiki kinahitaji muunganisho wa mtandao.</string>
+    <string name="error_conflict">Kumekuwa na migongano. Tafadhali sasisha na ujaribu tena.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONBOARDING                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Kila kitu mahali pamoja</string>
+    <string name="onboarding_page1_body">Vidokezo, kazi, na kalenda yako imeunganishwa kwenye eneo kazi moja.</string>
+    <string name="onboarding_page2_title">Kaa kwenye mtiririko wako</string>
+    <string name="onboarding_page2_body">Kipima muda wa Pomodoro kinajua unafanya kazi gani na kinafuatilia muda wako kiotomatiki.</string>
+    <string name="onboarding_page3_title">AI inayoelewa wewe</string>
+    <string name="onboarding_page3_body">Msaidizi wako anaona kazi zako zinazofanya kazi, matukio yajayo, na vidokezo vya hivi karibuni kabla ya kujibu.</string>
+    <string name="onboarding_get_started">Anza</string>
+    <string name="onboarding_skip">Ruka</string>
+    <string name="onboarding_next">Ifuatayo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AUTH — General                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Ingia</string>
+    <string name="auth_sign_up">Jiandikishe</string>
+    <string name="auth_sign_out">Ondoka</string>
+    <string name="auth_log_in">Ingia</string>
+    <string name="auth_log_out">Ondoka</string>
+    <string name="auth_create_account">Unda akaunti</string>
+    <string name="auth_already_have_account">Tayari una akaunti?</string>
+    <string name="auth_skip_login">Endelea bila akaunti</string>
+    <string name="auth_dont_have_account">Huna akaunti?</string>
+    <string name="auth_welcome_back">Karibu tena</string>
+    <string name="auth_create_your_account">Unda akaunti yako</string>
+    <string name="auth_join_productivityx">Jiunge na ProductivityX</string>
+    <string name="auth_welcome_aboard">Karibu!</string>
+    <string name="auth_account_created_success">Akaunti yako imeundwa kwa mafanikio</string>
+
+    <!-- AUTH — Forgot / Reset password -->
+    <string name="auth_forgot_password">Umesahau nenosiri?</string>
+    <string name="auth_forgot_password_title">Umesahau nenosiri lako?</string>
+    <string name="auth_forgot_password_body">Weka anwani yako ya barua pepe na tutakutumia kiungo kurejesha nenosiri lako.</string>
+    <string name="auth_forgot_password_success_title">Kiungo kurejesha kimetumwa</string>
+    <string name="auth_forgot_password_success_body">Ikiwa barua pepe hiyo ipo, kiungo kurejesha kimetumwa. Angalia kisanduku chako.</string>
+
+    <string name="auth_reset_password_title">Weka upya nenosiri lako</string>
+    <string name="auth_reset_password_body">Weka nenosiri jipya kwa akaunti yako.</string>
+    <string name="auth_reset_password_action">Weka upya nenosiri</string>
+    <string name="auth_reset_password_success_title">Nenosiri limewekwa upya!</string>
+    <string name="auth_reset_password_success_body">Nenosiri lako limeduliwa. Ingia kwa nenosiri jipya lako.</string>
+
+    <!-- AUTH — Verify email / OTP -->
+    <string name="auth_verify_email_title">Angalia barua pepe yako</string>
+    <string name="auth_verify_email_body">Tumetuma nambari ya tarakimu 6 kwa %1$s</string>
+    <string name="auth_verify">Thibitisha</string>
+    <string name="auth_resend_code">Tuma tena nambari</string>
+    <string name="auth_resend_cooldown">Tuma tena baada ya %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FORM FIELDS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">Anwani ya barua pepe</string>
+    <string name="field_email_hint">Weka barua pepe yako</string>
+    <string name="field_password">Nenosiri</string>
+    <string name="field_password_hint">Weka nenosiri lako</string>
+    <string name="field_password_new">Nenosiri jipya</string>
+    <string name="field_password_new_hint">Weka nenosiri jipya</string>
+    <string name="field_password_confirm">Thibitisha nenosiri</string>
+    <string name="field_password_confirm_hint">Weka tena nenosiri lako</string>
+    <string name="field_password_current">Nenosiri la sasa</string>
+    <string name="field_password_current_hint">Weka nenosiri la sasa</string>
+    <string name="field_username">Jina la mtumiaji</string>
+    <string name="field_username_hint">Chagua jina la mtumiaji</string>
+    <string name="field_first_name">Jina la kwanza</string>
+    <string name="field_first_name_hint">Weka jina lako la kwanza</string>
+    <string name="field_last_name">Jina la mwisho</string>
+    <string name="field_last_name_hint">Weka jina lako la mwisho</string>
+    <string name="field_phone">Nambari ya simu</string>
+    <string name="field_phone_hint">Weka nambari yako ya simu</string>
+    <string name="field_birth_date">Tarehe ya kuzaliwa</string>
+    <string name="field_birth_date_hint">Chagua tarehe yako ya kuzaliwa</string>
+    <string name="field_identifier">Barua pepe, jina la mtumiaji, au simu</string>
+    <string name="field_identifier_hint">Weka barua pepe, jina la mtumiaji, au simu</string>
+    <string name="field_gender">Jinsia</string>
+    <string name="field_bio">Wasifu</string>
+    <string name="field_bio_hint">Tuambie kidogo kukuhusu</string>
+    <string name="field_timezone">Saa za eneo</string>
+    <string name="field_language">Lugha</string>
+    <string name="field_theme">Mandhari</string>
+    <string name="field_avatar">Picha ya wasifu</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PASSWORD                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Onyesha nenosiri</string>
+    <string name="password_hide">Ficha nenosiri</string>
+    <string name="password_strength_weak">Dhaifu</string>
+    <string name="password_strength_fair">Wastani</string>
+    <string name="password_strength_good">Nzuri</string>
+    <string name="password_strength_strong">Imara</string>
+    <string name="password_requirement_length">Herufi angalau 8</string>
+    <string name="password_requirement_uppercase">Herufi moja ya juu</string>
+    <string name="password_requirement_lowercase">Herufi moja ya chini</string>
+    <string name="password_requirement_number">Nambari moja</string>
+    <string name="password_requirement_special">Herufi maalum moja</string>
+    <string name="password_forgot">Umesahau nenosiri?</string>
+    <string name="password_reset">Weka upya nenosiri</string>
+    <string name="password_change">Badilisha nenosiri</string>
+    <string name="password_mismatch">Nenosiri hazifanani.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- REGISTER STEPS                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Akaunti</string>
+    <string name="register_step_profile">Wasifu</string>
+    <string name="register_step_preferences">Mapendeleo</string>
+    <string name="register_step_verify">Thibitisha</string>
+    <string name="register_step_indicator">Hatua %1$d kati ya %2$d</string>
+    <string name="register_change_photo">Badilisha picha</string>
+    <string name="register_profile_photo_hint">Gonga ili kuongeza picha ya wasifu</string>
+    <string name="register_preferences_caption">Unaweza kubadilisha haya wakati wowote kwenye mipangilio.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- THEME / PROFILE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Giza</string>
+    <string name="theme_light">Nuru</string>
+    <string name="theme_system">Mfumo</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">Mandhari</string>
+    <string name="profile_theme_hint">Unaweza kubadilisha hili wakati wowote kwenye mipangilio.</string>
+
+    <!-- Gender -->
+    <string name="gender_male">Mwanaume</string>
+    <string name="gender_female">Mwanamke</string>
+    <string name="gender_prefer_not_to_say">Napendelea kutosema</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Nyumbani</string>
+    <string name="nav_notes">Vidokezo</string>
+    <string name="nav_tasks">Kazi</string>
+    <string name="nav_calendar">Kalenda</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Tafuta</string>
+    <string name="nav_profile">Wasifu</string>
+    <string name="nav_settings">Mipangilio</string>
+    <string name="nav_trash">Takataka</string>
+    <string name="nav_history">Historia</string>
+    <string name="nav_events">Matukio</string>
+    <string name="tab_dashboard">Dashibodi</string>
+    <string name="tab_events">Matukio</string>
+    <string name="tab_dashboard_desc">Muhtasari wa siku yako</string>
+    <string name="tab_notes_desc">Nakili mawazo yako</string>
+    <string name="tab_tasks_desc">Fanya kazi</string>
+    <string name="tab_events_desc">Ratiba yako kwa macho</string>
+    <string name="tab_pomodoro_desc">Kaa kwenye mtiririko</string>
+    <string name="cd_notifications">Arifa</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Habari za asubuhi, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Habari za mchana, %1$s 👋</string>
+    <string name="home_greeting_evening">Habari za jioni, %1$s 👋</string>
+    <string name="home_greeting_night">Usiku mwema, %1$s 👋</string>
+    <string name="home_quick_add">Ongeza haraka</string>
+    <string name="home_due_today">Inastahili Leo</string>
+    <string name="home_overdue">Imepita muda</string>
+    <string name="home_this_week">Wiki hii</string>
+    <string name="home_total_notes">Jumla ya Vidokezo</string>
+    <string name="home_focus_time">Muda wa kufokusia leo</string>
+    <string name="home_focus_minutes">Focus time</string>
+    <string name="home_upcoming_events">Matukio Yajayo</string>
+    <string name="home_recent_notes">Vidokezo vya Hivi Karibuni</string>
+    <string name="home_no_tasks_today">Hakuna kazi zinazostahili leo.</string>
+    <string name="home_no_events">Hakuna matukio yajayo.</string>
+    <string name="home_no_notes">Hakuna vidokezo vya hivi karibuni.</string>
+    <string name="home_sessions_today">Vikao vya leo</string>
+    <string name="home_completed_tasks">Kazi zilizokamilika</string>
+    <string name="home_start_focus">Anza kufokusia</string>
+    <string name="home_tasks_completed">kazi zimekamilika</string>
+    <string name="home_events_upcoming">matukio yajayo</string>
+    <string name="home_quick_actions_cd">Vitendo vya haraka</string>
+    <string name="home_quick_action_new_note">Kidokezo Kipya</string>
+    <string name="home_quick_action_new_task">Kazi Mpya</string>
+    <string name="home_quick_action_calculator">Kiwamati</string>
+    <string name="home_quick_action_start_timer">Anza Kipima Muda</string>
+    <string name="home_quick_action_ai_chat">Mazungumzo ya AI</string>
+    <string name="home_error_something_wrong">Kuna hitilafu</string>
+    <string name="home_opening_new_note">Inafungua kidokezo kipya…</string>
+    <string name="home_opening_new_task">Inafungua kazi mpya…</string>
+    <string name="home_starting_timer">Inaanza kipima muda…</string>
+    <string name="home_opening_ai_chat">Inafungua mazungumzo ya AI…</string>
+    <string name="home_opening_calculator">Inafungua kiwamati…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTES                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Vidokezo</string>
+    <string name="notes_new">Kidokezo kipya</string>
+    <string name="notes_search_hint">Tafuta vidokezo…</string>
+    <string name="notes_filter_all">Zote</string>
+    <string name="notes_filter_pinned">Yaliyobandikwa</string>
+    <string name="notes_empty_title">Bado hakuna vidokezo</string>
+    <string name="notes_empty_body">Anza kuandika kidokezo chako cha kwanza.</string>
+    <string name="notes_empty_action">Unda kidokezo</string>
+    <string name="notes_pinned_section">Yaliyobandikwa</string>
+    <string name="notes_all_section">Vidokezo Vyote</string>
+    <string name="notes_untitled">Baina</string>
+    <string name="notes_title_hint">Title</string>
+    <string name="notes_word_count">%1$d maneno</string>
+    <string name="notes_reading_time">%1$d dakika kusoma</string>
+    <string name="notes_pin_success">Kidokezo kimebandikwa.</string>
+    <string name="notes_unpin_success">Kidokezo kimeondolewa.</string>
+    <string name="notes_delete_confirm_title">Hamisha kwenye takataka?</string>
+    <string name="notes_delete_confirm_body">Kidokezo hiki kitaelekezwa kwenye takataka na kitafutwa kabisa baada ya siku 30.</string>
+    <string name="notes_delete_success">Kidokezo kimehamishwa kwenye takataka.</string>
+    <string name="notes_restore_success">Kidokezo kimerudishwa.</string>
+    <string name="notes_hard_delete_confirm_title">Futa kabisa?</string>
+    <string name="notes_hard_delete_confirm_body">Kidokezo hiki kitafutwa kabisa na hakiwezi kurejeshwa.</string>
+    <string name="notes_hard_delete_success">Kidokezo kimefutwa kabisa.</string>
+    <string name="notes_create_success">Kidokezo kimeundwa.</string>
+    <string name="notes_update_success">Kidokezo kimehifadhiwa.</string>
+    <string name="notes_autosave">Imehifadhiwa kiotomatiki</string>
+    <string name="notes_saving">Inahifadhi…</string>
+    <string name="notes_copy_link">Nakili kiungo</string>
+    <string name="notes_link_copied">Kiungo kimenakiliwa.</string>
+    <string name="notes_link_task">Unganisha kazi</string>
+    <string name="notes_unlink_task">Ondoa muunganisho wa kazi</string>
+    <string name="notes_task_linked">Imeunganishwa na: %1$s</string>
+    <string name="notes_add_tag">Ongeza lebo</string>
+    <string name="notes_no_tags">Hakuna lebo</string>
+    <string name="notes_start_writing">Anza kuandika…</string>
+    <string name="notes_trash_empty_title">Takataka ni tupu</string>
+    <string name="notes_trash_empty_body">Vidokezo kwenye takataka vinafutwa kabisa baada ya siku 30.</string>
+    <string name="notes_trash_empty_all">Ondoa takataka</string>
+    <string name="notes_trash_empty_all_confirm_title">Ondoa takataka?</string>
+    <string name="notes_trash_empty_all_confirm_body">Vidokezo vyote kwenye takataka vitafutwa kabisa.</string>
+    <string name="notes_in_trash">%1$d kidokezo kwenye takataka</string>
+    <string name="notes_in_trash_plural">%1$d vidokezo kwenye takataka</string>
+    <string name="notes_voice_memo">Kumbukumbu ya sauti</string>
+    <string name="notes_selected_count">%1$d zimechaguliwa</string>
+    <string name="notes_search_no_results">Hakuna vidokezo vinavyolingana na "%1$s"</string>
+    <string name="notes_links_title">Viungo vya Vidokezo</string>
+    <string name="notes_links_empty">Hakuna vidokezo vilivyounganishwa</string>
+    <string name="trash_days_left">Siku %1$d zimebaki</string>
+    <string name="trash_expiring_soon">Itaisha hivi karibuni</string>
+    <string name="trash_delete_permanently">Futa kabisa</string>
+    <string name="trash_empty_confirm_body">%1$s itafutwa kabisa na haitaweza kurejeshwa.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Uso kamili</string>
+    <string name="editor_format_italic">Herufi laini</string>
+    <string name="editor_format_heading">Kichwa</string>
+    <string name="editor_format_list_bullet">Orodha ya nukta</string>
+    <string name="editor_format_list_numbered">Orodha ya nambari</string>
+    <string name="editor_format_code">Msimbo</string>
+    <string name="editor_format_quote">Nukta</string>
+    <string name="editor_format_link">Weka kiungo</string>
+    <string name="editor_insert_link_title">Weka kiungo</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Maandishi ya kuonyesha</string>
+    <string name="editor_format_underline">Piga mstari</string>
+    <string name="editor_format_strikethrough">Vunja maandishi</string>
+    <string name="editor_format_heading1">Kichwa 1</string>
+    <string name="editor_format_heading2">Kichwa 2</string>
+    <string name="editor_format_heading3">Kichwa 3</string>
+    <string name="editor_format_code_block">Kizuizi cha msimbo</string>
+    <string name="editor_format_divider">Mgawanyo</string>
+    <string name="editor_format_image">Ongeza picha</string>
+    <string name="editor_format_table">Weka jedwali</string>
+    <string name="editor_format_highlight">Angazia</string>
+    <string name="editor_highlight_color">Rangi ya kuangazia</string>
+    <string name="editor_highlight_default">Kuweka msingi</string>
+    <string name="editor_text_color">Rangi ya maandishi</string>
+    <string name="editor_font_size">Ukubwa wa fonti</string>
+    <string name="editor_start_writing">Anza kuandika…</string>
+    <string name="editor_saved">Imehifadhiwa</string>
+    <string name="editor_share_note">Shirikisha Kidokezo</string>
+    <string name="editor_pdf_filename">Kidokezo</string>
+    <string name="editor_content_hint">Anza kuandika…</string>
+    <string name="editor_insert_table_title">Weka Jedwali</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">Safu ya kichwa</string>
+    <string name="editor_table_header_template">Kichwa %1$d</string>
+    <string name="editor_table_cell_template">Seli</string>
+    <string name="editor_insert_table_btn">Weka</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAGS                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Lebo</string>
+    <string name="tags_new">Lebo mpya</string>
+    <string name="tags_name_hint">Jina la lebo</string>
+    <string name="tags_color">Rangi</string>
+    <string name="tags_create_success">Lebo imeundwa.</string>
+    <string name="tags_update_success">Lebo imesasishwa.</string>
+    <string name="tags_delete_success">Lebo imefutwa.</string>
+    <string name="tags_delete_confirm_title">Futa lebo?</string>
+    <string name="tags_delete_confirm_body">Lebo hii itaondolewa kwenye vidokezo vyote vinavyoitumia.</string>
+    <string name="tags_already_exists">Lebo yenye jina hili tayari ipo.</string>
+    <string name="tags_empty_title">Bado hakuna lebo</string>
+    <string name="tags_empty_body">Unda lebo ili kupanga vidokezo vyako.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TASKS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Kazi</string>
+    <string name="tasks_new">Kazi mpya</string>
+    <string name="tasks_search_hint">Tafuta au chuja kazi…</string>
+    <string name="tasks_tab_all">Zote</string>
+    <string name="tasks_tab_today">Leo</string>
+    <string name="tasks_tab_upcoming">Zinazokuja</string>
+    <string name="tasks_tab_completed">Zilizokamilika</string>
+    <string name="tasks_view_list">Orodha</string>
+    <string name="tasks_empty_title">Hakuna kazi hapa</string>
+    <string name="tasks_empty_body">Unda kazi yako ya kwanza ili uanze.</string>
+    <string name="tasks_empty_action">Unda kazi</string>
+    <string name="tasks_empty_today">Hakuna kazi inazostahili leo. Furahia siku yako!</string>
+    <string name="tasks_empty_upcoming">Hakuna kazi zinazokuja.</string>
+    <string name="tasks_empty_completed">Bado hakuna kazi zilizokamilika.</string>
+    <string name="tasks_empty_filter">Hakuna kazi zinazolingana na chujo hii.</string>
+    <string name="tasks_field_title">Kichwa cha kazi</string>
+    <string name="tasks_field_title_hint">Nini kinahitaji kufanywa?</string>
+    <string name="tasks_field_description">Maelezo</string>
+    <string name="tasks_field_description_hint">Ongeza maelezo zaidi…</string>
+    <string name="tasks_field_due_date">Tarehe ya mwisho</string>
+    <string name="tasks_field_due_time">Saa ya mwisho</string>
+    <string name="tasks_field_priority">Kipaumbele</string>
+    <string name="tasks_field_status">Hali</string>
+    <string name="tasks_field_reminder">Ukumbusho</string>
+    <string name="tasks_field_estimated_time">Muda unaokadiriwa</string>
+    <string name="tasks_field_actual_time">Muda halisi</string>
+    <string name="tasks_field_link_event">Unganisha tukio</string>
+    <string name="tasks_field_subtasks">Kazi ndogo</string>
+    <string name="tasks_add_subtask">Ongeza kazi ndogo</string>
+    <string name="tasks_subtask_count">%1$d kazi ndogo</string>
+    <string name="tasks_subtask_count_plural">%1$d kazi ndogo</string>
+    <string name="tasks_subtask_completed">%1$d kati ya %2$d zimekamilika</string>
+    <string name="tasks_pomodoro_sessions">Vikao vya kufokusia</string>
+    <string name="tasks_no_due_date">Hakuna tarehe ya mwisho</string>
+    <string name="tasks_no_due_time">Hakuna saa iliyowekwa</string>
+    <string name="tasks_no_reminder">Hakuna ukumbusho</string>
+    <string name="tasks_no_estimated">Hakuna ukadiriaji</string>
+    <string name="tasks_create_success">Kazi imeundwa.</string>
+    <string name="tasks_update_success">Kazi imesasishwa.</string>
+    <string name="tasks_delete_success">Kazi imefutwa.</string>
+    <string name="tasks_restore_success">Kazi imerudishwa.</string>
+    <string name="tasks_complete_success">Kazi imekamilika.</string>
+    <string name="tasks_reorder_success">Kazi zimepangwa upya.</string>
+    <string name="tasks_status_updated">Hali imesasishwa.</string>
+    <string name="tasks_delete_confirm_title">Futa kazi?</string>
+    <string name="tasks_delete_confirm_body">Kazi hii itafutwa.</string>
+    <string name="tasks_minutes">%1$d dakika</string>
+    <string name="tasks_hours_minutes">%1$ds %2$dd</string>
+    <string name="tasks_swipe_complete">Kamilisha</string>
+    <string name="tasks_swipe_delete">Futa</string>
+    <string name="tasks_sort_due_date">Tarehe ya mwisho</string>
+    <string name="tasks_sort_priority">Kipaumbele</string>
+    <string name="tasks_sort_created">Imeundwa</string>
+    <string name="tasks_sort_title">Kichwa</string>
+    <string name="tasks_filter_priority">Chuja kwa kipaumbele</string>
+    <string name="tasks_filter_status">Chuja kwa hali</string>
+    <string name="tasks_filter_due">Chuja kwa tarehe ya mwisho</string>
+    <string name="tasks_overdue_label">Imepita muda</string>
+    <string name="tasks_due_today_label">Inastahili leo</string>
+    <string name="tasks_due_tomorrow_label">Inastahili kesho</string>
+
+    <!-- Priority / Status -->
+    <string name="priority_low">Chini</string>
+    <string name="priority_medium">Wastani</string>
+    <string name="priority_high">Ju</string>
+    <string name="priority_urgent">Haraka</string>
+
+    <string name="status_todo">Kufanya</string>
+    <string name="status_in_progress">Inaendelea</string>
+    <string name="status_on_hold">Imesimamishwa</string>
+    <string name="status_done">Imekamilika</string>
+    <string name="status_cancelled">Imefutwa</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">Kufanya</string>
+    <string name="kanban_column_in_progress">Inaendelea</string>
+    <string name="kanban_column_on_hold">Imesimamishwa</string>
+    <string name="kanban_column_done">Imekamilika</string>
+    <string name="kanban_add_task">Ongeza kazi</string>
+    <string name="kanban_drag_hint">Shika na uburute ili kusogeza</string>
+    <string name="kanban_column_empty">Hakuna kazi hapa</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CALENDAR                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Kalenda</string>
+    <string name="calendar_view_week">Wiki</string>
+    <string name="calendar_view_month">Mwezi</string>
+    <string name="calendar_today">Leo</string>
+    <string name="calendar_new_event">Tukio jipya</string>
+    <string name="calendar_no_events">Hakuna matukio</string>
+    <string name="calendar_all_day">Siku nzima</string>
+    <string name="calendar_recurring">Inarudiwa</string>
+    <string name="calendar_events_count">%1$d tukio</string>
+    <string name="calendar_events_count_plural">%1$d matukio</string>
+    <string name="calendar_more_events">+%1$d zaidi</string>
+    <string name="calendar_week_header">Wiki ya %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EVENTS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Tukio Jipya</string>
+    <string name="event_edit_title">Hariri Tukio</string>
+    <string name="event_field_title">Kichwa cha tukio</string>
+    <string name="event_field_title_hint">Tukio gani?</string>
+    <string name="event_field_description">Maelezo</string>
+    <string name="event_field_description_hint">Ongeza maelezo kuhusu tukio hili…</string>
+    <string name="event_field_location">Mahali</string>
+    <string name="event_field_location_hint">Ongeza mahali</string>
+    <string name="event_field_start">Inaanza</string>
+    <string name="event_field_end">Inaisha</string>
+    <string name="event_field_all_day">Tukio la siku nzima</string>
+    <string name="event_field_color">Rangi</string>
+    <string name="event_field_recurrence">Urejesho</string>
+    <string name="event_field_reminder">Ukumbusho</string>
+    <string name="event_field_link_task">Unganisha kazi</string>
+    <string name="event_attendees">Washiriki</string>
+    <string name="event_meeting_link">Kiungo cha kikao</string>
+    <string name="event_travel_time">Muda wa usafiri</string>
+    <string name="event_quick_templates">Violezo vya haraka</string>
+    <string name="event_suggestions">Mapendekezo</string>
+    <string name="event_select_time">Chagua saa</string>
+    <string name="event_conflict">Mgongano wa saa</string>
+    <string name="event_conflict_with">Mgongano wa saa na matukio %d</string>
+    <string name="event_add_attendee_hint">Anwani ya barua pepe</string>
+    <string name="event_enter_location_hint">Weka mahali</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">Dakika</string>
+    <string name="event_add_location">Ongeza mahali</string>
+    <string name="event_add_description">Ongeza maelezo</string>
+    <string name="event_add_attendees">Ongeza washiriki</string>
+    <string name="event_add_link">Ongeza kiungo</string>
+    <string name="event_add_estimate">Ongeza ukadiriaji</string>
+    <string name="event_attendee_count">Washiriki %d</string>
+    <string name="event_reminder_multiple">Nyingi (%d)</string>
+    <string name="event_speak_prompt">Sema kichwa cha tukio</string>
+    <string name="task_delete_confirm">Futa kazi?</string>
+    <string name="task_delete_message">Kazi hii itahamishwa kwenye takataka.</string>
+    <string name="task_not_found">Kazi haijapatikana</string>
+    <string name="task_overdue">Imepita muda</string>
+    <string name="task_due_date">Tarehe ya mwisho</string>
+    <string name="task_due_time">Saa ya mwisho</string>
+    <string name="task_reminder">Ukumbusho</string>
+    <string name="task_reminder_set">Weka</string>
+    <string name="task_time">Saa</string>
+    <string name="task_assignee">Msimamizi</string>
+    <string name="task_assigned">Imekabidhiwa</string>
+    <string name="task_completed">Imekamilika</string>
+    <string name="task_priority">Kipaumbele</string>
+    <string name="task_subtasks">Kazi ndogo</string>
+    <string name="task_activity">Shughuli</string>
+    <string name="task_hide">Ficha</string>
+    <string name="task_events">Matukio %d</string>
+    <string name="task_add_description">Ongeza maelezo</string>
+    <string name="task_add_subtask">Ongeza kazi ndogo</string>
+    <string name="task_add_subtask_placeholder">Ongeza kazi ndogo…</string>
+    <string name="priority_low_importance">Umuhimu wa Chini</string>
+    <string name="priority_high_importance">Umuhimu wa Juu</string>
+    <string name="priority_not_urgent">Si Haraka</string>
+    <string name="priority_urgent_low">Haraka + Umuhimu wa Chini</string>
+    <string name="priority_urgent_high">Haraka + Umuhimu wa Juu</string>
+    <string name="priority_not_urgent_low">Si Haraka + Umuhimu wa Chini</string>
+    <string name="priority_not_urgent_high">Si Haraka + Umuhimu wa Juu</string>
+    <string name="task_title_placeholder">Kichwa cha kazi</string>
+    <string name="task_tags">Lebo</string>
+    <string name="task_add_tag">Ongeza lebo</string>
+    <string name="task_set_date">Weka tarehe</string>
+    <string name="task_set_time">Weka saa</string>
+    <string name="task_remind_before">Ukumbusho kabla</string>
+    <string name="task_repeat">Rudia</string>
+    <string name="task_never">Kamwe</string>
+    <string name="task_estimated_time">Muda unaokadiriwa</string>
+    <string name="task_status">Hali</string>
+    <string name="task_update">Sasisha</string>
+    <string name="task_create">Unda</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">Dhaifu</string>
+    <string name="password_fair">Wastani</string>
+    <string name="password_good">Nzuri</string>
+    <string name="password_strong">Imara</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">dk</string>
+    <string name="cd_recurring">Inarudiwa</string>
+    <string name="empty_tasks_list">Bado hakuna kazi</string>
+    <string name="empty_tasks_list_hint">Gonga + ili kuunda kazi yako ya kwanza</string>
+    <string name="empty_tasks_kanban">Hakuna kazi kwenye bodi</string>
+    <string name="empty_tasks_kanban_hint">Ongeza kazi ili kuanza</string>
+    <string name="empty_tasks_calendar">Hakuna kazi siku hii</string>
+    <string name="empty_tasks_calendar_hint">Chagua siku nyingine au ongeza kazi</string>
+    <string name="empty_tasks_timeline">Hakuna kazi katika kipindi hiki</string>
+    <string name="empty_tasks_timeline_hint">Sawazisha muda au ongeza kazi</string>
+
+    <!-- Preferences -->
+    <string name="pref_section_account">Akaunti</string>
+    <string name="pref_section_appearance">Mwonekano</string>
+    <string name="pref_section_notifications">Arifa</string>
+    <string name="pref_section_data_sync">Data &amp; Usawazishaji</string>
+    <string name="pref_section_beta">Vipengele vya Beta</string>
+    <string name="pref_section_about">Kuhusu</string>
+    <string name="pref_section_help">Msaada &amp; Usaidizi</string>
+    <string name="pref_search_placeholder">Tafuta mipangilio…</string>
+    <string name="pref_no_results">Hakuna matokeo kwa \"%s\"</string>
+    <string name="pref_theme">Mandhari</string>
+    <string name="pref_local_only_mode">Hali ya eneo pekee</string>
+    <string name="pref_local_only_mode_desc">Hifadhi data yote kwenye kifaa hiki</string>
+    <string name="pref_subscription">Usajili</string>
+    <string name="pref_free_plan">Mpango wa Bure</string>
+    <string name="pref_free">Bure</string>
+    <string name="pref_font_family">Aina ya Fonti</string>
+    <string name="pref_font_size">Ukubwa wa fonti</string>
+    <string name="pref_density">Msongamano</string>
+    <string name="pref_haptic_feedback">Mrejesho wa mguso</string>
+    <string name="pref_haptic_feedback_desc">Tetemeka wakati wa mwingiliano</string>
+    <string name="pref_quiet_hours">Saa za utulivu</string>
+    <string name="pref_quiet_hours_start">Anza</string>
+    <string name="pref_quiet_hours_end">Maliza</string>
+    <string name="pref_auto_sync">Usawazishaji wa kiotomatiki</string>
+    <string name="pref_auto_sync_desc">Sawazisha data kiotomatiki unapounganishwa</string>
+    <string name="pref_offline_mode">Hali ya nje ya mtandao</string>
+    <string name="pref_offline_mode_desc">Fanya kazi bila muunganisho wa mtandao</string>
+    <string name="pref_export_data">Hamisha data</string>
+    <string name="pref_export_data_desc">Hifadhi nakala ya data yako yote</string>
+    <string name="pref_import_data">Ingiza data</string>
+    <string name="pref_import_data_desc">Rejesha data kutoka kwenye faili ya nakala</string>
+    <string name="pref_version">Toleo</string>
+    <string name="pref_version_value">1.2.0 (ujumaji 42)</string>
+    <string name="pref_latest">Hivi karibuni</string>
+    <string name="pref_licenses">Leseni</string>
+    <string name="pref_licenses_desc">Programu za chanzo huria</string>
+    <string name="pref_credits">Ushukuru</string>
+    <string name="pref_terms">Masharti &amp; Viwango</string>
+    <string name="pref_privacy">Sera ya Faragha</string>
+    <string name="pref_faq">Maswali Yanayoulizwa Mara kwa Mara</string>
+    <string name="pref_faq_desc">Maswali yanayoulizwa mara kwa mara</string>
+    <string name="pref_contact">Wasiliana nasi</string>
+    <string name="pref_contact_desc">Wasiliana na timu</string>
+    <string name="pref_feedback">Tuma maoni</string>
+    <string name="pref_feedback_desc">Tusaidie kuboresha ProductivityX</string>
+    <string name="pref_feedback_subject">Maoni ya ProductivityX</string>
+    <string name="pref_select_hour">Chagua saa ya %s</string>
+    <string name="pref_settings">Mipangilio</string>
+    <string name="pref_close">Funga</string>
+    <string name="pref_enabled">Imewashwa</string>
+    <string name="pref_disabled">Imezimwa</string>
+    <string name="pref_theme_dark">Giza</string>
+    <string name="pref_theme_light">Nuru</string>
+    <string name="pref_theme_system">Mfumo</string>
+    <string name="pref_theme_ocean">Bahari</string>
+    <string name="pref_theme_amber">Amberi</string>
+    <string name="pref_theme_forest">MSitu</string>
+    <string name="pref_theme_rose">Waridi</string>
+    <string name="pref_theme_midnight">Usiku wa Manane</string>
+    <string name="pref_theme_dynamic">Inayobadilika</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">Mfumo</string>
+    <string name="pref_font_serif">Serif</string>
+    <string name="pref_font_mono">Mono</string>
+    <string name="pref_density_compact">Nyepesi</string>
+    <string name="pref_density_comfortable">Starehe</string>
+    <string name="pref_density_spacious">Pana</string>
+    <string name="pref_view_list">Orodha</string>
+    <string name="pref_view_kanban">Kanban</string>
+    <string name="pref_sort_due">Mwisho</string>
+    <string name="pref_sort_priority">Kipaumbele</string>
+    <string name="pref_sort_created">Imeundwa</string>
+    <string name="pref_calendar_week">Wiki</string>
+    <string name="pref_calendar_month">Mwezi</string>
+    <string name="pref_week_mon">Jumatatu</string>
+    <string name="pref_week_sun">Jumapili</string>
+    <string name="pref_week_sat">Jumamosi</string>
+    <string name="pref_ai_flash">Flash</string>
+    <string name="pref_ai_pro">Pro</string>
+    <string name="minute_abbrev">dk</string>
+
+    <string name="event_recurrence_none">Hairudii</string>
+    <string name="event_recurrence_daily">Kila siku</string>
+    <string name="event_recurrence_weekly">Kila wiki</string>
+    <string name="event_recurrence_monthly">Kila mwezi</string>
+    <string name="event_recurrence_yearly">Kila mwaka</string>
+    <string name="event_recurrence_custom">Desturi</string>
+    <string name="event_recurrence_weekdays">Kila siku ya kazi (Jumatatu–Ijumaa)</string>
+    <string name="event_recurrence_end_date">Inaisha</string>
+    <string name="event_recurrence_end_never">Kamwe</string>
+    <string name="event_recurrence_label">Inarudiwa: %1$s</string>
+    <string name="event_reminder_none">Hakuna ukumbusho</string>
+    <string name="event_reminder_at_time">Wakati wa tukio</string>
+    <string name="event_reminder_5_min">Dakika 5 kabla</string>
+    <string name="event_reminder_10_min">Dakika 10 kabla</string>
+    <string name="event_reminder_15_min">Dakika 15 kabla</string>
+    <string name="event_reminder_30_min">Dakika 30 kabla</string>
+    <string name="event_reminder_1_hour">Saa 1 kabla</string>
+    <string name="event_reminder_1_day">Siku 1 kabla</string>
+    <string name="event_create_success">Tukio limeundwa.</string>
+    <string name="event_update_success">Tukio limesasishwa.</string>
+    <string name="event_delete_success">Tukio limefutwa.</string>
+    <string name="event_restore_success">Tukio limerudishwa.</string>
+    <string name="event_untitled">Tukio Baina</string>
+    <string name="event_delete_cannot_undo">Kitendo hiki hakiwezi kutenduliwa.</string>
+    <string name="event_repeats">Inarudiwa</string>
+    <string name="event_detail_ends">Inaisha %1$s</string>
+    <string name="event_detail_timezone">Saa za eneo: %1$s</string>
+    <string name="event_detail_min_before">%1$d dk kabla</string>
+    <string name="event_detail_reminders">Ukumbusho: %1$s</string>
+    <string name="event_detail_attendees_count">Washiriki %1$d</string>
+    <string name="event_detail_travel_time">Muda wa usafiri: %1$d dk</string>
+    <string name="event_reminder_short_at_time">Wakati</string>
+    <string name="event_reminder_short_min">%1$d dk</string>
+    <string name="event_reminder_short_1_hour">Saa 1</string>
+    <string name="event_reminder_short_1_day">Siku 1</string>
+    <string name="event_delete_confirm_title">Futa tukio?</string>
+    <string name="cd_date_picker">Kuchagua tarehe</string>
+    <string name="cd_join">Jiunge</string>
+    <string name="cd_previous_year">Mwaka uliopita</string>
+    <string name="cd_next_year">Mwaka ujao</string>
+    <string name="event_delete_confirm_body">Tukio hili litafutwa.</string>
+    <string name="event_delete_recurring_title">Futa tukio linalorudiwa</string>
+    <string name="event_delete_recurring_body">Futa tukio hili au matukio yote kwenye mfululizo?</string>
+    <string name="event_delete_this_only">Tukio hili pekee</string>
+    <string name="event_delete_all_in_series">Matukio yote kwenye mfululizo</string>
+    <string name="event_end_before_start">Saa ya mwisho lazima iwe baada ya saa ya kuanza.</string>
+    <string name="event_location_open_maps">Fungua kwenye Ramani</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Kikao</string>
+    <string name="event_template_focus">Muda wa Kufokusia</string>
+    <string name="event_template_break">Mapumziko</string>
+    <string name="event_template_travel">Usafiri</string>
+    <string name="event_join_meeting">Jiunge na kikao</string>
+    <string name="event_navigate">Ongoa</string>
+    <string name="event_share">Shirikisha tukio</string>
+    <string name="event_duplicate">Nakili</string>
+    <string name="event_weather">Hali ya hewa</string>
+    <string name="event_timezone">Saa za eneo</string>
+    <string name="event_conflict_detected">Mgongano wa saa umegunduliwa</string>
+    <string name="event_reminder_add">Ongeza ukumbusho</string>
+    <string name="event_reminder_custom">Desturi</string>
+    <string name="event_voice_input">Uingizaji wa sauti</string>
+    <string name="event_smart_suggestion">Mapendekezo ya akili</string>
+    <string name="event_free_busy">Bure/Shughuli</string>
+    <string name="event_suggested_times">Saa zilizopendekezwa</string>
+    <string name="calendar_view_day">Siku</string>
+    <string name="calendar_view_agenda">Ajenda</string>
+    <string name="calendar_view_year">Mwaka</string>
+    <string name="calendar_date_jump">Ruka kwenye tarehe</string>
+    <string name="calendar_swipe_instruction">Buruta ili kuongea</string>
+    <string name="calendar_pinch_zoom">Bana ili kuza</string>
+    <string name="calendar_no_events_day">Hakuna matukio siku hii</string>
+    <string name="calendar_all_day_section">Siku nzima</string>
+    <string name="calendar_agenda_empty">Hakuna matukio yajayo</string>
+    <string name="calendar_heat_map_label">Shughuli</string>
+    <string name="calendar_upcoming_events">Matukio Yajayo</string>
+    <string name="calendar_free_busy_suggested">Bure/Shughuli &amp; Saa Zilizopendekezwa</string>
+    <string name="calendar_no_available_slots">Hakuna nafasi zilizopo kwa wiki hii</string>
+    <string name="calendar_free">Bure</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Kufokusia</string>
+    <string name="pomodoro_focus">Kufokusia</string>
+    <string name="pomodoro_short_break">Mapumziko Mafupi</string>
+    <string name="pomodoro_long_break">Mapumziko Marefu</string>
+    <string name="pomodoro_session_focus">Kikao cha Kufokusia</string>
+    <string name="pomodoro_session_short_break">Mapumziko Mafupi</string>
+    <string name="pomodoro_session_long_break">Mapumziko Marefu</string>
+    <string name="pomodoro_start">Anza</string>
+    <string name="pomodoro_pause">Simamisha</string>
+    <string name="pomodoro_resume">Endelea</string>
+    <string name="pomodoro_skip">Ruka</string>
+    <string name="pomodoro_stop">Simama</string>
+    <string name="pomodoro_reset">Weka upya</string>
+    <string name="pomodoro_link_task">Unganisha kazi</string>
+    <string name="pomodoro_link_task_hint">Gonga ili kuunganisha kazi</string>
+    <string name="pomodoro_linked_task">Inakususia: %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d kikao leo</string>
+    <string name="pomodoro_sessions_today_plural">%1$d vikao leo</string>
+    <string name="pomodoro_focus_time_today">%1$s imekususia leo</string>
+    <string name="pomodoro_completed_today">Imekamilika leo</string>
+    <string name="pomodoro_no_active_session">Hakuna kikao kinachofanya kazi</string>
+    <string name="pomodoro_session_complete_title">Kikao kimekamilika! 🎉</string>
+    <string name="pomodoro_session_complete_body">Kazi nzuri. Pumzika!</string>
+    <string name="pomodoro_break_complete_title">Mapumziko yameisha</string>
+    <string name="pomodoro_break_complete_body">Uko tayari kufokusia tena?</string>
+    <string name="pomodoro_start_success">Kikao kimeanza.</string>
+    <string name="pomodoro_end_success">Kikao kimekamilika.</string>
+    <string name="pomodoro_interrupt_success">Kikao kimesimamishwa.</string>
+    <string name="pomodoro_interrupt_reason_hint">Kwa nini unaisimamisha? (hiari)</string>
+    <string name="pomodoro_interrupt_confirm_title">Simamisha kikao?</string>
+    <string name="pomodoro_interrupt_confirm_body">Maendeleo yako yatahifadhiwa lakini kikao kitawekwa alama ya kusimamishwa.</string>
+    <string name="pomodoro_already_active">Tayari una kikao kinachofanya kazi. Kimaliza kabla ya kuanza kipya.</string>
+    <string name="pomodoro_stats_title">Takwimu za Leo</string>
+    <string name="pomodoro_history_title">Historia ya Vikao</string>
+    <string name="pomodoro_history_empty_title">Bado hakuna vikao</string>
+    <string name="pomodoro_history_empty_body">Anza kikao cha kufokusia ili uone historia yako hapa.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Kusimamishwa</string>
+    <string name="pomodoro_session_completed">Imekamilika</string>
+    <string name="pomodoro_dot_current">Kikao cha sasa</string>
+    <string name="pomodoro_dot_completed">Kikao kilichokamilika</string>
+    <string name="pomodoro_dot_upcoming">Kikao kijacho</string>
+    <string name="pomodoro_notification_channel_name">Kipima Muda wa Pomodoro</string>
+    <string name="pomodoro_notification_channel_desc">Sasisha za kipima muda moja kwa moja na arifa za vikao.</string>
+    <string name="pomodoro_notification_running">%1$s zimebaki — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Simamisha</string>
+    <string name="pomodoro_notification_action_skip">Ruka</string>
+    <string name="pomodoro_notification_action_stop">Simama</string>
+    <string name="pomodoro_cycle_count">Mzunguko %1$d wa %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d kikao kabla ya mapumziko marefu</string>
+    <string name="pomodoro_until_long_break_plural">%1$d vikao kabla ya mapumziko marefu</string>
+
+    <string name="pomodoro_swipe_to_skip">BURUTA ILI RUKA</string>
+    <string name="pomodoro_extend_1min">+1 Dk</string>
+    <string name="pomodoro_focus_analytics">Uchambuzi wa Kufokusia</string>
+    <string name="pomodoro_streak_day">Mfuatano wa Siku %1$d</string>
+    <string name="pomodoro_best_streak">Bora: siku %1$d</string>
+    <string name="pomodoro_weekly_intensity">Mwanzo wa Wiki</string>
+    <string name="pomodoro_focus_by_category">Kufokusia kwa Jamii</string>
+    <string name="pomodoro_quality_score">Alama ya Ubora</string>
+    <string name="pomodoro_total_focus_time">Jumla ya Kufokusia</string>
+    <string name="pomodoro_daily_goal">Lengo la Kila Siku</string>
+    <string name="pomodoro_weekly_goal">Lengo la Wiki</string>
+    <string name="pomodoro_exit_focus_mode">Ondoka kwenye Hali ya Kufokusia</string>
+    <string name="pomodoro_dnd">DND</string>
+    <string name="pomodoro_background">Usuli</string>
+    <string name="pomodoro_sounds">Sauti</string>
+    <string name="pomodoro_focus_mode">Hali ya Kufokusia</string>
+    <string name="pomodoro_unlink">Ondoa muunganisho</string>
+    <string name="pomodoro_play_pause">Cheza/Simamisha</string>
+    <string name="pomodoro_no_active_tasks">Hakuna kazi zinazofanya kazi zinazopatikana.</string>
+    <string name="pomodoro_ambient_sound">Sauti ya Mazingira</string>
+    <string name="pomodoro_today_sessions">Vikao vya Leo</string>
+    <string name="pomodoro_no_sessions_today">Bado hakuna vikao leo</string>
+    <string name="pomodoro_interrupt_button">Sisimamishe</string>
+    <string name="pomodoro_dnd_access_required">Ruhusa ya DND inahitajika. Tafadhali washisha kwenye mipangilio.</string>
+    <string name="pomodoro_ambient_rain">Mvua</string>
+    <string name="pomodoro_ambient_cafe">Kahawa</string>
+    <string name="pomodoro_ambient_white_noise">Kelele Nyeupe</string>
+    <string name="pomodoro_ambient_nature">Asili</string>
+    <string name="pomodoro_paused">Imesimamishwa</string>
+    <string name="pomodoro_done">Imekamilika! 🎉</string>
+    <string name="pomodoro_general_focus">Kufokusia Jumla</string>
+    <string name="pomodoro_sessions_label">VIKAO</string>
+    <string name="pomodoro_focus_time_label">MUDA WA KUFOKUSIA</string>
+    <string name="pomodoro_streak_label">MFUATANO</string>
+    <string name="pomodoro_less">Chache</string>
+    <string name="pomodoro_more">Zaidi</string>
+    <string name="pomodoro_no_category_data">Hakuna data ya jamii inayopatikana</string>
+    <string name="pomodoro_ongoing">Inaendelea</string>
+    <string name="pomodoro_duration_min">%d dk</string>
+    <string name="pomodoro_toggle">Badilisha</string>
+    <string name="pomodoro_ambient_sounds">Sauti za Mazingira</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">Msaidizi wa AI</string>
+    <string name="ai_welcome_title">Ninaweza kukusaidiaje?</string>
+    <string name="ai_welcome_body">Ninaona eneo lako la kazi — kazi, matukio, na vidokezo — ili kukupa majibu yanayofahamu muktadha.</string>
+    <string name="ai_message_hint">Ujumbe…</string>
+    <string name="ai_send">Tuma</string>
+    <string name="ai_new_conversation">Mazungumzo mapya</string>
+    <string name="ai_conversations_title">Mazungumzo</string>
+    <string name="ai_conversation_empty">Bado hakuna ujumbe</string>
+    <string name="ai_conversations_empty_title">Bado hakuna mazungumzo</string>
+    <string name="ai_conversations_empty_body">Anza mazungumzo mapya ili upate msaada na eneo lako la kazi.</string>
+    <string name="ai_delete_conversation_title">Futa mazungumzo?</string>
+    <string name="ai_delete_conversation_body">Mazungumzo haya na ujumbe wake wote vitafutwa kabisa.</string>
+    <string name="ai_delete_conversation_success">Mazungumzo yamefutwa.</string>
+    <string name="ai_clear_conversation_title">Safisha mazungumzo?</string>
+    <string name="ai_clear_conversation_body">Ujumbe wote kwenye mazungumzo haya utasafishwa.</string>
+    <string name="ai_suggestion_due_today">Nini kinafaa leo?</string>
+    <string name="ai_suggestion_overdue">Fanya muhtasari wa kazi zilizopita muda</string>
+    <string name="ai_suggestion_start_focus">Anza kikao cha kufokusia</string>
+    <string name="ai_suggestion_meeting_agenda">Andika ajenda ya kikao</string>
+    <string name="ai_context_title">Eneo Lako la Kazi</string>
+    <string name="ai_context_active_tasks">Kazi zinazofanya kazi</string>
+    <string name="ai_context_events_week">Matukio wiki hii</string>
+    <string name="ai_context_last_note">Kidokezo cha mwisho</string>
+    <string name="ai_context_focus_today">Kufokusia leo</string>
+    <string name="ai_context_overdue">zilizopita muda</string>
+    <string name="ai_context_caption">Muktadha hii hutumwa kwa AI na kila ujumbe.</string>
+    <string name="ai_context_refresh">Sasisha muktadha</string>
+    <string name="ai_typing">AI inafikiri…</string>
+    <string name="ai_streaming">Inatengeneza jibu…</string>
+    <string name="ai_error_unavailable">Msaidizi wa AI haupo kwa sasa. Tafadhali jaribu tena baadaye.</string>
+    <string name="ai_error_stream">Hitilafu imetokea wakati wa kutengeneza jibu.</string>
+    <string name="ai_action_create_task">Unda kazi</string>
+    <string name="ai_action_create_note">Unda kidokezo</string>
+    <string name="ai_action_add_event">Ongeza tukio</string>
+    <string name="ai_action_confirm">Thibitisha</string>
+    <string name="ai_action_dismiss">Ondoa</string>
+    <string name="ai_action_executed">Imekamilika! Kitu kimeundwa.</string>
+    <string name="ai_action_dismissed">Imeondolewa.</string>
+    <string name="ai_copy_message">Nakili ujumbe</string>
+    <string name="ai_message_copied">Ujumbe umenakiliwa.</string>
+    <string name="ai_regenerate">Tengeneza tena jibu</string>
+    <string name="ai_you">Wewe</string>
+    <string name="ai_assistant">Msaidizi</string>
+    <string name="ai_stop_generating">Simamisha Kutengeneza</string>
+    <string name="ai_conversations_search_hint">Tafuta mazungumzo…</string>
+    <string name="ai_conversations_close_search">Funga utafutaji</string>
+    <string name="ai_conversations_no_results">Hakuna matokeo kwa \"%s\"</string>
+    <string name="ai_conversations_section_pinned">Yaliyobandikwa</string>
+    <string name="ai_conversations_section_earlier">Zamani</string>
+    <string name="ai_conversations_quick_action">Kitendo cha Haraka</string>
+    <string name="ai_conversations_new_chat">Mazungumzo Mapya</string>
+    <string name="ai_suggestion_plan_day">Panga siku yangu</string>
+    <string name="ai_suggestion_summarize_notes">Fanya muhtasari wa vidokezo</string>
+    <string name="ai_suggestion_brainstorm">Fikiria mawazo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SEARCH                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Tafuta</string>
+    <string name="search_hint">Tafuta vidokezo, kazi, matukio…</string>
+    <string name="search_results_notes">Vidokezo</string>
+    <string name="search_results_tasks">Kazi</string>
+    <string name="search_results_events">Matukio</string>
+    <string name="search_recent">Utafiti wa hivi karibuni</string>
+    <string name="search_clear_recent">Safisha</string>
+    <string name="search_empty_title">Hakuna matokeo kwa \'%1$s\'</string>
+    <string name="search_empty_body">Jaribu maneno tofauti au angalia herufi yako.</string>
+    <string name="search_results_count">Matokeo %1$d</string>
+    <string name="search_results_count_plural">Matokeo %1$d</string>
+    <string name="search_type_note">Kidokezo</string>
+    <string name="search_type_task">Kazi</string>
+    <string name="search_type_event">Tukio</string>
+    <string name="search_offline_notice">Inafanya utaftaji wa ndani. Unganisha mtandao ili kupata matokeo kamili.</string>
+    <string name="search_loading">Inafanya utafutaji…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFILE & SETTINGS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Wasifu</string>
+    <string name="profile_edit_title">Hariri Wasifu</string>
+    <string name="profile_change_photo">Badilisha picha</string>
+    <string name="profile_remove_photo">Ondoa picha</string>
+    <string name="profile_photo_updated">Picha ya wasifu imesasishwa.</string>
+    <string name="profile_photo_removed">Picha ya wasifu imeondolewa.</string>
+    <string name="profile_photo_pick">Chagua kutoka kwenye hafla</string>
+    <string name="profile_photo_camera">Piga picha</string>
+    <string name="profile_update_success">Wasifu umesasishwa.</string>
+    <string name="profile_stats_notes">Vidokezo</string>
+    <string name="profile_stats_tasks_completed">Kazi zilizokamilika</string>
+    <string name="profile_stats_focus_this_week">Kufokusia wiki hii</string>
+    <string name="profile_member_since">Mwanachama tangu %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Bado hakuna wasifu.</string>
+    <string name="profile_section_account">Akaunti</string>
+    <string name="profile_section_appearance">Mwonekano</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Arifa</string>
+    <string name="profile_section_ai">Msaidizi wa AI</string>
+    <string name="profile_section_data">Data &amp; Usawazishaji</string>
+    <string name="profile_section_about">Kuhusu</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENCES                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Mapendeleo</string>
+    <string name="preferences_update_success">Mapendeleo yamehifadhiwa.</string>
+    <string name="preferences_pomodoro_focus">Muda wa kufokusia</string>
+    <string name="preferences_pomodoro_focus_desc">Urefu wa kila kikao cha kufokusia</string>
+    <string name="preferences_pomodoro_short_break">Mapumziko mafupi</string>
+    <string name="preferences_pomodoro_short_break_desc">Urefu wa mapumziko mafupi kati ya vikao</string>
+    <string name="preferences_pomodoro_long_break">Mapumziko marefu</string>
+    <string name="preferences_pomodoro_long_break_desc">Urefu wa mapumziko marefu baada ya mzunguko kamili</string>
+    <string name="preferences_pomodoro_cycles">Vikao kabla ya mapumziko marefu</string>
+    <string name="preferences_pomodoro_cycles_desc">Idadi ya vikao vya kufokusia kabla ya mapumziko marefu</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Anza mapumziko kiotomatiki</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Anza mapumziko kiotomatiki kinapokamilika kikao</string>
+    <string name="preferences_pomodoro_auto_start_focus">Anza kufokusia kiotomatiki</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Anza kikao kijacho kiotomatiki baada ya mapumziko</string>
+    <string name="preferences_pomodoro_sound">Sauti</string>
+    <string name="preferences_pomodoro_sound_desc">Cheza sauti kinapokamilika kikao</string>
+    <string name="preferences_notify_task_reminders">Ukumbusho wa kazi</string>
+    <string name="preferences_notify_task_reminders_desc">Pata arifa ukumbusho wa kazi unapofika</string>
+    <string name="preferences_notify_event_reminders">Ukumbusho wa matukio</string>
+    <string name="preferences_notify_event_reminders_desc">Pata arifa kabla ya matukio ya kalenda</string>
+    <string name="preferences_notify_pomodoro_end">Mwisho wa Pomodoro</string>
+    <string name="preferences_notify_pomodoro_end_desc">Pata arifa kikao cha Pomodoro kinapokamilika</string>
+    <string name="preferences_notify_daily_summary">Muhtasari wa kila siku</string>
+    <string name="preferences_notify_daily_summary_desc">Pokea muhtasari wa asubuhi wa siku yako</string>
+    <string name="preferences_default_task_view">Mwonekano chaguo-msingi wa kazi</string>
+    <string name="preferences_default_task_sort">Panga kazi chaguo-msingi</string>
+    <string name="preferences_show_completed_tasks">Onyesha kazi zilizokamilika</string>
+    <string name="preferences_show_completed_tasks_desc">Jumuisha kazi zilizokamilika kwenye orodha ya kazi</string>
+    <string name="preferences_default_calendar_view">Mwonekano chaguo-msingi wa kalenda</string>
+    <string name="preferences_week_starts_on">Wiki inaanza</string>
+    <string name="preferences_week_starts_monday">Jumatatu</string>
+    <string name="preferences_week_starts_sunday">Jumapili</string>
+    <string name="preferences_ai_context">Muktadha wa eneo la kazi</string>
+    <string name="preferences_ai_context_desc">Shirikisha kazi zako, matukio, na vidokezo na msaidizi wa AI</string>
+    <string name="preferences_ai_model">Mfano wa AI</string>
+    <string name="preferences_ai_model_desc">Chagua mfano wa AI kwa msaidizi</string>
+    <string name="preferences_compact_mode">Hali nyepesi</string>
+    <string name="preferences_compact_mode_desc">Tumia mpangilio wenye msongamano zaidi ili kuonyesha maudhui zaidi</string>
+    <string name="preferences_minutes_format">%1$d dk</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SYNC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Imesawazishwa</string>
+    <string name="sync_status_pending">Inasubiri usawazishaji</string>
+    <string name="sync_status_syncing">Inasawazisha…</string>
+    <string name="sync_status_conflict">Mgongano wa usawazishaji</string>
+    <string name="sync_status_error">Hitilafu ya usawazishaji</string>
+    <string name="sync_last_synced">Ilisawazishwa mara ya mwisho: %1$s</string>
+    <string name="sync_never_synced">Haijawahi kusawazishwa</string>
+    <string name="sync_conflict_title">Mgongano wa usawazishaji</string>
+    <string name="sync_conflict_body">Mgongano umegunduliwa kwa \'%1$s\'. Toleo gani unalotaka kuhifadhi?</string>
+    <string name="sync_conflict_keep_local">Hifadhi toleo la ndani</string>
+    <string name="sync_conflict_keep_server">Hifadhi toleo la seva</string>
+    <string name="sync_conflict_resolved">Mgongano umetatuliwa.</string>
+    <string name="sync_pending_count">%1$d mabadiliko yanayosubiri</string>
+    <string name="sync_pending_count_plural">%1$d mabadiliko yanayosubiri</string>
+    <string name="sync_offline_banner">Uko nje ya mtandao. Mabadiliko yatasawazishwa unapounganisha tena.</string>
+    <string name="sync_reconnected">Umerudi mtandaoni. Inasawazisha…</string>
+    <string name="sync_complete">Mabadiliko yote yamesawazishwa.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFICATIONS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Ukumbusho</string>
+    <string name="notification_channel_reminders_desc">Arifa za ukumbusho wa kazi na matukio.</string>
+    <string name="notification_channel_sync_name">Usawazishaji</string>
+    <string name="notification_channel_sync_desc">Arifa za hali ya usawazishaji wa usuli.</string>
+    <string name="notification_task_reminder_title">Ukumbusho wa kazi</string>
+    <string name="notification_task_reminder_body">%1$s inastahili hivi karibuni.</string>
+    <string name="notification_event_reminder_title">Tukio lijalo</string>
+    <string name="notification_event_reminder_body">%1$s inaanza baada ya %2$s.</string>
+    <string name="notification_daily_summary_title">Siku yako kwa macho</string>
+    <string name="notification_daily_summary_body">Kazi %1$d zinazostahili leo, matukio %2$d yajayo.</string>
+    <string name="notification_permission_title">Washa arifa</string>
+    <string name="notification_permission_body">Kaa juu ya ukumbusho, vikao vya kufokusia, na muhtasari wa kila siku.</string>
+    <string name="notification_permission_allow">Ruhusu</string>
+    <string name="notification_permission_deny">Si sasa</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PERMISSIONS                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Ruhusa ya kamera</string>
+    <string name="permission_camera_body">ProductivityX inahitaji ruhusa ya kamera ili kukuruhusu kupiga picha ya wasifu.</string>
+    <string name="permission_storage_title">Ruhusa ya hifadhi</string>
+    <string name="permission_storage_body">ProductivityX inahitaji ruhusa ya hifadhi ili kukuruhusu kuchagua picha ya wasifu.</string>
+    <string name="permission_notification_title">Ruhusa ya arifa</string>
+    <string name="permission_notification_body">Ruhusu arifa ili kupokea ukumbusho wa kazi na arifa za Pomodoro.</string>
+    <string name="permission_denied_title">Ruhusa inahitajika</string>
+    <string name="permission_denied_body">Kipengele hiki kinahitaji ruhusa. Tafadhali washisha kwenye mipangilio.</string>
+    <string name="permission_go_to_settings">Fungua mipangilio</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TIME                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Sasa hivi</string>
+    <string name="time_minutes_ago">Dakika %1$d zilizopita</string>
+    <string name="time_hours_ago">Saa %1$dh zilizopita</string>
+    <string name="time_yesterday">Jana</string>
+    <string name="time_days_ago">Siku %1$d zilizopita</string>
+    <string name="time_weeks_ago">Wiki %1$d iliyopita</string>
+    <string name="time_weeks_ago_plural">Wiki %1$d zilizopita</string>
+    <string name="time_months_ago">Mwezi %1$d uliopita</string>
+    <string name="time_months_ago_plural">Miezi %1$d iliyopita</string>
+    <string name="time_format_date">MMM d, yyyy</string>
+    <string name="time_format_date_short">MMM d</string>
+    <string name="time_format_time">h:mm a</string>
+    <string name="time_format_datetime">MMM d \'sa\' h:mm a</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, MMMM d, yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">Saa %1$d</string>
+    <string name="time_hour_plural">Saa %1$d</string>
+    <string name="time_minute_singular">Dakika %1$d</string>
+    <string name="time_minute_plural">Dakika %1$d</string>
+
+    <!-- Days / Months -->
+    <string name="day_monday_short">Jumatatu</string>
+    <string name="day_tuesday_short">Jumanne</string>
+    <string name="day_wednesday_short">Jumatano</string>
+    <string name="day_thursday_short">Alhamisi</string>
+    <string name="day_friday_short">Ijumaa</string>
+    <string name="day_saturday_short">Jumamosi</string>
+    <string name="day_sunday_short">Jumapili</string>
+    <string name="day_monday">Jumatatu</string>
+    <string name="day_tuesday">Jumanne</string>
+    <string name="day_wednesday">Jumatano</string>
+    <string name="day_thursday">Alhamisi</string>
+    <string name="day_friday">Ijumaa</string>
+    <string name="day_saturday">Jumamosi</string>
+    <string name="day_sunday">Jumapili</string>
+
+    <string name="month_january">Januari</string>
+    <string name="month_february">Februari</string>
+    <string name="month_march">Machi</string>
+    <string name="month_april">Aprili</string>
+    <string name="month_may">Mei</string>
+    <string name="month_june">Juni</string>
+    <string name="month_july">Julai</string>
+    <string name="month_august">Agosti</string>
+    <string name="month_september">Septemba</string>
+    <string name="month_october">Oktoba</string>
+    <string name="month_november">Novemba</string>
+    <string name="month_december">Desemba</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EMPTY STATES                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Hakuna chochote hapa bado</string>
+    <string name="empty_state_generic_body">Anza kwa kuunda kitu kipya.</string>
+    <string name="empty_state_no_results_title">Hakuna matokeo</string>
+    <string name="empty_state_no_results_body">Jaribu utafutaji au chujo tofauti.</string>
+    <string name="empty_state_offline_title">Uko nje ya mtandao</string>
+    <string name="empty_state_offline_body">Unganisha mtandao ili kupakia maudhui yako.</string>
+    <string name="empty_state_error_title">Kuna hitilafu</string>
+    <string name="empty_state_error_body">Buruta chini ili kusasisha, au gonga kitufe kilicho chini.</string>
+    <string name="empty_state_retry">Jaribu tena</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACCESSIBILITY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Rudi nyuma</string>
+    <string name="cd_close">Funga</string>
+    <string name="cd_more_options">Chaguzi zaidi</string>
+    <string name="cd_search">Tafuta</string>
+    <string name="cd_filter">Chuja</string>
+    <string name="cd_sort">Panga</string>
+    <string name="cd_add">Ongeza</string>
+    <string name="cd_delete">Futa</string>
+    <string name="cd_edit">Hariri</string>
+    <string name="cd_restore">Rejesha</string>
+    <string name="cd_pin">Bandika kidokezo</string>
+    <string name="cd_unpin">Ondoa bandiko la kidokezo</string>
+    <string name="cd_check_task">Weka alama kazi imekamilika</string>
+    <string name="cd_uncheck_task">Ondoa alama kazi haijakamilika</string>
+    <string name="cd_profile_picture">Picha ya wasifu</string>
+    <string name="cd_send_message">Tuma ujumbe</string>
+    <string name="cd_play_pause">Cheza au simamisha kipima muda</string>
+    <string name="cd_skip_session">Ruka kikao</string>
+    <string name="cd_stop_session">Simamisha kikao</string>
+    <string name="cd_sync_status">Hali ya usawazishaji: %1$s</string>
+    <string name="cd_password_toggle">Badilisha mwonekano wa nenosiri</string>
+    <string name="cd_clear_input">Safisha uingizaji</string>
+    <string name="cd_remove_subtask">Ondoa kazi ndogo</string>
+    <string name="cd_notification">Arifa</string>
+    <string name="cd_selected">Imechaguliwa</string>
+    <string name="cd_not_selected">Haijachaguliwa</string>
+    <string name="cd_clear_selection">Safisha uchaguzi</string>
+    <string name="cd_grid_view">Mwonekano wa gridi</string>
+    <string name="cd_list_view">Mwonekano wa orodha</string>
+    <string name="cd_note_image">Picha ya kidokezo</string>
+    <string name="cd_new_tag">Lebo mpya</string>
+    <string name="cd_biometric_login">Kuingia kwa biometriki</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MISC                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Inakagua kipindi chako…</string>
+    <string name="splash_loading">Inapakia…</string>
+
+    <string name="dialog_unsaved_changes_title">Mabadiliko yasiyohifadhiwa</string>
+    <string name="dialog_unsaved_changes_body">Una mabadiliko yasiyohifadhiwa. Unataka kuyatupa?</string>
+    <string name="dialog_unsaved_changes_save">Hifadhi</string>
+    <string name="dialog_unsaved_changes_discard">Tupa</string>
+    <string name="dialog_date_picker_title">Chagua tarehe</string>
+    <string name="dialog_time_picker_title">Chagua saa</string>
+    <string name="dialog_color_picker_title">Chagua rangi</string>
+    <string name="dialog_task_picker_title">Unganisha kazi</string>
+    <string name="dialog_event_picker_title">Unganisha tukio</string>
+    <string name="dialog_tag_manager_title">Simamia lebo</string>
+
+    <string name="task_view_list">Orodha</string>
+    <string name="task_view_kanban">Bodi</string>
+
+    <string name="snackbar_undo">Tendua</string>
+    <string name="snackbar_note_deleted">Kidokezo kimefutwa</string>
+    <string name="snackbar_task_deleted">Kazi imefutwa</string>
+    <string name="snackbar_event_deleted">Tukio limefutwa</string>
+    <string name="snackbar_tag_deleted">Lebo imefutwa</string>
+    <string name="snackbar_copied">Imenakiliwa kwenye ubao</string>
+    <string name="snackbar_no_internet">Hakuna muunganisho wa mtandao</string>
+    <string name="snackbar_changes_saved">Mabadiliko yamehifadhiwa</string>
+
+    <string name="about_version">Toleo %1$s</string>
+    <string name="about_build">Ujumaji %1$s</string>
+    <string name="about_privacy_policy">Sera ya Faragha</string>
+    <string name="about_terms_of_service">Masharti ya Huduma</string>
+    <string name="about_open_source_licenses">Leseni za chanzo huria</string>
+    <string name="about_rate_app">Kadiria programu</string>
+    <string name="about_send_feedback">Tuma maoni</string>
+    <string name="about_built_by">Imejengwa na Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Hamisha data</string>
+    <string name="data_export_body">Pakua vidokezo, kazi, na matukio yako yote kama faili.</string>
+    <string name="data_export_action">Hamisha</string>
+    <string name="data_export_success">Uhamisho wa data yako uko tayari.</string>
+    <string name="data_delete_account_title">Futa akaunti</string>
+    <string name="data_delete_account_body">Futa akaunti yako na data yote inayohusishwa kabisa. Hii haiwezi kutenduliwa.</string>
+    <string name="data_delete_account_action">Futa akaunti</string>
+    <string name="data_delete_account_confirm_title">Futa akaunti yako?</string>
+    <string name="data_delete_account_confirm_body">Vidokezo, kazi, matukio, na mazungumzo yako yote yatafutwa kabisa. Kitendo hiki hakiwezi kubadilishwa.</string>
+    <string name="data_delete_account_type_confirm">Andika DELETE ili kuthibitisha</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">Sasisha inapatikana</string>
+    <string name="update_available_body">Toleo jipya la ProductivityX linapatikana. Sasisha sasa kwa vipengele na ufumbuzi wa hivi karibuni.</string>
+    <string name="update_now">Sasisha sasa</string>
+    <string name="update_later">Baadaye</string>
+
+    <string name="auth_check_your_email">Angalia barua pepe yako</string>
+    <string name="auth_otp_sent_body">Tumetuma nambari ya tarakimu 6 kwa %s</string>
+
+    <string name="language_en">Kiingereza</string>
+    <string name="language_fr">Kifaransa</string>
+    <string name="language_ar">Kiarabu</string>
+    <string name="language_es">Kihispania</string>
+    <string name="language_de">Kijerumani</string>
+    <string name="language_pt">Kireno</string>
+    <string name="language_zh">Kichina cha Jadi</string>
+    <string name="language_ja">Kijapani</string>
+    <string name="language_ko">Kikorea</string>
+    <string name="language_ru">Kirusi</string>
+    <string name="language_tr">Kituruki</string>
+    <string name="language_it">Kihitaliano</string>
+    <string name="language_hi">Kihindi</string>
+    <string name="language_id">Kiindonesian</string>
+    <string name="language_nl">Kiholanzi</string>
+    <string name="language_vi">Kivietinamu</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- WIDGETS                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">Kazi</string>
+    <string name="widget_task_list_empty">Hakuna kazi zinazostahili leo</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Gonga ili kuanza kufokusia</string>
+    <string name="widget_quick_note_title">Kidokezo Haraka</string>
+    <string name="widget_quick_note_hint">Gonga ili kuongeza kidokezo</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HOME DASHBOARD (7.1)                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">Kazi za Leo</string>
+    <string name="home_widget_events">Matukio Yajayo</string>
+    <string name="home_widget_focus">Muda wa Kufokusia Leo</string>
+    <string name="home_widget_notes">Vidokezo vya Hivi Karibuni</string>
+    <string name="home_widget_quote">Neno la Siku</string>
+    <string name="home_widget_ai">Msaidizi wa AI</string>
+    <string name="home_widget_focus_mode">Kufokusia Haraka</string>
+    <string name="home_expand">Panua</string>
+    <string name="home_collapse">Kata</string>
+    <string name="home_see_all">Ona zote</string>
+    <string name="home_empty_tasks">Hakuna kazi zinazostahili leo</string>
+    <string name="home_empty_events">Hakuna matukio yajayo</string>
+    <string name="home_empty_notes">Hakuna vidokezo vya hivi karibuni</string>
+    <string name="home_empty_focus">Bado hakuna muda wa kufokusia</string>
+    <string name="home_focus_mode_active">Hali ya Kufokusia</string>
+    <string name="home_focus_mode_inactive">Kufokusia Haraka</string>
+    <string name="home_focus_mode_desc_active">Punguza vitisho</string>
+    <string name="home_focus_mode_desc_inactive">Gonga ili kuingia kwenye hali ya kufokusia</string>
+    <string name="home_voice_prompt">Unataka kufanya nini?</string>
+    <string name="home_voice_listening">Inasikiliza…</string>
+    <string name="home_pull_to_refresh">Buruta ili kusasisha</string>
+    <string name="home_syncing">Inasawazisha…</string>
+    <string name="home_refreshed">Dashibodi imesasishwa</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SHORTCUTS                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">Kidokezo Kipya</string>
+    <string name="shortcut_new_task">Kazi Mpya</string>
+    <string name="shortcut_start_focus">Anza Kufokusia</string>
+    <string name="shortcut_ai_chat">Mazungumzo ya AI</string>
+    <string name="shortcut_note_short_label">Kidokezo</string>
+    <string name="shortcut_task_short_label">Kazi</string>
+    <string name="shortcut_focus_short_label">Kufokusia</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- Folder Management -->
+    <string name="folder_screen_title">Folda</string>
+    <string name="folder_empty">Bado hakuna folda</string>
+    <string name="folder_create_dialog_title">Unda folda</string>
+    <string name="folder_edit_dialog_title">Hariri folda</string>
+    <string name="folder_delete_title">Futa folda?</string>
+    <string name="folder_delete_message">Vidokezo kwenye \"%s\" havitafutwa.</string>
+    <string name="folder_name_label">Jina la folda</string>
+    <string name="folder_color_label">Rangi</string>
+    <string name="folder_save">Hifadhi</string>
+    <string name="folder_delete">Futa</string>
+    <string name="folder_note_count">Vidokezo %d</string>
+    <string name="folder_note_count_one">Kidokezo %d</string>
+    <string name="folder_create_cd">Unda folda</string>
+    <string name="folder_edit_cd">Hariri</string>
+    <string name="folder_delete_cd">Futa</string>
+
+    <!-- Tag Management -->
+    <string name="tag_screen_title">Lebo</string>
+    <string name="tag_empty">Bado hakuna lebo. Gonga + ili kuunda.</string>
+    <string name="tag_create_dialog_title">Unda lebo</string>
+    <string name="tag_edit_dialog_title">Hariri lebo</string>
+    <string name="tag_delete_title">Futa lebo?</string>
+    <string name="tag_delete_message">Lebo \"%s\" itaondolewa kwenye vidokezo vyote.</string>
+    <string name="tag_name_label">Jina la lebo</string>
+    <string name="tag_color_label">Rangi</string>
+    <string name="tag_save">Hifadhi</string>
+    <string name="tag_delete">Futa</string>
+    <string name="tag_create_cd">Unda lebo</string>
+    <string name="tag_delete_cd">Futa</string>
+
+    <!-- Terms & Conditions -->
+    <string name="terms_title">Masharti &amp; Viwango</string>
+    <string name="terms_subtitle">Masharti ya Huduma</string>
+    <string name="terms_last_updated">Imesasishwa mwisho: Julai 2026</string>
+    <string name="terms_section_1_title">1. Kukubali Masharti</string>
+    <string name="terms_section_1_body">Kwa kufikia au kutumia ProductivityX, unakubali kufuatwa na Masharti ya Huduma hii. Usikubali, usitumie programu.</string>
+    <string name="terms_section_2_title">2. Maelezo ya Huduma</string>
+    <string name="terms_section_2_body">ProductivityX inatoa eneo la kazi moja linalojumuisha vidokezo, kazi, kalenda, kipima muda wa kufokusia (Pomodoro), na vipengele vya msaidizi wa AI. Tunahaki ya kurekebisha au kuacha vipengele vyovyote wakati wowote.</string>
+    <string name="terms_section_3_title">3. Akaunti za Mtumiaji</string>
+    <string name="terms_section_3_body">Una jukumu la kudumisha faragha ya sifa zako za akaunti na kwa shughuli zote chini ya akaunti yako. Lazima utaarifu mara moja kuhusu ufikiaji usioruhusiwa.</string>
+    <string name="terms_section_4_title">4. Matumizi Yanayokubalika</string>
+    <string name="terms_section_4_body">Unakubali kutumia ProductivityX kwa madhumuni yoyote yasiyo ya kisheria au kwa ukiukaji wa sheria zozote zinazotumika. Huwezi jaribu kuvuruga, kudhuru, au kupata ufikiaji usioruhusiwa kwenye mifumo yetu.</string>
+    <string name="terms_section_5_title">5. Data &amp; Faragha</string>
+    <string name="terms_section_5_body">Matumizi yako ya ProductivityX pia yanaongozwa na Sera yetu ya Faragha. Tunachukulia usalama wa data kwa uzito na tunatekeleza viwango vya sekta kulinda taarifa zako.</string>
+    <string name="terms_section_6_title">6. Miliki ya Kiakili</string>
+    <string name="terms_section_6_body">ProductivityX na maudhui yake ya asili, vipengele, na utendaji ni mali ya Oussama Chatri na inalindwa na sheria za hatimiliki na miliki ya kiakili zinazotumika.</string>
+    <string name="terms_section_7_title">7. Kikomo cha Uwajibikaji</string>
+    <string name="terms_section_7_body">ProductivityX inatolewa &quot;kama ilivyo&quot; bila dhamana za aina yoyote. Hatutakuwa na uwajibikaji wa uharibifu wowote unaojitokeza kutokana na matumizi yako ya programu.</string>
+    <string name="terms_section_8_title">8. Mabadiliko ya Masharti</string>
+    <string name="terms_section_8_body">Tunahaki ya kusasisha masharti haya wakati wowote. Tutawarifu mtumiaji kuhusu mabadiliko muhimu kupitia programu au barua pepe.</string>
+    <string name="terms_section_9_title">9. Mawasiliano</string>
+    <string name="terms_section_9_body">Kwa maswali kuhusu masharti haya, wasiliana nasi kupitia productivityx7@gmail.com.</string>
+
+    <!-- Privacy Policy -->
+    <string name="privacy_title">Sera ya Faragha</string>
+    <string name="privacy_subtitle">Sera ya Faragha</string>
+    <string name="privacy_last_updated">Imesasishwa mwisho: Julai 2026</string>
+    <string name="privacy_section_1_title">1. Taarifa Tunazokusanya</string>
+    <string name="privacy_section_1_body">Tunakusanya taarifa unazotoa unapounda akaunti, ikiwa ni pamoja na jina lako, anwani ya barua pepe, na picha yako. Pia tunakusanya data unaounda ndani ya programu kama vile vidokezo, kazi, matukio, na vikao vya kufokusia.</string>
+    <string name="privacy_section_2_title">2. Jinsi Tunavyotumia Taarifa Zako</string>
+    <string name="privacy_section_2_body">Data yako inatumika kutoa na kuboresha vipengele vya ProductivityX, kusawazisha kati ya vifaa, na kutuma arifa zinazofaa. Hatuuza taarifa zako za kibinafsi kwa wahusika wengine.</string>
+    <string name="privacy_section_3_title">3. Uhifadhi wa Data &amp; Usalama</string>
+    <string name="privacy_section_3_body">Data yako imesimbwa wakati wa usafirishaji na wakati wa kupumzika. Tuna matumizi ya viwango vya sekta kulinda taarifa zako. Unaweza kuchagua kuhifadhi data ya ndani pekee bila usawazishaji wa wingu.</string>
+    <string name="privacy_section_4_title">4. Huduma za Wahusika Wengine</string>
+    <string name="privacy_section_4_body">ProductivityX inaweza kutumia huduma za wahusika wengine kwa msaada wa AI, arifa za push, na uchambuzi. Huduma hizi zimefungwa kwa makubaliano kulinda data yako na kuitumia kwa madhumuni yaliyokusudiwa pekee.</string>
+    <string name="privacy_section_5_title">5. Haki Zako</string>
+    <string name="privacy_section_5_body">Unaweza kufikia, kurekebisha, au kufuta data yako wakati wowote kupitia mipangilio ya programu. Unaweza kuomba uhamisho kamili wa data yako au kufuta akaunti yako kabisa.</string>
+    <string name="privacy_section_6_title">6. Uhifadhi wa Data</string>
+    <string name="privacy_section_6_body">Tunahifadhi data yako kwa muda ambapo akaunti yako ni hai. Vipengele vilivyofutwa vinahifadhiwa kwenye takataka kwa siku 30 kabla ya kufutwa kabisa. Ufutaji wa akaunti huondoa data yote inayohusishwa ndani ya siku 90.</string>
+    <string name="privacy_section_7_title">7. Faragha ya Watoto</string>
+    <string name="privacy_section_7_body">ProductivityX haijaundwa kwa watumiaji chini ya miaka 13. Hatukusanyi data kutoka kwa watoto kwa makusudi. Ikiwa tunatambua data kama hiyo, tutaifuta mara moja.</string>
+    <string name="privacy_section_8_title">8. Mabadiliko ya Sera Hii</string>
+    <string name="privacy_section_8_body">Tunaweza kusasisha Sera hii ya Faragha. Tutawarifu kuhusu mabadiliko muhimu kupitia programu au barua pepe.</string>
+    <string name="privacy_section_9_title">9. Wasiliana Nasi</string>
+    <string name="privacy_section_9_body">Kwa maswali yanayohusiana na faragha, wasiliana nasi kupitia productivityx7@gmail.com.</string>
+
+    <!-- Tasks Screen -->
+    <!-- Task Stats Screen -->
+    <string name="tasks_statistics">Takwimu</string>
+    <string name="tasks_stats_score">Alama</string>
+    <string name="tasks_stats_streak">Mfuatano</string>
+    <string name="tasks_stats_days">siku</string>
+    <string name="tasks_stats_best">Bora</string>
+    <string name="tasks_stats_completion_rate">Kiwango cha Kukamilisha</string>
+    <string name="tasks_stats_this_week">Wiki Hii</string>
+    <string name="tasks_stats_this_month">Mwezi Huu</string>
+    <string name="tasks_stats_monthly_progress">Maendeleo ya kila mwezi</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d zimekamilika</string>
+    <string name="tasks_stats_time_by_priority">Muda Uliotumika kwa Kipaumbele</string>
+    <string name="tasks_stats_no_data">Bado hakuna data</string>
+    <string name="tasks_stats_achievements">Mafanikio</string>
+    <string name="tasks_stats_unlock_badges">Kamilisha kazi ili kufungua badi</string>
+    <string name="tasks_stats_weekly_review">Mapitio ya Wiki</string>
+    <string name="tasks_stats_created">Imeundwa</string>
+    <string name="tasks_stats_completed">Imekamilika</string>
+    <string name="tasks_stats_overdue">Imepita muda</string>
+    <string name="tasks_stats_suggested_focus">Kufokusia Kilichopendekezwa</string>
+    <string name="tasks_stats_patterns">Mitindo ya Uzalishaji</string>
+    <string name="tasks_stats_velocity">Kiwango cha Kukamilisha</string>
+    <string name="tasks_stats_productive_hours">Saa Zaidi za Kuzalisha</string>
+    <string name="tasks_stats_category_breakdown">Mgawanyo wa Jamii</string>
+    <string name="tasks_stats_complete_more">Kamilisha kazi zaidi ili kuona mitindo yako ya uzalishaji</string>
+
+    <!-- Recurrence labels -->
+    <string name="task_recurrence_none">Hakuna</string>
+    <string name="task_recurrence_daily">Kila siku</string>
+    <string name="task_recurrence_weekdays">Siku za kazi</string>
+    <string name="task_recurrence_weekly">Kila wiki</string>
+    <string name="task_recurrence_biweekly">Kila wiki mbili</string>
+    <string name="task_recurrence_monthly">Kila mwezi</string>
+    <string name="task_recurrence_yearly">Kila mwaka</string>
+
+    <!-- Task Detail Screen -->
+    <string name="task_label">Kazi</string>
+    <string name="task_estimated_abbrev">Kad.</string>
+    <string name="task_actual_abbrev">Halisi</string>
+
+    <!-- Task Trash Screen -->
+    <string name="tasks_trash_empty_title">Takataka ni tupu</string>
+    <string name="tasks_trash_empty_body">Kazi zilizofutwa zinaonekana hapa.</string>
+    <string name="tasks_trash_due">Inastahili %1$s</string>
+    <string name="tasks_trash_hard_delete_title">Futa kabisa?</string>
+    <string name="tasks_trash_hard_delete_body">Kazi hii haiwezi kurejeshwa.</string>
+
+    <string name="tasks_no_tasks_day">Hakuna kazi siku hii</string>
+    <string name="tasks_add_task">Ongeza kazi</string>
+    <string name="tasks_drop_here">Angusha kazi hapa</string>
+    <string name="tasks_set_priority">Weka Kipaumbele</string>
+    <string name="tasks_ok">Sawa</string>
+    <string name="tasks_cancel">Ghairi</string>
+    <string name="tasks_selected_count">%d zimechaguliwa</string>
+    <string name="tasks_filter_all">Zote</string>
+    <string name="tasks_filter_today">Leo</string>
+    <string name="tasks_filter_upcoming">Zinazokuja</string>
+    <string name="tasks_filter_overdue">Imepita muda</string>
+    <string name="tasks_filter_no_date">Hakuna Tarehe</string>
+    <string name="tasks_filter_done">Imekamilika</string>
+    <string name="tasks_view_board">Bodi</string>
+    <string name="tasks_view_calendar">Kalenda</string>
+    <string name="tasks_view_timeline">Muda</string>
+    <string name="tasks_bulk_complete">Kamilisha</string>
+    <string name="tasks_bulk_delete">Futa</string>
+    <string name="tasks_bulk_reschedule">Panga upya</string>
+    <string name="tasks_bulk_priority">Kipaumbele</string>
+    <string name="tasks_weekday_sun">J</string>
+    <string name="tasks_weekday_mon">J</string>
+    <string name="tasks_weekday_tue">J</string>
+    <string name="tasks_weekday_wed">J</string>
+    <string name="tasks_weekday_thu">A</string>
+    <string name="tasks_weekday_fri">I</string>
+    <string name="tasks_weekday_sat">J</string>
+    <string name="tasks_picker_day_mon">J</string>
+    <string name="tasks_picker_day_tue">J</string>
+    <string name="tasks_picker_day_wed">J</string>
+    <string name="tasks_picker_day_thu">A</string>
+    <string name="tasks_picker_day_fri">I</string>
+    <string name="tasks_picker_day_sat">J</string>
+    <string name="tasks_picker_day_sun">J</string>
+    <string name="tasks_minutes_abbrev">%1$dd</string>
+    <string name="tasks_for_date">Kazi za %s</string>
+    <string name="cd_exit_multiselect">Ondoka kwenye uchaguzi wa wingi</string>
+    <string name="cd_select_all">Chagua zote</string>
+    <string name="cd_statistics">Takwimu</string>
+    <string name="cd_previous">Iliyotangulia</string>
+    <string name="cd_drop_here">Angusha hapa</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_sign_out_desc">Utahitaji kuingia tena ili kufikia eneo lako la kazi.</string>
+    <string name="profile_delete_account_title">Futa Akaunti</string>
+    <string name="profile_delete_account_warning">Kitendo hiki hakiwezi kutenduliwa. Data yako yote itafutwa kabisa.</string>
+    <string name="profile_delete_bullet_notes">Vidokezo, kazi, na matukio yote vitaondolewa</string>
+    <string name="profile_delete_bullet_account">Akaunti na usajili wako watafutwa</string>
+    <string name="profile_delete_bullet_irreversible">Hii haiwezi kubadilishwa</string>
+    <string name="profile_section_actions">Vitendo</string>
+    <string name="profile_notification_preferences">Mapendeleo ya arifa</string>
+    <string name="profile_section_account_subscription">Akaunti &amp; Usajili</string>
+    <string name="profile_storage">Hifadhi</string>
+    <string name="profile_connected_devices">Vifaa vilivyounganishwa</string>
+    <string name="profile_section_danger_zone">Eneo la Hatari</string>
+    <string name="profile_delete_subtitle">Ondoa data yote kabisa</string>
+    <string name="profile_stat_ai_chats">Mazungumzo ya AI</string>
+    <string name="profile_recent_activity">Shughuli za hivi karibuni</string>
+    <string name="profile_productivity_trend">Mwenendo wa uzalishaji</string>
+    <string name="profile_this_week_percent">%1$d%% wiki hii</string>
+    <string name="profile_local_mode">Hali ya Ndani</string>
+    <string name="profile_local_mode_desc">Unatumia ProductivityX bila akaunti.\nData yako inabaki kwenye kifaa hiki pekee.</string>
+    <string name="profile_theme_pro">Mandhari ya Pro</string>
+
+    <!-- Edit Profile Screen -->
+    <string name="pref_section_locale">Eneo</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- Change Password Screen -->
+    <string name="password_change_success">Nenosiri limebadilishwa kwa mafanikio</string>
+    <string name="password_confirm_new">Thibitisha nenosiri jipya</string>
+    <string name="password_update">Sasisha Nenosiri</string>
+
+    <!-- Preferences Screen (search results) -->
+    <string name="pref_search_pomodoro">Kipima Muda wa Pomodoro</string>
+    <string name="pref_search_appearance">Mwonekano &amp; Mandhari</string>
+    <string name="pref_search_notifications">Arifa &amp; Saa za Utulivu</string>
+    <string name="pref_search_display">Onyesho &amp; Ukubwa wa Fonti</string>
+    <string name="pref_search_feature_flags">Bendera za Vipengele (Beta)</string>
+
+    <!-- FAQ Screen -->
+    <string name="faq_q_what_is">ProductivityX ni nini?</string>
+    <string name="faq_a_what_is">ProductivityX ni programu ya eneo la kazi moja linalochanganya vidokezo, kazi, kalenda, kipima muda wa kufokusia wa Pomodoro, na msaidizi wa AI mahali pamoja.</string>
+    <string name="faq_q_data_secure">Data yangu ni salama?</string>
+    <string name="faq_a_data_secure">Ndiyo. Data yako imesimbwa wakati wa usafirishaji na wakati wa kupumzika. Unaweza pia kuwashisha hali ya ndani pekee ili kuhifadhi data yote kwenye kifaa chako bila usawazishaji wa wingu.</string>
+    <string name="faq_q_ai_work">Msaidizi wa AI unafanyaje kazi?</string>
+    <string name="faq_a_ai_work">Msaidizi wa AI anaona kazi zako zinazofanya kazi, matukio yajayo, na vidokezo vya hivi karibuni ili kukupa majibu yanayofahamu muktadha. Anatumia miundo ya Google Gemini.</string>
+    <string name="faq_q_offline">Ninaweza kutumia ProductivityX nje ya mtandao?</string>
+    <string name="faq_a_offline">Ndiyo. Unaweza kuwashisha hali ya nje ya mtandao kwenye mipangilio. Mabadiliko yatasawazishwa kiotomatiki unapounganisha tena mtandaoni.</string>
+    <string name="faq_q_export">Ninawezaje kuhifadhi data yangu?</string>
+    <string name="faq_a_export">Nenda kwenye Mipangilio &gt; Data &amp; Usawazishaji na gonga \'Hamisha data\'. Vidokezo, kazi, matukio, na mipangilio yako yatahifadhiwa kama faili ya nakala ya siri.</string>
+    <string name="faq_q_pomodoro">Kipima muda wa Pomodoro kinafanyaje kazi?</string>
+    <string name="faq_a_pomodoro">Kipima muda wa Pomodoro kinabainisha kati ya vikao vya kufokusia na mapumziko. Unaweza kubadilisha muda, kuanza mapumziko kiotomatiki, na kuunganisha kazi ili kufuatilia muda wa kufokusia kwa kazi.</string>
+    <string name="faq_q_language">Ninaweza kubadilisha lugha ya programu?</string>
+    <string name="faq_a_language">Ndiyo. Nenda kwenye wasifu wako na gonga mpangilio wa lugha. ProductivityX inasaidia lugha nyingi ikiwa ni pamoja na Kiingereza, Kifaransa, Kiarabu, Kihispania, Kijerumani, na zaidi.</string>
+    <string name="faq_q_password">Ninawezaje kuweka upya nenosiri langu?</string>
+    <string name="faq_a_password">Gonga \'Umesahau nenosiri\' kwenye skrini ya kuingia. Kiungo kurejesha kitatumwa kwenye anwani yako ya barua pepe.</string>
+    <string name="faq_q_delete_account">Nini hufanyika ninapofuta akaunti yangu?</string>
+    <string name="faq_a_delete_account">Data yako yote (vidokezo, kazi, matukio, mazungumzo) itafutwa kabisa. Kitendo hiki hakiwezi kutenduliwa.</string>
+    <string name="faq_q_contact">Ninawezaje kuwasiliana na usaidizi?</string>
+    <string name="faq_a_contact">Unaweza kutufikia kupitia productivityx7@gmail.com au kutumia chaguo la \'Tuma maoni\' kwenye Mipangilio &gt; Msaada &amp; Usaidizi.</string>
+
+    <!-- Licenses Screen -->
+    <string name="licenses_intro">ProductivityX inatumia programu za chanzo huria zifuatazo:</string>
+
+    <!-- Credits Screen -->
+    <string name="credits_role_development">Uundaji</string>
+    <string name="credits_role_design">Muundo</string>
+    <string name="credits_role_ai_integration">Ujumuishaji wa AI</string>
+    <string name="credits_role_icons">Aina</string>
+    <string name="credits_built_with">Imejengwa kwa ❤️ kwa Kutumia Kotlin &amp; Jetpack Compose</string>
+    <string name="credits_copyright">© 2026 ProductivityX. Haki zote zimehifadhiwa.</string>
+
+    <!-- Edit Profile Screen — extra -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- Preferences Search — extra -->
+    <string name="pref_search_data_sync">Data &amp; Usawazishaji</string>
+    <string name="pref_search_ai">Msaidizi wa AI</string>
+    <string name="pref_search_about">Kuhusu</string>
+    <string name="pref_search_help">Msaada &amp; Usaidizi</string>
+
+    <string name="language_zh_rCN">Kichina</string>
+    <string name="language_sw">Kiswahili</string>
+    <string name="language_th">Thai</string>
+    <string name="language_bn">Kibengali</string>
+    <string name="language_ur">Kiurdu</string>
+
+</resources>

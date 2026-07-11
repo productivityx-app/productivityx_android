@@ -859,19 +859,24 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
 @Composable
 private fun languageEntries(): List<Pair<String, String>> = listOf(
     "en" to stringResource(R.string.language_en),
+    "zh-CN" to stringResource(R.string.language_zh_rCN),
+    "es" to stringResource(R.string.language_es),
     "fr" to stringResource(R.string.language_fr),
     "ar" to stringResource(R.string.language_ar),
-    "es" to stringResource(R.string.language_es),
     "de" to stringResource(R.string.language_de),
-    "ko" to stringResource(R.string.language_ko),
     "ja" to stringResource(R.string.language_ja),
-    "pt" to stringResource(R.string.language_pt),
-    "zh-TW" to stringResource(R.string.language_zh),
     "hi" to stringResource(R.string.language_hi),
+    "pt" to stringResource(R.string.language_pt),
     "id" to stringResource(R.string.language_id),
-    "vi" to stringResource(R.string.language_vi),
+    "ru" to stringResource(R.string.language_ru),
+    "sw" to stringResource(R.string.language_sw),
+    "ko" to stringResource(R.string.language_ko),
     "it" to stringResource(R.string.language_it),
-    "nl" to stringResource(R.string.language_nl),
+    "tr" to stringResource(R.string.language_tr),
+    "vi" to stringResource(R.string.language_vi),
+    "th" to stringResource(R.string.language_th),
+    "bn" to stringResource(R.string.language_bn),
+    "ur" to stringResource(R.string.language_ur),
 )
 
 @Composable

@@ -1271,6 +1271,11 @@
     <string name="language_id">Indonesian</string>
     <string name="language_nl">Dutch</string>
     <string name="language_vi">Vietnamese</string>
+    <string name="language_zh_rCN">Mandarin Chinese</string>
+    <string name="language_sw">Swahili</string>
+    <string name="language_th">Thai</string>
+    <string name="language_bn">Bengali</string>
+    <string name="language_ur">Urdu</string>
 
     <!-- ������������������������������������������� -->
     <!-- WIDGETS                                      -->

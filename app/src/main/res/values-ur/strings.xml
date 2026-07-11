@@ -1,0 +1,1569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">آپ کی کام کی جگہ۔ متحد۔</string>
+    <string name="app_description">نوٹس، ٹاسک، کیلنڈر، فوکس ٹائمر، اور ایک AI معاون جو واقعی آپ کا دن سمجھ سکتا ہے۔</string>
+
+    <string name="ok">ٹھیک ہے</string>
+    <string name="cancel">منسوخ</string>
+    <string name="save">محفوظ کریں</string>
+    <string name="export">برآمد</string>
+    <string name="note_info">نوٹ معلومات</string>
+    <string name="show_metadata">میٹا ڈیٹا دکھائیں</string>
+    <string name="focus_mode">فوکس موڈ</string>
+    <string name="reset_zoom">زوم ری سیٹ</string>
+    <string name="exit_focus_mode">فوکس موڈ سے باہر جائیں</string>
+    <string name="fullscreen_image">پوری اسکرین تصویر</string>
+    <string name="more">مزید</string>
+    <string name="add_tag">ٹیگ شامل کریں</string>
+    <string name="move_to_trash">ٹریش میں لے جائیں</string>
+    <string name="undo">واپس کریں</string>
+    <string name="share">شیئر کریں</string>
+    <string name="copy">کاپی</string>
+    <string name="paste">پیسٹ</string>
+    <string name="select_all">سب منتخب کریں</string>
+    <string name="delete">حذف کریں</string>
+    <string name="edit">ترمیم</string>
+    <string name="done">ہو گیا</string>
+    <string name="yes">ہاں</string>
+    <string name="no">نہیں</string>
+    <string name="loading">لوڈ ہو رہا ہے…</string>
+    <string name="retry">دوبارہ کوشش کریں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- شروعاتی اسکرین                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_get_started">شروع کریں</string>
+    <string name="onboarding_next">اگلا</string>
+    <string name="onboarding_skip">چھوڑیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- تصدیق                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_forgot_password">پاس ورڈ بھول گئے؟</string>
+    <string name="auth_create_account">اکاؤنٹ بنائیں</string>
+    <string name="auth_sign_in">لاگ ان کریں</string>
+    <string name="auth_verify">تصدیق کریں</string>
+    <string name="auth_resend_code">کوڈ دوبارہ بھیجیں</string>
+    <string name="auth_reset_password_title">پاس ورڈ ری سیٹ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- فارم                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- پاس ورڈ                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- رجسٹر                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- تھیم                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_light">روشن</string>
+    <string name="theme_dark">گہرا</string>
+    <string name="theme_system">سسٹم</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- نیویگیشن                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">ہوم</string>
+    <string name="nav_tasks">ٹاسک</string>
+    <string name="nav_calendar">کیلنڈر</string>
+    <string name="nav_notes">نوٹس</string>
+    <string name="nav_pomodoro">پومودورو</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_profile">پروفائل</string>
+    <string name="nav_settings">ترتیبات</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ہوم                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- نوٹس                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">نوٹس</string>
+    <string name="notes_new">نئی نوٹ</string>
+    <string name="notes_search_hint">نوٹس تلاش کریں…</string>
+    <string name="notes_empty_title">ابھی تک کوئی نوٹ نہیں</string>
+    <string name="notes_empty_body">شروع کرنے کے لیے اپنی پہلی نوٹ بنائیں۔</string>
+    <string name="notes_empty_action">نوٹ بنائیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ایڈیٹر                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">بونڈ</string>
+    <string name="editor_format_italic">ائٹلک</string>
+    <string name="editor_format_heading">عنوان</string>
+    <string name="editor_format_highlight">ہائی لائٹ</string>
+    <string name="editor_highlight_color">ہائی لائٹ کا رنگ</string>
+    <string name="editor_highlight_default">ڈیفالٹ ہائی لائٹ</string>
+    <string name="editor_text_color">متن کا رنگ</string>
+    <string name="editor_font_size">فونٹ سائز</string>
+    <string name="editor_start_writing">لکھنا شروع کریں…</string>
+    <string name="editor_saved">محفوظ ہو گیا</string>
+    <string name="editor_share_note">نوٹ شیئر کریں</string>
+    <string name="editor_pdf_filename">نوٹ</string>
+    <string name="editor_content_hint">لکھنا شروع کریں…</string>
+    <string name="editor_insert_table_title">ٹیبل داخل کریں</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">ہیڈر قطار</string>
+    <string name="editor_table_header_template">ہیڈر %1</string>
+    <string name="editor_table_cell_template">خلیہ</string>
+    <string name="editor_insert_table_btn">داخل کریں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ٹیگز                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">ٹیگز</string>
+    <string name="tags_new">نئی ٹیگ</string>
+    <string name="tags_name_hint">ٹیگ کا نام</string>
+    <string name="tags_color">رنگ</string>
+    <string name="tags_create_success">ٹیگ بن گئی۔</string>
+    <string name="tags_update_success">ٹیگ اپ ڈیٹ ہو گئی۔</string>
+    <string name="tags_delete_success">ٹیگ حذف ہو گئی۔</string>
+    <string name="tags_delete_confirm_title">ٹیگ حذف کریں؟</string>
+    <string name="tags_delete_confirm_body">یہ ٹیگ استعمال کرنے والی تمام نوٹس سے ہٹا دی جائے گی۔</string>
+    <string name="tags_already_exists">اس نام کی ایک ٹیگ پہلے سے موجود ہے۔</string>
+    <string name="tags_empty_title">ابھی تک کوئی ٹیگ نہیں</string>
+    <string name="tags_empty_body">اپنی نوٹس منظم کرنے کے لیے ٹیگز بنائیں۔</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ٹاسک                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">ٹاسک</string>
+    <string name="tasks_new">نئی ٹاسک</string>
+    <string name="tasks_search_hint">ٹاسک تلاش یا فلٹر کریں…</string>
+    <string name="tasks_tab_all">سب</string>
+    <string name="tasks_tab_today">آج</string>
+    <string name="tasks_tab_upcoming">آنے والی</string>
+    <string name="tasks_tab_completed">مکمل</string>
+    <string name="tasks_view_list">فہرست</string>
+    <string name="tasks_empty_title">یہاں کوئی ٹاسک نہیں</string>
+    <string name="tasks_empty_body">شروع کرنے کے لیے اپنی پہلی ٹاسک بنائیں۔</string>
+    <string name="tasks_empty_action">ٹاسک بنائیں</string>
+    <string name="tasks_empty_today">آج کوئی ٹاسک مقرر نہیں۔ اپنا دن خوشی سے گزاریں!</string>
+    <string name="tasks_empty_upcoming">کوئی آنے والی ٹاسک نہیں۔</string>
+    <string name="tasks_empty_completed">ابھی تک کوئی ٹاسک مکمل نہیں ہوئی۔</string>
+    <string name="tasks_empty_filter">اس فلٹر سے کوئی ٹاسک مماثل نہیں۔</string>
+    <string name="tasks_field_title">ٹاسک کا عنوان</string>
+    <string name="tasks_field_title_hint">کیا کرنا ہے؟</string>
+    <string name="tasks_field_description">تفصیل</string>
+    <string name="tasks_field_description_hint">مزید تفصیل شامل کریں…</string>
+    <string name="tasks_field_due_date">مقرر تاریخ</string>
+    <string name="tasks_field_due_time">مقرر وقت</string>
+    <string name="tasks_field_priority">ترجیح</string>
+    <string name="tasks_field_status">حالت</string>
+    <string name="tasks_field_reminder">یاد دہانی</string>
+    <string name="tasks_field_estimated_time">اندازہ وقت</string>
+    <string name="tasks_field_actual_time">اصل وقت</string>
+    <string name="tasks_field_link_event">ایونٹ لنک</string>
+    <string name="tasks_field_subtasks">ذیلی ٹاسک</string>
+    <string name="tasks_add_subtask">ذیلی ٹاسک شامل کریں</string>
+    <string name="tasks_subtask_count">%1 ذیلی ٹاسک</string>
+    <string name="tasks_subtask_count_plural">%1 ذیلی ٹاسک</string>
+    <string name="tasks_subtask_completed">%2$d میں سے %1$d مکمل</string>
+    <string name="tasks_pomodoro_sessions">فوکس سیشن</string>
+    <string name="tasks_no_due_date">کوئی مقرر تاریخ نہیں</string>
+    <string name="tasks_no_due_time">کوئی وقت مقرر نہیں</string>
+    <string name="tasks_no_reminder">کوئی یاد دہانی نہیں</string>
+    <string name="tasks_no_estimated">کوئی اندازہ نہیں</string>
+    <string name="tasks_create_success">ٹاسک بن گئی۔</string>
+    <string name="tasks_update_success">ٹاسک اپ ڈیٹ ہو گئی۔</string>
+    <string name="tasks_delete_success">ٹاسک حذف ہو گئی۔</string>
+    <string name="tasks_restore_success">ٹاسک بحال ہو گئی۔</string>
+    <string name="tasks_complete_success">ٹاسک مکمل ہو گئی۔</string>
+    <string name="tasks_reorder_success">ٹاسک دوبارہ ترتیب دی گئی۔</string>
+    <string name="tasks_status_updated">حالت اپ ڈیٹ ہو گئی۔</string>
+    <string name="tasks_delete_confirm_title">ٹاسک حذف کریں؟</string>
+    <string name="tasks_delete_confirm_body">یہ ٹاسک حذف ہو جائے گی۔</string>
+    <string name="tasks_minutes">%1 منٹ</string>
+    <string name="tasks_hours_minutes">%1 %2</string>
+    <string name="tasks_swipe_complete">مکمل</string>
+    <string name="tasks_swipe_delete">حذف</string>
+    <string name="tasks_sort_due_date">مقرر تاریخ</string>
+    <string name="tasks_sort_priority">ترجیح</string>
+    <string name="tasks_sort_created">تعمیر</string>
+    <string name="tasks_sort_title">عنوان</string>
+    <string name="tasks_filter_priority">ترجیح کے مطابق فلٹر</string>
+    <string name="tasks_filter_status">حالت کے مطابق فلٹر</string>
+    <string name="tasks_filter_due">مقرر تاریخ کے مطابق فلٹر</string>
+    <string name="tasks_overdue_label">ڈیڈ لائن گزر چکی</string>
+    <string name="tasks_due_today_label">آج مقرر</string>
+    <string name="tasks_due_tomorrow_label">کل مقرر</string>
+
+    <!-- ترجیح / حالت -->
+    <string name="priority_low">کم</string>
+    <string name="priority_medium">درمیانی</string>
+    <string name="priority_high">زیادہ</string>
+    <string name="priority_urgent">فوری</string>
+
+    <string name="status_todo">کرنا ہے</string>
+    <string name="status_in_progress">جاری ہے</string>
+    <string name="status_on_hold">موخر</string>
+    <string name="status_done">ہو گیا</string>
+    <string name="status_cancelled">منسوخ</string>
+
+    <!-- کانبان -->
+    <string name="kanban_column_todo">کرنا ہے</string>
+    <string name="kanban_column_in_progress">جاری ہے</string>
+    <string name="kanban_column_on_hold">موخر</string>
+    <string name="kanban_column_done">ہو گیا</string>
+    <string name="kanban_add_task">ٹاسک شامل کریں</string>
+    <string name="kanban_drag_hint">پکڑیں اور کھینچ کر منتقل کریں</string>
+    <string name="kanban_column_empty">یہاں کوئی ٹاسک نہیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- کیلنڈر                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">کیلنڈر</string>
+    <string name="calendar_view_week">ہفتہ</string>
+    <string name="calendar_view_month">مہینہ</string>
+    <string name="calendar_today">آج</string>
+    <string name="calendar_new_event">نیا ایونٹ</string>
+    <string name="calendar_no_events">کوئی ایونٹ نہیں</string>
+    <string name="calendar_all_day">پورا دن</string>
+    <string name="calendar_recurring">دہراوا</string>
+    <string name="calendar_events_count">%1 ایونٹ</string>
+    <string name="calendar_events_count_plural">%1 ایونٹ</string>
+    <string name="calendar_more_events">+%1 مزید</string>
+    <string name="calendar_week_header">%1 کا ہفتہ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ایونٹ                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">نیا ایونٹ</string>
+    <string name="event_edit_title">ایونٹ میں ترمیم</string>
+    <string name="event_field_title">ایونٹ کا عنوان</string>
+    <string name="event_field_title_hint">ایونٹ کیا ہے؟</string>
+    <string name="event_field_description">تفصیل</string>
+    <string name="event_field_description_hint">اس ایونٹ کے بارے میں نوٹس شامل کریں…</string>
+    <string name="event_field_location">مقام</string>
+    <string name="event_field_location_hint">مقام شامل کریں</string>
+    <string name="event_field_start">شروع</string>
+    <string name="event_field_end">اختتام</string>
+    <string name="event_field_all_day">پورے دن کا ایونٹ</string>
+    <string name="event_field_color">رنگ</string>
+    <string name="event_field_recurrence">دہراوا</string>
+    <string name="event_field_reminder">یاد دہانی</string>
+    <string name="event_field_link_task">ٹاسک لنک</string>
+    <string name="event_attendees">شریک شدگان</string>
+    <string name="event_meeting_link">میٹنگ لنک</string>
+    <string name="event_travel_time">سفر کا وقت</string>
+    <string name="event_quick_templates">فوری ٹیمپلیٹس</string>
+    <string name="event_suggestions">تجویزات</string>
+    <string name="event_select_time">وقت منتخب کریں</string>
+    <string name="event_conflict">وقت کا تصادم</string>
+    <string name="event_conflict_with">%d ایونٹ(وں) سے وقت کا تصادم</string>
+    <string name="event_add_attendee_hint">ای میل پتہ</string>
+    <string name="event_enter_location_hint">مقام درج کریں</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">منٹ</string>
+    <string name="event_add_location">مقام شامل کریں</string>
+    <string name="event_add_description">تفصیل شامل کریں</string>
+    <string name="event_add_attendees">شریک شدگان شامل کریں</string>
+    <string name="event_add_link">لنک شامل کریں</string>
+    <string name="event_add_estimate">اندازہ شامل کریں</string>
+    <string name="event_attendee_count">%d شریک شدگان</string>
+    <string name="event_reminder_multiple">متعدد (%d)</string>
+    <string name="event_speak_prompt">ایونٹ کا عنوان بولیں</string>
+    <string name="task_delete_confirm">ٹاسک حذف کریں؟</string>
+    <string name="task_delete_message">یہ ٹاسک ٹریش میں بھیجی جائے گی۔</string>
+    <string name="task_not_found">ٹاسک نہیں ملی</string>
+    <string name="task_overdue">ڈیڈ لائن گزر چکی</string>
+    <string name="task_due_date">مقرر تاریخ</string>
+    <string name="task_due_time">مقرر وقت</string>
+    <string name="task_reminder">یاد دہانی</string>
+    <string name="task_reminder_set">مقرر کریں</string>
+    <string name="task_time">وقت</string>
+    <string name="task_assignee">مقرر شخص</string>
+    <string name="task_assigned">مقرر</string>
+    <string name="task_completed">مکمل</string>
+    <string name="task_priority">ترجیح</string>
+    <string name="task_subtasks">ذیلی ٹاسک</string>
+    <string name="task_activity">سرگرمی</string>
+    <string name="task_hide">چھپائیں</string>
+    <string name="task_events">%d ایونٹ</string>
+    <string name="task_add_description">تفصیل شامل کریں</string>
+    <string name="task_add_subtask">ذیلی ٹاسک شامل کریں</string>
+    <string name="task_add_subtask_placeholder">ذیلی ٹاسک شامل کریں…</string>
+    <string name="priority_low_importance">کم اہمیت</string>
+    <string name="priority_high_importance">زیادہ اہمیت</string>
+    <string name="priority_not_urgent">فوری نہیں</string>
+    <string name="priority_urgent_low">فوری + کم اہمیت</string>
+    <string name="priority_urgent_high">فوری + زیادہ اہمیت</string>
+    <string name="priority_not_urgent_low">فوری نہیں + کم اہمیت</string>
+    <string name="priority_not_urgent_high">فوری نہیں + زیادہ اہمیت</string>
+    <string name="task_title_placeholder">ٹاسک کا عنوان</string>
+    <string name="task_tags">ٹیگز</string>
+    <string name="task_add_tag">ٹیگ شامل کریں</string>
+    <string name="task_set_date">تاریخ مقرر کریں</string>
+    <string name="task_set_time">وقت مقرر کریں</string>
+    <string name="task_remind_before">اس سے پہلے یاد دلائیں</string>
+    <string name="task_repeat">دہرائیں</string>
+    <string name="task_never">کبھی نہیں</string>
+    <string name="task_estimated_time">اندازہ وقت</string>
+    <string name="task_status">حالت</string>
+    <string name="task_update">اپ ڈیٹ</string>
+    <string name="task_create">بنائیں</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">کمزور</string>
+    <string name="password_fair">مناسب</string>
+    <string name="password_good">اچھا</string>
+    <string name="password_strong">مضبوط</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">منٹ</string>
+    <string name="cd_recurring">دہراوا</string>
+    <string name="empty_tasks_list">ابھی تک کوئی ٹاسک نہیں</string>
+    <string name="empty_tasks_list_hint">اپنی پہلی ٹاسک بنانے کے لیے + ٹیپ کریں</string>
+    <string name="empty_tasks_kanban">بورڈ پر کوئی ٹاسک نہیں</string>
+    <string name="empty_tasks_kanban_hint">شروع کرنے کے لیے ٹاسک شامل کریں</string>
+    <string name="empty_tasks_calendar">اس دن کوئی ٹاسک نہیں</string>
+    <string name="empty_tasks_calendar_hint">کوئی دوسری تاریخ منتخب کریں یا ٹاسک شامل کریں</string>
+    <string name="empty_tasks_timeline">اس مدت میں کوئی ٹاسک نہیں</string>
+    <string name="empty_tasks_timeline_hint">ٹائملائن ایڈجسٹ کریں یا ٹاسک شامل کریں</string>
+
+    <!-- ترتیبات -->
+    <string name="pref_section_account">اکاؤنٹ</string>
+    <string name="pref_section_appearance">ظاہری شکل</string>
+    <string name="pref_section_notifications">اطلاعات</string>
+    <string name="pref_section_data_sync">ڈیٹا اور سائند</string>
+    <string name="pref_section_beta">بیٹا خصوصیات</string>
+    <string name="pref_section_about">بارے میں</string>
+    <string name="pref_section_help">مدد اور تعاون</string>
+    <string name="pref_search_placeholder">ترتیبات تلاش کریں…</string>
+    <string name="pref_no_results">"%s" کے لیے کوئی نتیجہ نہیں ملا</string>
+    <string name="pref_theme">تھیم</string>
+    <string name="pref_local_only_mode">صرف مقامی موڈ</string>
+    <string name="pref_local_only_mode_desc">تمام ڈیٹا اس ڈیوائس پر رکھیں</string>
+    <string name="pref_subscription">سبسکرپشن</string>
+    <string name="pref_free_plan">مفت پلان</string>
+    <string name="pref_free">مفت</string>
+    <string name="pref_font_family">فونٹ خاندان</string>
+    <string name="pref_font_size">فونٹ سائز</string>
+    <string name="pref_density">کثافت</string>
+    <string name="pref_haptic_feedback">ہیپٹک فیڈبیک</string>
+    <string name="pref_haptic_feedback_desc">تاثرات پر وائبریٹ</string>
+    <string name="pref_quiet_hours">خاموش اوقات</string>
+    <string name="pref_quiet_hours_start">شروع</string>
+    <string name="pref_quiet_hours_end">اختتام</string>
+    <string name="pref_auto_sync">خودکار سائند</string>
+    <string name="pref_auto_sync_desc">جڑے ہونے پر خودکار طور پر ڈیٹا سائند کریں</string>
+    <string name="pref_offline_mode">آف لائن موڈ</string>
+    <string name="pref_offline_mode_desc">انٹرنیٹ کنکشن کے بغیر کام کریں</string>
+    <string name="pref_export_data">ڈیٹا برآمد</string>
+    <string name="pref_export_data_desc">اپنے تمام ڈیٹا کا بیک اپ محفوظ کریں</string>
+    <string name="pref_import_data">ڈیٹا درآمد</string>
+    <string name="pref_import_data_desc">بیک اپ فائل سے ڈیٹا بحال کریں</string>
+    <string name="pref_version">ورژن</string>
+    <string name="pref_version_value">1.2.0 (build 42)</string>
+    <string name="pref_latest">تازہ ترین</string>
+    <string name="pref_credits">کریڈٹس</string>
+    <string name="pref_terms">شرائط و ضوابط</string>
+    <string name="pref_privacy">رازداری کی پالیسی</string>
+    <string name="pref_faq">عمومی سوالات</string>
+    <string name="pref_faq_desc">عمومی طور پر پوچھے جانے والے سوالات</string>
+    <string name="pref_contact">ہم سے رابطہ کریں</string>
+    <string name="pref_contact_desc">ٹیم سے رابطہ کریں</string>
+    <string name="pref_feedback">رائے بھیجیں</string>
+    <string name="pref_feedback_desc">ہمیں بہتر بنانے میں مدد کریں ProductivityX</string>
+    <string name="pref_feedback_subject">ProductivityX رائے</string>
+    <string name="pref_select_hour">%s گھنٹہ منتخب کریں</string>
+    <string name="pref_settings">ترتیبات</string>
+    <string name="pref_close">بند</string>
+    <string name="pref_enabled">فعال</string>
+    <string name="pref_disabled">غیر فعال</string>
+    <string name="pref_theme_dark">گہرا</string>
+    <string name="pref_theme_light">ہلکا</string>
+    <string name="pref_theme_system">سسٹم</string>
+    <string name="pref_theme_ocean">سمندر</string>
+    <string name="pref_theme_amber">ایمبر</string>
+    <string name="pref_theme_forest">جنگل</string>
+    <string name="pref_theme_rose">گلابی</string>
+    <string name="pref_theme_midnight">آدھی رات</string>
+    <string name="pref_theme_dynamic">ڈائنامک</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">سسٹم</string>
+    <string name="pref_font_serif">Serif</string>
+    <string name="pref_font_mono">Mono</string>
+    <string name="pref_density_compact">مختصر</string>
+    <string name="pref_density_comfortable">آرام دہ</string>
+    <string name="pref_density_spacious">کشادہ</string>
+    <string name="pref_view_list">فہرست</string>
+    <string name="pref_view_kanban">کانبان</string>
+    <string name="pref_sort_due">مقرر</string>
+    <string name="pref_sort_priority">ترجیح</string>
+    <string name="pref_sort_created">تعمیر</string>
+    <string name="pref_calendar_week">ہفتہ</string>
+    <string name="pref_calendar_month">مہینہ</string>
+    <string name="pref_week_mon">پیر</string>
+    <string name="pref_week_sun">اتوار</string>
+    <string name="pref_week_sat">ہفتہ</string>
+    <string name="pref_ai_flash">فلیش</string>
+    <string name="pref_ai_pro">پرو</string>
+    <string name="minute_abbrev">منٹ</string>
+
+    <string name="event_recurrence_none">دہراتا نہیں</string>
+    <string name="event_recurrence_daily">روزانہ</string>
+    <string name="event_recurrence_weekly">ہفتہ وار</string>
+    <string name="event_recurrence_monthly">ماہانہ</string>
+    <string name="event_recurrence_yearly">سالانہ</string>
+    <string name="event_recurrence_custom">حسب ضرورت</string>
+    <string name="event_recurrence_weekdays">ہر کام کا دن (پیر جمع)</string>
+    <string name="event_recurrence_end_date">ختم ہوتا ہے</string>
+    <string name="event_recurrence_end_never">کبھی نہیں</string>
+    <string name="event_recurrence_label">دہراتا ہے: %1</string>
+    <string name="event_reminder_none">کوئی یاد دہانی نہیں</string>
+    <string name="event_reminder_at_time">ایونٹ کے وقت</string>
+    <string name="event_reminder_5_min">5 منٹ پہلے</string>
+    <string name="event_reminder_10_min">10 منٹ پہلے</string>
+    <string name="event_reminder_15_min">15 منٹ پہلے</string>
+    <string name="event_reminder_30_min">30 منٹ پہلے</string>
+    <string name="event_reminder_1_hour">1 گھنٹہ پہلے</string>
+    <string name="event_reminder_1_day">1 دن پہلے</string>
+    <string name="event_create_success">ایونٹ بن گیا۔</string>
+    <string name="event_update_success">ایونٹ اپ ڈیٹ ہو گیا۔</string>
+    <string name="event_delete_success">ایونٹ حذف ہو گیا۔</string>
+    <string name="event_restore_success">ایونٹ بحال ہو گیا۔</string>
+    <string name="event_untitled">بے عنوان ایونٹ</string>
+    <string name="event_delete_cannot_undo">یہ عمل واپس نہیں کیا جا سکتا۔</string>
+    <string name="event_repeats">دہراتا ہے</string>
+    <string name="event_detail_ends">ختم ہوتا ہے %1</string>
+    <string name="event_detail_timezone">ٹائم زون: %1</string>
+    <string name="event_detail_min_before">%1 منٹ پہلے</string>
+    <string name="event_detail_reminders">یاد دہانیاں: %1</string>
+    <string name="event_detail_attendees_count">%1 شریک شدگان</string>
+    <string name="event_detail_travel_time">سفر کا وقت: %1 منٹ</string>
+    <string name="event_reminder_short_at_time">وقت پر</string>
+    <string name="event_reminder_short_min">%1 منٹ</string>
+    <string name="event_reminder_short_1_hour">1 گھنٹہ</string>
+    <string name="event_reminder_short_1_day">1 دن</string>
+    <string name="event_delete_confirm_title">ایونٹ حذف کریں؟</string>
+    <string name="cd_date_picker">تاریخ منتخب کرنے والا</string>
+    <string name="cd_join">شمولیت</string>
+    <string name="cd_previous_year">پچھلا سال</string>
+    <string name="cd_next_year">اگلا سال</string>
+    <string name="event_delete_confirm_body">یہ ایونٹ حذف ہو جائے گا۔</string>
+    <string name="event_delete_recurring_title">دہراوا ایونٹ حذف کریں</string>
+    <string name="event_delete_recurring_body">یہ ایونٹ حذف کریں یا سیریز کے تمام ایونٹس؟</string>
+    <string name="event_delete_this_only">صرف یہ ایونٹ</string>
+    <string name="event_delete_all_in_series">سیریز کے تمام ایونٹس</string>
+    <string name="event_end_before_start">اختتام کا وقت شروع سے بعد ہونا چاہیے۔</string>
+    <string name="event_location_open_maps">نقشے میں کھولیں</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">میٹنگ</string>
+    <string name="event_template_focus">فوکس وقت</string>
+    <string name="event_template_break">وقفہ</string>
+    <string name="event_template_travel">سفر</string>
+    <string name="event_join_meeting">میٹنگ میں شامل ہوں</string>
+    <string name="event_navigate">نیویگیٹ</string>
+    <string name="event_share">ایونٹ شیئر کریں</string>
+    <string name="event_duplicate">نقل</string>
+    <string name="event_weather">موسم</string>
+    <string name="event_timezone">ٹائم زون</string>
+    <string name="event_conflict_detected">وقت کا تصادم پایا گیا</string>
+    <string name="event_reminder_add">یاد دہانی شامل کریں</string>
+    <string name="event_reminder_custom">حسب ضرورت</string>
+    <string name="event_voice_input">آواز ان پٹ</string>
+    <string name="event_smart_suggestion">ذہین تجاویز</string>
+    <string name="event_free_busy">مفت/مسرع</string>
+    <string name="event_suggested_times">تجویز کردہ اوقات</string>
+    <string name="calendar_view_day">دن</string>
+    <string name="calendar_view_agenda">ایجنڈا</string>
+    <string name="calendar_view_year">سال</string>
+    <string name="calendar_date_jump">تاریخ پر جائیں</string>
+    <string name="calendar_swipe_instruction">نیویگیٹ کرنے کے لیے سوائپ کریں</string>
+    <string name="calendar_pinch_zoom">زوم کرنے کے لیے پنچ کریں</string>
+    <string name="calendar_no_events_day">اس دن کوئی ایونٹ نہیں</string>
+    <string name="calendar_all_day_section">پورا دن</string>
+    <string name="calendar_agenda_empty">کوئی آنے والے ایونٹس نہیں</string>
+    <string name="calendar_heat_map_label">سرگرمی</string>
+    <string name="calendar_upcoming_events">آنے والے ایونٹس</string>
+    <string name="calendar_free_busy_suggested">مفت/مسرع اور تجویز کردہ اوقات</string>
+    <string name="calendar_no_available_slots">اس ہفتے کے لیے کوئی دستیاب سلاٹ نہیں ملا</string>
+    <string name="calendar_free">مفت</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- پومودورو                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">فوکس</string>
+    <string name="pomodoro_focus">فوکس</string>
+    <string name="pomodoro_short_break">چھوٹا وقفہ</string>
+    <string name="pomodoro_long_break">بڑا وقفہ</string>
+    <string name="pomodoro_session_focus">فوکس سیشن</string>
+    <string name="pomodoro_session_short_break">چھوٹا وقفہ</string>
+    <string name="pomodoro_session_long_break">بڑا وقفہ</string>
+    <string name="pomodoro_start">شروع</string>
+    <string name="pomodoro_pause">روکیں</string>
+    <string name="pomodoro_resume">دوبارہ شروع</string>
+    <string name="pomodoro_skip">چھوڑیں</string>
+    <string name="pomodoro_stop">روکیں</string>
+    <string name="pomodoro_reset">ری سیٹ</string>
+    <string name="pomodoro_link_task">ایک ٹاسک لنک کریں</string>
+    <string name="pomodoro_link_task_hint">ٹاسک لنک کرنے کے لیے ٹیپ کریں</string>
+    <string name="pomodoro_linked_task">فوکس: %1</string>
+    <string name="pomodoro_sessions_today">آج %1 سیشن</string>
+    <string name="pomodoro_sessions_today_plural">آج %1 سیشن</string>
+    <string name="pomodoro_focus_time_today">آج %1 فوکس</string>
+    <string name="pomodoro_completed_today">آج مکمل</string>
+    <string name="pomodoro_no_active_session">کوئی فعال سیشن نہیں</string>
+    <string name="pomodoro_session_complete_title">سیشن مکمل! 🎉</string>
+    <string name="pomodoro_session_complete_body">بہت اچھا کام۔ وقفہ لیں!</string>
+    <string name="pomodoro_break_complete_title">وقفہ ختم</string>
+    <string name="pomodoro_break_complete_body">دوبارہ فوکس کے لیے تیار؟</string>
+    <string name="pomodoro_start_success">سیشن شروع ہو گیا۔</string>
+    <string name="pomodoro_end_success">سیشن مکمل۔</string>
+    <string name="pomodoro_interrupt_success">سیشن میں رکاوٹ۔</string>
+    <string name="pomodoro_interrupt_reason_hint">کیوں روک رہے ہیں؟ (اختیاری)</string>
+    <string name="pomodoro_interrupt_confirm_title">سیشن روکیں؟</string>
+    <string name="pomodoro_interrupt_confirm_body">آپ کی پیشرفت محفوظ ہو جائے گی لیکن سیشن میں رکاوٹ کے طور پر نشان لگایا جائے گا۔</string>
+    <string name="pomodoro_already_active">آپ کا پہلے سے ایک فعال سیشن ہے۔ نیا شروع کرنے سے پہلے اسے ختم کریں۔</string>
+    <string name="pomodoro_stats_title">آج کے اعداد و شمار</string>
+    <string name="pomodoro_history_title">سیشن کی تاریخ</string>
+    <string name="pomodoro_history_empty_title">ابھی تک کوئی سیشن نہیں</string>
+    <string name="pomodoro_history_empty_body">اپنا تاریخ یہاں دیکھنے کے لیے فوکس سیشن شروع کریں۔</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">رکاوٹ</string>
+    <string name="pomodoro_session_completed">مکمل</string>
+    <string name="pomodoro_dot_current">موجودہ سیشن</string>
+    <string name="pomodoro_dot_completed">مکمل سیشن</string>
+    <string name="pomodoro_dot_upcoming">آنے والا سیشن</string>
+    <string name="pomodoro_notification_channel_name">پومودورو ٹائمر</string>
+    <string name="pomodoro_notification_channel_desc">لائیو ٹائمر اپ ڈیٹس اور سیشن اطلاعات۔</string>
+    <string name="pomodoro_notification_running">%1$s باقی ہے — %2$s</string>
+    <string name="pomodoro_notification_action_pause">روکیں</string>
+    <string name="pomodoro_notification_action_skip">چھوڑیں</string>
+    <string name="pomodoro_notification_action_stop">بند کریں</string>
+    <string name="pomodoro_cycle_count">%2$d میں سے %1$d سائیکل</string>
+    <string name="pomodoro_until_long_break">بڑے وقفے تک %1 سیشن</string>
+    <string name="pomodoro_until_long_break_plural">بڑے وقفے تک %1 سیشن</string>
+
+    <string name="pomodoro_swipe_to_skip">چھوڑنے کے لیے سوائپ کریں</string>
+    <string name="pomodoro_extend_1min">+1 منٹ</string>
+    <string name="pomodoro_focus_analytics">فوکس تجزیہ</string>
+    <string name="pomodoro_streak_day">%1 دن کی لہر</string>
+    <string name="pomodoro_best_streak">بہترین: %1 دن</string>
+    <string name="pomodoro_weekly_intensity">ہفتہ وار شدت</string>
+    <string name="pomodoro_focus_by_category">زمرے کے مطابق فوکس</string>
+    <string name="pomodoro_quality_score">کوالٹی اسکور</string>
+    <string name="pomodoro_total_focus_time">کل فوکس</string>
+    <string name="pomodoro_daily_goal">روزانہ ہدف</string>
+    <string name="pomodoro_weekly_goal">ہفتہ وار ہدف</string>
+    <string name="pomodoro_exit_focus_mode">فوکس موڈ سے باہر جائیں</string>
+    <string name="pomodoro_dnd">DND</string>
+    <string name="pomodoro_background">پس منظر</string>
+    <string name="pomodoro_sounds">آوازیں</string>
+    <string name="pomodoro_focus_mode">فوکس موڈ</string>
+    <string name="pomodoro_unlink">لنک ہٹائیں</string>
+    <string name="pomodoro_play_pause">چلائیں/روکیں</string>
+    <string name="pomodoro_no_active_tasks">کوئی فعال ٹاسک دستیاب نہیں۔</string>
+    <string name="pomodoro_ambient_sound">ماحول کی آواز</string>
+    <string name="pomodoro_today_sessions">آج کے سیشن</string>
+    <string name="pomodoro_no_sessions_today">آج ابھی تک کوئی سیشن نہیں</string>
+    <string name="pomodoro_interrupt_button">رکاوٹ</string>
+    <string name="pomodoro_dnd_access_required">DND رسائی ضروری ہے۔ ترتیبات میں فعال کریں۔</string>
+    <string name="pomodoro_ambient_rain">بارش</string>
+    <string name="pomodoro_ambient_cafe">کیفے</string>
+    <string name="pomodoro_ambient_white_noise">سفید شور</string>
+    <string name="pomodoro_ambient_nature">قدرت</string>
+    <string name="pomodoro_paused">روکا ہوا</string>
+    <string name="pomodoro_done">ہو گیا! 🎉</string>
+    <string name="pomodoro_general_focus">عمومی فوکس</string>
+    <string name="pomodoro_sessions_label">سیشن</string>
+    <string name="pomodoro_focus_time_label">فوکس وقت</string>
+    <string name="pomodoro_streak_label">لہر</string>
+    <string name="pomodoro_less">کم</string>
+    <string name="pomodoro_more">زیادہ</string>
+    <string name="pomodoro_no_category_data">کوئی زمرے کا ڈیٹا دستیاب نہیں</string>
+    <string name="pomodoro_ongoing">جاری</string>
+    <string name="pomodoro_duration_min">%d منٹ</string>
+    <string name="pomodoro_toggle">ٹوگل</string>
+    <string name="pomodoro_ambient_sounds">ماحول کی آوازیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI معاون</string>
+    <string name="ai_welcome_title">میں کیسے مدد کر سکتا ہوں؟</string>
+    <string name="ai_welcome_body">میں آپ کا کام کا مقام دیکھ سکتا ہوں — ٹاسک، ایونٹس، اور نوٹس — سیاق و سباق سے آگاہ جوابات دینے کے لیے۔</string>
+    <string name="ai_message_hint">پیغام…</string>
+    <string name="ai_send">بھیجیں</string>
+    <string name="ai_new_conversation">نئی گفتگو</string>
+    <string name="ai_conversations_title">گفتگو</string>
+    <string name="ai_conversation_empty">ابھی تک کوئی پیغام نہیں</string>
+    <string name="ai_conversations_empty_title">ابھی تک کوئی گفتگو نہیں</string>
+    <string name="ai_conversations_empty_body">اپنے کام کے مقام میں مدد کے لیے نئی گفتگو شروع کریں۔</string>
+    <string name="ai_delete_conversation_title">گفتگو حذف کریں؟</string>
+    <string name="ai_delete_conversation_body">یہ گفتگو اور اس کے تمام پیغامات مستقل طور پر حذف ہو جائیں گے۔</string>
+    <string name="ai_delete_conversation_success">گفتگو حذف ہو گئی۔</string>
+    <string name="ai_clear_conversation_title">گفتگو صاف کریں؟</string>
+    <string name="ai_clear_conversation_body">اس گفتگو کے تمام پیغامات صاف ہو جائیں گے۔</string>
+    <string name="ai_suggestion_due_today">آج کیا مقرر ہے؟</string>
+    <string name="ai_suggestion_overdue">میری ڈیڈ لائن گزری ہوئی ٹاسک کا خلاصہ</string>
+    <string name="ai_suggestion_start_focus">فوکس سیشن شروع کریں</string>
+    <string name="ai_suggestion_meeting_agenda">میٹنگ کا ایجنڈا تیار کریں</string>
+    <string name="ai_context_title">آپ کا کام کا مقام</string>
+    <string name="ai_context_active_tasks">فعال ٹاسک</string>
+    <string name="ai_context_events_week">اس ہفتے کے ایونٹس</string>
+    <string name="ai_context_last_note">آخری نوٹ</string>
+    <string name="ai_context_focus_today">آج کا فوکس</string>
+    <string name="ai_context_overdue">ڈیڈ لائن گزری</string>
+    <string name="ai_context_caption">یہ سیاق و سباق ہر پیغام کے ساتھ AI کو بھیجا جاتا ہے۔</string>
+    <string name="ai_context_refresh">سیاق و سباق ریفریش</string>
+    <string name="ai_typing">AI سوچ رہا ہے…</string>
+    <string name="ai_streaming">جواب تیار ہو رہا ہے…</string>
+    <string name="ai_error_unavailable">AI معاون فی الحال دستیاب نہیں ہے۔ بعد میں دوبارہ کوشش کریں۔</string>
+    <string name="ai_error_stream">جواب تیار کرتے وقت خرابی ہوئی۔</string>
+    <string name="ai_action_create_task">ٹاسک بنائیں</string>
+    <string name="ai_action_create_note">نوٹ بنائیں</string>
+    <string name="ai_action_add_event">ایونٹ شامل کریں</string>
+    <string name="ai_action_confirm">تصدیق کریں</string>
+    <string name="ai_action_dismiss">رد کریں</string>
+    <string name="ai_action_executed">ہو گیا! آئٹم بن گیا۔</string>
+    <string name="ai_action_dismissed">رد ہو گیا۔</string>
+    <string name="ai_copy_message">پیغام کاپی کریں</string>
+    <string name="ai_message_copied">پیغام کاپی ہو گیا۔</string>
+    <string name="ai_regenerate">جواب دوبارہ تیار کریں</string>
+    <string name="ai_you">آپ</string>
+    <string name="ai_assistant">معاون</string>
+    <string name="ai_stop_generating">تیار کرنا بند کریں</string>
+    <string name="ai_conversations_search_hint">گفتگو تلاش کریں…</string>
+    <string name="ai_conversations_close_search">تلاش بند</string>
+    <string name="ai_conversations_no_results">"%s" کے لیے کوئی نتیجہ نہیں</string>
+    <string name="ai_conversations_section_pinned">پن کی گئی</string>
+    <string name="ai_conversations_section_earlier">پچھلی</string>
+    <string name="ai_conversations_quick_action">فوری عمل</string>
+    <string name="ai_conversations_new_chat">نئی چیٹ</string>
+    <string name="ai_suggestion_plan_day">میرا دن منصوبہ بندی کریں</string>
+    <string name="ai_suggestion_summarize_notes">نوٹس کا خلاصہ</string>
+    <string name="ai_suggestion_brainstorm">آئیڈیاز کا مجمع</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- تلاش                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">تلاش</string>
+    <string name="search_hint">نوٹس، ٹاسک، ایونٹس تلاش کریں…</string>
+    <string name="search_results_notes">نوٹس</string>
+    <string name="search_results_tasks">ٹاسک</string>
+    <string name="search_results_events">ایونٹس</string>
+    <string name="search_recent">حالیہ تلاشیں</string>
+    <string name="search_clear_recent">صاف کریں</string>
+    <string name="search_empty_title">\'%1\' کے لیے کوئی نتیجہ نہیں</string>
+    <string name="search_empty_body">کوئی دوسرا کلیدی لفظ آزمائیں یا ہجے چیک کریں۔</string>
+    <string name="search_results_count">%1 نتیجہ</string>
+    <string name="search_results_count_plural">%1 نتائج</string>
+    <string name="search_type_note">نوٹ</string>
+    <string name="search_type_task">ٹاسک</string>
+    <string name="search_type_event">ایونٹ</string>
+    <string name="search_offline_notice">مقامی طور پر تلاش کر رہے ہیں۔ مکمل نتائج کے لیے انٹرنیٹ سے جڑیں۔</string>
+    <string name="search_loading">تلاش ہو رہی ہے…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- پروفائل اور ترتیبات                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">پروفائل</string>
+    <string name="profile_edit_title">پروفائل میں ترمیم</string>
+    <string name="profile_change_photo">تصویر بدلیں</string>
+    <string name="profile_remove_photo">تصویر ہٹائیں</string>
+    <string name="profile_photo_updated">پروفائل تصویر اپ ڈیٹ ہو گئی۔</string>
+    <string name="profile_photo_removed">پروفائل تصویر ہٹا دی گئی۔</string>
+    <string name="profile_photo_pick">گیلری سے چنیں</string>
+    <string name="profile_photo_camera">تصویر لیں</string>
+    <string name="profile_update_success">پروفائل اپ ڈیٹ ہو گیا۔</string>
+    <string name="profile_stats_notes">نوٹس</string>
+    <string name="profile_stats_tasks_completed">مکمل شدہ ٹاسک</string>
+    <string name="profile_stats_focus_this_week">اس ہفتے کا فوکس</string>
+    <string name="profile_member_since">%1 سے ممبر</string>
+    <string name="profile_full_name">%1 %2</string>
+    <string name="profile_bio_empty">ابھی تک کوئی تعارف نہیں۔</string>
+    <string name="profile_section_account">اکاؤنٹ</string>
+    <string name="profile_section_appearance">ظاہری شکل</string>
+    <string name="profile_section_pomodoro">پومودورو</string>
+    <string name="profile_section_notifications">اطلاعات</string>
+    <string name="profile_section_ai">AI معاون</string>
+    <string name="profile_section_data">ڈیٹا اور سائند</string>
+    <string name="profile_section_about">بارے میں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ترتیبات                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">ترتیبات</string>
+    <string name="preferences_update_success">ترتیبات محفوظ ہو گئیں۔</string>
+    <string name="preferences_pomodoro_focus">فوکس مدت</string>
+    <string name="preferences_pomodoro_focus_desc">ہر فوکس سیشن کی مدت</string>
+    <string name="preferences_pomodoro_short_break">چھوٹا وقفہ</string>
+    <string name="preferences_pomodoro_short_break_desc">سیشن کے درمیان چھوٹے وقفے کی مدت</string>
+    <string name="preferences_pomodoro_long_break">بڑا وقفہ</string>
+    <string name="preferences_pomodoro_long_break_desc">مکمل سائیکل کے بعد بڑے وقفے کی مدت</string>
+    <string name="preferences_pomodoro_cycles">بڑے وقفے سے پہلے سیشن</string>
+    <string name="preferences_pomodoro_cycles_desc">بڑے وقفے سے پہلے فوکس سیشن کی تعداد</string>
+    <string name="preferences_pomodoro_auto_start_breaks">خودکار وقفے شروع</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">سیشن ختم ہونے پر خودکار طور پر وقفے شروع کریں</string>
+    <string name="preferences_pomodoro_auto_start_focus">خودکار فوکس شروع</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">وقفے کے بعد خودکار طور پر اگلا سیشن شروع کریں</string>
+    <string name="preferences_pomodoro_sound">آواز</string>
+    <string name="preferences_pomodoro_sound_desc">سیشن ختم ہونے پر آواز بجائیں</string>
+    <string name="preferences_notify_task_reminders">ٹاسک کی یاد دہانیاں</string>
+    <string name="preferences_notify_task_reminders_desc">ٹاسک کی یاد دہانی آنے پر اطلاع پائیں</string>
+    <string name="preferences_notify_event_reminders">ایونٹ کی یاد دہانیاں</string>
+    <string name="preferences_notify_event_reminders_desc">کیلنڈر ایونٹس سے پہلے اطلاع پائیں</string>
+    <string name="preferences_notify_pomodoro_end">پومودورو ختم</string>
+    <string name="preferences_notify_pomodoro_end_desc">پومودورو سیشن ختم ہونے پر اطلاع پائیں</string>
+    <string name="preferences_notify_daily_summary">روزانہ خلاصہ</string>
+    <string name="preferences_notify_daily_summary_desc">صبح اپنے دن کا خلاصہ حاصل کریں</string>
+    <string name="preferences_default_task_view">ڈیفالٹ ٹاسک نظارہ</string>
+    <string name="preferences_default_task_sort">ڈیفالٹ ٹاسک ترتیب</string>
+    <string name="preferences_show_completed_tasks">مکمل ٹاسک دکھائیں</string>
+    <string name="preferences_show_completed_tasks_desc">ٹاسک فہرست میں مکمل ٹاسک شامل کریں</string>
+    <string name="preferences_default_calendar_view">ڈیفالٹ کیلنڈر نظارہ</string>
+    <string name="preferences_week_starts_on">ہفتہ شروع ہوتا ہے</string>
+    <string name="preferences_week_starts_monday">پیر</string>
+    <string name="preferences_week_starts_sunday">اتوار</string>
+    <string name="preferences_ai_context">کام کے مقام کا سیاق و سباق</string>
+    <string name="preferences_ai_context_desc">AI معاون کے ساتھ اپنی ٹاسک، ایونٹس اور نوٹس شیئر کریں</string>
+    <string name="preferences_ai_model">AI ماڈل</string>
+    <string name="preferences_ai_model_desc">معاون کے لیے AI ماڈل چنیں</string>
+    <string name="preferences_compact_mode">مختصر موڈ</string>
+    <string name="preferences_compact_mode_desc">مزید مواد دکھانے کے لیے گھنی تر لے آؤٹ استعمال کریں</string>
+    <string name="preferences_minutes_format">%1 منٹ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- سائند                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">سائند ہو گیا</string>
+    <string name="sync_status_pending">سائند زیر التوا</string>
+    <string name="sync_status_syncing">سائند ہو رہا ہے…</string>
+    <string name="sync_status_conflict">سائند تصادم</string>
+    <string name="sync_status_error">سائند خرابی</string>
+    <string name="sync_last_synced">آخری سائند: %1</string>
+    <string name="sync_never_synced">کبھی سائند نہیں ہوا</string>
+    <string name="sync_conflict_title">سائند تصادم</string>
+    <string name="sync_conflict_body">\'%1\' کے لیے ایک تصادم پایا گیا۔ کون سا ورژن رکھنا چاہیں گے؟</string>
+    <string name="sync_conflict_keep_local">مقامی ورژن رکھیں</string>
+    <string name="sync_conflict_keep_server">سرور ورژن رکھیں</string>
+    <string name="sync_conflict_resolved">تصادم حل ہو گیا۔</string>
+    <string name="sync_pending_count">%1 تبدیلی زیر التوا</string>
+    <string name="sync_pending_count_plural">%1 تبدیلیاں زیر التوا</string>
+    <string name="sync_reconnected">آن لائن واپس آ گئے۔ سائند ہو رہا ہے…</string>
+    <string name="sync_complete">تمام تبدیلیاں سائند ہو گئیں۔</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- اطلاعات                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">یاد دہانیاں</string>
+    <string name="notification_channel_reminders_desc">ٹاسک اور ایونٹ کی یاد دہانی اطلاعات۔</string>
+    <string name="notification_channel_sync_name">سائند</string>
+    <string name="notification_channel_sync_desc">پس منظر سائند کی حالت اطلاعات۔</string>
+    <string name="notification_task_reminder_title">ٹاسک کی یاد دہانی</string>
+    <string name="notification_task_reminder_body">%1 جلدی مقرر ہے۔</string>
+    <string name="notification_event_reminder_title">آنے والا ایونٹ</string>
+    <string name="notification_event_reminder_body">%1 %2 میں شروع ہو گا۔</string>
+    <string name="notification_daily_summary_title">آج کا خلاصہ</string>
+    <string name="notification_daily_summary_body">%1$d ٹاسک مقرر ہیں، %2$d آنے والے ایونٹس۔</string>
+    <string name="notification_permission_title">اطلاعات فعال کریں</string>
+    <string name="notification_permission_body">یاد دہانیوں، فوکس سیشنز اور روزانہ خلاصوں سے باقی رہیں۔</string>
+    <string name="notification_permission_allow">اجازت دیں</string>
+    <string name="notification_permission_deny">ابھی نہیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- اجازتیں                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">کیمرے کی رسائی</string>
+    <string name="permission_camera_body">پروفائل تصویر لینے کے لیے ProductivityX کو کیمرے کی رسائی ضروری ہے۔</string>
+    <string name="permission_storage_title">اسٹوریج کی رسائی</string>
+    <string name="permission_storage_body">پروفائل تصویر چننے کے لیے ProductivityX کو اسٹوریج کی رسائی ضروری ہے۔</string>
+    <string name="permission_notification_title">اطلاع کی رسائی</string>
+    <string name="permission_notification_body">ٹاسک کی یاد دہانیاں اور پومودورو ا Alerts پا کے لیے اطلاعات کی اجازت دیں۔</string>
+    <string name="permission_denied_title">اجازت ضروری</string>
+    <string name="permission_denied_body">اس خصوصیت کے لیے اجازت ضروری ہے۔ ترتیبات میں فعال کریں۔</string>
+    <string name="permission_go_to_settings">ترتیبات کھولیں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- وقت                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">ابھی ابھی</string>
+    <string name="time_minutes_ago">%1 منٹ پہلے</string>
+    <string name="time_hours_ago">%1 گھنٹے پہلے</string>
+    <string name="time_yesterday">کل</string>
+    <string name="time_days_ago">%1 دن پہلے</string>
+    <string name="time_weeks_ago">%1 ہفتہ پہلے</string>
+    <string name="time_weeks_ago_plural">%1 ہفتوں پہلے</string>
+    <string name="time_months_ago">%1 مہینہ پہلے</string>
+    <string name="time_months_ago_plural">%1 مہینوں پہلے</string>
+    <string name="time_format_date">MMM d, yyyy</string>
+    <string name="time_format_date_short">MMM d</string>
+    <string name="time_format_time">h:mm a</string>
+    <string name="time_format_datetime">MMM d \'at\' h:mm a</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, MMMM d, yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">%1 گھنٹہ</string>
+    <string name="time_hour_plural">%1 گھنٹے</string>
+    <string name="time_minute_singular">%1 منٹ</string>
+    <string name="time_minute_plural">%1 منٹ</string>
+
+    <!-- دن / مہینے -->
+    <string name="day_monday_short">پیر</string>
+    <string name="day_tuesday_short">منگل</string>
+    <string name="day_wednesday_short">بدھ</string>
+    <string name="day_thursday_short">جمعرات</string>
+    <string name="day_friday_short">جمعہ</string>
+    <string name="day_saturday_short">ہفتہ</string>
+    <string name="day_sunday_short">اتوار</string>
+    <string name="day_monday">پیر</string>
+    <string name="day_tuesday">منگل</string>
+    <string name="day_wednesday">بدھ</string>
+    <string name="day_thursday">جمعرات</string>
+    <string name="day_friday">جمعہ</string>
+    <string name="day_saturday">ہفتہ</string>
+    <string name="day_sunday">اتوار</string>
+
+    <string name="month_january">جنوری</string>
+    <string name="month_february">فروری</string>
+    <string name="month_march">مارچ</string>
+    <string name="month_april">اپریل</string>
+    <string name="month_may">مئی</string>
+    <string name="month_june">جون</string>
+    <string name="month_july">جولائی</string>
+    <string name="month_august">اگست</string>
+    <string name="month_september">ستمبر</string>
+    <string name="month_october">اکتوبر</string>
+    <string name="month_november">نومبر</string>
+    <string name="month_december">دسمبر</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- خالی حالتیں                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">ابھی تک کچھ نہیں</string>
+    <string name="empty_state_generic_body">نئی چیز بنائے شروع کریں۔</string>
+    <string name="empty_state_no_results_title">کوئی نتائج نہیں</string>
+    <string name="empty_state_no_results_body">کوئی دوسری تلاش یا فلٹر آزمائیں۔</string>
+    <string name="empty_state_offline_title">آپ آف لائن ہیں</string>
+    <string name="empty_state_offline_body">اپنا مواد لوڈ کرنے کے لیے انٹرنیٹ سے جڑیں۔</string>
+    <string name="empty_state_error_title">کچھ غلط ہو گیا</string>
+    <string name="empty_state_retry">دوبارہ کوشش کریں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- رسد                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">واپس جائیں</string>
+    <string name="cd_close">بند</string>
+    <string name="cd_more_options">مزید اختیارات</string>
+    <string name="cd_search">تلاش</string>
+    <string name="cd_filter">فلٹر</string>
+    <string name="cd_sort">ترتیب</string>
+    <string name="cd_add">شامل کریں</string>
+    <string name="cd_delete">حذف</string>
+    <string name="cd_edit">ترمیم</string>
+    <string name="cd_restore">بحال</string>
+    <string name="cd_pin">نوٹ پن کریں</string>
+    <string name="cd_unpin">نوٹ ان پن کریں</string>
+    <string name="cd_check_task">ٹاسک مکمل نشان لگائیں</string>
+    <string name="cd_uncheck_task">ٹاسک غیر مکمل نشان لگائیں</string>
+    <string name="cd_profile_picture">پروفائل تصویر</string>
+    <string name="cd_send_message">پیغام بھیجیں</string>
+    <string name="cd_play_pause">ٹائمر چلائیں/روکیں</string>
+    <string name="cd_skip_session">سیشن چھوڑیں</string>
+    <string name="cd_stop_session">سیشن روکیں</string>
+    <string name="cd_sync_status">سائند کی حالت: %1</string>
+    <string name="cd_password_toggle">پاس ورڈ نظریت ٹوگل</string>
+    <string name="cd_clear_input">ان پٹ صاف کریں</string>
+    <string name="cd_remove_subtask">ذیلی ٹاسک ہٹائیں</string>
+    <string name="cd_notification">اطلاع</string>
+    <string name="cd_selected">منتخب</string>
+    <string name="cd_not_selected">غیر منتخب</string>
+    <string name="cd_clear_selection">انتخاب صاف کریں</string>
+    <string name="cd_grid_view">گرڈ نظارہ</string>
+    <string name="cd_list_view">فہرست نظارہ</string>
+    <string name="cd_note_image">نوٹ کی تصویر</string>
+    <string name="cd_new_tag">نئی ٹیگ</string>
+    <string name="cd_biometric_login">بائیو میٹرک لاگ ان</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- متفرقات                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">آپ کا سیشن چیک ہو رہا ہے…</string>
+    <string name="splash_loading">لوڈ ہو رہا ہے…</string>
+
+    <string name="dialog_unsaved_changes_title">غیر محفوظ تبدیلیاں</string>
+    <string name="dialog_unsaved_changes_body">آپ کی غیر محفوظ تبدیلیاں ہیں۔ کیا آپ انہیں رد کرنا چاہیں گے؟</string>
+    <string name="dialog_unsaved_changes_save">محفوظ کریں</string>
+    <string name="dialog_unsaved_changes_discard">رد کریں</string>
+    <string name="dialog_date_picker_title">تاریخ منتخب کریں</string>
+    <string name="dialog_time_picker_title">وقت منتخب کریں</string>
+    <string name="dialog_color_picker_title">رنگ چنیں</string>
+    <string name="dialog_task_picker_title">ایک ٹاسک لنک کریں</string>
+    <string name="dialog_event_picker_title">ایک ایونٹ لنک کریں</string>
+    <string name="dialog_tag_manager_title">ٹیگز کا انتظام</string>
+
+    <string name="task_view_list">فہرست</string>
+    <string name="task_view_kanban">بورڈ</string>
+
+    <string name="snackbar_undo">واپس کریں</string>
+    <string name="snackbar_note_deleted">نوٹ حذف ہو گئی</string>
+    <string name="snackbar_task_deleted">ٹاسک حذف ہو گئی</string>
+    <string name="snackbar_event_deleted">ایونٹ حذف ہو گیا</string>
+    <string name="snackbar_tag_deleted">ٹیگ حذف ہو گئی</string>
+    <string name="snackbar_copied">کلپ بورڈ پر کاپی ہو گیا</string>
+    <string name="snackbar_no_internet">انٹرنیٹ کنکشن نہیں</string>
+    <string name="snackbar_changes_saved">تبدیلیاں محفوظ ہو گئیں</string>
+
+    <string name="about_version">ورژن %1</string>
+    <string name="about_build">بلڈ %1</string>
+    <string name="about_privacy_policy">رازداری کی پالیسی</string>
+    <string name="about_terms_of_service">سروس کی شرائط</string>
+    <string name="about_rate_app">ایپ ریٹ کریں</string>
+    <string name="about_send_feedback">رائے بھیجیں</string>
+    <string name="about_built_by">تعمیر Oussama Chatri نے کی</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">ڈیٹا برآمد</string>
+    <string name="data_export_body">اپنی تمام نوٹس، ٹاسک اور ایونٹس ایک فائل میں ڈاؤن لوڈ کریں۔</string>
+    <string name="data_export_action">برآمد</string>
+    <string name="data_export_success">آپ کا ڈیٹا برآمد تیار ہے۔</string>
+    <string name="data_delete_account_title">اکاؤنٹ حذف کریں</string>
+    <string name="data_delete_account_body">اپنا اکاؤنٹ اور تمام متعلقہ ڈیٹا مستقل طور پر حذف کریں۔ یہ واپس نہیں کیا جا سکتا۔</string>
+    <string name="data_delete_account_action">اکاؤنٹ حذف کریں</string>
+    <string name="data_delete_account_confirm_title">اپنا اکاؤنٹ حذف کریں گے؟</string>
+    <string name="data_delete_account_confirm_body">آپ کی تمام نوٹس، ٹاسک، ایونٹس اور گفتگو مستقل طور پر حذف ہو جائیں گی۔ یہ عمل واپس نہیں کیا جا سکتا۔</string>
+    <string name="data_delete_account_type_confirm">تصدیق کے لیے DELETE ٹائپ کریں</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">اپ ڈیٹ دستیاب ہے</string>
+    <string name="update_available_body">ProductivityX کا نیا ورژن دستیاب ہے۔ تازہ ترین خصوصیات اور تصحیحات کے لیے ابھی اپ ڈیٹ کریں۔</string>
+    <string name="update_now">ابھی اپ ڈیٹ کریں</string>
+    <string name="update_later">بعد میں</string>
+
+    <string name="auth_check_your_email">اپنا ای میل چیک کریں</string>
+    <string name="auth_otp_sent_body">ہم نے %s پر 6 ہندسے کا کوڈ بھیجا ہے</string>
+
+    <string name="language_en">انگریزی</string>
+    <string name="language_fr">فرنسیسی</string>
+    <string name="language_ar">عربی</string>
+    <string name="language_es">اسپینش</string>
+    <string name="language_de">جرمن</string>
+    <string name="language_pt">پرتگالی</string>
+    <string name="language_zh">روایتی چینی</string>
+    <string name="language_ja">جاپانی</string>
+    <string name="language_ko">کوریائی</string>
+    <string name="language_ru">روسی</string>
+    <string name="language_tr">ترکی</string>
+    <string name="language_it">اٹالوی</string>
+    <string name="language_hi">ہندی</string>
+    <string name="language_id">انڈونیشیائی</string>
+    <string name="language_nl">ڈچ</string>
+    <string name="language_vi">ویتنامی</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ویجٹس                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">ٹاسک</string>
+    <string name="widget_task_list_empty">آج کوئی ٹاسک مقرر نہیں</string>
+    <string name="widget_pomodoro_title">پومودورو</string>
+    <string name="widget_pomodoro_start">فوکس شروع کرنے کے لیے ٹیپ کریں</string>
+    <string name="widget_quick_note_title">فوری نوٹ</string>
+    <string name="widget_quick_note_hint">نوٹ شامل کرنے کے لیے ٹیپ کریں</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ہوم ڈیش بورڈ                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">آج کی ٹاسک</string>
+    <string name="home_widget_events">آنے والے ایونٹس</string>
+    <string name="home_widget_focus">آج کا فوکس وقت</string>
+    <string name="home_widget_notes">حالیہ نوٹس</string>
+    <string name="home_widget_quote">روزانہ اقتباس</string>
+    <string name="home_widget_ai">AI معاون</string>
+    <string name="home_widget_focus_mode">فوری فوکس</string>
+    <string name="home_expand">پھیلائیں</string>
+    <string name="home_collapse">سکیڑیں</string>
+    <string name="home_see_all">سب دیکھیں</string>
+    <string name="home_empty_tasks">آج کوئی ٹاسک مقرر نہیں</string>
+    <string name="home_empty_events">کوئی آنے والا ایونٹ نہیں</string>
+    <string name="home_empty_notes">کوئی حالیہ نوٹ نہیں</string>
+    <string name="home_empty_focus">ابھی تک کوئی فوکس وقت نہیں</string>
+    <string name="home_focus_mode_active">فوکس موڈ</string>
+    <string name="home_focus_mode_inactive">فوری فوکس</string>
+    <string name="home_focus_mode_desc_active">الٹ جھٹل کم کریں</string>
+    <string name="home_focus_mode_desc_inactive">فوکس موڈ میں داخل ہونے کے لیے ٹیپ کریں</string>
+    <string name="home_voice_prompt">آپ کیا کرنا چاہیں گے؟</string>
+    <string name="home_voice_listening">سن رہا ہے…</string>
+    <string name="home_pull_to_refresh">ریفریش کے لیے کھینچیں</string>
+    <string name="home_syncing">سائند ہو رہا ہے…</string>
+    <string name="home_refreshed">ڈیش بورڈ اپ ڈیٹ ہو گیا</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- شارٹ کٹس                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">نئی نوٹ</string>
+    <string name="shortcut_new_task">نئی ٹاسک</string>
+    <string name="shortcut_start_focus">فوکس شروع کریں</string>
+    <string name="shortcut_ai_chat">AI چیٹ</string>
+    <string name="shortcut_note_short_label">نوٹ</string>
+    <string name="shortcut_task_short_label">ٹاسک</string>
+    <string name="shortcut_focus_short_label">فوکس</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- فولڈر کا انتظام -->
+    <string name="folder_screen_title">فولڈرز</string>
+    <string name="folder_empty">ابھی تک کوئی فولڈر نہیں</string>
+    <string name="folder_create_dialog_title">فولڈر بنائیں</string>
+    <string name="folder_edit_dialog_title">فولڈر میں ترمیم</string>
+    <string name="folder_delete_title">فولڈر حذف کریں؟</string>
+    <string name="folder_delete_message">"%s" کی نوٹس حذف نہیں ہوں گی۔</string>
+    <string name="folder_name_label">فولڈر کا نام</string>
+    <string name="folder_color_label">رنگ</string>
+    <string name="folder_save">محفوظ کریں</string>
+    <string name="folder_delete">حذف</string>
+    <string name="folder_note_count">%d نوٹس</string>
+    <string name="folder_note_count_one">%d نوٹ</string>
+    <string name="folder_create_cd">فولڈر بنائیں</string>
+    <string name="folder_edit_cd">ترمیم</string>
+    <string name="folder_delete_cd">حذف</string>
+
+    <!-- ٹیگ کا انتظام -->
+    <string name="tag_screen_title">ٹیگز</string>
+    <string name="tag_empty">ابھی تک کوئی ٹیگ نہیں۔ بنانے کے لیے + ٹیپ کریں۔</string>
+    <string name="tag_create_dialog_title">ٹیگ بنائیں</string>
+    <string name="tag_edit_dialog_title">ٹیگ میں ترمیم</string>
+    <string name="tag_delete_title">ٹیگ حذف کریں؟</string>
+    <string name="tag_delete_message">"%s" ٹیگ تمام نوٹس سے ہٹا دی جائے گی۔</string>
+    <string name="tag_name_label">ٹیگ کا نام</string>
+    <string name="tag_color_label">رنگ</string>
+    <string name="tag_save">محفوظ کریں</string>
+    <string name="tag_delete">حذف</string>
+    <string name="tag_create_cd">ٹیگ بنائیں</string>
+    <string name="tag_delete_cd">حذف</string>
+
+    <!-- شرائط و ضوابط -->
+    <string name="terms_title">شرائط و ضوابط</string>
+    <string name="terms_subtitle">سروس کی شرائط</string>
+    <string name="terms_last_updated">آخری اپ ڈیٹ: جولائی 2026</string>
+    <string name="terms_section_1_title">1. شرائط کی قبولیت</string>
+    <string name="terms_section_1_body">ProductivityX تک رسائی یا استعمال کرکے، آپ ان سروس کی شرائط کی پابندی کے لیے رضامند ہیں۔ اگر آپ اتفاق نہیں کرتے تو ایپ استعمال نہ کریں۔</string>
+    <string name="terms_section_2_title">2. سروس کی وضاحت</string>
+    <string name="terms_section_2_body">ProductivityX ایک متحد کام کا مقام فراہم کرتا ہے جس میں نوٹس، ٹاسک، کیلنڈر، فوکس ٹائمر (پومودورو)، اور AI معاون خصوصیات شامل ہیں۔ ہم کسی بھی وقت کسی بھی خصوصیت میں ترمیم یا ختم کرنے کا حق محفوظ رکھتے ہیں۔</string>
+    <string name="terms_section_3_title">3. صارف اکاؤنٹس</string>
+    <string name="terms_section_3_body">آپ اپنے اکاؤنٹ کے ثبوت کی خفیت برقرار رکھنے اور اپنے اکاؤنٹ کے تمام سرگرمیوں کے ذمہ دار ہیں۔ آپ کو فوری طور پر غیر مجاز رسائی کے بارے میں ہمیں مطلع کرنا ہوگا۔</string>
+    <string name="terms_section_4_title">4. مناسب استعمال</string>
+    <string name="terms_section_4_body">آپ ProductivityX کو کسی بھی غیر قانونی مقصد یا قابل اطلاق قوانین کی خلاف ورزی میں استعمال نہیں کریں گے۔ آپ ہمارے نظاموں کو بگاڑنے، نقصان پہنچانے یا غیر مجاز رسائی حاصل کرنے کی کوشش نہیں کریں گے۔</string>
+    <string name="terms_section_5_title">5. ڈیٹا اور رازداری</string>
+    <string name="terms_section_5_body">ProductivityX کا استعمال ہماری رازداری کی پالیسی سے بھی قیم ہوتا ہے۔ ہم ڈیٹا کی حفاظت کو سنگین طور پر لیتے ہیں اور آپ کی معلومات کی حفاظت کے لیے صنعت کے معیار کے اقدامات نافذ کرتے ہیں۔</string>
+    <string name="terms_section_6_title">6. بودھمک ملکیت</string>
+    <string name="terms_section_6_body">ProductivityX اور اس کا اصل مواد، خصوصیات اور تاثر Oussama Chatri کی ملکیت میں ہیں اور قابل اطلاق کاپی رائٹ اور بودھمک ملکیت قوانین کے ذریعے محفوظ ہیں۔</string>
+    <string name="terms_section_7_title">7. ذمہ داری کی حد</string>
+    <string name="terms_section_7_body">ProductivityX کسی بھی قسم کی ضمانتوں کے بغیر "جیسا ہے" فراہم کیا جاتا ہے۔ ایپ کے استعمال سے پیدا ہونے والے کسی بھی نقصان کے لیے ہم ذمہ دار نہیں ہوں گے۔</string>
+    <string name="terms_section_8_title">8. شرائط میں تبدیلیاں</string>
+    <string name="terms_section_8_body">ہم کسی بھی وقت ان شرائط کو اپ ڈیٹ کرنے کا حق محفوظ رکھتے ہیں۔ اہم تبدیلیوں کے لیے ہم ایپ یا ای میل کے ذریعے صارفین کو مطلع کریں گے۔</string>
+    <string name="terms_section_9_title">9. رابطہ</string>
+    <string name="terms_section_9_body">ان شرائط کے بارے میں سوالات کے لیے، productivityx7@gmail.com پر ہم سے رابطہ کریں۔</string>
+
+    <!-- رازداری کی پالیسی -->
+    <string name="privacy_title">رازداری کی پالیسی</string>
+    <string name="privacy_subtitle">رازداری کی پالیسی</string>
+    <string name="privacy_last_updated">آخری اپ ڈیٹ: جولائی 2026</string>
+    <string name="privacy_section_1_title">1. ہم جو معلومات جمع کرتے ہیں</string>
+    <string name="privacy_section_1_body">ہم اکاؤنٹ بناتے وقت فراہم کردہ معلومات جمع کرتے ہیں، جس میں آپ کا نام، ای میل پتہ اور پروفائل تصویر شامل ہیں۔ ہم ایپ میں بنایا گیا ڈیٹا بھی جمع کرتے ہیں جیسے نوٹس، ٹاسک، ایونٹس اور فوکس سیشن۔</string>
+    <string name="privacy_section_2_title">2. ہم آپ کی معلومات کیسے استعمال کرتے ہیں</string>
+    <string name="privacy_section_2_body">آپ کا ڈیٹا ProductivityX کی خصوصیات فراہم کرنے اور بہتر بنانے، ڈیوائسز پر سائند کرنے اور مناسب اطلاعات بھیجنے کے لیے استعمال ہوتا ہے۔ ہم آپ کی ذاتی معلومات تھرڈ پارٹی کو نہیں بیچتے۔</string>
+    <string name="privacy_section_3_title">3. ڈیٹا کی حفاظت اور سیکیورٹی</string>
+    <string name="privacy_section_3_body">آپ کا ڈیٹا ٹرانزٹ اور ریسٹ میں خفیہ (این کرپٹ) ہوتا ہے۔ ہم آپ کی معلومات کی حفاظت کے لیے صنعت کے معیار کے سیکیورٹی اقدامات استعمال کرتے ہیں۔ آپ کلڈ سائند کے بغیر ڈیٹا مقامی طور پر رکھ سکتے ہیں۔</string>
+    <string name="privacy_section_4_title">4. تھرڈ پارٹی سروسز</string>
+    <string name="privacy_section_4_body">ProductivityX AI معاونت، پش اطلاعات اور تجزیے کے لیے تھرڈ پارٹی سروسز استعمال کر سکتا ہے۔ یہ سروسز چکطی کے تحت آپ کے ڈیٹا کی حفاظت کرنے اور صرف مقرر مقاصد کے لیے استعمال کرنے پر مجبور ہیں۔</string>
+    <string name="privacy_section_5_title">5. آپ کے حقوق</string>
+    <string name="privacy_section_5_body">آپ ایپ کی ترتیبات کے ذریعے کسی بھی وقت اپنے ڈیٹا تک رسائی، ترمیم یا حذف کر سکتے ہیں۔ آپ اپنے مکمل ڈیٹا کی برآمد کی درخواست کر سکتے یا اپنا اکاؤنٹ مستقل طور پر حذف کر سکتے ہیں۔</string>
+    <string name="privacy_section_6_title">6. ڈیٹا کی زیر قبضہ مدت</string>
+    <string name="privacy_section_6_body">ہم آپ کے اکاؤنٹ کے فعال رہنے تک آپ کا ڈیٹا رکھتے ہیں۔ حذف کردہ اشیاء مستقل حذف سے پہلے 30 دن تک ٹریش میں رکھی جاتی ہیں۔ اکاؤنٹ حذف کرنا 90 دن کے اندر تمام متعلقہ ڈیٹا ہٹا دیتا ہے۔</string>
+    <string name="privacy_section_7_title">7. بچوں کی رازداری</string>
+    <string name="privacy_section_7_body">ProductivityX 13 سال سے کم عمر صارفین کے لیے نہیں ہے۔ ہم جان بوجھ کر بچوں کا ڈیٹا جمع نہیں کرتے۔ اگر ہمیں ایسے ڈیٹا کا پتہ چلتا ہے تو ہم اسے فوراً حذف کر دیں گے۔</string>
+    <string name="privacy_section_8_title">8. اس پالیسی میں تبدیلیاں</string>
+    <string name="privacy_section_8_body">ہم اس رازداری کی پالیسی کو اپ ڈیٹ کر سکتے ہیں۔ اہم تبدیلیوں کے لیے ہم ایپ یا ای میل کے ذریعے آپ کو مطلع کریں گے۔</string>
+    <string name="privacy_section_9_title">9. ہم سے رابطہ کریں</string>
+    <string name="privacy_section_9_body">رازداری سے متعلق استفسارات کے لیے، productivityx7@gmail.com پر ہم سے رابطہ کریں۔</string>
+
+    <!-- ٹاسک کے اعداد و شمار -->
+    <string name="tasks_statistics">اعداد و شمار</string>
+    <string name="tasks_stats_score">اسکور</string>
+    <string name="tasks_stats_streak">لہر</string>
+    <string name="tasks_stats_days">دن</string>
+    <string name="tasks_stats_best">بہترین</string>
+    <string name="tasks_stats_completion_rate">مکمل شدہ شرح</string>
+    <string name="tasks_stats_this_week">اس ہفتے</string>
+    <string name="tasks_stats_this_month">اس مہینے</string>
+    <string name="tasks_stats_monthly_progress">ماہانہ پیشرفت</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d مکمل</string>
+    <string name="tasks_stats_time_by_priority">ترجیح کے مطابق صرف کیا گیا وقت</string>
+    <string name="tasks_stats_no_data">ابھی تک کوئی ڈیٹا نہیں</string>
+    <string name="tasks_stats_achievements">کامیابیاں</string>
+    <string name="tasks_stats_unlock_badges">بیج آنلاک کرنے کے لیے ٹاسک مکمل کریں</string>
+    <string name="tasks_stats_weekly_review">ہفتہ وار جائزہ</string>
+    <string name="tasks_stats_created">بنائی گئی</string>
+    <string name="tasks_stats_completed">مکمل</string>
+    <string name="tasks_stats_overdue">ڈیڈ لائن گزری</string>
+    <string name="tasks_stats_suggested_focus">تجویز کردہ فوکس</string>
+    <string name="tasks_stats_patterns">پیداواریت کے نمونے</string>
+    <string name="tasks_stats_velocity">مکمل شدہ رفتار</string>
+    <string name="tasks_stats_productive_hours">سب سے پیداواری گھنٹے</string>
+    <string name="tasks_stats_category_breakdown">زمرے کی تفصیل</string>
+    <string name="tasks_stats_complete_more">اپنے پیداواریت کے نمونے دیکھنے کے لیے مزید ٹاسک مکمل کریں</string>
+
+    <!-- دہراوے کے لیبل -->
+    <string name="task_recurrence_none">کوئی نہیں</string>
+    <string name="task_recurrence_daily">روزانہ</string>
+    <string name="task_recurrence_weekdays">کام کے دن</string>
+    <string name="task_recurrence_weekly">ہفتہ وار</string>
+    <string name="task_recurrence_biweekly">ہر دوسرے ہفتے</string>
+    <string name="task_recurrence_monthly">ماہانہ</string>
+    <string name="task_recurrence_yearly">سالانہ</string>
+
+    <!-- ٹاسک کی تفصیل -->
+    <string name="task_label">ٹاسک</string>
+    <string name="task_estimated_abbrev">اندازہ</string>
+    <string name="task_actual_abbrev">اصل</string>
+
+    <!-- ٹاسک ٹریش -->
+    <string name="tasks_trash_empty_title">ٹریش خالی ہے</string>
+    <string name="tasks_trash_empty_body">حذف کردہ ٹاسک یہاں دیکھی جاتی ہیں۔</string>
+    <string name="tasks_trash_due">مقرر %1</string>
+    <string name="tasks_trash_hard_delete_title">مستقل طور پر حذف کریں؟</string>
+    <string name="tasks_trash_hard_delete_body">یہ ٹاسک بحال نہیں کی جا سکتی۔</string>
+
+    <string name="tasks_no_tasks_day">اس دن کوئی ٹاسک نہیں</string>
+    <string name="tasks_add_task">ٹاسک شامل کریں</string>
+    <string name="tasks_drop_here">ٹاسک یہاں رکھیں</string>
+    <string name="tasks_set_priority">ترجیح مقرر کریں</string>
+    <string name="tasks_ok">ٹھیک ہے</string>
+    <string name="tasks_cancel">منسوخ</string>
+    <string name="tasks_selected_count">%d منتخب</string>
+    <string name="tasks_filter_all">سب</string>
+    <string name="tasks_filter_today">آج</string>
+    <string name="tasks_filter_upcoming">آنے والی</string>
+    <string name="tasks_filter_overdue">ڈیڈ لائن گزری</string>
+    <string name="tasks_filter_no_date">کوئی تاریخ نہیں</string>
+    <string name="tasks_filter_done">ہو گیا</string>
+    <string name="tasks_view_board">بورڈ</string>
+    <string name="tasks_view_calendar">کیلنڈر</string>
+    <string name="tasks_view_timeline">ٹائملائن</string>
+    <string name="tasks_bulk_complete">مکمل</string>
+    <string name="tasks_bulk_delete">حذف</string>
+    <string name="tasks_bulk_reschedule">دوبارہ مقرر</string>
+    <string name="tasks_bulk_priority">ترجیح</string>
+    <string name="tasks_weekday_sun">ا</string>
+    <string name="tasks_weekday_mon">پ</string>
+    <string name="tasks_weekday_tue">م</string>
+    <string name="tasks_weekday_wed">ب</string>
+    <string name="tasks_weekday_thu">ج</string>
+    <string name="tasks_weekday_fri">ج</string>
+    <string name="tasks_weekday_sat">ہ</string>
+    <string name="tasks_picker_day_mon">پیر</string>
+    <string name="tasks_picker_day_tue">منگل</string>
+    <string name="tasks_picker_day_wed">بدھ</string>
+    <string name="tasks_picker_day_thu">جمعرات</string>
+    <string name="tasks_picker_day_fri">جمعہ</string>
+    <string name="tasks_picker_day_sat">ہفتہ</string>
+    <string name="tasks_picker_day_sun">اتوار</string>
+    <string name="tasks_minutes_abbrev">%1</string>
+    <string name="tasks_for_date">%s کی ٹاسک</string>
+    <string name="cd_exit_multiselect">ملٹی سلیکٹ سے باہر</string>
+    <string name="cd_select_all">سب منتخب</string>
+    <string name="cd_statistics">اعداد و شمار</string>
+    <string name="cd_previous">پچھلا</string>
+    <string name="cd_drop_here">یہاں رکھیں</string>
+
+    <!-- پروفائل اسکرین -->
+    <string name="profile_sign_out_desc">اپنے کام کے مقام تک رسائی کے لیے دوبارہ سائن ان کرنا ہوگا۔</string>
+    <string name="profile_delete_account_title">اکاؤنٹ حذف کریں</string>
+    <string name="profile_delete_account_warning">یہ عمل واپس نہیں کیا جا سکتا۔ آپ کا تمام ڈیٹا مستقل طور پر حذف ہو جائے گا۔</string>
+    <string name="profile_delete_bullet_notes">تمام نوٹس، ٹاسک اور ایونٹس ہٹا دیے جائیں گے</string>
+    <string name="profile_delete_bullet_account">آپ کا اکاؤنٹ اور سبسکرپشن منسوخ ہو جائے گی</string>
+    <string name="profile_delete_bullet_irreversible">یہ واپس نہیں کیا جا سکتا</string>
+    <string name="profile_section_actions">عمل</string>
+    <string name="profile_notification_preferences">اطلاعات کی ترتیبات</string>
+    <string name="profile_section_account_subscription">اکاؤنٹ اور سبسکرپشن</string>
+    <string name="profile_storage">اسٹوریج</string>
+    <string name="profile_connected_devices">جڑے ہوئے ڈیوائس</string>
+    <string name="profile_section_danger_zone">خطرے کا علاقہ</string>
+    <string name="profile_delete_subtitle">مستقل طور پر تمام ڈیٹا ہٹائیں</string>
+    <string name="profile_stat_ai_chats">AI چیٹس</string>
+    <string name="profile_recent_activity">حالیہ سرگرمی</string>
+    <string name="profile_productivity_trend">پیداварیت کا رجحان</string>
+    <string name="profile_this_week_percent">اس ہفتے %1%%</string>
+    <string name="profile_local_mode">مقامی موڈ</string>
+    <string name="profile_local_mode_desc">آپ اکاؤنٹ کے بغیر ProductivityX استعمال کر رہے ہیں۔\nآپ کا ڈیٹا صرف اس ڈیوائس پر رہتا ہے۔</string>
+    <string name="profile_theme_pro">پرو تھیم</string>
+
+    <!-- پروفائل میں ترمیم -->
+    <string name="pref_section_locale">لوکیل</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- پاس ورڈ تبدیلی -->
+    <string name="password_change_success">پاس ورڈ کامیابی سے بدل گیا</string>
+    <string name="password_confirm_new">نیا پاس ورڈ تصدیق کریں</string>
+    <string name="password_update">پاس ورڈ اپ ڈیٹ کریں</string>
+
+    <!-- ترتیبات کی تلاش -->
+    <string name="pref_search_pomodoro">پومودورو ٹائمر</string>
+    <string name="pref_search_appearance">ظاہری شکل اور تھیم</string>
+    <string name="pref_search_notifications">اطلاعات اور خاموش اوقات</string>
+    <string name="pref_search_display">ڈسپلے اور فونٹ سائز</string>
+    <string name="pref_search_feature_flags">خصوصیت فلیگز (بیٹا)</string>
+
+    <!-- عمومی سوالات -->
+    <string name="faq_q_what_is">ProductivityX کیا ہے؟</string>
+    <string name="faq_a_what_is">ProductivityX ایک متحد کام کا مقام ایپ ہے جو نوٹس، ٹاسک، کیلنڈر، ایک پومودورو فوکس ٹائمر اور ایک AI معاون کو ایک جگہ ملتا جلتا ہے۔</string>
+    <string name="faq_q_data_secure">کیا میرا ڈیٹا محفوظ ہے؟</string>
+    <string name="faq_a_data_secure">ہاں۔ آپ کا ڈیٹا ٹرانزٹ اور ریسٹ میں خفیہ ہوتا ہے۔ آپ کلڈ سائند کے بغیر تمام ڈیٹا ڈیوائس پر رکھنے کے لیے مقامی موڈ فعال کر سکتے ہیں۔</string>
+    <string name="faq_q_ai_work">AI معاون کیسے کام کرتا ہے؟</string>
+    <string name="faq_a_ai_work">AI معاون سیاق و سباق سے آگاہ جوابات دینے کے لیے آپ کی فعال ٹاسک، آنے والے ایونٹس اور حالیہ نوٹس دیکھ سکتا ہے۔ یہ Google Gemini ماڈلز استعمال کرتا ہے۔</string>
+    <string name="faq_q_offline">کیا میں ProductivityX آف لائن استعمال کر سکتا ہوں؟</string>
+    <string name="faq_a_offline">ہاں۔ آپ ترتیبات میں آف لائن موڈ فعال کر سکتے ہیں۔ انٹرنیٹ سے دوبارہ جڑنے پر تبدیلیاں خودکار طور پر سائند ہوں گی۔</string>
+    <string name="faq_q_export">میں اپنا ڈیٹا کیسے برآمد کروں گا؟</string>
+    <string name="faq_a_export">ترتیبات &gt; ڈیٹا اور سائند میں جائیں اور \'ڈیٹا برآمد\' پر ٹیپ کریں۔ آپ کی نوٹس، ٹاسک، ایونٹس اور ترتیبات ایک خفیہ بیک اپ فائل کے طور پر محفوظ ہوں گی۔</string>
+    <string name="faq_q_pomodoro">پومودورو ٹائمر کیسے کام کرتا ہے؟</string>
+    <string name="faq_a_pomodoro">پومودورو ٹائمر فوکس سیشنز اور وقفے کے درمیان پالتا ہے۔ آپ مدتیں حسب ضرورت بنا سکتے ہیں، خودکار وقفے شروع کر سکتے ہیں اور ہر ٹاسک پر فوکس وقت ٹریک کرنے کے لیے ٹاسکز لنک کر سکتے ہیں۔</string>
+    <string name="faq_q_language">کیا میں ایپ کی زبان تبدیل کر سکتا ہوں؟</string>
+    <string name="faq_a_language">ہاں۔ اپنے پروفائل میں جائیں اور زبان کی ترتیب پر ٹیپ کریں۔ ProductivityX انگریزی، فرانسیسی، عربی، اسپینش، جرمن سمیت متعدد زبانیں معاونت کرتا ہے۔</string>
+    <string name="faq_q_password">میں اپنا پاس ورڈ کیسے ری سیٹ کروں گا؟</string>
+    <string name="faq_a_password">لاگ ان اسکرین پر \'پاس ورڈ بھول گئے\' پر ٹیپ کریں۔ آپ کے ای میل پتے پر ایک ری سیٹ لنک بھیجا جائے گا۔</string>
+    <string name="faq_q_delete_account">میرا اکاؤنٹ حذف کرنے سے کیا ہوتا ہے؟</string>
+    <string name="faq_a_delete_account">آپ کا تمام ڈیٹا (نوٹس، ٹاسک، ایونٹس، گفتگو) مستقل طور پر حذف ہو جائے گا۔ یہ عمل واپس نہیں کیا جا سکتا۔</string>
+    <string name="faq_q_contact">میں سپورٹ سے کیسے رابطہ کروں گا؟</string>
+    <string name="faq_a_contact">آپ productivityx7@gmail.com پر ہم سے رابطہ کر سکتے ہیں یا ترتیبات &gt; مدد اور تعاون میں \'رائے بھیجیں\' اختیار استعمال کر سکتے ہیں۔</string>
+
+    <!-- لائسنسز -->
+    <string name="licenses_intro">ProductivityX مندرجہ ذیل اوپن سورس لائبریریز استعمال کرتا ہے:</string>
+
+    <!-- کریڈٹس -->
+    <string name="credits_role_development">ڈیویلپمنٹ</string>
+    <string name="credits_role_design">ڈیزائن</string>
+    <string name="credits_role_ai_integration">AI انٹیگریشن</string>
+    <string name="credits_role_icons">آئیکنز</string>
+    <string name="credits_built_with">Kotlin اور Jetpack Compose سے بنایا گیا ❤️</string>
+    <string name="credits_copyright">© 2026 ProductivityX۔ تمام حقوق محفوظ ہیں۔</string>
+
+    <!-- پروفائل میں ترمیم — اضافی -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- ترتیبات کی تلاش — اضافی -->
+    <string name="pref_search_data_sync">ڈیٹا اور سائند</string>
+    <string name="pref_search_ai">AI معاون</string>
+    <string name="pref_search_about">بارے میں</string>
+    <string name="pref_search_help">مدد اور تعاون</string>
+
+
+    <!-- Additional entries -->
+    <string name="move_to_trash_confirm">ٹریش میں لے جائیں؟</string>
+    <string name="edit_mode">ترمیم موڈ</string>
+    <string name="preview_mode">پیش نظارہ موڈ</string>
+    <string name="words">الفاظ</string>
+    <string name="characters">حروف</string>
+    <string name="reading_time">پڑھنے کا وقت</string>
+    <string name="export_as_pdf">PDF کے طور پر برآمد</string>
+    <string name="print">پرنٹ</string>
+    <string name="move_to_trash_message">یہ نوٹ ٹریش میں بھیجی جائے گی۔ آپ 30 دن کے اندر اسے بحال کر سکتے ہیں۔</string>
+    <string name="export_as_pdf_subtitle">اس نوٹ کی PDF کاپی محفوظ کریں</string>
+    <string name="share_subtitle">دیگر ایپس کے ذریعے شیئر کریں</string>
+    <string name="print_subtitle">یہ نوٹ پرنٹ کریں</string>
+    <string name="untitled">بے عنوان</string>
+    <string name="last_saved">آخری محفوظ: %s</string>
+    <string name="back">واپس</string>
+    <string name="close">بند</string>
+    <string name="confirm">تصدیق کریں</string>
+    <string name="discard">رد کریں</string>
+    <string name="skip">چھوڑیں</string>
+    <string name="next">اگلا</string>
+    <string name="previous">پچھلا</string>
+    <string name="continue_action">جاری رکھیں</string>
+    <string name="finish">ختم</string>
+    <string name="apply">لاگو کریں</string>
+    <string name="reset">ری سیٹ</string>
+    <string name="clear">صاف کریں</string>
+    <string name="search">تلاش</string>
+    <string name="filter">فلٹر</string>
+    <string name="sort">ترتیب</string>
+    <string name="redo">دوبارہ کریں</string>
+    <string name="deselect_all">سب غیر منتخب</string>
+    <string name="more_options">مزید اختیارات</string>
+    <string name="settings">ترتیبات</string>
+    <string name="help">مدد</string>
+    <string name="feedback">رائے</string>
+    <string name="refreshing">ریفریش ہو رہا ہے…</string>
+    <string name="saving">محفوظ ہو رہا ہے…</string>
+    <string name="deleting">حذف ہو رہا ہے…</string>
+    <string name="please_wait">براہ کرم انتظار کریں…</string>
+    <string name="see_all">سب دیکھیں</string>
+    <string name="show_less">کم دکھائیں</string>
+    <string name="show_more">مزید دکھائیں</string>
+    <string name="optional">اختیاری</string>
+    <string name="required">ضروری</string>
+    <string name="none">کوئی نہیں</string>
+    <string name="unknown">نامعلوم</string>
+    <string name="today">آج</string>
+    <string name="yesterday">کل</string>
+    <string name="tomorrow">پرہن</string>
+    <string name="this_week">اس ہفتے</string>
+    <string name="last_week">گزشتہ ہفتہ</string>
+    <string name="next_week">اگلا ہفتہ</string>
+    <string name="this_month">اس مہینے</string>
+    <string name="all">سب</string>
+    <string name="new_action">نیا</string>
+    <string name="add">شامل کریں</string>
+    <string name="remove">ہٹائیں</string>
+    <string name="create">بنائیں</string>
+    <string name="update">اپ ڈیٹ</string>
+    <string name="restore">بحال</string>
+    <string name="archive">آرکائیو</string>
+    <string name="unarchive">آرکائیو سے باہر</string>
+    <string name="pin">پن</string>
+    <string name="unpin">ان پن</string>
+    <string name="move">منتقل</string>
+    <string name="rename">نام بدلیں</string>
+    <string name="duplicate">نقل</string>
+    <string name="open">کھولیں</string>
+    <string name="view">دیکھیں</string>
+    <string name="preview">پیش نظارہ</string>
+    <string name="expand">پھیلائیں</string>
+    <string name="collapse">سکیڑیں</string>
+    <string name="enable">فعال</string>
+    <string name="disable">غیر فعال</string>
+    <string name="turn_on">چالو</string>
+    <string name="turn_off">بند</string>
+    <string name="not_now">ابھی نہیں</string>
+    <string name="got_it">سمجھ گیا</string>
+    <string name="learn_more">مزید جانیں</string>
+    <string name="send">بھیجیں</string>
+    <string name="submit">جمع کریں</string>
+    <string name="upload">اپ لوڈ</string>
+    <string name="download">ڈاؤن لوڈ</string>
+    <string name="link">لنک</string>
+    <string name="unlink">لنک ہٹائیں</string>
+    <string name="connect">جڑیں</string>
+    <string name="disconnect">کاٹیں</string>
+    <string name="error_generic">کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_network">انٹرنیٹ کنکشن نہیں۔ اپنا نیٹ ورک چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <string name="error_timeout">درخواست کا وقت ختم ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_server">سرور خرابی۔ براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
+    <string name="error_not_found">درخواست کردہ آئٹم نہیں ملا۔</string>
+    <string name="error_unauthorized">آپ کا سیشن ختم ہو گیا ہے۔ براہ کرم دوبارہ سائن ان کریں۔</string>
+    <string name="error_forbidden">آپ کو یہ عمل کرنے کی اجازت نہیں ہے۔</string>
+    <string name="error_validation">براہ کرم فارم چیک کریں اور خامیاں درست کریں۔</string>
+    <string name="error_unknown">غیر متوقع خرابی ہوئی۔</string>
+    <string name="error_loading">لوڈ کرنے میں ناکامی۔ ٹیپ کریں دوبارہ کوشش کریں۔</string>
+    <string name="error_saving">محفوظ کرنے میں ناکامی۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_deleting">حذف کرنے میں ناکامی۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_no_data">کوئی ڈیٹا دستیاب نہیں۔</string>
+    <string name="error_offline_action">اس عمل کے لیے انٹرنیٹ کنکشن ضروری ہے۔</string>
+    <string name="error_conflict">تصادم ہو گیا۔ براہ کرم ریفریش کریں اور دوبارہ کوشش کریں۔</string>
+    <string name="onboarding_page1_title">سب کچھ ایک جگہ</string>
+    <string name="onboarding_page1_body">نوٹس، ٹاسک، اور آپ کا کیلنڈر ایک واحد کام کے مقام میں جڑے ہوئے۔</string>
+    <string name="onboarding_page2_title">اپنے فلو میں رہیں</string>
+    <string name="onboarding_page2_body">پومودورو ٹائمر جانتا ہے آپ کس پر کام کر رہے ہیں اور خودکار طور پر آپ کا وقت ٹریک کرتا ہے۔</string>
+    <string name="onboarding_page3_title">AI جو آپ کو سمجھتا ہے</string>
+    <string name="onboarding_page3_body">آپ کا معاون جواب دینے سے پہلے آپ کی فعال ٹاسک، آنے والے ایونٹس اور حالیہ نوٹس دیکھتا ہے۔</string>
+    <string name="auth_sign_up">سائن اپ</string>
+    <string name="auth_sign_out">سائن آؤٹ</string>
+    <string name="auth_log_in">لاگ ان</string>
+    <string name="auth_log_out">لاگ آؤٹ</string>
+    <string name="auth_already_have_account">پہلے سے اکاؤنٹ ہے؟</string>
+    <string name="auth_skip_login">بغیر اکاؤنٹ جاری رکھیں</string>
+    <string name="auth_dont_have_account">اکاؤنٹ نہیں ہے؟</string>
+    <string name="auth_welcome_back">خوش آمدید واپس</string>
+    <string name="auth_create_your_account">اپنا اکاؤنٹ بنائیں</string>
+    <string name="auth_join_productivityx">ProductivityX میں شامل ہوں</string>
+    <string name="auth_welcome_aboard">خوش آمدید!</string>
+    <string name="auth_account_created_success">آپ کا اکاؤنٹ کامیابی سے بن گیا ہے</string>
+    <string name="auth_forgot_password_title">پاس ورڈ بھول گئے؟</string>
+    <string name="auth_forgot_password_body">اپنا ای میل پتہ درج کریں اور ہم آپ کو پاس ورڈ ری سیٹ کا لنک بھیجیں گے۔</string>
+    <string name="auth_forgot_password_success_title">ری سیٹ لنک بھیج دیا گیا</string>
+    <string name="auth_forgot_password_success_body">اگر وہ ای میل موجود ہے تو ری سیٹ لنک بھیج دیا گیا ہے۔ اپنا ان باکس چیک کریں۔</string>
+    <string name="auth_reset_password_body">اپنے اکاؤنٹ کے لیے نیا پاس ورڈ درج کریں۔</string>
+    <string name="auth_reset_password_action">پاس ورڈ ری سیٹ</string>
+    <string name="auth_reset_password_success_title">پاس ورڈ ری سیٹ!</string>
+    <string name="auth_reset_password_success_body">آپ کا پاس ورڈ بدل دیا گیا ہے۔ نئے پاس ورڈ سے سائن ان کریں۔</string>
+    <string name="auth_verify_email_title">اپنا ای میل چیک کریں</string>
+    <string name="auth_verify_email_body">ہم نے %1 پر 6 ہندسوں کا کوڈ بھیجا ہے</string>
+    <string name="auth_resend_cooldown">%1 میں دوبارہ بھیجیں</string>
+    <string name="field_email">ای میل پتہ</string>
+    <string name="field_email_hint">اپنا ای میل درج کریں</string>
+    <string name="field_password">پاس ورڈ</string>
+    <string name="field_password_hint">اپنا پاس ورڈ درج کریں</string>
+    <string name="field_password_new">نیا پاس ورڈ</string>
+    <string name="field_password_new_hint">نیا پاس ورڈ درج کریں</string>
+    <string name="field_password_confirm">پاس ورڈ کی تصدیق</string>
+    <string name="field_password_confirm_hint">اپنا پاس ورڈ دوبارہ درج کریں</string>
+    <string name="field_password_current">موجودہ پاس ورڈ</string>
+    <string name="field_password_current_hint">موجودہ پاس ورڈ درج کریں</string>
+    <string name="field_username">صارف نام</string>
+    <string name="field_username_hint">صارف نام چنیں</string>
+    <string name="field_first_name">پہلا نام</string>
+    <string name="field_first_name_hint">اپنا پہلا نام درج کریں</string>
+    <string name="field_last_name">آخری نام</string>
+    <string name="field_last_name_hint">اپنا آخری نام درج کریں</string>
+    <string name="field_phone">فون نمبر</string>
+    <string name="field_phone_hint">اپنا فون نمبر درج کریں</string>
+    <string name="field_birth_date">تاریخ پیدائش</string>
+    <string name="field_birth_date_hint">اپنی تاریخ پیدائش منتخب کریں</string>
+    <string name="field_identifier">ای میل، صارف نام، یا فون</string>
+    <string name="field_identifier_hint">ای میل، صارف نام، یا فون درج کریں</string>
+    <string name="field_gender">جنس</string>
+    <string name="field_bio">تعارف</string>
+    <string name="field_bio_hint">ہمیں اپنے بارے میں بتائیں</string>
+    <string name="field_timezone">ٹائم زون</string>
+    <string name="field_language">زبان</string>
+    <string name="field_theme">تھیم</string>
+    <string name="field_avatar">پروفائل تصویر</string>
+    <string name="password_show">پاس ورڈ دکھائیں</string>
+    <string name="password_hide">پاس ورڈ چھپائیں</string>
+    <string name="password_strength_weak">کمزور</string>
+    <string name="password_strength_fair">مناسب</string>
+    <string name="password_strength_good">اچھا</string>
+    <string name="password_strength_strong">مضبوط</string>
+    <string name="password_requirement_length">کم از کم 8 حروف</string>
+    <string name="password_requirement_uppercase">ایک بڑا حرف</string>
+    <string name="password_requirement_lowercase">ایک چھوٹا حرف</string>
+    <string name="password_requirement_number">ایک نمبر</string>
+    <string name="password_requirement_special">ایک خاص حرف</string>
+    <string name="password_forgot">پاس ورڈ بھول گئے؟</string>
+    <string name="password_reset">پاس ورڈ ری سیٹ</string>
+    <string name="password_change">پاس ورڈ تبدیل</string>
+    <string name="password_mismatch">پاس ورڈ مماثل نہیں ہیں۔</string>
+    <string name="register_step_account">اکاؤنٹ</string>
+    <string name="register_step_profile">پروفائل</string>
+    <string name="register_step_preferences">ترتیبات</string>
+    <string name="register_step_verify">تصدیق</string>
+    <string name="register_step_indicator">%2$d میں سے %1$d قدم</string>
+    <string name="register_change_photo">تصویر بدلیں</string>
+    <string name="register_profile_photo_hint">پروفائل تصویر شامل کرنے کے لیے ٹیپ کریں</string>
+    <string name="register_preferences_caption">آپ یہ کسی بھی وقت ترتیبات میں بدل سکتے ہیں۔</string>
+    <string name="profile_theme">تھیم</string>
+    <string name="profile_theme_hint">آپ یہ کسی بھی وقت ترتیبات میں بدل سکتے ہیں۔</string>
+    <string name="gender_male">مرد</string>
+    <string name="gender_female">عورت</string>
+    <string name="gender_prefer_not_to_say">بتانا نہیں چاہتے</string>
+    <string name="nav_search">تلاش</string>
+    <string name="nav_trash">ٹریش</string>
+    <string name="nav_history">تاریخچہ</string>
+    <string name="nav_events">ایونٹس</string>
+    <string name="tab_dashboard">ڈیش بورڈ</string>
+    <string name="tab_events">ایونٹس</string>
+    <string name="tab_dashboard_desc">آپ کے دن کا جائزہ</string>
+    <string name="tab_notes_desc">اپنے خیالات کی حفاظت کریں</string>
+    <string name="tab_tasks_desc">کام مکمل کریں</string>
+    <string name="tab_events_desc">آپ کا شیڈول نظر میں</string>
+    <string name="tab_pomodoro_desc">فلو میں رہیں</string>
+    <string name="cd_notifications">اطلاعات</string>
+    <string name="home_greeting_morning">صبح بخیر، %1 👋</string>
+    <string name="home_greeting_afternoon">دوپہر بخیر، %1 👋</string>
+    <string name="home_greeting_evening">شام بخیر، %1 👋</string>
+    <string name="home_greeting_night">رات بخیر، %1 👋</string>
+    <string name="home_quick_add">فوری اضافہ</string>
+    <string name="home_due_today">آج مقرر</string>
+    <string name="home_overdue">ڈیڈ لائن گزری</string>
+    <string name="home_this_week">اس ہفتے</string>
+    <string name="home_total_notes">کل نوٹس</string>
+    <string name="home_focus_time">آج کا فوکس</string>
+    <string name="home_no_tasks_today">آج کوئی ٹاسک مقرر نہیں۔</string>
+    <string name="home_no_events">کوئی آنے والا ایونٹ نہیں۔</string>
+    <string name="home_no_notes">کوئی حالیہ نوٹ نہیں۔</string>
+    <string name="home_sessions_today">آج کے سیشن</string>
+    <string name="home_focus_minutes">فوکس وقت</string>
+    <string name="home_completed_tasks">مکمل شدہ ٹاسک</string>
+    <string name="home_start_focus">فوکس شروع</string>
+    <string name="home_tasks_completed">ٹاسک مکمل</string>
+    <string name="home_events_upcoming">آنے والے ایونٹس</string>
+    <string name="home_quick_actions_cd">فوری اعمال</string>
+    <string name="home_quick_action_new_note">نئی نوٹ</string>
+    <string name="home_quick_action_new_task">نئی ٹاسک</string>
+    <string name="home_quick_action_calculator">کیلکولیٹر</string>
+    <string name="home_quick_action_start_timer">ٹائمر شروع</string>
+    <string name="home_quick_action_ai_chat">AI چیٹ</string>
+    <string name="home_error_something_wrong">کچھ غلط ہو گیا</string>
+    <string name="home_opening_new_note">نئی نوٹ کھل رہی ہے…</string>
+    <string name="home_opening_new_task">نئی ٹاسک کھل رہی ہے…</string>
+    <string name="home_starting_timer">ٹائمر شروع ہو رہا ہے…</string>
+    <string name="home_opening_ai_chat">AI چیٹ کھل رہی ہے…</string>
+    <string name="home_opening_calculator">کیلکولیٹر کھل رہا ہے…</string>
+    <string name="notes_filter_all">سب</string>
+    <string name="notes_filter_pinned">پن کی گئی</string>
+    <string name="notes_pinned_section">پن کی گئیں</string>
+    <string name="notes_all_section">تمام نوٹس</string>
+    <string name="notes_untitled">بے عنوان</string>
+    <string name="notes_word_count">%1 الفاظ</string>
+    <string name="notes_reading_time">%1 منٹ پڑھیں</string>
+    <string name="notes_pin_success">نوٹ پن ہو گئی۔</string>
+    <string name="notes_unpin_success">نوٹ ان پن ہو گئی۔</string>
+    <string name="notes_delete_confirm_title">ٹریش میں لے جائیں؟</string>
+    <string name="notes_delete_confirm_body">یہ نوٹ ٹریش میں بھیجی جائے گی اور 30 دن بعد مستقل طور پر حذف ہو جائے گی۔</string>
+    <string name="notes_delete_success">نوٹ ٹریش میں بھیج دی گئی۔</string>
+    <string name="notes_restore_success">نوٹ بحال ہو گئی۔</string>
+    <string name="notes_hard_delete_confirm_title">مستقل طور پر حذف کریں؟</string>
+    <string name="notes_hard_delete_confirm_body">یہ نوٹ مستقل طور پر حذف ہو جائے گی اور بحال نہیں کی جا سکتی۔</string>
+    <string name="notes_hard_delete_success">نوٹ مستقل طور پر حذف ہو گئی۔</string>
+    <string name="notes_create_success">نوٹ بن گئی۔</string>
+    <string name="notes_update_success">نوٹ محفوظ ہو گئی۔</string>
+    <string name="notes_autosave">خودکار محفوظ</string>
+    <string name="notes_saving">محفوظ ہو رہا ہے…</string>
+    <string name="notes_copy_link">لنک کاپی کریں</string>
+    <string name="notes_link_copied">لنک کاپی ہو گیا۔</string>
+    <string name="notes_link_task">ٹاسک لنک</string>
+    <string name="notes_unlink_task">ٹاسک لنک ہٹائیں</string>
+    <string name="notes_task_linked">%1 سے جڑا ہوا</string>
+    <string name="notes_add_tag">ٹیگ شامل کریں</string>
+    <string name="notes_no_tags">کوئی ٹیگ نہیں</string>
+    <string name="notes_start_writing">لکھنا شروع کریں…</string>
+    <string name="notes_title_hint">عنوان</string>
+    <string name="notes_trash_empty_title">ٹریش خالی ہے</string>
+    <string name="notes_trash_empty_body">ٹریش میں نوٹس 30 دن بعد مستقل طور پر حذف ہو جاتی ہیں۔</string>
+    <string name="notes_trash_empty_all">ٹریش خالی</string>
+    <string name="notes_trash_empty_all_confirm_title">ٹریش خالی کریں؟</string>
+    <string name="notes_trash_empty_all_confirm_body">ٹریش کی تمام نوٹس مستقل طور پر حذف ہو جائیں گی۔</string>
+    <string name="notes_in_trash">%1 نوٹ ٹریش میں</string>
+    <string name="notes_in_trash_plural">%1 نوٹس ٹریش میں</string>
+    <string name="notes_voice_memo">آواز یادداشت</string>
+    <string name="notes_selected_count">%1 منتخب</string>
+    <string name="notes_search_no_results">"%1" سے کوئی نوٹ مماثل نہیں</string>
+    <string name="notes_links_title">نوٹ لنکس</string>
+    <string name="notes_links_empty">کوئی جڑی ہوئی نوٹس نہیں</string>
+    <string name="trash_days_left">%1 دن باقی</string>
+    <string name="trash_expiring_soon">جلد ختم ہو جائے گی</string>
+    <string name="trash_delete_permanently">مستقل طور پر حذف</string>
+    <string name="trash_empty_confirm_body">%1 مستقل طور پر حذف ہو جائے گی اور بحال نہیں کی جا سکتی۔</string>
+    <string name="editor_format_list_bullet">بلیٹ فہرست</string>
+    <string name="editor_format_list_numbered">نمبر شدہ فہرست</string>
+    <string name="editor_format_code">کوڈ</string>
+    <string name="editor_format_quote">اقتباس</string>
+    <string name="editor_format_link">لنک داخل کریں</string>
+    <string name="editor_insert_link_title">لنک داخل کریں</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">ظاہری متن</string>
+    <string name="editor_format_underline">انڈر لائن</string>
+    <string name="editor_format_strikethrough">سٹرائک تھرو</string>
+    <string name="editor_format_heading1">عنوان 1</string>
+    <string name="editor_format_heading2">عنوان 2</string>
+    <string name="editor_format_heading3">عنوان 3</string>
+    <string name="editor_format_code_block">کوڈ بلاک</string>
+    <string name="editor_format_divider">الگ کار</string>
+    <string name="editor_format_image">تصویر شامل کریں</string>
+    <string name="editor_format_table">ٹیبل داخل کریں</string>
+    <string name="empty_state_error_body">ریفریش کے لیے نیچے کھینچیں یا نیچے کے بٹن پر ٹیپ کریں۔</string>
+    <string name="home_upcoming_events">آنے والے ایونٹس</string>
+    <string name="home_recent_notes">حالیہ نوٹس</string>
+    <string name="pref_licenses">لائسنسز</string>
+    <string name="pref_licenses_desc">اوپن سورس لائبریریز</string>
+    <string name="sync_offline_banner">آپ آف لائن ہیں۔ دوبارہ جڑنے پر تبدیلیاں سائند ہوں گی۔</string>
+    <string name="about_open_source_licenses">اوپن سورس لائسنسز</string>
+    <string name="language_zh_rCN">مینڈارن چینی</string>
+    <string name="language_sw">سواحلی</string>
+    <string name="language_th">تھائی</string>
+    <string name="language_bn">بنگالی</string>
+    <string name="language_ur">اردو</string>
+
+</resources>

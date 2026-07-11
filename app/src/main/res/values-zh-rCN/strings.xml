@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">你的工作空间，统一管理。</string>
+    <string name="app_description">笔记、任务、日历、专注计时器，以及真正理解你日常的 AI 助手。</string>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="export">导出</string>
+    <string name="note_info">笔记信息</string>
+    <string name="show_metadata">显示元数据</string>
+    <string name="focus_mode">专注模式</string>
+    <string name="reset_zoom">重置缩放</string>
+    <string name="exit_focus_mode">退出专注模式</string>
+    <string name="fullscreen_image">全屏图片</string>
+    <string name="more">更多</string>
+    <string name="add_tag">添加标签</string>
+    <string name="move_to_trash">移至回收站</string>
+    <string name="move_to_trash_confirm">移至回收站？</string>
+    <string name="edit_mode">编辑模式</string>
+    <string name="preview_mode">预览模式</string>
+    <string name="words">字数</string>
+    <string name="characters">字符数</string>
+    <string name="reading_time">阅读时间</string>
+    <string name="export_as_pdf">导出为 PDF</string>
+    <string name="print">打印</string>
+    <string name="move_to_trash_message">此笔记将被移至回收站。你可以在 30 天内恢复。</string>
+    <string name="export_as_pdf_subtitle">保存此笔记的 PDF 副本</string>
+    <string name="share_subtitle">通过其他应用分享</string>
+    <string name="print_subtitle">打印此笔记</string>
+    <string name="untitled">无标题</string>
+    <string name="last_saved">上次保存：%s</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="done">完成</string>
+    <string name="back">返回</string>
+    <string name="close">关闭</string>
+    <string name="confirm">确认</string>
+    <string name="discard">放弃</string>
+    <string name="retry">重试</string>
+    <string name="skip">跳过</string>
+    <string name="next">下一步</string>
+    <string name="previous">上一步</string>
+    <string name="continue_action">继续</string>
+    <string name="finish">完成</string>
+    <string name="apply">应用</string>
+    <string name="reset">重置</string>
+    <string name="clear">清除</string>
+    <string name="search">搜索</string>
+    <string name="filter">筛选</string>
+    <string name="sort">排序</string>
+    <string name="share">分享</string>
+    <string name="copy">复制</string>
+    <string name="paste">粘贴</string>
+    <string name="undo">撤销</string>
+    <string name="redo">重做</string>
+    <string name="select_all">全选</string>
+    <string name="deselect_all">取消全选</string>
+    <string name="more_options">更多选项</string>
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="feedback">反馈</string>
+    <string name="loading">加载中…</string>
+    <string name="refreshing">刷新中…</string>
+    <string name="saving">保存中…</string>
+    <string name="deleting">删除中…</string>
+    <string name="please_wait">请稍候…</string>
+    <string name="see_all">查看全部</string>
+    <string name="show_less">收起</string>
+    <string name="show_more">展开更多</string>
+    <string name="optional">可选</string>
+    <string name="required">必填</string>
+    <string name="none">无</string>
+    <string name="unknown">未知</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="tomorrow">明天</string>
+    <string name="this_week">本周</string>
+    <string name="last_week">上周</string>
+    <string name="next_week">下周</string>
+    <string name="this_month">本月</string>
+    <string name="all">全部</string>
+    <string name="new_action">新建</string>
+    <string name="add">添加</string>
+    <string name="remove">移除</string>
+    <string name="create">创建</string>
+    <string name="update">更新</string>
+    <string name="restore">恢复</string>
+    <string name="archive">归档</string>
+    <string name="unarchive">取消归档</string>
+    <string name="pin">置顶</string>
+    <string name="unpin">取消置顶</string>
+    <string name="move">移动</string>
+    <string name="rename">重命名</string>
+    <string name="duplicate">复制</string>
+    <string name="open">打开</string>
+    <string name="view">查看</string>
+    <string name="preview">预览</string>
+    <string name="expand">展开</string>
+    <string name="collapse">折叠</string>
+    <string name="enable">启用</string>
+    <string name="disable">禁用</string>
+    <string name="turn_on">开启</string>
+    <string name="turn_off">关闭</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="not_now">暂时不要</string>
+    <string name="got_it">我知道了</string>
+    <string name="learn_more">了解更多</string>
+    <string name="send">发送</string>
+    <string name="submit">提交</string>
+    <string name="upload">上传</string>
+    <string name="download">下载</string>
+    <string name="link">链接</string>
+    <string name="unlink">取消链接</string>
+    <string name="connect">连接</string>
+    <string name="disconnect">断开连接</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 错误信息                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">出了点问题。请重试。</string>
+    <string name="error_network">无网络连接。请检查网络后重试。</string>
+    <string name="error_timeout">请求超时。请重试。</string>
+    <string name="error_server">服务器错误。请稍后重试。</string>
+    <string name="error_not_found">找不到所请求的项目。</string>
+    <string name="error_unauthorized">你的会话已过期。请重新登录。</string>
+    <string name="error_forbidden">你没有执行此操作的权限。</string>
+    <string name="error_validation">请检查表单并修正错误。</string>
+    <string name="error_unknown">发生意外错误。</string>
+    <string name="error_loading">加载失败。点击重试。</string>
+    <string name="error_saving">保存失败。请重试。</string>
+    <string name="error_deleting">删除失败。请重试。</string>
+    <string name="error_no_data">暂无数据。</string>
+    <string name="error_offline_action">此操作需要网络连接。</string>
+    <string name="error_conflict">发生冲突。请刷新后重试。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 引导页                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">一切尽在一处</string>
+    <string name="onboarding_page1_body">笔记、任务和日历在一个工作空间中互联。</string>
+    <string name="onboarding_page2_title">保持专注心流</string>
+    <string name="onboarding_page2_body">Pomodoro 计时器会了解你的工作内容并自动追踪你的时间。</string>
+    <string name="onboarding_page3_title">理解你的 AI</string>
+    <string name="onboarding_page3_body">你的助手会在回复前查看你的活跃任务、即将到来的事件和最近的笔记。</string>
+    <string name="onboarding_get_started">开始使用</string>
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_next">下一步</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 认证 — 通用                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">登录</string>
+    <string name="auth_sign_up">注册</string>
+    <string name="auth_sign_out">退出登录</string>
+    <string name="auth_log_in">登录</string>
+    <string name="auth_log_out">退出登录</string>
+    <string name="auth_create_account">创建账号</string>
+    <string name="auth_already_have_account">已有账号？</string>
+    <string name="auth_skip_login">无需账号继续</string>
+    <string name="auth_dont_have_account">还没有账号？</string>
+    <string name="auth_welcome_back">欢迎回来</string>
+    <string name="auth_create_your_account">创建你的账号</string>
+    <string name="auth_join_productivityx">加入 ProductivityX</string>
+    <string name="auth_welcome_aboard">欢迎加入！</string>
+    <string name="auth_account_created_success">你的账号已成功创建</string>
+
+    <!-- 认证 — 忘记/重置密码 -->
+    <string name="auth_forgot_password">忘记密码？</string>
+    <string name="auth_forgot_password_title">忘记密码了？</string>
+    <string name="auth_forgot_password_body">输入你的邮箱地址，我们将发送重置密码链接。</string>
+    <string name="auth_forgot_password_success_title">重置链接已发送</string>
+    <string name="auth_forgot_password_success_body">如果该邮箱存在，重置链接已发送。请查看收件箱。</string>
+
+    <string name="auth_reset_password_title">重置密码</string>
+    <string name="auth_reset_password_body">为你的账号输入新密码。</string>
+    <string name="auth_reset_password_action">重置密码</string>
+    <string name="auth_reset_password_success_title">密码已重置！</string>
+    <string name="auth_reset_password_success_body">你的密码已更改。请使用新密码登录。</string>
+
+    <!-- 认证 — 验证邮箱/OTP -->
+    <string name="auth_verify_email_title">查看你的邮箱</string>
+    <string name="auth_verify_email_body">我们已向 %1$s 发送了 6 位验证码</string>
+    <string name="auth_verify">验证</string>
+    <string name="auth_resend_code">重新发送验证码</string>
+    <string name="auth_resend_cooldown">%1$s 后可重新发送</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 表单字段                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">邮箱地址</string>
+    <string name="field_email_hint">输入你的邮箱</string>
+    <string name="field_password">密码</string>
+    <string name="field_password_hint">输入你的密码</string>
+    <string name="field_password_new">新密码</string>
+    <string name="field_password_new_hint">输入新密码</string>
+    <string name="field_password_confirm">确认密码</string>
+    <string name="field_password_confirm_hint">再次输入密码</string>
+    <string name="field_password_current">当前密码</string>
+    <string name="field_password_current_hint">输入当前密码</string>
+    <string name="field_username">用户名</string>
+    <string name="field_username_hint">选择一个用户名</string>
+    <string name="field_first_name">名</string>
+    <string name="field_first_name_hint">输入你的名字</string>
+    <string name="field_last_name">姓</string>
+    <string name="field_last_name_hint">输入你的姓氏</string>
+    <string name="field_phone">电话号码</string>
+    <string name="field_phone_hint">输入你的电话号码</string>
+    <string name="field_birth_date">出生日期</string>
+    <string name="field_birth_date_hint">选择你的出生日期</string>
+    <string name="field_identifier">邮箱、用户名或手机号</string>
+    <string name="field_identifier_hint">输入邮箱、用户名或手机号</string>
+    <string name="field_gender">性别</string>
+    <string name="field_bio">个人简介</string>
+    <string name="field_bio_hint">简单介绍一下你自己</string>
+    <string name="field_timezone">时区</string>
+    <string name="field_language">语言</string>
+    <string name="field_theme">主题</string>
+    <string name="field_avatar">头像</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 密码                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">显示密码</string>
+    <string name="password_hide">隐藏密码</string>
+    <string name="password_strength_weak">弱</string>
+    <string name="password_strength_fair">一般</string>
+    <string name="password_strength_good">良好</string>
+    <string name="password_strength_strong">强</string>
+    <string name="password_requirement_length">至少 8 个字符</string>
+    <string name="password_requirement_uppercase">一个大写字母</string>
+    <string name="password_requirement_lowercase">一个小写字母</string>
+    <string name="password_requirement_number">一个数字</string>
+    <string name="password_requirement_special">一个特殊字符</string>
+    <string name="password_forgot">忘记密码？</string>
+    <string name="password_reset">重置密码</string>
+    <string name="password_change">修改密码</string>
+    <string name="password_mismatch">密码不匹配。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 注册步骤                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">账号</string>
+    <string name="register_step_profile">个人资料</string>
+    <string name="register_step_preferences">偏好设置</string>
+    <string name="register_step_verify">验证</string>
+    <string name="register_step_indicator">第 %1$d 步，共 %2$d 步</string>
+    <string name="register_change_photo">更换照片</string>
+    <string name="register_profile_photo_hint">点击添加头像</string>
+    <string name="register_preferences_caption">你可以随时在设置中更改这些。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 主题 / 个人资料                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">深色</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_system">跟随系统</string>
+
+    <!-- 在注册屏幕步骤 2 中使用 -->
+    <string name="profile_theme">主题</string>
+    <string name="profile_theme_hint">你可以随时在设置中更改。</string>
+
+    <!-- 性别 -->
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="gender_prefer_not_to_say">不愿透露</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 导航                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">首页</string>
+    <string name="nav_notes">笔记</string>
+    <string name="nav_tasks">任务</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">搜索</string>
+    <string name="nav_profile">我的</string>
+    <string name="nav_settings">设置</string>
+    <string name="nav_trash">回收站</string>
+    <string name="nav_history">历史记录</string>
+    <string name="nav_events">日程</string>
+    <string name="tab_dashboard">仪表盘</string>
+    <string name="tab_events">日程</string>
+    <string name="tab_dashboard_desc">今天概览</string>
+    <string name="tab_notes_desc">记录你的想法</string>
+    <string name="tab_tasks_desc">完成待办事项</string>
+    <string name="tab_events_desc">日程一览</string>
+    <string name="tab_pomodoro_desc">保持专注</string>
+    <string name="cd_notifications">通知</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 首页                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">早上好，%1$s 👋</string>
+    <string name="home_greeting_afternoon">下午好，%1$s 👋</string>
+    <string name="home_greeting_evening">晚上好，%1$s 👋</string>
+    <string name="home_greeting_night">晚安，%1$s 👋</string>
+    <string name="home_quick_add">快速添加</string>
+    <string name="home_due_today">今天到期</string>
+    <string name="home_overdue">已逾期</string>
+    <string name="home_this_week">本周</string>
+    <string name="home_total_notes">笔记总数</string>
+    <string name="home_focus_time">今日专注</string>
+    <string name="home_focus_minutes">Focus time</string>
+    <string name="home_upcoming_events">即将到来的日程</string>
+    <string name="home_recent_notes">最近的笔记</string>
+    <string name="home_no_tasks_today">今天没有到期任务。</string>
+    <string name="home_no_events">没有即将到来的日程。</string>
+    <string name="home_no_notes">没有最近的笔记。</string>
+    <string name="home_sessions_today">今日会话</string>
+    <string name="home_completed_tasks">已完成任务</string>
+    <string name="home_start_focus">开始专注</string>
+    <string name="home_tasks_completed">个任务已完成</string>
+    <string name="home_events_upcoming">个日程即将到来</string>
+    <string name="home_quick_actions_cd">快捷操作</string>
+    <string name="home_quick_action_new_note">新建笔记</string>
+    <string name="home_quick_action_new_task">新建任务</string>
+    <string name="home_quick_action_calculator">计算器</string>
+    <string name="home_quick_action_start_timer">启动计时器</string>
+    <string name="home_quick_action_ai_chat">AI 对话</string>
+    <string name="home_error_something_wrong">出了点问题</string>
+    <string name="home_opening_new_note">正在打开新笔记…</string>
+    <string name="home_opening_new_task">正在打开新任务…</string>
+    <string name="home_starting_timer">正在启动计时器…</string>
+    <string name="home_opening_ai_chat">正在打开 AI 对话…</string>
+    <string name="home_opening_calculator">正在打开计算器…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 笔记                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">笔记</string>
+    <string name="notes_new">新建笔记</string>
+    <string name="notes_search_hint">搜索笔记…</string>
+    <string name="notes_filter_all">全部</string>
+    <string name="notes_filter_pinned">已置顶</string>
+    <string name="notes_empty_title">暂无笔记</string>
+    <string name="notes_empty_body">开始写下你的第一篇笔记。</string>
+    <string name="notes_empty_action">创建笔记</string>
+    <string name="notes_pinned_section">已置顶</string>
+    <string name="notes_all_section">全部笔记</string>
+    <string name="notes_untitled">无标题</string>
+    <string name="notes_word_count">%1$d 个字</string>
+    <string name="notes_reading_time">%1$d 分钟阅读</string>
+    <string name="notes_pin_success">笔记已置顶。</string>
+    <string name="notes_unpin_success">笔记已取消置顶。</string>
+    <string name="notes_delete_confirm_title">移至回收站？</string>
+    <string name="notes_delete_confirm_body">此笔记将被移至回收站，30 天后永久删除。</string>
+    <string name="notes_delete_success">笔记已移至回收站。</string>
+    <string name="notes_restore_success">笔记已恢复。</string>
+    <string name="notes_hard_delete_confirm_title">永久删除？</string>
+    <string name="notes_hard_delete_confirm_body">此笔记将被永久删除且无法恢复。</string>
+    <string name="notes_hard_delete_success">笔记已永久删除。</string>
+    <string name="notes_create_success">笔记已创建。</string>
+    <string name="notes_update_success">笔记已保存。</string>
+    <string name="notes_autosave">已自动保存</string>
+    <string name="notes_saving">保存中…</string>
+    <string name="notes_copy_link">复制链接</string>
+    <string name="notes_link_copied">链接已复制。</string>
+    <string name="notes_link_task">关联任务</string>
+    <string name="notes_unlink_task">取消关联任务</string>
+    <string name="notes_task_linked">关联到：%1$s</string>
+    <string name="notes_add_tag">添加标签</string>
+    <string name="notes_no_tags">暂无标签</string>
+    <string name="notes_start_writing">开始写作…</string>
+    <string name="notes_title_hint">标题</string>
+    <string name="notes_trash_empty_title">回收站为空</string>
+    <string name="notes_trash_empty_body">回收站中的笔记将在 30 天后永久删除。</string>
+    <string name="notes_trash_empty_all">清空回收站</string>
+    <string name="notes_trash_empty_all_confirm_title">清空回收站？</string>
+    <string name="notes_trash_empty_all_confirm_body">回收站中的所有笔记将被永久删除。</string>
+    <string name="notes_in_trash">%1$d 条笔记在回收站中</string>
+    <string name="notes_in_trash_plural">%1$d 条笔记在回收站中</string>
+    <string name="notes_voice_memo">语音备忘录</string>
+    <string name="notes_selected_count">已选 %1$d 项</string>
+    <string name="notes_search_no_results">没有匹配"%1$s"的笔记</string>
+    <string name="notes_links_title">笔记链接</string>
+    <string name="notes_links_empty">暂无关联笔记</string>
+    <string name="trash_days_left">剩余 %1$d 天</string>
+    <string name="trash_expiring_soon">即将到期</string>
+    <string name="trash_delete_permanently">永久删除</string>
+    <string name="trash_empty_confirm_body">%1$s 将被永久删除且无法恢复。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 编辑器                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">加粗</string>
+    <string name="editor_format_italic">斜体</string>
+    <string name="editor_format_heading">标题</string>
+    <string name="editor_format_list_bullet">无序列表</string>
+    <string name="editor_format_list_numbered">有序列表</string>
+    <string name="editor_format_code">代码</string>
+    <string name="editor_format_quote">引用</string>
+    <string name="editor_format_link">插入链接</string>
+    <string name="editor_insert_link_title">插入链接</string>
+    <string name="editor_insert_link_url_hint">网址</string>
+    <string name="editor_insert_link_text_hint">显示文本</string>
+    <string name="editor_format_underline">下划线</string>
+    <string name="editor_format_strikethrough">删除线</string>
+    <string name="editor_format_heading1">标题 1</string>
+    <string name="editor_format_heading2">标题 2</string>
+    <string name="editor_format_heading3">标题 3</string>
+    <string name="editor_format_code_block">代码块</string>
+    <string name="editor_format_divider">分割线</string>
+    <string name="editor_format_image">添加图片</string>
+    <string name="editor_format_table">插入表格</string>
+    <string name="editor_format_highlight">高亮</string>
+    <string name="editor_highlight_color">高亮颜色</string>
+    <string name="editor_highlight_default">默认高亮</string>
+    <string name="editor_text_color">文字颜色</string>
+    <string name="editor_font_size">字体大小</string>
+    <string name="editor_start_writing">开始写作…</string>
+    <string name="editor_saved">已保存</string>
+    <string name="editor_share_note">分享笔记</string>
+    <string name="editor_pdf_filename">笔记</string>
+    <string name="editor_content_hint">开始写作…</string>
+    <string name="editor_insert_table_title">插入表格</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">表头行</string>
+    <string name="editor_table_header_template">表头 %1$d</string>
+    <string name="editor_table_cell_template">单元格</string>
+    <string name="editor_insert_table_btn">插入</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 标签                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">标签</string>
+    <string name="tags_new">新建标签</string>
+    <string name="tags_name_hint">标签名称</string>
+    <string name="tags_color">颜色</string>
+    <string name="tags_create_success">标签已创建。</string>
+    <string name="tags_update_success">标签已更新。</string>
+    <string name="tags_delete_success">标签已删除。</string>
+    <string name="tags_delete_confirm_title">删除标签？</string>
+    <string name="tags_delete_confirm_body">此标签将从所有使用它的笔记中移除。</string>
+    <string name="tags_already_exists">已存在同名标签。</string>
+    <string name="tags_empty_title">暂无标签</string>
+    <string name="tags_empty_body">创建标签来整理你的笔记。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 任务                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">任务</string>
+    <string name="tasks_new">新建任务</string>
+    <string name="tasks_search_hint">搜索或筛选任务…</string>
+    <string name="tasks_tab_all">全部</string>
+    <string name="tasks_tab_today">今天</string>
+    <string name="tasks_tab_upcoming">即将到来</string>
+    <string name="tasks_tab_completed">已完成</string>
+    <string name="tasks_view_list">列表</string>
+    <string name="tasks_empty_title">暂无任务</string>
+    <string name="tasks_empty_body">创建你的第一个任务来开始使用。</string>
+    <string name="tasks_empty_action">创建任务</string>
+    <string name="tasks_empty_today">今天没有到期任务。享受今天吧！</string>
+    <string name="tasks_empty_upcoming">没有即将到来的任务。</string>
+    <string name="tasks_empty_completed">暂无已完成的任务。</string>
+    <string name="tasks_empty_filter">没有匹配此筛选条件的任务。</string>
+    <string name="tasks_field_title">任务标题</string>
+    <string name="tasks_field_title_hint">需要做什么？</string>
+    <string name="tasks_field_description">描述</string>
+    <string name="tasks_field_description_hint">添加更多详情…</string>
+    <string name="tasks_field_due_date">截止日期</string>
+    <string name="tasks_field_due_time">截止时间</string>
+    <string name="tasks_field_priority">优先级</string>
+    <string name="tasks_field_status">状态</string>
+    <string name="tasks_field_reminder">提醒</string>
+    <string name="tasks_field_estimated_time">预计用时</string>
+    <string name="tasks_field_actual_time">实际用时</string>
+    <string name="tasks_field_link_event">关联日程</string>
+    <string name="tasks_field_subtasks">子任务</string>
+    <string name="tasks_add_subtask">添加子任务</string>
+    <string name="tasks_subtask_count">%1$d 个子任务</string>
+    <string name="tasks_subtask_count_plural">%1$d 个子任务</string>
+    <string name="tasks_subtask_completed">已完成 %1$d / %2$d</string>
+    <string name="tasks_pomodoro_sessions">专注会话</string>
+    <string name="tasks_no_due_date">无截止日期</string>
+    <string name="tasks_no_due_time">未设置时间</string>
+    <string name="tasks_no_reminder">无提醒</string>
+    <string name="tasks_no_estimated">无预估</string>
+    <string name="tasks_create_success">任务已创建。</string>
+    <string name="tasks_update_success">任务已更新。</string>
+    <string name="tasks_delete_success">任务已删除。</string>
+    <string name="tasks_restore_success">任务已恢复。</string>
+    <string name="tasks_complete_success">任务已完成。</string>
+    <string name="tasks_reorder_success">任务已重新排序。</string>
+    <string name="tasks_status_updated">状态已更新。</string>
+    <string name="tasks_delete_confirm_title">删除任务？</string>
+    <string name="tasks_delete_confirm_body">此任务将被删除。</string>
+    <string name="tasks_minutes">%1$d 分钟</string>
+    <string name="tasks_hours_minutes">%1$d 小时 %2$d 分钟</string>
+    <string name="tasks_swipe_complete">完成</string>
+    <string name="tasks_swipe_delete">删除</string>
+    <string name="tasks_sort_due_date">截止日期</string>
+    <string name="tasks_sort_priority">优先级</string>
+    <string name="tasks_sort_created">创建时间</string>
+    <string name="tasks_sort_title">标题</string>
+    <string name="tasks_filter_priority">按优先级筛选</string>
+    <string name="tasks_filter_status">按状态筛选</string>
+    <string name="tasks_filter_due">按截止日期筛选</string>
+    <string name="tasks_overdue_label">已逾期</string>
+    <string name="tasks_due_today_label">今天到期</string>
+    <string name="tasks_due_tomorrow_label">明天到期</string>
+
+    <!-- 优先级 / 状态 -->
+    <string name="priority_low">低</string>
+    <string name="priority_medium">中</string>
+    <string name="priority_high">高</string>
+    <string name="priority_urgent">紧急</string>
+
+    <string name="status_todo">待办</string>
+    <string name="status_in_progress">进行中</string>
+    <string name="status_on_hold">已搁置</string>
+    <string name="status_done">已完成</string>
+    <string name="status_cancelled">已取消</string>
+
+    <!-- 看板 -->
+    <string name="kanban_column_todo">待办</string>
+    <string name="kanban_column_in_progress">进行中</string>
+    <string name="kanban_column_on_hold">已搁置</string>
+    <string name="kanban_column_done">已完成</string>
+    <string name="kanban_add_task">添加任务</string>
+    <string name="kanban_drag_hint">按住并拖动以移动</string>
+    <string name="kanban_column_empty">暂无任务</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 日历                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">日历</string>
+    <string name="calendar_view_week">周</string>
+    <string name="calendar_view_month">月</string>
+    <string name="calendar_today">今天</string>
+    <string name="calendar_new_event">新建日程</string>
+    <string name="calendar_no_events">暂无日程</string>
+    <string name="calendar_all_day">全天</string>
+    <string name="calendar_recurring">重复</string>
+    <string name="calendar_events_count">%1$d 个日程</string>
+    <string name="calendar_events_count_plural">%1$d 个日程</string>
+    <string name="calendar_more_events">还有 %1$d 个</string>
+    <string name="calendar_week_header">%1$s 所在周</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 日程                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">新建日程</string>
+    <string name="event_edit_title">编辑日程</string>
+    <string name="event_field_title">日程标题</string>
+    <string name="event_field_title_hint">是什么日程？</string>
+    <string name="event_field_description">描述</string>
+    <string name="event_field_description_hint">添加关于此日程的备注…</string>
+    <string name="event_field_location">地点</string>
+    <string name="event_field_location_hint">添加地点</string>
+    <string name="event_field_start">开始时间</string>
+    <string name="event_field_end">结束时间</string>
+    <string name="event_field_all_day">全天日程</string>
+    <string name="event_field_color">颜色</string>
+    <string name="event_field_recurrence">重复规则</string>
+    <string name="event_field_reminder">提醒</string>
+    <string name="event_field_link_task">关联任务</string>
+    <string name="event_attendees">参与者</string>
+    <string name="event_meeting_link">会议链接</string>
+    <string name="event_travel_time">通勤时间</string>
+    <string name="event_quick_templates">快速模板</string>
+    <string name="event_suggestions">建议</string>
+    <string name="event_select_time">选择时间</string>
+    <string name="event_conflict">时间冲突</string>
+    <string name="event_conflict_with">与 %d 个日程有时间冲突</string>
+    <string name="event_add_attendee_hint">邮箱地址</string>
+    <string name="event_enter_location_hint">输入地点</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">分钟</string>
+    <string name="event_add_location">添加地点</string>
+    <string name="event_add_description">添加描述</string>
+    <string name="event_add_attendees">添加参与者</string>
+    <string name="event_add_link">添加链接</string>
+    <string name="event_add_estimate">添加预估</string>
+    <string name="event_attendee_count">%d 位参与者</string>
+    <string name="event_reminder_multiple">多个（%d）</string>
+    <string name="event_speak_prompt">说出日程标题</string>
+    <string name="task_delete_confirm">删除任务？</string>
+    <string name="task_delete_message">此任务将被移至回收站。</string>
+    <string name="task_not_found">找不到任务</string>
+    <string name="task_overdue">已逾期</string>
+    <string name="task_due_date">截止日期</string>
+    <string name="task_due_time">截止时间</string>
+    <string name="task_reminder">提醒</string>
+    <string name="task_reminder_set">已设置</string>
+    <string name="task_time">时间</string>
+    <string name="task_assignee">负责人</string>
+    <string name="task_assigned">已分配</string>
+    <string name="task_completed">已完成</string>
+    <string name="task_priority">优先级</string>
+    <string name="task_subtasks">子任务</string>
+    <string name="task_activity">动态</string>
+    <string name="task_hide">隐藏</string>
+    <string name="task_events">%d 个日程</string>
+    <string name="task_add_description">添加描述</string>
+    <string name="task_add_subtask">添加子任务</string>
+    <string name="task_add_subtask_placeholder">添加子任务…</string>
+    <string name="priority_low_importance">低重要性</string>
+    <string name="priority_high_importance">高重要性</string>
+    <string name="priority_not_urgent">不紧急</string>
+    <string name="priority_urgent_low">紧急 + 低重要性</string>
+    <string name="priority_urgent_high">紧急 + 高重要性</string>
+    <string name="priority_not_urgent_low">不紧急 + 低重要性</string>
+    <string name="priority_not_urgent_high">不紧急 + 高重要性</string>
+    <string name="task_title_placeholder">任务标题</string>
+    <string name="task_tags">标签</string>
+    <string name="task_add_tag">添加标签</string>
+    <string name="task_set_date">设置日期</string>
+    <string name="task_set_time">设置时间</string>
+    <string name="task_remind_before">提前提醒</string>
+    <string name="task_repeat">重复</string>
+    <string name="task_never">从不</string>
+    <string name="task_estimated_time">预计用时</string>
+    <string name="task_status">状态</string>
+    <string name="task_update">更新</string>
+    <string name="task_create">创建</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">弱</string>
+    <string name="password_fair">一般</string>
+    <string name="password_good">良好</string>
+    <string name="password_strong">强</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">分钟</string>
+    <string name="cd_recurring">重复</string>
+    <string name="empty_tasks_list">暂无任务</string>
+    <string name="empty_tasks_list_hint">点击 + 创建你的第一个任务</string>
+    <string name="empty_tasks_kanban">看板上暂无任务</string>
+    <string name="empty_tasks_kanban_hint">添加任务来开始使用</string>
+    <string name="empty_tasks_calendar">这一天没有任务</string>
+    <string name="empty_tasks_calendar_hint">选择其他日期或添加任务</string>
+    <string name="empty_tasks_timeline">这段时间内没有任务</string>
+    <string name="empty_tasks_timeline_hint">调整时间线或添加任务</string>
+
+    <!-- 偏好设置 -->
+    <string name="pref_section_account">账号</string>
+    <string name="pref_section_appearance">外观</string>
+    <string name="pref_section_notifications">通知</string>
+    <string name="pref_section_data_sync">数据 &amp; 同步</string>
+    <string name="pref_section_beta">测试功能</string>
+    <string name="pref_section_about">关于</string>
+    <string name="pref_section_help">帮助 &amp; 支持</string>
+    <string name="pref_search_placeholder">搜索设置…</string>
+    <string name="pref_no_results">未找到"%s"的相关结果</string>
+    <string name="pref_theme">主题</string>
+    <string name="pref_local_only_mode">仅本地模式</string>
+    <string name="pref_local_only_mode_desc">将所有数据保存在此设备上</string>
+    <string name="pref_subscription">订阅</string>
+    <string name="pref_free_plan">免费方案</string>
+    <string name="pref_free">免费</string>
+    <string name="pref_font_family">字体</string>
+    <string name="pref_font_size">字体大小</string>
+    <string name="pref_density">密度</string>
+    <string name="pref_haptic_feedback">触觉反馈</string>
+    <string name="pref_haptic_feedback_desc">操作时振动</string>
+    <string name="pref_quiet_hours">免打扰时段</string>
+    <string name="pref_quiet_hours_start">开始</string>
+    <string name="pref_quiet_hours_end">结束</string>
+    <string name="pref_auto_sync">自动同步</string>
+    <string name="pref_auto_sync_desc">连接时自动同步数据</string>
+    <string name="pref_offline_mode">离线模式</string>
+    <string name="pref_offline_mode_desc">无需网络连接即可使用</string>
+    <string name="pref_export_data">导出数据</string>
+    <string name="pref_export_data_desc">备份所有数据</string>
+    <string name="pref_import_data">导入数据</string>
+    <string name="pref_import_data_desc">从备份文件恢复数据</string>
+    <string name="pref_version">版本</string>
+    <string name="pref_version_value">1.2.0 (build 42)</string>
+    <string name="pref_latest">最新版本</string>
+    <string name="pref_licenses">许可证</string>
+    <string name="pref_licenses_desc">开源库</string>
+    <string name="pref_credits">致谢</string>
+    <string name="pref_terms">条款 &amp; 条件</string>
+    <string name="pref_privacy">隐私政策</string>
+    <string name="pref_faq">常见问题</string>
+    <string name="pref_faq_desc">常见问题解答</string>
+    <string name="pref_contact">联系我们</string>
+    <string name="pref_contact_desc">与团队取得联系</string>
+    <string name="pref_feedback">发送反馈</string>
+    <string name="pref_feedback_desc">帮助我们改进 ProductivityX</string>
+    <string name="pref_feedback_subject">ProductivityX 反馈</string>
+    <string name="pref_select_hour">选择 %s 小时</string>
+    <string name="pref_settings">设置</string>
+    <string name="pref_close">关闭</string>
+    <string name="pref_enabled">已启用</string>
+    <string name="pref_disabled">已禁用</string>
+    <string name="pref_theme_dark">深色</string>
+    <string name="pref_theme_light">浅色</string>
+    <string name="pref_theme_system">跟随系统</string>
+    <string name="pref_theme_ocean">海洋</string>
+    <string name="pref_theme_amber">琥珀</string>
+    <string name="pref_theme_forest">森林</string>
+    <string name="pref_theme_rose">玫瑰</string>
+    <string name="pref_theme_midnight">午夜</string>
+    <string name="pref_theme_dynamic">动态</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">系统字体</string>
+    <string name="pref_font_serif">衬线</string>
+    <string name="pref_font_mono">等宽</string>
+    <string name="pref_density_compact">紧凑</string>
+    <string name="pref_density_comfortable">舒适</string>
+    <string name="pref_density_spacious">宽松</string>
+    <string name="pref_view_list">列表</string>
+    <string name="pref_view_kanban">看板</string>
+    <string name="pref_sort_due">截止日期</string>
+    <string name="pref_sort_priority">优先级</string>
+    <string name="pref_sort_created">创建时间</string>
+    <string name="pref_calendar_week">周</string>
+    <string name="pref_calendar_month">月</string>
+    <string name="pref_week_mon">周一</string>
+    <string name="pref_week_sun">周日</string>
+    <string name="pref_week_sat">周六</string>
+    <string name="pref_ai_flash">Flash</string>
+    <string name="pref_ai_pro">Pro</string>
+    <string name="minute_abbrev">分钟</string>
+
+    <string name="event_recurrence_none">不重复</string>
+    <string name="event_recurrence_daily">每天</string>
+    <string name="event_recurrence_weekly">每周</string>
+    <string name="event_recurrence_monthly">每月</string>
+    <string name="event_recurrence_yearly">每年</string>
+    <string name="event_recurrence_custom">自定义</string>
+    <string name="event_recurrence_weekdays">每个工作日（周一至周五）</string>
+    <string name="event_recurrence_end_date">结束日期</string>
+    <string name="event_recurrence_end_never">从不</string>
+    <string name="event_recurrence_label">重复：%1$s</string>
+    <string name="event_reminder_none">无提醒</string>
+    <string name="event_reminder_at_time">事件发生时</string>
+    <string name="event_reminder_5_min">提前 5 分钟</string>
+    <string name="event_reminder_10_min">提前 10 分钟</string>
+    <string name="event_reminder_15_min">提前 15 分钟</string>
+    <string name="event_reminder_30_min">提前 30 分钟</string>
+    <string name="event_reminder_1_hour">提前 1 小时</string>
+    <string name="event_reminder_1_day">提前 1 天</string>
+    <string name="event_create_success">日程已创建。</string>
+    <string name="event_update_success">日程已更新。</string>
+    <string name="event_delete_success">日程已删除。</string>
+    <string name="event_restore_success">日程已恢复。</string>
+    <string name="event_untitled">无标题日程</string>
+    <string name="event_delete_cannot_undo">此操作无法撤销。</string>
+    <string name="event_repeats">重复</string>
+    <string name="event_detail_ends">结束于 %1$s</string>
+    <string name="event_detail_timezone">时区：%1$s</string>
+    <string name="event_detail_min_before">提前 %1$d 分钟</string>
+    <string name="event_detail_reminders">提醒：%1$s</string>
+    <string name="event_detail_attendees_count">%1$d 位参与者</string>
+    <string name="event_detail_travel_time">通勤时间：%1$d 分钟</string>
+    <string name="event_reminder_short_at_time">准时</string>
+    <string name="event_reminder_short_min">%1$d 分钟</string>
+    <string name="event_reminder_short_1_hour">1 小时</string>
+    <string name="event_reminder_short_1_day">1 天</string>
+    <string name="event_delete_confirm_title">删除日程？</string>
+    <string name="cd_date_picker">日期选择器</string>
+    <string name="cd_join">加入</string>
+    <string name="cd_previous_year">上一年</string>
+    <string name="cd_next_year">下一年</string>
+    <string name="event_delete_confirm_body">此日程将被删除。</string>
+    <string name="event_delete_recurring_title">删除重复日程</string>
+    <string name="event_delete_recurring_body">删除此日程还是系列中的所有日程？</string>
+    <string name="event_delete_this_only">仅此日程</string>
+    <string name="event_delete_all_in_series">系列中的所有日程</string>
+    <string name="event_end_before_start">结束时间必须晚于开始时间。</string>
+    <string name="event_location_open_maps">在地图中打开</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">会议</string>
+    <string name="event_template_focus">专注时间</string>
+    <string name="event_template_break">休息</string>
+    <string name="event_template_travel">出行</string>
+    <string name="event_join_meeting">加入会议</string>
+    <string name="event_navigate">导航</string>
+    <string name="event_share">分享日程</string>
+    <string name="event_duplicate">复制</string>
+    <string name="event_weather">天气</string>
+    <string name="event_timezone">时区</string>
+    <string name="event_conflict_detected">检测到时间冲突</string>
+    <string name="event_reminder_add">添加提醒</string>
+    <string name="event_reminder_custom">自定义</string>
+    <string name="event_voice_input">语音输入</string>
+    <string name="event_smart_suggestion">智能建议</string>
+    <string name="event_free_busy">空闲/忙碌</string>
+    <string name="event_suggested_times">建议时间</string>
+    <string name="calendar_view_day">日</string>
+    <string name="calendar_view_agenda">日程表</string>
+    <string name="calendar_view_year">年</string>
+    <string name="calendar_date_jump">跳转到日期</string>
+    <string name="calendar_swipe_instruction">滑动浏览</string>
+    <string name="calendar_pinch_zoom">双指缩放</string>
+    <string name="calendar_no_events_day">今天没有日程</string>
+    <string name="calendar_all_day_section">全天</string>
+    <string name="calendar_agenda_empty">没有即将到来的日程</string>
+    <string name="calendar_heat_map_label">活动</string>
+    <string name="calendar_upcoming_events">即将到来的日程</string>
+    <string name="calendar_free_busy_suggested">空闲/忙碌 &amp; 建议时间</string>
+    <string name="calendar_no_available_slots">本周没有可用时间段</string>
+    <string name="calendar_free">空闲</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 番茄钟                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">专注</string>
+    <string name="pomodoro_focus">专注</string>
+    <string name="pomodoro_short_break">短休息</string>
+    <string name="pomodoro_long_break">长休息</string>
+    <string name="pomodoro_session_focus">专注会话</string>
+    <string name="pomodoro_session_short_break">短休息</string>
+    <string name="pomodoro_session_long_break">长休息</string>
+    <string name="pomodoro_start">开始</string>
+    <string name="pomodoro_pause">暂停</string>
+    <string name="pomodoro_resume">继续</string>
+    <string name="pomodoro_skip">跳过</string>
+    <string name="pomodoro_stop">停止</string>
+    <string name="pomodoro_reset">重置</string>
+    <string name="pomodoro_link_task">关联任务</string>
+    <string name="pomodoro_link_task_hint">点击关联任务</string>
+    <string name="pomodoro_linked_task">正在专注：%1$s</string>
+    <string name="pomodoro_sessions_today">今天 %1$d 个会话</string>
+    <string name="pomodoro_sessions_today_plural">今天 %1$d 个会话</string>
+    <string name="pomodoro_focus_time_today">今天专注了 %1$s</string>
+    <string name="pomodoro_completed_today">今天已完成</string>
+    <string name="pomodoro_no_active_session">没有进行中的会话</string>
+    <string name="pomodoro_session_complete_title">会话完成！🎉</string>
+    <string name="pomodoro_session_complete_body">做得好，休息一下吧！</string>
+    <string name="pomodoro_break_complete_title">休息结束</string>
+    <string name="pomodoro_break_complete_body">准备好继续专注了吗？</string>
+    <string name="pomodoro_start_success">会话已开始。</string>
+    <string name="pomodoro_end_success">会话已完成。</string>
+    <string name="pomodoro_interrupt_success">会话已中断。</string>
+    <string name="pomodoro_interrupt_reason_hint">你为什么停下来？（可选）</string>
+    <string name="pomodoro_interrupt_confirm_title">停止会话？</string>
+    <string name="pomodoro_interrupt_confirm_body">你的进度将被保存，但会话将被标记为已中断。</string>
+    <string name="pomodoro_already_active">你已经有一个进行中的会话。请先结束它再开始新的。</string>
+    <string name="pomodoro_stats_title">今日统计</string>
+    <string name="pomodoro_history_title">会话历史</string>
+    <string name="pomodoro_history_empty_title">暂无会话</string>
+    <string name="pomodoro_history_empty_body">开始一个专注会话，在此处查看历史记录。</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">已中断</string>
+    <string name="pomodoro_session_completed">已完成</string>
+    <string name="pomodoro_dot_current">当前会话</string>
+    <string name="pomodoro_dot_completed">已完成会话</string>
+    <string name="pomodoro_dot_upcoming">即将到来的会话</string>
+    <string name="pomodoro_notification_channel_name">Pomodoro 计时器</string>
+    <string name="pomodoro_notification_channel_desc">实时计时器更新和会话通知。</string>
+    <string name="pomodoro_notification_running">剩余 %1$s — %2$s</string>
+    <string name="pomodoro_notification_action_pause">暂停</string>
+    <string name="pomodoro_notification_action_skip">跳过</string>
+    <string name="pomodoro_notification_action_stop">停止</string>
+    <string name="pomodoro_cycle_count">第 %1$d / %2$d 个周期</string>
+    <string name="pomodoro_until_long_break">距离长休息还有 %1$d 个会话</string>
+    <string name="pomodoro_until_long_break_plural">距离长休息还有 %1$d 个会话</string>
+
+    <string name="pomodoro_swipe_to_skip">滑动以跳过</string>
+    <string name="pomodoro_extend_1min">+1 分钟</string>
+    <string name="pomodoro_focus_analytics">专注分析</string>
+    <string name="pomodoro_streak_day">连续 %1$d 天</string>
+    <string name="pomodoro_best_streak">最佳：%1$d 天</string>
+    <string name="pomodoro_weekly_intensity">每周强度</string>
+    <string name="pomodoro_focus_by_category">按类别专注</string>
+    <string name="pomodoro_quality_score">质量评分</string>
+    <string name="pomodoro_total_focus_time">总专注时间</string>
+    <string name="pomodoro_daily_goal">每日目标</string>
+    <string name="pomodoro_weekly_goal">每周目标</string>
+    <string name="pomodoro_exit_focus_mode">退出专注模式</string>
+    <string name="pomodoro_dnd">免打扰</string>
+    <string name="pomodoro_background">后台</string>
+    <string name="pomodoro_sounds">音效</string>
+    <string name="pomodoro_focus_mode">专注模式</string>
+    <string name="pomodoro_unlink">取消关联</string>
+    <string name="pomodoro_play_pause">播放/暂停</string>
+    <string name="pomodoro_no_active_tasks">没有可用的活跃任务。</string>
+    <string name="pomodoro_ambient_sound">环境音</string>
+    <string name="pomodoro_today_sessions">今日会话</string>
+    <string name="pomodoro_no_sessions_today">今天还没有会话</string>
+    <string name="pomodoro_interrupt_button">中断</string>
+    <string name="pomodoro_dnd_access_required">需要免打扰权限。请在设置中启用。</string>
+    <string name="pomodoro_ambient_rain">雨声</string>
+    <string name="pomodoro_ambient_cafe">咖啡厅</string>
+    <string name="pomodoro_ambient_white_noise">白噪音</string>
+    <string name="pomodoro_ambient_nature">自然</string>
+    <string name="pomodoro_paused">已暂停</string>
+    <string name="pomodoro_done">完成！🎉</string>
+    <string name="pomodoro_general_focus">通用专注</string>
+    <string name="pomodoro_sessions_label">会话</string>
+    <string name="pomodoro_focus_time_label">专注时间</string>
+    <string name="pomodoro_streak_label">连续天数</string>
+    <string name="pomodoro_less">收起</string>
+    <string name="pomodoro_more">更多</string>
+    <string name="pomodoro_no_category_data">暂无类别数据</string>
+    <string name="pomodoro_ongoing">进行中</string>
+    <string name="pomodoro_duration_min">%d 分钟</string>
+    <string name="pomodoro_toggle">切换</string>
+    <string name="pomodoro_ambient_sounds">环境音效</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI 助手</string>
+    <string name="ai_welcome_title">有什么可以帮你的？</string>
+    <string name="ai_welcome_body">我可以查看你的工作空间——任务、日程和笔记——为你提供上下文相关的回答。</string>
+    <string name="ai_message_hint">输入消息…</string>
+    <string name="ai_send">发送</string>
+    <string name="ai_new_conversation">新对话</string>
+    <string name="ai_conversations_title">对话</string>
+    <string name="ai_conversation_empty">暂无消息</string>
+    <string name="ai_conversations_empty_title">暂无对话</string>
+    <string name="ai_conversations_empty_body">开始新对话来获取工作空间相关帮助。</string>
+    <string name="ai_delete_conversation_title">删除对话？</string>
+    <string name="ai_delete_conversation_body">此对话及所有消息将被永久删除。</string>
+    <string name="ai_delete_conversation_success">对话已删除。</string>
+    <string name="ai_clear_conversation_title">清空对话？</string>
+    <string name="ai_clear_conversation_body">此对话中的所有消息将被清空。</string>
+    <string name="ai_suggestion_due_today">今天有什么到期的？</string>
+    <string name="ai_suggestion_overdue">总结我逾期的任务</string>
+    <string name="ai_suggestion_start_focus">开始一个专注会话</string>
+    <string name="ai_suggestion_meeting_agenda">起草会议议程</string>
+    <string name="ai_context_title">你的工作空间</string>
+    <string name="ai_context_active_tasks">活跃任务</string>
+    <string name="ai_context_events_week">本周日程</string>
+    <string name="ai_context_last_note">最近笔记</string>
+    <string name="ai_context_focus_today">今日专注</string>
+    <string name="ai_context_overdue">逾期</string>
+    <string name="ai_context_caption">此上下文会随每条消息发送给 AI。</string>
+    <string name="ai_context_refresh">刷新上下文</string>
+    <string name="ai_typing">AI 正在思考…</string>
+    <string name="ai_streaming">正在生成回复…</string>
+    <string name="ai_error_unavailable">AI 助手当前不可用。请稍后重试。</string>
+    <string name="ai_error_stream">生成回复时出错。</string>
+    <string name="ai_action_create_task">创建任务</string>
+    <string name="ai_action_create_note">创建笔记</string>
+    <string name="ai_action_add_event">添加日程</string>
+    <string name="ai_action_confirm">确认</string>
+    <string name="ai_action_dismiss">忽略</string>
+    <string name="ai_action_executed">完成！项目已创建。</string>
+    <string name="ai_action_dismissed">已忽略。</string>
+    <string name="ai_copy_message">复制消息</string>
+    <string name="ai_message_copied">消息已复制。</string>
+    <string name="ai_regenerate">重新生成回复</string>
+    <string name="ai_you">你</string>
+    <string name="ai_assistant">助手</string>
+    <string name="ai_stop_generating">停止生成</string>
+    <string name="ai_conversations_search_hint">搜索对话…</string>
+    <string name="ai_conversations_close_search">关闭搜索</string>
+    <string name="ai_conversations_no_results">未找到"%s"的相关结果</string>
+    <string name="ai_conversations_section_pinned">已置顶</string>
+    <string name="ai_conversations_section_earlier">更早</string>
+    <string name="ai_conversations_quick_action">快捷操作</string>
+    <string name="ai_conversations_new_chat">新建聊天</string>
+    <string name="ai_suggestion_plan_day">规划我的一天</string>
+    <string name="ai_suggestion_summarize_notes">总结笔记</string>
+    <string name="ai_suggestion_brainstorm">头脑风暴</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 搜索                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">搜索</string>
+    <string name="search_hint">搜索笔记、任务、日程…</string>
+    <string name="search_results_notes">笔记</string>
+    <string name="search_results_tasks">任务</string>
+    <string name="search_results_events">日程</string>
+    <string name="search_recent">最近搜索</string>
+    <string name="search_clear_recent">清除</string>
+    <string name="search_empty_title">未找到\'%1$s\'的结果</string>
+    <string name="search_empty_body">尝试其他关键词或检查拼写。</string>
+    <string name="search_results_count">%1$d 条结果</string>
+    <string name="search_results_count_plural">%1$d 条结果</string>
+    <string name="search_type_note">笔记</string>
+    <string name="search_type_task">任务</string>
+    <string name="search_type_event">日程</string>
+    <string name="search_offline_notice">正在本地搜索。连接网络以获取完整结果。</string>
+    <string name="search_loading">搜索中…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 个人资料 & 设置                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">我的</string>
+    <string name="profile_edit_title">编辑个人资料</string>
+    <string name="profile_change_photo">更换照片</string>
+    <string name="profile_remove_photo">移除照片</string>
+    <string name="profile_photo_updated">头像已更新。</string>
+    <string name="profile_photo_removed">头像已移除。</string>
+    <string name="profile_photo_pick">从相册选择</string>
+    <string name="profile_photo_camera">拍照</string>
+    <string name="profile_update_success">个人资料已更新。</string>
+    <string name="profile_stats_notes">笔记</string>
+    <string name="profile_stats_tasks_completed">已完成任务</string>
+    <string name="profile_stats_focus_this_week">本周专注</string>
+    <string name="profile_member_since">自 %1$s 起成为会员</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">暂无简介。</string>
+    <string name="profile_section_account">账号</string>
+    <string name="profile_section_appearance">外观</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">通知</string>
+    <string name="profile_section_ai">AI 助手</string>
+    <string name="profile_section_data">数据 &amp; 同步</string>
+    <string name="profile_section_about">关于</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 偏好设置                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">偏好设置</string>
+    <string name="preferences_update_success">偏好设置已保存。</string>
+    <string name="preferences_pomodoro_focus">专注时长</string>
+    <string name="preferences_pomodoro_focus_desc">每个专注会话的时长</string>
+    <string name="preferences_pomodoro_short_break">短休息</string>
+    <string name="preferences_pomodoro_short_break_desc">会话间短休息的时长</string>
+    <string name="preferences_pomodoro_long_break">长休息</string>
+    <string name="preferences_pomodoro_long_break_desc">完整周期后长休息的时长</string>
+    <string name="preferences_pomodoro_cycles">长休息前的会话数</string>
+    <string name="preferences_pomodoro_cycles_desc">长休息前的专注会话数量</string>
+    <string name="preferences_pomodoro_auto_start_breaks">自动开始休息</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">会话结束后自动开始休息</string>
+    <string name="preferences_pomodoro_auto_start_focus">自动开始专注</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">休息结束后自动开始下一个会话</string>
+    <string name="preferences_pomodoro_sound">音效</string>
+    <string name="preferences_pomodoro_sound_desc">会话结束时播放音效</string>
+    <string name="preferences_notify_task_reminders">任务提醒</string>
+    <string name="preferences_notify_task_reminders_desc">任务提醒到期时通知</string>
+    <string name="preferences_notify_event_reminders">日程提醒</string>
+    <string name="preferences_notify_event_reminders_desc">日程开始前通知</string>
+    <string name="preferences_notify_pomodoro_end">Pomodoro 结束</string>
+    <string name="preferences_notify_pomodoro_end_desc">Pomodoro 会话结束时通知</string>
+    <string name="preferences_notify_daily_summary">每日摘要</string>
+    <string name="preferences_notify_daily_summary_desc">接收每日日程摘要</string>
+    <string name="preferences_default_task_view">默认任务视图</string>
+    <string name="preferences_default_task_sort">默认任务排序</string>
+    <string name="preferences_show_completed_tasks">显示已完成任务</string>
+    <string name="preferences_show_completed_tasks_desc">在任务列表中包含已完成的任务</string>
+    <string name="preferences_default_calendar_view">默认日历视图</string>
+    <string name="preferences_week_starts_on">一周开始于</string>
+    <string name="preferences_week_starts_monday">周一</string>
+    <string name="preferences_week_starts_sunday">周日</string>
+    <string name="preferences_ai_context">工作空间上下文</string>
+    <string name="preferences_ai_context_desc">将你的任务、日程和笔记分享给 AI 助手</string>
+    <string name="preferences_ai_model">AI 模型</string>
+    <string name="preferences_ai_model_desc">选择助手使用的 AI 模型</string>
+    <string name="preferences_compact_mode">紧凑模式</string>
+    <string name="preferences_compact_mode_desc">使用更紧凑的布局以显示更多内容</string>
+    <string name="preferences_minutes_format">%1$d 分钟</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 同步                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">已同步</string>
+    <string name="sync_status_pending">等待同步</string>
+    <string name="sync_status_syncing">同步中…</string>
+    <string name="sync_status_conflict">同步冲突</string>
+    <string name="sync_status_error">同步错误</string>
+    <string name="sync_last_synced">上次同步：%1$s</string>
+    <string name="sync_never_synced">从未同步</string>
+    <string name="sync_conflict_title">同步冲突</string>
+    <string name="sync_conflict_body">\'%1$s\' 检测到冲突。你想保留哪个版本？</string>
+    <string name="sync_conflict_keep_local">保留本地版本</string>
+    <string name="sync_conflict_keep_server">保留服务器版本</string>
+    <string name="sync_conflict_resolved">冲突已解决。</string>
+    <string name="sync_pending_count">%1$d 项更改等待同步</string>
+    <string name="sync_pending_count_plural">%1$d 项更改等待同步</string>
+    <string name="sync_offline_banner">你已离线。重新连接后更改将同步。</string>
+    <string name="sync_reconnected">已恢复在线。同步中…</string>
+    <string name="sync_complete">所有更改已同步。</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 通知                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">提醒</string>
+    <string name="notification_channel_reminders_desc">任务和日程提醒通知。</string>
+    <string name="notification_channel_sync_name">同步</string>
+    <string name="notification_channel_sync_desc">后台同步状态通知。</string>
+    <string name="notification_task_reminder_title">任务提醒</string>
+    <string name="notification_task_reminder_body">%1$s 即将到期。</string>
+    <string name="notification_event_reminder_title">即将到来的日程</string>
+    <string name="notification_event_reminder_body">%1$s 将在 %2$s 后开始。</string>
+    <string name="notification_daily_summary_title">你的一天概览</string>
+    <string name="notification_daily_summary_body">今天 %1$d 个任务到期，%2$d 个日程即将到来。</string>
+    <string name="notification_permission_title">启用通知</string>
+    <string name="notification_permission_body">及时获取提醒、专注会话和每日摘要。</string>
+    <string name="notification_permission_allow">允许</string>
+    <string name="notification_permission_deny">暂时不要</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 权限                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">相机访问</string>
+    <string name="permission_camera_body">ProductivityX 需要相机权限来让你拍摄头像。</string>
+    <string name="permission_storage_title">存储访问</string>
+    <string name="permission_storage_body">ProductivityX 需要存储权限来让你选择头像。</string>
+    <string name="permission_notification_title">通知权限</string>
+    <string name="permission_notification_body">允许通知以接收任务提醒和 Pomodoro 提醒。</string>
+    <string name="permission_denied_title">需要权限</string>
+    <string name="permission_denied_body">此功能需要权限。请在设置中启用。</string>
+    <string name="permission_go_to_settings">打开设置</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 时间                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">刚刚</string>
+    <string name="time_minutes_ago">%1$d 分钟前</string>
+    <string name="time_hours_ago">%1$d 小时前</string>
+    <string name="time_yesterday">昨天</string>
+    <string name="time_days_ago">%1$d 天前</string>
+    <string name="time_weeks_ago">%1$d 周前</string>
+    <string name="time_weeks_ago_plural">%1$d 周前</string>
+    <string name="time_months_ago">%1$d 个月前</string>
+    <string name="time_months_ago_plural">%1$d 个月前</string>
+    <string name="time_format_date">yyyy年M月d日</string>
+    <string name="time_format_date_short">M月d日</string>
+    <string name="time_format_time">a h:mm</string>
+    <string name="time_format_datetime">M月d日 a h:mm</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">yyyy年M月d日 EEEE</string>
+    <string name="time_am">上午</string>
+    <string name="time_pm">下午</string>
+    <string name="time_hour_singular">%1$d 小时</string>
+    <string name="time_hour_plural">%1$d 小时</string>
+    <string name="time_minute_singular">%1$d 分钟</string>
+    <string name="time_minute_plural">%1$d 分钟</string>
+
+    <!-- 星期 / 月份 -->
+    <string name="day_monday_short">周一</string>
+    <string name="day_tuesday_short">周二</string>
+    <string name="day_wednesday_short">周三</string>
+    <string name="day_thursday_short">周四</string>
+    <string name="day_friday_short">周五</string>
+    <string name="day_saturday_short">周六</string>
+    <string name="day_sunday_short">周日</string>
+    <string name="day_monday">星期一</string>
+    <string name="day_tuesday">星期二</string>
+    <string name="day_wednesday">星期三</string>
+    <string name="day_thursday">星期四</string>
+    <string name="day_friday">星期五</string>
+    <string name="day_saturday">星期六</string>
+    <string name="day_sunday">星期日</string>
+
+    <string name="month_january">一月</string>
+    <string name="month_february">二月</string>
+    <string name="month_march">三月</string>
+    <string name="month_april">四月</string>
+    <string name="month_may">五月</string>
+    <string name="month_june">六月</string>
+    <string name="month_july">七月</string>
+    <string name="month_august">八月</string>
+    <string name="month_september">九月</string>
+    <string name="month_october">十月</string>
+    <string name="month_november">十一月</string>
+    <string name="month_december">十二月</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 空状态                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">这里还没有内容</string>
+    <string name="empty_state_generic_body">创建一些新内容来开始吧。</string>
+    <string name="empty_state_no_results_title">无结果</string>
+    <string name="empty_state_no_results_body">尝试其他搜索或筛选条件。</string>
+    <string name="empty_state_offline_title">你已离线</string>
+    <string name="empty_state_offline_body">连接网络以加载内容。</string>
+    <string name="empty_state_error_title">出了点问题</string>
+    <string name="empty_state_error_body">下拉刷新，或点击下方按钮。</string>
+    <string name="empty_state_retry">重试</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 无障碍                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">返回</string>
+    <string name="cd_close">关闭</string>
+    <string name="cd_more_options">更多选项</string>
+    <string name="cd_search">搜索</string>
+    <string name="cd_filter">筛选</string>
+    <string name="cd_sort">排序</string>
+    <string name="cd_add">添加</string>
+    <string name="cd_delete">删除</string>
+    <string name="cd_edit">编辑</string>
+    <string name="cd_restore">恢复</string>
+    <string name="cd_pin">置顶笔记</string>
+    <string name="cd_unpin">取消置顶笔记</string>
+    <string name="cd_check_task">标记任务完成</string>
+    <string name="cd_uncheck_task">标记任务未完成</string>
+    <string name="cd_profile_picture">头像</string>
+    <string name="cd_send_message">发送消息</string>
+    <string name="cd_play_pause">播放或暂停计时器</string>
+    <string name="cd_skip_session">跳过会话</string>
+    <string name="cd_stop_session">停止会话</string>
+    <string name="cd_sync_status">同步状态：%1$s</string>
+    <string name="cd_password_toggle">切换密码可见性</string>
+    <string name="cd_clear_input">清除输入</string>
+    <string name="cd_remove_subtask">移除子任务</string>
+    <string name="cd_notification">通知</string>
+    <string name="cd_selected">已选择</string>
+    <string name="cd_not_selected">未选择</string>
+    <string name="cd_clear_selection">清除选择</string>
+    <string name="cd_grid_view">网格视图</string>
+    <string name="cd_list_view">列表视图</string>
+    <string name="cd_note_image">笔记图片</string>
+    <string name="cd_new_tag">新建标签</string>
+    <string name="cd_biometric_login">生物识别登录</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 其他                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">正在验证会话…</string>
+    <string name="splash_loading">加载中…</string>
+
+    <string name="dialog_unsaved_changes_title">未保存的更改</string>
+    <string name="dialog_unsaved_changes_body">你有未保存的更改。是否放弃？</string>
+    <string name="dialog_unsaved_changes_save">保存</string>
+    <string name="dialog_unsaved_changes_discard">放弃</string>
+    <string name="dialog_date_picker_title">选择日期</string>
+    <string name="dialog_time_picker_title">选择时间</string>
+    <string name="dialog_color_picker_title">选择颜色</string>
+    <string name="dialog_task_picker_title">关联任务</string>
+    <string name="dialog_event_picker_title">关联日程</string>
+    <string name="dialog_tag_manager_title">管理标签</string>
+
+    <string name="task_view_list">列表</string>
+    <string name="task_view_kanban">看板</string>
+
+    <string name="snackbar_undo">撤销</string>
+    <string name="snackbar_note_deleted">笔记已删除</string>
+    <string name="snackbar_task_deleted">任务已删除</string>
+    <string name="snackbar_event_deleted">日程已删除</string>
+    <string name="snackbar_tag_deleted">标签已删除</string>
+    <string name="snackbar_copied">已复制到剪贴板</string>
+    <string name="snackbar_no_internet">无网络连接</string>
+    <string name="snackbar_changes_saved">更改已保存</string>
+
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_build">构建 %1$s</string>
+    <string name="about_privacy_policy">隐私政策</string>
+    <string name="about_terms_of_service">服务条款</string>
+    <string name="about_open_source_licenses">开源许可证</string>
+    <string name="about_rate_app">给应用评分</string>
+    <string name="about_send_feedback">发送反馈</string>
+    <string name="about_built_by">由 Oussama Chatri 开发</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">导出数据</string>
+    <string name="data_export_body">将所有笔记、任务和日程下载为文件。</string>
+    <string name="data_export_action">导出</string>
+    <string name="data_export_success">你的数据导出已准备就绪。</string>
+    <string name="data_delete_account_title">删除账号</string>
+    <string name="data_delete_account_body">永久删除你的账号及所有关联数据。此操作无法撤销。</string>
+    <string name="data_delete_account_action">删除账号</string>
+    <string name="data_delete_account_confirm_title">删除你的账号？</string>
+    <string name="data_delete_account_confirm_body">你所有的笔记、任务、日程和对话将被永久删除。此操作无法撤销。</string>
+    <string name="data_delete_account_type_confirm">输入 DELETE 以确认</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">有可用更新</string>
+    <string name="update_available_body">ProductivityX 有新版本。立即更新以获取最新功能和修复。</string>
+    <string name="update_now">立即更新</string>
+    <string name="update_later">稍后</string>
+
+    <string name="auth_check_your_email">查看你的邮箱</string>
+    <string name="auth_otp_sent_body">我们已向 %s 发送了 6 位验证码</string>
+
+    <string name="language_en">英语</string>
+    <string name="language_fr">法语</string>
+    <string name="language_ar">阿拉伯语</string>
+    <string name="language_es">西班牙语</string>
+    <string name="language_de">德语</string>
+    <string name="language_pt">葡萄牙语</string>
+    <string name="language_zh">繁体中文</string>
+    <string name="language_ja">日语</string>
+    <string name="language_ko">韩语</string>
+    <string name="language_ru">俄语</string>
+    <string name="language_tr">土耳其语</string>
+    <string name="language_it">意大利语</string>
+    <string name="language_hi">印地语</string>
+    <string name="language_id">印尼语</string>
+    <string name="language_nl">荷兰语</string>
+    <string name="language_vi">越南语</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 小组件                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">任务</string>
+    <string name="widget_task_list_empty">今天没有到期任务</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">点击开始专注</string>
+    <string name="widget_quick_note_title">快速笔记</string>
+    <string name="widget_quick_note_hint">点击添加笔记</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 首页仪表盘 (7.1)                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">今日任务</string>
+    <string name="home_widget_events">即将到来的日程</string>
+    <string name="home_widget_focus">今日专注时间</string>
+    <string name="home_widget_notes">最近的笔记</string>
+    <string name="home_widget_quote">每日一句</string>
+    <string name="home_widget_ai">AI 助手</string>
+    <string name="home_widget_focus_mode">快速专注</string>
+    <string name="home_expand">展开</string>
+    <string name="home_collapse">折叠</string>
+    <string name="home_see_all">查看全部</string>
+    <string name="home_empty_tasks">今天没有到期任务</string>
+    <string name="home_empty_events">没有即将到来的日程</string>
+    <string name="home_empty_notes">没有最近的笔记</string>
+    <string name="home_empty_focus">还没有专注时间</string>
+    <string name="home_focus_mode_active">专注模式</string>
+    <string name="home_focus_mode_inactive">快速专注</string>
+    <string name="home_focus_mode_desc_active">减少干扰</string>
+    <string name="home_focus_mode_desc_inactive">点击进入专注模式</string>
+    <string name="home_voice_prompt">你想做什么？</string>
+    <string name="home_voice_listening">正在聆听…</string>
+    <string name="home_pull_to_refresh">下拉刷新</string>
+    <string name="home_syncing">同步中…</string>
+    <string name="home_refreshed">仪表盘已更新</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 快捷方式                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">新建笔记</string>
+    <string name="shortcut_new_task">新建任务</string>
+    <string name="shortcut_start_focus">开始专注</string>
+    <string name="shortcut_ai_chat">AI 对话</string>
+    <string name="shortcut_note_short_label">笔记</string>
+    <string name="shortcut_task_short_label">任务</string>
+    <string name="shortcut_focus_short_label">专注</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- 文件夹管理 -->
+    <string name="folder_screen_title">文件夹</string>
+    <string name="folder_empty">暂无文件夹</string>
+    <string name="folder_create_dialog_title">创建文件夹</string>
+    <string name="folder_edit_dialog_title">编辑文件夹</string>
+    <string name="folder_delete_title">删除文件夹？</string>
+    <string name="folder_delete_message">"%s" 中的笔记不会被删除。</string>
+    <string name="folder_name_label">文件夹名称</string>
+    <string name="folder_color_label">颜色</string>
+    <string name="folder_save">保存</string>
+    <string name="folder_delete">删除</string>
+    <string name="folder_note_count">%d 条笔记</string>
+    <string name="folder_note_count_one">%d 条笔记</string>
+    <string name="folder_create_cd">创建文件夹</string>
+    <string name="folder_edit_cd">编辑</string>
+    <string name="folder_delete_cd">删除</string>
+
+    <!-- 标签管理 -->
+    <string name="tag_screen_title">标签</string>
+    <string name="tag_empty">暂无标签。点击 + 创建一个。</string>
+    <string name="tag_create_dialog_title">创建标签</string>
+    <string name="tag_edit_dialog_title">编辑标签</string>
+    <string name="tag_delete_title">删除标签？</string>
+    <string name="tag_delete_message">标签"%s"将从所有笔记中移除。</string>
+    <string name="tag_name_label">标签名称</string>
+    <string name="tag_color_label">颜色</string>
+    <string name="tag_save">保存</string>
+    <string name="tag_delete">删除</string>
+    <string name="tag_create_cd">创建标签</string>
+    <string name="tag_delete_cd">删除</string>
+
+    <!-- 条款 & 条件 -->
+    <string name="terms_title">条款 &amp; 条件</string>
+    <string name="terms_subtitle">服务条款</string>
+    <string name="terms_last_updated">最后更新：2026 年 7 月</string>
+    <string name="terms_section_1_title">1. 接受条款</string>
+    <string name="terms_section_1_body">访问或使用 ProductivityX 即表示你同意受本服务条款的约束。如果你不同意，请不要使用本应用。</string>
+    <string name="terms_section_2_title">2. 服务描述</string>
+    <string name="terms_section_2_body">ProductivityX 提供统一的工作空间，包括笔记、任务、日历、专注计时器（Pomodoro）和 AI 助手功能。我们保留随时修改或停止任何功能的权利。</string>
+    <string name="terms_section_3_title">3. 用户账号</string>
+    <string name="terms_section_3_body">你有责任维护账号凭证的机密性，并对你账号下的所有活动负责。你必须在发现任何未经授权的访问后立即通知我们。</string>
+    <string name="terms_section_4_title">4. 合理使用</string>
+    <string name="terms_section_4_body">你同意不将 ProductivityX 用于任何非法目的或违反适用法律的行为。你不得试图干扰、损坏或未经授权访问我们的系统。</string>
+    <string name="terms_section_5_title">5. 数据 &amp; 隐私</string>
+    <string name="terms_section_5_body">你对 ProductivityX 的使用也受我们的隐私政策约束。我们重视数据安全，并实施行业标准措施来保护你的信息。</string>
+    <string name="terms_section_6_title">6. 知识产权</string>
+    <string name="terms_section_6_body">ProductivityX 及其原创内容、功能和特性由 Oussama Chatri 所有，并受适用的版权和知识产权法律保护。</string>
+    <string name="terms_section_7_title">7. 责任限制</string>
+    <string name="terms_section_7_body">ProductivityX 按"原样"提供，不附带任何明示或暗示的保证。我们不对因你使用本应用而产生的任何损害承担责任。</string>
+    <string name="terms_section_8_title">8. 条款变更</string>
+    <string name="terms_section_8_body">我们保留随时更新这些条款的权利。我们将通过应用或电子邮件通知用户重大变更。</string>
+    <string name="terms_section_9_title">9. 联系方式</string>
+    <string name="terms_section_9_body">如有关于这些条款的问题，请通过 productivityx7@gmail.com 联系我们。</string>
+
+    <!-- 隐私政策 -->
+    <string name="privacy_title">隐私政策</string>
+    <string name="privacy_subtitle">隐私政策</string>
+    <string name="privacy_last_updated">最后更新：2026 年 7 月</string>
+    <string name="privacy_section_1_title">1. 我们收集的信息</string>
+    <string name="privacy_section_1_body">我们在你创建账号时收集你提供的信息，包括你的姓名、邮箱地址和个人头像。我们还收集你在应用内创建的数据，如笔记、任务、日程和专注会话。</string>
+    <string name="privacy_section_2_title">2. 我们如何使用你的信息</string>
+    <string name="privacy_section_2_body">你的数据用于提供和改进 ProductivityX 功能、跨设备同步以及发送相关通知。我们不会将你的个人信息出售给第三方。</string>
+    <string name="privacy_section_3_title">3. 数据存储 &amp; 安全</string>
+    <string name="privacy_section_3_body">你的数据在传输和存储过程中均经过加密。我们使用行业标准安全措施保护你的信息。你可以选择仅在本地保存数据而不使用云同步。</string>
+    <string name="privacy_section_4_title">4. 第三方服务</string>
+    <string name="privacy_section_4_body">ProductivityX 可能使用第三方服务来提供 AI 辅助、推送通知和分析。这些服务受到合同约束，必须保护你的数据并仅用于约定目的。</string>
+    <string name="privacy_section_5_title">5. 你的权利</string>
+    <string name="privacy_section_5_body">你可以随时通过应用设置访问、修改或删除你的数据。你可以请求完整导出你的数据或永久删除你的账号。</string>
+    <string name="privacy_section_6_title">6. 数据保留</string>
+    <string name="privacy_section_6_body">只要你的账号保持活跃，我们会保留你的数据。已删除的项目在回收站中保留 30 天后永久删除。账号删除会在 90 天内移除所有关联数据。</string>
+    <string name="privacy_section_7_title">7. 儿童隐私</string>
+    <string name="privacy_section_7_body">ProductivityX 不面向 13 岁以下用户。我们不会故意收集儿童的数据。如果我们发现此类数据，将立即删除。</string>
+    <string name="privacy_section_8_title">8. 政策变更</string>
+    <string name="privacy_section_8_body">我们可能会更新本隐私政策。我们将通过应用或电子邮件通知你重大变更。</string>
+    <string name="privacy_section_9_title">9. 联系我们</string>
+    <string name="privacy_section_9_body">如有隐私相关问题，请通过 productivityx7@gmail.com 联系我们。</string>
+
+    <!-- 任务屏幕 -->
+    <!-- 任务统计屏幕 -->
+    <string name="tasks_statistics">统计</string>
+    <string name="tasks_stats_score">得分</string>
+    <string name="tasks_stats_streak">连续</string>
+    <string name="tasks_stats_days">天</string>
+    <string name="tasks_stats_best">最佳</string>
+    <string name="tasks_stats_completion_rate">完成率</string>
+    <string name="tasks_stats_this_week">本周</string>
+    <string name="tasks_stats_this_month">本月</string>
+    <string name="tasks_stats_monthly_progress">月度进度</string>
+    <string name="tasks_stats_done_count">完成 %1$d/%2$d</string>
+    <string name="tasks_stats_time_by_priority">按优先级用时</string>
+    <string name="tasks_stats_no_data">暂无数据</string>
+    <string name="tasks_stats_achievements">成就</string>
+    <string name="tasks_stats_unlock_badges">完成任务以解锁徽章</string>
+    <string name="tasks_stats_weekly_review">每周回顾</string>
+    <string name="tasks_stats_created">已创建</string>
+    <string name="tasks_stats_completed">已完成</string>
+    <string name="tasks_stats_overdue">已逾期</string>
+    <string name="tasks_stats_suggested_focus">建议专注</string>
+    <string name="tasks_stats_patterns">效率模式</string>
+    <string name="tasks_stats_velocity">完成速度</string>
+    <string name="tasks_stats_productive_hours">最高效时段</string>
+    <string name="tasks_stats_category_breakdown">类别细分</string>
+    <string name="tasks_stats_complete_more">完成更多任务以查看你的效率模式</string>
+
+    <!-- 重复标签 -->
+    <string name="task_recurrence_none">无</string>
+    <string name="task_recurrence_daily">每天</string>
+    <string name="task_recurrence_weekdays">工作日</string>
+    <string name="task_recurrence_weekly">每周</string>
+    <string name="task_recurrence_biweekly">每两周</string>
+    <string name="task_recurrence_monthly">每月</string>
+    <string name="task_recurrence_yearly">每年</string>
+
+    <!-- 任务详情屏幕 -->
+    <string name="task_label">任务</string>
+    <string name="task_estimated_abbrev">预估</string>
+    <string name="task_actual_abbrev">实际</string>
+
+    <!-- 任务回收站屏幕 -->
+    <string name="tasks_trash_empty_title">回收站为空</string>
+    <string name="tasks_trash_empty_body">已删除的任务显示在这里。</string>
+    <string name="tasks_trash_due">截止 %1$s</string>
+    <string name="tasks_trash_hard_delete_title">永久删除？</string>
+    <string name="tasks_trash_hard_delete_body">此任务无法恢复。</string>
+
+    <string name="tasks_no_tasks_day">这一天没有任务</string>
+    <string name="tasks_add_task">添加任务</string>
+    <string name="tasks_drop_here">将任务放在这里</string>
+    <string name="tasks_set_priority">设置优先级</string>
+    <string name="tasks_ok">确定</string>
+    <string name="tasks_cancel">取消</string>
+    <string name="tasks_selected_count">已选 %d 项</string>
+    <string name="tasks_filter_all">全部</string>
+    <string name="tasks_filter_today">今天</string>
+    <string name="tasks_filter_upcoming">即将到来</string>
+    <string name="tasks_filter_overdue">已逾期</string>
+    <string name="tasks_filter_no_date">无日期</string>
+    <string name="tasks_filter_done">已完成</string>
+    <string name="tasks_view_board">看板</string>
+    <string name="tasks_view_calendar">日历</string>
+    <string name="tasks_view_timeline">时间线</string>
+    <string name="tasks_bulk_complete">完成</string>
+    <string name="tasks_bulk_delete">删除</string>
+    <string name="tasks_bulk_reschedule">重新安排</string>
+    <string name="tasks_bulk_priority">优先级</string>
+    <string name="tasks_weekday_sun">日</string>
+    <string name="tasks_weekday_mon">一</string>
+    <string name="tasks_weekday_tue">二</string>
+    <string name="tasks_weekday_wed">三</string>
+    <string name="tasks_weekday_thu">四</string>
+    <string name="tasks_weekday_fri">五</string>
+    <string name="tasks_weekday_sat">六</string>
+    <string name="tasks_picker_day_mon">一</string>
+    <string name="tasks_picker_day_tue">二</string>
+    <string name="tasks_picker_day_wed">三</string>
+    <string name="tasks_picker_day_thu">四</string>
+    <string name="tasks_picker_day_fri">五</string>
+    <string name="tasks_picker_day_sat">六</string>
+    <string name="tasks_picker_day_sun">日</string>
+    <string name="tasks_minutes_abbrev">%1$d分</string>
+    <string name="tasks_for_date">%s 的任务</string>
+    <string name="cd_exit_multiselect">退出多选</string>
+    <string name="cd_select_all">全选</string>
+    <string name="cd_statistics">统计</string>
+    <string name="cd_previous">上一个</string>
+    <string name="cd_drop_here">放在这里</string>
+
+    <!-- 个人资料屏幕 -->
+    <string name="profile_sign_out_desc">你需要重新登录以访问你的工作空间。</string>
+    <string name="profile_delete_account_title">删除账号</string>
+    <string name="profile_delete_account_warning">此操作无法撤销。你的所有数据将被永久删除。</string>
+    <string name="profile_delete_bullet_notes">所有笔记、任务和日程将被移除</string>
+    <string name="profile_delete_bullet_account">你的账号和订阅将被取消</string>
+    <string name="profile_delete_bullet_irreversible">此操作无法撤销</string>
+    <string name="profile_section_actions">操作</string>
+    <string name="profile_notification_preferences">通知偏好</string>
+    <string name="profile_section_account_subscription">账号 &amp; 订阅</string>
+    <string name="profile_storage">存储</string>
+    <string name="profile_connected_devices">已连接设备</string>
+    <string name="profile_section_danger_zone">危险区域</string>
+    <string name="profile_delete_subtitle">永久移除所有数据</string>
+    <string name="profile_stat_ai_chats">AI 对话</string>
+    <string name="profile_recent_activity">最近活动</string>
+    <string name="profile_productivity_trend">效率趋势</string>
+    <string name="profile_this_week_percent">本周 %1$d%%</string>
+    <string name="profile_local_mode">本地模式</string>
+    <string name="profile_local_mode_desc">你正在没有账号的情况下使用 ProductivityX。\n你的数据仅保存在此设备上。</string>
+    <string name="profile_theme_pro">Pro 主题</string>
+
+    <!-- 编辑个人资料屏幕 -->
+    <string name="pref_section_locale">区域</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- 修改密码屏幕 -->
+    <string name="password_change_success">密码修改成功</string>
+    <string name="password_confirm_new">确认新密码</string>
+    <string name="password_update">更新密码</string>
+
+    <!-- 偏好设置屏幕（搜索结果） -->
+    <string name="pref_search_pomodoro">Pomodoro 计时器</string>
+    <string name="pref_search_appearance">外观 &amp; 主题</string>
+    <string name="pref_search_notifications">通知 &amp; 免打扰时段</string>
+    <string name="pref_search_display">显示 &amp; 字体大小</string>
+    <string name="pref_search_feature_flags">功能开关（测试版）</string>
+
+    <!-- 常见问题屏幕 -->
+    <string name="faq_q_what_is">什么是 ProductivityX？</string>
+    <string name="faq_a_what_is">ProductivityX 是一个统一的工作空间应用，将笔记、任务、日历、Pomodoro 专注计时器和 AI 助手整合在一起。</string>
+    <string name="faq_q_data_secure">我的数据安全吗？</string>
+    <string name="faq_a_data_secure">是的。你的数据在传输和存储过程中均经过加密。你还可以启用仅本地模式，将所有数据保存在设备上而不使用云同步。</string>
+    <string name="faq_q_ai_work">AI 助手如何工作？</string>
+    <string name="faq_a_ai_work">AI 助手可以查看你的活跃任务、即将到来的日程和最近的笔记，以提供上下文相关的回答。它使用 Google Gemini 模型。</string>
+    <string name="faq_q_offline">我可以离线使用 ProductivityX 吗？</string>
+    <string name="faq_a_offline">可以。你可以在设置中启用离线模式。重新连接网络后，更改将自动同步。</string>
+    <string name="faq_q_export">如何导出我的数据？</string>
+    <string name="faq_a_export">进入 设置 &gt; 数据 &amp; 同步，然后点击"导出数据"。你的笔记、任务、日程和设置将以加密备份文件的形式保存。</string>
+    <string name="faq_q_pomodoro">Pomodoro 计时器如何工作？</string>
+    <string name="faq_a_pomodoro">Pomodoro 计时器在专注会话和休息之间交替进行。你可以自定义时长、自动开始休息，以及关联任务来追踪每个任务的专注时间。</string>
+    <string name="faq_q_language">我可以更改应用语言吗？</string>
+    <string name="faq_a_language">可以。进入你的个人资料并点击语言设置。ProductivityX 支持多种语言，包括英语、法语、阿拉伯语、西班牙语、德语等。</string>
+    <string name="faq_q_password">如何重置密码？</string>
+    <string name="faq_a_password">在登录屏幕点击"忘记密码"。重置链接将发送到你的邮箱。</string>
+    <string name="faq_q_delete_account">删除账号后会发生什么？</string>
+    <string name="faq_a_delete_account">你所有的数据（笔记、任务、日程、对话）将被永久删除。此操作无法撤销。</string>
+    <string name="faq_q_contact">如何联系客服？</string>
+    <string name="faq_a_contact">你可以通过 productivityx7@gmail.com 联系我们，或使用 设置 &gt; 帮助 &amp; 支持 中的"发送反馈"选项。</string>
+
+    <!-- 许可证屏幕 -->
+    <string name="licenses_intro">ProductivityX 使用以下开源库：</string>
+
+    <!-- 致谢屏幕 -->
+    <string name="credits_role_development">开发</string>
+    <string name="credits_role_design">设计</string>
+    <string name="credits_role_ai_integration">AI 集成</string>
+    <string name="credits_role_icons">图标</string>
+    <string name="credits_built_with">使用 ❤️ 基于 Kotlin &amp; Jetpack Compose 打造</string>
+    <string name="credits_copyright">© 2026 ProductivityX。保留所有权利。</string>
+
+    <!-- 编辑个人资料屏幕 — 附加 -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- 偏好设置搜索 — 附加 -->
+    <string name="pref_search_data_sync">数据 &amp; 同步</string>
+    <string name="pref_search_ai">AI 助手</string>
+    <string name="pref_search_about">关于</string>
+    <string name="pref_search_help">帮助 &amp; 支持</string>
+
+    <string name="language_zh_rCN">简体中文</string>
+    <string name="language_sw">斯瓦希里语</string>
+    <string name="language_th">泰语</string>
+    <string name="language_bn">孟加拉语</string>
+    <string name="language_ur">乌尔都语</string>
+
+</resources>

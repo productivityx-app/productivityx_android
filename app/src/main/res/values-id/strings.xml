@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Ruang kerja Anda. Terpadu.</string>
+    <string name="app_description">Catatan, tugas, kalender, timer fokus, dan asisten AI yang benar-benar memahami hari Anda.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Batal</string>
+    <string name="save">Simpan</string>
+    <string name="export">Ekspor</string>
+    <string name="note_info">Info catatan</string>
+    <string name="show_metadata">Tampilkan metadata</string>
+    <string name="focus_mode">Mode fokus</string>
+    <string name="reset_zoom">Atur ulang zoom</string>
+    <string name="exit_focus_mode">Keluar dari mode fokus</string>
+    <string name="fullscreen_image">Gambar layar penuh</string>
+    <string name="more">Lainnya</string>
+    <string name="add_tag">Tambahkan tag</string>
+    <string name="move_to_trash">Pindahkan ke sampah</string>
+    <string name="move_to_trash_confirm">Pindahkan ke sampah?</string>
+    <string name="edit_mode">Mode edit</string>
+    <string name="preview_mode">Mode pratinjau</string>
+    <string name="words">Kata</string>
+    <string name="characters">Karakter</string>
+    <string name="reading_time">Waktu baca</string>
+    <string name="export_as_pdf">Ekspor sebagai PDF</string>
+    <string name="print">Cetak</string>
+    <string name="move_to_trash_message">Catatan ini akan dipindahkan ke sampah. Anda dapat memulihkannya dalam 30 hari.</string>
+    <string name="export_as_pdf_subtitle">Simpan salinan PDF catatan ini</string>
+    <string name="share_subtitle">Bagikan melalui aplikasi lain</string>
+    <string name="print_subtitle">Cetak catatan ini</string>
+    <string name="untitled">Tanpa judul</string>
+    <string name="last_saved">Terakhir disimpan: %s</string>
+    <string name="delete">Hapus</string>
+    <string name="edit">Edit</string>
+    <string name="done">Selesai</string>
+    <string name="back">Kembali</string>
+    <string name="close">Tutup</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="discard">Buang</string>
+    <string name="retry">Coba lagi</string>
+    <string name="skip">Lewati</string>
+    <string name="next">Berikutnya</string>
+    <string name="previous">Sebelumnya</string>
+    <string name="continue_action">Lanjutkan</string>
+    <string name="finish">Selesai</string>
+    <string name="apply">Terapkan</string>
+    <string name="reset">Atur ulang</string>
+    <string name="clear">Hapus</string>
+    <string name="search">Cari</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Urutkan</string>
+    <string name="share">Bagikan</string>
+    <string name="copy">Salin</string>
+    <string name="paste">Tempel</string>
+    <string name="undo">Urungkan</string>
+    <string name="redo">Ulangi</string>
+    <string name="select_all">Pilih semua</string>
+    <string name="deselect_all">Batalkan pilihan semua</string>
+    <string name="more_options">Opsi lainnya</string>
+    <string name="settings">Pengaturan</string>
+    <string name="help">Bantuan</string>
+    <string name="feedback">Umpan balik</string>
+    <string name="loading">Memuat…</string>
+    <string name="refreshing">Menyegarkan…</string>
+    <string name="saving">Menyimpan…</string>
+    <string name="deleting">Menghapus…</string>
+    <string name="please_wait">Harap tunggu…</string>
+    <string name="see_all">Lihat semua</string>
+    <string name="show_less">Tampilkan lebih sedikit</string>
+    <string name="show_more">Tampilkan lebih banyak</string>
+    <string name="optional">Opsional</string>
+    <string name="required">Wajib</string>
+    <string name="none">Tidak ada</string>
+    <string name="unknown">Tidak diketahui</string>
+    <string name="today">Hari ini</string>
+    <string name="yesterday">Kemarin</string>
+    <string name="tomorrow">Besok</string>
+    <string name="this_week">Minggu ini</string>
+    <string name="last_week">Minggu lalu</string>
+    <string name="next_week">Minggu depan</string>
+    <string name="this_month">Bulan ini</string>
+    <string name="all">Semua</string>
+    <string name="new_action">Baru</string>
+    <string name="add">Tambah</string>
+    <string name="remove">Hapus</string>
+    <string name="create">Buat</string>
+    <string name="update">Perbarui</string>
+    <string name="restore">Pulihkan</string>
+    <string name="archive">Arsipkan</string>
+    <string name="unarchive">Batal arsipkan</string>
+    <string name="pin">Sematkan</string>
+    <string name="unpin">Lepas sematan</string>
+    <string name="move">Pindahkan</string>
+    <string name="rename">Ubah nama</string>
+    <string name="duplicate">Gandakan</string>
+    <string name="open">Buka</string>
+    <string name="view">Lihat</string>
+    <string name="preview">Pratinjau</string>
+    <string name="expand">Perluas</string>
+    <string name="collapse">Ciutkan</string>
+    <string name="enable">Aktifkan</string>
+    <string name="disable">Nonaktifkan</string>
+    <string name="turn_on">Nyalakan</string>
+    <string name="turn_off">Matikan</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="not_now">Bukan sekarang</string>
+    <string name="got_it">Mengerti</string>
+    <string name="learn_more">Pelajari lebih lanjut</string>
+    <string name="send">Kirim</string>
+    <string name="submit">Kirim</string>
+    <string name="upload">Unggah</string>
+    <string name="download">Unduh</string>
+    <string name="link">Tautkan</string>
+    <string name="unlink">Lepas tautan</string>
+    <string name="connect">Hubungkan</string>
+    <string name="disconnect">Putuskan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- KESALAHAN                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Terjadi kesalahan. Silakan coba lagi.</string>
+    <string name="error_network">Tidak ada koneksi internet. Periksa jaringan Anda dan coba lagi.</string>
+    <string name="error_timeout">Permintaan habis waktu. Silakan coba lagi.</string>
+    <string name="error_server">Kesalahan server. Silakan coba lagi nanti.</string>
+    <string name="error_not_found">Item yang diminta tidak dapat ditemukan.</string>
+    <string name="error_unauthorized">Sesi Anda telah berakhir. Silakan masuk lagi.</string>
+    <string name="error_forbidden">Anda tidak memiliki izin untuk melakukan tindakan ini.</string>
+    <string name="error_validation">Silakan periksa formulir dan perbaiki kesalahan yang ada.</string>
+    <string name="error_unknown">Terjadi kesalahan yang tidak terduga.</string>
+    <string name="error_loading">Gagal memuat. Ketuk untuk mencoba lagi.</string>
+    <string name="error_saving">Gagal menyimpan. Silakan coba lagi.</string>
+    <string name="error_deleting">Gagal menghapus. Silakan coba lagi.</string>
+    <string name="error_no_data">Tidak ada data tersedia.</string>
+    <string name="error_offline_action">Tindakan ini memerlukan koneksi internet.</string>
+    <string name="error_conflict">Terjadi konflik. Silakan segarkan dan coba lagi.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PEMANDUAN                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Semuanya dalam satu tempat</string>
+    <string name="onboarding_page1_body">Catatan, tugas, dan kalender Anda terhubung dalam satu ruang kerja.</string>
+    <string name="onboarding_page2_title">Tetap dalam alur Anda</string>
+    <string name="onboarding_page2_body">Timer Pomodoro mengetahui apa yang sedang Anda kerjakan dan melacak waktu Anda secara otomatis.</string>
+    <string name="onboarding_page3_title">AI yang memahami Anda</string>
+    <string name="onboarding_page3_body">Asisten Anda melihat tugas aktif, acara mendatang, dan catatan terbaru sebelum memberikan respons.</string>
+    <string name="onboarding_get_started">Mulai</string>
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_next">Berikutnya</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- OTENTIKASI — Umum                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Masuk</string>
+    <string name="auth_sign_up">Daftar</string>
+    <string name="auth_sign_out">Keluar</string>
+    <string name="auth_log_in">Masuk</string>
+    <string name="auth_log_out">Keluar</string>
+    <string name="auth_create_account">Buat akun</string>
+    <string name="auth_already_have_account">Sudah punya akun?</string>
+    <string name="auth_skip_login">Lanjutkan tanpa akun</string>
+    <string name="auth_dont_have_account">Belum punya akun?</string>
+    <string name="auth_welcome_back">Selamat datang kembali</string>
+    <string name="auth_create_your_account">Buat akun Anda</string>
+    <string name="auth_join_productivityx">Bergabung dengan ProductivityX</string>
+    <string name="auth_welcome_aboard">Selamat datang!</string>
+    <string name="auth_account_created_success">Akun Anda berhasil dibuat</string>
+
+    <!-- OTENTIKASI — Lupa / Atur ulang kata sandi -->
+    <string name="auth_forgot_password">Lupa kata sandi?</string>
+    <string name="auth_forgot_password_title">Lupa kata sandi Anda?</string>
+    <string name="auth_forgot_password_body">Masukkan alamat email Anda dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.</string>
+    <string name="auth_forgot_password_success_title">Tautan pengaturan ulang terkirim</string>
+    <string name="auth_forgot_password_success_body">Jika email tersebut ada, tautan pengaturan ulang telah dikirim. Periksa kotak masuk Anda.</string>
+
+    <string name="auth_reset_password_title">Atur ulang kata sandi Anda</string>
+    <string name="auth_reset_password_body">Masukkan kata sandi baru untuk akun Anda.</string>
+    <string name="auth_reset_password_action">Atur ulang kata sandi</string>
+    <string name="auth_reset_password_success_title">Kata sandi berhasil diatur ulang!</string>
+    <string name="auth_reset_password_success_body">Kata sandi Anda telah diubah. Masuk dengan kata sandi baru Anda.</string>
+
+    <!-- OTENTIKASI — Verifikasi email / OTP -->
+    <string name="auth_verify_email_title">Periksa email Anda</string>
+    <string name="auth_verify_email_body">Kami mengirimkan kode 6 digit ke %1$s</string>
+    <string name="auth_verify">Verifikasi</string>
+    <string name="auth_resend_code">Kirim ulang kode</string>
+    <string name="auth_resend_cooldown">Kirim ulang dalam %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BIDANG FORMULIR                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">Alamat email</string>
+    <string name="field_email_hint">Masukkan email Anda</string>
+    <string name="field_password">Kata sandi</string>
+    <string name="field_password_hint">Masukkan kata sandi Anda</string>
+    <string name="field_password_new">Kata sandi baru</string>
+    <string name="field_password_new_hint">Masukkan kata sandi baru</string>
+    <string name="field_password_confirm">Konfirmasi kata sandi</string>
+    <string name="field_password_confirm_hint">Masukkan ulang kata sandi Anda</string>
+    <string name="field_password_current">Kata sandi saat ini</string>
+    <string name="field_password_current_hint">Masukkan kata sandi saat ini</string>
+    <string name="field_username">Nama pengguna</string>
+    <string name="field_username_hint">Pilih nama pengguna</string>
+    <string name="field_first_name">Nama depan</string>
+    <string name="field_first_name_hint">Masukkan nama depan Anda</string>
+    <string name="field_last_name">Nama belakang</string>
+    <string name="field_last_name_hint">Masukkan nama belakang Anda</string>
+    <string name="field_phone">Nomor telepon</string>
+    <string name="field_phone_hint">Masukkan nomor telepon Anda</string>
+    <string name="field_birth_date">Tanggal lahir</string>
+    <string name="field_birth_date_hint">Pilih tanggal lahir Anda</string>
+    <string name="field_identifier">Email, nama pengguna, atau telepon</string>
+    <string name="field_identifier_hint">Masukkan email, nama pengguna, atau telepon</string>
+    <string name="field_gender">Jenis kelamin</string>
+    <string name="field_bio">Bio</string>
+    <string name="field_bio_hint">Ceritakan sedikit tentang diri Anda</string>
+    <string name="field_timezone">Zona waktu</string>
+    <string name="field_language">Bahasa</string>
+    <string name="field_theme">Tema</string>
+    <string name="field_avatar">Foto profil</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- KATA SANDI                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Tampilkan kata sandi</string>
+    <string name="password_hide">Sembunyikan kata sandi</string>
+    <string name="password_strength_weak">Lemah</string>
+    <string name="password_strength_fair">Cukup</string>
+    <string name="password_strength_good">Baik</string>
+    <string name="password_strength_strong">Kuat</string>
+    <string name="password_requirement_length">Minimal 8 karakter</string>
+    <string name="password_requirement_uppercase">Satu huruf kapital</string>
+    <string name="password_requirement_lowercase">Satu huruf kecil</string>
+    <string name="password_requirement_number">Satu angka</string>
+    <string name="password_requirement_special">Satu karakter khusus</string>
+    <string name="password_forgot">Lupa kata sandi?</string>
+    <string name="password_reset">Atur ulang kata sandi</string>
+    <string name="password_change">Ubah kata sandi</string>
+    <string name="password_mismatch">Kata sandi tidak cocok.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- LANGKAH PENDAFTARAN                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Akun</string>
+    <string name="register_step_profile">Profil</string>
+    <string name="register_step_preferences">Preferensi</string>
+    <string name="register_step_verify">Verifikasi</string>
+    <string name="register_step_indicator">Langkah %1$d dari %2$d</string>
+    <string name="register_change_photo">Ubah foto</string>
+    <string name="register_profile_photo_hint">Ketuk untuk menambahkan foto profil</string>
+    <string name="register_preferences_caption">Anda dapat mengubah ini kapan saja di pengaturan.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TEMA / PROFIL                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_system">Sistem</string>
+
+    <!-- Digunakan di RegisterScreen Langkah 2 -->
+    <string name="profile_theme">Tema</string>
+    <string name="profile_theme_hint">Anda dapat mengubah ini kapan saja di pengaturan.</string>
+
+    <!-- Jenis kelamin -->
+    <string name="gender_male">Laki-laki</string>
+    <string name="gender_female">Perempuan</string>
+    <string name="gender_prefer_not_to_say">Lebih baik tidak menyebutkan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGASI                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Beranda</string>
+    <string name="nav_notes">Catatan</string>
+    <string name="nav_tasks">Tugas</string>
+    <string name="nav_calendar">Kalender</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Cari</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Pengaturan</string>
+    <string name="nav_trash">Sampah</string>
+    <string name="nav_history">Riwayat</string>
+    <string name="nav_events">Acara</string>
+    <string name="tab_dashboard">Dasbor</string>
+    <string name="tab_events">Acara</string>
+    <string name="tab_dashboard_desc">Ringkasan hari Anda</string>
+    <string name="tab_notes_desc">Tangkap pikiran Anda</string>
+    <string name="tab_tasks_desc">Selesaikan tugas</string>
+    <string name="tab_events_desc">Jadwal Anda sekilas</string>
+    <string name="tab_pomodoro_desc">Tetap dalam alur</string>
+    <string name="cd_notifications">Notifikasi</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BERANDA                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Selamat pagi, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Selamat siang, %1$s 👋</string>
+    <string name="home_greeting_evening">Selamat sore, %1$s 👋</string>
+    <string name="home_greeting_night">Selamat malam, %1$s 👋</string>
+    <string name="home_quick_add">Tambah cepat</string>
+    <string name="home_due_today">Jatuh tempo hari ini</string>
+    <string name="home_overdue">Terlambat</string>
+    <string name="home_this_week">Minggu ini</string>
+    <string name="home_total_notes">Total Catatan</string>
+    <string name="home_focus_time">Fokus hari ini</string>
+    <string name="home_focus_minutes">Focus time</string>
+    <string name="home_upcoming_events">Acara Mendatang</string>
+    <string name="home_recent_notes">Catatan Terbaru</string>
+    <string name="home_no_tasks_today">Tidak ada tugas jatuh tempo hari ini.</string>
+    <string name="home_no_events">Tidak ada acara mendatang.</string>
+    <string name="home_no_notes">Tidak ada catatan terbaru.</string>
+    <string name="home_sessions_today">Sesi hari ini</string>
+    <string name="home_completed_tasks">Tugas selesai</string>
+    <string name="home_start_focus">Mulai fokus</string>
+    <string name="home_tasks_completed">tugas selesai</string>
+    <string name="home_events_upcoming">acara mendatang</string>
+    <string name="home_quick_actions_cd">Aksi cepat</string>
+    <string name="home_quick_action_new_note">Catatan Baru</string>
+    <string name="home_quick_action_new_task">Tugas Baru</string>
+    <string name="home_quick_action_calculator">Kalkulator</string>
+    <string name="home_quick_action_start_timer">Mulai Timer</string>
+    <string name="home_quick_action_ai_chat">Chat AI</string>
+    <string name="home_error_something_wrong">Terjadi kesalahan</string>
+    <string name="home_opening_new_note">Membuka catatan baru…</string>
+    <string name="home_opening_new_task">Membuka tugas baru…</string>
+    <string name="home_starting_timer">Memulai timer…</string>
+    <string name="home_opening_ai_chat">Membuka chat AI…</string>
+    <string name="home_opening_calculator">Membuka kalkulator…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CATATAN                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Catatan</string>
+    <string name="notes_new">Catatan baru</string>
+    <string name="notes_search_hint">Cari catatan…</string>
+    <string name="notes_filter_all">Semua</string>
+    <string name="notes_filter_pinned">Disematkan</string>
+    <string name="notes_empty_title">Belum ada catatan</string>
+    <string name="notes_empty_body">Mulai menulis catatan pertama Anda.</string>
+    <string name="notes_empty_action">Buat catatan</string>
+    <string name="notes_pinned_section">Disematkan</string>
+    <string name="notes_all_section">Semua Catatan</string>
+    <string name="notes_untitled">Tanpa judul</string>
+    <string name="notes_word_count">%1$d kata</string>
+    <string name="notes_reading_time">%1$d menit baca</string>
+    <string name="notes_pin_success">Catatan disematkan.</string>
+    <string name="notes_unpin_success">Catatan dilepas sematannya.</string>
+    <string name="notes_delete_confirm_title">Pindahkan ke sampah?</string>
+    <string name="notes_delete_confirm_body">Catatan ini akan dipindahkan ke sampah dan dihapus secara permanen setelah 30 hari.</string>
+    <string name="notes_delete_success">Catatan dipindahkan ke sampah.</string>
+    <string name="notes_restore_success">Catatan dipulihkan.</string>
+    <string name="notes_hard_delete_confirm_title">Hapus secara permanen?</string>
+    <string name="notes_hard_delete_confirm_body">Catatan ini akan dihapus secara permanen dan tidak dapat dipulihkan.</string>
+    <string name="notes_hard_delete_success">Catatan dihapus secara permanen.</string>
+    <string name="notes_create_success">Catatan dibuat.</string>
+    <string name="notes_update_success">Catatan disimpan.</string>
+    <string name="notes_autosave">Tersimpan otomatis</string>
+    <string name="notes_saving">Menyimpan…</string>
+    <string name="notes_copy_link">Salin tautan</string>
+    <string name="notes_link_copied">Tautan disalin.</string>
+    <string name="notes_link_task">Tautkan tugas</string>
+    <string name="notes_unlink_task">Lepas tautan tugas</string>
+    <string name="notes_task_linked">Ditautkan ke: %1$s</string>
+    <string name="notes_add_tag">Tambahkan tag</string>
+    <string name="notes_no_tags">Tidak ada tag</string>
+    <string name="notes_start_writing">Mulai menulis…</string>
+    <string name="notes_title_hint">Judul</string>
+    <string name="notes_trash_empty_title">Sampah kosong</string>
+    <string name="notes_trash_empty_body">Catatan di sampah dihapus secara permanen setelah 30 hari.</string>
+    <string name="notes_trash_empty_all">Kosongkan sampah</string>
+    <string name="notes_trash_empty_all_confirm_title">Kosongkan sampah?</string>
+    <string name="notes_trash_empty_all_confirm_body">Semua catatan di sampah akan dihapus secara permanen.</string>
+    <string name="notes_in_trash">%1$d catatan di sampah</string>
+    <string name="notes_in_trash_plural">%1$d catatan di sampah</string>
+    <string name="notes_voice_memo">Memo suara</string>
+    <string name="notes_selected_count">%1$d dipilih</string>
+    <string name="notes_search_no_results">Tidak ada catatan yang cocok dengan "%1$s"</string>
+    <string name="notes_links_title">Tautan Catatan</string>
+    <string name="notes_links_empty">Tidak ada catatan tertaut</string>
+    <string name="trash_days_left">%1$d hari tersisa</string>
+    <string name="trash_expiring_soon">Segera kedaluwarsa</string>
+    <string name="trash_delete_permanently">Hapus secara permanen</string>
+    <string name="trash_empty_confirm_body">%1$s akan dihapus secara permanen dan tidak dapat dipulihkan.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EDITOR                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Tebal</string>
+    <string name="editor_format_italic">Miring</string>
+    <string name="editor_format_heading">Judul</string>
+    <string name="editor_format_list_bullet">Daftar berpoin</string>
+    <string name="editor_format_list_numbered">Daftar bernomor</string>
+    <string name="editor_format_code">Kode</string>
+    <string name="editor_format_quote">Kutipan</string>
+    <string name="editor_format_link">Sisipkan tautan</string>
+    <string name="editor_insert_link_title">Sisipkan tautan</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Teks tampilan</string>
+    <string name="editor_format_underline">Garis bawah</string>
+    <string name="editor_format_strikethrough">Coret</string>
+    <string name="editor_format_heading1">Judul 1</string>
+    <string name="editor_format_heading2">Judul 2</string>
+    <string name="editor_format_heading3">Judul 3</string>
+    <string name="editor_format_code_block">Blok kode</string>
+    <string name="editor_format_divider">Pemisah</string>
+    <string name="editor_format_image">Tambahkan gambar</string>
+    <string name="editor_format_table">Sisipkan tabel</string>
+    <string name="editor_format_highlight">Sorotan</string>
+    <string name="editor_highlight_color">Warna sorotan</string>
+    <string name="editor_highlight_default">Sorotan default</string>
+    <string name="editor_text_color">Warna teks</string>
+    <string name="editor_font_size">Ukuran font</string>
+    <string name="editor_start_writing">Mulai menulis…</string>
+    <string name="editor_saved">Tersimpan</string>
+    <string name="editor_share_note">Bagikan Catatan</string>
+    <string name="editor_pdf_filename">Catatan</string>
+    <string name="editor_content_hint">Mulai menulis…</string>
+    <string name="editor_insert_table_title">Sisipkan Tabel</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">Baris header</string>
+    <string name="editor_table_header_template">Header %1$d</string>
+    <string name="editor_table_cell_template">Sel</string>
+    <string name="editor_insert_table_btn">Sisipkan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAG                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Tag</string>
+    <string name="tags_new">Tag baru</string>
+    <string name="tags_name_hint">Nama tag</string>
+    <string name="tags_color">Warna</string>
+    <string name="tags_create_success">Tag dibuat.</string>
+    <string name="tags_update_success">Tag diperbarui.</string>
+    <string name="tags_delete_success">Tag dihapus.</string>
+    <string name="tags_delete_confirm_title">Hapus tag?</string>
+    <string name="tags_delete_confirm_body">Tag ini akan dihapus dari semua catatan yang menggunakannya.</string>
+    <string name="tags_already_exists">Tag dengan nama ini sudah ada.</string>
+    <string name="tags_empty_title">Belum ada tag</string>
+    <string name="tags_empty_body">Buat tag untuk mengatur catatan Anda.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TUGAS                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Tugas</string>
+    <string name="tasks_new">Tugas baru</string>
+    <string name="tasks_search_hint">Cari atau filter tugas…</string>
+    <string name="tasks_tab_all">Semua</string>
+    <string name="tasks_tab_today">Hari ini</string>
+    <string name="tasks_tab_upcoming">Mendatang</string>
+    <string name="tasks_tab_completed">Selesai</string>
+    <string name="tasks_view_list">Daftar</string>
+    <string name="tasks_empty_title">Tidak ada tugas di sini</string>
+    <string name="tasks_empty_body">Buat tugas pertama Anda untuk memulai.</string>
+    <string name="tasks_empty_action">Buat tugas</string>
+    <string name="tasks_empty_today">Tidak ada tugas jatuh tempo hari ini. Nikmati hari Anda!</string>
+    <string name="tasks_empty_upcoming">Tidak ada tugas mendatang.</string>
+    <string name="tasks_empty_completed">Belum ada tugas selesai.</string>
+    <string name="tasks_empty_filter">Tidak ada tugas yang cocok dengan filter ini.</string>
+    <string name="tasks_field_title">Judul tugas</string>
+    <string name="tasks_field_title_hint">Apa yang perlu dilakukan?</string>
+    <string name="tasks_field_description">Deskripsi</string>
+    <string name="tasks_field_description_hint">Tambahkan detail…</string>
+    <string name="tasks_field_due_date">Tanggal jatuh tempo</string>
+    <string name="tasks_field_due_time">Waktu jatuh tempo</string>
+    <string name="tasks_field_priority">Prioritas</string>
+    <string name="tasks_field_status">Status</string>
+    <string name="tasks_field_reminder">Pengingat</string>
+    <string name="tasks_field_estimated_time">Perkiraan waktu</string>
+    <string name="tasks_field_actual_time">Waktu aktual</string>
+    <string name="tasks_field_link_event">Tautkan acara</string>
+    <string name="tasks_field_subtasks">Subtugas</string>
+    <string name="tasks_add_subtask">Tambahkan subtugas</string>
+    <string name="tasks_subtask_count">%1$d subtugas</string>
+    <string name="tasks_subtask_count_plural">%1$d subtugas</string>
+    <string name="tasks_subtask_completed">%1$d dari %2$d selesai</string>
+    <string name="tasks_pomodoro_sessions">Sesi fokus</string>
+    <string name="tasks_no_due_date">Tidak ada tanggal jatuh tempo</string>
+    <string name="tasks_no_due_time">Tidak ada waktu yang diatur</string>
+    <string name="tasks_no_reminder">Tidak ada pengingat</string>
+    <string name="tasks_no_estimated">Tidak ada perkiraan</string>
+    <string name="tasks_create_success">Tugas dibuat.</string>
+    <string name="tasks_update_success">Tugas diperbarui.</string>
+    <string name="tasks_delete_success">Tugas dihapus.</string>
+    <string name="tasks_restore_success">Tugas dipulihkan.</string>
+    <string name="tasks_complete_success">Tugas selesai.</string>
+    <string name="tasks_reorder_success">Tugas diurutkan ulang.</string>
+    <string name="tasks_status_updated">Status diperbarui.</string>
+    <string name="tasks_delete_confirm_title">Hapus tugas?</string>
+    <string name="tasks_delete_confirm_body">Tugas ini akan dihapus.</string>
+    <string name="tasks_minutes">%1$d menit</string>
+    <string name="tasks_hours_minutes">%1$dj %2$dm</string>
+    <string name="tasks_swipe_complete">Selesai</string>
+    <string name="tasks_swipe_delete">Hapus</string>
+    <string name="tasks_sort_due_date">Tanggal jatuh tempo</string>
+    <string name="tasks_sort_priority">Prioritas</string>
+    <string name="tasks_sort_created">Dibuat</string>
+    <string name="tasks_sort_title">Judul</string>
+    <string name="tasks_filter_priority">Filter berdasarkan prioritas</string>
+    <string name="tasks_filter_status">Filter berdasarkan status</string>
+    <string name="tasks_filter_due">Filter berdasarkan tanggal jatuh tempo</string>
+    <string name="tasks_overdue_label">Terlambat</string>
+    <string name="tasks_due_today_label">Jatuh tempo hari ini</string>
+    <string name="tasks_due_tomorrow_label">Jatuh tempo besok</string>
+
+    <!-- Prioritas / Status -->
+    <string name="priority_low">Rendah</string>
+    <string name="priority_medium">Sedang</string>
+    <string name="priority_high">Tinggi</string>
+    <string name="priority_urgent">Mendesak</string>
+
+    <string name="status_todo">Akan Dikerjakan</string>
+    <string name="status_in_progress">Sedang Dikerjakan</string>
+    <string name="status_on_hold">Ditunda</string>
+    <string name="status_done">Selesai</string>
+    <string name="status_cancelled">Dibatalkan</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">Akan Dikerjakan</string>
+    <string name="kanban_column_in_progress">Sedang Dikerjakan</string>
+    <string name="kanban_column_on_hold">Ditunda</string>
+    <string name="kanban_column_done">Selesai</string>
+    <string name="kanban_add_task">Tambahkan tugas</string>
+    <string name="kanban_drag_hint">Tahan dan seret untuk memindahkan</string>
+    <string name="kanban_column_empty">Tidak ada tugas di sini</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- KALENDER                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Kalender</string>
+    <string name="calendar_view_week">Minggu</string>
+    <string name="calendar_view_month">Bulan</string>
+    <string name="calendar_today">Hari ini</string>
+    <string name="calendar_new_event">Acara baru</string>
+    <string name="calendar_no_events">Tidak ada acara</string>
+    <string name="calendar_all_day">Seharian penuh</string>
+    <string name="calendar_recurring">Berulang</string>
+    <string name="calendar_events_count">%1$d acara</string>
+    <string name="calendar_events_count_plural">%1$d acara</string>
+    <string name="calendar_more_events">+%1$d lagi</string>
+    <string name="calendar_week_header">Minggu %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ACARA                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Acara Baru</string>
+    <string name="event_edit_title">Edit Acara</string>
+    <string name="event_field_title">Judul acara</string>
+    <string name="event_field_title_hint">Apa acaranya?</string>
+    <string name="event_field_description">Deskripsi</string>
+    <string name="event_field_description_hint">Tambahkan catatan tentang acara ini…</string>
+    <string name="event_field_location">Lokasi</string>
+    <string name="event_field_location_hint">Tambahkan lokasi</string>
+    <string name="event_field_start">Mulai</string>
+    <string name="event_field_end">Selesai</string>
+    <string name="event_field_all_day">Acara sehari penuh</string>
+    <string name="event_field_color">Warna</string>
+    <string name="event_field_recurrence">Pengulangan</string>
+    <string name="event_field_reminder">Pengingat</string>
+    <string name="event_field_link_task">Tautkan tugas</string>
+    <string name="event_attendees">Peserta</string>
+    <string name="event_meeting_link">Tautan rapat</string>
+    <string name="event_travel_time">Waktu perjalanan</string>
+    <string name="event_quick_templates">Template cepat</string>
+    <string name="event_suggestions">Saran</string>
+    <string name="event_select_time">Pilih waktu</string>
+    <string name="event_conflict">Konflik waktu</string>
+    <string name="event_conflict_with">Konflik waktu dengan %d acara</string>
+    <string name="event_add_attendee_hint">Alamat email</string>
+    <string name="event_enter_location_hint">Masukkan lokasi</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">Menit</string>
+    <string name="event_add_location">Tambahkan lokasi</string>
+    <string name="event_add_description">Tambahkan deskripsi</string>
+    <string name="event_add_attendees">Tambahkan peserta</string>
+    <string name="event_add_link">Tambahkan tautan</string>
+    <string name="event_add_estimate">Tambahkan perkiraan</string>
+    <string name="event_attendee_count">%d peserta</string>
+    <string name="event_reminder_multiple">Beberapa (%d)</string>
+    <string name="event_speak_prompt">Ucapkan judul acara</string>
+    <string name="task_delete_confirm">Hapus tugas?</string>
+    <string name="task_delete_message">Tugas ini akan dipindahkan ke sampah.</string>
+    <string name="task_not_found">Tugas tidak ditemukan</string>
+    <string name="task_overdue">Terlambat</string>
+    <string name="task_due_date">Tanggal jatuh tempo</string>
+    <string name="task_due_time">Waktu jatuh tempo</string>
+    <string name="task_reminder">Pengingat</string>
+    <string name="task_reminder_set">Atur</string>
+    <string name="task_time">Waktu</string>
+    <string name="task_assignee">Penanggung jawab</string>
+    <string name="task_assigned">Ditugaskan</string>
+    <string name="task_completed">Selesai</string>
+    <string name="task_priority">Prioritas</string>
+    <string name="task_subtasks">Subtugas</string>
+    <string name="task_activity">Aktivitas</string>
+    <string name="task_hide">Sembunyikan</string>
+    <string name="task_events">%d acara</string>
+    <string name="task_add_description">Tambahkan deskripsi</string>
+    <string name="task_add_subtask">Tambahkan subtugas</string>
+    <string name="task_add_subtask_placeholder">Tambahkan subtugas…</string>
+    <string name="priority_low_importance">Pentingnya Rendah</string>
+    <string name="priority_high_importance">Pentingnya Tinggi</string>
+    <string name="priority_not_urgent">Tidak Mendesak</string>
+    <string name="priority_urgent_low">Mendesak + Pentingnya Rendah</string>
+    <string name="priority_urgent_high">Mendesak + Pentingnya Tinggi</string>
+    <string name="priority_not_urgent_low">Tidak Mendesak + Pentingnya Rendah</string>
+    <string name="priority_not_urgent_high">Tidak Mendesak + Pentingnya Tinggi</string>
+    <string name="task_title_placeholder">Judul tugas</string>
+    <string name="task_tags">Tag</string>
+    <string name="task_add_tag">Tambahkan tag</string>
+    <string name="task_set_date">Atur tanggal</string>
+    <string name="task_set_time">Atur waktu</string>
+    <string name="task_remind_before">Ingatkan sebelum</string>
+    <string name="task_repeat">Ulangi</string>
+    <string name="task_never">Tidak pernah</string>
+    <string name="task_estimated_time">Perkiraan waktu</string>
+    <string name="task_status">Status</string>
+    <string name="task_update">Perbarui</string>
+    <string name="task_create">Buat</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">Lemah</string>
+    <string name="password_fair">Cukup</string>
+    <string name="password_good">Baik</string>
+    <string name="password_strong">Kuat</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">mnt</string>
+    <string name="cd_recurring">Berulang</string>
+    <string name="empty_tasks_list">Belum ada tugas</string>
+    <string name="empty_tasks_list_hint">Ketuk + untuk membuat tugas pertama Anda</string>
+    <string name="empty_tasks_kanban">Tidak ada tugas di papan</string>
+    <string name="empty_tasks_kanban_hint">Tambahkan tugas untuk memulai</string>
+    <string name="empty_tasks_calendar">Tidak ada tugas pada hari ini</string>
+    <string name="empty_tasks_calendar_hint">Pilih hari lain atau tambahkan tugas</string>
+    <string name="empty_tasks_timeline">Tidak ada tugas dalam periode ini</string>
+    <string name="empty_tasks_timeline_hint">Sesuaikan garis waktu atau tambahkan tugas</string>
+
+    <!-- Preferensi -->
+    <string name="pref_section_account">Akun</string>
+    <string name="pref_section_appearance">Tampilan</string>
+    <string name="pref_section_notifications">Notifikasi</string>
+    <string name="pref_section_data_sync">Data &amp; Sinkronisasi</string>
+    <string name="pref_section_beta">Fitur Beta</string>
+    <string name="pref_section_about">Tentang</string>
+    <string name="pref_section_help">Bantuan &amp; Dukungan</string>
+    <string name="pref_search_placeholder">Cari pengaturan…</string>
+    <string name="pref_no_results">Tidak ditemukan hasil untuk \"%s\"</string>
+    <string name="pref_theme">Tema</string>
+    <string name="pref_local_only_mode">Mode lokal saja</string>
+    <string name="pref_local_only_mode_desc">Simpan semua data di perangkat ini</string>
+    <string name="pref_subscription">Langganan</string>
+    <string name="pref_free_plan">Paket gratis</string>
+    <string name="pref_free">Gratis</string>
+    <string name="pref_font_family">Keluarga Font</string>
+    <string name="pref_font_size">Ukuran font</string>
+    <string name="pref_density">Kepadatan</string>
+    <string name="pref_haptic_feedback">Umpan balik haptic</string>
+    <string name="pref_haptic_feedback_desc">Bergetar saat berinteraksi</string>
+    <string name="pref_quiet_hours">Jam tenang</string>
+    <string name="pref_quiet_hours_start">Mulai</string>
+    <string name="pref_quiet_hours_end">Selesai</string>
+    <string name="pref_auto_sync">Sinkronisasi otomatis</string>
+    <string name="pref_auto_sync_desc">Sinkronkan data secara otomatis saat terhubung</string>
+    <string name="pref_offline_mode">Mode offline</string>
+    <string name="pref_offline_mode_desc">Bekerja tanpa koneksi internet</string>
+    <string name="pref_export_data">Ekspor data</string>
+    <string name="pref_export_data_desc">Simpan cadangan semua data Anda</string>
+    <string name="pref_import_data">Impor data</string>
+    <string name="pref_import_data_desc">Pulihkan data dari file cadangan</string>
+    <string name="pref_version">Versi</string>
+    <string name="pref_version_value">1.2.0 (build 42)</string>
+    <string name="pref_latest">Terbaru</string>
+    <string name="pref_licenses">Lisensi</string>
+    <string name="pref_licenses_desc">Pustaka sumber terbuka</string>
+    <string name="pref_credits">Kredit</string>
+    <string name="pref_terms">Syarat &amp; Ketentuan</string>
+    <string name="pref_privacy">Kebijakan Privasi</string>
+    <string name="pref_faq">FAQ</string>
+    <string name="pref_faq_desc">Pertanyaan yang sering diajukan</string>
+    <string name="pref_contact">Hubungi kami</string>
+    <string name="pref_contact_desc">Hubungi tim kami</string>
+    <string name="pref_feedback">Kirim umpan balik</string>
+    <string name="pref_feedback_desc">Bantu kami meningkatkan ProductivityX</string>
+    <string name="pref_feedback_subject">Umpan balik ProductivityX</string>
+    <string name="pref_select_hour">Pilih jam %s</string>
+    <string name="pref_settings">Pengaturan</string>
+    <string name="pref_close">Tutup</string>
+    <string name="pref_enabled">Diaktifkan</string>
+    <string name="pref_disabled">Dinonaktifkan</string>
+    <string name="pref_theme_dark">Gelap</string>
+    <string name="pref_theme_light">Terang</string>
+    <string name="pref_theme_system">Sistem</string>
+    <string name="pref_theme_ocean">Samudra</string>
+    <string name="pref_theme_amber">Kuning gading</string>
+    <string name="pref_theme_forest">Hutan</string>
+    <string name="pref_theme_rose">Mawar</string>
+    <string name="pref_theme_midnight">Tengah malam</string>
+    <string name="pref_theme_dynamic">Dinamis</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">Sistem</string>
+    <string name="pref_font_serif">Serif</string>
+    <string name="pref_font_mono">Monospace</string>
+    <string name="pref_density_compact">Kompak</string>
+    <string name="pref_density_comfortable">Nyaman</string>
+    <string name="pref_density_spacious">Luas</string>
+    <string name="pref_view_list">Daftar</string>
+    <string name="pref_view_kanban">Kanban</string>
+    <string name="pref_sort_due">Jatuh tempo</string>
+    <string name="pref_sort_priority">Prioritas</string>
+    <string name="pref_sort_created">Dibuat</string>
+    <string name="pref_calendar_week">Minggu</string>
+    <string name="pref_calendar_month">Bulan</string>
+    <string name="pref_week_mon">Sen</string>
+    <string name="pref_week_sun">Min</string>
+    <string name="pref_week_sat">Sab</string>
+    <string name="pref_ai_flash">Flash</string>
+    <string name="pref_ai_pro">Pro</string>
+    <string name="minute_abbrev">mnt</string>
+
+    <string name="event_recurrence_none">Tidak berulang</string>
+    <string name="event_recurrence_daily">Harian</string>
+    <string name="event_recurrence_weekly">Mingguan</string>
+    <string name="event_recurrence_monthly">Bulanan</string>
+    <string name="event_recurrence_yearly">Tahunan</string>
+    <string name="event_recurrence_custom">Kustom</string>
+    <string name="event_recurrence_weekdays">Setiap hari kerja (Sen–Jum)</string>
+    <string name="event_recurrence_end_date">Berakhir pada</string>
+    <string name="event_recurrence_end_never">Tidak pernah</string>
+    <string name="event_recurrence_label">Berulang: %1$s</string>
+    <string name="event_reminder_none">Tidak ada pengingat</string>
+    <string name="event_reminder_at_time">Pada waktu acara</string>
+    <string name="event_reminder_5_min">5 menit sebelumnya</string>
+    <string name="event_reminder_10_min">10 menit sebelumnya</string>
+    <string name="event_reminder_15_min">15 menit sebelumnya</string>
+    <string name="event_reminder_30_min">30 menit sebelumnya</string>
+    <string name="event_reminder_1_hour">1 jam sebelumnya</string>
+    <string name="event_reminder_1_day">1 hari sebelumnya</string>
+    <string name="event_create_success">Acara dibuat.</string>
+    <string name="event_update_success">Acara diperbarui.</string>
+    <string name="event_delete_success">Acara dihapus.</string>
+    <string name="event_restore_success">Acara dipulihkan.</string>
+    <string name="event_untitled">Acara Tanpa Judul</string>
+    <string name="event_delete_cannot_undo">Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="event_repeats">Berulang</string>
+    <string name="event_detail_ends">Berakhir %1$s</string>
+    <string name="event_detail_timezone">Zona waktu: %1$s</string>
+    <string name="event_detail_min_before">%1$d menit sebelumnya</string>
+    <string name="event_detail_reminders">Pengingat: %1$s</string>
+    <string name="event_detail_attendees_count">%1$d peserta</string>
+    <string name="event_detail_travel_time">Waktu perjalanan: %1$d menit</string>
+    <string name="event_reminder_short_at_time">Pada waktu</string>
+    <string name="event_reminder_short_min">%1$d menit</string>
+    <string name="event_reminder_short_1_hour">1 jam</string>
+    <string name="event_reminder_short_1_day">1 hari</string>
+    <string name="event_delete_confirm_title">Hapus acara?</string>
+    <string name="cd_date_picker">Pemilih tanggal</string>
+    <string name="cd_join">Gabung</string>
+    <string name="cd_previous_year">Tahun sebelumnya</string>
+    <string name="cd_next_year">Tahun berikutnya</string>
+    <string name="event_delete_confirm_body">Acara ini akan dihapus.</string>
+    <string name="event_delete_recurring_title">Hapus acara berulang</string>
+    <string name="event_delete_recurring_body">Hapus acara ini atau semua acara dalam seri?</string>
+    <string name="event_delete_this_only">Hanya acara ini</string>
+    <string name="event_delete_all_in_series">Semua acara dalam seri</string>
+    <string name="event_end_before_start">Waktu selesai harus setelah waktu mulai.</string>
+    <string name="event_location_open_maps">Buka di Maps</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Rapat</string>
+    <string name="event_template_focus">Waktu Fokus</string>
+    <string name="event_template_break">Istirahat</string>
+    <string name="event_template_travel">Perjalanan</string>
+    <string name="event_join_meeting">Gabung rapat</string>
+    <string name="event_navigate">Navigasi</string>
+    <string name="event_share">Bagikan acara</string>
+    <string name="event_duplicate">Gandakan</string>
+    <string name="event_weather">Cuaca</string>
+    <string name="event_timezone">Zona waktu</string>
+    <string name="event_conflict_detected">Konflik waktu terdeteksi</string>
+    <string name="event_reminder_add">Tambahkan pengingat</string>
+    <string name="event_reminder_custom">Kustom</string>
+    <string name="event_voice_input">Input suara</string>
+    <string name="event_smart_suggestion">Saran cerdas</string>
+    <string name="event_free_busy">Kosong/Sibuk</string>
+    <string name="event_suggested_times">Waktu yang disarankan</string>
+    <string name="calendar_view_day">Hari</string>
+    <string name="calendar_view_agenda">Agenda</string>
+    <string name="calendar_view_year">Tahun</string>
+    <string name="calendar_date_jump">Lompat ke tanggal</string>
+    <string name="calendar_swipe_instruction">Geser untuk navigasi</string>
+    <string name="calendar_pinch_zoom">Cubit untuk zoom</string>
+    <string name="calendar_no_events_day">Tidak ada acara hari ini</string>
+    <string name="calendar_all_day_section">Seharian penuh</string>
+    <string name="calendar_agenda_empty">Tidak ada acara mendatang</string>
+    <string name="calendar_heat_map_label">Aktivitas</string>
+    <string name="calendar_upcoming_events">Acara Mendatang</string>
+    <string name="calendar_free_busy_suggested">Kosong/Sibuk &amp; Waktu yang Disarankan</string>
+    <string name="calendar_no_available_slots">Tidak ada slot tersedia untuk minggu ini</string>
+    <string name="calendar_free">Kosong</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Fokus</string>
+    <string name="pomodoro_focus">Fokus</string>
+    <string name="pomodoro_short_break">Istirahat Singkat</string>
+    <string name="pomodoro_long_break">Istirahat Panjang</string>
+    <string name="pomodoro_session_focus">Sesi Fokus</string>
+    <string name="pomodoro_session_short_break">Istirahat Singkat</string>
+    <string name="pomodoro_session_long_break">Istirahat Panjang</string>
+    <string name="pomodoro_start">Mulai</string>
+    <string name="pomodoro_pause">Jeda</string>
+    <string name="pomodoro_resume">Lanjutkan</string>
+    <string name="pomodoro_skip">Lewati</string>
+    <string name="pomodoro_stop">Berhenti</string>
+    <string name="pomodoro_reset">Atur ulang</string>
+    <string name="pomodoro_link_task">Tautkan tugas</string>
+    <string name="pomodoro_link_task_hint">Ketuk untuk menautkan tugas</string>
+    <string name="pomodoro_linked_task">Fokus pada: %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d sesi hari ini</string>
+    <string name="pomodoro_sessions_today_plural">%1$d sesi hari ini</string>
+    <string name="pomodoro_focus_time_today">%1$s fokus hari ini</string>
+    <string name="pomodoro_completed_today">Selesai hari ini</string>
+    <string name="pomodoro_no_active_session">Tidak ada sesi aktif</string>
+    <string name="pomodoro_session_complete_title">Sesi selesai! 🎉</string>
+    <string name="pomodoro_session_complete_body">Kerja bagus. Ambil istirahat!</string>
+    <string name="pomodoro_break_complete_title">Istirahat selesai</string>
+    <string name="pomodoro_break_complete_body">Siap untuk fokus lagi?</string>
+    <string name="pomodoro_start_success">Sesi dimulai.</string>
+    <string name="pomodoro_end_success">Sesi selesai.</string>
+    <string name="pomodoro_interrupt_success">Sesi terganggu.</string>
+    <string name="pomodoro_interrupt_reason_hint">Mengapa Anda berhenti? (opsional)</string>
+    <string name="pomodoro_interrupt_confirm_title">Hentikan sesi?</string>
+    <string name="pomodoro_interrupt_confirm_body">Progres Anda akan disimpan tetapi sesi akan ditandai sebagai terganggu.</string>
+    <string name="pomodoro_already_active">Anda sudah memiliki sesi aktif. Akhiri sebelum memulai yang baru.</string>
+    <string name="pomodoro_stats_title">Statistik Hari Ini</string>
+    <string name="pomodoro_history_title">Riwayat Sesi</string>
+    <string name="pomodoro_history_empty_title">Belum ada sesi</string>
+    <string name="pomodoro_history_empty_body">Mulai sesi fokus untuk melihat riwayat Anda di sini.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Ter Ganggu</string>
+    <string name="pomodoro_session_completed">Selesai</string>
+    <string name="pomodoro_dot_current">Sesi saat ini</string>
+    <string name="pomodoro_dot_completed">Sesi selesai</string>
+    <string name="pomodoro_dot_upcoming">Sesi mendatang</string>
+    <string name="pomodoro_notification_channel_name">Timer Pomodoro</string>
+    <string name="pomodoro_notification_channel_desc">Pembaruan timer langsung dan notifikasi sesi.</string>
+    <string name="pomodoro_notification_running">%1$s tersisa — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Jeda</string>
+    <string name="pomodoro_notification_action_skip">Lewati</string>
+    <string name="pomodoro_notification_action_stop">Berhenti</string>
+    <string name="pomodoro_cycle_count">Siklus %1$d dari %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d sesi hingga istirahat panjang</string>
+    <string name="pomodoro_until_long_break_plural">%1$d sesi hingga istirahat panjang</string>
+
+    <string name="pomodoro_swipe_to_skip">GESER UNTUK MEWATI</string>
+    <string name="pomodoro_extend_1min">+1 Mnt</string>
+    <string name="pomodoro_focus_analytics">Analitik Fokus</string>
+    <string name="pomodoro_streak_day">%1$d Hari Berturut-turut</string>
+    <string name="pomodoro_best_streak">Terbaik: %1$d hari</string>
+    <string name="pomodoro_weekly_intensity">Intensitas Mingguan</string>
+    <string name="pomodoro_focus_by_category">Fokus per Kategori</string>
+    <string name="pomodoro_quality_score">Skor Kualitas</string>
+    <string name="pomodoro_total_focus_time">Total Fokus</string>
+    <string name="pomodoro_daily_goal">Target Harian</string>
+    <string name="pomodoro_weekly_goal">Target Mingguan</string>
+    <string name="pomodoro_exit_focus_mode">Keluar dari Mode Fokus</string>
+    <string name="pomodoro_dnd">Jangan Ganggu</string>
+    <string name="pomodoro_background">Latar belakang</string>
+    <string name="pomodoro_sounds">Suara</string>
+    <string name="pomodoro_focus_mode">Mode Fokus</string>
+    <string name="pomodoro_unlink">Lepas tautan</string>
+    <string name="pomodoro_play_pause">Putar/Jeda</string>
+    <string name="pomodoro_no_active_tasks">Tidak ada tugas aktif tersedia.</string>
+    <string name="pomodoro_ambient_sound">Suara Lingkungan</string>
+    <string name="pomodoro_today_sessions">Sesi Hari Ini</string>
+    <string name="pomodoro_no_sessions_today">Belum ada sesi hari ini</string>
+    <string name="pomodoro_interrupt_button">Ganggu</string>
+    <string name="pomodoro_dnd_access_required">Akses Jangan Ganggu diperlukan. Silakan aktifkan di pengaturan.</string>
+    <string name="pomodoro_ambient_rain">Hujan</string>
+    <string name="pomodoro_ambient_cafe">Kafe</string>
+    <string name="pomodoro_ambient_white_noise">Kebisingan Putih</string>
+    <string name="pomodoro_ambient_nature">Alam</string>
+    <string name="pomodoro_paused">Dijeda</string>
+    <string name="pomodoro_done">Selesai! 🎉</string>
+    <string name="pomodoro_general_focus">Fokus Umum</string>
+    <string name="pomodoro_sessions_label">SESI</string>
+    <string name="pomodoro_focus_time_label">WAKTU FOKUS</string>
+    <string name="pomodoro_streak_label">BERTURUT-TURUT</string>
+    <string name="pomodoro_less">Lebih sedikit</string>
+    <string name="pomodoro_more">Lebih banyak</string>
+    <string name="pomodoro_no_category_data">Tidak ada data kategori tersedia</string>
+    <string name="pomodoro_ongoing">Berlangsung</string>
+    <string name="pomodoro_duration_min">%d mnt</string>
+    <string name="pomodoro_toggle">Alihkan</string>
+    <string name="pomodoro_ambient_sounds">Suara Lingkungan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">Asisten AI</string>
+    <string name="ai_welcome_title">Apa yang bisa saya bantu?</string>
+    <string name="ai_welcome_body">Saya dapat melihat ruang kerja Anda — tugas, acara, dan catatan — untuk memberikan jawaban yang kontekstual.</string>
+    <string name="ai_message_hint">Pesan…</string>
+    <string name="ai_send">Kirim</string>
+    <string name="ai_new_conversation">Percakapan baru</string>
+    <string name="ai_conversations_title">Percakapan</string>
+    <string name="ai_conversation_empty">Belum ada pesan</string>
+    <string name="ai_conversations_empty_title">Belum ada percakapan</string>
+    <string name="ai_conversations_empty_body">Mulai percakapan baru untuk mendapatkan bantuan dengan ruang kerja Anda.</string>
+    <string name="ai_delete_conversation_title">Hapus percakapan?</string>
+    <string name="ai_delete_conversation_body">Percakapan ini dan semua pesannya akan dihapus secara permanen.</string>
+    <string name="ai_delete_conversation_success">Percakapan dihapus.</string>
+    <string name="ai_clear_conversation_title">Bersihkan percakapan?</string>
+    <string name="ai_clear_conversation_body">Semua pesan dalam percakapan ini akan dihapus.</string>
+    <string name="ai_suggestion_due_today">Apa yang jatuh tempo hari ini?</string>
+    <string name="ai_suggestion_overdue">Ringkas tugas terlambat saya</string>
+    <string name="ai_suggestion_start_focus">Mulai sesi fokus</string>
+    <string name="ai_suggestion_meeting_agenda">Buat draf agenda rapat</string>
+    <string name="ai_context_title">Ruang Kerja Anda</string>
+    <string name="ai_context_active_tasks">Tugas aktif</string>
+    <string name="ai_context_events_week">Acara minggu ini</string>
+    <string name="ai_context_last_note">Catatan terakhir</string>
+    <string name="ai_context_focus_today">Fokus hari ini</string>
+    <string name="ai_context_overdue">terlambat</string>
+    <string name="ai_context_caption">Konteks ini dikirim ke AI dengan setiap pesan.</string>
+    <string name="ai_context_refresh">Segarkan konteks</string>
+    <string name="ai_typing">AI sedang berpikir…</string>
+    <string name="ai_streaming">Membuat respons…</string>
+    <string name="ai_error_unavailable">Asisten AI saat ini tidak tersedia. Silakan coba lagi nanti.</string>
+    <string name="ai_error_stream">Terjadi kesalahan saat membuat respons.</string>
+    <string name="ai_action_create_task">Buat tugas</string>
+    <string name="ai_action_create_note">Buat catatan</string>
+    <string name="ai_action_add_event">Tambahkan acara</string>
+    <string name="ai_action_confirm">Konfirmasi</string>
+    <string name="ai_action_dismiss">Tutup</string>
+    <string name="ai_action_executed">Selesai! Item dibuat.</string>
+    <string name="ai_action_dismissed">Ditutup.</string>
+    <string name="ai_copy_message">Salin pesan</string>
+    <string name="ai_message_copied">Pesan disalin.</string>
+    <string name="ai_regenerate">Buat ulang respons</string>
+    <string name="ai_you">Anda</string>
+    <string name="ai_assistant">Asisten</string>
+    <string name="ai_stop_generating">Hentikan Pembuatan</string>
+    <string name="ai_conversations_search_hint">Cari percakapan…</string>
+    <string name="ai_conversations_close_search">Tutup pencarian</string>
+    <string name="ai_conversations_no_results">Tidak ada hasil untuk \"%s\"</string>
+    <string name="ai_conversations_section_pinned">Disematkan</string>
+    <string name="ai_conversations_section_earlier">Sebelumnya</string>
+    <string name="ai_conversations_quick_action">Aksi Cepat</string>
+    <string name="ai_conversations_new_chat">Chat Baru</string>
+    <string name="ai_suggestion_plan_day">Rencanakan hari saya</string>
+    <string name="ai_suggestion_summarize_notes">Ringkas catatan</string>
+    <string name="ai_suggestion_brainstorm">Brainstorm ide</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PENCARIAN                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Cari</string>
+    <string name="search_hint">Cari catatan, tugas, acara…</string>
+    <string name="search_results_notes">Catatan</string>
+    <string name="search_results_tasks">Tugas</string>
+    <string name="search_results_events">Acara</string>
+    <string name="search_recent">Pencarian terbaru</string>
+    <string name="search_clear_recent">Hapus</string>
+    <string name="search_empty_title">Tidak ada hasil untuk \'%1$s\'</string>
+    <string name="search_empty_body">Coba kata kunci lain atau periksa ejaan Anda.</string>
+    <string name="search_results_count">%1$d hasil</string>
+    <string name="search_results_count_plural">%1$d hasil</string>
+    <string name="search_type_note">Catatan</string>
+    <string name="search_type_task">Tugas</string>
+    <string name="search_type_event">Acara</string>
+    <string name="search_offline_notice">Mencari secara lokal. Hubungkan ke internet untuk hasil lengkap.</string>
+    <string name="search_loading">Mencari…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROFIL & PENGATURAN                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Profil</string>
+    <string name="profile_edit_title">Edit Profil</string>
+    <string name="profile_change_photo">Ubah foto</string>
+    <string name="profile_remove_photo">Hapus foto</string>
+    <string name="profile_photo_updated">Foto profil diperbarui.</string>
+    <string name="profile_photo_removed">Foto profil dihapus.</string>
+    <string name="profile_photo_pick">Pilih dari galeri</string>
+    <string name="profile_photo_camera">Ambil foto</string>
+    <string name="profile_update_success">Profil diperbarui.</string>
+    <string name="profile_stats_notes">Catatan</string>
+    <string name="profile_stats_tasks_completed">Tugas selesai</string>
+    <string name="profile_stats_focus_this_week">Fokus minggu ini</string>
+    <string name="profile_member_since">Anggota sejak %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">Belum ada bio.</string>
+    <string name="profile_section_account">Akun</string>
+    <string name="profile_section_appearance">Tampilan</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Notifikasi</string>
+    <string name="profile_section_ai">Asisten AI</string>
+    <string name="profile_section_data">Data &amp; Sinkronisasi</string>
+    <string name="profile_section_about">Tentang</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PREFERENSI                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Preferensi</string>
+    <string name="preferences_update_success">Preferensi disimpan.</string>
+    <string name="preferences_pomodoro_focus">Durasi fokus</string>
+    <string name="preferences_pomodoro_focus_desc">Panjang setiap sesi fokus</string>
+    <string name="preferences_pomodoro_short_break">Istirahat singkat</string>
+    <string name="preferences_pomodoro_short_break_desc">Panjang istirahat singkat antar sesi</string>
+    <string name="preferences_pomodoro_long_break">Istirahat panjang</string>
+    <string name="preferences_pomodoro_long_break_desc">Panjang istirahat panjang setelah siklus penuh</string>
+    <string name="preferences_pomodoro_cycles">Sesi sebelum istirahat panjang</string>
+    <string name="preferences_pomodoro_cycles_desc">Jumlah sesi fokus sebelum istirahat panjang</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Mulai istirahat otomatis</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Mulai istirahat secara otomatis saat sesi berakhir</string>
+    <string name="preferences_pomodoro_auto_start_focus">Mulai fokus otomatis</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Mulai sesi berikutnya secara otomatis setelah istirahat</string>
+    <string name="preferences_pomodoro_sound">Suara</string>
+    <string name="preferences_pomodoro_sound_desc">Putar suara saat sesi berakhir</string>
+    <string name="preferences_notify_task_reminders">Pengingat tugas</string>
+    <string name="preferences_notify_task_reminders_desc">Dapatkan notifikasi saat pengingat tugas jatuh tempo</string>
+    <string name="preferences_notify_event_reminders">Pengingat acara</string>
+    <string name="preferences_notify_event_reminders_desc">Dapatkan notifikasi sebelum acara kalender</string>
+    <string name="preferences_notify_pomodoro_end">Akhir Pomodoro</string>
+    <string name="preferences_notify_pomodoro_end_desc">Dapatkan notifikasi saat sesi Pomodoro berakhir</string>
+    <string name="preferences_notify_daily_summary">Ringkasan harian</string>
+    <string name="preferences_notify_daily_summary_desc">Terima ringkasan pagi tentang hari Anda</string>
+    <string name="preferences_default_task_view">Tampilan tugas default</string>
+    <string name="preferences_default_task_sort">Pengurutan tugas default</string>
+    <string name="preferences_show_completed_tasks">Tampilkan tugas selesai</string>
+    <string name="preferences_show_completed_tasks_desc">Sertakan tugas selesai dalam daftar tugas</string>
+    <string name="preferences_default_calendar_view">Tampilan kalender default</string>
+    <string name="preferences_week_starts_on">Minggu dimulai pada</string>
+    <string name="preferences_week_starts_monday">Senin</string>
+    <string name="preferences_week_starts_sunday">Minggu</string>
+    <string name="preferences_ai_context">Konteks ruang kerja</string>
+    <string name="preferences_ai_context_desc">Bagikan tugas, acara, dan catatan Anda dengan asisten AI</string>
+    <string name="preferences_ai_model">Model AI</string>
+    <string name="preferences_ai_model_desc">Pilih model AI untuk asisten</string>
+    <string name="preferences_compact_mode">Mode kompak</string>
+    <string name="preferences_compact_mode_desc">Gunakan tata letak yang lebih padat untuk menampilkan lebih banyak konten</string>
+    <string name="preferences_minutes_format">%1$d mnt</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SINKRONISASI                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Tersinkronisasi</string>
+    <string name="sync_status_pending">Menunggu sinkronisasi</string>
+    <string name="sync_status_syncing">Menyinkronkan…</string>
+    <string name="sync_status_conflict">Konflik sinkronisasi</string>
+    <string name="sync_status_error">Kesalahan sinkronisasi</string>
+    <string name="sync_last_synced">Terakhir disinkronkan: %1$s</string>
+    <string name="sync_never_synced">Belum pernah disinkronkan</string>
+    <string name="sync_conflict_title">Konflik sinkronisasi</string>
+    <string name="sync_conflict_body">Konflik terdeteksi untuk \'%1$s\'. Versi mana yang ingin Anda pertahankan?</string>
+    <string name="sync_conflict_keep_local">Pertahankan versi lokal</string>
+    <string name="sync_conflict_keep_server">Pertahankan versi server</string>
+    <string name="sync_conflict_resolved">Konflik diselesaikan.</string>
+    <string name="sync_pending_count">%1$d perubahan tertunda</string>
+    <string name="sync_pending_count_plural">%1$d perubahan tertunda</string>
+    <string name="sync_offline_banner">Anda sedang offline. Perubahan akan disinkronkan saat Anda terhubung kembali.</string>
+    <string name="sync_reconnected">Kembali online. Menyinkronkan…</string>
+    <string name="sync_complete">Semua perubahan tersinkronkan.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NOTIFIKASI                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Pengingat</string>
+    <string name="notification_channel_reminders_desc">Notifikasi pengingat tugas dan acara.</string>
+    <string name="notification_channel_sync_name">Sinkronisasi</string>
+    <string name="notification_channel_sync_desc">Notifikasi status sinkronisasi latar belakang.</string>
+    <string name="notification_task_reminder_title">Pengingat tugas</string>
+    <string name="notification_task_reminder_body">%1$s segera jatuh tempo.</string>
+    <string name="notification_event_reminder_title">Acara mendatang</string>
+    <string name="notification_event_reminder_body">%1$s dimulai dalam %2$s.</string>
+    <string name="notification_daily_summary_title">Hari Anda sekilas</string>
+    <string name="notification_daily_summary_body">%1$d tugas jatuh tempo hari ini, %2$d acara mendatang.</string>
+    <string name="notification_permission_title">Aktifkan notifikasi</string>
+    <string name="notification_permission_body">Tetap terhubung dengan pengingat, sesi fokus, dan ringkasan harian.</string>
+    <string name="notification_permission_allow">Izinkan</string>
+    <string name="notification_permission_deny">Bukan sekarang</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- IZIN                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Akses kamera</string>
+    <string name="permission_camera_body">ProductivityX memerlukan akses kamera agar Anda dapat mengambil foto profil.</string>
+    <string name="permission_storage_title">Akses penyimpanan</string>
+    <string name="permission_storage_body">ProductivityX memerlukan akses penyimpanan agar Anda dapat memilih foto profil.</string>
+    <string name="permission_notification_title">Akses notifikasi</string>
+    <string name="permission_notification_body">Izinkan notifikasi untuk menerima pengingat tugas dan peringatan Pomodoro.</string>
+    <string name="permission_denied_title">Izin diperlukan</string>
+    <string name="permission_denied_body">Fitur ini memerlukan izin. Silakan aktifkan di pengaturan.</string>
+    <string name="permission_go_to_settings">Buka pengaturan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- WAKTU                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Baru saja</string>
+    <string name="time_minutes_ago">%1$d menit yang lalu</string>
+    <string name="time_hours_ago">%1$d jam yang lalu</string>
+    <string name="time_yesterday">Kemarin</string>
+    <string name="time_days_ago">%1$d hari yang lalu</string>
+    <string name="time_weeks_ago">%1$d minggu yang lalu</string>
+    <string name="time_weeks_ago_plural">%1$d minggu yang lalu</string>
+    <string name="time_months_ago">%1$d bulan yang lalu</string>
+    <string name="time_months_ago_plural">%1$d bulan yang lalu</string>
+    <string name="time_format_date">MMM d, yyyy</string>
+    <string name="time_format_date_short">MMM d</string>
+    <string name="time_format_time">h:mm a</string>
+    <string name="time_format_datetime">MMM d \'at\' h:mm a</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, MMMM d, yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">%1$d jam</string>
+    <string name="time_hour_plural">%1$d jam</string>
+    <string name="time_minute_singular">%1$d menit</string>
+    <string name="time_minute_plural">%1$d menit</string>
+
+    <!-- Hari / Bulan -->
+    <string name="day_monday_short">Sen</string>
+    <string name="day_tuesday_short">Sel</string>
+    <string name="day_wednesday_short">Rab</string>
+    <string name="day_thursday_short">Kam</string>
+    <string name="day_friday_short">Jum</string>
+    <string name="day_saturday_short">Sab</string>
+    <string name="day_sunday_short">Min</string>
+    <string name="day_monday">Senin</string>
+    <string name="day_tuesday">Selasa</string>
+    <string name="day_wednesday">Rabu</string>
+    <string name="day_thursday">Kamis</string>
+    <string name="day_friday">Jumat</string>
+    <string name="day_saturday">Sabtu</string>
+    <string name="day_sunday">Minggu</string>
+
+    <string name="month_january">Januari</string>
+    <string name="month_february">Februari</string>
+    <string name="month_march">Maret</string>
+    <string name="month_april">April</string>
+    <string name="month_may">Mei</string>
+    <string name="month_june">Juni</string>
+    <string name="month_july">Juli</string>
+    <string name="month_august">Agustus</string>
+    <string name="month_september">September</string>
+    <string name="month_october">Oktober</string>
+    <string name="month_november">November</string>
+    <string name="month_december">Desember</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- STATUS KOSONG                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Belum ada apa-apa di sini</string>
+    <string name="empty_state_generic_body">Mulai dengan membuat sesuatu yang baru.</string>
+    <string name="empty_state_no_results_title">Tidak ada hasil</string>
+    <string name="empty_state_no_results_body">Coba pencarian atau filter yang berbeda.</string>
+    <string name="empty_state_offline_title">Anda sedang offline</string>
+    <string name="empty_state_offline_body">Hubungkan ke internet untuk memuat konten Anda.</string>
+    <string name="empty_state_error_title">Terjadi kesalahan</string>
+    <string name="empty_state_error_body">Tarik ke bawah untuk menyegarkan, atau ketuk tombol di bawah.</string>
+    <string name="empty_state_retry">Coba lagi</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AKSESIBILITAS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Navigasi ke belakang</string>
+    <string name="cd_close">Tutup</string>
+    <string name="cd_more_options">Opsi lainnya</string>
+    <string name="cd_search">Cari</string>
+    <string name="cd_filter">Filter</string>
+    <string name="cd_sort">Urutkan</string>
+    <string name="cd_add">Tambah</string>
+    <string name="cd_delete">Hapus</string>
+    <string name="cd_edit">Edit</string>
+    <string name="cd_restore">Pulihkan</string>
+    <string name="cd_pin">Sematkan catatan</string>
+    <string name="cd_unpin">Lepas sematan catatan</string>
+    <string name="cd_check_task">Tandai tugas selesai</string>
+    <string name="cd_uncheck_task">Tandai tugas belum selesai</string>
+    <string name="cd_profile_picture">Gambar profil</string>
+    <string name="cd_send_message">Kirim pesan</string>
+    <string name="cd_play_pause">Putar atau jeda timer</string>
+    <string name="cd_skip_session">Lewati sesi</string>
+    <string name="cd_stop_session">Hentikan sesi</string>
+    <string name="cd_sync_status">Status sinkronisasi: %1$s</string>
+    <string name="cd_password_toggle">Alihkan visibilitas kata sandi</string>
+    <string name="cd_clear_input">Hapus input</string>
+    <string name="cd_remove_subtask">Hapus subtugas</string>
+    <string name="cd_notification">Notifikasi</string>
+    <string name="cd_selected">Dipilih</string>
+    <string name="cd_not_selected">Tidak dipilih</string>
+    <string name="cd_clear_selection">Hapus pilihan</string>
+    <string name="cd_grid_view">Tampilan grid</string>
+    <string name="cd_list_view">Tampilan daftar</string>
+    <string name="cd_note_image">Gambar catatan</string>
+    <string name="cd_new_tag">Tag baru</string>
+    <string name="cd_biometric_login">Login biometrik</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- LAINNYA                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Memeriksa sesi Anda…</string>
+    <string name="splash_loading">Memuat…</string>
+
+    <string name="dialog_unsaved_changes_title">Perubahan belum disimpan</string>
+    <string name="dialog_unsaved_changes_body">Anda memiliki perubahan yang belum disimpan. Apakah Anda ingin membuangnya?</string>
+    <string name="dialog_unsaved_changes_save">Simpan</string>
+    <string name="dialog_unsaved_changes_discard">Buang</string>
+    <string name="dialog_date_picker_title">Pilih tanggal</string>
+    <string name="dialog_time_picker_title">Pilih waktu</string>
+    <string name="dialog_color_picker_title">Pilih warna</string>
+    <string name="dialog_task_picker_title">Tautkan tugas</string>
+    <string name="dialog_event_picker_title">Tautkan acara</string>
+    <string name="dialog_tag_manager_title">Kelola tag</string>
+
+    <string name="task_view_list">Daftar</string>
+    <string name="task_view_kanban">Papan</string>
+
+    <string name="snackbar_undo">Urungkan</string>
+    <string name="snackbar_note_deleted">Catatan dihapus</string>
+    <string name="snackbar_task_deleted">Tugas dihapus</string>
+    <string name="snackbar_event_deleted">Acara dihapus</string>
+    <string name="snackbar_tag_deleted">Tag dihapus</string>
+    <string name="snackbar_copied">Disalin ke papan klip</string>
+    <string name="snackbar_no_internet">Tidak ada koneksi internet</string>
+    <string name="snackbar_changes_saved">Perubahan disimpan</string>
+
+    <string name="about_version">Versi %1$s</string>
+    <string name="about_build">Build %1$s</string>
+    <string name="about_privacy_policy">Kebijakan Privasi</string>
+    <string name="about_terms_of_service">Syarat Layanan</string>
+    <string name="about_open_source_licenses">Lisensi sumber terbuka</string>
+    <string name="about_rate_app">Beri nilai aplikasi</string>
+    <string name="about_send_feedback">Kirim umpan balik</string>
+    <string name="about_built_by">Dibuat oleh Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Ekspor data</string>
+    <string name="data_export_body">Unduh semua catatan, tugas, dan acara Anda sebagai file.</string>
+    <string name="data_export_action">Ekspor</string>
+    <string name="data_export_success">Ekspor data Anda siap.</string>
+    <string name="data_delete_account_title">Hapus akun</string>
+    <string name="data_delete_account_body">Hapus akun dan semua data terkait secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="data_delete_account_action">Hapus akun</string>
+    <string name="data_delete_account_confirm_title">Hapus akun Anda?</string>
+    <string name="data_delete_account_confirm_body">Semua catatan, tugas, acara, dan percakapan Anda akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="data_delete_account_type_confirm">Ketik HAPUS untuk mengonfirmasi</string>
+    <string name="data_delete_account_confirm_word">HAPUS</string>
+
+    <string name="update_available_title">Pembaruan tersedia</string>
+    <string name="update_available_body">Versi baru ProductivityX tersedia. Perbarui sekarang untuk fitur dan perbaikan terbaru.</string>
+    <string name="update_now">Perbarui sekarang</string>
+    <string name="update_later">Nanti</string>
+
+    <string name="auth_check_your_email">Periksa email Anda</string>
+    <string name="auth_otp_sent_body">Kami mengirimkan kode 6 digit ke %s</string>
+
+    <string name="language_en">Inggris</string>
+    <string name="language_fr">Prancis</string>
+    <string name="language_ar">Arab</string>
+    <string name="language_es">Spanyol</string>
+    <string name="language_de">Jerman</string>
+    <string name="language_pt">Portugis</string>
+    <string name="language_zh">Tionghoa Tradisional</string>
+    <string name="language_ja">Jepang</string>
+    <string name="language_ko">Korea</string>
+    <string name="language_ru">Rusia</string>
+    <string name="language_tr">Turki</string>
+    <string name="language_it">Italia</string>
+    <string name="language_hi">Hindi</string>
+    <string name="language_id">Indonesia</string>
+    <string name="language_nl">Belanda</string>
+    <string name="language_vi">Vietnam</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- WIDGET                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">Tugas</string>
+    <string name="widget_task_list_empty">Tidak ada tugas jatuh tempo hari ini</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Ketuk untuk memulai fokus</string>
+    <string name="widget_quick_note_title">Catatan Cepat</string>
+    <string name="widget_quick_note_hint">Ketuk untuk menambahkan catatan</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- DASBOR BERANDA (7.1)                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">Tugas Hari Ini</string>
+    <string name="home_widget_events">Acara Mendatang</string>
+    <string name="home_widget_focus">Waktu Fokus Hari Ini</string>
+    <string name="home_widget_notes">Catatan Terbaru</string>
+    <string name="home_widget_quote">Kutipan Hari Ini</string>
+    <string name="home_widget_ai">Asisten AI</string>
+    <string name="home_widget_focus_mode">Fokus Cepat</string>
+    <string name="home_expand">Perluas</string>
+    <string name="home_collapse">Ciutkan</string>
+    <string name="home_see_all">Lihat semua</string>
+    <string name="home_empty_tasks">Tidak ada tugas jatuh tempo hari ini</string>
+    <string name="home_empty_events">Tidak ada acara mendatang</string>
+    <string name="home_empty_notes">Tidak ada catatan terbaru</string>
+    <string name="home_empty_focus">Belum ada waktu fokus</string>
+    <string name="home_focus_mode_active">Mode Fokus</string>
+    <string name="home_focus_mode_inactive">Fokus Cepat</string>
+    <string name="home_focus_mode_desc_active">Minimalkan gangguan</string>
+    <string name="home_focus_mode_desc_inactive">Ketuk untuk masuk mode fokus</string>
+    <string name="home_voice_prompt">Apa yang ingin Anda lakukan?</string>
+    <string name="home_voice_listening">Mendengarkan…</string>
+    <string name="home_pull_to_refresh">Tarik untuk menyegarkan</string>
+    <string name="home_syncing">Menyinkronkan…</string>
+    <string name="home_refreshed">Dasbor diperbarui</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PINTASAN                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">Catatan Baru</string>
+    <string name="shortcut_new_task">Tugas Baru</string>
+    <string name="shortcut_start_focus">Mulai Fokus</string>
+    <string name="shortcut_ai_chat">Chat AI</string>
+    <string name="shortcut_note_short_label">Catatan</string>
+    <string name="shortcut_task_short_label">Tugas</string>
+    <string name="shortcut_focus_short_label">Fokus</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- Manajemen Folder -->
+    <string name="folder_screen_title">Folder</string>
+    <string name="folder_empty">Belum ada folder</string>
+    <string name="folder_create_dialog_title">Buat folder</string>
+    <string name="folder_edit_dialog_title">Edit folder</string>
+    <string name="folder_delete_title">Hapus folder?</string>
+    <string name="folder_delete_message">Catatan di \"%s\" tidak akan dihapus.</string>
+    <string name="folder_name_label">Nama folder</string>
+    <string name="folder_color_label">Warna</string>
+    <string name="folder_save">Simpan</string>
+    <string name="folder_delete">Hapus</string>
+    <string name="folder_note_count">%d catatan</string>
+    <string name="folder_note_count_one">%d catatan</string>
+    <string name="folder_create_cd">Buat folder</string>
+    <string name="folder_edit_cd">Edit</string>
+    <string name="folder_delete_cd">Hapus</string>
+
+    <!-- Manajemen Tag -->
+    <string name="tag_screen_title">Tag</string>
+    <string name="tag_empty">Belum ada tag. Ketuk + untuk membuatnya.</string>
+    <string name="tag_create_dialog_title">Buat tag</string>
+    <string name="tag_edit_dialog_title">Edit tag</string>
+    <string name="tag_delete_title">Hapus tag?</string>
+    <string name="tag_delete_message">Tag \"%s\" akan dihapus dari semua catatan.</string>
+    <string name="tag_name_label">Nama tag</string>
+    <string name="tag_color_label">Warna</string>
+    <string name="tag_save">Simpan</string>
+    <string name="tag_delete">Hapus</string>
+    <string name="tag_create_cd">Buat tag</string>
+    <string name="tag_delete_cd">Hapus</string>
+
+    <!-- Syarat & Ketentuan -->
+    <string name="terms_title">Syarat &amp; Ketentuan</string>
+    <string name="terms_subtitle">Syarat Layanan</string>
+    <string name="terms_last_updated">Terakhir diperbarui: Juli 2026</string>
+    <string name="terms_section_1_title">1. Penerimaan Ketentuan</string>
+    <string name="terms_section_1_body">Dengan mengakses atau menggunakan ProductivityX, Anda setuju untuk terikat oleh Syarat Layanan ini. Jika Anda tidak setuju, jangan gunakan aplikasi ini.</string>
+    <string name="terms_section_2_title">2. Deskripsi Layanan</string>
+    <string name="terms_section_2_body">ProductivityX menyediakan ruang kerja terpadu termasuk catatan, tugas, kalender, timer fokus (Pomodoro), dan fitur asisten AI. Kami berhak memodifikasi atau menghentikan fitur apa pun sewaktu-waktu.</string>
+    <string name="terms_section_3_title">3. Akun Pengguna</string>
+    <string name="terms_section_3_body">Anda bertanggung jawab menjaga kerahasiaan kredensial akun Anda dan untuk semua aktivitas di bawah akun Anda. Anda harus memberi tahu kami segera tentang akses yang tidak sah.</string>
+    <string name="terms_section_4_title">4. Penggunaan yang Dapat Diterima</string>
+    <string name="terms_section_4_body">Anda setuju untuk tidak menggunakan ProductivityX untuk tujuan yang melanggar hukum atau melanggar hukum yang berlaku. Anda tidak boleh mencoba mengganggu, merusak, atau mendapatkan akses yang tidak sah ke sistem kami.</string>
+    <string name="terms_section_5_title">5. Data &amp; Privasi</string>
+    <string name="terms_section_5_body">Penggunaan ProductivityX Anda juga diatur oleh Kebijakan Privasi kami. Kami serius dalam keamanan data dan menerapkan langkah-langkah keamanan standar industri untuk melindungi informasi Anda.</string>
+    <string name="terms_section_6_title">6. Hak Kekayaan Intelektual</string>
+    <string name="terms_section_6_body">ProductivityX dan konten asli, fitur, serta fungsionalitasnya dimiliki oleh Oussama Chatri dan dilindungi oleh hak cipta dan undang-undang kekayaan intelektual yang berlaku.</string>
+    <string name="terms_section_7_title">7. Keterbatasan Tanggung Jawab</string>
+    <string name="terms_section_7_body">ProductivityX disediakan &quot;sebagaimana adanya&quot; tanpa jaminan apa pun. Kami tidak bertanggung jawab atas kerugian apa pun yang timbul dari penggunaan aplikasi ini.</string>
+    <string name="terms_section_8_title">8. Perubahan Ketentuan</string>
+    <string name="terms_section_8_body">Kami berhak memperbarui ketentuan ini sewaktu-waktu. Kami akan memberi tahu pengguna tentang perubahan material melalui aplikasi atau email.</string>
+    <string name="terms_section_9_title">9. Hubungi</string>
+    <string name="terms_section_9_body">Untuk pertanyaan tentang ketentuan ini, hubungi kami di productivityx7@gmail.com.</string>
+
+    <!-- Kebijakan Privasi -->
+    <string name="privacy_title">Kebijakan Privasi</string>
+    <string name="privacy_subtitle">Kebijakan Privasi</string>
+    <string name="privacy_last_updated">Terakhir diperbarui: Juli 2026</string>
+    <string name="privacy_section_1_title">1. Informasi yang Kami Kumpulkan</string>
+    <string name="privacy_section_1_body">Kami mengumpulkan informasi yang Anda berikan saat membuat akun, termasuk nama, alamat email, dan foto profil Anda. Kami juga mengumpulkan data yang Anda buat di dalam aplikasi seperti catatan, tugas, acara, dan sesi fokus.</string>
+    <string name="privacy_section_2_title">2. Bagaimana Kami Menggunakan Informasi Anda</string>
+    <string name="privacy_section_2_body">Data Anda digunakan untuk menyediakan dan meningkatkan fitur ProductivityX, menyinkronkan lintas perangkat, dan mengirim notifikasi yang relevan. Kami tidak menjual informasi pribadi Anda kepada pihak ketiga.</string>
+    <string name="privacy_section_3_title">3. Penyimpanan &amp; Keamanan Data</string>
+    <string name="privacy_section_3_body">Data Anda dienkripsi saat dalam perjalanan dan saat disimpan. Kami menggunakan langkah-langkah keamanan standar industri untuk melindungi informasi Anda. Anda dapat memilih untuk menyimpan data secara lokal tanpa sinkronisasi cloud.</string>
+    <string name="privacy_section_4_title">4. Layanan Pihak Ketiga</string>
+    <string name="privacy_section_4_body">ProductivityX mungkin menggunakan layanan pihak ketiga untuk bantuan AI, push notifikasi, dan analitik. Layanan ini terikat secara kontraktual untuk melindungi data Anda dan menggunakannya hanya untuk tujuan yang dimaksud.</string>
+    <string name="privacy_section_5_title">5. Hak Anda</string>
+    <string name="privacy_section_5_body">Anda dapat mengakses, memodifikasi, atau menghapus data Anda kapan saja melalui pengaturan aplikasi. Anda dapat meminta ekspor lengkap data Anda atau menghapus akun Anda secara permanen.</string>
+    <string name="privacy_section_6_title">6. Penyimpanan Data</string>
+    <string name="privacy_section_6_body">Kami menyimpan data Anda selama akun Anda aktif. Item yang dihapus disimpan di sampah selama 30 hari sebelum dihapus secara permanen. Penghapusan akun menghapus semua data terkait dalam 90 hari.</string>
+    <string name="privacy_section_7_title">7. Privasi Anak-anak</string>
+    <string name="privacy_section_7_body">ProductivityX tidak ditujukan untuk pengguna di bawah 13 tahun. Kami tidak secara sengaja mengumpulkan data dari anak-anak. Jika kami mengetahui data tersebut, kami akan segera menghapusnya.</string>
+    <string name="privacy_section_8_title">8. Perubahan Kebijakan Ini</string>
+    <string name="privacy_section_8_body">Kami dapat memperbarui Kebijakan Privasi ini. Kami akan memberi tahu Anda tentang perubahan material melalui aplikasi atau melalui email.</string>
+    <string name="privacy_section_9_title">9. Hubungi Kami</string>
+    <string name="privacy_section_9_body">Untuk pertanyaan terkait privasi, hubungi kami di productivityx7@gmail.com.</string>
+
+    <!-- Layar Tugas -->
+    <!-- Layar Statistik Tugas -->
+    <string name="tasks_statistics">Statistik</string>
+    <string name="tasks_stats_score">Skor</string>
+    <string name="tasks_stats_streak">Berturut-turut</string>
+    <string name="tasks_stats_days">hari</string>
+    <string name="tasks_stats_best">Terbaik</string>
+    <string name="tasks_stats_completion_rate">Tingkat Penyelesaian</string>
+    <string name="tasks_stats_this_week">Minggu Ini</string>
+    <string name="tasks_stats_this_month">Bulan Ini</string>
+    <string name="tasks_stats_monthly_progress">Progres bulanan</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d selesai</string>
+    <string name="tasks_stats_time_by_priority">Waktu yang Dihabiskan per Prioritas</string>
+    <string name="tasks_stats_no_data">Belum ada data</string>
+    <string name="tasks_stats_achievements">Pencapaian</string>
+    <string name="tasks_stats_unlock_badges">Selesaikan tugas untuk membuka lencana</string>
+    <string name="tasks_stats_weekly_review">Tinjauan Mingguan</string>
+    <string name="tasks_stats_created">Dibuat</string>
+    <string name="tasks_stats_completed">Selesai</string>
+    <string name="tasks_stats_overdue">Terlambat</string>
+    <string name="tasks_stats_suggested_focus">Fokus yang Disarankan</string>
+    <string name="tasks_stats_patterns">Pola Produktivitas</string>
+    <string name="tasks_stats_velocity">Kecepatan Penyelesaian</string>
+    <string name="tasks_stats_productive_hours">Jam Paling Produktif</string>
+    <string name="tasks_stats_category_breakdown">Rincian Kategori</string>
+    <string name="tasks_stats_complete_more">Selesaikan lebih banyak tugas untuk melihat pola produktivitas Anda</string>
+
+    <!-- Label pengulangan -->
+    <string name="task_recurrence_none">Tidak ada</string>
+    <string name="task_recurrence_daily">Harian</string>
+    <string name="task_recurrence_weekdays">Hari kerja</string>
+    <string name="task_recurrence_weekly">Mingguan</string>
+    <string name="task_recurrence_biweekly">Dua mingguan</string>
+    <string name="task_recurrence_monthly">Bulanan</string>
+    <string name="task_recurrence_yearly">Tahunan</string>
+
+    <!-- Layar Detail Tugas -->
+    <string name="task_label">Tugas</string>
+    <string name="task_estimated_abbrev">Est.</string>
+    <string name="task_actual_abbrev">Aktual</string>
+
+    <!-- Layar Sampah Tugas -->
+    <string name="tasks_trash_empty_title">Sampah kosong</string>
+    <string name="tasks_trash_empty_body">Tugas yang dihapus muncul di sini.</string>
+    <string name="tasks_trash_due">Jatuh tempo %1$s</string>
+    <string name="tasks_trash_hard_delete_title">Hapus secara permanen?</string>
+    <string name="tasks_trash_hard_delete_body">Tugas ini tidak dapat dipulihkan.</string>
+
+    <string name="tasks_no_tasks_day">Tidak ada tugas pada hari ini</string>
+    <string name="tasks_add_task">Tambahkan tugas</string>
+    <string name="tasks_drop_here">Letakkan tugas di sini</string>
+    <string name="tasks_set_priority">Atur Prioritas</string>
+    <string name="tasks_ok">OK</string>
+    <string name="tasks_cancel">Batal</string>
+    <string name="tasks_selected_count">%d dipilih</string>
+    <string name="tasks_filter_all">Semua</string>
+    <string name="tasks_filter_today">Hari ini</string>
+    <string name="tasks_filter_upcoming">Mendatang</string>
+    <string name="tasks_filter_overdue">Terlambat</string>
+    <string name="tasks_filter_no_date">Tanpa Tanggal</string>
+    <string name="tasks_filter_done">Selesai</string>
+    <string name="tasks_view_board">Papan</string>
+    <string name="tasks_view_calendar">Kalender</string>
+    <string name="tasks_view_timeline">Garis waktu</string>
+    <string name="tasks_bulk_complete">Selesai</string>
+    <string name="tasks_bulk_delete">Hapus</string>
+    <string name="tasks_bulk_reschedule">Jadwalkan ulang</string>
+    <string name="tasks_bulk_priority">Prioritas</string>
+    <string name="tasks_weekday_sun">M</string>
+    <string name="tasks_weekday_mon">S</string>
+    <string name="tasks_weekday_tue">S</string>
+    <string name="tasks_weekday_wed">R</string>
+    <string name="tasks_weekday_thu">K</string>
+    <string name="tasks_weekday_fri">J</string>
+    <string name="tasks_weekday_sat">S</string>
+    <string name="tasks_picker_day_mon">S</string>
+    <string name="tasks_picker_day_tue">S</string>
+    <string name="tasks_picker_day_wed">R</string>
+    <string name="tasks_picker_day_thu">K</string>
+    <string name="tasks_picker_day_fri">J</string>
+    <string name="tasks_picker_day_sat">Sa</string>
+    <string name="tasks_picker_day_sun">Mi</string>
+    <string name="tasks_minutes_abbrev">%1$dm</string>
+    <string name="tasks_for_date">Tugas untuk %s</string>
+    <string name="cd_exit_multiselect">Keluar dari pilihan berganda</string>
+    <string name="cd_select_all">Pilih semua</string>
+    <string name="cd_statistics">Statistik</string>
+    <string name="cd_previous">Sebelumnya</string>
+    <string name="cd_drop_here">Letakkan di sini</string>
+
+    <!-- Layar Profil -->
+    <string name="profile_sign_out_desc">Anda perlu masuk lagi untuk mengakses ruang kerja Anda.</string>
+    <string name="profile_delete_account_title">Hapus Akun</string>
+    <string name="profile_delete_account_warning">Tindakan ini tidak dapat dibatalkan. Semua data Anda akan dihapus secara permanen.</string>
+    <string name="profile_delete_bullet_notes">Semua catatan, tugas, dan acara akan dihapus</string>
+    <string name="profile_delete_bullet_account">Akun dan langganan Anda akan dibatalkan</string>
+    <string name="profile_delete_bullet_irreversible">Ini tidak dapat dibatalkan</string>
+    <string name="profile_section_actions">Tindakan</string>
+    <string name="profile_notification_preferences">Preferensi notifikasi</string>
+    <string name="profile_section_account_subscription">Akun &amp; Langganan</string>
+    <string name="profile_storage">Penyimpanan</string>
+    <string name="profile_connected_devices">Perangkat yang terhubung</string>
+    <string name="profile_section_danger_zone">Zona Bahaya</string>
+    <string name="profile_delete_subtitle">Hapus semua data secara permanen</string>
+    <string name="profile_stat_ai_chats">Chat AI</string>
+    <string name="profile_recent_activity">Aktivitas terbaru</string>
+    <string name="profile_productivity_trend">Tren produktivitas</string>
+    <string name="profile_this_week_percent">%1$d%% minggu ini</string>
+    <string name="profile_local_mode">Mode Lokal</string>
+    <string name="profile_local_mode_desc">Anda menggunakan ProductivityX tanpa akun.\nData Anda tetap hanya di perangkat ini.</string>
+    <string name="profile_theme_pro">Tema Pro</string>
+
+    <!-- Layar Edit Profil -->
+    <string name="pref_section_locale">Lokal</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- Layar Ubah Kata Sandi -->
+    <string name="password_change_success">Kata sandi berhasil diubah</string>
+    <string name="password_confirm_new">Konfirmasi kata sandi baru</string>
+    <string name="password_update">Perbarui Kata Sandi</string>
+
+    <!-- Layar Preferensi (hasil pencarian) -->
+    <string name="pref_search_pomodoro">Timer Pomodoro</string>
+    <string name="pref_search_appearance">Tampilan &amp; Tema</string>
+    <string name="pref_search_notifications">Notifikasi &amp; Jam Tenang</string>
+    <string name="pref_search_display">Tampilan &amp; Ukuran Font</string>
+    <string name="pref_search_feature_flags">Fitur Beta</string>
+
+    <!-- Layar FAQ -->
+    <string name="faq_q_what_is">Apa itu ProductivityX?</string>
+    <string name="faq_a_what_is">ProductivityX adalah aplikasi ruang kerja terpadu yang menggabungkan catatan, tugas, kalender, timer fokus Pomodoro, dan asisten AI dalam satu tempat.</string>
+    <string name="faq_q_data_secure">Apakah data saya aman?</string>
+    <string name="faq_a_data_secure">Ya. Data Anda dienkripsi saat dalam perjalanan dan saat disimpan. Anda juga dapat mengaktifkan mode lokal saja untuk menyimpan semua data di perangkat Anda tanpa sinkronisasi cloud.</string>
+    <string name="faq_q_ai_work">Bagaimana cara kerja asisten AI?</string>
+    <string name="faq_a_ai_work">Asisten AI dapat melihat tugas aktif, acara mendatang, dan catatan terbaru untuk memberikan jawaban yang kontekstual. Asisten ini menggunakan model Google Gemini.</string>
+    <string name="faq_q_offline">Bisakah saya menggunakan ProductivityX secara offline?</string>
+    <string name="faq_a_offline">Ya. Anda dapat mengaktifkan mode offline di pengaturan. Perubahan akan disinkronkan secara otomatis saat Anda terhubung ke internet.</string>
+    <string name="faq_q_export">Bagaimana cara mengekspor data saya?</string>
+    <string name="faq_a_export">Buka Pengaturan &gt; Data &amp; Sinkronisasi dan ketuk \'Ekspor data\'. Catatan, tugas, acara, dan pengaturan Anda akan disimpan sebagai file cadangan terenkripsi.</string>
+    <string name="faq_q_pomodoro">Bagaimana cara kerja timer Pomodoro?</string>
+    <string name="faq_a_pomodoro">Timer Pomodoro bergantian antara sesi fokus dan istirahat. Anda dapat menyesuaikan durasi, memulai istirahat otomatis, dan menautkan tugas untuk melacak waktu fokus per tugas.</string>
+    <string name="faq_q_language">Bisakah saya mengubah bahasa aplikasi?</string>
+    <string name="faq_a_language">Ya. Buka profil Anda dan ketuk pengaturan bahasa. ProductivityX mendukung banyak bahasa termasuk Inggris, Prancis, Arab, Spanyol, Jerman, dan lainnya.</string>
+    <string name="faq_q_password">Bagaimana cara mengatur ulang kata sandi saya?</string>
+    <string name="faq_a_password">Ketuk \'Lupa kata sandi\' di layar masuk. Tautan pengaturan ulang akan dikirim ke alamat email Anda.</string>
+    <string name="faq_q_delete_account">Apa yang terjadi ketika saya menghapus akun saya?</string>
+    <string name="faq_a_delete_account">Semua data Anda (catatan, tugas, acara, percakapan) akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="faq_q_contact">Bagaimana cara menghubungi dukungan?</string>
+    <string name="faq_a_contact">Anda dapat menghubungi kami di productivityx7@gmail.com atau gunakan opsi \'Kirim umpan balik\' di Pengaturan &gt; Bantuan &amp; Dukungan.</string>
+
+    <!-- Layar Lisensi -->
+    <string name="licenses_intro">ProductivityX menggunakan pustaka sumber terbuka berikut:</string>
+
+    <!-- Layar Kredit -->
+    <string name="credits_role_development">Pengembangan</string>
+    <string name="credits_role_design">Desain</string>
+    <string name="credits_role_ai_integration">Integrasi AI</string>
+    <string name="credits_role_icons">Ikon</string>
+    <string name="credits_built_with">Dibuat dengan ❤️ menggunakan Kotlin &amp; Jetpack Compose</string>
+    <string name="credits_copyright">© 2026 ProductivityX. Hak cipta dilindungi.</string>
+
+    <!-- Layar Edit Profil — tambahan -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- Pencarian Preferensi — tambahan -->
+    <string name="pref_search_data_sync">Data &amp; Sinkronisasi</string>
+    <string name="pref_search_ai">Asisten AI</string>
+    <string name="pref_search_about">Tentang</string>
+    <string name="pref_search_help">Bantuan &amp; Dukungan</string>
+
+    <string name="language_zh_rCN">Mandarin</string>
+    <string name="language_sw">Swahili</string>
+    <string name="language_th">Thai</string>
+    <string name="language_bn">Bengali</string>
+    <string name="language_ur">Urdu</string>
+
+</resources>

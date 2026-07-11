@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">Ваше рабочее пространство. Объединённое.</string>
+    <string name="app_description">Заметки, задачи, календарь, таймер концентрации и ИИ-помощник, который действительно понимает ваш день.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="export">Экспорт</string>
+    <string name="note_info">Информация о заметке</string>
+    <string name="show_metadata">Показать метаданные</string>
+    <string name="focus_mode">Режим концентрации</string>
+    <string name="reset_zoom">Сбросить масштаб</string>
+    <string name="exit_focus_mode">Выйти из режима концентрации</string>
+    <string name="fullscreen_image">Изображение на весь экран</string>
+    <string name="more">Ещё</string>
+    <string name="add_tag">Добавить тег</string>
+    <string name="move_to_trash">Переместить в корзину</string>
+    <string name="move_to_trash_confirm">Переместить в корзину?</string>
+    <string name="edit_mode">Режим редактирования</string>
+    <string name="preview_mode">Режим предварительного просмотра</string>
+    <string name="words">Слова</string>
+    <string name="characters">Символы</string>
+    <string name="reading_time">Время чтения</string>
+    <string name="export_as_pdf">Экспорт в PDF</string>
+    <string name="print">Печать</string>
+    <string name="move_to_trash_message">Эта заметка будет перемещена в корзину. Вы можете восстановить её в течение 30 дней.</string>
+    <string name="export_as_pdf_subtitle">Сохранить копию заметки в PDF</string>
+    <string name="share_subtitle">Поделиться через другие приложения</string>
+    <string name="print_subtitle">Распечатать эту заметку</string>
+    <string name="untitled">Без названия</string>
+    <string name="last_saved">Последнее сохранение: %s</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="done">Готово</string>
+    <string name="back">Назад</string>
+    <string name="close">Закрыть</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="discard">Отменить</string>
+    <string name="retry">Повторить</string>
+    <string name="skip">Пропустить</string>
+    <string name="next">Далее</string>
+    <string name="previous">Назад</string>
+    <string name="continue_action">Продолжить</string>
+    <string name="finish">Завершить</string>
+    <string name="apply">Применить</string>
+    <string name="reset">Сбросить</string>
+    <string name="clear">Очистить</string>
+    <string name="search">Поиск</string>
+    <string name="filter">Фильтр</string>
+    <string name="sort">Сортировка</string>
+    <string name="share">Поделиться</string>
+    <string name="copy">Копировать</string>
+    <string name="paste">Вставить</string>
+    <string name="undo">Отменить</string>
+    <string name="redo">Повторить</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="deselect_all">Снять выделение</string>
+    <string name="more_options">Другие параметры</string>
+    <string name="settings">Настройки</string>
+    <string name="help">Справка</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="loading">Загрузка…</string>
+    <string name="refreshing">Обновление…</string>
+    <string name="saving">Сохранение…</string>
+    <string name="deleting">Удаление…</string>
+    <string name="please_wait">Пожалуйста, подождите…</string>
+    <string name="see_all">Смотреть все</string>
+    <string name="show_less">Свернуть</string>
+    <string name="show_more">Развернуть</string>
+    <string name="optional">Необязательно</string>
+    <string name="required">Обязательно</string>
+    <string name="none">Нет</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+    <string name="tomorrow">Завтра</string>
+    <string name="this_week">Эта неделя</string>
+    <string name="last_week">Прошлая неделя</string>
+    <string name="next_week">Следующая неделя</string>
+    <string name="this_month">Этот месяц</string>
+    <string name="all">Все</string>
+    <string name="new_action">Новый</string>
+    <string name="add">Добавить</string>
+    <string name="remove">Удалить</string>
+    <string name="create">Создать</string>
+    <string name="update">Обновить</string>
+    <string name="restore">Восстановить</string>
+    <string name="archive">Архивировать</string>
+    <string name="unarchive">Разархивировать</string>
+    <string name="pin">Закрепить</string>
+    <string name="unpin">Открепить</string>
+    <string name="move">Переместить</string>
+    <string name="rename">Переименовать</string>
+    <string name="duplicate">Дублировать</string>
+    <string name="open">Открыть</string>
+    <string name="view">Просмотр</string>
+    <string name="preview">Предварительный просмотр</string>
+    <string name="expand">Развернуть</string>
+    <string name="collapse">Свернуть</string>
+    <string name="enable">Включить</string>
+    <string name="disable">Выключить</string>
+    <string name="turn_on">Включить</string>
+    <string name="turn_off">Выключить</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="not_now">Не сейчас</string>
+    <string name="got_it">Понятно</string>
+    <string name="learn_more">Узнать больше</string>
+    <string name="send">Отправить</string>
+    <string name="submit">Отправить</string>
+    <string name="upload">Загрузить</string>
+    <string name="download">Скачать</string>
+    <string name="link">Связать</string>
+    <string name="unlink">Разорвать связь</string>
+    <string name="connect">Подключить</string>
+    <string name="disconnect">Отключить</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ОШИБКИ                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">Что-то пошло не так. Пожалуйста, попробуйте снова.</string>
+    <string name="error_network">Нет подключения к интернету. Проверьте сеть и попробуйте снова.</string>
+    <string name="error_timeout">Время ожидания запроса истекло. Пожалуйста, попробуйте снова.</string>
+    <string name="error_server">Ошибка сервера. Пожалуйста, попробуйте позже.</string>
+    <string name="error_not_found">Запрашиваемый элемент не найден.</string>
+    <string name="error_unauthorized">Ваша сессия истекла. Пожалуйста, войдите снова.</string>
+    <string name="error_forbidden">У вас нет прав для выполнения этого действия.</string>
+    <string name="error_validation">Пожалуйста, проверьте форму и исправьте ошибки.</string>
+    <string name="error_unknown">Произошла непредвиденная ошибка.</string>
+    <string name="error_loading">Не удалось загрузить. Нажмите для повтора.</string>
+    <string name="error_saving">Не удалось сохранить. Пожалуйста, попробуйте снова.</string>
+    <string name="error_deleting">Не удалось удалить. Пожалуйста, попробуйте снова.</string>
+    <string name="error_no_data">Нет доступных данных.</string>
+    <string name="error_offline_action">Для этого действия требуется подключение к интернету.</string>
+    <string name="error_conflict">Произошёл конфликт. Пожалуйста, обновите и попробуйте снова.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ОБУЧЕНИЕ                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">Всё в одном месте</string>
+    <string name="onboarding_page1_body">Заметки, задачи и календарь объединены в едином рабочем пространстве.</string>
+    <string name="onboarding_page2_title">Оставайтесь в потоке</string>
+    <string name="onboarding_page2_body">Таймер Pomodoro знает, над чем вы работаете, и автоматически отслеживает ваше время.</string>
+    <string name="onboarding_page3_title">ИИ, который вас понимает</string>
+    <string name="onboarding_page3_body">Ваш помощник видит активные задачи, предстоящие события и недавние заметки перед тем, как ответить.</string>
+    <string name="onboarding_get_started">Начать</string>
+    <string name="onboarding_skip">Пропустить</string>
+    <string name="onboarding_next">Далее</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- АУТЕНТИФИКАЦИЯ — Общее                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">Войти</string>
+    <string name="auth_sign_up">Зарегистрироваться</string>
+    <string name="auth_sign_out">Выйти</string>
+    <string name="auth_log_in">Войти</string>
+    <string name="auth_log_out">Выйти</string>
+    <string name="auth_create_account">Создать аккаунт</string>
+    <string name="auth_already_have_account">Уже есть аккаунт?</string>
+    <string name="auth_skip_login">Продолжить без аккаунта</string>
+    <string name="auth_dont_have_account">Нет аккаунта?</string>
+    <string name="auth_welcome_back">С возвращением</string>
+    <string name="auth_create_your_account">Создайте свой аккаунт</string>
+    <string name="auth_join_productivityx">Присоединяйтесь к ProductivityX</string>
+    <string name="auth_welcome_aboard">Добро пожаловать!</string>
+    <string name="auth_account_created_success">Ваш аккаунт успешно создан</string>
+
+    <!-- АУТЕНТИФИКАЦИЯ — Забыл / Сброс пароля -->
+    <string name="auth_forgot_password">Забыли пароль?</string>
+    <string name="auth_forgot_password_title">Забыли пароль?</string>
+    <string name="auth_forgot_password_body">Введите адрес электронной почты, и мы отправим вам ссылку для сброса пароля.</string>
+    <string name="auth_forgot_password_success_title">Ссылка для сброса отправлена</string>
+    <string name="auth_forgot_password_success_body">Если этот адрес существует, ссылка для сброса отправлена. Проверьте входящие.</string>
+
+    <string name="auth_reset_password_title">Сбросьте пароль</string>
+    <string name="auth_reset_password_body">Введите новый пароль для аккаунта.</string>
+    <string name="auth_reset_password_action">Сбросить пароль</string>
+    <string name="auth_reset_password_success_title">Пароль сброшен!</string>
+    <string name="auth_reset_password_success_body">Ваш пароль был изменён. Войдите с новым паролем.</string>
+
+    <!-- АУТЕНТИФИКАЦИЯ — Подтверждение email / OTP -->
+    <string name="auth_verify_email_title">Проверьте электронную почту</string>
+    <string name="auth_verify_email_body">Мы отправили 6-значный код на %1$s</string>
+    <string name="auth_verify">Подтвердить</string>
+    <string name="auth_resend_code">Отправить код повторно</string>
+    <string name="auth_resend_cooldown">Повторная отправка через %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПОЛЯ ФОРМЫ                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">Адрес электронной почты</string>
+    <string name="field_email_hint">Введите электронную почту</string>
+    <string name="field_password">Пароль</string>
+    <string name="field_password_hint">Введите пароль</string>
+    <string name="field_password_new">Новый пароль</string>
+    <string name="field_password_new_hint">Введите новый пароль</string>
+    <string name="field_password_confirm">Подтвердите пароль</string>
+    <string name="field_password_confirm_hint">Введите пароль ещё раз</string>
+    <string name="field_password_current">Текущий пароль</string>
+    <string name="field_password_current_hint">Введите текущий пароль</string>
+    <string name="field_username">Имя пользователя</string>
+    <string name="field_username_hint">Выберите имя пользователя</string>
+    <string name="field_first_name">Имя</string>
+    <string name="field_first_name_hint">Введите имя</string>
+    <string name="field_last_name">Фамилия</string>
+    <string name="field_last_name_hint">Введите фамилию</string>
+    <string name="field_phone">Номер телефона</string>
+    <string name="field_phone_hint">Введите номер телефона</string>
+    <string name="field_birth_date">Дата рождения</string>
+    <string name="field_birth_date_hint">Выберите дату рождения</string>
+    <string name="field_identifier">Электронная почта, имя пользователя или телефон</string>
+    <string name="field_identifier_hint">Введите электронную почту, имя пользователя или телефон</string>
+    <string name="field_gender">Пол</string>
+    <string name="field_bio">О себе</string>
+    <string name="field_bio_hint">Расскажите немного о себе</string>
+    <string name="field_timezone">Часовой пояс</string>
+    <string name="field_language">Язык</string>
+    <string name="field_theme">Тема</string>
+    <string name="field_avatar">Фото профиля</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПАРОЛЬ                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">Показать пароль</string>
+    <string name="password_hide">Скрыть пароль</string>
+    <string name="password_strength_weak">Слабый</string>
+    <string name="password_strength_fair">Нормальный</string>
+    <string name="password_strength_good">Хороший</string>
+    <string name="password_strength_strong">Надёжный</string>
+    <string name="password_requirement_length">Не менее 8 символов</string>
+    <string name="password_requirement_uppercase">Одна заглавная буква</string>
+    <string name="password_requirement_lowercase">Одна строчная буква</string>
+    <string name="password_requirement_number">Одна цифра</string>
+    <string name="password_requirement_special">Один специальный символ</string>
+    <string name="password_forgot">Забыли пароль?</string>
+    <string name="password_reset">Сбросить пароль</string>
+    <string name="password_change">Изменить пароль</string>
+    <string name="password_mismatch">Пароли не совпадают.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ШАГИ РЕГИСТРАЦИИ                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">Аккаунт</string>
+    <string name="register_step_profile">Профиль</string>
+    <string name="register_step_preferences">Настройки</string>
+    <string name="register_step_verify">Подтверждение</string>
+    <string name="register_step_indicator">Шаг %1$d из %2$d</string>
+    <string name="register_change_photo">Изменить фото</string>
+    <string name="register_profile_photo_hint">Нажмите, чтобы добавить фото профиля</string>
+    <string name="register_preferences_caption">Вы можете изменить это в любой момент в настройках.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ТЕМА / ПРОФИЛЬ                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">Тёмная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_system">Системная</string>
+
+    <!-- Используется в RegisterScreen Шаг 2 -->
+    <string name="profile_theme">Тема</string>
+    <string name="profile_theme_hint">Вы можете изменить это в любой момент в настройках.</string>
+
+    <!-- Пол -->
+    <string name="gender_male">Мужской</string>
+    <string name="gender_female">Женский</string>
+    <string name="gender_prefer_not_to_say">Предпочитаю не указывать</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- НАВИГАЦИЯ                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_notes">Заметки</string>
+    <string name="nav_tasks">Задачи</string>
+    <string name="nav_calendar">Календарь</string>
+    <string name="nav_ai">ИИ</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">Поиск</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_trash">Корзина</string>
+    <string name="nav_history">История</string>
+    <string name="nav_events">События</string>
+    <string name="tab_dashboard">Панель управления</string>
+    <string name="tab_events">События</string>
+    <string name="tab_dashboard_desc">Обзор вашего дня</string>
+    <string name="tab_notes_desc">Фиксируйте свои мысли</string>
+    <string name="tab_tasks_desc">Выполняйте задачи</string>
+    <string name="tab_events_desc">Ваше расписание на виду</string>
+    <string name="tab_pomodoro_desc">Оставайтесь в потоке</string>
+    <string name="cd_notifications">Уведомления</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ГЛАВНАЯ                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">Доброе утро, %1$s 👋</string>
+    <string name="home_greeting_afternoon">Добрый день, %1$s 👋</string>
+    <string name="home_greeting_evening">Добрый вечер, %1$s 👋</string>
+    <string name="home_greeting_night">Спокойной ночи, %1$s 👋</string>
+    <string name="home_quick_add">Быстрое добавление</string>
+    <string name="home_due_today">Срок сегодня</string>
+    <string name="home_overdue">Просрочено</string>
+    <string name="home_this_week">На этой неделе</string>
+    <string name="home_total_notes">Всего заметок</string>
+    <string name="home_focus_time">Сегодняшняя концентрация</string>
+    <string name="home_focus_minutes">Focus time</string>
+    <string name="home_upcoming_events">Предстоящие события</string>
+    <string name="home_recent_notes">Недавние заметки</string>
+    <string name="home_no_tasks_today">Нет задач на сегодня.</string>
+    <string name="home_no_events">Нет предстоящих событий.</string>
+    <string name="home_no_notes">Нет недавних заметок.</string>
+    <string name="home_sessions_today">Сессий сегодня</string>
+    <string name="home_completed_tasks">Задач выполнено</string>
+    <string name="home_start_focus">Начать концентрацию</string>
+    <string name="home_tasks_completed">задач выполнено</string>
+    <string name="home_events_upcoming">событий предстоит</string>
+    <string name="home_quick_actions_cd">Быстрые действия</string>
+    <string name="home_quick_action_new_note">Новая заметка</string>
+    <string name="home_quick_action_new_task">Новая задача</string>
+    <string name="home_quick_action_calculator">Калькулятор</string>
+    <string name="home_quick_action_start_timer">Запустить таймер</string>
+    <string name="home_quick_action_ai_chat">Чат с ИИ</string>
+    <string name="home_error_something_wrong">Что-то пошло не так</string>
+    <string name="home_opening_new_note">Открытие новой заметки…</string>
+    <string name="home_opening_new_task">Открытие новой задачи…</string>
+    <string name="home_starting_timer">Запуск таймера…</string>
+    <string name="home_opening_ai_chat">Открытие чата с ИИ…</string>
+    <string name="home_opening_calculator">Открытие калькулятора…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ЗАМЕТКИ                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">Заметки</string>
+    <string name="notes_new">Новая заметка</string>
+    <string name="notes_search_hint">Поиск заметок…</string>
+    <string name="notes_filter_all">Все</string>
+    <string name="notes_filter_pinned">Закреплённые</string>
+    <string name="notes_empty_title">Заметок пока нет</string>
+    <string name="notes_empty_body">Начните писать свою первую заметку.</string>
+    <string name="notes_empty_action">Создать заметку</string>
+    <string name="notes_pinned_section">Закреплённые</string>
+    <string name="notes_all_section">Все заметки</string>
+    <string name="notes_untitled">Без названия</string>
+    <string name="notes_word_count">%1$d слов</string>
+    <string name="notes_reading_time">%1$d мин чтения</string>
+    <string name="notes_pin_success">Заметка закреплена.</string>
+    <string name="notes_unpin_success">Заметка откреплена.</string>
+    <string name="notes_delete_confirm_title">Переместить в корзину?</string>
+    <string name="notes_delete_confirm_body">Эта заметка будет перемещена в корзину и окончательно удалена через 30 дней.</string>
+    <string name="notes_delete_success">Заметка перемещена в корзину.</string>
+    <string name="notes_restore_success">Заметка восстановлена.</string>
+    <string name="notes_hard_delete_confirm_title">Удалить безвозвратно?</string>
+    <string name="notes_hard_delete_confirm_body">Эта заметка будет удалена безвозвратно и не может быть восстановлена.</string>
+    <string name="notes_hard_delete_success">Заметка удалена безвозвратно.</string>
+    <string name="notes_create_success">Заметка создана.</string>
+    <string name="notes_update_success">Заметка сохранена.</string>
+    <string name="notes_autosave">Автосохранение</string>
+    <string name="notes_saving">Сохранение…</string>
+    <string name="notes_copy_link">Копировать ссылку</string>
+    <string name="notes_link_copied">Ссылка скопирована.</string>
+    <string name="notes_link_task">Привязать задачу</string>
+    <string name="notes_unlink_task">Отвязать задачу</string>
+    <string name="notes_task_linked">Привязано к: %1$s</string>
+    <string name="notes_add_tag">Добавить тег</string>
+    <string name="notes_no_tags">Нет тегов</string>
+    <string name="notes_start_writing">Начните писать…</string>
+    <string name="notes_title_hint">Заголовок</string>
+    <string name="notes_trash_empty_title">Корзина пуста</string>
+    <string name="notes_trash_empty_body">Заметки в корзине удаляются безвозвратно через 30 дней.</string>
+    <string name="notes_trash_empty_all">Очистить корзину</string>
+    <string name="notes_trash_empty_all_confirm_title">Очистить корзину?</string>
+    <string name="notes_trash_empty_all_confirm_body">Все заметки в корзине будут удалены безвозвратно.</string>
+    <string name="notes_in_trash">%1$d заметка в корзине</string>
+    <string name="notes_in_trash_plural">%1$d заметок в корзине</string>
+    <string name="notes_voice_memo">Голосовое сообщение</string>
+    <string name="notes_selected_count">%1$d выбрано</string>
+    <string name="notes_search_no_results">Нет заметок, соответствующих «%1$s»</string>
+    <string name="notes_links_title">Ссылки заметки</string>
+    <string name="notes_links_empty">Нет связанных заметок</string>
+    <string name="trash_days_left">Осталось %1$d дн.</string>
+    <string name="trash_expiring_soon">Скоро истекает</string>
+    <string name="trash_delete_permanently">Удалить безвозвратно</string>
+    <string name="trash_empty_confirm_body">%1$s будет удалена безвозвратно и не может быть восстановлена.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- РЕДАКТОР                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">Жирный</string>
+    <string name="editor_format_italic">Курсив</string>
+    <string name="editor_format_heading">Заголовок</string>
+    <string name="editor_format_list_bullet">Маркированный список</string>
+    <string name="editor_format_list_numbered">Нумерованный список</string>
+    <string name="editor_format_code">Код</string>
+    <string name="editor_format_quote">Цитата</string>
+    <string name="editor_format_link">Вставить ссылку</string>
+    <string name="editor_insert_link_title">Вставить ссылку</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">Отображаемый текст</string>
+    <string name="editor_format_underline">Подчёркивание</string>
+    <string name="editor_format_strikethrough">Зачёркивание</string>
+    <string name="editor_format_heading1">Заголовок 1</string>
+    <string name="editor_format_heading2">Заголовок 2</string>
+    <string name="editor_format_heading3">Заголовок 3</string>
+    <string name="editor_format_code_block">Блок кода</string>
+    <string name="editor_format_divider">Разделитель</string>
+    <string name="editor_format_image">Добавить изображение</string>
+    <string name="editor_format_table">Вставить таблицу</string>
+    <string name="editor_format_highlight">Выделение</string>
+    <string name="editor_highlight_color">Цвет выделения</string>
+    <string name="editor_highlight_default">Выделение по умолчанию</string>
+    <string name="editor_text_color">Цвет текста</string>
+    <string name="editor_font_size">Размер шрифта</string>
+    <string name="editor_start_writing">Начните писать…</string>
+    <string name="editor_saved">Сохранено</string>
+    <string name="editor_share_note">Поделиться заметкой</string>
+    <string name="editor_pdf_filename">Заметка</string>
+    <string name="editor_content_hint">Начните писать…</string>
+    <string name="editor_insert_table_title">Вставить таблицу</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">Строка заголовка</string>
+    <string name="editor_table_header_template">Заголовок %1$d</string>
+    <string name="editor_table_cell_template">Ячейка</string>
+    <string name="editor_insert_table_btn">Вставить</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ТЕГИ                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">Теги</string>
+    <string name="tags_new">Новый тег</string>
+    <string name="tags_name_hint">Название тега</string>
+    <string name="tags_color">Цвет</string>
+    <string name="tags_create_success">Тег создан.</string>
+    <string name="tags_update_success">Тег обновлён.</string>
+    <string name="tags_delete_success">Тег удалён.</string>
+    <string name="tags_delete_confirm_title">Удалить тег?</string>
+    <string name="tags_delete_confirm_body">Этот тег будет удалён из всех заметок, которые его используют.</string>
+    <string name="tags_already_exists">Тег с таким названием уже существует.</string>
+    <string name="tags_empty_title">Тегов пока нет</string>
+    <string name="tags_empty_body">Создайте теги для организации заметок.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ЗАДАЧИ                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">Задачи</string>
+    <string name="tasks_new">Новая задача</string>
+    <string name="tasks_search_hint">Поиск или фильтр задач…</string>
+    <string name="tasks_tab_all">Все</string>
+    <string name="tasks_tab_today">Сегодня</string>
+    <string name="tasks_tab_upcoming">Предстоящие</string>
+    <string name="tasks_tab_completed">Выполненные</string>
+    <string name="tasks_view_list">Список</string>
+    <string name="tasks_empty_title">Задач здесь нет</string>
+    <string name="tasks_empty_body">Создайте первую задачу, чтобы начать.</string>
+    <string name="tasks_empty_action">Создать задачу</string>
+    <string name="tasks_empty_today">Нет задач на сегодня. Наслаждайтесь днём!</string>
+    <string name="tasks_empty_upcoming">Нет предстоящих задач.</string>
+    <string name="tasks_empty_completed">Пока нет выполненных задач.</string>
+    <string name="tasks_empty_filter">Нет задач, соответствующих этому фильтру.</string>
+    <string name="tasks_field_title">Название задачи</string>
+    <string name="tasks_field_title_hint">Что нужно сделать?</string>
+    <string name="tasks_field_description">Описание</string>
+    <string name="tasks_field_description_hint">Добавьте подробности…</string>
+    <string name="tasks_field_due_date">Срок</string>
+    <string name="tasks_field_due_time">Время</string>
+    <string name="tasks_field_priority">Приоритет</string>
+    <string name="tasks_field_status">Статус</string>
+    <string name="tasks_field_reminder">Напоминание</string>
+    <string name="tasks_field_estimated_time">Примерное время</string>
+    <string name="tasks_field_actual_time">Фактическое время</string>
+    <string name="tasks_field_link_event">Привязать событие</string>
+    <string name="tasks_field_subtasks">Подзадачи</string>
+    <string name="tasks_add_subtask">Добавить подзадачу</string>
+    <string name="tasks_subtask_count">%1$d подзадача</string>
+    <string name="tasks_subtask_count_plural">%1$d подзадач</string>
+    <string name="tasks_subtask_completed">%1$d из %2$d выполнено</string>
+    <string name="tasks_pomodoro_sessions">Сессии концентрации</string>
+    <string name="tasks_no_due_date">Без срока</string>
+    <string name="tasks_no_due_time">Время не установлено</string>
+    <string name="tasks_no_reminder">Без напоминания</string>
+    <string name="tasks_no_estimated">Без оценки</string>
+    <string name="tasks_create_success">Задача создана.</string>
+    <string name="tasks_update_success">Задача обновлена.</string>
+    <string name="tasks_delete_success">Задача удалена.</string>
+    <string name="tasks_restore_success">Задача восстановлена.</string>
+    <string name="tasks_complete_success">Задача выполнена.</string>
+    <string name="tasks_reorder_success">Задачи переупорядочены.</string>
+    <string name="tasks_status_updated">Статус обновлён.</string>
+    <string name="tasks_delete_confirm_title">Удалить задачу?</string>
+    <string name="tasks_delete_confirm_body">Эта задача будет удалена.</string>
+    <string name="tasks_minutes">%1$d мин</string>
+    <string name="tasks_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="tasks_swipe_complete">Выполнено</string>
+    <string name="tasks_swipe_delete">Удалить</string>
+    <string name="tasks_sort_due_date">Срок</string>
+    <string name="tasks_sort_priority">Приоритет</string>
+    <string name="tasks_sort_created">Дата создания</string>
+    <string name="tasks_sort_title">Название</string>
+    <string name="tasks_filter_priority">Фильтр по приоритету</string>
+    <string name="tasks_filter_status">Фильтр по статусу</string>
+    <string name="tasks_filter_due">Фильтр по сроку</string>
+    <string name="tasks_overdue_label">Просрочено</string>
+    <string name="tasks_due_today_label">Срок сегодня</string>
+    <string name="tasks_due_tomorrow_label">Срок завтра</string>
+
+    <!-- Приоритет / Статус -->
+    <string name="priority_low">Низкий</string>
+    <string name="priority_medium">Средний</string>
+    <string name="priority_high">Высокий</string>
+    <string name="priority_urgent">Срочно</string>
+
+    <string name="status_todo">К выполнению</string>
+    <string name="status_in_progress">В работе</string>
+    <string name="status_on_hold">На паузе</string>
+    <string name="status_done">Готово</string>
+    <string name="status_cancelled">Отменено</string>
+
+    <!-- Kanban -->
+    <string name="kanban_column_todo">К выполнению</string>
+    <string name="kanban_column_in_progress">В работе</string>
+    <string name="kanban_column_on_hold">На паузе</string>
+    <string name="kanban_column_done">Готово</string>
+    <string name="kanban_add_task">Добавить задачу</string>
+    <string name="kanban_drag_hint">Удерживайте и перетаскивайте для перемещения</string>
+    <string name="kanban_column_empty">Задач здесь нет</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- КАЛЕНДАРЬ                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">Календарь</string>
+    <string name="calendar_view_week">Неделя</string>
+    <string name="calendar_view_month">Месяц</string>
+    <string name="calendar_today">Сегодня</string>
+    <string name="calendar_new_event">Новое событие</string>
+    <string name="calendar_no_events">Нет событий</string>
+    <string name="calendar_all_day">Весь день</string>
+    <string name="calendar_recurring">Повторяющееся</string>
+    <string name="calendar_events_count">%1$d событие</string>
+    <string name="calendar_events_count_plural">%1$d событий</string>
+    <string name="calendar_more_events">+ещё %1$d</string>
+    <string name="calendar_week_header">Неделя %1$s</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- СОБЫТИЯ                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">Новое событие</string>
+    <string name="event_edit_title">Редактирование события</string>
+    <string name="event_field_title">Название события</string>
+    <string name="event_field_title_hint">Какое событие?</string>
+    <string name="event_field_description">Описание</string>
+    <string name="event_field_description_hint">Добавьте заметки об этом событии…</string>
+    <string name="event_field_location">Место</string>
+    <string name="event_field_location_hint">Добавьте место</string>
+    <string name="event_field_start">Начало</string>
+    <string name="event_field_end">Окончание</string>
+    <string name="event_field_all_day">Событие на весь день</string>
+    <string name="event_field_color">Цвет</string>
+    <string name="event_field_recurrence">Повторение</string>
+    <string name="event_field_reminder">Напоминание</string>
+    <string name="event_field_link_task">Привязать задачу</string>
+    <string name="event_attendees">Участники</string>
+    <string name="event_meeting_link">Ссылка на встречу</string>
+    <string name="event_travel_time">Время в пути</string>
+    <string name="event_quick_templates">Быстрые шаблоны</string>
+    <string name="event_suggestions">Предложения</string>
+    <string name="event_select_time">Выбрать время</string>
+    <string name="event_conflict">Временной конфликт</string>
+    <string name="event_conflict_with">Временной конфликт с %d событием(ями)</string>
+    <string name="event_add_attendee_hint">Адрес электронной почты</string>
+    <string name="event_enter_location_hint">Введите место</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">Минуты</string>
+    <string name="event_add_location">Добавить место</string>
+    <string name="event_add_description">Добавить описание</string>
+    <string name="event_add_attendees">Добавить участников</string>
+    <string name="event_add_link">Добавить ссылку</string>
+    <string name="event_add_estimate">Добавить оценку</string>
+    <string name="event_attendee_count">%d участник(ов)</string>
+    <string name="event_reminder_multiple">Несколько (%d)</string>
+    <string name="event_speak_prompt">Произнесите название события</string>
+    <string name="task_delete_confirm">Удалить задачу?</string>
+    <string name="task_delete_message">Эта задача будет перемещена в корзину.</string>
+    <string name="task_not_found">Задача не найдена</string>
+    <string name="task_overdue">Просрочено</string>
+    <string name="task_due_date">Срок</string>
+    <string name="task_due_time">Время</string>
+    <string name="task_reminder">Напоминание</string>
+    <string name="task_reminder_set">Установить</string>
+    <string name="task_time">Время</string>
+    <string name="task_assignee">Ответственный</string>
+    <string name="task_assigned">Назначено</string>
+    <string name="task_completed">Выполнено</string>
+    <string name="task_priority">Приоритет</string>
+    <string name="task_subtasks">Подзадачи</string>
+    <string name="task_activity">Активность</string>
+    <string name="task_hide">Скрыть</string>
+    <string name="task_events">%d событий</string>
+    <string name="task_add_description">Добавить описание</string>
+    <string name="task_add_subtask">Добавить подзадачу</string>
+    <string name="task_add_subtask_placeholder">Добавить подзадачу…</string>
+    <string name="priority_low_importance">Низкая важность</string>
+    <string name="priority_high_importance">Высокая важность</string>
+    <string name="priority_not_urgent">Не срочно</string>
+    <string name="priority_urgent_low">Срочно + Низкая важность</string>
+    <string name="priority_urgent_high">Срочно + Высокая важность</string>
+    <string name="priority_not_urgent_low">Не срочно + Низкая важность</string>
+    <string name="priority_not_urgent_high">Не срочно + Высокая важность</string>
+    <string name="task_title_placeholder">Название задачи</string>
+    <string name="task_tags">Теги</string>
+    <string name="task_add_tag">Добавить тег</string>
+    <string name="task_set_date">Установить дату</string>
+    <string name="task_set_time">Установить время</string>
+    <string name="task_remind_before">Напомнить за</string>
+    <string name="task_repeat">Повторять</string>
+    <string name="task_never">Никогда</string>
+    <string name="task_estimated_time">Примерное время</string>
+    <string name="task_status">Статус</string>
+    <string name="task_update">Обновить</string>
+    <string name="task_create">Создать</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">Слабый</string>
+    <string name="password_fair">Нормальный</string>
+    <string name="password_good">Хороший</string>
+    <string name="password_strong">Надёжный</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">мин</string>
+    <string name="cd_recurring">Повторяющееся</string>
+    <string name="empty_tasks_list">Задач пока нет</string>
+    <string name="empty_tasks_list_hint">Нажмите +, чтобы создать первую задачу</string>
+    <string name="empty_tasks_kanban">Задач на доске нет</string>
+    <string name="empty_tasks_kanban_hint">Добавьте задачи, чтобы начать</string>
+    <string name="empty_tasks_calendar">Нет задач на этот день</string>
+    <string name="empty_tasks_calendar_hint">Выберите другой день или добавьте задачу</string>
+    <string name="empty_tasks_timeline">Нет задач за этот период</string>
+    <string name="empty_tasks_timeline_hint">Настройте таймлайн или добавьте задачи</string>
+
+    <!-- Настройки -->
+    <string name="pref_section_account">Аккаунт</string>
+    <string name="pref_section_appearance">Внешний вид</string>
+    <string name="pref_section_notifications">Уведомления</string>
+    <string name="pref_section_data_sync">Данные и синхронизация</string>
+    <string name="pref_section_beta">Бета-функции</string>
+    <string name="pref_section_about">О приложении</string>
+    <string name="pref_section_help">Справка и поддержка</string>
+    <string name="pref_search_placeholder">Поиск настроек…</string>
+    <string name="pref_no_results">Результаты для «%s» не найдены</string>
+    <string name="pref_theme">Тема</string>
+    <string name="pref_local_only_mode">Только локальный режим</string>
+    <string name="pref_local_only_mode_desc">Хранить все данные на этом устройстве</string>
+    <string name="pref_subscription">Подписка</string>
+    <string name="pref_free_plan">Бесплатный план</string>
+    <string name="pref_free">Бесплатно</string>
+    <string name="pref_font_family">Семейство шрифта</string>
+    <string name="pref_font_size">Размер шрифта</string>
+    <string name="pref_density">Плотность</string>
+    <string name="pref_haptic_feedback">Тактильная отдача</string>
+    <string name="pref_haptic_feedback_desc">Вибрация при взаимодействии</string>
+    <string name="pref_quiet_hours">Тихие часы</string>
+    <string name="pref_quiet_hours_start">Начало</string>
+    <string name="pref_quiet_hours_end">Окончание</string>
+    <string name="pref_auto_sync">Автосинхронизация</string>
+    <string name="pref_auto_sync_desc">Автоматически синхронизировать данные при подключении</string>
+    <string name="pref_offline_mode">Офлайн-режим</string>
+    <string name="pref_offline_mode_desc">Работать без подключения к интернету</string>
+    <string name="pref_export_data">Экспорт данных</string>
+    <string name="pref_export_data_desc">Сохранить резервную копию всех данных</string>
+    <string name="pref_import_data">Импорт данных</string>
+    <string name="pref_import_data_desc">Восстановить данные из файла резервной копии</string>
+    <string name="pref_version">Версия</string>
+    <string name="pref_version_value">1.2.0 (сборка 42)</string>
+    <string name="pref_latest">Последняя</string>
+    <string name="pref_licenses">Лицензии</string>
+    <string name="pref_licenses_desc">Библиотеки с открытым исходным кодом</string>
+    <string name="pref_credits">Авторы</string>
+    <string name="pref_terms">Условия использования</string>
+    <string name="pref_privacy">Политика конфиденциальности</string>
+    <string name="pref_faq">Часто задаваемые вопросы</string>
+    <string name="pref_faq_desc">Часто задаваемые вопросы</string>
+    <string name="pref_contact">Свяжитесь с нами</string>
+    <string name="pref_contact_desc">Свяжитесь с нашей командой</string>
+    <string name="pref_feedback">Отправить отзыв</string>
+    <string name="pref_feedback_desc">Помогите нам улучшить ProductivityX</string>
+    <string name="pref_feedback_subject">Отзыв о ProductivityX</string>
+    <string name="pref_select_hour">Выбрать %s час</string>
+    <string name="pref_settings">Настройки</string>
+    <string name="pref_close">Закрыть</string>
+    <string name="pref_enabled">Включено</string>
+    <string name="pref_disabled">Выключено</string>
+    <string name="pref_theme_dark">Тёмная</string>
+    <string name="pref_theme_light">Светлая</string>
+    <string name="pref_theme_system">Системная</string>
+    <string name="pref_theme_ocean">Океан</string>
+    <string name="pref_theme_amber">Янтарь</string>
+    <string name="pref_theme_forest">Лес</string>
+    <string name="pref_theme_rose">Роза</string>
+    <string name="pref_theme_midnight">Полночь</string>
+    <string name="pref_theme_dynamic">Динамическая</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">Системный</string>
+    <string name="pref_font_serif">С засечками</string>
+    <string name="pref_font_mono">Моноширинный</string>
+    <string name="pref_density_compact">Компактный</string>
+    <string name="pref_density_comfortable">Комфортный</string>
+    <string name="pref_density_spacious">Просторный</string>
+    <string name="pref_view_list">Список</string>
+    <string name="pref_view_kanban">Kanban</string>
+    <string name="pref_sort_due">Срок</string>
+    <string name="pref_sort_priority">Приоритет</string>
+    <string name="pref_sort_created">Дата создания</string>
+    <string name="pref_calendar_week">Неделя</string>
+    <string name="pref_calendar_month">Месяц</string>
+    <string name="pref_week_mon">Пн</string>
+    <string name="pref_week_sun">Вс</string>
+    <string name="pref_week_sat">Сб</string>
+    <string name="pref_ai_flash">Flash</string>
+    <string name="pref_ai_pro">Pro</string>
+    <string name="minute_abbrev">мин</string>
+
+    <string name="event_recurrence_none">Не повторять</string>
+    <string name="event_recurrence_daily">Ежедневно</string>
+    <string name="event_recurrence_weekly">Еженедельно</string>
+    <string name="event_recurrence_monthly">Ежемесячно</string>
+    <string name="event_recurrence_yearly">Ежегодно</string>
+    <string name="event_recurrence_custom">Пользовательский</string>
+    <string name="event_recurrence_weekdays">По будням (Пн–Пт)</string>
+    <string name="event_recurrence_end_date">Заканчивается</string>
+    <string name="event_recurrence_end_never">Никогда</string>
+    <string name="event_recurrence_label">Повторение: %1$s</string>
+    <string name="event_reminder_none">Без напоминания</string>
+    <string name="event_reminder_at_time">В момент события</string>
+    <string name="event_reminder_5_min">За 5 минут</string>
+    <string name="event_reminder_10_min">За 10 минут</string>
+    <string name="event_reminder_15_min">За 15 минут</string>
+    <string name="event_reminder_30_min">За 30 минут</string>
+    <string name="event_reminder_1_hour">За 1 час</string>
+    <string name="event_reminder_1_day">За 1 день</string>
+    <string name="event_create_success">Событие создано.</string>
+    <string name="event_update_success">Событие обновлено.</string>
+    <string name="event_delete_success">Событие удалено.</string>
+    <string name="event_restore_success">Событие восстановлено.</string>
+    <string name="event_untitled">Событие без названия</string>
+    <string name="event_delete_cannot_undo">Это действие нельзя отменить.</string>
+    <string name="event_repeats">Повторяется</string>
+    <string name="event_detail_ends">Окончание: %1$s</string>
+    <string name="event_detail_timezone">Часовой пояс: %1$s</string>
+    <string name="event_detail_min_before">%1$d мин. до начала</string>
+    <string name="event_detail_reminders">Напоминания: %1$s</string>
+    <string name="event_detail_attendees_count">%1$d участников</string>
+    <string name="event_detail_travel_time">Время в пути: %1$d мин</string>
+    <string name="event_reminder_short_at_time">В момент</string>
+    <string name="event_reminder_short_min">%1$d мин</string>
+    <string name="event_reminder_short_1_hour">1 час</string>
+    <string name="event_reminder_short_1_day">1 день</string>
+    <string name="event_delete_confirm_title">Удалить событие?</string>
+    <string name="cd_date_picker">Выбор даты</string>
+    <string name="cd_join">Присоединиться</string>
+    <string name="cd_previous_year">Прошлый год</string>
+    <string name="cd_next_year">Следующий год</string>
+    <string name="event_delete_confirm_body">Это событие будет удалено.</string>
+    <string name="event_delete_recurring_title">Удалить повторяющееся событие</string>
+    <string name="event_delete_recurring_body">Удалить это событие или все события в серии?</string>
+    <string name="event_delete_this_only">Только это событие</string>
+    <string name="event_delete_all_in_series">Все события в серии</string>
+    <string name="event_end_before_start">Время окончания должно быть позже времени начала.</string>
+    <string name="event_location_open_maps">Открыть на картах</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">Встреча</string>
+    <string name="event_template_focus">Время концентрации</string>
+    <string name="event_template_break">Перерыв</string>
+    <string name="event_template_travel">Поездка</string>
+    <string name="event_join_meeting">Присоединиться к встрече</string>
+    <string name="event_navigate">Навигация</string>
+    <string name="event_share">Поделиться событием</string>
+    <string name="event_duplicate">Дублировать</string>
+    <string name="event_weather">Погода</string>
+    <string name="event_timezone">Часовой пояс</string>
+    <string name="event_conflict_detected">Обнаружен временной конфликт</string>
+    <string name="event_reminder_add">Добавить напоминание</string>
+    <string name="event_reminder_custom">Пользовательское</string>
+    <string name="event_voice_input">Голосовой ввод</string>
+    <string name="event_smart_suggestion">Умные предложения</string>
+    <string name="event_free_busy">Свободно/Занято</string>
+    <string name="event_suggested_times">Предложенные времена</string>
+    <string name="calendar_view_day">День</string>
+    <string name="calendar_view_agenda">Повестка</string>
+    <string name="calendar_view_year">Год</string>
+    <string name="calendar_date_jump">Перейти к дате</string>
+    <string name="calendar_swipe_instruction">Проведите для навигации</string>
+    <string name="calendar_pinch_zoom">Сожмите для масштабирования</string>
+    <string name="calendar_no_events_day">Нет событий на этот день</string>
+    <string name="calendar_all_day_section">Весь день</string>
+    <string name="calendar_agenda_empty">Нет предстоящих событий</string>
+    <string name="calendar_heat_map_label">Активность</string>
+    <string name="calendar_upcoming_events">Предстоящие события</string>
+    <string name="calendar_free_busy_suggested">Свободно/Занято и предложенные времена</string>
+    <string name="calendar_no_available_slots">Нет доступных слотов на эту неделю</string>
+    <string name="calendar_free">Свободно</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POMODORO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">Концентрация</string>
+    <string name="pomodoro_focus">Концентрация</string>
+    <string name="pomodoro_short_break">Короткий перерыв</string>
+    <string name="pomodoro_long_break">Длинный перерыв</string>
+    <string name="pomodoro_session_focus">Сессия концентрации</string>
+    <string name="pomodoro_session_short_break">Короткий перерыв</string>
+    <string name="pomodoro_session_long_break">Длинный перерыв</string>
+    <string name="pomodoro_start">Старт</string>
+    <string name="pomodoro_pause">Пауза</string>
+    <string name="pomodoro_resume">Продолжить</string>
+    <string name="pomodoro_skip">Пропустить</string>
+    <string name="pomodoro_stop">Стоп</string>
+    <string name="pomodoro_reset">Сбросить</string>
+    <string name="pomodoro_link_task">Привязать задачу</string>
+    <string name="pomodoro_link_task_hint">Нажмите, чтобы привязать задачу</string>
+    <string name="pomodoro_linked_task">Концентрация на: %1$s</string>
+    <string name="pomodoro_sessions_today">%1$d сессия сегодня</string>
+    <string name="pomodoro_sessions_today_plural">%1$d сессий сегодня</string>
+    <string name="pomodoro_focus_time_today">%1$s концентрации сегодня</string>
+    <string name="pomodoro_completed_today">Завершено сегодня</string>
+    <string name="pomodoro_no_active_session">Нет активных сессий</string>
+    <string name="pomodoro_session_complete_title">Сессия завершена! 🎉</string>
+    <string name="pomodoro_session_complete_body">Отличная работа. Отдыхайте!</string>
+    <string name="pomodoro_break_complete_title">Перерыв окончен</string>
+    <string name="pomodoro_break_complete_body">Готовы снова сосредоточиться?</string>
+    <string name="pomodoro_start_success">Сессия начата.</string>
+    <string name="pomodoro_end_success">Сессия завершена.</string>
+    <string name="pomodoro_interrupt_success">Сессия прервана.</string>
+    <string name="pomodoro_interrupt_reason_hint">Почему вы останавливаетесь? (необязательно)</string>
+    <string name="pomodoro_interrupt_confirm_title">Остановить сессию?</string>
+    <string name="pomodoro_interrupt_confirm_body">Ваш прогресс будет сохранён, но сессия будет отмечена как прерванная.</string>
+    <string name="pomodoro_already_active">У вас уже есть активная сессия. Завершите её перед началом новой.</string>
+    <string name="pomodoro_stats_title">Статистика за сегодня</string>
+    <string name="pomodoro_history_title">История сессий</string>
+    <string name="pomodoro_history_empty_title">Сессий пока нет</string>
+    <string name="pomodoro_history_empty_body">Начните сессию концентрации, чтобы увидеть историю здесь.</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">Прервана</string>
+    <string name="pomodoro_session_completed">Завершена</string>
+    <string name="pomodoro_dot_current">Текущая сессия</string>
+    <string name="pomodoro_dot_completed">Завершённая сессия</string>
+    <string name="pomodoro_dot_upcoming">Предстоящая сессия</string>
+    <string name="pomodoro_notification_channel_name">Таймер Pomodoro</string>
+    <string name="pomodoro_notification_channel_desc">Обновления таймера в реальном времени и уведомления о сессиях.</string>
+    <string name="pomodoro_notification_running">Осталось %1$s — %2$s</string>
+    <string name="pomodoro_notification_action_pause">Пауза</string>
+    <string name="pomodoro_notification_action_skip">Пропустить</string>
+    <string name="pomodoro_notification_action_stop">Стоп</string>
+    <string name="pomodoro_cycle_count">Цикл %1$d из %2$d</string>
+    <string name="pomodoro_until_long_break">%1$d сессия до длинного перерыва</string>
+    <string name="pomodoro_until_long_break_plural">%1$d сессий до длинного перерыва</string>
+
+    <string name="pomodoro_swipe_to_skip">ПРОВЕДИТЕ, ЧТОБЫ ПРОПУСТИТЬ</string>
+    <string name="pomodoro_extend_1min">+1 мин</string>
+    <string name="pomodoro_focus_analytics">Аналитика концентрации</string>
+    <string name="pomodoro_streak_day">%1$d день подряд</string>
+    <string name="pomodoro_best_streak">Лучший: %1$d дней</string>
+    <string name="pomodoro_weekly_intensity">Недельная интенсивность</string>
+    <string name="pomodoro_focus_by_category">Концентрация по категориям</string>
+    <string name="pomodoro_quality_score">Оценка качества</string>
+    <string name="pomodoro_total_focus_time">Общее время концентрации</string>
+    <string name="pomodoro_daily_goal">Дневная цель</string>
+    <string name="pomodoro_weekly_goal">Недельная цель</string>
+    <string name="pomodoro_exit_focus_mode">Выйти из режима концентрации</string>
+    <string name="pomodoro_dnd">Не беспокоить</string>
+    <string name="pomodoro_background">Фон</string>
+    <string name="pomodoro_sounds">Звуки</string>
+    <string name="pomodoro_focus_mode">Режим концентрации</string>
+    <string name="pomodoro_unlink">Отвязать</string>
+    <string name="pomodoro_play_pause">Воспроизведение/Пауза</string>
+    <string name="pomodoro_no_active_tasks">Нет доступных активных задач.</string>
+    <string name="pomodoro_ambient_sound">Фоновый звук</string>
+    <string name="pomodoro_today_sessions">Сессии сегодня</string>
+    <string name="pomodoro_no_sessions_today">Сегодня сессий пока нет</string>
+    <string name="pomodoro_interrupt_button">Прервать</string>
+    <string name="pomodoro_dnd_access_required">Требуется доступ к режиму «Не беспокоить». Пожалуйста, включите в настройках.</string>
+    <string name="pomodoro_ambient_rain">Дождь</string>
+    <string name="pomodoro_ambient_cafe">Кафе</string>
+    <string name="pomodoro_ambient_white_noise">Белый шум</string>
+    <string name="pomodoro_ambient_nature">Природа</string>
+    <string name="pomodoro_paused">На паузе</string>
+    <string name="pomodoro_done">Готово! 🎉</string>
+    <string name="pomodoro_general_focus">Общая концентрация</string>
+    <string name="pomodoro_sessions_label">СЕССИИ</string>
+    <string name="pomodoro_focus_time_label">ВРЕМЯ КОНЦЕНТРАЦИИ</string>
+    <string name="pomodoro_streak_label">СЕРИЯ</string>
+    <string name="pomodoro_less">Меньше</string>
+    <string name="pomodoro_more">Больше</string>
+    <string name="pomodoro_no_category_data">Нет данных по категориям</string>
+    <string name="pomodoro_ongoing">В процессе</string>
+    <string name="pomodoro_duration_min">%d мин</string>
+    <string name="pomodoro_toggle">Переключить</string>
+    <string name="pomodoro_ambient_sounds">Фоновые звуки</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ИИ                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">ИИ-помощник</string>
+    <string name="ai_welcome_title">Чем могу помочь?</string>
+    <string name="ai_welcome_body">Я вижу ваше рабочее пространство — задачи, события и заметки — чтобы давать ответы с учётом контекста.</string>
+    <string name="ai_message_hint">Сообщение…</string>
+    <string name="ai_send">Отправить</string>
+    <string name="ai_new_conversation">Новый диалог</string>
+    <string name="ai_conversations_title">Диалоги</string>
+    <string name="ai_conversation_empty">Сообщений пока нет</string>
+    <string name="ai_conversations_empty_title">Диалогов пока нет</string>
+    <string name="ai_conversations_empty_body">Начните новый диалог, чтобы получить помощь с рабочим пространством.</string>
+    <string name="ai_delete_conversation_title">Удалить диалог?</string>
+    <string name="ai_delete_conversation_body">Этот диалог и все его сообщения будут удалены безвозвратно.</string>
+    <string name="ai_delete_conversation_success">Диалог удалён.</string>
+    <string name="ai_clear_conversation_title">Очистить диалог?</string>
+    <string name="ai_clear_conversation_body">Все сообщения в этом диалоге будут удалены.</string>
+    <string name="ai_suggestion_due_today">Что нужно сделать сегодня?</string>
+    <string name="ai_suggestion_overdue">Обзор просроченных задач</string>
+    <string name="ai_suggestion_start_focus">Начать сессию концентрации</string>
+    <string name="ai_suggestion_meeting_agenda">Составить повестку встречи</string>
+    <string name="ai_context_title">Ваше рабочее пространство</string>
+    <string name="ai_context_active_tasks">Активные задачи</string>
+    <string name="ai_context_events_week">События на этой неделе</string>
+    <string name="ai_context_last_note">Последняя заметка</string>
+    <string name="ai_context_focus_today">Концентрация сегодня</string>
+    <string name="ai_context_overdue">просрочено</string>
+    <string name="ai_context_caption">Этот контекст отправляется ИИ с каждым сообщением.</string>
+    <string name="ai_context_refresh">Обновить контекст</string>
+    <string name="ai_typing">ИИ думает…</string>
+    <string name="ai_streaming">Генерация ответа…</string>
+    <string name="ai_error_unavailable">ИИ-помощник сейчас недоступен. Пожалуйста, попробуйте позже.</string>
+    <string name="ai_error_stream">Произошла ошибка при генерации ответа.</string>
+    <string name="ai_action_create_task">Создать задачу</string>
+    <string name="ai_action_create_note">Создать заметку</string>
+    <string name="ai_action_add_event">Добавить событие</string>
+    <string name="ai_action_confirm">Подтвердить</string>
+    <string name="ai_action_dismiss">Закрыть</string>
+    <string name="ai_action_executed">Готово! Элемент создан.</string>
+    <string name="ai_action_dismissed">Закрыто.</string>
+    <string name="ai_copy_message">Копировать сообщение</string>
+    <string name="ai_message_copied">Сообщение скопировано.</string>
+    <string name="ai_regenerate">Сгенерировать ответ заново</string>
+    <string name="ai_you">Вы</string>
+    <string name="ai_assistant">Помощник</string>
+    <string name="ai_stop_generating">Остановить генерацию</string>
+    <string name="ai_conversations_search_hint">Поиск диалогов…</string>
+    <string name="ai_conversations_close_search">Закрыть поиск</string>
+    <string name="ai_conversations_no_results">Результатов для «%s» нет</string>
+    <string name="ai_conversations_section_pinned">Закреплённые</string>
+    <string name="ai_conversations_section_earlier">Ранее</string>
+    <string name="ai_conversations_quick_action">Быстрое действие</string>
+    <string name="ai_conversations_new_chat">Новый чат</string>
+    <string name="ai_suggestion_plan_day">Спланировать мой день</string>
+    <string name="ai_suggestion_summarize_notes">Обзор заметок</string>
+    <string name="ai_suggestion_brainstorm">Брейншторм идей</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПОИСК                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">Поиск</string>
+    <string name="search_hint">Поиск заметок, задач, событий…</string>
+    <string name="search_results_notes">Заметки</string>
+    <string name="search_results_tasks">Задачи</string>
+    <string name="search_results_events">События</string>
+    <string name="search_recent">Недавние запросы</string>
+    <string name="search_clear_recent">Очистить</string>
+    <string name="search_empty_title">Нет результатов для «%1$s»</string>
+    <string name="search_empty_body">Попробуйте другие ключевые слова или проверьте правописание.</string>
+    <string name="search_results_count">%1$d результат</string>
+    <string name="search_results_count_plural">%1$d результатов</string>
+    <string name="search_type_note">Заметка</string>
+    <string name="search_type_task">Задача</string>
+    <string name="search_type_event">Событие</string>
+    <string name="search_offline_notice">Поиск локально. Подключитесь к интернету для полных результатов.</string>
+    <string name="search_loading">Поиск…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПРОФИЛЬ И НАСТРОЙКИ                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">Профиль</string>
+    <string name="profile_edit_title">Редактировать профиль</string>
+    <string name="profile_change_photo">Изменить фото</string>
+    <string name="profile_remove_photo">Удалить фото</string>
+    <string name="profile_photo_updated">Фото профиля обновлено.</string>
+    <string name="profile_photo_removed">Фото профиля удалено.</string>
+    <string name="profile_photo_pick">Выбрать из галереи</string>
+    <string name="profile_photo_camera">Сделать фото</string>
+    <string name="profile_update_success">Профиль обновлён.</string>
+    <string name="profile_stats_notes">Заметки</string>
+    <string name="profile_stats_tasks_completed">Задач выполнено</string>
+    <string name="profile_stats_focus_this_week">Концентрация на этой неделе</string>
+    <string name="profile_member_since">Участник с %1$s</string>
+    <string name="profile_full_name">%1$s %2$s</string>
+    <string name="profile_bio_empty">О себе пока не заполнено.</string>
+    <string name="profile_section_account">Аккаунт</string>
+    <string name="profile_section_appearance">Внешний вид</string>
+    <string name="profile_section_pomodoro">Pomodoro</string>
+    <string name="profile_section_notifications">Уведомления</string>
+    <string name="profile_section_ai">ИИ-помощник</string>
+    <string name="profile_section_data">Данные и синхронизация</string>
+    <string name="profile_section_about">О приложении</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- НАСТРОЙКИ                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">Настройки</string>
+    <string name="preferences_update_success">Настройки сохранены.</string>
+    <string name="preferences_pomodoro_focus">Длительность концентрации</string>
+    <string name="preferences_pomodoro_focus_desc">Длительность каждой сессии концентрации</string>
+    <string name="preferences_pomodoro_short_break">Короткий перерыв</string>
+    <string name="preferences_pomodoro_short_break_desc">Длительность коротких перерывов между сессиями</string>
+    <string name="preferences_pomodoro_long_break">Длинный перерыв</string>
+    <string name="preferences_pomodoro_long_break_desc">Длительность длинного перерыва после полного цикла</string>
+    <string name="preferences_pomodoro_cycles">Сессий до длинного перерыва</string>
+    <string name="preferences_pomodoro_cycles_desc">Количество сессий концентрации перед длинным перерывом</string>
+    <string name="preferences_pomodoro_auto_start_breaks">Автостарт перерывов</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">Автоматически начинать перерывы при завершении сессии</string>
+    <string name="preferences_pomodoro_auto_start_focus">Автостарт концентрации</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">Автоматически начинать следующую сессию после перерыва</string>
+    <string name="preferences_pomodoro_sound">Звук</string>
+    <string name="preferences_pomodoro_sound_desc">Воспроизводить звук при завершении сессии</string>
+    <string name="preferences_notify_task_reminders">Напоминания о задачах</string>
+    <string name="preferences_notify_task_reminders_desc">Получать уведомления при наступлении срока задачи</string>
+    <string name="preferences_notify_event_reminders">Напоминания о событиях</string>
+    <string name="preferences_notify_event_reminders_desc">Получать уведомления перед событиями календаря</string>
+    <string name="preferences_notify_pomodoro_end">Конец Pomodoro</string>
+    <string name="preferences_notify_pomodoro_end_desc">Получать уведомление при завершении сессии Pomodoro</string>
+    <string name="preferences_notify_daily_summary">Ежедневный обзор</string>
+    <string name="preferences_notify_daily_summary_desc">Получать утренний обзор вашего дня</string>
+    <string name="preferences_default_task_view">Вид задач по умолчанию</string>
+    <string name="preferences_default_task_sort">Сортировка задач по умолчанию</string>
+    <string name="preferences_show_completed_tasks">Показывать выполненные задачи</string>
+    <string name="preferences_show_completed_tasks_desc">Включать выполненные задачи в список задач</string>
+    <string name="preferences_default_calendar_view">Вид календаря по умолчанию</string>
+    <string name="preferences_week_starts_on">Неделя начинается</string>
+    <string name="preferences_week_starts_monday">Понедельник</string>
+    <string name="preferences_week_starts_sunday">Воскресенье</string>
+    <string name="preferences_ai_context">Контекст рабочего пространства</string>
+    <string name="preferences_ai_context_desc">Передавайте задачи, события и заметки ИИ-помощнику</string>
+    <string name="preferences_ai_model">Модель ИИ</string>
+    <string name="preferences_ai_model_desc">Выберите модель ИИ для помощника</string>
+    <string name="preferences_compact_mode">Компактный режим</string>
+    <string name="preferences_compact_mode_desc">Использовать более плотную раскладку для отображения большего контента</string>
+    <string name="preferences_minutes_format">%1$d мин</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- СИНХРОНИЗАЦИЯ                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">Синхронизировано</string>
+    <string name="sync_status_pending">Ожидает синхронизации</string>
+    <string name="sync_status_syncing">Синхронизация…</string>
+    <string name="sync_status_conflict">Конфликт синхронизации</string>
+    <string name="sync_status_error">Ошибка синхронизации</string>
+    <string name="sync_last_synced">Последняя синхронизация: %1$s</string>
+    <string name="sync_never_synced">Никогда не синхронизировалось</string>
+    <string name="sync_conflict_title">Конфликт синхронизации</string>
+    <string name="sync_conflict_body">Обнаружен конфликт для «%1$s». Какую версию вы хотите сохранить?</string>
+    <string name="sync_conflict_keep_local">Сохранить локальную версию</string>
+    <string name="sync_conflict_keep_server">Сохранить версию сервера</string>
+    <string name="sync_conflict_resolved">Конфликт решён.</string>
+    <string name="sync_pending_count">%1$d изменение ожидает</string>
+    <string name="sync_pending_count_plural">%1$d изменений ожидает</string>
+    <string name="sync_offline_banner">Вы оффлайн. Изменения синхронизируются при переподключении.</string>
+    <string name="sync_reconnected">Снова онлайн. Синхронизация…</string>
+    <string name="sync_complete">Все изменения синхронизированы.</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- УВЕДОМЛЕНИЯ                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">Напоминания</string>
+    <string name="notification_channel_reminders_desc">Уведомления о напоминаниях задач и событий.</string>
+    <string name="notification_channel_sync_name">Синхронизация</string>
+    <string name="notification_channel_sync_desc">Уведомления о статусе фоновой синхронизации.</string>
+    <string name="notification_task_reminder_title">Напоминание о задаче</string>
+    <string name="notification_task_reminder_body">%1$s скоро нужно выполнить.</string>
+    <string name="notification_event_reminder_title">Предстоящее событие</string>
+    <string name="notification_event_reminder_body">%1$s начнётся через %2$s.</string>
+    <string name="notification_daily_summary_title">Ваш день на виду</string>
+    <string name="notification_daily_summary_body">%1$d задач на сегодня, %2$d предстоящих событий.</string>
+    <string name="notification_permission_title">Включить уведомления</string>
+    <string name="notification_permission_body">Будьте в курсе напоминаний, сессий концентрации и ежедневных обзоров.</string>
+    <string name="notification_permission_allow">Разрешить</string>
+    <string name="notification_permission_deny">Не сейчас</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- РАЗРЕШЕНИЯ                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">Доступ к камере</string>
+    <string name="permission_camera_body">ProductivityX нужен доступ к камере, чтобы вы могли сделать фото профиля.</string>
+    <string name="permission_storage_title">Доступ к хранилищу</string>
+    <string name="permission_storage_body">ProductivityX нужен доступ к хранилищу, чтобы вы могли выбрать фото профиля.</string>
+    <string name="permission_notification_title">Доступ к уведомлениям</string>
+    <string name="permission_notification_body">Разрешите уведомления для получения напоминаний о задачах и сигналах Pomodoro.</string>
+    <string name="permission_denied_title">Требуется разрешение</string>
+    <string name="permission_denied_body">Для этой функции требуется разрешение. Пожалуйста, включите его в настройках.</string>
+    <string name="permission_go_to_settings">Открыть настройки</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ВРЕМЯ                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">Только что</string>
+    <string name="time_minutes_ago">%1$d мин. назад</string>
+    <string name="time_hours_ago">%1$d ч. назад</string>
+    <string name="time_yesterday">Вчера</string>
+    <string name="time_days_ago">%1$d дн. назад</string>
+    <string name="time_weeks_ago">%1$d нед. назад</string>
+    <string name="time_weeks_ago_plural">%1$d нед. назад</string>
+    <string name="time_months_ago">%1$d мес. назад</string>
+    <string name="time_months_ago_plural">%1$d мес. назад</string>
+    <string name="time_format_date">d MMM yyyy</string>
+    <string name="time_format_date_short">d MMM</string>
+    <string name="time_format_time">H:mm</string>
+    <string name="time_format_datetime">d MMM \'в\' H:mm</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, d MMMM yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">%1$d час</string>
+    <string name="time_hour_plural">%1$d часов</string>
+    <string name="time_minute_singular">%1$d минута</string>
+    <string name="time_minute_plural">%1$d минут</string>
+
+    <!-- Дни / Месяцы -->
+    <string name="day_monday_short">Пн</string>
+    <string name="day_tuesday_short">Вт</string>
+    <string name="day_wednesday_short">Ср</string>
+    <string name="day_thursday_short">Чт</string>
+    <string name="day_friday_short">Пт</string>
+    <string name="day_saturday_short">Сб</string>
+    <string name="day_sunday_short">Вс</string>
+    <string name="day_monday">Понедельник</string>
+    <string name="day_tuesday">Вторник</string>
+    <string name="day_wednesday">Среда</string>
+    <string name="day_thursday">Четверг</string>
+    <string name="day_friday">Пятница</string>
+    <string name="day_saturday">Суббота</string>
+    <string name="day_sunday">Воскресенье</string>
+
+    <string name="month_january">Январь</string>
+    <string name="month_february">Февраль</string>
+    <string name="month_march">Март</string>
+    <string name="month_april">Апрель</string>
+    <string name="month_may">Май</string>
+    <string name="month_june">Июнь</string>
+    <string name="month_july">Июль</string>
+    <string name="month_august">Август</string>
+    <string name="month_september">Сентябрь</string>
+    <string name="month_october">Октябрь</string>
+    <string name="month_november">Ноябрь</string>
+    <string name="month_december">Декабрь</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПУСТЫЕ СОСТОЯНИЯ                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">Здесь пока ничего нет</string>
+    <string name="empty_state_generic_body">Начните с создания чего-то нового.</string>
+    <string name="empty_state_no_results_title">Нет результатов</string>
+    <string name="empty_state_no_results_body">Попробуйте другой поиск или фильтр.</string>
+    <string name="empty_state_offline_title">Вы оффлайн</string>
+    <string name="empty_state_offline_body">Подключитесь к интернету, чтобы загрузить содержимое.</string>
+    <string name="empty_state_error_title">Что-то пошло не так</string>
+    <string name="empty_state_error_body">Потяните вниз для обновления или нажмите кнопку ниже.</string>
+    <string name="empty_state_retry">Повторить</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ДОСТУПНОСТЬ                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">Перейти назад</string>
+    <string name="cd_close">Закрыть</string>
+    <string name="cd_more_options">Другие параметры</string>
+    <string name="cd_search">Поиск</string>
+    <string name="cd_filter">Фильтр</string>
+    <string name="cd_sort">Сортировка</string>
+    <string name="cd_add">Добавить</string>
+    <string name="cd_delete">Удалить</string>
+    <string name="cd_edit">Редактировать</string>
+    <string name="cd_restore">Восстановить</string>
+    <string name="cd_pin">Закрепить заметку</string>
+    <string name="cd_unpin">Открепить заметку</string>
+    <string name="cd_check_task">Отметить задачу как выполненную</string>
+    <string name="cd_uncheck_task">Отметить задачу как невыполненную</string>
+    <string name="cd_profile_picture">Фото профиля</string>
+    <string name="cd_send_message">Отправить сообщение</string>
+    <string name="cd_play_pause">Воспроизвести или поставить таймер на паузу</string>
+    <string name="cd_skip_session">Пропустить сессию</string>
+    <string name="cd_stop_session">Остановить сессию</string>
+    <string name="cd_sync_status">Статус синхронизации: %1$s</string>
+    <string name="cd_password_toggle">Переключить видимость пароля</string>
+    <string name="cd_clear_input">Очистить ввод</string>
+    <string name="cd_remove_subtask">Удалить подзадачу</string>
+    <string name="cd_notification">Уведомление</string>
+    <string name="cd_selected">Выбрано</string>
+    <string name="cd_not_selected">Не выбрано</string>
+    <string name="cd_clear_selection">Снять выделение</string>
+    <string name="cd_grid_view">Сетка</string>
+    <string name="cd_list_view">Список</string>
+    <string name="cd_note_image">Изображение заметки</string>
+    <string name="cd_new_tag">Новый тег</string>
+    <string name="cd_biometric_login">Биометрический вход</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ПРОЧЕЕ                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">Проверка сессии…</string>
+    <string name="splash_loading">Загрузка…</string>
+
+    <string name="dialog_unsaved_changes_title">Несохранённые изменения</string>
+    <string name="dialog_unsaved_changes_body">У вас есть несохранённые изменения. Хотите их отменить?</string>
+    <string name="dialog_unsaved_changes_save">Сохранить</string>
+    <string name="dialog_unsaved_changes_discard">Отменить</string>
+    <string name="dialog_date_picker_title">Выбор даты</string>
+    <string name="dialog_time_picker_title">Выбор времени</string>
+    <string name="dialog_color_picker_title">Выбор цвета</string>
+    <string name="dialog_task_picker_title">Привязать задачу</string>
+    <string name="dialog_event_picker_title">Привязать событие</string>
+    <string name="dialog_tag_manager_title">Управление тегами</string>
+
+    <string name="task_view_list">Список</string>
+    <string name="task_view_kanban">Доска</string>
+
+    <string name="snackbar_undo">Отменить</string>
+    <string name="snackbar_note_deleted">Заметка удалена</string>
+    <string name="snackbar_task_deleted">Задача удалена</string>
+    <string name="snackbar_event_deleted">Событие удалено</string>
+    <string name="snackbar_tag_deleted">Тег удалён</string>
+    <string name="snackbar_copied">Скопировано в буфер обмена</string>
+    <string name="snackbar_no_internet">Нет подключения к интернету</string>
+    <string name="snackbar_changes_saved">Изменения сохранены</string>
+
+    <string name="about_version">Версия %1$s</string>
+    <string name="about_build">Сборка %1$s</string>
+    <string name="about_privacy_policy">Политика конфиденциальности</string>
+    <string name="about_terms_of_service">Условия использования</string>
+    <string name="about_open_source_licenses">Лицензии открытого кода</string>
+    <string name="about_rate_app">Оценить приложение</string>
+    <string name="about_send_feedback">Отправить отзыв</string>
+    <string name="about_built_by">Разработал Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">Экспорт данных</string>
+    <string name="data_export_body">Скачайте все ваши заметки, задачи и события в виде файла.</string>
+    <string name="data_export_action">Экспорт</string>
+    <string name="data_export_success">Экспорт данных готов.</string>
+    <string name="data_delete_account_title">Удалить аккаунт</string>
+    <string name="data_delete_account_body">Безвозвратно удалить аккаунт и все связанные данные. Это действие не может быть отменено.</string>
+    <string name="data_delete_account_action">Удалить аккаунт</string>
+    <string name="data_delete_account_confirm_title">Удалить ваш аккаунт?</string>
+    <string name="data_delete_account_confirm_body">Все ваши заметки, задачи, события и диалоги будут удалены безвозвратно. Это действие необратимо.</string>
+    <string name="data_delete_account_type_confirm">Введите УДАЛИТЬ для подтверждения</string>
+    <string name="data_delete_account_confirm_word">УДАЛИТЬ</string>
+
+    <string name="update_available_title">Доступно обновление</string>
+    <string name="update_available_body">Доступна новая версия ProductivityX. Обновитесь для получения последних функций и исправлений.</string>
+    <string name="update_now">Обновить сейчас</string>
+    <string name="update_later">Позже</string>
+
+    <string name="auth_check_your_email">Проверьте электронную почту</string>
+    <string name="auth_otp_sent_body">Мы отправили 6-значный код на %s</string>
+
+    <string name="language_en">Английский</string>
+    <string name="language_fr">Французский</string>
+    <string name="language_ar">Арабский</string>
+    <string name="language_es">Испанский</string>
+    <string name="language_de">Немецкий</string>
+    <string name="language_pt">Португальский</string>
+    <string name="language_zh">Традиционный китайский</string>
+    <string name="language_ja">Японский</string>
+    <string name="language_ko">Корейский</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_tr">Турецкий</string>
+    <string name="language_it">Итальянский</string>
+    <string name="language_hi">Хинди</string>
+    <string name="language_id">Индонезийский</string>
+    <string name="language_nl">Нидерландский</string>
+    <string name="language_vi">Вьетнамский</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ВИДЖЕТЫ                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">Задачи</string>
+    <string name="widget_task_list_empty">Нет задач на сегодня</string>
+    <string name="widget_pomodoro_title">Pomodoro</string>
+    <string name="widget_pomodoro_start">Нажмите для начала концентрации</string>
+    <string name="widget_quick_note_title">Быстрая заметка</string>
+    <string name="widget_quick_note_hint">Нажмите, чтобы добавить заметку</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ГЛАВНАЯ ПАНЕЛЬ (7.1)                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">Задачи на сегодня</string>
+    <string name="home_widget_events">Предстоящие события</string>
+    <string name="home_widget_focus">Время концентрации сегодня</string>
+    <string name="home_widget_notes">Недавние заметки</string>
+    <string name="home_widget_quote">Цитата дня</string>
+    <string name="home_widget_ai">ИИ-помощник</string>
+    <string name="home_widget_focus_mode">Быстрая концентрация</string>
+    <string name="home_expand">Развернуть</string>
+    <string name="home_collapse">Свернуть</string>
+    <string name="home_see_all">Смотреть все</string>
+    <string name="home_empty_tasks">Нет задач на сегодня</string>
+    <string name="home_empty_events">Нет предстоящих событий</string>
+    <string name="home_empty_notes">Нет недавних заметок</string>
+    <string name="home_empty_focus">Пока нет времени концентрации</string>
+    <string name="home_focus_mode_active">Режим концентрации</string>
+    <string name="home_focus_mode_inactive">Быстрая концентрация</string>
+    <string name="home_focus_mode_desc_active">Минимизируйте отвлечения</string>
+    <string name="home_focus_mode_desc_inactive">Нажмите, чтобы войти в режим концентрации</string>
+    <string name="home_voice_prompt">Что вы хотите сделать?</string>
+    <string name="home_voice_listening">Слушаю…</string>
+    <string name="home_pull_to_refresh">Потяните для обновления</string>
+    <string name="home_syncing">Синхронизация…</string>
+    <string name="home_refreshed">Панель управления обновлена</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ГОРЯЧИЕ КЛАВИШИ                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">Новая заметка</string>
+    <string name="shortcut_new_task">Новая задача</string>
+    <string name="shortcut_start_focus">Начать концентрацию</string>
+    <string name="shortcut_ai_chat">Чат с ИИ</string>
+    <string name="shortcut_note_short_label">Заметка</string>
+    <string name="shortcut_task_short_label">Задача</string>
+    <string name="shortcut_focus_short_label">Концентрация</string>
+    <string name="shortcut_ai_short_label">ИИ</string>
+
+    <!-- Управление папками -->
+    <string name="folder_screen_title">Папки</string>
+    <string name="folder_empty">Папок пока нет</string>
+    <string name="folder_create_dialog_title">Создать папку</string>
+    <string name="folder_edit_dialog_title">Редактировать папку</string>
+    <string name="folder_delete_title">Удалить папку?</string>
+    <string name="folder_delete_message">Заметки в «%s» не будут удалены.</string>
+    <string name="folder_name_label">Название папки</string>
+    <string name="folder_color_label">Цвет</string>
+    <string name="folder_save">Сохранить</string>
+    <string name="folder_delete">Удалить</string>
+    <string name="folder_note_count">%d заметок</string>
+    <string name="folder_note_count_one">%d заметка</string>
+    <string name="folder_create_cd">Создать папку</string>
+    <string name="folder_edit_cd">Редактировать</string>
+    <string name="folder_delete_cd">Удалить</string>
+
+    <!-- Управление тегами -->
+    <string name="tag_screen_title">Теги</string>
+    <string name="tag_empty">Тегов пока нет. Нажмите +, чтобы создать.</string>
+    <string name="tag_create_dialog_title">Создать тег</string>
+    <string name="tag_edit_dialog_title">Редактировать тег</string>
+    <string name="tag_delete_title">Удалить тег?</string>
+    <string name="tag_delete_message">Тег «%s» будет удалён из всех заметок.</string>
+    <string name="tag_name_label">Название тега</string>
+    <string name="tag_color_label">Цвет</string>
+    <string name="tag_save">Сохранить</string>
+    <string name="tag_delete">Удалить</string>
+    <string name="tag_create_cd">Создать тег</string>
+    <string name="tag_delete_cd">Удалить</string>
+
+    <!-- Условия использования -->
+    <string name="terms_title">Условия использования</string>
+    <string name="terms_subtitle">Условия предоставления услуг</string>
+    <string name="terms_last_updated">Последнее обновление: июль 2026</string>
+    <string name="terms_section_1_title">1. Принятие условий</string>
+    <string name="terms_section_1_body">Получая доступ к ProductivityX или используя его, вы соглашаетесь соблюдать настоящие Условия использования. Если вы не согласны, не используйте приложение.</string>
+    <string name="terms_section_2_title">2. Описание сервиса</string>
+    <string name="terms_section_2_body">ProductivityX предоставляет объединённое рабочее пространство, включая заметки, задачи, календарь, таймер концентрации (Pomodoro) и функции ИИ-помощника. Мы оставляем за собой право изменять или прекращать любую функцию в любое время.</string>
+    <string name="terms_section_3_title">3. Учётные записи пользователей</string>
+    <string name="terms_section_3_body">Вы несёте ответственность за сохранение конфиденциальности учётных данных вашего аккаунта и за всю активность под вашим аккаунтом. Вы обязаны немедленно уведомить нас о любом несанкционированном доступе.</string>
+    <string name="terms_section_4_title">4. Допустимое использование</string>
+    <string name="terms_section_4_body">Вы соглашаетесь не использовать ProductivityX в каких-либо незаконных целях или в нарушение применимого законодательства. Вы не пытаетесь нарушить работу, повредить или получить несанкционированный доступ к нашим системам.</string>
+    <string name="terms_section_5_title">5. Данные и конфиденциальность</string>
+    <string name="terms_section_5_body">Использование ProductivityX также регулируется нашей Политикой конфиденциальности. Мы серьёзно относимся к безопасности данных и применяем отраслевые стандарты для защиты вашей информации.</string>
+    <string name="terms_section_6_title">6. Интеллектуальная собственность</string>
+    <string name="terms_section_6_body">ProductivityX и его оригинальное содержание, функции и функциональность принадлежат Oussama Chatri и защищены применимым законодательством об авторском праве и интеллектуальной собственности.</string>
+    <string name="terms_section_7_title">7. Ограничение ответственности</string>
+    <string name="terms_section_7_body">ProductivityX предоставляется «как есть» без каких-либо гарантий. Мы не несём ответственности за любые убытки, возникающие в результате использования приложения.</string>
+    <string name="terms_section_8_title">8. Изменения условий</string>
+    <string name="terms_section_8_body">Мы оставляем за собой право обновлять эти условия в любое время. Мы уведомим пользователей о существенных изменениях через приложение или по электронной почте.</string>
+    <string name="terms_section_9_title">9. Контакты</string>
+    <string name="terms_section_9_body">По вопросам об этих условиях свяжитесь с нами по адресу productivityx7@gmail.com.</string>
+
+    <!-- Политика конфиденциальности -->
+    <string name="privacy_title">Политика конфиденциальности</string>
+    <string name="privacy_subtitle">Политика конфиденциальности</string>
+    <string name="privacy_last_updated">Последнее обновление: июль 2026</string>
+    <string name="privacy_section_1_title">1. Информация, которую мы собираем</string>
+    <string name="privacy_section_1_body">Мы собираем информацию, которую вы предоставляете при создании аккаунта, включая ваше имя, адрес электронной почты и фото профиля. Мы также собираем данные, которые вы создаёте в приложении, такие как заметки, задачи, события и сессии концентрации.</string>
+    <string name="privacy_section_2_title">2. Как мы используем вашу информацию</string>
+    <string name="privacy_section_2_body">Ваши данные используются для предоставления и улучшения функций ProductivityX, синхронизации между устройствами и отправки соответствующих уведомлений. Мы не продаём вашу личную информацию третьим лицам.</string>
+    <string name="privacy_section_3_title">3. Хранение и безопасность данных</string>
+    <string name="privacy_section_3_body">Ваши данные шифруются при передаче и хранении. Мы используем отраслевые стандарты безопасности для защиты вашей информации. Вы можете хранить данные только локально без облачной синхронизации.</string>
+    <string name="privacy_section_4_title">4. Сервисы сторонних.providers</string>
+    <string name="privacy_section_4_body">ProductivityX может использовать сторонние сервисы для ИИ-помощи, push-уведомлений и аналитики. Эти сервисы договорно обязаны защищать ваши данные и использовать их только для указанных целей.</string>
+    <string name="privacy_section_5_title">5. Ваши права</string>
+    <string name="privacy_section_5_body">Вы можете получить доступ к своим данным, изменить или удалить их в любое время через настройки приложения. Вы можете запросить полный экспорт данных или безвозвратно удалить свой аккаунт.</string>
+    <string name="privacy_section_6_title">6. Хранение данных</string>
+    <string name="privacy_section_6_body">Мы храним ваши данные, пока ваш аккаунт активен. Удалённые элементы хранятся в корзине в течение 30 дней перед окончательным удалением. Удаление аккаунта удаляет все связанные данные в течение 90 дней.</string>
+    <string name="privacy_section_7_title">7. Конфиденциальность детей</string>
+    <string name="privacy_section_7_body">ProductivityX не предназначен для пользователей младше 13 лет. Мы намеренно не собираем данные от детей. Если мы узнаём о таких данных, мы немедленно удалим их.</string>
+    <string name="privacy_section_8_title">8. Изменения в этой политике</string>
+    <string name="privacy_section_8_body">Мы можем обновлять эту Политику конфиденциальности. Мы уведомим вас о существенных изменениях через приложение или по электронной почте.</string>
+    <string name="privacy_section_9_title">9. Свяжитесь с нами</string>
+    <string name="privacy_section_9_body">По вопросам, связанным с конфиденциальностью, свяжитесь с нами по адресу productivityx7@gmail.com.</string>
+
+    <!-- Экран задач -->
+    <!-- Экран статистики задач -->
+    <string name="tasks_statistics">Статистика</string>
+    <string name="tasks_stats_score">Оценка</string>
+    <string name="tasks_stats_streak">Серия</string>
+    <string name="tasks_stats_days">дней</string>
+    <string name="tasks_stats_best">Лучший</string>
+    <string name="tasks_stats_completion_rate">Процент выполнения</string>
+    <string name="tasks_stats_this_week">На этой неделе</string>
+    <string name="tasks_stats_this_month">В этом месяце</string>
+    <string name="tasks_stats_monthly_progress">Прогресс за месяц</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d выполнено</string>
+    <string name="tasks_stats_time_by_priority">Время по приоритету</string>
+    <string name="tasks_stats_no_data">Данных пока нет</string>
+    <string name="tasks_stats_achievements">Достижения</string>
+    <string name="tasks_stats_unlock_badges">Выполняйте задачи для получения значков</string>
+    <string name="tasks_stats_weekly_review">Недельный обзор</string>
+    <string name="tasks_stats_created">Создано</string>
+    <string name="tasks_stats_completed">Выполнено</string>
+    <string name="tasks_stats_overdue">Просрочено</string>
+    <string name="tasks_stats_suggested_focus">Рекомендуемая концентрация</string>
+    <string name="tasks_stats_patterns">Паттерны продуктивности</string>
+    <string name="tasks_stats_velocity">Скорость выполнения</string>
+    <string name="tasks_stats_productive_hours">Самые продуктивные часы</string>
+    <string name="tasks_stats_category_breakdown">Разбивка по категориям</string>
+    <string name="tasks_stats_complete_more">Выполните больше задач, чтобы увидеть ваши паттерны продуктивности</string>
+
+    <!-- Метки повторения -->
+    <string name="task_recurrence_none">Нет</string>
+    <string name="task_recurrence_daily">Ежедневно</string>
+    <string name="task_recurrence_weekdays">По будням</string>
+    <string name="task_recurrence_weekly">Еженедельно</string>
+    <string name="task_recurrence_biweekly">Раз в 2 недели</string>
+    <string name="task_recurrence_monthly">Ежемесячно</string>
+    <string name="task_recurrence_yearly">Ежегодно</string>
+
+    <!-- Экран деталей задачи -->
+    <string name="task_label">Задача</string>
+    <string name="task_estimated_abbrev">Примерно</string>
+    <string name="task_actual_abbrev">Факт</string>
+
+    <!-- Экран корзины задач -->
+    <string name="tasks_trash_empty_title">Корзина пуста</string>
+    <string name="tasks_trash_empty_body">Удалённые задачи появляются здесь.</string>
+    <string name="tasks_trash_due">Срок %1$s</string>
+    <string name="tasks_trash_hard_delete_title">Удалить безвозвратно?</string>
+    <string name="tasks_trash_hard_delete_body">Эта задача не может быть восстановлена.</string>
+
+    <string name="tasks_no_tasks_day">Нет задач на этот день</string>
+    <string name="tasks_add_task">Добавить задачу</string>
+    <string name="tasks_drop_here">Перетащите задачи сюда</string>
+    <string name="tasks_set_priority">Установить приоритет</string>
+    <string name="tasks_ok">OK</string>
+    <string name="tasks_cancel">Отмена</string>
+    <string name="tasks_selected_count">%d выбрано</string>
+    <string name="tasks_filter_all">Все</string>
+    <string name="tasks_filter_today">Сегодня</string>
+    <string name="tasks_filter_upcoming">Предстоящие</string>
+    <string name="tasks_filter_overdue">Просроченные</string>
+    <string name="tasks_filter_no_date">Без даты</string>
+    <string name="tasks_filter_done">Выполненные</string>
+    <string name="tasks_view_board">Доска</string>
+    <string name="tasks_view_calendar">Календарь</string>
+    <string name="tasks_view_timeline">Таймлайн</string>
+    <string name="tasks_bulk_complete">Выполнено</string>
+    <string name="tasks_bulk_delete">Удалить</string>
+    <string name="tasks_bulk_reschedule">Перенести</string>
+    <string name="tasks_bulk_priority">Приоритет</string>
+    <string name="tasks_weekday_sun">В</string>
+    <string name="tasks_weekday_mon">П</string>
+    <string name="tasks_weekday_tue">В</string>
+    <string name="tasks_weekday_wed">С</string>
+    <string name="tasks_weekday_thu">Ч</string>
+    <string name="tasks_weekday_fri">П</string>
+    <string name="tasks_weekday_sat">С</string>
+    <string name="tasks_picker_day_mon">Пн</string>
+    <string name="tasks_picker_day_tue">Вт</string>
+    <string name="tasks_picker_day_wed">Ср</string>
+    <string name="tasks_picker_day_thu">Чт</string>
+    <string name="tasks_picker_day_fri">Пт</string>
+    <string name="tasks_picker_day_sat">Сб</string>
+    <string name="tasks_picker_day_sun">Вс</string>
+    <string name="tasks_minutes_abbrev">%1$dм</string>
+    <string name="tasks_for_date">Задачи на %s</string>
+    <string name="cd_exit_multiselect">Выйти из мультивыбора</string>
+    <string name="cd_select_all">Выбрать все</string>
+    <string name="cd_statistics">Статистика</string>
+    <string name="cd_previous">Назад</string>
+    <string name="cd_drop_here">Перетащите сюда</string>
+
+    <!-- Экран профиля -->
+    <string name="profile_sign_out_desc">Вам нужно войти снова, чтобы получить доступ к рабочему пространству.</string>
+    <string name="profile_delete_account_title">Удалить аккаунт</string>
+    <string name="profile_delete_account_warning">Это действие не может быть отменено. Все ваши данные будут удалены безвозвратно.</string>
+    <string name="profile_delete_bullet_notes">Все заметки, задачи и события будут удалены</string>
+    <string name="profile_delete_bullet_account">Ваш аккаунт и подписка будут аннулированы</string>
+    <string name="profile_delete_bullet_irreversible">Это необратимо</string>
+    <string name="profile_section_actions">Действия</string>
+    <string name="profile_notification_preferences">Настройки уведомлений</string>
+    <string name="profile_section_account_subscription">Аккаунт и подписка</string>
+    <string name="profile_storage">Хранилище</string>
+    <string name="profile_connected_devices">Подключённые устройства</string>
+    <string name="profile_section_danger_zone">Опасная зона</string>
+    <string name="profile_delete_subtitle">Безвозвратно удалить все данные</string>
+    <string name="profile_stat_ai_chats">Чаты с ИИ</string>
+    <string name="profile_recent_activity">Недавняя активность</string>
+    <string name="profile_productivity_trend">Тренд продуктивности</string>
+    <string name="profile_this_week_percent">%1$d%% на этой неделе</string>
+    <string name="profile_local_mode">Локальный режим</string>
+    <string name="profile_local_mode_desc">Вы используете ProductivityX без аккаунта.\nВаши данные хранятся только на этом устройстве.</string>
+    <string name="profile_theme_pro">Тема Pro</string>
+
+    <!-- Экран редактирования профиля -->
+    <string name="pref_section_locale">Язык системы</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- Экран смены пароля -->
+    <string name="password_change_success">Пароль успешно изменён</string>
+    <string name="password_confirm_new">Подтвердите новый пароль</string>
+    <string name="password_update">Обновить пароль</string>
+
+    <!-- Экран настроек (результаты поиска) -->
+    <string name="pref_search_pomodoro">Таймер Pomodoro</string>
+    <string name="pref_search_appearance">Внешний вид и тема</string>
+    <string name="pref_search_notifications">Уведомления и тихие часы</string>
+    <string name="pref_search_display">Отображение и размер шрифта</string>
+    <string name="pref_search_feature_flags">Бета-функции</string>
+
+    <!-- Экран FAQ -->
+    <string name="faq_q_what_is">Что такое ProductivityX?</string>
+    <string name="faq_a_what_is">ProductivityX — это объединённое приложение для рабочего пространства, которое сочетает в себе заметки, задачи, календарь, таймер концентрации Pomodoro и ИИ-помощник в одном месте.</string>
+    <string name="faq_q_data_secure">Мои данные в безопасности?</string>
+    <string name="faq_a_data_secure">Да. Ваши данные шифруются при передаче и хранении. Вы также можете включить локальный режим для хранения всех данных на устройстве без облачной синхронизации.</string>
+    <string name="faq_q_ai_work">Как работает ИИ-помощник?</string>
+    <string name="faq_a_ai_work">ИИ-помощник видит ваши активные задачи, предстоящие события и недавние заметки, чтобы давать ответы с учётом контекста. Он использует модели Google Gemini.</string>
+    <string name="faq_q_offline">Могу ли я использовать ProductivityX оффлайн?</string>
+    <string name="faq_a_offline">Да. Вы можете включить офлайн-режим в настройках. Изменения будут синхронизированы автоматически при подключении к интернету.</string>
+    <string name="faq_q_export">Как экспортировать мои данные?</string>
+    <string name="faq_a_export">Перейдите в Настройки &gt; Данные и синхронизация и нажмите «Экспорт данных». Ваши заметки, задачи, события и настройки будут сохранены в виде зашифрованного файла резервной копии.</string>
+    <string name="faq_q_pomodoro">Как работает таймер Pomodoro?</string>
+    <string name="faq_a_pomodoro">Таймер Pomodoro чередует сессии концентрации и перерывы. Вы можете настроить длительность, автоматически начинать перерывы и привязывать задачи для отслеживания времени концентрации по каждой задаче.</string>
+    <string name="faq_q_language">Могу ли я изменить язык приложения?</string>
+    <string name="faq_a_language">Да. Перейдите в профиль и нажмите на настройку языка. ProductivityX поддерживает множество языков, включая английский, французский, арабский, испанский, немецкий и другие.</string>
+    <string name="faq_q_password">Как сбросить пароль?</string>
+    <string name="faq_a_password">Нажмите «Забыли пароль» на экране входа. Ссылка для сброса будет отправлена на ваш адрес электронной почты.</string>
+    <string name="faq_q_delete_account">Что происходит при удалении аккаунта?</string>
+    <string name="faq_a_delete_account">Все ваши данные (заметки, задачи, события, диалоги) будут удалены безвозвратно. Это действие необратимо.</string>
+    <string name="faq_q_contact">Как связаться со службой поддержки?</string>
+    <string name="faq_a_contact">Вы можете связаться с нами по адресу productivityx7@gmail.com или использовать опцию «Отправить отзыв» в Настройки &gt; Справка и поддержка.</string>
+
+    <!-- Экран лицензий -->
+    <string name="licenses_intro">ProductivityX использует следующие библиотеки с открытым исходным кодом:</string>
+
+    <!-- Экран благодарностей -->
+    <string name="credits_role_development">Разработка</string>
+    <string name="credits_role_design">Дизайн</string>
+    <string name="credits_role_ai_integration">Интеграция ИИ</string>
+    <string name="credits_role_icons">Иконки</string>
+    <string name="credits_built_with">Создано с ❤️ на Kotlin и Jetpack Compose</string>
+    <string name="credits_copyright">© 2026 ProductivityX. Все права защищены.</string>
+
+    <!-- Экран редактирования профиля — дополнительное -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- Поиск настроек — дополнительное -->
+    <string name="pref_search_data_sync">Данные и синхронизация</string>
+    <string name="pref_search_ai">ИИ-помощник</string>
+    <string name="pref_search_about">О приложении</string>
+    <string name="pref_search_help">Справка и поддержка</string>
+
+    <string name="language_zh_rCN">Китайский (мандарин)</string>
+    <string name="language_sw">Суахили</string>
+    <string name="language_th">Тайский</string>
+    <string name="language_bn">Бенгальский</string>
+    <string name="language_ur">Урду</string>
+
+</resources>

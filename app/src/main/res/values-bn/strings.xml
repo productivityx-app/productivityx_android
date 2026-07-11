@@ -1,0 +1,1580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProductivityX</string>
+    <string name="app_tagline">আপনার কাজের স্থান। একত্রিত।</string>
+    <string name="app_description">নোট, কাজ, ক্যালেন্ডার, ফোকাস টাইমার, এবং একটি AI সহকারী যিনি সত্যিই আপনার দিন বুঝতে পারেন।</string>
+
+    <string name="ok">ঠিক আছে</string>
+    <string name="cancel">বাতিল</string>
+    <string name="save">সংরক্ষণ</string>
+    <string name="export">রপ্তানি</string>
+    <string name="note_info">নোট তথ্য</string>
+    <string name="show_metadata">মেটাডেটা দেখান</string>
+    <string name="focus_mode">ফোকাস মোড</string>
+    <string name="reset_zoom">জুম রিসেট</string>
+    <string name="exit_focus_mode">ফোকাস মোড থেকে বের হোন</string>
+    <string name="fullscreen_image">পূর্ণস্ক্রিন ছবি</string>
+    <string name="more">আরও</string>
+    <string name="add_tag">ট্যাগ যোগ করুন</string>
+    <string name="move_to_trash">ট্র্যাশে নিন</string>
+    <string name="move_to_trash_confirm">ট্র্যাশে নিবেন?</string>
+    <string name="edit_mode">সম্পাদনা মোড</string>
+    <string name="preview_mode">পূর্বরূপ মোড</string>
+    <string name="words">শব্দ</string>
+    <string name="characters">অক্ষর</string>
+    <string name="reading_time">পড়ার সময়</string>
+    <string name="export_as_pdf">PDF হিসাবে রপ্তানি</string>
+    <string name="print">প্রিন্ট</string>
+    <string name="move_to_trash_message">এই নোটটি ট্র্যাশে সরানো হবে। আপনি ৩০ দিনের মধ্যে এটি পুনরুদ্ধার করতে পারবেন।</string>
+    <string name="export_as_pdf_subtitle">এই নোটের একটি PDF কপি সংরক্ষণ করুন</string>
+    <string name="share_subtitle">অন্যান্য অ্যাপের মাধ্যমে শেয়ার করুন</string>
+    <string name="print_subtitle">এই নোটটি প্রিন্ট করুন</string>
+    <string name="untitled">শিরোনাহীন</string>
+    <string name="last_saved">শেষ সংরক্ষণ: %s</string>
+    <string name="delete">মুছুন</string>
+    <string name="edit">সম্পাদনা</string>
+    <string name="done">সম্পন্ন</string>
+    <string name="back">পেছনে</string>
+    <string name="close">বন্ধ</string>
+    <string name="confirm">নিশ্চিত করুন</string>
+    <string name="discard">বর্জন</string>
+    <string name="retry">পুনরায় চেষ্টা করুন</string>
+    <string name="skip">এড়িয়ে যান</string>
+    <string name="next">পরবর্তী</string>
+    <string name="previous">পূর্ববর্তী</string>
+    <string name="continue_action">চালিয়ে যান</string>
+    <string name="finish">শেষ</string>
+    <string name="apply">প্রয়োগ করুন</string>
+    <string name="reset">রিসেট</string>
+    <string name="clear">পরিষ্কার</string>
+    <string name="search">অনুসন্ধান</string>
+    <string name="filter">ফিল্টার</string>
+    <string name="sort">সাজান</string>
+    <string name="share">শেয়ার</string>
+    <string name="copy">কপি</string>
+    <string name="paste">পেস্ট</string>
+    <string name="undo">পূর্বাবস্থায় ফেরান</string>
+    <string name="redo">পুনরায় করুন</string>
+    <string name="select_all">সব নির্বাচন করুন</string>
+    <string name="deselect_all">সব নির্বাচন বাতিল</string>
+    <string name="more_options">আরও বিকল্প</string>
+    <string name="settings">সেটিংস</string>
+    <string name="help">সাহায্য</string>
+    <string name="feedback">মতামত</string>
+    <string name="loading">লোড হচ্ছে…</string>
+    <string name="refreshing">রিফ্রেশ হচ্ছে…</string>
+    <string name="saving">সংরক্ষণ হচ্ছে…</string>
+    <string name="deleting">মুছে ফেলা হচ্ছে…</string>
+    <string name="please_wait">অনুগ্রহ করে অপেক্ষা করুন…</string>
+    <string name="see_all">সব দেখুন</string>
+    <string name="show_less">কম দেখান</string>
+    <string name="show_more">বেশি দেখান</string>
+    <string name="optional">ঐচ্ছিক</string>
+    <string name="required">আবশ্যক</string>
+    <string name="none">কোনটি নয়</string>
+    <string name="unknown">অজানা</string>
+    <string name="today">আজ</string>
+    <string name="yesterday">গতকাল</string>
+    <string name="tomorrow">আগামীকাল</string>
+    <string name="this_week">এই সপ্তাহ</string>
+    <string name="last_week">গত সপ্তাহ</string>
+    <string name="next_week">আগামী সপ্তাহ</string>
+    <string name="this_month">এই মাস</string>
+    <string name="all">সব</string>
+    <string name="new_action">নতুন</string>
+    <string name="add">যোগ করুন</string>
+    <string name="remove">সরান</string>
+    <string name="create">তৈরি করুন</string>
+    <string name="update">আপডেট</string>
+    <string name="restore">পুনরুদ্ধার</string>
+    <string name="archive">সংগ্রহ</string>
+    <string name="unarchive">সংগ্রহ থেকে বের করুন</string>
+    <string name="pin">পিন</string>
+    <string name="unpin">পিন সরান</string>
+    <string name="move">সরান</string>
+    <string name="rename">নাম পরিবর্তন</string>
+    <string name="duplicate">ডুপ্লিকেট</string>
+    <string name="open">খুলুন</string>
+    <string name="view">দেখুন</string>
+    <string name="preview">পূর্বরূপ</string>
+    <string name="expand">প্রসারিত করুন</string>
+    <string name="collapse">সংকুচিত করুন</string>
+    <string name="enable">সক্রিয় করুন</string>
+    <string name="disable">নিষ্ক্রিয় করুন</string>
+    <string name="turn_on">চালু করুন</string>
+    <string name="turn_off">বন্ধ করুন</string>
+    <string name="yes">হ্যাঁ</string>
+    <string name="no">না</string>
+    <string name="not_now">এখন নয়</string>
+    <string name="got_it">বুঝেছি</string>
+    <string name="learn_more">আরও জানুন</string>
+    <string name="send">পাঠান</string>
+    <string name="submit">জমা দিন</string>
+    <string name="upload">আপলোড</string>
+    <string name="download">ডাউনলোড</string>
+    <string name="link">লিংক</string>
+    <string name="unlink">লিংক সরান</string>
+    <string name="connect">সংযোগ</string>
+    <string name="disconnect">সংযোগ বিচ্ছিন্ন</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ত্রুটি                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="error_generic">কিছু ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="error_network">ইন্টারনেট সংযোগ নেই। আপনার নেটওয়ার্ক পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
+    <string name="error_timeout">অনুরোধের সময় শেষ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="error_server">সার্ভার ত্রুটি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।</string>
+    <string name="error_not_found">অনুরোধ করা আইটেম খুঁজে পাওয়া যায়নি।</string>
+    <string name="error_unauthorized">আপনার সেশনের মেয়াদ শেষ হয়েছে। অনুগ্রহ করে আবার সাইন ইন করুন।</string>
+    <string name="error_forbidden">এই কাজটি করার অনুমতি আপনার নেই।</string>
+    <string name="error_validation">অনুগ্রহ করে ফর্ম পরীক্ষা করুন এবং ত্রুটি সংশোধন করুন।</string>
+    <string name="error_unknown">একটি অপ্রত্যাশিত ত্রুটি ঘটেছে।</string>
+    <string name="error_loading">লোড করতে ব্যর্থ। পুনরায় চেষ্টা করতে ট্যাপ করুন।</string>
+    <string name="error_saving">সংরক্ষণ করতে ব্যর্থ। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="error_deleting">মুছে ফেলতে ব্যর্থ। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="error_no_data">কোনো তথ্য পাওয়া যায়নি।</string>
+    <string name="error_offline_action">এই কাজের জন্য ইন্টারনেট সংযোগ প্রয়োজন।</string>
+    <string name="error_conflict">একটি দ্বন্দ্ব ঘটেছে। অনুগ্রহ করে রিফ্রেশ করুন এবং আবার চেষ্টা করুন।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- অনবোর্ডিং                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="onboarding_page1_title">সবকিছু এক জায়গায়</string>
+    <string name="onboarding_page1_body">নোট, কাজ এবং আপনার ক্যালেন্ডার একটি একক কাজের স্থানে সংযুক্ত।</string>
+    <string name="onboarding_page2_title">আপনার প্রবাহে থাকুন</string>
+    <string name="onboarding_page2_body">Pomodoro টাইমার জানে আপনি কী নিয়ে কাজ করছেন এবং স্বয়ংক্রিয়ভাবে আপনার সময় ট্র্যাক করে।</string>
+    <string name="onboarding_page3_title">AI যিনি আপনাকে বোঝেন</string>
+    <string name="onboarding_page3_body">আপনার সহকারী উত্তর দেওয়ার আগে আপনার সক্রিয় কাজ, আসন্ন ইভেন্ট এবং সাম্প্রতিক নোট দেখেন।</string>
+    <string name="onboarding_get_started">শুরু করুন</string>
+    <string name="onboarding_skip">এড়িয়ে যান</string>
+    <string name="onboarding_next">পরবর্তী</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- প্রমাণীকরণ — সাধারণ                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="auth_sign_in">সাইন ইন</string>
+    <string name="auth_sign_up">সাইন আপ</string>
+    <string name="auth_sign_out">সাইন আউট</string>
+    <string name="auth_log_in">লগ ইন</string>
+    <string name="auth_log_out">লগ আউট</string>
+    <string name="auth_create_account">অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="auth_already_have_account">ইতিমধ্যে অ্যাকাউন্ট আছে?</string>
+    <string name="auth_skip_login">অ্যাকাউন্ট ছাড়াই চালিয়ে যান</string>
+    <string name="auth_dont_have_account">অ্যাকাউন্ট নেই?</string>
+    <string name="auth_welcome_back">স্বাগতম পুনরায়</string>
+    <string name="auth_create_your_account">আপনার অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="auth_join_productivityx">ProductivityX-এ যোগ দিন</string>
+    <string name="auth_welcome_aboard">স্বাগতম!</string>
+    <string name="auth_account_created_success">আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে</string>
+
+    <!-- প্রমাণীকরণ — পাসওয়ার্ড ভুলে গেছেন / রিসেট -->
+    <string name="auth_forgot_password">পাসওয়ার্ড ভুলে গেছেন?</string>
+    <string name="auth_forgot_password_title">আপনার পাসওয়ার্ড ভুলে গেছেন?</string>
+    <string name="auth_forgot_password_body">আপনার ইমেইল ঠিকানা প্রবেশ করান এবং আমরা আপনাকে পাসওয়ার্ড রিসেট করার একটি লিংক পাঠাবো।</string>
+    <string name="auth_forgot_password_success_title">রিসেট লিংক পাঠানো হয়েছে</string>
+    <string name="auth_forgot_password_success_body">যদি সেই ইমেইল থাকে, একটি রিসেট লিংক পাঠানো হয়েছে। আপনার ইনবক্স পরীক্ষা করুন।</string>
+
+    <string name="auth_reset_password_title">আপনার পাসওয়ার্ড রিসেট করুন</string>
+    <string name="auth_reset_password_body">আপনার অ্যাকাউন্টের জন্য একটি নতুন পাসওয়ার্ড প্রবেশ করান।</string>
+    <string name="auth_reset_password_action">পাসওয়ার্ড রিসেট</string>
+    <string name="auth_reset_password_success_title">পাসওয়ার্ড রিসেট!</string>
+    <string name="auth_reset_password_success_body">আপনার পাসওয়ার্ড পরিবর্তন হয়েছে। আপনার নতুন পাসওয়ার্ড দিয়ে সাইন ইন করুন।</string>
+
+    <!-- প্রমাণীকরণ — ইমেইল যাচাই / OTP -->
+    <string name="auth_verify_email_title">আপনার ইমেইল পরীক্ষা করুন</string>
+    <string name="auth_verify_email_body">আমরা %1$s-এ একটি ৬ সংখ্যার কোড পাঠিয়েছি</string>
+    <string name="auth_verify">যাচাই করুন</string>
+    <string name="auth_resend_code">কোড পুনরায় পাঠান</string>
+    <string name="auth_resend_cooldown">%1$s-এ পুনরায় পাঠান</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ফর্ম ক্ষেত্র                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="field_email">ইমেইল ঠিকানা</string>
+    <string name="field_email_hint">আপনার ইমেইল প্রবেশ করান</string>
+    <string name="field_password">পাসওয়ার্ড</string>
+    <string name="field_password_hint">আপনার পাসওয়ার্ড প্রবেশ করান</string>
+    <string name="field_password_new">নতুন পাসওয়ার্ড</string>
+    <string name="field_password_new_hint">নতুন পাসওয়ার্ড প্রবেশ করান</string>
+    <string name="field_password_confirm">পাসওয়ার্ড নিশ্চিত করুন</string>
+    <string name="field_password_confirm_hint">আপনার পাসওয়ার্ড পুনরায় প্রবেশ করান</string>
+    <string name="field_password_current">বর্তমান পাসওয়ার্ড</string>
+    <string name="field_password_current_hint">বর্তমান পাসওয়ার্ড প্রবেশ করান</string>
+    <string name="field_username">ব্যবহারকারীর নাম</string>
+    <string name="field_username_hint">একটি ব্যবহারকারীর নাম বাছাই করুন</string>
+    <string name="field_first_name">প্রথম নাম</string>
+    <string name="field_first_name_hint">আপনার প্রথম নাম প্রবেশ করান</string>
+    <string name="field_last_name">শেষ নাম</string>
+    <string name="field_last_name_hint">আপনার শেষ নাম প্রবেশ করান</string>
+    <string name="field_phone">ফোন নম্বর</string>
+    <string name="field_phone_hint">আপনার ফোন নম্বর প্রবেশ করান</string>
+    <string name="field_birth_date">জন্ম তারিখ</string>
+    <string name="field_birth_date_hint">আপনার জন্ম তারিখ নির্বাচন করুন</string>
+    <string name="field_identifier">ইমেইল, ব্যবহারকারীর নাম, বা ফোন</string>
+    <string name="field_identifier_hint">ইমেইল, ব্যবহারকারীর নাম, বা ফোন প্রবেশ করান</string>
+    <string name="field_gender">লিঙ্গ</string>
+    <string name="field_bio">জীবনবৃত্তান্ত</string>
+    <string name="field_bio_hint">নিজের সম্পর্কে কিছু বলুন</string>
+    <string name="field_timezone">সময় অঞ্চল</string>
+    <string name="field_language">ভাষা</string>
+    <string name="field_theme">থিম</string>
+    <string name="field_avatar">প্রোফাইল ছবি</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- পাসওয়ার্ড                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="password_show">পাসওয়ার্ড দেখান</string>
+    <string name="password_hide">পাসওয়ার্ড লুকান</string>
+    <string name="password_strength_weak">দুর্বল</string>
+    <string name="password_strength_fair">মাঝারি</string>
+    <string name="password_strength_good">ভালো</string>
+    <string name="password_strength_strong">শক্তিশালী</string>
+    <string name="password_requirement_length">কমপক্ষে ৮ অক্ষর</string>
+    <string name="password_requirement_uppercase">একটি বড় হাতের অক্ষর</string>
+    <string name="password_requirement_lowercase">একটি ছোট হাতের অক্ষর</string>
+    <string name="password_requirement_number">একটি সংখ্যা</string>
+    <string name="password_requirement_special">একটি বিশেষ অক্ষর</string>
+    <string name="password_forgot">পাসওয়ার্ড ভুলে গেছেন?</string>
+    <string name="password_reset">পাসওয়ার্ড রিসেট</string>
+    <string name="password_change">পাসওয়ার্ড পরিবর্তন</string>
+    <string name="password_mismatch">পাসওয়ার্ড মেলে না।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- নিবন্ধন ধাপ                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="register_step_account">অ্যাকাউন্ট</string>
+    <string name="register_step_profile">প্রোফাইল</string>
+    <string name="register_step_preferences">পছন্দ</string>
+    <string name="register_step_verify">যাচাই</string>
+    <string name="register_step_indicator">ধাপ %1$d/%2$d</string>
+    <string name="register_change_photo">ছবি পরিবর্তন</string>
+    <string name="register_profile_photo_hint">প্রোফাইল ছবি যোগ করতে ট্যাপ করুন</string>
+    <string name="register_preferences_caption">আপনি যেকোনো সময় সেটিংসে এগুলো পরিবর্তন করতে পারবেন।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- থিম / প্রোফাইল                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="theme_dark">গাঢ়</string>
+    <string name="theme_light">হালকা</string>
+    <string name="theme_system">সিস্টেম</string>
+
+    <!-- Used in RegisterScreen Step 2 -->
+    <string name="profile_theme">থিম</string>
+    <string name="profile_theme_hint">আপনি যেকোনো সময় সেটিংসে এটি পরিবর্তন করতে পারবেন।</string>
+
+    <!-- Gender -->
+    <string name="gender_male">পুরুষ</string>
+    <string name="gender_female">মহিলা</string>
+    <string name="gender_prefer_not_to_say">বলতে চাই না</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- নেভিগেশন                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="nav_home">হোম</string>
+    <string name="nav_notes">নোট</string>
+    <string name="nav_tasks">কাজ</string>
+    <string name="nav_calendar">ক্যালেন্ডার</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_pomodoro">Pomodoro</string>
+    <string name="nav_search">অনুসন্ধান</string>
+    <string name="nav_profile">প্রোফাইল</string>
+    <string name="nav_settings">সেটিংস</string>
+    <string name="nav_trash">ট্র্যাশ</string>
+    <string name="nav_history">ইতিহাস</string>
+    <string name="nav_events">ইভেন্ট</string>
+    <string name="tab_dashboard">ড্যাশবোর্ড</string>
+    <string name="tab_events">ইভেন্ট</string>
+    <string name="tab_dashboard_desc">আপনার দিনের সারসংক্ষেপ</string>
+    <string name="tab_notes_desc">আপনার চিন্তা ধরুন</string>
+    <string name="tab_tasks_desc">কাজ সম্পন্ন করুন</string>
+    <string name="tab_events_desc">আপনার সময়সূচীর সারসংক্ষেপ</string>
+    <string name="tab_pomodoro_desc">প্রবাহে থাকুন</string>
+    <string name="cd_notifications">বিজ্ঞপ্তি</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- হোম                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_greeting_morning">সুপ্রভাত, %1$s 👋</string>
+    <string name="home_greeting_afternoon">শুভ অপরাহ্ন, %1$s 👋</string>
+    <string name="home_greeting_evening">শুভ সন্ধ্যা, %1$s 👋</string>
+    <string name="home_greeting_night">শুভ রাত্রি, %1$s 👋</string>
+    <string name="home_quick_add">দ্রুত যোগ</string>
+    <string name="home_due_today">আজ বকেয়া</string>
+    <string name="home_overdue">বকেয়া</string>
+    <string name="home_this_week">এই সপ্তাহ</string>
+    <string name="home_total_notes">মোট নোট</string>
+    <string name="home_focus_time">আজকের ফোকাস</string>
+    <string name="home_upcoming_events">আসন্ন ইভেন্ট</string>
+    <string name="home_recent_notes">সাম্প্রতিক নোট</string>
+    <string name="home_no_tasks_today">আজ কোনো কাজ বকেয়া নেই।</string>
+    <string name="home_no_events">কোনো আসন্ন ইভেন্ট নেই।</string>
+    <string name="home_no_notes">কোনো সাম্প্রতিক নোট নেই।</string>
+    <string name="home_sessions_today">আজকের সেশন</string>
+    <string name="home_focus_minutes">ফোকাস সময়</string>
+    <string name="home_completed_tasks">সম্পন্ন কাজ</string>
+    <string name="home_start_focus">ফোকাস শুরু করুন</string>
+    <string name="home_tasks_completed">কাজ সম্পন্ন</string>
+    <string name="home_events_upcoming">ইভেন্ট আসছে</string>
+    <string name="home_quick_actions_cd">দ্রুত কাজ</string>
+    <string name="home_quick_action_new_note">নতুন নোট</string>
+    <string name="home_quick_action_new_task">নতুন কাজ</string>
+    <string name="home_quick_action_calculator">ক্যালকুলেটর</string>
+    <string name="home_quick_action_start_timer">টাইমার শুরু করুন</string>
+    <string name="home_quick_action_ai_chat">AI চ্যাট</string>
+    <string name="home_error_something_wrong">কিছু ভুল হয়েছে</string>
+    <string name="home_opening_new_note">নতুন নোট খোলা হচ্ছে…</string>
+    <string name="home_opening_new_task">নতুন কাজ খোলা হচ্ছে…</string>
+    <string name="home_starting_timer">টাইমার শুরু হচ্ছে…</string>
+    <string name="home_opening_ai_chat">AI চ্যাট খোলা হচ্ছে…</string>
+    <string name="home_opening_calculator">ক্যালকুলেটর খোলা হচ্ছে…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- নোট                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notes_title">নোট</string>
+    <string name="notes_new">নতুন নোট</string>
+    <string name="notes_search_hint">নোট অনুসন্ধান…</string>
+    <string name="notes_filter_all">সব</string>
+    <string name="notes_filter_pinned">পিন করা</string>
+    <string name="notes_empty_title">এখনো কোনো নোট নেই</string>
+    <string name="notes_empty_body">আপনার প্রথম নোট লিখতে শুরু করুন।</string>
+    <string name="notes_empty_action">নোট তৈরি করুন</string>
+    <string name="notes_pinned_section">পিন করা</string>
+    <string name="notes_all_section">সব নোট</string>
+    <string name="notes_untitled">শিরোনাহীন</string>
+    <string name="notes_word_count">%1$d শব্দ</string>
+    <string name="notes_reading_time">%1$d মিনিট পড়া</string>
+    <string name="notes_pin_success">নোট পিন করা হয়েছে।</string>
+    <string name="notes_unpin_success">নোটের পিন সরানো হয়েছে।</string>
+    <string name="notes_delete_confirm_title">ট্র্যাশে নিবেন?</string>
+    <string name="notes_delete_confirm_body">এই নোটটি ট্র্যাশে সরানো হবে এবং ৩০ দিন পর স্থায়ীভাবে মুছে ফেলা হবে।</string>
+    <string name="notes_delete_success">নোট ট্র্যাশে সরানো হয়েছে।</string>
+    <string name="notes_restore_success">নোট পুনরুদ্ধার করা হয়েছে।</string>
+    <string name="notes_hard_delete_confirm_title">স্থায়ীভাবে মুছে ফেলবেন?</string>
+    <string name="notes_hard_delete_confirm_body">এই নোটটি স্থায়ীভাবে মুছে ফেলা হবে এবং পুনরুদ্ধার করা যাবে না।</string>
+    <string name="notes_hard_delete_success">নোট স্থায়ীভাবে মুছে ফেলা হয়েছে।</string>
+    <string name="notes_create_success">নোট তৈরি হয়েছে।</string>
+    <string name="notes_update_success">নোট সংরক্ষিত।</string>
+    <string name="notes_autosave">স্বয়ংক্রিয় সংরক্ষণ</string>
+    <string name="notes_saving">সংরক্ষণ হচ্ছে…</string>
+    <string name="notes_copy_link">লিংক কপি</string>
+    <string name="notes_link_copied">লিংক কপি হয়েছে।</string>
+    <string name="notes_link_task">কাজ লিংক করুন</string>
+    <string name="notes_unlink_task">কাজের লিংক সরান</string>
+    <string name="notes_task_linked">সাথে লিংক: %1$s</string>
+    <string name="notes_add_tag">ট্যাগ যোগ করুন</string>
+    <string name="notes_no_tags">কোনো ট্যাগ নেই</string>
+    <string name="notes_start_writing">লিখতে শুরু করুন…</string>
+    <string name="notes_title_hint">শিরোনাম</string>
+    <string name="notes_trash_empty_title">ট্র্যাশ খালি</string>
+    <string name="notes_trash_empty_body">ট্র্যাশের নোট ৩০ দিন পর স্থায়ীভাবে মুছে ফেলা হয়।</string>
+    <string name="notes_trash_empty_all">ট্র্যাশ খালি করুন</string>
+    <string name="notes_trash_empty_all_confirm_title">ট্র্যাশ খালি করবেন?</string>
+    <string name="notes_trash_empty_all_confirm_body">ট্র্যাশের সব নোট স্থায়ীভাবে মুছে ফেলা হবে।</string>
+    <string name="notes_in_trash">ট্র্যাশে %1$dটি নোট</string>
+    <string name="notes_in_trash_plural">ট্র্যাশে %1$dটি নোট</string>
+    <string name="notes_voice_memo">ভয়েস মেমো</string>
+    <string name="notes_selected_count">%1$dটি নির্বাচিত</string>
+    <string name="notes_search_no_results">"%1$s" কোনো নোটে মেলে না</string>
+    <string name="notes_links_title">নোট লিংক</string>
+    <string name="notes_links_empty">কোনো লিংক করা নোট নেই</string>
+    <string name="trash_days_left">%1$d দিন বাকি</string>
+    <string name="trash_expiring_soon">শীঘ্রই মেয়াদ শেষ</string>
+    <string name="trash_delete_permanently">স্থায়ীভাবে মুছুন</string>
+    <string name="trash_empty_confirm_body">%1$s স্থায়ীভাবে মুছে ফেলা হবে এবং পুনরুদ্ধার করা যাবে না।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- সম্পাদক                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="editor_format_bold">গাঢ়</string>
+    <string name="editor_format_italic">তির্যক</string>
+    <string name="editor_format_heading">শিরোনাম</string>
+    <string name="editor_format_list_bullet">বুলেট তালিকা</string>
+    <string name="editor_format_list_numbered">সংখ্যাযুক্ত তালিকা</string>
+    <string name="editor_format_code">কোড</string>
+    <string name="editor_format_quote">উদ্ধৃতি</string>
+    <string name="editor_format_link">লিংক সন্নিবেশ</string>
+    <string name="editor_insert_link_title">লিংক সন্নিবেশ</string>
+    <string name="editor_insert_link_url_hint">URL</string>
+    <string name="editor_insert_link_text_hint">প্রদর্শনীয় পাঠ্য</string>
+    <string name="editor_format_underline">নিচে দাগ</string>
+    <string name="editor_format_strikethrough">মাঝ দিয়ে দাগ</string>
+    <string name="editor_format_heading1">শিরোনাম ১</string>
+    <string name="editor_format_heading2">শিরোনাম ২</string>
+    <string name="editor_format_heading3">শিরোনাম ৩</string>
+    <string name="editor_format_code_block">কোড ব্লক</string>
+    <string name="editor_format_divider">বিভাজক</string>
+    <string name="editor_format_image">ছবি যোগ করুন</string>
+    <string name="editor_format_table">টেবিল সন্নিবেশ</string>
+    <string name="editor_format_highlight">হাইলাইট</string>
+    <string name="editor_highlight_color">হাইলাইট রঙ</string>
+    <string name="editor_highlight_default">ডিফল্ট হাইলাইট</string>
+    <string name="editor_text_color">পাঠ্যের রঙ</string>
+    <string name="editor_font_size">ফন্ট আকার</string>
+    <string name="editor_start_writing">লিখতে শুরু করুন…</string>
+    <string name="editor_saved">সংরক্ষিত</string>
+    <string name="editor_share_note">নোট শেয়ার করুন</string>
+    <string name="editor_pdf_filename">নোট</string>
+    <string name="editor_content_hint">লিখতে শুরু করুন…</string>
+    <string name="editor_insert_table_title">টেবিল সন্নিবেশ</string>
+    <string name="editor_table_dimensions">%1$d × %2$d</string>
+    <string name="editor_table_header_row">হেডার সারি</string>
+    <string name="editor_table_header_template">হেডার %1$d</string>
+    <string name="editor_table_cell_template">ঘর</string>
+    <string name="editor_insert_table_btn">সন্নিবেশ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ট্যাগ                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tags_title">ট্যাগ</string>
+    <string name="tags_new">নতুন ট্যাগ</string>
+    <string name="tags_name_hint">ট্যাগের নাম</string>
+    <string name="tags_color">রঙ</string>
+    <string name="tags_create_success">ট্যাগ তৈরি হয়েছে।</string>
+    <string name="tags_update_success">ট্যাগ আপডেট হয়েছে।</string>
+    <string name="tags_delete_success">ট্যাগ মুছে ফেলা হয়েছে।</string>
+    <string name="tags_delete_confirm_title">ট্যাগ মুছে ফেলবেন?</string>
+    <string name="tags_delete_confirm_body">এই ট্যাগটি ব্যবহারকারী সব নোট থেকে সরিয়ে ফেলা হবে।</string>
+    <string name="tags_already_exists">এই নামে একটি ট্যাগ ইতিমধ্যে আছে।</string>
+    <string name="tags_empty_title">এখনো কোনো ট্যাগ নেই</string>
+    <string name="tags_empty_body">আপনার নোট সাজাতে ট্যাগ তৈরি করুন।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- কাজ                                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="tasks_title">কাজ</string>
+    <string name="tasks_new">নতুন কাজ</string>
+    <string name="tasks_search_hint">কাজ খুঁজুন বা ফিল্টার করুন…</string>
+    <string name="tasks_tab_all">সব</string>
+    <string name="tasks_tab_today">আজ</string>
+    <string name="tasks_tab_upcoming">আসন্ন</string>
+    <string name="tasks_tab_completed">সম্পন্ন</string>
+    <string name="tasks_view_list">তালিকা</string>
+    <string name="tasks_empty_title">এখানে কোনো কাজ নেই</string>
+    <string name="tasks_empty_body">শুরু করতে আপনার প্রথম কাজ তৈরি করুন।</string>
+    <string name="tasks_empty_action">কাজ তৈরি করুন</string>
+    <string name="tasks_empty_today">আজ কোনো কাজের সময় নেই। আপনার দিনটি উপভোগ করুন!</string>
+    <string name="tasks_empty_upcoming">কোনো আসন্ন কাজ নেই।</string>
+    <string name="tasks_empty_completed">এখনো কোনো কাজ সম্পন্ন হয়নি।</string>
+    <string name="tasks_empty_filter">এই ফিল্টারে কোনো কাজ মেলেনি।</string>
+    <string name="tasks_field_title">কাজের শিরোনাম</string>
+    <string name="tasks_field_title_hint">কী করতে হবে?</string>
+    <string name="tasks_field_description">বিবরণ</string>
+    <string name="tasks_field_description_hint">আরও বিস্তারিত যোগ করুন…</string>
+    <string name="tasks_field_due_date">নির্ধারিত তারিখ</string>
+    <string name="tasks_field_due_time">নির্ধারিত সময়</string>
+    <string name="tasks_field_priority">অগ্রাধিকার</string>
+    <string name="tasks_field_status">অবস্থা</string>
+    <string name="tasks_field_reminder">রিমাইন্ডার</string>
+    <string name="tasks_field_estimated_time">আনুমানিক সময়</string>
+    <string name="tasks_field_actual_time">প্রকৃত সময়</string>
+    <string name="tasks_field_link_event">ইভেন্ট লিঙ্ক</string>
+    <string name="tasks_field_subtasks">উপ-কাজ</string>
+    <string name="tasks_add_subtask">উপ-কাজ যোগ করুন</string>
+    <string name="tasks_subtask_count">%1ি উপ-কাজ</string>
+    <string name="tasks_subtask_count_plural">%1ি উপ-কাজ</string>
+    <string name="tasks_subtask_completed">%2$d এর %1$d সম্পন্ন</string>
+    <string name="tasks_pomodoro_sessions">ফোকাস সেশন</string>
+    <string name="tasks_no_due_date">কোনো নির্ধারিত তারিখ নেই</string>
+    <string name="tasks_no_due_time">কোনো সময় নির্ধারিত হয়নি</string>
+    <string name="tasks_no_reminder">কোনো রিমাইন্ডার নেই</string>
+    <string name="tasks_no_estimated">কোনো আনুমানিক সময় নেই</string>
+    <string name="tasks_create_success">কাজ তৈরি হয়েছে।</string>
+    <string name="tasks_update_success">কাজ আপডেট হয়েছে।</string>
+    <string name="tasks_delete_success">কাজ মুছে ফেলা হয়েছে।</string>
+    <string name="tasks_restore_success">কাজ পুনরুদ্ধার করা হয়েছে।</string>
+    <string name="tasks_complete_success">কাজ সম্পন্ন হয়েছে।</string>
+    <string name="tasks_reorder_success">কাজ পুনর্সাজানো হয়েছে।</string>
+    <string name="tasks_status_updated">অবস্থা আপডেট হয়েছে।</string>
+    <string name="tasks_delete_confirm_title">কাজ মুছে ফেলবেন?</string>
+    <string name="tasks_delete_confirm_body">এই কাজটি মুছে ফেলা হবে।</string>
+    <string name="tasks_minutes">%1 মিনিট</string>
+    <string name="tasks_hours_minutes">%1 %2ি</string>
+    <string name="tasks_swipe_complete">সম্পন্ন</string>
+    <string name="tasks_swipe_delete">মুছুন</string>
+    <string name="tasks_sort_due_date">নির্ধারিত তারিখ</string>
+    <string name="tasks_sort_priority">অগ্রাধিকার</string>
+    <string name="tasks_sort_created">তৈরি</string>
+    <string name="tasks_sort_title">শিরোনাম</string>
+    <string name="tasks_filter_priority">অগ্রাধিকার অনুযায়ী ফিল্টার</string>
+    <string name="tasks_filter_status">অবস্থা অনুযায়ী ফিল্টার</string>
+    <string name="tasks_filter_due">নির্ধারিত তারিখ অনুযায়ী ফিল্টার</string>
+    <string name="tasks_overdue_label">বিলম্বিত</string>
+    <string name="tasks_due_today_label">আজ নির্ধারিত</string>
+    <string name="tasks_due_tomorrow_label">আগামীকাল নির্ধা�রিত</string>
+
+    <!-- অগ্রাধিকার / অবস্থা -->
+    <string name="priority_low">কম</string>
+    <string name="priority_medium">মাঝারি</string>
+    <string name="priority_high">বেশি</string>
+    <string name="priority_urgent">জরুরি</string>
+
+    <string name="status_todo">করণীয়</string>
+    <string name="status_in_progress">চলমান</string>
+    <string name="status_on_hold">স্থগিত</string>
+    <string name="status_done">সম্পন্ন</string>
+    <string name="status_cancelled">বাতিল</string>
+
+    <!-- কানবান -->
+    <string name="kanban_column_todo">করণীয়</string>
+    <string name="kanban_column_in_progress">চলমান</string>
+    <string name="kanban_column_on_hold">স্থগিত</string>
+    <string name="kanban_column_done">সম্পন্ন</string>
+    <string name="kanban_add_task">কাজ যোগ করুন</string>
+    <string name="kanban_drag_hint">টেনে ধরুন এবং সরাতে আঁকড়ে ধরুন</string>
+    <string name="kanban_column_empty">এখানে কোনো কাজ নেই</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ক্যালেন্ডার                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="calendar_title">ক্যালেন্ডার</string>
+    <string name="calendar_view_week">সপ্তাহ</string>
+    <string name="calendar_view_month">মাস</string>
+    <string name="calendar_today">আজ</string>
+    <string name="calendar_new_event">নতুন ইভেন্ট</string>
+    <string name="calendar_no_events">কোনো ইভেন্ট নেই</string>
+    <string name="calendar_all_day">সারা দিন</string>
+    <string name="calendar_recurring">পুনরাবৃত্ত</string>
+    <string name="calendar_events_count">%1ি ইভেন্ট</string>
+    <string name="calendar_events_count_plural">%1ি ইভেন্ট</string>
+    <string name="calendar_more_events">+%1 আরও</string>
+    <string name="calendar_week_header">%1 এর সপ্তাহ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ইভেন্ট                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="event_new_title">নতুন ইভেন্ট</string>
+    <string name="event_edit_title">ইভেন্ট সম্পাদনা</string>
+    <string name="event_field_title">ইভেন্টের শিরোনাম</string>
+    <string name="event_field_title_hint">ইভেন্টটি কী?</string>
+    <string name="event_field_description">বিবরণ</string>
+    <string name="event_field_description_hint">এই ইভেন্ট সম্পর্কে নোট যোগ করুন…</string>
+    <string name="event_field_location">অবস্থান</string>
+    <string name="event_field_location_hint">একটি অবস্থান যোগ করুন</string>
+    <string name="event_field_start">শুরু</string>
+    <string name="event_field_end">শেষ</string>
+    <string name="event_field_all_day">সারা দিনের ইভেন্ট</string>
+    <string name="event_field_color">রঙ</string>
+    <string name="event_field_recurrence">পুনরাবৃত্তি</string>
+    <string name="event_field_reminder">রিমাইন্ডার</string>
+    <string name="event_field_link_task">কাজ লিঙ্ক</string>
+    <string name="event_attendees">অংশগ্রহণকারী</string>
+    <string name="event_meeting_link">মিটিং লিঙ্ক</string>
+    <string name="event_travel_time">ভ্রমণের সময়</string>
+    <string name="event_quick_templates">দ্রুত টেমপ্লেট</string>
+    <string name="event_suggestions">পরামর্শ</string>
+    <string name="event_select_time">সময় নির্বাচন করুন</string>
+    <string name="event_conflict">সময়ের সংঘাত</string>
+    <string name="event_conflict_with">%dটি ইভেন্টের সাথে সময়ের সংঘাত</string>
+    <string name="event_add_attendee_hint">ইমেইল ঠিকানা</string>
+    <string name="event_enter_location_hint">অবস্থান লিখুন</string>
+    <string name="event_meeting_url_hint">https://meet.google.com/…</string>
+    <string name="event_travel_minutes_hint">মিনিট</string>
+    <string name="event_add_location">অবস্থান যোগ করুন</string>
+    <string name="event_add_description">বিবরণ যোগ করুন</string>
+    <string name="event_add_attendees">অংশগ্রহণকারী যোগ করুন</string>
+    <string name="event_add_link">লিঙ্ক যোগ করুন</string>
+    <string name="event_add_estimate">আনুমানিক যোগ করুন</string>
+    <string name="event_attendee_count">%d জন অংশগ্রহণকারী</string>
+    <string name="event_reminder_multiple">একাধিক (%d)</string>
+    <string name="event_speak_prompt">ইভেন্টের শিরোনাম বলুন</string>
+    <string name="task_delete_confirm">কাজ মুছে ফেলবেন?</string>
+    <string name="task_delete_message">এই কাজটি ট্র্যাশে পাঠানো হবে।</string>
+    <string name="task_not_found">কাজ পাওয়া যায়নি</string>
+    <string name="task_overdue">বিলম্বিত</string>
+    <string name="task_due_date">নির্ধারিত তারিখ</string>
+    <string name="task_due_time">নির্ধারিত সময়</string>
+    <string name="task_reminder">রিমাইন্ডার</string>
+    <string name="task_reminder_set">নির্ধারণ করুন</string>
+    <string name="task_time">সময়</string>
+    <string name="task_assignee">নির্ধারিত ব্যক্তি</string>
+    <string name="task_assigned">নির্ধারিত</string>
+    <string name="task_completed">সম্পন্ন</string>
+    <string name="task_priority">অগ্রাধিকার</string>
+    <string name="task_subtasks">উপ-কাজ</string>
+    <string name="task_activity">কার্যকলাপ</string>
+    <string name="task_hide">লুকান</string>
+    <string name="task_events">%dটি ইভেন্ট</string>
+    <string name="task_add_description">বিবরণ যোগ করুন</string>
+    <string name="task_add_subtask">উপ-কাজ যোগ করুন</string>
+    <string name="task_add_subtask_placeholder">উপ-কাজ যোগ করুন…</string>
+    <string name="priority_low_importance">কম গুরুত্ব</string>
+    <string name="priority_high_importance">বেশি গুরুত্ব</string>
+    <string name="priority_not_urgent">জরুরি নয়</string>
+    <string name="priority_urgent_low">জরুরি + কম গুরুত্ব</string>
+    <string name="priority_urgent_high">জরুরি + বেশি গুরুত্ব</string>
+    <string name="priority_not_urgent_low">জরুরি নয় + কম গুরুত্ব</string>
+    <string name="priority_not_urgent_high">জরুরি নয় + বেশি গুরুত্ব</string>
+    <string name="task_title_placeholder">কাজের শিরোনাম</string>
+    <string name="task_tags">ট্যাগ</string>
+    <string name="task_add_tag">ট্যাগ যোগ করুন</string>
+    <string name="task_set_date">তারিখ নির্ধারণ করুন</string>
+    <string name="task_set_time">সময় নির্ধারণ করুন</string>
+    <string name="task_remind_before">আগে মনে করিয়ে দিন</string>
+    <string name="task_repeat">পুনরাবৃত্তি</string>
+    <string name="task_never">কখনো নয়</string>
+    <string name="task_estimated_time">আনুমানিক সময়</string>
+    <string name="task_status">অবস্থা</string>
+    <string name="task_update">আপডেট</string>
+    <string name="task_create">তৈরি করুন</string>
+    <string name="plus_count">+%d</string>
+    <string name="password_weak">দুর্বল</string>
+    <string name="password_fair">গ্রহণযোগ্য</string>
+    <string name="password_good">ভালো</string>
+    <string name="password_strong">শক্তিশালী</string>
+    <string name="android_12_plus">Android 12+</string>
+    <string name="min_abbrev">মিনি</string>
+    <string name="cd_recurring">পুনরাবৃত্ত</string>
+    <string name="empty_tasks_list">এখনো কোনো কাজ নেই</string>
+    <string name="empty_tasks_list_hint">আপনার প্রথম কাজ তৈরি করতে + ট্যাপ করুন</string>
+    <string name="empty_tasks_kanban">বোর্ডে কোনো কাজ নেই</string>
+    <string name="empty_tasks_kanban_hint">শুরু করতে কাজ যোগ করুন</string>
+    <string name="empty_tasks_calendar">এই দিনে কোনো কাজ নেই</string>
+    <string name="empty_tasks_calendar_hint">অন্য দিন নির্বাচন করুন বা কাজ যোগ করুন</string>
+    <string name="empty_tasks_timeline">এই সময়ে কোনো কাজ নেই</string>
+    <string name="empty_tasks_timeline_hint">টাইমলাইন সামঞ্জস্য করুন বা কাজ যোগ করুন</string>
+
+    <!-- পছন্দসই সেটিংস -->
+    <string name="pref_section_account">অ্যাকাউন্ট</string>
+    <string name="pref_section_appearance">চেহারা</string>
+    <string name="pref_section_notifications">বিজ্ঞপ্তি</string>
+    <string name="pref_section_data_sync">ডেটা ও সিঙ্ক</string>
+    <string name="pref_section_beta">বেটা বৈশিষ্ট্য</string>
+    <string name="pref_section_about">সম্পর্কে</string>
+    <string name="pref_section_help">সাহায্য ও সমর্থন</string>
+    <string name="pref_search_placeholder">সেটিংস খুঁজুন…</string>
+    <string name="pref_no_results">"%s" এর জন্য কোনো ফলাফল পাওয়া যায়নি</string>
+    <string name="pref_theme">থিম</string>
+    <string name="pref_local_only_mode">শুধুমাত্র স্থানীয় মোড</string>
+    <string name="pref_local_only_mode_desc">সব ডেটা এই ডিভাইসে রাখুন</string>
+    <string name="pref_subscription">সাবস্ক্রিপশন</string>
+    <string name="pref_free_plan">বিনামূল্যের প্ল্যান</string>
+    <string name="pref_free">বিনামূল্যে</string>
+    <string name="pref_font_family">ফন্ট পরিবার</string>
+    <string name="pref_font_size">ফন্ট আকার</string>
+    <string name="pref_density">ঘনত্ব</string>
+    <string name="pref_haptic_feedback">হ্যাপটিক ফিডব্যাক</string>
+    <string name="pref_haptic_feedback_desc">ইন্টারঅ্যাকশনে কম্পন</string>
+    <string name="pref_quiet_hours">শান্ত সময়</string>
+    <string name="pref_quiet_hours_start">শুরু</string>
+    <string name="pref_quiet_hours_end">শেষ</string>
+    <string name="pref_auto_sync">স্বয়ংক্রিয় সিঙ্ক</string>
+    <string name="pref_auto_sync_desc">সংযুক্ত হলে স্বয়ংক্রিয়ভাবে ডেটা সিঙ্ক করুন</string>
+    <string name="pref_offline_mode">অফলাইন মোড</string>
+    <string name="pref_offline_mode_desc">ইন্টারনেট সংযোগ ছাড়াই কাজ করুন</string>
+    <string name="pref_export_data">ডেটা রপ্তানি</string>
+    <string name="pref_export_data_desc">আপনার সব ডেটার ব্যাকআপ সংরক্ষণ করুন</string>
+    <string name="pref_import_data">ডেটা আমদানি</string>
+    <string name="pref_import_data_desc">ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করুন</string>
+    <string name="pref_version">সংস্করণ</string>
+    <string name="pref_version_value">1.2.0 (build 42)</string>
+    <string name="pref_latest">সর্বশেষ</string>
+    <string name="pref_licenses">লাইসেন্স</string>
+    <string name="pref_licenses_desc">ওপেন সোর্স লাইব্রেরি</string>
+    <string name="pref_credits">কৃতিত্ব</string>
+    <string name="pref_terms">শর্তাবলী</string>
+    <string name="pref_privacy">গোপনীয়তা নীতি</string>
+    <string name="pref_faq">সচরাচর জিজ্ঞাসা</string>
+    <string name="pref_faq_desc">সচরাচর জিজ্ঞাসার উত্তর</string>
+    <string name="pref_contact">আমাদের সাথে যোগাযোগ করুন</string>
+    <string name="pref_contact_desc">দলের সাথে যোগাযোগ করুন</string>
+    <string name="pref_feedback">মতামত পাঠান</string>
+    <string name="pref_feedback_desc">আমাদের উন্নত করতে সাহায্য করুন ProductivityX</string>
+    <string name="pref_feedback_subject">ProductivityX মতামত</string>
+    <string name="pref_select_hour">%s ঘণ্টা নির্বাচন করুন</string>
+    <string name="pref_settings">সেটিংস</string>
+    <string name="pref_close">বন্ধ</string>
+    <string name="pref_enabled">সক্রিয়</string>
+    <string name="pref_disabled">নিষ্ক্রিয়</string>
+    <string name="pref_theme_dark">গাঢ়</string>
+    <string name="pref_theme_light">হালকা</string>
+    <string name="pref_theme_system">সিস্টেম</string>
+    <string name="pref_theme_ocean">সমুদ্র</string>
+    <string name="pref_theme_amber">অ্যাম্বার</string>
+    <string name="pref_theme_forest">বন</string>
+    <string name="pref_theme_rose">গোলাপি</string>
+    <string name="pref_theme_midnight">মধ্যরাত</string>
+    <string name="pref_theme_dynamic">ডায়নামিক</string>
+    <string name="pref_font_nunito">Nunito</string>
+    <string name="pref_font_system">সিস্টেম</string>
+    <string name="pref_font_serif">Serif</string>
+    <string name="pref_font_mono">Mono</string>
+    <string name="pref_density_compact">সংক্ষিপ্ত</string>
+    <string name="pref_density_comfortable">আরামদায়ক</string>
+    <string name="pref_density_spacious">প্রশস্ত</string>
+    <string name="pref_view_list">তালিকা</string>
+    <string name="pref_view_kanban">কানবান</string>
+    <string name="pref_sort_due">নির্ধারিত</string>
+    <string name="pref_sort_priority">অগ্রাধিকার</string>
+    <string name="pref_sort_created">তৈরি</string>
+    <string name="pref_calendar_week">সপ্তাহ</string>
+    <string name="pref_calendar_month">মাস</string>
+    <string name="pref_week_mon">সোম</string>
+    <string name="pref_week_sun">রবি</string>
+    <string name="pref_week_sat">শনি</string>
+    <string name="pref_ai_flash">ফ্ল্যাশ</string>
+    <string name="pref_ai_pro">প্রো</string>
+    <string name="minute_abbrev">মিনি</string>
+
+    <string name="event_recurrence_none">পুনরাবৃত্তি হয় না</string>
+    <string name="event_recurrence_daily">দৈনিক</string>
+    <string name="event_recurrence_weekly">সাপ্তাহিক</string>
+    <string name="event_recurrence_monthly">মাসিক</string>
+    <string name="event_recurrence_yearly">বার্ষিক</string>
+    <string name="event_recurrence_custom">কাস্টম</string>
+    <string name="event_recurrence_weekdays">প্রতি কার্যদিবস (সোম–শুক্র)</string>
+    <string name="event_recurrence_end_date">শেষ হয়</string>
+    <string name="event_recurrence_end_never">কখনো নয়</string>
+    <string name="event_recurrence_label">পুনরাবৃত্তি: %1</string>
+    <string name="event_reminder_none">কোনো রিমাইন্ডার নেই</string>
+    <string name="event_reminder_at_time">ইভেন্টের সময়ে</string>
+    <string name="event_reminder_5_min">৫ মিনিট আগে</string>
+    <string name="event_reminder_10_min">১০ মিনিট আগে</string>
+    <string name="event_reminder_15_min">১৫ মিনিট আগে</string>
+    <string name="event_reminder_30_min">৩০ মিনিট আগে</string>
+    <string name="event_reminder_1_hour">১ ঘণ্টা আগে</string>
+    <string name="event_reminder_1_day">১ দিন আগে</string>
+    <string name="event_create_success">ইভেন্ট তৈরি হয়েছে।</string>
+    <string name="event_update_success">ইভেন্ট আপডেট হয়েছে।</string>
+    <string name="event_delete_success">ইভেন্ট মুছে ফেলা হয়েছে।</string>
+    <string name="event_restore_success">ইভেন্ট পুনরুদ্ধার করা হয়েছে।</string>
+    <string name="event_untitled">শিরোনামহীন ইভেন্ট</string>
+    <string name="event_delete_cannot_undo">এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
+    <string name="event_repeats">পুনরাবৃত্তি হয়</string>
+    <string name="event_detail_ends">শেষ হয় %1</string>
+    <string name="event_detail_timezone">সময় অঞ্চল: %1</string>
+    <string name="event_detail_min_before">%1 মিনিট আগে</string>
+    <string name="event_detail_reminders">রিমাইন্ডার: %1</string>
+    <string name="event_detail_attendees_count">%1 জন অংশগ্রহণকারী</string>
+    <string name="event_detail_travel_time">ভ্রমণের সময়: %1 মিনিট</string>
+    <string name="event_reminder_short_at_time">সময়ে</string>
+    <string name="event_reminder_short_min">%1 মিনি</string>
+    <string name="event_reminder_short_1_hour">১ ঘণ্টা</string>
+    <string name="event_reminder_short_1_day">১ দিন</string>
+    <string name="event_delete_confirm_title">ইভেন্ট মুছে ফেলবেন?</string>
+    <string name="cd_date_picker">তারিখ বাছাইকারী</string>
+    <string name="cd_join">যোগ দিন</string>
+    <string name="cd_previous_year">গত বছর</string>
+    <string name="cd_next_year">পরবর্তী বছর</string>
+    <string name="event_delete_confirm_body">এই ইভেন্টটি মুছে ফেলা হবে।</string>
+    <string name="event_delete_recurring_title">পুনরাবৃত্ত ইভেন্ট মুছুন</string>
+    <string name="event_delete_recurring_body">এই ইভেন্টটি বা সিরিজের সব ইভেন্ট মুছবেন?</string>
+    <string name="event_delete_this_only">শুধু এই ইভেন্টটি</string>
+    <string name="event_delete_all_in_series">সিরিজের সব ইভেন্ট</string>
+    <string name="event_end_before_start">শেষের সময় শুরুর সময়ের পরে হতে হবে।</string>
+    <string name="event_location_open_maps">ম্যাপসে খুলুন</string>
+    <string name="event_time_range">%1$s – %2$s</string>
+    <string name="event_template_meeting">মিটিং</string>
+    <string name="event_template_focus">ফোকাস সময়</string>
+    <string name="event_template_break">বিরতি</string>
+    <string name="event_template_travel">ভ্রমণ</string>
+    <string name="event_join_meeting">মিটিংয়ে যোগ দিন</string>
+    <string name="event_navigate">নেভিগেট</string>
+    <string name="event_share">ইভেন্ট শেয়ার করুন</string>
+    <string name="event_duplicate">ডাপলিকেট</string>
+    <string name="event_weather">আবহাওয়া</string>
+    <string name="event_timezone">সময় অঞ্চল</string>
+    <string name="event_conflict_detected">সময়ের সংঘাত সনাক্ত হয়েছে</string>
+    <string name="event_reminder_add">রিমাইন্ডার যোগ করুন</string>
+    <string name="event_reminder_custom">কাস্টম</string>
+    <string name="event_voice_input">ভয়েস ইনপুট</string>
+    <string name="event_smart_suggestion">স্মার্ট পরামর্শ</string>
+    <string name="event_free_busy">ফ্রি/ব্যস্ত</string>
+    <string name="event_suggested_times">প্রস্তাবিত সময়</string>
+    <string name="calendar_view_day">দিন</string>
+    <string name="calendar_view_agenda">আজেন্ডা</string>
+    <string name="calendar_view_year">বছর</string>
+    <string name="calendar_date_jump">তারিখে যান</string>
+    <string name="calendar_swipe_instruction">নেভিগেট করতে সোয়াইপ করুন</string>
+    <string name="calendar_pinch_zoom">জুম করতে পিঞ্চ করুন</string>
+    <string name="calendar_no_events_day">এই দিনে কোনো ইভেন্ট নেই</string>
+    <string name="calendar_all_day_section">সারা দিন</string>
+    <string name="calendar_agenda_empty">কোনো আসন্ন ইভেন্ট নেই</string>
+    <string name="calendar_heat_map_label">কার্যকলাপ</string>
+    <string name="calendar_upcoming_events">আসন্ন ইভেন্ট</string>
+    <string name="calendar_free_busy_suggested">ফ্রি/ব্যস্ত ও প্রস্তাবিত সময়</string>
+    <string name="calendar_no_available_slots">এই সপ্তাহে কোনো উপলব্ধ স্লট পাওয়া যায়নি</string>
+    <string name="calendar_free">ফ্রি</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- পোমোডোরো                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="pomodoro_title">ফোকাস</string>
+    <string name="pomodoro_focus">ফোকাস</string>
+    <string name="pomodoro_short_break">ছোট বিরতি</string>
+    <string name="pomodoro_long_break">বড় বিরতি</string>
+    <string name="pomodoro_session_focus">ফোকাস সেশন</string>
+    <string name="pomodoro_session_short_break">ছোট বিরতি</string>
+    <string name="pomodoro_session_long_break">বড় বিরতি</string>
+    <string name="pomodoro_start">শুরু</string>
+    <string name="pomodoro_pause">বিরতি</string>
+    <string name="pomodoro_resume">পুনরায় শুরু</string>
+    <string name="pomodoro_skip">বাদ দিন</string>
+    <string name="pomodoro_stop">থামুন</string>
+    <string name="pomodoro_reset">রিসেট</string>
+    <string name="pomodoro_link_task">একটি কাজ লিঙ্ক করুন</string>
+    <string name="pomodoro_link_task_hint">কাজ লিঙ্ক করতে ট্যাপ করুন</string>
+    <string name="pomodoro_linked_task">ফোকাস: %1</string>
+    <string name="pomodoro_sessions_today">আজ %1ি সেশন</string>
+    <string name="pomodoro_sessions_today_plural">আজ %1ি সেশন</string>
+    <string name="pomodoro_focus_time_today">আজ %1 ফোকাস</string>
+    <string name="pomodoro_completed_today">আজ সম্পন্ন</string>
+    <string name="pomodoro_no_active_session">কোনো সক্রিয় সেশন নেই</string>
+    <string name="pomodoro_session_complete_title">সেশন সম্পন্ন! 🎉</string>
+    <string name="pomodoro_session_complete_body">দারুণ কাজ। বিরতি নিন!</string>
+    <string name="pomodoro_break_complete_title">বিরতি শেষ</string>
+    <string name="pomodoro_break_complete_body">পুনরায় ফোকাস করতে প্রস্তুত?</string>
+    <string name="pomodoro_start_success">সেশন শুরু হয়েছে।</string>
+    <string name="pomodoro_end_success">সেশন সম্পন্ন।</string>
+    <string name="pomodoro_interrupt_success">সেশন বাধাপ্রাপ্ত।</string>
+    <string name="pomodoro_interrupt_reason_hint">কেন থামছেন? (ঐচ্ছিক)</string>
+    <string name="pomodoro_interrupt_confirm_title">সেশন থামাবেন?</string>
+    <string name="pomodoro_interrupt_confirm_body">আপনার অগ্রগতি সংরক্ষিত হবে কিন্তু সেশনটি বাধাপ্রাপ্ত হিসাবে চিহ্নিত হবে।</string>
+    <string name="pomodoro_already_active">আপনার ইতিমধ্যে একটি সক্রিয় সেশন আছে। নতুন শুরু করার আগে এটি শেষ করুন।</string>
+    <string name="pomodoro_stats_title">আজকের পরিসংখ্যান</string>
+    <string name="pomodoro_history_title">সেশন ইতিহাস</string>
+    <string name="pomodoro_history_empty_title">এখনো কোনো সেশন নেই</string>
+    <string name="pomodoro_history_empty_body">আপনার ইতিহাস দেখতে একটি ফোকাস সেশন শুরু করুন।</string>
+    <string name="pomodoro_session_duration">%1$s / %2$s</string>
+    <string name="pomodoro_session_interrupted">বাধাপ্রাপ্ত</string>
+    <string name="pomodoro_session_completed">সম্পন্ন</string>
+    <string name="pomodoro_dot_current">বর্তমান সেশন</string>
+    <string name="pomodoro_dot_completed">সম্পন্ন সেশন</string>
+    <string name="pomodoro_dot_upcoming">আসন্ন সেশন</string>
+    <string name="pomodoro_notification_channel_name">পোমোডোরো টাইমার</string>
+    <string name="pomodoro_notification_channel_desc">লাইভ টাইমার আপডেট এবং সেশন বিজ্ঞপ্তি।</string>
+    <string name="pomodoro_notification_running">%1$s বাকি আছে — %2$s</string>
+    <string name="pomodoro_notification_action_pause">বিরতি</string>
+    <string name="pomodoro_notification_action_skip">বাদ দিন</string>
+    <string name="pomodoro_notification_action_stop">থামুন</string>
+    <string name="pomodoro_cycle_count">%2$d এর %1$d চক্র</string>
+    <string name="pomodoro_until_long_break">বড় বিরতির আগে %1ি সেশন</string>
+    <string name="pomodoro_until_long_break_plural">বড় বিরতির আগে %1ি সেশন</string>
+
+    <string name="pomodoro_swipe_to_skip">সোয়াইপ করে বাদ দিন</string>
+    <string name="pomodoro_extend_1min">+১ মিনি</string>
+    <string name="pomodoro_focus_analytics">ফোকাস বিশ্লেষণ</string>
+    <string name="pomodoro_streak_day">%1 দিনের ধারা</string>
+    <string name="pomodoro_best_streak">সেরা: %1 দিন</string>
+    <string name="pomodoro_weekly_intensity">সাপ্তাহিক তীব্রতা</string>
+    <string name="pomodoro_focus_by_category">বিভাগ অনুযায়ী ফোকাস</string>
+    <string name="pomodoro_quality_score">মান স্কোর</string>
+    <string name="pomodoro_total_focus_time">মোট ফোকাস</string>
+    <string name="pomodoro_daily_goal">দৈনিক লক্ষ্য</string>
+    <string name="pomodoro_weekly_goal">সাপ্তাহিক লক্ষ্য</string>
+    <string name="pomodoro_exit_focus_mode">ফোকাস মোড থেকে বের হোন</string>
+    <string name="pomodoro_dnd">DND</string>
+    <string name="pomodoro_background">ব্যাকগ্রাউন্ড</string>
+    <string name="pomodoro_sounds">শব্দ</string>
+    <string name="pomodoro_focus_mode">ফোকাস মোড</string>
+    <string name="pomodoro_unlink">আনলিঙ্ক</string>
+    <string name="pomodoro_play_pause">প্লে/বিরতি</string>
+    <string name="pomodoro_no_active_tasks">কোনো সক্রিয় কাজ পাওয়া যায়নি।</string>
+    <string name="pomodoro_ambient_sound">পরিবেশ শব্দ</string>
+    <string name="pomodoro_today_sessions">আজকের সেশন</string>
+    <string name="pomodoro_no_sessions_today">আজ এখনো কোনো সেশন নেই</string>
+    <string name="pomodoro_interrupt_button">বাধা দিন</string>
+    <string name="pomodoro_dnd_access_required">DND অ্যাক্সেস প্রয়োজন। সেটিংসে সক্রিয় করুন।</string>
+    <string name="pomodoro_ambient_rain">বৃষ্টি</string>
+    <string name="pomodoro_ambient_cafe">ক্যাফে</string>
+    <string name="pomodoro_ambient_white_noise">সাদা শব্দ</string>
+    <string name="pomodoro_ambient_nature">প্রকৃতি</string>
+    <string name="pomodoro_paused">বিরতি</string>
+    <string name="pomodoro_done">সম্পন্ন! 🎉</string>
+    <string name="pomodoro_general_focus">সাধারণ ফোকাস</string>
+    <string name="pomodoro_sessions_label">সেশন</string>
+    <string name="pomodoro_focus_time_label">ফোকাস সময়</string>
+    <string name="pomodoro_streak_label">ধারা</string>
+    <string name="pomodoro_less">কম</string>
+    <string name="pomodoro_more">বেশি</string>
+    <string name="pomodoro_no_category_data">কোনো বিভাগের ডেটা পাওয়া যায়নি</string>
+    <string name="pomodoro_ongoing">চলমান</string>
+    <string name="pomodoro_duration_min">%d মিনি</string>
+    <string name="pomodoro_toggle">টগল</string>
+    <string name="pomodoro_ambient_sounds">পরিবেশ শব্দ</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AI                                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="ai_title">AI সহকারী</string>
+    <string name="ai_welcome_title">আমি কীভাবে সাহায্য করতে পারি?</string>
+    <string name="ai_welcome_body">আমি আপনার কাজের জায়গা দেখতে পারি — কাজ, ইভেন্ট, এবং নোট — প্রেক্ষাপট-সচেতন উত্তর দিতে।</string>
+    <string name="ai_message_hint">বার্তা…</string>
+    <string name="ai_send">পাঠান</string>
+    <string name="ai_new_conversation">নতুন কথোপকথন</string>
+    <string name="ai_conversations_title">কথোপকথন</string>
+    <string name="ai_conversation_empty">এখনো কোনো বার্তা নেই</string>
+    <string name="ai_conversations_empty_title">এখনো কোনো কথোপকথন নেই</string>
+    <string name="ai_conversations_empty_body">আপনার কাজের জায়গায় সাহায্য পেতে একটি নতুন কথোপকথন শুরু করুন।</string>
+    <string name="ai_delete_conversation_title">কথোপকথন মুছে ফেলবেন?</string>
+    <string name="ai_delete_conversation_body">এই কথোপকথন এবং এর সব বার্তা স্থায়ীভাবে মুছে ফেলা হবে।</string>
+    <string name="ai_delete_conversation_success">কথোপকথন মুছে ফেলা হয়েছে।</string>
+    <string name="ai_clear_conversation_title">কথোপকথন পরিষ্কার করবেন?</string>
+    <string name="ai_clear_conversation_body">এই কথোপকথনের সব বার্তা পরিষ্কার করা হবে।</string>
+    <string name="ai_suggestion_due_today">আজ কী আছে নির্ধারিত?</string>
+    <string name="ai_suggestion_overdue">আমার বিলম্বিত কাজ সংক্ষেপে বলুন</string>
+    <string name="ai_suggestion_start_focus">একটি ফোকাস সেশন শুরু করুন</string>
+    <string name="ai_suggestion_meeting_agenda">একটি মিটিং আজেন্ডা তৈরি করুন</string>
+    <string name="ai_context_title">আপনার কাজের জায়গা</string>
+    <string name="ai_context_active_tasks">সক্রিয় কাজ</string>
+    <string name="ai_context_events_week">এই সপ্তাহের ইভেন্ট</string>
+    <string name="ai_context_last_note">শেষ নোট</string>
+    <string name="ai_context_focus_today">আজকের ফোকাস</string>
+    <string name="ai_context_overdue">বিলম্বিত</string>
+    <string name="ai_context_caption">প্রতি বার্তার সাথে এই প্রেক্ষাপট AI-কে পাঠানো হয়।</string>
+    <string name="ai_context_refresh">প্রেক্ষাপট রিফ্রেশ</string>
+    <string name="ai_typing">AI ভাবছে…</string>
+    <string name="ai_streaming">উত্তর তৈরি হচ্ছে…</string>
+    <string name="ai_error_unavailable">AI সহকারী বর্তমানে অনুপলব্ধ। পরে আবার চেষ্টা করুন।</string>
+    <string name="ai_error_stream">উত্তর তৈরি করার সময় একটি ত্রুটি ঘটেছে।</string>
+    <string name="ai_action_create_task">কাজ তৈরি করুন</string>
+    <string name="ai_action_create_note">নোট তৈরি করুন</string>
+    <string name="ai_action_add_event">ইভেন্ট যোগ করুন</string>
+    <string name="ai_action_confirm">নিশ্চিত করুন</string>
+    <string name="ai_action_dismiss">খারিজ করুন</string>
+    <string name="ai_action_executed">সম্পন্ন! আইটেম তৈরি হয়েছে।</string>
+    <string name="ai_action_dismissed">খারিজ করা হয়েছে।</string>
+    <string name="ai_copy_message">বার্তা কপি করুন</string>
+    <string name="ai_message_copied">বার্তা কপি হয়েছে।</string>
+    <string name="ai_regenerate">উত্তর পুনরায় তৈরি করুন</string>
+    <string name="ai_you">আপনি</string>
+    <string name="ai_assistant">সহকারী</string>
+    <string name="ai_stop_generating">তৈরি বন্ধ করুন</string>
+    <string name="ai_conversations_search_hint">কথোপকথন খুঁজুন…</string>
+    <string name="ai_conversations_close_search">অনুসন্ধান বন্ধ করুন</string>
+    <string name="ai_conversations_no_results">"%s" এর জন্য কোনো ফলাফল নেই</string>
+    <string name="ai_conversations_section_pinned">পিন করা</string>
+    <string name="ai_conversations_section_earlier">পূর্ববর্তী</string>
+    <string name="ai_conversations_quick_action">দ্রুত কার্যক্রম</string>
+    <string name="ai_conversations_new_chat">নতুন চ্যাট</string>
+    <string name="ai_suggestion_plan_day">আমার দিন পরিকল্পনা করুন</string>
+    <string name="ai_suggestion_summarize_notes">নোট সংক্ষেপে বলুন</string>
+    <string name="ai_suggestion_brainstorm">আইডিয়া ব্রেনস্টর্ম</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- অনুসন্ধান                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="search_title">অনুসন্ধান</string>
+    <string name="search_hint">নোট, কাজ, ইভেন্ট খুঁজুন…</string>
+    <string name="search_results_notes">নোট</string>
+    <string name="search_results_tasks">কাজ</string>
+    <string name="search_results_events">ইভেন্ট</string>
+    <string name="search_recent">সাম্প্রতিক অনুসন্ধান</string>
+    <string name="search_clear_recent">পরিষ্কার করুন</string>
+    <string name="search_empty_title">\'%1\' এর জন্য কোনো ফলাফল নেই</string>
+    <string name="search_empty_body">ভিন্ন কীওয়ার্ড চেষ্টা করুন বা বানান পরীক্ষা করুন।</string>
+    <string name="search_results_count">%1ি ফলাফল</string>
+    <string name="search_results_count_plural">%1ি ফলাফল</string>
+    <string name="search_type_note">নোট</string>
+    <string name="search_type_task">কাজ</string>
+    <string name="search_type_event">ইভেন্ট</string>
+    <string name="search_offline_notice">স্থানীয়ভাবে অনুসন্ধান করা হচ্ছে। সম্পূর্ণ ফলাফলের জন্য ইন্টারনেটে সংযুক্ত হন।</string>
+    <string name="search_loading">অনুসন্ধান করা হচ্ছে…</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- প্রোফাইল ও সেটিংস                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="profile_title">প্রোফাইল</string>
+    <string name="profile_edit_title">প্রোফাইল সম্পাদনা</string>
+    <string name="profile_change_photo">ছবি পরিবর্তন করুন</string>
+    <string name="profile_remove_photo">ছবি সরিয়ে দিন</string>
+    <string name="profile_photo_updated">প্রোফাইল ছবি আপডেট হয়েছে।</string>
+    <string name="profile_photo_removed">প্রোফাইল ছবি সরিয়ে ফেলা হয়েছে।</string>
+    <string name="profile_photo_pick">গ্যালারি থেকে বেছে নিন</string>
+    <string name="profile_photo_camera">ছবি তুলুন</string>
+    <string name="profile_update_success">প্রোফাইল আপডেট হয়েছে।</string>
+    <string name="profile_stats_notes">নোট</string>
+    <string name="profile_stats_tasks_completed">সম্পন্ন কাজ</string>
+    <string name="profile_stats_focus_this_week">এই সপ্তাহের ফোকাস</string>
+    <string name="profile_member_since">সদস্য %1 থেকে</string>
+    <string name="profile_full_name">%1 %2</string>
+    <string name="profile_bio_empty">এখনো কোনো জীবনবৃত্তান্ত নেই।</string>
+    <string name="profile_section_account">অ্যাকাউন্ট</string>
+    <string name="profile_section_appearance">চেহারা</string>
+    <string name="profile_section_pomodoro">পোমোডোরো</string>
+    <string name="profile_section_notifications">বিজ্ঞপ্তি</string>
+    <string name="profile_section_ai">AI সহকারী</string>
+    <string name="profile_section_data">ডেটা ও সিঙ্ক</string>
+    <string name="profile_section_about">সম্পর্কে</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- পছন্দসই                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="preferences_title">পছন্দসই</string>
+    <string name="preferences_update_success">পছন্দসই সংরক্ষিত হয়েছে।</string>
+    <string name="preferences_pomodoro_focus">ফোকাস সময়কাল</string>
+    <string name="preferences_pomodoro_focus_desc">প্রতিটি ফোকাস সেশনের দৈর্ঘ্য</string>
+    <string name="preferences_pomodoro_short_break">ছোট বিরতি</string>
+    <string name="preferences_pomodoro_short_break_desc">সেশনের মধ্যে ছোট বিরতির দৈর্ঘ্য</string>
+    <string name="preferences_pomodoro_long_break">বড় বিরতি</string>
+    <string name="preferences_pomodoro_long_break_desc">পূর্ণ চক্রের পরে বড় বিরতির দৈর্ঘ্য</string>
+    <string name="preferences_pomodoro_cycles">বড় বিরতির আগে সেশন</string>
+    <string name="preferences_pomodoro_cycles_desc">বড় বিরতির আগে ফোকাস সেশনের সংখ্যা</string>
+    <string name="preferences_pomodoro_auto_start_breaks">স্বয়ংক্রিয় বিরতি শুরু</string>
+    <string name="preferences_pomodoro_auto_start_breaks_desc">সেশন শেষ হলে স্বয়ংক্রিয়ভাবে বিরতি শুরু করুন</string>
+    <string name="preferences_pomodoro_auto_start_focus">স্বয়ংক্রিয় ফোকাস শুরু</string>
+    <string name="preferences_pomodoro_auto_start_focus_desc">বিরতির পরে স্বয়ংক্রিয়ভাবে পরবর্তী সেশন শুরু করুন</string>
+    <string name="preferences_pomodoro_sound">শব্দ</string>
+    <string name="preferences_pomodoro_sound_desc">সেশন শেষ হলে শব্দ বাজান</string>
+    <string name="preferences_notify_task_reminders">কাজের রিমাইন্ডার</string>
+    <string name="preferences_notify_task_reminders_desc">কাজের রিমাইন্ডার হলে বিজ্ঞপ্তি পান</string>
+    <string name="preferences_notify_event_reminders">ইভেন্টের রিমাইন্ডার</string>
+    <string name="preferences_notify_event_reminders_desc">ক্যালেন্ডার ইভেন্টের আগে বিজ্ঞপ্তি পান</string>
+    <string name="preferences_notify_pomodoro_end">পোমোডোরো শেষ</string>
+    <string name="preferences_notify_pomodoro_end_desc">পোমোডোরো সেশন শেষ হলে বিজ্ঞপ্তি পান</string>
+    <string name="preferences_notify_daily_summary">দৈনিক সারসংক্ষেপ</string>
+    <string name="preferences_notify_daily_summary_desc">সকালে আপনার দিনের সারসংক্ষেপ পান</string>
+    <string name="preferences_default_task_view">ডিফল্ট কাজের দৃশ্য</string>
+    <string name="preferences_default_task_sort">ডিফল্ট কাজের সাজানো</string>
+    <string name="preferences_show_completed_tasks">সম্পন্ন কাজ দেখান</string>
+    <string name="preferences_show_completed_tasks_desc">কাজের তালিকায় সম্পন্ন কাজ অন্তর্ভুক্ত করুন</string>
+    <string name="preferences_default_calendar_view">ডিফল্ট ক্যালেন্ডার দৃশ্য</string>
+    <string name="preferences_week_starts_on">সপ্তাহ শুরু হয়</string>
+    <string name="preferences_week_starts_monday">সোমবার</string>
+    <string name="preferences_week_starts_sunday">রবিবার</string>
+    <string name="preferences_ai_context">কাজের জায়গার প্রেক্ষাপট</string>
+    <string name="preferences_ai_context_desc">AI সহকারীর সাথে আপনার কাজ, ইভেন্ট এবং নোট শেয়ার করুন</string>
+    <string name="preferences_ai_model">AI মডেল</string>
+    <string name="preferences_ai_model_desc">সহকারীর জন্য AI মডেল বেছে নিন</string>
+    <string name="preferences_compact_mode">সংক্ষিপ্ত মোড</string>
+    <string name="preferences_compact_mode_desc">বেশি বিষয়বস্তু দেখতে ঘনতর বিন্যাস ব্যবহার করুন</string>
+    <string name="preferences_minutes_format">%1 মিনি</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- সিঙ্ক                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="sync_status_synced">সিঙ্ক হয়েছে</string>
+    <string name="sync_status_pending">সিঙ্ক মুলতুবি</string>
+    <string name="sync_status_syncing">সিঙ্ক হচ্ছে…</string>
+    <string name="sync_status_conflict">সিঙ্ক সংঘাত</string>
+    <string name="sync_status_error">সিঙ্ক ত্রুটি</string>
+    <string name="sync_last_synced">শেষ সিঙ্ক: %1</string>
+    <string name="sync_never_synced">কখনো সিঙ্ক হয়নি</string>
+    <string name="sync_conflict_title">সিঙ্ক সংঘাত</string>
+    <string name="sync_conflict_body">\'%1\' এর জন্য একটি সংঘাত সনাক্ত হয়েছে। কোন সংস্করণ রাখতে চান?</string>
+    <string name="sync_conflict_keep_local">স্থানীয় সংস্করণ রাখুন</string>
+    <string name="sync_conflict_keep_server">সার্ভার সংস্করণ রাখুন</string>
+    <string name="sync_conflict_resolved">সংঘাত সমাধান হয়েছে।</string>
+    <string name="sync_pending_count">%1ি পরিবর্তন মুলতুবি</string>
+    <string name="sync_pending_count_plural">%1ি পরিবর্তন মুলতুবি</string>
+    <string name="sync_offline_banner">আপনি অফলাইনে আছেন। পুনরায় সংযুক্ত হলে পরিবর্তন সিঙ্ক হবে।</string>
+    <string name="sync_reconnected">অনলাইনে ফিরে এসেছে। সিঙ্ক হচ্ছে…</string>
+    <string name="sync_complete">সব পরিবর্তন সিঙ্ক হয়েছে।</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- বিজ্ঞপ্তি                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="notification_channel_reminders_name">রিমাইন্ডার</string>
+    <string name="notification_channel_reminders_desc">কাজ ও ইভেন্ট রিমাইন্ডার বিজ্ঞপ্তি।</string>
+    <string name="notification_channel_sync_name">সিঙ্ক</string>
+    <string name="notification_channel_sync_desc">ব্যাকগ্রাউন্ড সিঙ্ক অবস্থা বিজ্ঞপ্তি।</string>
+    <string name="notification_task_reminder_title">কাজের রিমাইন্ডার</string>
+    <string name="notification_task_reminder_body">%1 শীঘ্রই নির্ধারিত।</string>
+    <string name="notification_event_reminder_title">আসন্ন ইভেন্ট</string>
+    <string name="notification_event_reminder_body">%1 %2 এ শুরু হবে।</string>
+    <string name="notification_daily_summary_title">আজকের সারসংক্ষেপ</string>
+    <string name="notification_daily_summary_body">আজ %1$dি কাজ নির্ধারিত, %2$dি আসন্ন ইভেন্ট।</string>
+    <string name="notification_permission_title">বিজ্ঞপ্তি সক্রিয় করুন</string>
+    <string name="notification_permission_body">রিমাইন্ডার, ফোকাস সেশন এবং দৈনিক সারসংক্ষেপের সাথে আপডেট থাকুন।</string>
+    <string name="notification_permission_allow">অনুমতি দিন</string>
+    <string name="notification_permission_deny">এখন নয়</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- অনুমতি                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="permission_camera_title">ক্যামেরা অ্যাক্সেস</string>
+    <string name="permission_camera_body">প্রোফাইল ছবি তোলার জন্য ProductivityX-এ ক্যামেরা অ্যাক্সেস প্রয়োজন।</string>
+    <string name="permission_storage_title">স্টোরেজ অ্যাক্সেস</string>
+    <string name="permission_storage_body">প্রোফাইল ছবি বাছাই করার জন্য ProductivityX-এ স্টোরেজ অ্যাক্সেস প্রয়োজন।</string>
+    <string name="permission_notification_title">বিজ্ঞপ্তি অ্যাক্সেস</string>
+    <string name="permission_notification_body">কাজের রিমাইন্ডার এবং পোমোডোরো সতর্কতা পেতে বিজ্ঞপ্তির অনুমতি দিন।</string>
+    <string name="permission_denied_title">অনুমতি প্রয়োজন</string>
+    <string name="permission_denied_body">এই বৈশিষ্ট্যের জন্য অনুমতি প্রয়োজন। সেটিংসে সক্রিয় করুন।</string>
+    <string name="permission_go_to_settings">সেটিংস খুলুন</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- সময়                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="time_just_now">এইমাত্র</string>
+    <string name="time_minutes_ago">%1 মিনিট আগে</string>
+    <string name="time_hours_ago">%1 ঘণ্টা আগে</string>
+    <string name="time_yesterday">গতকাল</string>
+    <string name="time_days_ago">%1 দিন আগে</string>
+    <string name="time_weeks_ago">%1 সপ্তাহ আগে</string>
+    <string name="time_weeks_ago_plural">%1 সপ্তাহ আগে</string>
+    <string name="time_months_ago">%1 মাস আগে</string>
+    <string name="time_months_ago_plural">%1 মাস আগে</string>
+    <string name="time_format_date">MMM d, yyyy</string>
+    <string name="time_format_date_short">MMM d</string>
+    <string name="time_format_time">h:mm a</string>
+    <string name="time_format_datetime">MMM d \'at\' h:mm a</string>
+    <string name="time_format_day_month">d MMM</string>
+    <string name="time_format_full">EEEE, MMMM d, yyyy</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hour_singular">%1 ঘণ্টা</string>
+    <string name="time_hour_plural">%1 ঘণ্টা</string>
+    <string name="time_minute_singular">%1 মিনিট</string>
+    <string name="time_minute_plural">%1 মিনিট</string>
+
+    <!-- দিন / মাস -->
+    <string name="day_monday_short">সোম</string>
+    <string name="day_tuesday_short">মঙ্গল</string>
+    <string name="day_wednesday_short">বুধ</string>
+    <string name="day_thursday_short">বৃহ</string>
+    <string name="day_friday_short">শুক্র</string>
+    <string name="day_saturday_short">শনি</string>
+    <string name="day_sunday_short">রবি</string>
+    <string name="day_monday">সোমবার</string>
+    <string name="day_tuesday">মঙ্গলবার</string>
+    <string name="day_wednesday">বুধবার</string>
+    <string name="day_thursday">বৃহস্পতিবার</string>
+    <string name="day_friday">শুক্রবার</string>
+    <string name="day_saturday">শনিবার</string>
+    <string name="day_sunday">রবিবার</string>
+
+    <string name="month_january">জানুয়ারি</string>
+    <string name="month_february">ফেব্রুয়ারি</string>
+    <string name="month_march">মার্চ</string>
+    <string name="month_april">এপ্রিল</string>
+    <string name="month_may">মে</string>
+    <string name="month_june">জুন</string>
+    <string name="month_july">জুলাই</string>
+    <string name="month_august">আগস্ট</string>
+    <string name="month_september">সেপ্টেম্বর</string>
+    <string name="month_october">অক্টোবর</string>
+    <string name="month_november">নভেম্বর</string>
+    <string name="month_december">ডিসেম্বর</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ফাঁকা অবস্থা                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="empty_state_generic_title">এখনো কিছু নেই</string>
+    <string name="empty_state_generic_body">নতুন কিছু তৈরি করে শুরু করুন।</string>
+    <string name="empty_state_no_results_title">কোনো ফলাফল নেই</string>
+    <string name="empty_state_no_results_body">ভিন্ন অনুসন্ধান বা ফিল্টার চেষ্টা করুন।</string>
+    <string name="empty_state_offline_title">আপনি অফলাইনে আছেন</string>
+    <string name="empty_state_offline_body">আপনার বিষয়বস্তু লোড করতে ইন্টারনেটে সংযুক্ত হন।</string>
+    <string name="empty_state_error_title">কিছু ভুল হয়েছে</string>
+    <string name="empty_state_error_body">রিফ্রেশ করতে নিচে টানুন বা নিচের বোতামে ট্যাপ করুন।</string>
+    <string name="empty_state_retry">আবার চেষ্টা করুন</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- অ্যাক্সেসিবিলিটি                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="cd_back">পেছনে যান</string>
+    <string name="cd_close">বন্ধ</string>
+    <string name="cd_more_options">আরও বিকল্প</string>
+    <string name="cd_search">অনুসন্ধান</string>
+    <string name="cd_filter">ফিল্টার</string>
+    <string name="cd_sort">সাজান</string>
+    <string name="cd_add">যোগ করুন</string>
+    <string name="cd_delete">মুছুন</string>
+    <string name="cd_edit">সম্পাদনা</string>
+    <string name="cd_restore">পুনরুদ্ধার</string>
+    <string name="cd_pin">নোট পিন করুন</string>
+    <string name="cd_unpin">নোট আনপিন করুন</string>
+    <string name="cd_check_task">কাজ সম্পন্ন চিহ্নিত করুন</string>
+    <string name="cd_uncheck_task">কাজ অসম্পন্ন চিহ্নিত করুন</string>
+    <string name="cd_profile_picture">প্রোফাইল ছবি</string>
+    <string name="cd_send_message">বার্তা পাঠান</string>
+    <string name="cd_play_pause">টাইমার প্লে বা বিরতি</string>
+    <string name="cd_skip_session">সেশন বাদ দিন</string>
+    <string name="cd_stop_session">সেশন থামুন</string>
+    <string name="cd_sync_status">সিঙ্ক অবস্থা: %1</string>
+    <string name="cd_password_toggle">পাসওয়ার্ড দৃশ্যমানতা টগল</string>
+    <string name="cd_clear_input">ইনপুট পরিষ্কার করুন</string>
+    <string name="cd_remove_subtask">উপ-কাজ সরিয়ে দিন</string>
+    <string name="cd_notification">বিজ্ঞপ্তি</string>
+    <string name="cd_selected">নির্বাচিত</string>
+    <string name="cd_not_selected">নির্বাচিত নয়</string>
+    <string name="cd_clear_selection">নির্বাচন পরিষ্কার করুন</string>
+    <string name="cd_grid_view">গ্রিড দৃশ্য</string>
+    <string name="cd_list_view">তালিকা দৃশ্য</string>
+    <string name="cd_note_image">নোটের ছবি</string>
+    <string name="cd_new_tag">নতুন ট্যাগ</string>
+    <string name="cd_biometric_login">বায়োমেট্রিক লগইন</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- বিবিধ                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="splash_checking_session">আপনার সেশন পরীক্ষা করা হচ্ছে…</string>
+    <string name="splash_loading">লোড হচ্ছে…</string>
+
+    <string name="dialog_unsaved_changes_title">অসংরক্ষিত পরিবর্তন</string>
+    <string name="dialog_unsaved_changes_body">আপনার অসংরক্ষিত পরিবর্তন আছে। সেগুলো বর্জন করতে চান?</string>
+    <string name="dialog_unsaved_changes_save">সংরক্ষণ</string>
+    <string name="dialog_unsaved_changes_discard">বর্জন</string>
+    <string name="dialog_date_picker_title">তারিখ নির্বাচন করুন</string>
+    <string name="dialog_time_picker_title">সময় নির্বাচন করুন</string>
+    <string name="dialog_color_picker_title">রঙ বেছে নিন</string>
+    <string name="dialog_task_picker_title">একটি কাজ লিঙ্ক করুন</string>
+    <string name="dialog_event_picker_title">একটি ইভেন্ট লিঙ্ক করুন</string>
+    <string name="dialog_tag_manager_title">ট্যাগ পরিচালনা</string>
+
+    <string name="task_view_list">তালিকা</string>
+    <string name="task_view_kanban">বোর্ড</string>
+
+    <string name="snackbar_undo">পূর্বাবস্থায় ফেরুন</string>
+    <string name="snackbar_note_deleted">নোট মুছে ফেলা হয়েছে</string>
+    <string name="snackbar_task_deleted">কাজ মুছে ফেলা হয়েছে</string>
+    <string name="snackbar_event_deleted">ইভেন্ট মুছে ফেলা হয়েছে</string>
+    <string name="snackbar_tag_deleted">ট্যাগ মুছে ফেলা হয়েছে</string>
+    <string name="snackbar_copied">ক্লিপবোর্ডে কপি হয়েছে</string>
+    <string name="snackbar_no_internet">ইন্টারনেট সংযোগ নেই</string>
+    <string name="snackbar_changes_saved">পরিবর্তন সংরক্ষিত হয়েছে</string>
+
+    <string name="about_version">সংস্করণ %1</string>
+    <string name="about_build">বিল্ড %1</string>
+    <string name="about_privacy_policy">গোপনীয়তা নীতি</string>
+    <string name="about_terms_of_service">সেবার শর্তাবলী</string>
+    <string name="about_open_source_licenses">ওপেন সোর্স লাইসেন্স</string>
+    <string name="about_rate_app">অ্যাপ রেট করুন</string>
+    <string name="about_send_feedback">মতামত পাঠান</string>
+    <string name="about_built_by">নির্মাণ করেছেন Oussama Chatri</string>
+    <string name="about_copyright">© 2026 ProductivityX</string>
+
+    <string name="data_export_title">ডেটা রপ্তানি</string>
+    <string name="data_export_body">আপনার সব নোট, কাজ এবং ইভেন্ট একটি ফাইলে ডাউনলোড করুন।</string>
+    <string name="data_export_action">রপ্তানি</string>
+    <string name="data_export_success">আপনার ডেটা রপ্তানি প্রস্তুত।</string>
+    <string name="data_delete_account_title">অ্যাকাউন্ট মুছুন</string>
+    <string name="data_delete_account_body">আপনার অ্যাকাউন্ট এবং সমস্ত সম্পর্কিত ডেটা স্থায়ীভাবে মুছুন। এটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
+    <string name="data_delete_account_action">অ্যাকাউন্ট মুছুন</string>
+    <string name="data_delete_account_confirm_title">আপনার অ্যাকাউন্ট মুছে ফেলবেন?</string>
+    <string name="data_delete_account_confirm_body">আপনার সব নোট, কাজ, ইভেন্ট এবং কথোপকথন স্থায়ীভাবে মুছে ফেলা হবে। এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
+    <string name="data_delete_account_type_confirm">নিশ্চিত করতে DELETE টাইপ করুন</string>
+    <string name="data_delete_account_confirm_word">DELETE</string>
+
+    <string name="update_available_title">আপডেট পাওয়া গেছে</string>
+    <string name="update_available_body">ProductivityX-এর একটি নতুন সংস্করণ পাওয়া গেছে। সর্বশেষ বৈশিষ্ট্য ও সংশোধনের জন্য এখনই আপডেট করুন।</string>
+    <string name="update_now">এখনই আপডেট করুন</string>
+    <string name="update_later">পরে</string>
+
+    <string name="auth_check_your_email">আপনার ইমেইল দেখুন</string>
+    <string name="auth_otp_sent_body">আমরা %s-এ একটি ৬ সংখ্যার কোড পাঠিয়েছি</string>
+
+    <string name="language_en">ইংরেজি</string>
+    <string name="language_fr">ফরাসি</string>
+    <string name="language_ar">আরবি</string>
+    <string name="language_es">স্প্যানিশ</string>
+    <string name="language_de">জার্মান</string>
+    <string name="language_pt">পর্তুগিজ</string>
+    <string name="language_zh">পারম্পরিক চীনা</string>
+    <string name="language_ja">জাপানি</string>
+    <string name="language_ko">কোরিয়ান</string>
+    <string name="language_ru">রাশিয়ান</string>
+    <string name="language_tr">তুর্কি</string>
+    <string name="language_it">ইতালিয়ান</string>
+    <string name="language_hi">হিন্দি</string>
+    <string name="language_id">ইন্দোনেশিয়ান</string>
+    <string name="language_nl">ডাচ</string>
+    <string name="language_vi">ভিয়েতনামি</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- উইজেট                                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="widget_task_list_title">কাজ</string>
+    <string name="widget_task_list_empty">আজ কোনো কাজ নির্ধারিত নেই</string>
+    <string name="widget_pomodoro_title">পোমোডোরো</string>
+    <string name="widget_pomodoro_start">ফোকাস শুরু করতে ট্যাপ করুন</string>
+    <string name="widget_quick_note_title">দ্রুত নোট</string>
+    <string name="widget_quick_note_hint">নোট যোগ করতে ট্যাপ করুন</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- হোম ড্যাশবোর্ড                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="home_widget_tasks">আজকের কাজ</string>
+    <string name="home_widget_events">আসন্ন ইভেন্ট</string>
+    <string name="home_widget_focus">আজকের ফোকাস সময়</string>
+    <string name="home_widget_notes">সাম্প্রতিক নোট</string>
+    <string name="home_widget_quote">দৈনিক উদ্ধৃতি</string>
+    <string name="home_widget_ai">AI সহকারী</string>
+    <string name="home_widget_focus_mode">দ্রুত ফোকাস</string>
+    <string name="home_expand">প্রসারিত করুন</string>
+    <string name="home_collapse">সংকুচিত করুন</string>
+    <string name="home_see_all">সব দেখুন</string>
+    <string name="home_empty_tasks">আজ কোনো কাজ নির্ধারিত নেই</string>
+    <string name="home_empty_events">কোনো আসন্ন ইভেন্ট নেই</string>
+    <string name="home_empty_notes">কোনো সাম্প্রতিক নোট নেই</string>
+    <string name="home_empty_focus">এখনো কোনো ফোকাস সময় নেই</string>
+    <string name="home_focus_mode_active">ফোকাস মোড</string>
+    <string name="home_focus_mode_inactive">দ্রুত ফোকাস</string>
+    <string name="home_focus_mode_desc_active">বিভ্রান্তি কমান</string>
+    <string name="home_focus_mode_desc_inactive">ফোকাস মোডে প্রবেশ করতে ট্যাপ করুন</string>
+    <string name="home_voice_prompt">আপনি কী করতে চান?</string>
+    <string name="home_voice_listening">শুনছে…</string>
+    <string name="home_pull_to_refresh">রিফ্রেশ করতে টানুন</string>
+    <string name="home_syncing">সিঙ্ক হচ্ছে…</string>
+    <string name="home_refreshed">ড্যাশবোর্ড আপডেট হয়েছে</string>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- শর্টকাট                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <string name="shortcut_new_note">নতুন নোট</string>
+    <string name="shortcut_new_task">নতুন কাজ</string>
+    <string name="shortcut_start_focus">ফোকাস শুরু করুন</string>
+    <string name="shortcut_ai_chat">AI চ্যাট</string>
+    <string name="shortcut_note_short_label">নোট</string>
+    <string name="shortcut_task_short_label">কাজ</string>
+    <string name="shortcut_focus_short_label">ফোকাস</string>
+    <string name="shortcut_ai_short_label">AI</string>
+
+    <!-- ফোল্ডার পরিচালনা -->
+    <string name="folder_screen_title">ফোল্ডার</string>
+    <string name="folder_empty">এখনো কোনো ফোল্ডার নেই</string>
+    <string name="folder_create_dialog_title">ফোল্ডার তৈরি করুন</string>
+    <string name="folder_edit_dialog_title">ফোল্ডার সম্পাদনা</string>
+    <string name="folder_delete_title">ফোল্ডার মুছে ফেলবেন?</string>
+    <string name="folder_delete_message">"%s"-এর নোট মুছে ফেলা হবে না।</string>
+    <string name="folder_name_label">ফোল্ডারের নাম</string>
+    <string name="folder_color_label">রঙ</string>
+    <string name="folder_save">সংরক্ষণ</string>
+    <string name="folder_delete">মুছুন</string>
+    <string name="folder_note_count">%dটি নোট</string>
+    <string name="folder_note_count_one">%dটি নোট</string>
+    <string name="folder_create_cd">ফোল্ডার তৈরি করুন</string>
+    <string name="folder_edit_cd">সম্পাদনা</string>
+    <string name="folder_delete_cd">মুছুন</string>
+
+    <!-- ট্যাগ পরিচালনা -->
+    <string name="tag_screen_title">ট্যাগ</string>
+    <string name="tag_empty">এখনো কোনো ট্যাগ নেই। তৈরি করতে + ট্যাপ করুন।</string>
+    <string name="tag_create_dialog_title">ট্যাগ তৈরি করুন</string>
+    <string name="tag_edit_dialog_title">ট্যাগ সম্পাদনা</string>
+    <string name="tag_delete_title">ট্যাগ মুছে ফেলবেন?</string>
+    <string name="tag_delete_message">"%s" ট্যাগটি সব নোট থেকে সরিয়ে ফেলা হবে।</string>
+    <string name="tag_name_label">ট্যাগের নাম</string>
+    <string name="tag_color_label">রঙ</string>
+    <string name="tag_save">সংরক্ষণ</string>
+    <string name="tag_delete">মুছুন</string>
+    <string name="tag_create_cd">ট্যাগ তৈরি করুন</string>
+    <string name="tag_delete_cd">মুছুন</string>
+
+    <!-- শর্তাবলী -->
+    <string name="terms_title">শর্তাবলী</string>
+    <string name="terms_subtitle">সেবার শর্তাবলী</string>
+    <string name="terms_last_updated">সর্বশেষ আপডেট: জুলাই ২০২৬</string>
+    <string name="terms_section_1_title">১. শর্ত গ্রহণ</string>
+    <string name="terms_section_1_body">ProductivityX ব্যবহার বা অ্যাক্সেস করে, আপনি এই সেবার শর্তাবলী মেনে নিতে সম্মত হন। আপনি সম্মত না হলে অ্যাপটি ব্যবহার করবেন না।</string>
+    <string name="terms_section_2_title">২. সেবার বিবরণ</string>
+    <string name="terms_section_2_body">ProductivityX একটি একীভূত কাজের জায়গা প্রদান করে যার মধ্যে নোট, কাজ, ক্যালেন্ডার, ফোকাস টাইমার (পোমোডোরো), এবং AI সহকারী বৈশিষ্ট্য অন্তর্ভুক্ত। আমরা যেকোনো সময় যেকোনো বৈশিষ্ট্য পরিবর্তন বা বন্ধ করার অধিকার সংরক্ষণ করি।</string>
+    <string name="terms_section_3_title">৩. ব্যবহারকারীর অ্যাকাউন্ট</string>
+    <string name="terms_section_3_body">আপনার অ্যাকাউন্টের প্রমাণপত্রের গোপনীয়তা বজায় রাখা এবং আপনার অ্যাকাউন্টের সব কার্যকলাপের দায়িত্ব আপনার। অননুমোদিত অ্যাক্সেসের সাথে তাৎক্ষণিকভাবে আমাদের অবগত করতে হবে।</string>
+    <string name="terms_section_4_title">৪. যথার্থ ব্যবহার</string>
+    <string name="terms_section_4_body">আপনি ProductivityX কোনো বেআইনি উদ্দেশ্যে বা প্রযোজ্য আইন লঙ্ঘন করে ব্যবহার করবেন না। আমাদের সিস্টেম ব্যাহত করার, ক্ষতিগ্রস্ত করার বা অননুমোদিত অ্যাক্সেস পাওয়ার চেষ্টা করবেন না।</string>
+    <string name="terms_section_5_title">৫. ডেটা ও গোপনীয়তা</string>
+    <string name="terms_section_5_body">ProductivityX ব্যবহার আমাদের গোপনীয়তা নীতি দ্বারাও পরিচালিত হয়। আমরা ডেটা নিরাপত্তাকে গুরুত্ব সহকারে দেখি এবং আপনার তথ্য রক্ষা করতে শিল্প-মানদণ্ডের ব্যবস্থা প্রয়োগ করি।</string>
+    <string name="terms_section_6_title">৬. বৌদ্ধিক সম্পত্তি</string>
+    <string name="terms_section_6_body">ProductivityX এবং এর মূল বিষয়বস্তু, বৈশিষ্ট্য এবং কার্যকারিতা Oussama Chatri-এর মালিকানাধীন এবং প্রযোজ্য কপিরাইট ও বৌদ্ধিক সম্পত্তি আইন দ্বারা সুরক্ষিত।</string>
+    <string name="terms_section_7_title">৭. দায়ের সীমাবদ্ধতা</string>
+    <string name="terms_section_7_body">ProductivityX কোনো ধরনের ওয়ারেন্টি ছাড়া "যেমন আছে" তে প্রদান করা হয়। অ্যাপ ব্যবহার থেকে উদ্ভূত কোনো ক্ষতির জন্য আমরা দায়ী থাকব না।</string>
+    <string name="terms_section_8_title">৮. শর্তে পরিবর্তন</string>
+    <string name="terms_section_8_body">আমরা যেকোনো সময় এই শর্ত আপডেট করার অধিকার সংরক্ষণ করি। গুরুত্বপূর্ণ পরিবর্তনের ক্ষেত্রে আমরা অ্যাপ বা ইমেইলের মাধ্যমে ব্যবহারকারীদের অবহিত করব।</string>
+    <string name="terms_section_9_title">৯. যোগাযোগ</string>
+    <string name="terms_section_9_body">এই শর্ত সম্পর্কে প্রশ্নের জন্য, productivityx7@gmail.com-এ আমাদের সাথে যোগাযোগ করুন।</string>
+
+    <!-- গোপনীয়তা নীতি -->
+    <string name="privacy_title">গোপনীয়তা নীতি</string>
+    <string name="privacy_subtitle">গোপনীয়তা নীতি</string>
+    <string name="privacy_last_updated">সর্বশেষ আপডেট: জুলাই ২০২৬</string>
+    <string name="privacy_section_1_title">১. আমরা যে তথ্য সংগ্রহ করি</string>
+    <string name="privacy_section_1_body">অ্যাকাউন্ট তৈরি করার সময় আপনার প্রদত্ত তথ্য আমরা সংগ্রহ করি, যার মধ্যে আপনার নাম, ইমেইল ঠিকানা এবং প্রোফাইল ছবি অন্তর্ভুক্ত। আমরা অ্যাপের মধ্যে তৈরি ডেটাও সংগ্রহ করি যেমন নোট, কাজ, ইভেন্ট এবং ফোকাস সেশন।</string>
+    <string name="privacy_section_2_title">২. আমরা কীভাবে আপনার তথ্য ব্যবহার করি</string>
+    <string name="privacy_section_2_body">আপনার ডেটা ProductivityX বৈশিষ্ট্য প্রদান ও উন্নত করতে, ডিভাইস জুড়ে সিঙ্ক করতে এবং প্রাসঙ্গিক বিজ্ঞপ্তি পাঠাতে ব্যবহৃত হয়। আমরা আপনার ব্যক্তিগত তথ্য তৃতীয় পক্ষকে বিক্রি করি না।</string>
+    <string name="privacy_section_3_title">৩. ডেটা সংরক্ষণ ও নিরাপত্তা</string>
+    <string name="privacy_section_3_body">আপনার ডেটা সরবরাহ এবং সংরক্ষণের সময় এনক্রিপ্ট করা হয়। আমরা আপনার তথ্য রক্ষা করতে শিল্প-মানদণ্ডের নিরাপত্তা ব্যবস্থা ব্যবহার করি। আপনি ক্লাউড সিঙ্ক ছাড়াই ডেটা স্থানীয়ভাবে রাখতে পারেন।</string>
+    <string name="privacy_section_4_title">৪. তৃতীয় পক্ষের সেবা</string>
+    <string name="privacy_section_4_body">ProductivityX AI সহায়তা, পুশ বিজ্ঞপ্তি এবং বিশ্লেষণের জন্য তৃতীয় পক্ষের সেবা ব্যবহার করতে পারে। এই সেবাগুলো চুক্তি অনুযায়ী আপনার ডেটা রক্ষা করতে এবং শুধুমাত্র নির্ধারিত উদ্দেশ্যে ব্যবহার করতে বাধ্য।</string>
+    <string name="privacy_section_5_title">৫. আপনার অধিকার</string>
+    <string name="privacy_section_5_body">আপনি যেকোনো সময় অ্যাপ সেটিংসের মাধ্যমে আপনার ডেটা অ্যাক্সেস, পরিবর্তন বা মুছে ফেলতে পারেন। আপনি আপনার সম্পূর্ণ ডেটা রপ্তানি অনুরোধ করতে বা স্থায়ীভাবে আপনার অ্যাকাউন্ট মুছে ফেলতে পারেন।</string>
+    <string name="privacy_section_6_title">৬. ডেটা সংরক্ষণ</string>
+    <string name="privacy_section_6_body">আপনার অ্যাকাউন্ট সক্রিয় থাকা পর্যন্ত আমরা আপনার ডেটা সংরক্ষণ করি। মুছে ফেলা আইটেম ৩০ দিন ট্র্যাশে রাখা হয় স্থায়ী মুছে ফেলার আগে। অ্যাকাউন্ট মুছে ফেলা ৯০ দিনের মধ্যে সমস্ত সম্পর্কিত ডেটা সরিয়ে দেয়।</string>
+    <string name="privacy_section_7_title">৭. শিশুদের গোপনীয়তা</string>
+    <string name="privacy_section_7_body">ProductivityX ১৩ বছরের কম বয়সী ব্যবহারকারীদের জন্য নয়। আমরা জেনে-বুঝে শিশুদের ডেটা সংগ্রহ করি না। এমন ডেটা সম্পর্কে জানলে আমরা এটি তাৎক্ষণিকভাবে মুছে ফেলব।</string>
+    <string name="privacy_section_8_title">৮. এই নীতিতে পরিবর্তন</string>
+    <string name="privacy_section_8_body">আমরা এই গোপনীয়তা নীতি আপডেট করতে পারি। গুরুত্বপূর্ণ পরিবর্তনের ক্ষেত্রে আমরা অ্যাপ বা ইমেইলের মাধ্যমে আপনাকে অবহিত করব।</string>
+    <string name="privacy_section_9_title">৯. আমাদের সাথে যোগাযোগ</string>
+    <string name="privacy_section_9_body">গোপনীয়তা সম্পর্কিত অনুসন্ধানের জন্য, productivityx7@gmail.com-এ আমাদের সাথে যোগাযোগ করুন।</string>
+
+    <!-- কাজ পরিসংখ্যান -->
+    <string name="tasks_statistics">পরিসংখ্যান</string>
+    <string name="tasks_stats_score">স্কোর</string>
+    <string name="tasks_stats_streak">ধারা</string>
+    <string name="tasks_stats_days">দিন</string>
+    <string name="tasks_stats_best">সেরা</string>
+    <string name="tasks_stats_completion_rate">সম্পন্ন হার</string>
+    <string name="tasks_stats_this_week">এই সপ্তাহ</string>
+    <string name="tasks_stats_this_month">এই মাস</string>
+    <string name="tasks_stats_monthly_progress">মাসিক অগ্রগতি</string>
+    <string name="tasks_stats_done_count">%1$d/%2$d সম্পন্ন</string>
+    <string name="tasks_stats_time_by_priority">অগ্রাধিকার অনুযায়ী ব্যয়িত সময়</string>
+    <string name="tasks_stats_no_data">এখনো কোনো ডেটা নেই</string>
+    <string name="tasks_stats_achievements">অর্জন</string>
+    <string name="tasks_stats_unlock_badges">ব্যাজ আনলক করতে কাজ সম্পন্ন করুন</string>
+    <string name="tasks_stats_weekly_review">সাপ্তাহিক পর্যালোচনা</string>
+    <string name="tasks_stats_created">তৈরি</string>
+    <string name="tasks_stats_completed">সম্পন্ন</string>
+    <string name="tasks_stats_overdue">বিলম্বিত</string>
+    <string name="tasks_stats_suggested_focus">প্রস্তাবিত ফোকাস</string>
+    <string name="tasks_stats_patterns">উৎপাদনশীলতার ধরণ</string>
+    <string name="tasks_stats_velocity">সম্পন্ন গতি</string>
+    <string name="tasks_stats_productive_hours">সবচেয়ে উৎপাদনশীল ঘণ্টা</string>
+    <string name="tasks_stats_category_breakdown">বিভাগ বিশ্লেষণ</string>
+    <string name="tasks_stats_complete_more">আপনার উৎপাদনশীলতার ধরণ দেখতে আরও কাজ সম্পন্ন করুন</string>
+
+    <!-- পুনরাবৃত্তি লেবেল -->
+    <string name="task_recurrence_none">নেই</string>
+    <string name="task_recurrence_daily">দৈনিক</string>
+    <string name="task_recurrence_weekdays">কার্যদিবস</string>
+    <string name="task_recurrence_weekly">সাপ্তাহিক</string>
+    <string name="task_recurrence_biweekly">দ্বিসাপ্তাহিক</string>
+    <string name="task_recurrence_monthly">মাসিক</string>
+    <string name="task_recurrence_yearly">বার্ষিক</string>
+
+    <!-- কাজের বিস্তারিত -->
+    <string name="task_label">কাজ</string>
+    <string name="task_estimated_abbrev">আনু.</string>
+    <string name="task_actual_abbrev">প্রকৃত</string>
+
+    <!-- কাজের ট্র্যাশ -->
+    <string name="tasks_trash_empty_title">ট্র্যাশ ফাঁকা</string>
+    <string name="tasks_trash_empty_body">মুছে ফেলা কাজ এখানে দেখা যায়।</string>
+    <string name="tasks_trash_due">নির্ধারিত %1</string>
+    <string name="tasks_trash_hard_delete_title">স্থায়ীভাবে মুছে ফেলবেন?</string>
+    <string name="tasks_trash_hard_delete_body">এই কাজটি পুনরুদ্ধার করা যাবে না।</string>
+
+    <string name="tasks_no_tasks_day">এই দিনে কোনো কাজ নেই</string>
+    <string name="tasks_add_task">কাজ যোগ করুন</string>
+    <string name="tasks_drop_here">কাজ এখানে রাখুন</string>
+    <string name="tasks_set_priority">অগ্রাধিকার নির্ধারণ করুন</string>
+    <string name="tasks_ok">ঠিক আছে</string>
+    <string name="tasks_cancel">বাতিল</string>
+    <string name="tasks_selected_count">%dটি নির্বাচিত</string>
+    <string name="tasks_filter_all">সব</string>
+    <string name="tasks_filter_today">আজ</string>
+    <string name="tasks_filter_upcoming">আসন্ন</string>
+    <string name="tasks_filter_overdue">বিলম্বিত</string>
+    <string name="tasks_filter_no_date">কোনো তারিখ নেই</string>
+    <string name="tasks_filter_done">সম্পন্ন</string>
+    <string name="tasks_view_board">বোর্ড</string>
+    <string name="tasks_view_calendar">ক্যালেন্ডার</string>
+    <string name="tasks_view_timeline">টাইমলাইন</string>
+    <string name="tasks_bulk_complete">সম্পন্ন</string>
+    <string name="tasks_bulk_delete">মুছুন</string>
+    <string name="tasks_bulk_reschedule">পুনর্নির্ধারণ</string>
+    <string name="tasks_bulk_priority">অগ্রাধিকার</string>
+    <string name="tasks_weekday_sun">র</string>
+    <string name="tasks_weekday_mon">সো</string>
+    <string name="tasks_weekday_tue">ম</string>
+    <string name="tasks_weekday_wed">বু</string>
+    <string name="tasks_weekday_thu">বৃ</string>
+    <string name="tasks_weekday_fri">শু</string>
+    <string name="tasks_weekday_sat">শ</string>
+    <string name="tasks_picker_day_mon">সোম</string>
+    <string name="tasks_picker_day_tue">মঙ্গল</string>
+    <string name="tasks_picker_day_wed">বুধ</string>
+    <string name="tasks_picker_day_thu">বৃহ</string>
+    <string name="tasks_picker_day_fri">শুক্র</string>
+    <string name="tasks_picker_day_sat">শনি</string>
+    <string name="tasks_picker_day_sun">রবি</string>
+    <string name="tasks_minutes_abbrev">%1ি</string>
+    <string name="tasks_for_date">%s এর কাজ</string>
+    <string name="cd_exit_multiselect">মাল্টি-সিলেক্ট থেকে বের হোন</string>
+    <string name="cd_select_all">সব নির্বাচন করুন</string>
+    <string name="cd_statistics">পরিসংখ্যান</string>
+    <string name="cd_previous">পূর্ববর্তী</string>
+    <string name="cd_drop_here">এখানে রাখুন</string>
+
+    <!-- প্রোফাইল স্ক্রিন -->
+    <string name="profile_sign_out_desc">আপনার কাজের জায়গায় প্রবেশ করতে আবার সাইন ইন করতে হবে।</string>
+    <string name="profile_delete_account_title">অ্যাকাউন্ট মুছুন</string>
+    <string name="profile_delete_account_warning">এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না। আপনার সব ডেটা স্থায়ীভাবে মুছে ফেলা হবে।</string>
+    <string name="profile_delete_bullet_notes">সব নোট, কাজ এবং ইভেন্ট সরিয়ে ফেলা হবে</string>
+    <string name="profile_delete_bullet_account">আপনার অ্যাকাউন্ট এবং সাবস্ক্রিপশন বাতিল করা হবে</string>
+    <string name="profile_delete_bullet_irreversible">এটি পূর্বাবস্থায় ফেরানো যাবে না</string>
+    <string name="profile_section_actions">কার্যক্রম</string>
+    <string name="profile_notification_preferences">বিজ্ঞপ্তি পছন্দসই</string>
+    <string name="profile_section_account_subscription">অ্যাকাউন্ট ও সাবস্ক্রিপশন</string>
+    <string name="profile_storage">স্টোরেজ</string>
+    <string name="profile_connected_devices">সংযুক্ত ডিভাইস</string>
+    <string name="profile_section_danger_zone">বিপদ অঞ্চল</string>
+    <string name="profile_delete_subtitle">স্থায়ীভাবে সব ডেটা সরিয়ে দিন</string>
+    <string name="profile_stat_ai_chats">AI চ্যাট</string>
+    <string name="profile_recent_activity">সাম্প্রতিক কার্যকলাপ</string>
+    <string name="profile_productivity_trend">উৎপাদনশীলতার প্রবণতা</string>
+    <string name="profile_this_week_percent">এই সপ্তাহে %1%%</string>
+    <string name="profile_local_mode">স্থানীয় মোড</string>
+    <string name="profile_local_mode_desc">আপনি অ্যাকাউন্ট ছাড়াই ProductivityX ব্যবহার করছেন।\nআপনার ডেটা এই ডিভাইসেই থাকে।</string>
+    <string name="profile_theme_pro">প্রো থিম</string>
+
+    <!-- প্রোফাইল সম্পাদনা -->
+    <string name="pref_section_locale">লোকেল</string>
+    <string name="language_fr_native">Français</string>
+    <string name="language_ar_native">العربية</string>
+
+    <!-- পাসওয়ার্ড পরিবর্তন -->
+    <string name="password_change_success">পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে</string>
+    <string name="password_confirm_new">নতুন পাসওয়ার্ড নিশ্চিত করুন</string>
+    <string name="password_update">পাসওয়ার্ড আপডেট করুন</string>
+
+    <!-- পছন্দসই অনুসন্ধান -->
+    <string name="pref_search_pomodoro">পোমোডোরো টাইমার</string>
+    <string name="pref_search_appearance">চেহারা ও থিম</string>
+    <string name="pref_search_notifications">বিজ্ঞপ্তি ও শান্ত সময়</string>
+    <string name="pref_search_display">প্রদর্শন ও ফন্ট আকার</string>
+    <string name="pref_search_feature_flags">বৈশিষ্ট্য ফ্ল্যাগ (বেটা)</string>
+
+    <!-- FAQ -->
+    <string name="faq_q_what_is">ProductivityX কী?</string>
+    <string name="faq_a_what_is">ProductivityX একটি একীভূত কাজের জায়গা অ্যাপ যা নোট, কাজ, ক্যালেন্ডার, একটি পোমোডোরো ফোকাস টাইমার এবং একটি AI সহকারীকে এক জায়গায় একত্রিত করে।</string>
+    <string name="faq_q_data_secure">আমার ডেটা কি নিরাপদ?</string>
+    <string name="faq_a_data_secure">হ্যাঁ। আপনার ডেটা সরবরাহ এবং সংরক্ষণের সময় এনক্রিপ্ট করা হয়। আপনি ক্লাউড সিঙ্ক ছাড়াই সব ডেটা ডিভাইসে রাখতে স্থানীয় মোড সক্রিয় করতে পারেন।</string>
+    <string name="faq_q_ai_work">AI সহকারী কীভাবে কাজ করে?</string>
+    <string name="faq_a_ai_work">AI সহকারী প্রেক্ষাপট-সচেতন উত্তর দিতে আপনার সক্রিয় কাজ, আসন্ন ইভেন্ট এবং সাম্প্রতিক নোট দেখতে পারে। এটি Google Gemini মডেল ব্যবহার করে।</string>
+    <string name="faq_q_offline">আমি কি ProductivityX অফলাইনে ব্যবহার করতে পারি?</string>
+    <string name="faq_a_offline">হ্যাঁ। আপনি সেটিংসে অফলাইন মোড সক্রিয় করতে পারেন। ইন্টারনেটে পুনরায় সংযুক্ত হলে পরিবর্তন স্বয়ংক্রিয়ভাবে সিঙ্ক হবে।</string>
+    <string name="faq_q_export">আমি কীভাবে আমার ডেটা রপ্তানি করব?</string>
+    <string name="faq_a_export">সেটিংস &gt; ডেটা ও সিঙ্ক-এ যান এবং \'ডেটা রপ্তানি\' ট্যাপ করুন। আপনার নোট, কাজ, ইভেন্ট এবং সেটিংস একটি এনক্রিপ্টেড ব্যাকআপ ফাইল হিসাবে সংরক্ষিত হবে।</string>
+    <string name="faq_q_pomodoro">পোমোডোরো টাইমার কীভাবে কাজ করে?</string>
+    <string name="faq_a_pomodoro">পোমোডোরো টাইমার ফোকাস সেশন এবং বিরতির মধ্যে পাল্লা দেয়। আপনি সময়কাল কাস্টমাইজ করতে, স্বয়ংক্রিয় বিরতি শুরু করতে এবং প্রতি কাজে ফোকাস সময় ট্র্যাক করতে কাজ লিঙ্ক করতে পারেন।</string>
+    <string name="faq_q_language">আমি কি অ্যাপের ভাষা পরিবর্তন করতে পারি?</string>
+    <string name="faq_a_language">হ্যাঁ। আপনার প্রোফাইলে যান এবং ভাষা সেটিং ট্যাপ করুন। ProductivityX ইংরেজি, ফরাসি, আরবি, স্প্যানিশ, জার্মান সহ একাধিক ভাষা সমর্থন করে।</string>
+    <string name="faq_q_password">আমি কীভাবে পাসওয়ার্ড রিসেট করব?</string>
+    <string name="faq_a_password">লগইন স্ক্রিনে \'পাসওয়ার্ড ভুলে গেছেন\' ট্যাপ করুন। আপনার ইমেইল ঠিকানায় একটি রিসেট লিঙ্ক পাঠানো হবে।</string>
+    <string name="faq_q_delete_account">আমার অ্যাকাউন্ট মুছে ফেললে কী হয়?</string>
+    <string name="faq_a_delete_account">আপনার সব ডেটা (নোট, কাজ, ইভেন্ট, কথোপকথন) স্থায়ীভাবে মুছে ফেলা হবে। এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
+    <string name="faq_q_contact">আমি কীভাবে সমর্থনের সাথে যোগাযোগ করব?</string>
+    <string name="faq_a_contact">আপনি productivityx7@gmail.com-এ আমাদের সাথে যোগাযোগ করতে পারেন বা সেটিংস &gt; সাহায্য ও সমর্থন-এ \'মতামত পাঠান\' বিকল্প ব্যবহার করতে পারেন।</string>
+
+    <!-- লাইসেন্স -->
+    <string name="licenses_intro">ProductivityX নিম্নলিখিত ওপেন সোর্স লাইব্রেরি ব্যবহার করে:</string>
+
+    <!-- কৃতিত্ব -->
+    <string name="credits_role_development">ডেভেলপমেন্ট</string>
+    <string name="credits_role_design">ডিজাইন</string>
+    <string name="credits_role_ai_integration">AI ইন্টিগ্রেশন</string>
+    <string name="credits_role_icons">আইকন</string>
+    <string name="credits_built_with">Kotlin ও Jetpack Compose দিয়ে তৈরি ❤️</string>
+    <string name="credits_copyright">© 2026 ProductivityX। সর্বস্বত্ব সংরক্ষিত।</string>
+
+    <!-- প্রোফাইল সম্পাদনা — অতিরিক্ত -->
+    <string name="timezone_utc">UTC</string>
+    <string name="timezone_est">EST</string>
+    <string name="timezone_cet">CET</string>
+    <string name="timezone_cet_plus_1">CET+1</string>
+
+    <!-- পছন্দসই অনুসন্ধান — অতিরিক্ত -->
+    <string name="pref_search_data_sync">ডেটা ও সিঙ্ক</string>
+    <string name="pref_search_ai">AI সহকারী</string>
+    <string name="pref_search_about">সম্পর্কে</string>
+    <string name="pref_search_help">সাহায্য ও সমর্থন</string>
+
+    <string name="language_zh_rCN">ম্যান্ডারিন চিনিজ</string>
+    <string name="language_sw">সোয়াহিলি</string>
+    <string name="language_th">থাই</string>
+    <string name="language_bn">বাংলা</string>
+    <string name="language_ur">উর্দু</string>
+
+</resources>
