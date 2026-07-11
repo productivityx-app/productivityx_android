@@ -178,7 +178,7 @@ fun PxTextField(
                         IconButton(onClick = { onValueChange("") }) {
                             Icon(
                                 imageVector = Icons.Filled.Close,
-                                contentDescription = "Clear",
+                                contentDescription = stringResource(R.string.cd_clear_input),
                                 modifier = Modifier.size(20.dp),
                                 tint = PxColors.OnSurfaceDim,
                             )
@@ -313,7 +313,7 @@ fun PxSearchField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "Search",
+    placeholder: String = stringResource(R.string.search_hint),
     onVoiceInput: (() -> Unit)? = null,
     enabled: Boolean = true,
 ) {

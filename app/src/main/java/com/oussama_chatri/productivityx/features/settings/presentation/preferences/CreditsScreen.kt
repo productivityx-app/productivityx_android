@@ -21,9 +21,11 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,10 +37,10 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Credits") },
+                title = { Text(stringResource(R.string.pref_credits)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -54,7 +56,7 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
             Spacer(Modifier.height(32.dp))
 
             Text(
-                text = "ProductivityX",
+                text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = PxColors.OnBackground,
@@ -62,7 +64,7 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "Your workspace. Unified.",
+                text = stringResource(R.string.app_tagline),
                 style = MaterialTheme.typography.bodyLarge,
                 color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center
@@ -73,15 +75,15 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
 
             Spacer(Modifier.height(24.dp))
 
-            CreditSection("Development", "Oussama Chatri")
-            CreditSection("Design", "Oussama Chatri")
-            CreditSection("AI Integration", "Google Gemini API")
-            CreditSection("Icons", "Material Design Icons")
+            CreditSection(stringResource(R.string.credits_role_development), "Oussama Chatri")
+            CreditSection(stringResource(R.string.credits_role_design), "Oussama Chatri")
+            CreditSection(stringResource(R.string.credits_role_ai_integration), "Google Gemini API")
+            CreditSection(stringResource(R.string.credits_role_icons), "Material Design Icons")
 
             Spacer(Modifier.height(24.dp))
 
             Text(
-                text = "Built with ❤️ using Kotlin & Jetpack Compose",
+                text = stringResource(R.string.credits_built_with),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurfaceDim,
                 textAlign = TextAlign.Center,
@@ -89,7 +91,7 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "© 2026 ProductivityX. All rights reserved.",
+                text = stringResource(R.string.credits_copyright),
                 style = MaterialTheme.typography.bodySmall,
                 color = PxColors.OnSurfaceDim.copy(alpha = 0.6f),
                 textAlign = TextAlign.Center

@@ -34,8 +34,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,10 +49,10 @@ fun FaqScreen(onNavigateBack: () -> Unit) {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("FAQ") },
+                title = { Text(stringResource(R.string.pref_faq)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -65,44 +67,44 @@ fun FaqScreen(onNavigateBack: () -> Unit) {
             Spacer(Modifier.height(8.dp))
 
             FaqItem(
-                question = "What is ProductivityX?",
-                answer = "ProductivityX is a unified workspace app that combines notes, tasks, calendar, a Pomodoro focus timer, and an AI assistant in one place."
+                question = stringResource(R.string.faq_q_what_is),
+                answer = stringResource(R.string.faq_a_what_is)
             )
             FaqItem(
-                question = "Is my data secure?",
-                answer = "Yes. Your data is encrypted in transit and at rest. You can also enable local-only mode to keep all data on your device without cloud sync."
+                question = stringResource(R.string.faq_q_data_secure),
+                answer = stringResource(R.string.faq_a_data_secure)
             )
             FaqItem(
-                question = "How does the AI assistant work?",
-                answer = "The AI assistant can see your active tasks, upcoming events, and recent notes to provide context-aware answers. It uses Google Gemini models."
+                question = stringResource(R.string.faq_q_ai_work),
+                answer = stringResource(R.string.faq_a_ai_work)
             )
             FaqItem(
-                question = "Can I use ProductivityX offline?",
-                answer = "Yes. You can enable offline mode in settings. Changes will sync automatically when you reconnect to the internet."
+                question = stringResource(R.string.faq_q_offline),
+                answer = stringResource(R.string.faq_a_offline)
             )
             FaqItem(
-                question = "How do I export my data?",
-                answer = "Go to Settings > Data & Sync and tap 'Export data'. Your notes, tasks, events, and settings will be saved as an encrypted backup file."
+                question = stringResource(R.string.faq_q_export),
+                answer = stringResource(R.string.faq_a_export)
             )
             FaqItem(
-                question = "How does the Pomodoro timer work?",
-                answer = "The Pomodoro timer alternates between focus sessions and breaks. You can customize durations, auto-start breaks, and link tasks to track focus time per task."
+                question = stringResource(R.string.faq_q_pomodoro),
+                answer = stringResource(R.string.faq_a_pomodoro)
             )
             FaqItem(
-                question = "Can I change the app language?",
-                answer = "Yes. Go to your profile and tap the language setting. ProductivityX supports multiple languages including English, French, Arabic, Spanish, German, and more."
+                question = stringResource(R.string.faq_q_language),
+                answer = stringResource(R.string.faq_a_language)
             )
             FaqItem(
-                question = "How do I reset my password?",
-                answer = "Tap 'Forgot password' on the login screen. A reset link will be sent to your email address."
+                question = stringResource(R.string.faq_q_password),
+                answer = stringResource(R.string.faq_a_password)
             )
             FaqItem(
-                question = "What happens when I delete my account?",
-                answer = "All your data (notes, tasks, events, conversations) will be permanently deleted. This action cannot be undone."
+                question = stringResource(R.string.faq_q_delete_account),
+                answer = stringResource(R.string.faq_a_delete_account)
             )
             FaqItem(
-                question = "How do I contact support?",
-                answer = "You can reach us at productivityx7@gmail.com or use the 'Send feedback' option in Settings > Help & Support.",
+                question = stringResource(R.string.faq_q_contact),
+                answer = stringResource(R.string.faq_a_contact),
                 showDivider = false
             )
 
@@ -132,7 +134,7 @@ private fun FaqItem(question: String, answer: String, showDivider: Boolean = tru
             )
             Icon(
                 imageVector = if (expanded) Icons.Outlined.Remove else Icons.Outlined.Add,
-                contentDescription = if (expanded) "Collapse" else "Expand",
+                contentDescription = if (expanded) stringResource(R.string.collapse) else stringResource(R.string.expand),
                 tint = PxColors.OnSurfaceDim,
                 modifier = Modifier.size(20.dp)
             )

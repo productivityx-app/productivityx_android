@@ -50,8 +50,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.oussama_chatri.productivityx.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.settings.presentation.components.AvatarInitials
@@ -94,10 +96,10 @@ fun EditProfileScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Edit Profile") },
+                title = { Text(stringResource(R.string.profile_edit_title)) },
                 actions = {
                     if (state.isSaving) {
                         CircularProgressIndicator(
@@ -110,7 +112,7 @@ fun EditProfileScreen(
                     } else {
                         TextButton(onClick = { viewModel.onEvent(EditProfileUiEvent.SaveClicked) }) {
                             Text(
-                                "Save",
+                                stringResource(R.string.save),
                                 color = PxColors.Primary,
                                 fontWeight = FontWeight.SemiBold
                             )
@@ -147,7 +149,7 @@ fun EditProfileScreen(
                     if (!state.avatarUrl.isNullOrBlank()) {
                         AsyncImage(
                             model = state.avatarUrl,
-                            contentDescription = "Avatar",
+                            contentDescription = stringResource(R.string.field_avatar),
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(88.dp)
@@ -169,7 +171,7 @@ fun EditProfileScreen(
                     ) {
                         Icon(
                             Icons.Outlined.CameraAlt,
-                            contentDescription = "Change photo",
+                            contentDescription = stringResource(R.string.register_change_photo),
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
@@ -184,7 +186,7 @@ fun EditProfileScreen(
                 PxSettingsTextField(
                     value = state.firstName,
                     onValueChange = { viewModel.onEvent(EditProfileUiEvent.FirstNameChanged(it)) },
-                    label = "First name",
+                    label = stringResource(R.string.field_first_name),
                     errorMessage = state.firstNameError,
                     modifier = Modifier.weight(1f)
                 )
@@ -192,7 +194,7 @@ fun EditProfileScreen(
                 PxSettingsTextField(
                     value = state.lastName,
                     onValueChange = { viewModel.onEvent(EditProfileUiEvent.LastNameChanged(it)) },
-                    label = "Last name",
+                    label = stringResource(R.string.field_last_name),
                     errorMessage = state.lastNameError,
                     modifier = Modifier.weight(1f)
                 )
@@ -203,7 +205,7 @@ fun EditProfileScreen(
             PxSettingsTextField(
                 value = state.bio,
                 onValueChange = { viewModel.onEvent(EditProfileUiEvent.BioChanged(it)) },
-                label = "Bio",
+                label = stringResource(R.string.field_bio),
                 errorMessage = state.bioError,
                 minLines = 3,
                 maxLines = 5,
@@ -211,30 +213,30 @@ fun EditProfileScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            SettingsSectionHeader("Appearance")
+            SettingsSectionHeader(stringResource(R.string.pref_section_appearance))
 
             Text(
-                text = "Theme",
+                text = stringResource(R.string.profile_theme),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
-                options = listOf("DARK" to "Dark", "LIGHT" to "Light", "SYSTEM" to "System"),
+                options = listOf("DARK" to stringResource(R.string.theme_dark), "LIGHT" to stringResource(R.string.theme_light), "SYSTEM" to stringResource(R.string.theme_system)),
                 selected = state.theme,
                 onSelect = { viewModel.onEvent(EditProfileUiEvent.ThemeChanged(it)) }
             )
 
-            SettingsSectionHeader("Locale")
+            SettingsSectionHeader(stringResource(R.string.pref_section_locale))
 
             Text(
-                text = "Language",
+                text = stringResource(R.string.field_language),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
-                options = listOf("EN" to "English", "FR" to "Français", "AR" to "العربية"),
+                options = listOf("EN" to stringResource(R.string.language_en), "FR" to stringResource(R.string.language_fr_native), "AR" to stringResource(R.string.language_ar_native)),
                 selected = state.language,
                 onSelect = { viewModel.onEvent(EditProfileUiEvent.LanguageChanged(it)) }
             )
@@ -242,17 +244,17 @@ fun EditProfileScreen(
             Spacer(Modifier.height(12.dp))
 
             Text(
-                text = "Timezone",
+                text = stringResource(R.string.field_timezone),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             SelectionChipRow(
                 options = listOf(
-                    "UTC" to "UTC",
-                    "America/New_York" to "EST",
-                    "Europe/Paris" to "CET",
-                    "Africa/Algiers" to "CET+1"
+                    "UTC" to stringResource(R.string.timezone_utc),
+                    "America/New_York" to stringResource(R.string.timezone_est),
+                    "Europe/Paris" to stringResource(R.string.timezone_cet),
+                    "Africa/Algiers" to stringResource(R.string.timezone_cet_plus_1)
                 ),
                 selected = state.timezone,
                 onSelect = { viewModel.onEvent(EditProfileUiEvent.TimezoneChanged(it)) }

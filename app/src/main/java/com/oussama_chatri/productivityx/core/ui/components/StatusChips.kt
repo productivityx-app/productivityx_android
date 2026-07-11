@@ -27,6 +27,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -134,7 +136,7 @@ fun PxChip(
                     {
                         Icon(
                             Icons.Filled.Close,
-                            contentDescription = "Remove",
+                            contentDescription = stringResource(R.string.cd_clear_input),
                             modifier = Modifier
                                 .size(16.dp)
                                 .clickable { onDismiss() },
@@ -400,11 +402,11 @@ fun PriorityChip(priority: Priority, modifier: Modifier = Modifier) {
 @Composable
 fun StatusChip(status: TaskStatus, modifier: Modifier = Modifier) {
     val (color, label) = when (status) {
-        TaskStatus.TODO        -> PxColors.OnSurfaceDim to "To Do"
-        TaskStatus.IN_PROGRESS -> PxColors.Info         to "In Progress"
-        TaskStatus.ON_HOLD     -> PxColors.Warning      to "On Hold"
-        TaskStatus.DONE        -> PxColors.Success      to "Done"
-        TaskStatus.CANCELLED   -> PxColors.Error        to "Cancelled"
+        TaskStatus.TODO        -> PxColors.OnSurfaceDim to stringResource(R.string.status_todo)
+        TaskStatus.IN_PROGRESS -> PxColors.Info         to stringResource(R.string.status_in_progress)
+        TaskStatus.ON_HOLD     -> PxColors.Warning      to stringResource(R.string.status_on_hold)
+        TaskStatus.DONE        -> PxColors.Success      to stringResource(R.string.status_done)
+        TaskStatus.CANCELLED   -> PxColors.Error        to stringResource(R.string.status_cancelled)
     }
 
     Text(

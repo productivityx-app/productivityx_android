@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
@@ -241,14 +243,14 @@ fun PxContextualTopBar(
         NavIconMode.BACK -> {
             {
                 IconButton(onClick = onNavClick) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = PxColors.OnSurface)
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back), tint = PxColors.OnSurface)
                 }
             }
         }
         NavIconMode.CLOSE -> {
             {
                 IconButton(onClick = onNavClick) {
-                    Icon(Icons.Filled.Close, contentDescription = "Close", tint = PxColors.OnSurface)
+                    Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_close), tint = PxColors.OnSurface)
                 }
             }
         }

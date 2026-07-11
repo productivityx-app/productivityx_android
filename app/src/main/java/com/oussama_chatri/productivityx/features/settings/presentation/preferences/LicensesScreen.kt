@@ -20,8 +20,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,10 +35,10 @@ fun LicensesScreen(onNavigateBack: () -> Unit) {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Open Source Licenses") },
+                title = { Text(stringResource(R.string.pref_licenses)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -50,7 +52,7 @@ fun LicensesScreen(onNavigateBack: () -> Unit) {
         ) {
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "ProductivityX uses the following open source libraries:",
+                text = stringResource(R.string.licenses_intro),
                 style = MaterialTheme.typography.bodyMedium,
                 color = PxColors.OnSurfaceDim
             )

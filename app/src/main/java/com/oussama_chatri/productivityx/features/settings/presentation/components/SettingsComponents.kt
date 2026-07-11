@@ -28,6 +28,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -162,7 +164,7 @@ fun MinuteStepper(
     value: Int,
     onDecrement: () -> Unit,
     onIncrement: () -> Unit,
-    suffix: String = "min",
+    suffix: String = stringResource(R.string.minute_abbrev),
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -234,7 +236,7 @@ fun SelectionChip(
         label = "chip_bg"
     )
     val textColor by animateColorAsState(
-        targetValue = if (selected) Color.White
+        targetValue = if (selected) PxColors.OnPrimary
         else PxColors.OnSurface.copy(alpha = 0.7f),
         animationSpec = spring(),
         label = "chip_text"
@@ -275,7 +277,7 @@ fun AvatarInitials(
                 fontWeight = FontWeight.Bold,
                 fontSize = (size / 3).sp
             ),
-            color = Color.White
+            color = PxColors.OnPrimary
         )
     }
 }
@@ -289,15 +291,15 @@ fun ThemeSelector(
     data class ThemeOption(val key: String, val label: String, val primary: Color, val surface: Color)
 
     val themes = listOf(
-        ThemeOption("DARK", "Dark", Color(0xFF6366F1), Color(0xFF1A1A24)),
-        ThemeOption("LIGHT", "Light", Color(0xFF4F46E5), Color(0xFFFFFFFF)),
-        ThemeOption("SYSTEM", "System", Color(0xFF6366F1), Color(0xFF1A1A24)),
-        ThemeOption("OCEAN", "Ocean", Color(0xFF06B6D4), Color(0xFF0C1A26)),
-        ThemeOption("AMBER", "Amber", Color(0xFFF59E0B), Color(0xFF1A1400)),
-        ThemeOption("FOREST", "Forest", Color(0xFF22C55E), Color(0xFF0D1A10)),
-        ThemeOption("ROSE", "Rose", Color(0xFFF43F5E), Color(0xFF1C0A10)),
-        ThemeOption("MIDNIGHT", "Midnight", Color(0xFF6366F1), Color(0xFF10101F)),
-        ThemeOption("DYNAMIC", "Dynamic", Color(0xFF6366F1), Color(0xFF1A1A24)),
+        ThemeOption("DARK", stringResource(R.string.pref_theme_dark), Color(0xFF6366F1), Color(0xFF1A1A24)),
+        ThemeOption("LIGHT", stringResource(R.string.pref_theme_light), Color(0xFF4F46E5), Color(0xFFFFFFFF)),
+        ThemeOption("SYSTEM", stringResource(R.string.pref_theme_system), Color(0xFF6366F1), Color(0xFF1A1A24)),
+        ThemeOption("OCEAN", stringResource(R.string.pref_theme_ocean), Color(0xFF06B6D4), Color(0xFF0C1A26)),
+        ThemeOption("AMBER", stringResource(R.string.pref_theme_amber), Color(0xFFF59E0B), Color(0xFF1A1400)),
+        ThemeOption("FOREST", stringResource(R.string.pref_theme_forest), Color(0xFF22C55E), Color(0xFF0D1A10)),
+        ThemeOption("ROSE", stringResource(R.string.pref_theme_rose), Color(0xFFF43F5E), Color(0xFF1C0A10)),
+        ThemeOption("MIDNIGHT", stringResource(R.string.pref_theme_midnight), Color(0xFF6366F1), Color(0xFF10101F)),
+        ThemeOption("DYNAMIC", stringResource(R.string.pref_theme_dynamic), Color(0xFF6366F1), Color(0xFF1A1A24)),
     )
 
     Row(
@@ -350,7 +352,7 @@ fun ThemeSelector(
                 )
                 if (theme.key == "DYNAMIC") {
                     Text(
-                        text = "Android 12+",
+                        text = stringResource(R.string.android_12_plus),
                         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
                         color = PxColors.OnSurface.copy(alpha = 0.4f),
                     )
@@ -363,10 +365,10 @@ fun ThemeSelector(
 @Composable
 fun PasswordStrengthIndicator(strength: Int, modifier: Modifier = Modifier) {
     val colors = listOf(
-        Color(0xFFEF4444),
-        Color(0xFFF59E0B),
-        Color(0xFF3B82F6),
-        Color(0xFF22C55E)
+        PxColors.Error,
+        PxColors.Warning,
+        PxColors.Info,
+        PxColors.Success
     )
     Row(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -390,10 +392,10 @@ fun PasswordStrengthIndicator(strength: Int, modifier: Modifier = Modifier) {
         }
     }
     val label = when (strength) {
-        1 -> "Weak"
-        2 -> "Fair"
-        3 -> "Good"
-        4 -> "Strong"
+        1 -> stringResource(R.string.password_weak)
+        2 -> stringResource(R.string.password_fair)
+        3 -> stringResource(R.string.password_good)
+        4 -> stringResource(R.string.password_strong)
         else -> ""
     }
     if (label.isNotEmpty()) {

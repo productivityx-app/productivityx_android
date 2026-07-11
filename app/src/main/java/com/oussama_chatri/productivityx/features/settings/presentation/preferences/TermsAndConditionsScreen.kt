@@ -21,7 +21,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.oussama_chatri.productivityx.R
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
@@ -34,10 +36,10 @@ fun TermsAndConditionsScreen(onNavigateBack: () -> Unit) {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Terms & Conditions") },
+                title = { Text(stringResource(R.string.terms_title)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -52,45 +54,45 @@ fun TermsAndConditionsScreen(onNavigateBack: () -> Unit) {
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Terms of Service",
+                text = stringResource(R.string.terms_subtitle),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = PxColors.OnBackground
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "Last updated: July 2026",
+                text = stringResource(R.string.terms_last_updated),
                 style = MaterialTheme.typography.bodySmall,
                 color = PxColors.OnSurfaceDim
             )
             Spacer(Modifier.height(16.dp))
 
-            SectionText("1. Acceptance of Terms")
-            BodyText("By accessing or using ProductivityX, you agree to be bound by these Terms of Service. If you do not agree, do not use the app.")
+            SectionText(stringResource(R.string.terms_section_1_title))
+            BodyText(stringResource(R.string.terms_section_1_body))
 
-            SectionText("2. Description of Service")
-            BodyText("ProductivityX provides a unified workspace including notes, tasks, calendar, focus timer (Pomodoro), and AI assistant features. We reserve the right to modify or discontinue any feature at any time.")
+            SectionText(stringResource(R.string.terms_section_2_title))
+            BodyText(stringResource(R.string.terms_section_2_body))
 
-            SectionText("3. User Accounts")
-            BodyText("You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You must notify us immediately of any unauthorized access.")
+            SectionText(stringResource(R.string.terms_section_3_title))
+            BodyText(stringResource(R.string.terms_section_3_body))
 
-            SectionText("4. Acceptable Use")
-            BodyText("You agree not to use ProductivityX for any unlawful purpose or in violation of any applicable laws. You may not attempt to disrupt, damage, or gain unauthorized access to our systems.")
+            SectionText(stringResource(R.string.terms_section_4_title))
+            BodyText(stringResource(R.string.terms_section_4_body))
 
-            SectionText("5. Data & Privacy")
-            BodyText("Your use of ProductivityX is also governed by our Privacy Policy. We take data security seriously and implement industry-standard measures to protect your information.")
+            SectionText(stringResource(R.string.terms_section_5_title))
+            BodyText(stringResource(R.string.terms_section_5_body))
 
-            SectionText("6. Intellectual Property")
-            BodyText("ProductivityX and its original content, features, and functionality are owned by Oussama Chatri and are protected by applicable copyright and intellectual property laws.")
+            SectionText(stringResource(R.string.terms_section_6_title))
+            BodyText(stringResource(R.string.terms_section_6_body))
 
-            SectionText("7. Limitation of Liability")
-            BodyText("ProductivityX is provided \"as is\" without warranties of any kind. We shall not be liable for any damages arising from your use of the app.")
+            SectionText(stringResource(R.string.terms_section_7_title))
+            BodyText(stringResource(R.string.terms_section_7_body))
 
-            SectionText("8. Changes to Terms")
-            BodyText("We reserve the right to update these terms at any time. We will notify users of material changes via the app or email.")
+            SectionText(stringResource(R.string.terms_section_8_title))
+            BodyText(stringResource(R.string.terms_section_8_body))
 
-            SectionText("9. Contact")
-            BodyText("For questions about these terms, contact us at productivityx7@gmail.com.")
+            SectionText(stringResource(R.string.terms_section_9_title))
+            BodyText(stringResource(R.string.terms_section_9_body))
 
             Spacer(Modifier.height(24.dp))
         }

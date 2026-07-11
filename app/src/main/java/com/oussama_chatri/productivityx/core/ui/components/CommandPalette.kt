@@ -52,8 +52,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
 data class CommandItem(
@@ -131,7 +133,7 @@ fun CommandPalette(
                             if (query.isNotEmpty()) {
                                 Icon(
                                     Icons.Outlined.Close,
-                                    contentDescription = "Clear",
+                                    contentDescription = stringResource(R.string.cd_clear_input),
                                     tint = PxColors.OnSurfaceDim,
                                     modifier = Modifier.clickable { query = "" },
                                 )

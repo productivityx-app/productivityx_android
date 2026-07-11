@@ -187,7 +187,7 @@ fun ProfileScreen(
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text(stringResource(R.string.auth_sign_out)) },
-            text = { Text("You'll need to sign in again to access your workspace.") },
+            text = { Text(stringResource(R.string.profile_sign_out_desc)) },
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
@@ -210,26 +210,26 @@ fun ProfileScreen(
                 showDeleteAccountDialog = false 
                 deleteAccountPassword = ""
             },
-            title = { Text("Delete Account", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.profile_delete_account_title), fontWeight = FontWeight.Bold) },
             text = {
                 Column {
                     Text(
-                        "This action cannot be undone. All your data will be permanently deleted.",
+                        stringResource(R.string.profile_delete_account_warning),
                         color = PxColors.OnSurfaceDim
                     )
                     Spacer(Modifier.height(12.dp))
                     Text(
-                        "• All notes, tasks, and events will be removed",
+                        "• " + stringResource(R.string.profile_delete_bullet_notes),
                         style = MaterialTheme.typography.bodySmall,
                         color = PxColors.OnSurfaceDim
                     )
                     Text(
-                        "• Your account and subscription will be cancelled",
+                        "• " + stringResource(R.string.profile_delete_bullet_account),
                         style = MaterialTheme.typography.bodySmall,
                         color = PxColors.OnSurfaceDim
                     )
                     Text(
-                        "• This cannot be reversed",
+                        "• " + stringResource(R.string.profile_delete_bullet_irreversible),
                         style = MaterialTheme.typography.bodySmall,
                         color = PxColors.Error
                     )
@@ -237,7 +237,7 @@ fun ProfileScreen(
                     OutlinedTextField(
                         value = deleteAccountPassword,
                         onValueChange = { deleteAccountPassword = it },
-                        label = { Text("Confirm Password") },
+                        label = { Text(stringResource(R.string.field_password_confirm)) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
@@ -255,7 +255,7 @@ fun ProfileScreen(
                     },
                     enabled = deleteAccountPassword.isNotBlank()
                 ) {
-                    Text("Delete permanently", color = if (deleteAccountPassword.isNotBlank()) PxColors.Error else PxColors.OnSurfaceDim)
+                    Text(stringResource(R.string.trash_delete_permanently), color = if (deleteAccountPassword.isNotBlank()) PxColors.Error else PxColors.OnSurfaceDim)
                 }
             },
             dismissButton = {
@@ -365,7 +365,7 @@ fun ProfileScreen(
                 Spacer(Modifier.height(20.dp))
             }
 
-            SettingsSectionHeader("Actions")
+            SettingsSectionHeader(stringResource(R.string.profile_section_actions))
             SettingsSectionCard {
                 if (!state.isLocalOnly) {
                     SettingRow(
@@ -383,7 +383,7 @@ fun ProfileScreen(
                 }
                 SettingRow(
                     icon = Icons.Outlined.NotificationsActive,
-                    label = "Notification preferences",
+                    label = stringResource(R.string.profile_notification_preferences),
                     onClick = onNavigateToPreferences,
                     trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
                 )
@@ -439,7 +439,7 @@ fun ProfileScreen(
                 }
             }
 
-            SettingsSectionHeader("Data & Sync")
+            SettingsSectionHeader(stringResource(R.string.profile_section_data))
             SettingsSectionCard {
                 SettingRow(
                     icon = Icons.Outlined.Upload,
@@ -454,8 +454,8 @@ fun ProfileScreen(
                 )
                 SettingRow(
                     icon = Icons.Outlined.Download,
-                    label = "Import data",
-                    subtitle = "Restore data from an encrypted file",
+                    label = stringResource(R.string.pref_import_data),
+                    subtitle = stringResource(R.string.pref_import_data_desc),
                     showDivider = false,
                     onClick = { importLauncher.launch(arrayOf("application/octet-stream", "*/*")) },
                     trailing = {
@@ -467,11 +467,11 @@ fun ProfileScreen(
             }
 
             if (!state.isLocalOnly) {
-                SettingsSectionHeader("Account & Subscription")
+                SettingsSectionHeader(stringResource(R.string.profile_section_account_subscription))
                 SettingsSectionCard {
                     SettingRow(
                         icon = Icons.Outlined.WorkspacePremium,
-                        label = "Subscription",
+                        label = stringResource(R.string.pref_subscription),
                         subtitle = "${state.subscriptionStatus} plan",
                         trailing = {
                             Text(
@@ -483,7 +483,7 @@ fun ProfileScreen(
                     )
                     SettingRow(
                         icon = Icons.Outlined.Storage,
-                        label = "Storage",
+                        label = stringResource(R.string.profile_storage),
                         subtitle = "${state.storageUsedMb} MB of ${state.storageTotalMb} MB used",
                         trailing = {
                             LinearProgressIndicator(
@@ -496,13 +496,13 @@ fun ProfileScreen(
                     )
                     SettingRow(
                         icon = Icons.Outlined.Devices,
-                        label = "Connected devices",
+                        label = stringResource(R.string.profile_connected_devices),
                         subtitle = "${state.connectedDevices} device(s)",
                         showDivider = true,
                     )
                 }
 
-                SettingsSectionHeader("Danger Zone")
+                SettingsSectionHeader(stringResource(R.string.profile_section_danger_zone))
                 SettingsSectionCard {
                     SettingRow(
                         icon = Icons.AutoMirrored.Outlined.Logout,
@@ -517,8 +517,8 @@ fun ProfileScreen(
                     )
                     SettingRow(
                         icon = Icons.Outlined.DeleteForever,
-                        label = "Delete account",
-                        subtitle = "Permanently remove all data",
+                        label = stringResource(R.string.data_delete_account_title),
+                        subtitle = stringResource(R.string.profile_delete_subtitle),
                         iconTint = PxColors.Error,
                         showDivider = false,
                         onClick = { showDeleteAccountDialog = true },
@@ -546,14 +546,15 @@ private fun CoverPhotoHeader(
         profile?.lastName?.firstOrNull()?.let { append(it) }
     }
     val avatarUrl = profile?.avatarUrl
-    val memberSince = profile?.updatedAt?.let { raw ->
+    val dateFormatted = profile?.updatedAt?.let { raw ->
         try {
             val fmt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
             val date = fmt.parse(raw.take(19))
             val out = SimpleDateFormat("MMM yyyy", Locale.US)
-            "Member since ${date?.let { out.format(it) } ?: "—"}"
+            date?.let { out.format(it) } ?: "—"
         } catch (_: Exception) { null }
-    } ?: "Member since —"
+    } ?: "—"
+    val memberSince = stringResource(R.string.profile_member_since, dateFormatted)
 
     Column {
         Box(
@@ -605,7 +606,7 @@ private fun CoverPhotoHeader(
                     ) {
                         Icon(
                             Icons.Outlined.PhotoCamera,
-                            contentDescription = "Change photo",
+                            contentDescription = stringResource(R.string.register_change_photo),
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
@@ -647,10 +648,10 @@ private fun CoverPhotoHeader(
                         .padding(vertical = 16.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StatItem(value = statsNotes.toString(), label = "Notes")
-                    StatItem(value = "$statsTasks", label = "Done")
-                    StatItem(value = "${statsFocus}h", label = "Focus")
-                    StatItem(value = "$statsAi", label = "AI chats")
+                    StatItem(value = statsNotes.toString(), label = stringResource(R.string.profile_stats_notes))
+                    StatItem(value = "$statsTasks", label = stringResource(R.string.status_done))
+                    StatItem(value = "${statsFocus}h", label = stringResource(R.string.pomodoro_focus))
+                    StatItem(value = "$statsAi", label = stringResource(R.string.profile_stat_ai_chats))
                 }
             }
         }
@@ -680,10 +681,10 @@ private fun ActivitySection(
     achievementBadges: List<BadgeItem>,
     productivityTrend: Float,
 ) {
-    SettingsSectionHeader("Activity")
+    SettingsSectionHeader(stringResource(R.string.task_activity))
     SettingsSectionCard {
         Text(
-            text = "Recent activity",
+            text = stringResource(R.string.profile_recent_activity),
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
             color = PxColors.OnSurface.copy(alpha = 0.6f),
             modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 4.dp)
@@ -722,7 +723,7 @@ private fun ActivitySection(
         HorizontalDivider(color = PxColors.OnSurface.copy(alpha = 0.06f), modifier = Modifier.padding(start = 16.dp, end = 16.dp))
 
         Text(
-            text = "Achievements",
+            text = stringResource(R.string.tasks_stats_achievements),
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
             color = PxColors.OnSurface.copy(alpha = 0.6f),
             modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 8.dp)
@@ -775,12 +776,12 @@ private fun ActivitySection(
             Spacer(Modifier.width(10.dp))
             Column {
                 Text(
-                    text = "Productivity trend",
+                    text = stringResource(R.string.profile_productivity_trend),
                     style = MaterialTheme.typography.bodyMedium,
                     color = PxColors.OnSurface
                 )
                 Text(
-                    text = "${(productivityTrend * 100).toInt()}% this week",
+                    text = stringResource(R.string.profile_this_week_percent, (productivityTrend * 100).toInt()),
                     style = MaterialTheme.typography.labelSmall,
                     color = if (productivityTrend > 0.4f) Color(0xFF22C55E) else PxColors.OnSurfaceDim
                 )
@@ -817,7 +818,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
         Spacer(Modifier.height(20.dp))
 
         Text(
-            text = "Local Mode",
+            text = stringResource(R.string.profile_local_mode),
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             color = PxColors.OnBackground,
@@ -826,7 +827,7 @@ private fun LocalOnlyHero(onNavigateToLogin: () -> Unit) {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            text = "You're using ProductivityX without an account.\nYour data stays on this device only.",
+            text = stringResource(R.string.profile_local_mode_desc),
             style = MaterialTheme.typography.bodyMedium,
             color = PxColors.OnSurfaceDim,
             textAlign = TextAlign.Center,
@@ -877,16 +878,18 @@ private fun languageEntries(): List<Pair<String, String>> = listOf(
 private fun languageDisplayName(code: String): String =
     languageEntries().firstOrNull { it.first == code }?.second ?: code
 
-private val allThemeEntries = listOf(
-    "DARK"    to "Dark",
-    "LIGHT"   to "Light",
-    "SYSTEM"  to "System",
+@Composable
+private fun allThemeEntries(): List<Pair<String, String>> = listOf(
+    "DARK"    to stringResource(R.string.theme_dark),
+    "LIGHT"   to stringResource(R.string.theme_light),
+    "SYSTEM"  to stringResource(R.string.theme_system),
 )
 
 private val proThemeKeys = setOf<String>()
 
+@Composable
 private fun themeDisplayName(theme: String): String =
-    allThemeEntries.firstOrNull { it.first == theme }?.second ?: theme
+    allThemeEntries().firstOrNull { it.first == theme }?.second ?: theme
 
 private fun themePrimaryColor(theme: String): Color = when (theme) {
     "DARK"    -> Color(0xFF6366F1)
@@ -908,7 +911,7 @@ fun ThemePickerDialog(
         },
         text = {
             Column {
-                allThemeEntries.forEach { (key, label) ->
+                allThemeEntries().forEach { (key, label) ->
                     val isSelected = key == currentTheme
                     val isPro = key in proThemeKeys
 
@@ -941,7 +944,7 @@ fun ThemePickerDialog(
                         Column(modifier = Modifier.weight(1f)) {
                             Text(text = label, style = MaterialTheme.typography.bodyLarge, color = PxColors.OnSurface)
                             if (isPro) {
-                                Text(text = "Pro theme", style = MaterialTheme.typography.labelSmall, color = PxColors.Primary)
+                                Text(text = stringResource(R.string.profile_theme_pro), style = MaterialTheme.typography.labelSmall, color = PxColors.Primary)
                             }
                         }
 

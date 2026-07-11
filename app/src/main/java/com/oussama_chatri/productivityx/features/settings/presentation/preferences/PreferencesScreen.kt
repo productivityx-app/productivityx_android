@@ -184,7 +184,7 @@ fun PreferencesScreen(
                         Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Settings") },
+                title = { Text(stringResource(R.string.pref_settings)) },
                 actions = {
                     if (state.isSaving) {
                         CircularProgressIndicator(modifier = Modifier.size(20.dp).padding(end = 16.dp), strokeWidth = 2.dp, color = PxColors.Primary)
@@ -219,7 +219,7 @@ fun PreferencesScreen(
                 OutlinedTextField(
                     value = state.settingsSearchQuery,
                     onValueChange = { viewModel.onEvent(PreferencesUiEvent.SettingsSearchQueryChanged(it)) },
-                    placeholder = { Text("Search settings…", color = PxColors.OnSurfaceDim) },
+                    placeholder = { Text(stringResource(R.string.pref_search_placeholder), color = PxColors.OnSurfaceDim) },
                     leadingIcon = { Icon(Icons.Outlined.Search, null, tint = PxColors.OnSurfaceDim) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -268,36 +268,36 @@ private fun SettingsSearchResults(
     val results = mutableListOf<Pair<String, () -> Unit>>()
 
     if ("pomodoro".contains(searchQuery) || "focus".contains(searchQuery) || "timer".contains(searchQuery)) {
-        results.add("Pomodoro Timer" to { })
+        results.add(stringResource(R.string.pref_search_pomodoro) to { })
     }
     if ("theme".contains(searchQuery) || "dark".contains(searchQuery) || "appearance".contains(searchQuery)) {
-        results.add("Appearance & Theme" to { })
+        results.add(stringResource(R.string.pref_search_appearance) to { })
     }
     if ("notification".contains(searchQuery) || "quiet".contains(searchQuery) || "sound".contains(searchQuery)) {
-        results.add("Notifications & Quiet Hours" to { })
+        results.add(stringResource(R.string.pref_search_notifications) to { })
     }
     if ("sync".contains(searchQuery) || "backup".contains(searchQuery) || "export".contains(searchQuery) || "data".contains(searchQuery)) {
-        results.add("Data & Sync" to { })
+        results.add(stringResource(R.string.pref_search_data_sync) to { })
     }
     if ("ai".contains(searchQuery) || "model".contains(searchQuery) || "smart".contains(searchQuery)) {
-        results.add("AI Assistant" to { })
+        results.add(stringResource(R.string.pref_search_ai) to { })
     }
     if ("font".contains(searchQuery) || "size".contains(searchQuery) || "density".contains(searchQuery) || "compact".contains(searchQuery)) {
-        results.add("Display & Font Size" to { })
+        results.add(stringResource(R.string.pref_search_display) to { })
     }
     if ("beta".contains(searchQuery) || "feature".contains(searchQuery) || "experiment".contains(searchQuery)) {
-        results.add("Feature Flags (Beta)" to { })
+        results.add(stringResource(R.string.pref_search_feature_flags) to { })
     }
     if ("about".contains(searchQuery) || "version".contains(searchQuery) || "license".contains(searchQuery)) {
-        results.add("About" to { })
+        results.add(stringResource(R.string.pref_search_about) to { })
     }
     if ("help".contains(searchQuery) || "faq".contains(searchQuery) || "contact".contains(searchQuery) || "feedback".contains(searchQuery)) {
-        results.add("Help & Support" to { })
+        results.add(stringResource(R.string.pref_search_help) to { })
     }
 
     if (results.isEmpty()) {
         Text(
-            text = "No results found for \"$searchQuery\"",
+            text = stringResource(R.string.pref_no_results, searchQuery),
             style = MaterialTheme.typography.bodyMedium,
             color = PxColors.OnSurfaceDim,
             modifier = Modifier.padding(vertical = 24.dp)
@@ -334,11 +334,11 @@ private fun SettingsContent(
     context: android.content.Context
 ) {
     // ── Account ──
-    SettingsSectionHeader("Account")
+    SettingsSectionHeader(stringResource(R.string.pref_section_account))
     SettingsSectionCard {
         SettingRow(
             icon = Icons.Outlined.Palette,
-            label = "Theme",
+            label = stringResource(R.string.pref_theme),
             subtitle = state.appTheme.lowercase().replaceFirstChar { it.uppercase() },
             trailing = {
                 Box(modifier = Modifier.size(24.dp).clip(CircleShape).background(themeColor(state.appTheme)))
@@ -346,35 +346,38 @@ private fun SettingsContent(
         )
         SettingRowSwitch(
             icon = Icons.Outlined.Fingerprint,
-            label = "Local-only mode",
-            subtitle = "Keep all data on this device",
+            label = stringResource(R.string.pref_local_only_mode),
+            subtitle = stringResource(R.string.pref_local_only_mode_desc),
             checked = state.localOnlyMode,
             onCheckedChange = { viewModel.onEvent(PreferencesUiEvent.LocalOnlyModeChanged(it)) }
         )
         SettingRow(
             icon = Icons.Outlined.Info,
-            label = "Subscription",
-            subtitle = "Free plan",
+            label = stringResource(R.string.pref_subscription),
+            subtitle = stringResource(R.string.pref_free_plan),
             showDivider = false,
             trailing = {
-                Text("Free", style = MaterialTheme.typography.labelMedium, color = Accent)
+                Text(stringResource(R.string.pref_free), style = MaterialTheme.typography.labelMedium, color = Accent)
             }
         )
     }
 
     // ── Appearance ──
-    SettingsSectionHeader("Appearance")
+    SettingsSectionHeader(stringResource(R.string.pref_section_appearance))
     SettingsSectionCard {
-        val themeOptions = remember {
+        val themeDark = stringResource(R.string.pref_theme_dark)
+        val themeLight = stringResource(R.string.pref_theme_light)
+        val themeSystem = stringResource(R.string.pref_theme_system)
+        val themeOptions = remember(themeDark, themeLight, themeSystem) {
             listOf(
-                "DARK" to "Dark",
-                "LIGHT" to "Light",
-                "SYSTEM" to "System"
+                "DARK" to themeDark,
+                "LIGHT" to themeLight,
+                "SYSTEM" to themeSystem
             )
         }
         SettingRow(
             icon = Icons.Outlined.DarkMode,
-            label = "Theme",
+            label = stringResource(R.string.pref_theme),
             trailing = {
                 SelectionChipRow(
                     options = themeOptions,
@@ -385,14 +388,14 @@ private fun SettingsContent(
         )
         SettingRow(
             icon = Icons.Outlined.FontDownload,
-            label = "Font Family",
+            label = stringResource(R.string.pref_font_family),
             trailing = {
                 SelectionChipRow(
                     options = listOf(
-                        "Nunito" to "Nunito",
-                        "System Default" to "System",
-                        "Serif" to "Serif",
-                        "Monospace" to "Mono"
+                        "Nunito" to stringResource(R.string.pref_font_nunito),
+                        "System Default" to stringResource(R.string.pref_font_system),
+                        "Serif" to stringResource(R.string.pref_font_serif),
+                        "Monospace" to stringResource(R.string.pref_font_mono)
                     ),
                     selected = state.fontFamily,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.FontFamilyChanged(it)) }
@@ -406,7 +409,7 @@ private fun SettingsContent(
             Icon(Icons.Outlined.FontDownload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(22.dp))
             Spacer(Modifier.width(14.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text("Font size", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnBackground)
+                Text(stringResource(R.string.pref_font_size), style = MaterialTheme.typography.bodyMedium, color = PxColors.OnBackground)
                 Text("${(state.fontScale * 100).toInt()}%", style = MaterialTheme.typography.labelSmall, color = PxColors.OnSurfaceDim)
             }
             Slider(
@@ -424,11 +427,11 @@ private fun SettingsContent(
         }
         SettingRow(
             icon = Icons.Outlined.ViewAgenda,
-            label = "Density",
+            label = stringResource(R.string.pref_density),
             showDivider = false,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("COMPACT" to "Compact", "COMFORTABLE" to "Comfortable", "SPACIOUS" to "Spacious"),
+                    options = listOf("COMPACT" to stringResource(R.string.pref_density_compact), "COMFORTABLE" to stringResource(R.string.pref_density_comfortable), "SPACIOUS" to stringResource(R.string.pref_density_spacious)),
                     selected = state.density,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.DensityChanged(it)) }
                 )
@@ -437,7 +440,7 @@ private fun SettingsContent(
     }
 
     // ── Notifications ──
-    SettingsSectionHeader("Notifications")
+    SettingsSectionHeader(stringResource(R.string.pref_section_notifications))
     SettingsSectionCard {
         SettingRowSwitch(
             icon = Icons.Outlined.NotificationsActive,
@@ -465,54 +468,54 @@ private fun SettingsContent(
         )
         SettingRowSwitch(
             icon = Icons.Outlined.Vibration,
-            label = "Haptic feedback",
-            subtitle = "Vibrate on interactions",
+            label = stringResource(R.string.pref_haptic_feedback),
+            subtitle = stringResource(R.string.pref_haptic_feedback_desc),
             checked = state.hapticFeedback,
             onCheckedChange = { viewModel.onEvent(PreferencesUiEvent.HapticFeedbackChanged(it)) }
         )
         SettingRow(
             icon = Icons.Outlined.Bedtime,
-            label = "Quiet hours",
+            label = stringResource(R.string.pref_quiet_hours),
             showDivider = false,
             trailing = {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    HourChip(state.quietHoursStart, "Start") { viewModel.onEvent(PreferencesUiEvent.QuietHoursStartChanged(it)) }
+                    HourChip(state.quietHoursStart, stringResource(R.string.pref_quiet_hours_start)) { viewModel.onEvent(PreferencesUiEvent.QuietHoursStartChanged(it)) }
                     Text("-", color = PxColors.OnSurfaceDim)
-                    HourChip(state.quietHoursEnd, "End") { viewModel.onEvent(PreferencesUiEvent.QuietHoursEndChanged(it)) }
+                    HourChip(state.quietHoursEnd, stringResource(R.string.pref_quiet_hours_end)) { viewModel.onEvent(PreferencesUiEvent.QuietHoursEndChanged(it)) }
                 }
             }
         )
     }
 
     // ── Data & Sync ──
-    SettingsSectionHeader("Data & Sync")
+    SettingsSectionHeader(stringResource(R.string.pref_section_data_sync))
     SettingsSectionCard {
         SettingRowSwitch(
             icon = Icons.Outlined.Sync,
-            label = "Auto-sync",
-            subtitle = "Automatically sync data when connected",
+            label = stringResource(R.string.pref_auto_sync),
+            subtitle = stringResource(R.string.pref_auto_sync_desc),
             checked = state.autoSync,
             onCheckedChange = { viewModel.onEvent(PreferencesUiEvent.AutoSyncChanged(it)) }
         )
         SettingRowSwitch(
             icon = Icons.Outlined.Wifi,
-            label = "Offline mode",
-            subtitle = "Work without internet connection",
+            label = stringResource(R.string.pref_offline_mode),
+            subtitle = stringResource(R.string.pref_offline_mode_desc),
             checked = state.offlineMode,
             showDivider = true,
             onCheckedChange = { viewModel.onEvent(PreferencesUiEvent.OfflineModeChanged(it)) }
         )
         SettingRow(
             icon = Icons.Outlined.FileUpload,
-            label = "Export data",
-            subtitle = "Save a backup of all your data",
+            label = stringResource(R.string.pref_export_data),
+            subtitle = stringResource(R.string.pref_export_data_desc),
             onClick = { exportLauncher.launch("productivityx_backup.json") },
             trailing = { Icon(Icons.Outlined.FileUpload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.FileDownload,
-            label = "Import data",
-            subtitle = "Restore data from a backup file",
+            label = stringResource(R.string.pref_import_data),
+            subtitle = stringResource(R.string.pref_import_data_desc),
             showDivider = false,
             onClick = { importLauncher.launch(arrayOf("application/json")) },
             trailing = { Icon(Icons.Outlined.FileDownload, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
@@ -601,7 +604,7 @@ private fun SettingsContent(
             showDivider = true,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("LIST" to "List", "KANBAN" to "Kanban"),
+                    options = listOf("LIST" to stringResource(R.string.pref_view_list), "KANBAN" to stringResource(R.string.pref_view_kanban)),
                     selected = state.defaultTaskView,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.DefaultTaskViewChanged(it)) }
                 )
@@ -613,7 +616,7 @@ private fun SettingsContent(
             showDivider = true,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("DUE_DATE" to "Due", "PRIORITY" to "Priority", "CREATED" to "Created"),
+                    options = listOf("DUE_DATE" to stringResource(R.string.pref_sort_due), "PRIORITY" to stringResource(R.string.pref_sort_priority), "CREATED" to stringResource(R.string.pref_sort_created)),
                     selected = state.defaultTaskSort,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.DefaultTaskSortChanged(it)) }
                 )
@@ -637,7 +640,7 @@ private fun SettingsContent(
             showDivider = true,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("WEEK" to "Week", "MONTH" to "Month"),
+                    options = listOf("WEEK" to stringResource(R.string.pref_calendar_week), "MONTH" to stringResource(R.string.pref_calendar_month)),
                     selected = state.defaultCalendarView,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.DefaultCalendarViewChanged(it)) }
                 )
@@ -649,7 +652,7 @@ private fun SettingsContent(
             showDivider = false,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("MON" to "Mon", "SUN" to "Sun", "SAT" to "Sat"),
+                    options = listOf("MON" to stringResource(R.string.pref_week_mon), "SUN" to stringResource(R.string.pref_week_sun), "SAT" to stringResource(R.string.pref_week_sat)),
                     selected = state.weekStartsOn,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.WeekStartsOnChanged(it)) }
                 )
@@ -673,7 +676,7 @@ private fun SettingsContent(
             showDivider = false,
             trailing = {
                 SelectionChipRow(
-                    options = listOf("gemini-2.0-flash" to "Flash", "gemini-2.0-pro" to "Pro"),
+                    options = listOf("gemini-2.0-flash" to stringResource(R.string.pref_ai_flash), "gemini-2.0-pro" to stringResource(R.string.pref_ai_pro)),
                     selected = state.aiModel,
                     onSelect = { viewModel.onEvent(PreferencesUiEvent.AiModelChanged(it)) }
                 )
@@ -682,14 +685,14 @@ private fun SettingsContent(
     }
 
     // ── Feature Flags (Beta) ──
-    SettingsSectionHeader("Beta Features")
+    SettingsSectionHeader(stringResource(R.string.pref_section_beta))
     SettingsSectionCard {
         state.featureFlags.forEach { (key, enabled) ->
             val label = key.split("_").joinToString(" ") { it.replaceFirstChar { c -> c.uppercase() } }
             SettingRowSwitch(
                 icon = Icons.Outlined.Science,
                 label = label,
-                subtitle = if (enabled) "Enabled" else "Disabled",
+                subtitle = if (enabled) stringResource(R.string.pref_enabled) else stringResource(R.string.pref_disabled),
                 checked = enabled,
                 showDivider = key != state.featureFlags.keys.last(),
                 onCheckedChange = { viewModel.onEvent(PreferencesUiEvent.FeatureFlagToggled(key, it)) }
@@ -698,40 +701,40 @@ private fun SettingsContent(
     }
 
     // ── About ──
-    SettingsSectionHeader("About")
+    SettingsSectionHeader(stringResource(R.string.pref_section_about))
     SettingsSectionCard {
         SettingRow(
             icon = Icons.Outlined.Info,
-            label = "Version",
-            subtitle = "1.2.0 (build 42)",
+            label = stringResource(R.string.pref_version),
+            subtitle = stringResource(R.string.pref_version_value),
             trailing = {
-                Text("Latest", style = MaterialTheme.typography.labelSmall, color = PxColors.Success)
+                Text(stringResource(R.string.pref_latest), style = MaterialTheme.typography.labelSmall, color = PxColors.Success)
             }
         )
         SettingRow(
             icon = Icons.Outlined.DataObject,
-            label = "Licenses",
-            subtitle = "Open source libraries",
+            label = stringResource(R.string.pref_licenses),
+            subtitle = stringResource(R.string.pref_licenses_desc),
             onClick = onNavigateToLicenses,
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.AutoAwesome,
-            label = "Credits",
+            label = stringResource(R.string.pref_credits),
             onClick = onNavigateToCredits,
             showDivider = true,
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.Info,
-            label = "Terms & Conditions",
+            label = stringResource(R.string.pref_terms),
             onClick = onNavigateToTermsAndConditions,
             showDivider = true,
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.Info,
-            label = "Privacy Policy",
+            label = stringResource(R.string.pref_privacy),
             onClick = onNavigateToPrivacyPolicy,
             showDivider = false,
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
@@ -739,19 +742,19 @@ private fun SettingsContent(
     }
 
     // ── Help & Support ──
-    SettingsSectionHeader("Help & Support")
+    SettingsSectionHeader(stringResource(R.string.pref_section_help))
     SettingsSectionCard {
         SettingRow(
             icon = Icons.AutoMirrored.Outlined.Help,
-            label = "FAQ",
-            subtitle = "Frequently asked questions",
+            label = stringResource(R.string.pref_faq),
+            subtitle = stringResource(R.string.pref_faq_desc),
             onClick = onNavigateToFaq,
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
         SettingRow(
             icon = Icons.Outlined.NotificationsActive,
-            label = "Contact us",
-            subtitle = "Get in touch with the team",
+            label = stringResource(R.string.pref_contact),
+            subtitle = stringResource(R.string.pref_contact_desc),
             onClick = {
                 val intent = Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:productivityx7@gmail.com")
@@ -760,15 +763,16 @@ private fun SettingsContent(
             },
             trailing = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = PxColors.OnSurfaceDim, modifier = Modifier.size(20.dp)) }
         )
+        val feedbackSubject = stringResource(R.string.pref_feedback_subject)
         SettingRow(
             icon = Icons.Outlined.AutoAwesome,
-            label = "Send feedback",
-            subtitle = "Help us improve ProductivityX",
+            label = stringResource(R.string.pref_feedback),
+            subtitle = stringResource(R.string.pref_feedback_desc),
             showDivider = false,
             onClick = {
                 val intent = Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:productivityx7@gmail.com")
-                    putExtra(Intent.EXTRA_SUBJECT, "ProductivityX Feedback")
+                    putExtra(Intent.EXTRA_SUBJECT, feedbackSubject)
                 }
                 context.startActivity(intent)
             },
@@ -799,7 +803,7 @@ private fun HourChip(hour: Int, label: String, onChange: (Int) -> Unit) {
     if (showPicker) {
         AlertDialog(
             onDismissRequest = { showPicker = false },
-            title = { Text("Select $label hour", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.pref_select_hour, label), fontWeight = FontWeight.Bold) },
             text = {
                 Column {
                     (0..23).forEach { h ->
@@ -826,7 +830,7 @@ private fun HourChip(hour: Int, label: String, onChange: (Int) -> Unit) {
                     }
                 }
             },
-            confirmButton = { TextButton(onClick = { showPicker = false }) { Text("Close") } },
+            confirmButton = { TextButton(onClick = { showPicker = false }) { Text(stringResource(R.string.pref_close)) } },
             containerColor = PxColors.Surface,
             shape = RoundedCornerShape(20.dp),
         )

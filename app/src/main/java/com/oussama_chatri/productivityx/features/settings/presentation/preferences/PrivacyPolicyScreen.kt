@@ -19,7 +19,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.oussama_chatri.productivityx.R
 import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
@@ -32,10 +34,10 @@ fun PrivacyPolicyScreen(onNavigateBack: () -> Unit) {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Privacy Policy") },
+                title = { Text(stringResource(R.string.privacy_title)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = PxColors.Background)
             )
         }
@@ -50,45 +52,45 @@ fun PrivacyPolicyScreen(onNavigateBack: () -> Unit) {
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Privacy Policy",
+                text = stringResource(R.string.privacy_subtitle),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = PxColors.OnBackground
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "Last updated: July 2026",
+                text = stringResource(R.string.privacy_last_updated),
                 style = MaterialTheme.typography.bodySmall,
                 color = PxColors.OnSurfaceDim
             )
             Spacer(Modifier.height(16.dp))
 
-            SectionText("1. Information We Collect")
-            BodyText("We collect information you provide when creating an account, including your name, email address, and profile picture. We also collect data you create within the app such as notes, tasks, events, and focus sessions.")
+            SectionText(stringResource(R.string.privacy_section_1_title))
+            BodyText(stringResource(R.string.privacy_section_1_body))
 
-            SectionText("2. How We Use Your Information")
-            BodyText("Your data is used to provide and improve ProductivityX features, sync across devices, and send relevant notifications. We do not sell your personal information to third parties.")
+            SectionText(stringResource(R.string.privacy_section_2_title))
+            BodyText(stringResource(R.string.privacy_section_2_body))
 
-            SectionText("3. Data Storage & Security")
-            BodyText("Your data is encrypted in transit and at rest. We use industry-standard security measures to protect your information. You can choose to keep data local-only without cloud sync.")
+            SectionText(stringResource(R.string.privacy_section_3_title))
+            BodyText(stringResource(R.string.privacy_section_3_body))
 
-            SectionText("4. Third-Party Services")
-            BodyText("ProductivityX may use third-party services for AI assistance, push notifications, and analytics. These services are contractually bound to protect your data and use it only for the intended purposes.")
+            SectionText(stringResource(R.string.privacy_section_4_title))
+            BodyText(stringResource(R.string.privacy_section_4_body))
 
-            SectionText("5. Your Rights")
-            BodyText("You can access, modify, or delete your data at any time through the app settings. You can request a full export of your data or permanently delete your account.")
+            SectionText(stringResource(R.string.privacy_section_5_title))
+            BodyText(stringResource(R.string.privacy_section_5_body))
 
-            SectionText("6. Data Retention")
-            BodyText("We retain your data for as long as your account is active. Deleted items are kept in trash for 30 days before permanent deletion. Account deletion removes all associated data within 90 days.")
+            SectionText(stringResource(R.string.privacy_section_6_title))
+            BodyText(stringResource(R.string.privacy_section_6_body))
 
-            SectionText("7. Children's Privacy")
-            BodyText("ProductivityX is not intended for users under 13. We do not knowingly collect data from children. If we become aware of such data, we will delete it promptly.")
+            SectionText(stringResource(R.string.privacy_section_7_title))
+            BodyText(stringResource(R.string.privacy_section_7_body))
 
-            SectionText("8. Changes to This Policy")
-            BodyText("We may update this Privacy Policy. We will notify you of material changes through the app or via email.")
+            SectionText(stringResource(R.string.privacy_section_8_title))
+            BodyText(stringResource(R.string.privacy_section_8_body))
 
-            SectionText("9. Contact Us")
-            BodyText("For privacy-related inquiries, contact us at productivityx7@gmail.com.")
+            SectionText(stringResource(R.string.privacy_section_9_title))
+            BodyText(stringResource(R.string.privacy_section_9_body))
 
             Spacer(Modifier.height(24.dp))
         }

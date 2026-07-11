@@ -38,12 +38,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussama_chatri.productivityx.R
 import com.oussama_chatri.productivityx.features.settings.presentation.changepassword.event.ChangePasswordUiEvent
 import com.oussama_chatri.productivityx.features.settings.presentation.components.PasswordStrengthIndicator
 import com.oussama_chatri.productivityx.features.settings.presentation.components.SettingsSectionHeader
@@ -56,10 +58,11 @@ fun ChangePasswordScreen(
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    val passwordChangeSuccess = stringResource(R.string.password_change_success)
 
     LaunchedEffect(state.saveSuccess) {
         if (state.saveSuccess) {
-            snackbarHostState.showSnackbar("Password changed successfully")
+            snackbarHostState.showSnackbar(passwordChangeSuccess)
             onNavigateBack()
         }
     }
@@ -78,10 +81,10 @@ fun ChangePasswordScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
-                title = { Text("Change Password") },
+                title = { Text(stringResource(R.string.password_change)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = PxColors.Background
                 )
@@ -98,24 +101,24 @@ fun ChangePasswordScreen(
         ) {
             Spacer(Modifier.height(8.dp))
 
-            SettingsSectionHeader("Current password")
+            SettingsSectionHeader(stringResource(R.string.field_password_current))
 
             PasswordField(
                 value = state.currentPassword,
                 onValueChange = { viewModel.onEvent(ChangePasswordUiEvent.CurrentPasswordChanged(it)) },
-                label = "Current password",
+                label = stringResource(R.string.field_password_current),
                 isVisible = state.currentPasswordVisible,
                 onToggleVisibility = { viewModel.onEvent(ChangePasswordUiEvent.ToggleCurrentPasswordVisibility) },
                 errorMessage = state.currentPasswordError,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            SettingsSectionHeader("New password")
+            SettingsSectionHeader(stringResource(R.string.field_password_new))
 
             PasswordField(
                 value = state.newPassword,
                 onValueChange = { viewModel.onEvent(ChangePasswordUiEvent.NewPasswordChanged(it)) },
-                label = "New password",
+                label = stringResource(R.string.field_password_new),
                 isVisible = state.newPasswordVisible,
                 onToggleVisibility = { viewModel.onEvent(ChangePasswordUiEvent.ToggleNewPasswordVisibility) },
                 errorMessage = state.newPasswordError,
@@ -135,7 +138,7 @@ fun ChangePasswordScreen(
             PasswordField(
                 value = state.confirmPassword,
                 onValueChange = { viewModel.onEvent(ChangePasswordUiEvent.ConfirmPasswordChanged(it)) },
-                label = "Confirm new password",
+                label = stringResource(R.string.password_confirm_new),
                 isVisible = state.confirmPasswordVisible,
                 onToggleVisibility = { viewModel.onEvent(ChangePasswordUiEvent.ToggleConfirmPasswordVisibility) },
                 errorMessage = state.confirmPasswordError,
@@ -164,7 +167,7 @@ fun ChangePasswordScreen(
                     )
                 } else {
                     Text(
-                        text = "Update Password",
+                        text = stringResource(R.string.password_update),
                         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
                         color = Color.White
                     )
@@ -209,7 +212,7 @@ private fun PasswordField(
                 Icon(
                     imageVector = if (isVisible) Icons.Outlined.Visibility
                     else Icons.Outlined.VisibilityOff,
-                    contentDescription = if (isVisible) "Hide password" else "Show password",
+                    contentDescription = stringResource(if (isVisible) R.string.password_hide else R.string.password_show),
                     tint = PxColors.OnSurface.copy(alpha = 0.5f)
                 )
             }
