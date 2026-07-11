@@ -50,7 +50,10 @@ class PdfEngine(
             addFooter()
             document.finishPage(page)
             pageNumber++
-            page = document.startPage(pageInfo)
+            val newPageInfo = PdfDocument.PageInfo.Builder(
+                pageInfo.pageWidth, pageInfo.pageHeight, pageNumber
+            ).create()
+            page = document.startPage(newPageInfo)
             canvas = page.canvas
             currentY = margin + headerHeight
             addHeader()

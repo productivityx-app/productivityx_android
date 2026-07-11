@@ -23,6 +23,9 @@ class PdfTableRenderer(
         if (numCols == 0) return
 
         val colWidths = calculateColumnWidths(table, totalWidth, numCols)
+        val alignments = table.alignments.let { a ->
+            if (a.size >= numCols) a else a + List(numCols - a.size) { 'l' }
+        }
 
         engine.ensureSpace(8f)
         engine.advance(4f)
@@ -67,6 +70,36 @@ class PdfTableRenderer(
             engine.canvas.drawLine(x, rowY, x, rowY + rowHeight, gridPaint)
         }
 
+        fun renderCellContent(cell: String, colW: Float, paint: Paint, y: Float, align: Char) {
+            val segments = inlineRenderer.parseInline(cell)
+            val availableW = colW - cellPadding * 2
+            val lines = inlineRenderer.wordWrapSegments(segments, paint, availableW)
+            for ((li, line) in lines.withIndex()) {
+                val lineH = paint.textSize + 2f
+                engine.ensureSpace(lineH)
+                var x = metrics.margin + cellPadding
+                for (seg in line.segments) {
+                    val segW = inlineRenderer.measureSegment(seg, paint)
+                    val drawX = when (align) {
+                        'c' -> metrics.margin + cellPadding + (availableW - segW) / 2f
+                        'r' -> metrics.margin + colW - cellPadding - segW
+                        else -> x
+                    }
+                    inlineRenderer.drawSegment(engine.canvas, seg, drawX, engine.currentY, paint)
+                    x += segW
+                }
+                if (li < lines.size - 1) engine.advance(lineH)
+            }
+        }
+
+        fun measureCellHeight(cell: String, paint: Paint, colW: Float): Float {
+            val segments = inlineRenderer.parseInline(cell)
+            val availableW = colW - cellPadding * 2
+            val lines = inlineRenderer.wordWrapSegments(segments, paint, availableW)
+            val lineH = paint.textSize + 2f
+            return max(lines.size * lineH + cellPadding * 2, lineHeight + cellPadding * 2)
+        }
+
         // Header row
         val headerY = engine.currentY
         val headerHeight = lineHeight + cellPadding * 2
@@ -82,11 +115,14 @@ class PdfTableRenderer(
         var cx = metrics.margin + cellPadding
         for ((colIdx, header) in table.headers.withIndex()) {
             val colW = colWidths.getOrElse(colIdx) { minColWidth }
-            val hText = header.ifBlank { " " }
-            val displayText = if (headerPaint.measureText(hText) > colW - cellPadding * 2) {
-                truncateText(hText, colW - cellPadding * 2, headerPaint)
-            } else hText
-            engine.canvas.drawText(displayText, cx, adjustedHeaderY, headerPaint)
+            val segs = inlineRenderer.parseInline(header)
+            val availableW = colW - cellPadding * 2
+            val lines = inlineRenderer.wordWrapSegments(segs, headerPaint, availableW)
+            var drawX = cx
+            for (seg in lines.firstOrNull()?.segments ?: emptyList()) {
+                inlineRenderer.drawSegment(engine.canvas, seg, drawX, adjustedHeaderY, headerPaint)
+                drawX += inlineRenderer.measureSegment(seg, headerPaint)
+            }
             cx += colW
         }
 
@@ -96,7 +132,12 @@ class PdfTableRenderer(
 
         // Data rows
         for ((rowIdx, row) in table.rows.withIndex()) {
-            val rowHeight = lineHeight + cellPadding * 2
+            val rowHeight = maxOf(
+                row.mapIndexed { colIdx, cell ->
+                    measureCellHeight(cell, cellPaint, colWidths.getOrElse(colIdx) { minColWidth })
+                }.maxOrNull() ?: (lineHeight + cellPadding * 2),
+                lineHeight + cellPadding * 2
+            )
             engine.ensureSpace(rowHeight)
             val rowY = engine.currentY
 
@@ -107,23 +148,18 @@ class PdfTableRenderer(
             drawGridLine(rowY - cellPadding)
             drawGridLine(rowY - cellPadding + rowHeight)
 
-            cx = metrics.margin + cellPadding
+            val rowStartY = engine.currentY
             for ((colIdx, cell) in row.withIndex()) {
                 val colW = colWidths.getOrElse(colIdx) { minColWidth }
-                val cellText = cell.ifBlank { " " }
-                val displayText = if (cellPaint.measureText(cellText) > colW - cellPadding * 2) {
-                    truncateText(cellText, colW - cellPadding * 2, cellPaint)
-                } else cellText
-                engine.canvas.drawText(displayText, cx, rowY, cellPaint)
-                cx += colW
+                engine.setY(rowStartY)
+                renderCellContent(cell, colW, cellPaint, rowStartY, alignments.getOrElse(colIdx) { 'l' })
             }
 
             drawVerticalLines(rowY - cellPadding, rowHeight)
 
-            engine.advance(rowHeight)
+            engine.advance(rowHeight - (engine.currentY - rowY))
         }
 
-        // Bottom grid line
         engine.advance(2f)
     }
 

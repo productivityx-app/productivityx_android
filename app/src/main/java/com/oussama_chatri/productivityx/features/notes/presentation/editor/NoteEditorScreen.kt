@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -63,10 +64,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.key
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalContext
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.oussama_chatri.productivityx.R
 import coil3.compose.AsyncImage
 import com.oussama_chatri.productivityx.features.notes.presentation.util.PdfGenerator
 import kotlinx.coroutines.launch
@@ -95,10 +99,12 @@ import com.oussama_chatri.productivityx.core.util.UiEvent
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownAction
 import com.oussama_chatri.productivityx.features.notes.presentation.components.MarkdownToolbar
 import com.oussama_chatri.productivityx.features.notes.presentation.components.NoteTagChip
+import com.oussama_chatri.productivityx.features.notes.presentation.components.TableCreationDialog
 import com.oussama_chatri.productivityx.features.notes.presentation.components.SyncDot
 import com.oussama_chatri.productivityx.features.notes.presentation.components.TagPickerSheet
 import com.oussama_chatri.productivityx.features.notes.presentation.state.EditorFocusMode
 import com.oussama_chatri.productivityx.features.notes.presentation.event.NoteEditorUiEvent
+import com.oussama_chatri.productivityx.features.notes.presentation.util.PreviewBlock
 import com.oussama_chatri.productivityx.features.notes.presentation.util.PreviewModeRenderer
 import kotlinx.coroutines.flow.collectLatest
 import java.time.Instant
@@ -120,6 +126,8 @@ fun NoteEditorScreen(
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val context = LocalContext.current
 
+    var pendingImageCursor by remember { mutableStateOf(-1) }
+
     val photoPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri ->
@@ -127,7 +135,9 @@ fun NoteEditorScreen(
                 try {
                     context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 } catch (_: SecurityException) { }
-                viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString()))
+                val cursor = pendingImageCursor
+                pendingImageCursor = -1
+                viewModel.onEvent(NoteEditorUiEvent.AddImage(uri.toString(), cursor))
             }
         }
     )
@@ -159,12 +169,18 @@ fun NoteEditorScreen(
     var showTagSheet by rememberSaveable { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
+    var showTableDialog by rememberSaveable { mutableStateOf(false) }
     var contentValue by remember { mutableStateOf(TextFieldValue(uiState.content)) }
 
     var zoomScale by remember { mutableStateOf(1f) }
     var zoomOffsetX by remember { mutableStateOf(0f) }
     var zoomOffsetY by remember { mutableStateOf(0f) }
     var fullscreenImageUri by remember { mutableStateOf<String?>(null) }
+
+    val editorTableHeaderTemplate = stringResource(R.string.editor_table_header_template)
+    val editorTableCellTemplate = stringResource(R.string.editor_table_cell_template)
+    val pdfFallbackName = stringResource(R.string.editor_pdf_filename)
+    val shareChooserTitle = stringResource(R.string.editor_share_note)
 
     val isFocusMode = uiState.focusMode != EditorFocusMode.NORMAL
 
@@ -217,12 +233,16 @@ fun NoteEditorScreen(
                     Column {
                         MarkdownToolbar(
                             onAction = { action ->
-                                val (newText, newCursor) = applyMarkdownAction(action, contentValue)
+                                val (newText, newCursor) = applyMarkdownAction(action, contentValue, editorTableHeaderTemplate, editorTableCellTemplate)
                                 contentValue = TextFieldValue(newText, TextRange(newCursor))
                                 viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
                             },
                             onAddImageClick = {
+                                pendingImageCursor = contentValue.selection.start
                                 photoPicker.launch("image/*")
+                            },
+                            onAddTableClick = {
+                                showTableDialog = true
                             }
                         )
                         Spacer(modifier = Modifier.navigationBarsPadding())
@@ -285,7 +305,7 @@ fun NoteEditorScreen(
                     // Title field
                     if (uiState.isPreviewMode) {
                         Text(
-                            text = uiState.title.ifBlank { "Untitled" },
+                            text = uiState.title.ifBlank { stringResource(R.string.untitled) },
                             style = MaterialTheme.typography.titleLarge.copy(
                                 fontSize = 22.sp,
                                 fontWeight = FontWeight.SemiBold,
@@ -308,7 +328,7 @@ fun NoteEditorScreen(
                             decorationBox = { inner ->
                                 if (uiState.title.isEmpty()) {
                                     Text(
-                                        text = "Untitled",
+                                        text = stringResource(R.string.untitled),
                                         style = MaterialTheme.typography.titleLarge.copy(
                                             color = PxColors.OnSurfaceDim,
                                             fontSize = 22.sp
@@ -346,77 +366,119 @@ fun NoteEditorScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                     }
 
-                    // Images
-                    if (uiState.imageUrls.isNotEmpty()) {
-                        FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-                        ) {
-                            uiState.imageUrls.forEach { uri ->
-                                Box {
-                                    AsyncImage(
-                                        model = uri,
-                                        contentDescription = "Note image",
-                                        modifier = Modifier
-                                            .height(160.dp)
-                                            .clip(RoundedCornerShape(8.dp))
-                                            .clickable { fullscreenImageUri = uri }
-                                    )
-                                    IconButton(
-                                        onClick = { viewModel.onEvent(NoteEditorUiEvent.RemoveImage(uri)) },
-                                        modifier = Modifier
-                                            .align(Alignment.TopEnd)
-                                            .padding(4.dp)
-                                            .size(24.dp)
-                                            .background(Color.Black.copy(alpha = 0.5f), CircleShape)
-                                    ) {
-                                        Icon(
-                                            imageVector = androidx.compose.material.icons.Icons.Default.Close,
-                                            contentDescription = "Remove image",
-                                            tint = Color.White,
-                                            modifier = Modifier.size(16.dp)
+                    // Content
+                    if (uiState.isPreviewMode) {
+                        val blocks = remember(uiState.content) { PreviewModeRenderer.renderToBlocks(uiState.content) }
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            blocks.forEach { block ->
+                                when (block) {
+                                    is PreviewBlock.Text -> {
+                                        Text(
+                                            text = block.annotatedString,
+                                            style = MaterialTheme.typography.bodyLarge.copy(
+                                                color = PxColors.OnSurface
+                                            ),
+                                            modifier = Modifier.fillMaxWidth()
+                                        )
+                                    }
+                                    is PreviewBlock.Image -> {
+                                        AsyncImage(
+                                            model = block.uri,
+                                            contentDescription = block.caption ?: stringResource(R.string.cd_note_image),
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(vertical = 8.dp)
+                                                .heightIn(max = 300.dp)
+                                                .clip(RoundedCornerShape(8.dp))
+                                                .clickable { fullscreenImageUri = block.uri }
                                         )
                                     }
                                 }
                             }
                         }
-                    }
-
-                    // Content
-                    if (uiState.isPreviewMode) {
-                        Text(
-                            text = PreviewModeRenderer.render(uiState.content),
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                color = PxColors.OnSurface
-                            ),
-                            modifier = Modifier.fillMaxWidth()
-                        )
                     } else {
-                        BasicTextField(
-                            value = contentValue,
-                            onValueChange = { newVal ->
-                                contentValue = newVal
-                                viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newVal.text))
-                            },
-                            textStyle = MaterialTheme.typography.bodyLarge.copy(
-                                color = PxColors.OnSurface,
-                                lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
-                            ),
-                            cursorBrush = SolidColor(PxColors.Primary),
-                            visualTransformation = MarkdownVisualTransformation(),
-                            decorationBox = { inner ->
-                                if (contentValue.text.isEmpty()) {
-                                    Text(
-                                        text = "Start writing...",
-                                        style = MaterialTheme.typography.bodyLarge,
-                                        color = PxColors.OnSurfaceDim
-                                    )
+                        val imageRegex = remember { Regex("""!\[([^\]]*)\]\(([^)]+)\)""") }
+                        val segments = remember(contentValue.text) {
+                            val parts = imageRegex.split(contentValue.text)
+                            val matches = imageRegex.findAll(contentValue.text).toList()
+                            buildList {
+                                for ((idx, part) in parts.withIndex()) {
+                                    if (part.isNotEmpty()) add(EditSegment.Text(part))
+                                    if (idx < matches.size) {
+                                        add(EditSegment.Image(matches[idx].groupValues[2], matches[idx].groupValues[1]))
+                                    }
                                 }
-                                inner()
-                            },
-                            modifier = Modifier.fillMaxWidth().animateContentSize()
-                        )
+                                if (isEmpty()) add(EditSegment.Text(""))
+                            }
+                        }
+
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            segments.forEachIndexed { index, segment ->
+                                key(index) {
+                                    when (segment) {
+                                        is EditSegment.Text -> {
+                                            var segmentValue by remember {
+                                                mutableStateOf(TextFieldValue(segment.text, TextRange(segment.text.length)))
+                                            }
+                                            LaunchedEffect(segment.text) {
+                                                if (segmentValue.text != segment.text) {
+                                                    segmentValue = TextFieldValue(segment.text, TextRange(segment.text.length))
+                                                }
+                                            }
+                                            BasicTextField(
+                                                value = segmentValue,
+                                                onValueChange = { newVal ->
+                                                    segmentValue = newVal
+                                                    val fullText = buildString {
+                                                        segments.forEachIndexed { i, seg ->
+                                                            append(
+                                                                when (seg) {
+                                                                    is EditSegment.Text ->
+                                                                        if (i == index) newVal.text else seg.text
+                                                                    is EditSegment.Image ->
+                                                                        "![${seg.alt}](${seg.uri})"
+                                                                }
+                                                            )
+                                                        }
+                                                    }
+                                                    contentValue = TextFieldValue(fullText, TextRange(fullText.length))
+                                                    viewModel.onEvent(NoteEditorUiEvent.ContentChanged(fullText))
+                                                },
+                                                textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                    color = PxColors.OnSurface,
+                                                    lineHeight = if (isFocusMode) 28.sp else MaterialTheme.typography.bodyLarge.lineHeight
+                                                ),
+                                                cursorBrush = SolidColor(PxColors.Primary),
+                                                visualTransformation = MarkdownVisualTransformation(),
+                                                decorationBox = { inner ->
+                                                    if (segment.text.isEmpty() && segments.size == 1) {
+                                                        Text(
+                                                            text = stringResource(R.string.editor_start_writing),
+                                                            style = MaterialTheme.typography.bodyLarge,
+                                                            color = PxColors.OnSurfaceDim
+                                                        )
+                                                    }
+                                                    inner()
+                                                },
+                                                modifier = Modifier.fillMaxWidth().animateContentSize()
+                                            )
+                                        }
+                                        is EditSegment.Image -> {
+                                            AsyncImage(
+                                                model = segment.uri,
+                                                contentDescription = stringResource(R.string.cd_note_image),
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(vertical = 4.dp)
+                                                    .heightIn(max = 300.dp)
+                                                    .clip(RoundedCornerShape(8.dp))
+                                                    .clickable { fullscreenImageUri = segment.uri }
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     // Metadata bar
@@ -445,7 +507,7 @@ fun NoteEditorScreen(
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = "Unsaved changes",
+                                text = stringResource(R.string.dialog_unsaved_changes_title),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = PxColors.Warning
                             )
@@ -463,7 +525,7 @@ fun NoteEditorScreen(
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = "Saved",
+                                text = stringResource(R.string.editor_saved),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = PxColors.Success
                             )
@@ -489,7 +551,7 @@ fun NoteEditorScreen(
                     ) {
                         Icon(
                             Icons.Outlined.CenterFocusWeak,
-                            contentDescription = "Reset zoom",
+                            contentDescription = stringResource(R.string.reset_zoom),
                             tint = PxColors.OnSurface
                         )
                     }
@@ -512,7 +574,7 @@ fun NoteEditorScreen(
             ) {
                 Icon(
                     Icons.Outlined.CenterFocusWeak,
-                    contentDescription = "Exit focus mode",
+                    contentDescription = stringResource(R.string.exit_focus_mode),
                     tint = PxColors.OnSurface
                 )
             }
@@ -535,7 +597,7 @@ fun NoteEditorScreen(
             ) {
                 AsyncImage(
                     model = dialogUri,
-                    contentDescription = "Fullscreen image",
+                    contentDescription = stringResource(R.string.fullscreen_image),
                     contentScale = androidx.compose.ui.layout.ContentScale.Fit,
                     modifier = Modifier
                         .fillMaxSize()
@@ -551,7 +613,7 @@ fun NoteEditorScreen(
                 ) {
                     Icon(
                         Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.close),
                         tint = Color.White
                     )
                 }
@@ -588,18 +650,34 @@ fun NoteEditorScreen(
         )
     }
 
+    // Table creation dialog
+    if (showTableDialog) {
+        TableCreationDialog(
+            onDismiss = { showTableDialog = false },
+            onConfirm = { rows, cols, hasHeader ->
+                showTableDialog = false
+                val tableMarkdown = buildTableMarkdown(rows, cols, hasHeader, editorTableHeaderTemplate, editorTableCellTemplate)
+                val cursor = contentValue.selection.start
+                val newText = contentValue.text.substring(0, cursor) +
+                    tableMarkdown + contentValue.text.substring(contentValue.selection.end)
+                contentValue = TextFieldValue(newText, TextRange(cursor + tableMarkdown.length))
+                viewModel.onEvent(NoteEditorUiEvent.ContentChanged(newText))
+            }
+        )
+    }
+
     // Export sheet
     if (uiState.showExportSheet) {
         ExportSheet(
             onDismiss = { viewModel.onEvent(NoteEditorUiEvent.HideExportSheet) },
-            onExportPdf = { pdfCreator.launch("${uiState.title.ifBlank { "Note" }}.pdf") },
+            onExportPdf = { pdfCreator.launch("${uiState.title.ifBlank { pdfFallbackName }}.pdf") },
             onShare = {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_SUBJECT, uiState.title)
                     putExtra(Intent.EXTRA_TEXT, "${uiState.title}\n\n${uiState.content}")
                 }
-                context.startActivity(Intent.createChooser(intent, "Share Note"))
+                context.startActivity(Intent.createChooser(intent, shareChooserTitle))
             },
             onPrint = { /* Print */ }
         )
@@ -630,14 +708,14 @@ private fun EditorTopAppBar(
             IconButton(onClick = onBack) {
                 Icon(
                     Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.back),
                     tint = PxColors.OnSurface
                 )
             }
         },
         title = {
             Text(
-                text = title.ifBlank { "Untitled" }.take(30),
+                text = title.ifBlank { stringResource(R.string.untitled) }.take(30),
                 style = MaterialTheme.typography.titleMedium,
                 color = PxColors.OnSurface,
                 maxLines = 1
@@ -648,28 +726,28 @@ private fun EditorTopAppBar(
             IconButton(onClick = onTogglePreview) {
                 Icon(
                     if (isPreviewMode) Icons.Outlined.Edit else Icons.Outlined.Visibility,
-                    contentDescription = if (isPreviewMode) "Edit mode" else "Preview mode",
+                    contentDescription = if (isPreviewMode) stringResource(R.string.edit_mode) else stringResource(R.string.preview_mode),
                     tint = if (isPreviewMode) PxColors.Primary else PxColors.OnSurfaceDim
                 )
             }
             IconButton(onClick = onToggleFocus) {
-                Icon(Icons.Outlined.CenterFocusWeak, contentDescription = "Focus mode", tint = PxColors.OnSurfaceDim)
+                Icon(Icons.Outlined.CenterFocusWeak, contentDescription = stringResource(R.string.focus_mode), tint = PxColors.OnSurfaceDim)
             }
             AnimatedVisibility(visible = hasUnsavedChanges) {
                 TextButton(onClick = onSave) {
-                    Text("Save", color = PxColors.Primary, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.save), color = PxColors.Primary, fontWeight = FontWeight.SemiBold)
                 }
             }
             IconButton(onClick = onTogglePin) {
                 Icon(
                     imageVector = Icons.Outlined.PushPin,
-                    contentDescription = if (isPinned) "Unpin" else "Pin",
+                    contentDescription = if (isPinned) stringResource(R.string.unpin) else stringResource(R.string.pin),
                     tint = if (isPinned) PxColors.Primary else PxColors.OnSurfaceDim
                 )
             }
             Box {
                 IconButton(onClick = onMoreClick) {
-                    Icon(Icons.Outlined.MoreVert, contentDescription = "More", tint = PxColors.OnSurface)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = stringResource(R.string.more), tint = PxColors.OnSurface)
                 }
                 DropdownMenu(
                     expanded = showMenu,
@@ -677,15 +755,15 @@ private fun EditorTopAppBar(
                     containerColor = PxColors.Surface
                 ) {
                     DropdownMenuItem(
-                        text = { Text("Show metadata", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
+                        text = { Text(stringResource(R.string.show_metadata), style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
                         onClick = { onMenuDismiss(); onToggleMetadata() }
                     )
                     DropdownMenuItem(
-                        text = { Text("Export", style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
+                        text = { Text(stringResource(R.string.export), style = MaterialTheme.typography.bodyMedium, color = PxColors.OnSurface) },
                         onClick = { onMenuDismiss(); onExport() }
                     )
                     DropdownMenuItem(
-                        text = { Text("Move to trash", style = MaterialTheme.typography.bodyMedium, color = PxColors.Error) },
+                        text = { Text(stringResource(R.string.move_to_trash), style = MaterialTheme.typography.bodyMedium, color = PxColors.Error) },
                         onClick = onDelete
                     )
                 }
@@ -711,15 +789,15 @@ private fun MetadataBar(
         modifier = modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
-            Text("Note info", style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
+            Text(stringResource(R.string.note_info), style = MaterialTheme.typography.labelMedium, color = PxColors.OnSurfaceDim)
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                MetaItem("Words", "$wordCount")
-                MetaItem("Characters", "$characterCount")
-                MetaItem("Reading time", readingTimeLabel)
+                MetaItem(stringResource(R.string.words), "$wordCount")
+                MetaItem(stringResource(R.string.characters), "$characterCount")
+                MetaItem(stringResource(R.string.reading_time), readingTimeLabel)
             }
             Spacer(modifier = Modifier.height(4.dp))
             Row(
@@ -728,7 +806,7 @@ private fun MetadataBar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Last saved: ${lastSavedAt?.let { runCatching { dateFormatter.format(it) }.getOrDefault("—") } ?: "—"}",
+                    text = stringResource(R.string.last_saved, lastSavedAt?.let { runCatching { dateFormatter.format(it) }.getOrDefault("—") } ?: "—"),
                     style = MaterialTheme.typography.labelSmall,
                     color = PxColors.OnSurfaceDim
                 )
@@ -771,11 +849,11 @@ private fun ExportSheet(
             modifier = Modifier.padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text("Export", style = MaterialTheme.typography.titleMedium, color = PxColors.OnBackground)
+            Text(stringResource(R.string.export), style = MaterialTheme.typography.titleMedium, color = PxColors.OnBackground)
             Spacer(modifier = Modifier.height(8.dp))
-            ExportOption("Export as PDF", "Save a PDF copy of this note") { onDismiss(); onExportPdf() }
-            ExportOption("Share", "Share via other apps") { onDismiss(); onShare() }
-            ExportOption("Print", "Print this note") { onDismiss(); onPrint() }
+            ExportOption(stringResource(R.string.export_as_pdf), stringResource(R.string.export_as_pdf_subtitle)) { onDismiss(); onExportPdf() }
+            ExportOption(stringResource(R.string.share), stringResource(R.string.share_subtitle)) { onDismiss(); onShare() }
+            ExportOption(stringResource(R.string.print), stringResource(R.string.print_subtitle)) { onDismiss(); onPrint() }
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -813,12 +891,12 @@ private fun AddTagChip(onClick: () -> Unit) {
     ) {
         Icon(
             imageVector = Icons.Outlined.Add,
-            contentDescription = "Add tag",
+            contentDescription = stringResource(R.string.add_tag),
             tint = PxColors.OnSurfaceDim,
             modifier = Modifier.size(14.dp)
         )
         Text(
-            text = "Add tag",
+            text = stringResource(R.string.add_tag),
             style = MaterialTheme.typography.labelSmall,
             color = PxColors.OnSurfaceDim
         )
@@ -830,45 +908,114 @@ private fun DeleteNoteDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = PxColors.Surface,
-        title = { Text("Move to trash?", color = PxColors.OnBackground) },
+        title = { Text(stringResource(R.string.move_to_trash_confirm), color = PxColors.OnBackground) },
         text = {
             Text(
-                "This note will be moved to trash. You can restore it within 30 days.",
+                stringResource(R.string.move_to_trash_message),
                 color = PxColors.OnSurfaceDim
             )
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Move to trash", color = PxColors.Error)
+                Text(stringResource(R.string.move_to_trash), color = PxColors.Error)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = PxColors.OnSurfaceDim)
+                Text(stringResource(R.string.cancel), color = PxColors.OnSurfaceDim)
             }
         }
     )
 }
 
-private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue): Pair<String, Int> {
+private fun applyMarkdownAction(action: MarkdownAction, current: TextFieldValue, headerTemplate: String = "Header %d", cellLabel: String = "Cell"): Pair<String, Int> {
     val text = current.text
     val start = current.selection.start
     val end = current.selection.end
     val selected = runCatching { text.substring(start, end) }.getOrElse { return text to start }
 
-    return when {
-        action.suffix.isNotEmpty() -> {
-            val wrapped = "${action.prefix}${selected.ifEmpty { "text" }}${action.suffix}"
-            val newText = runCatching { text.substring(0, start) + wrapped + text.substring(end) }.getOrElse { return text to start }
-            val cursor = if (selected.isEmpty()) start + action.prefix.length + 4
+    return when (action) {
+        is MarkdownAction.InsertTable -> {
+            val tableStr = buildTableMarkdown(action.rows, action.cols, action.hasHeader, headerTemplate, cellLabel)
+            val newText = text.substring(0, start) + tableStr + text.substring(end)
+            newText to (start + tableStr.length)
+        }
+        is MarkdownAction.HighlightColor -> {
+            val hex = action.color.toArgbHex()
+            val prefix = "==color:$hex:"
+            val suffix = "=="
+            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
+            val newText = text.substring(0, start) + wrapped + text.substring(end)
+            val cursor = if (selected.isEmpty()) start + prefix.length + 4
+            else start + wrapped.length
+            newText to cursor
+        }
+        is MarkdownAction.TextColor -> {
+            val hex = action.color.toArgbHex()
+            val prefix = "{color:$hex}"
+            val suffix = "{/color}"
+            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
+            val newText = text.substring(0, start) + wrapped + text.substring(end)
+            val cursor = if (selected.isEmpty()) start + prefix.length + 4
+            else start + wrapped.length
+            newText to cursor
+        }
+        is MarkdownAction.FontSize -> {
+            val prefix = "{size:${action.size}}"
+            val suffix = "{/size}"
+            val wrapped = "$prefix${selected.ifEmpty { "text" }}$suffix"
+            val newText = text.substring(0, start) + wrapped + text.substring(end)
+            val cursor = if (selected.isEmpty()) start + prefix.length + 4
             else start + wrapped.length
             newText to cursor
         }
         else -> {
-            val lineStart = text.lastIndexOf('\n', start - 1) + 1
-            val newText = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
-            val cursor = start + action.prefix.length
-            newText to cursor
+            when {
+                action.suffix.isNotEmpty() -> {
+                    val wrapped = "${action.prefix}${selected.ifEmpty { "text" }}${action.suffix}"
+                    val newText = runCatching { text.substring(0, start) + wrapped + text.substring(end) }.getOrElse { return text to start }
+                    val cursor = if (selected.isEmpty()) start + action.prefix.length + 4
+                    else start + wrapped.length
+                    newText to cursor
+                }
+                else -> {
+                    val lineStart = text.lastIndexOf('\n', start - 1) + 1
+                    val newText = runCatching { text.substring(0, lineStart) + action.prefix + text.substring(lineStart) }.getOrElse { return text to start }
+                    val cursor = start + action.prefix.length
+                    newText to cursor
+                }
+            }
         }
     }
+}
+
+private fun buildTableMarkdown(rows: Int, cols: Int, hasHeader: Boolean, headerTemplate: String = "Header %d", cellLabel: String = "Cell"): String {
+    return buildString {
+        val headerRow = "| " + (1..cols).joinToString(" | ") { String.format(headerTemplate, it) } + " |\n"
+        val separatorRow = "|" + (1..cols).joinToString("|") { "---" } + "|\n"
+        val dataRow = "| " + (1..cols).joinToString(" | ") { cellLabel } + " |\n"
+
+        if (hasHeader) {
+            append(headerRow)
+            append(separatorRow)
+        } else {
+            append(separatorRow)
+        }
+        repeat(if (hasHeader) rows - 1 else rows) {
+            append(dataRow)
+        }
+        append("\n")
+    }
+}
+
+private fun Color.toArgbHex(): String {
+    val r = (this.red * 255).toInt().coerceIn(0, 255)
+    val g = (this.green * 255).toInt().coerceIn(0, 255)
+    val b = (this.blue * 255).toInt().coerceIn(0, 255)
+    return "#%02x%02x%02x".format(r, g, b)
+}
+
+private sealed class EditSegment {
+    class Text(val text: String) : EditSegment()
+    class Image(val uri: String, val alt: String) : EditSegment()
 }

@@ -72,12 +72,20 @@ class NoteEditorViewModel @Inject constructor(
             when (val result = getNoteById(noteId)) {
                 is Resource.Success -> {
                     val note = result.data
+                    val migratedContent = if (note.content.contains("![image](")) {
+                        note.content
+                    } else if (note.imageUrls.isNotEmpty()) {
+                        note.content + "\n" + note.imageUrls.joinToString("\n") { "![image]($it)" }
+                    } else note.content
+                    val plain = stripMarkdown(migratedContent)
+                    val words = wordCount(plain)
+                    val readingSecs = readingTimeSeconds(words)
                     _uiState.update {
                         it.copy(
                             noteId = note.id,
                             title = note.title,
-                            content = note.content,
-                            plainTextContent = note.plainTextContent,
+                            content = migratedContent,
+                            plainTextContent = plain,
                             tags = note.tags,
                             imageUrls = note.imageUrls,
                             isPinned = note.isPinned,
@@ -85,9 +93,9 @@ class NoteEditorViewModel @Inject constructor(
                             hasUnsavedChanges = false,
                             isSaving = false,
                             lastSavedAt = note.updatedAt,
-                            wordCount = note.wordCount,
-                            characterCount = note.plainTextContent.length,
-                            readingTimeSeconds = note.readingTimeSeconds,
+                            wordCount = words,
+                            characterCount = migratedContent.length,
+                            readingTimeSeconds = readingSecs,
                             syncStatus = note.syncStatus
                         )
                     }
@@ -123,16 +131,31 @@ class NoteEditorViewModel @Inject constructor(
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.AddImage -> {
-                _uiState.update { it.copy(imageUrls = it.imageUrls + event.uri, hasUnsavedChanges = true) }
+                val content = _uiState.value.content
+                val pos = if (event.cursorPosition in 0..content.length) event.cursorPosition else content.length
+                val before = if (pos > 0 && content[pos - 1] != '\n') "\n" else ""
+                val after = if (pos < content.length && content[pos] != '\n') "\n" else ""
+                val imageMarkdown = "${before}![image](${event.uri})$after"
+                val newContent = content.substring(0, pos) + imageMarkdown + content.substring(pos)
+                _uiState.update {
+                    it.copy(imageUrls = it.imageUrls + event.uri, hasUnsavedChanges = true)
+                }
+                updateContent(newContent)
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.RemoveImage -> {
+                val content = _uiState.value.content
+                val escapedUri = Regex.escape(event.uri)
+                val regex = Regex("""\n?!\[image\]\($escapedUri\)\n?""")
+                val newContent = regex.replaceFirst(content, "")
                 _uiState.update {
                     it.copy(
                         imageUrls = it.imageUrls.filterNot { uri -> uri == event.uri },
+                        content = newContent,
                         hasUnsavedChanges = true
                     )
                 }
+                updateContent(newContent)
                 scheduleAutoSave()
             }
             is NoteEditorUiEvent.CreateTag -> handleCreateTag(event.name, event.color)
@@ -209,13 +232,18 @@ class NoteEditorViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, syncStatus = SyncStatus.PENDING) }
             val tagIds = state.tags.map { it.id }.toSet()
+            val contentUris = Regex("""!\[image\]\(([^)]+)\)""")
+                .findAll(state.content)
+                .map { it.groupValues[1] }
+                .toList()
+            val allImageUris = (state.imageUrls + contentUris).distinct()
             val result = if (state.noteId == null) {
                 createNote(
                     title = state.title.trim().ifBlank { null },
                     content = state.content.ifBlank { null },
                     tagIds = tagIds.ifEmpty { null },
                     pinned = if (state.isPinned) true else null,
-                    imageUrls = state.imageUrls.ifEmpty { null }
+                    imageUrls = allImageUris.ifEmpty { null }
                 )
             } else {
                 updateNote(
@@ -224,7 +252,7 @@ class NoteEditorViewModel @Inject constructor(
                     content = state.content,
                     tagIds = tagIds,
                     pinned = state.isPinned,
-                    imageUrls = state.imageUrls
+                    imageUrls = allImageUris
                 )
             }
             when (result) {

@@ -247,6 +247,7 @@ private fun TabScaffold(
     modifier: Modifier = Modifier,
     showTopBar: Boolean = true,
     showBottomBar: Boolean = true,
+    showFab: Boolean = true,
     additionalActions: @Composable () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
@@ -342,7 +343,7 @@ private fun TabScaffold(
                 }
             },
             floatingActionButton = {
-                if (config.fabAdd || config.fabAi) {
+                if (showFab && (config.fabAdd || config.fabAi)) {
                     FabStack(onFabAdd = onFabAdd, onFabAi = onNavigateToAi, config = config)
                 }
             },
@@ -503,6 +504,7 @@ private fun NotesTab(rootNavController: NavHostController) {
         bottomNavCurrentRoute = rootBackStack?.destination?.route,
         onNavItemClick      = { rootNavController.navigateToTab(it) },
         showBottomBar       = isTopLevel,
+        showFab             = isTopLevel,
         additionalActions   = {
             IconButton(onClick = { notesNavController.navigate(NotesRoute.Trash) }) {
                 Icon(Icons.Outlined.DeleteOutline, contentDescription = stringResource(R.string.nav_trash), tint = PxColors.OnSurface)

@@ -46,6 +46,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 import java.util.Locale
 import javax.inject.Inject
 
@@ -59,9 +60,9 @@ class MainActivity : ComponentActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         val lang = runBlocking {
-            runCatching {
+            withTimeoutOrNull(500) {
                 newBase.applicationContext.dataStore.data.first()[stringPreferencesKey("language")] ?: "en"
-            }.getOrDefault("en")
+            } ?: "en"
         }
         val locale = if (lang.contains("-")) Locale.forLanguageTag(lang) else Locale(lang)
         Locale.setDefault(locale)

@@ -11,6 +11,11 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 import com.oussama_chatri.productivityx.core.ui.theme.PxColors
 
+sealed class PreviewBlock {
+    data class Text(val annotatedString: AnnotatedString) : PreviewBlock()
+    data class Image(val uri: String, val caption: String? = null) : PreviewBlock()
+}
+
 object PreviewModeRenderer {
 
     data class TableData(
@@ -19,7 +24,28 @@ object PreviewModeRenderer {
         val alignments: List<Char> = emptyList()
     )
 
-    fun render(content: String): AnnotatedString = buildAnnotatedString {
+    private val imageRegex = Regex("""!\[([^\]]*)\]\(([^)]+)\)""")
+
+    fun renderToBlocks(content: String): List<PreviewBlock> {
+        val blocks = mutableListOf<PreviewBlock>()
+        val parts = imageRegex.split(content)
+        val matches = imageRegex.findAll(content).toList()
+
+        for ((idx, part) in parts.withIndex()) {
+            if (part.isNotBlank()) {
+                blocks.add(PreviewBlock.Text(renderText(part)))
+            }
+            if (idx < matches.size) {
+                val m = matches[idx]
+                blocks.add(PreviewBlock.Image(m.groupValues[2], m.groupValues[1].ifBlank { null }))
+            }
+        }
+        return blocks
+    }
+
+    fun render(content: String): AnnotatedString = renderText(content)
+
+    private fun renderText(content: String): AnnotatedString = buildAnnotatedString {
         val lines = content.split("\n")
         var i = 0
 
@@ -86,6 +112,26 @@ object PreviewModeRenderer {
                     append("  ")
                     append(renderInline(quoteText))
                     pop()
+                    append("\n")
+                    i++
+                }
+
+                // Task list
+                trimmed.startsWith("- [") -> {
+                    val checked = trimmed.length > 4 && trimmed[3] == 'x'
+                    val text = trimmed.substring(trimmed.indexOf(']') + 1).trim()
+                    val checkbox = if (checked) "☑" else "☐"
+                    pushStyle(if (checked) SpanStyle(color = Color(0xFF22C55E), fontWeight = FontWeight.Bold)
+                        else SpanStyle(color = PxColors.OnSurfaceDim))
+                    append("  $checkbox  ")
+                    pop()
+                    if (checked) {
+                        pushStyle(SpanStyle(color = PxColors.OnSurfaceDim, textDecoration = TextDecoration.LineThrough))
+                        append(renderInline(text))
+                        pop()
+                    } else {
+                        append(renderInline(text))
+                    }
                     append("\n")
                     i++
                 }
@@ -160,6 +206,12 @@ object PreviewModeRenderer {
         }
     }
 
+    private val colorHighlightPreviewRegex = Regex("""==color:#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3}):(.*?)==""")
+    private val textColorOpenPreviewRegex = Regex("""\{color:#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\}""")
+    private val textColorClosePreviewRegex = Regex("""\{/color\}""")
+    private val fontSizeOpenPreviewRegex = Regex("""\{size:(\d+)\}""")
+    private val fontSizeClosePreviewRegex = Regex("""\{/size\}""")
+
     private fun AnnotatedString.Builder.renderTable(tableRows: List<String>) {
         if (tableRows.size < 2) return
 
@@ -180,7 +232,6 @@ object PreviewModeRenderer {
         val numCols = maxOf(headers.size, dataRows.maxOfOrNull { it.size } ?: 0)
         if (numCols == 0) return
 
-        // Calculate column widths
         val colWidths = MutableList(numCols) { 12 }
         for ((ci, h) in headers.withIndex()) {
             colWidths[ci] = maxOf(colWidths[ci], h.length + 2)
@@ -191,35 +242,43 @@ object PreviewModeRenderer {
             }
         }
 
-        // Render header
+        pushStyle(SpanStyle(background = PxColors.Primary.copy(alpha = 0.10f), fontWeight = FontWeight.Bold, color = PxColors.OnBackground))
         append(" ")
         for ((ci, header) in headers.withIndex()) {
-            val padded = header.padEnd(colWidths[ci])
-            pushStyle(SpanStyle(fontWeight = FontWeight.Bold, color = PxColors.OnBackground))
+            val padded = when (alignments.getOrElse(ci) { 'l' }) {
+                'c' -> header.padEnd(colWidths[ci]).padStart(colWidths[ci])
+                'r' -> header.padStart(colWidths[ci])
+                else -> header.padEnd(colWidths[ci])
+            }
             append(padded)
-            pop()
         }
+        pop()
         append("\n")
 
-        // Render separator
-        append(" ")
         pushStyle(SpanStyle(color = PxColors.Outline.copy(alpha = 0.4f)))
+        append(" ")
         for (ci in 0 until numCols) {
             append("\u2500".repeat(colWidths[ci]))
         }
         pop()
         append("\n")
 
-        // Render data rows
-        for (row in dataRows) {
+        for ((rowIdx, row) in dataRows.withIndex()) {
+            if (rowIdx % 2 == 1) {
+                pushStyle(SpanStyle(background = PxColors.Outline.copy(alpha = 0.06f)))
+            }
             append(" ")
             for ((ci, cell) in row.withIndex()) {
-                val padded = cell.padEnd(colWidths[ci])
+                val padded = when (alignments.getOrElse(ci) { 'l' }) {
+                    'c' -> cell.padEnd(colWidths[ci]).padStart(colWidths[ci])
+                    'r' -> cell.padStart(colWidths[ci])
+                    else -> cell.padEnd(colWidths[ci])
+                }
                 append(padded)
             }
+            if (rowIdx % 2 == 1) pop()
             append("\n")
         }
-        append("\n")
     }
 
     private fun parseTableRow(line: String): List<String> {
@@ -227,7 +286,64 @@ object PreviewModeRenderer {
         return s.split("|").map { it.trim() }
     }
 
-    private fun renderInline(text: String): AnnotatedString = buildAnnotatedString {
+    private fun AnnotatedString.Builder.renderInline(text: String): AnnotatedString = buildAnnotatedString {
+        var remaining = text
+
+        while (remaining.isNotEmpty()) {
+            val chMatch = colorHighlightPreviewRegex.find(remaining)
+            val tcOpenMatch = textColorOpenPreviewRegex.find(remaining)
+            val fsOpenMatch = fontSizeOpenPreviewRegex.find(remaining)
+            val tcCloseMatch = textColorClosePreviewRegex.find(remaining)
+            val fsCloseMatch = fontSizeClosePreviewRegex.find(remaining)
+
+            when {
+                chMatch != null && chMatch.range.first == 0 -> {
+                    val hex = chMatch.groupValues[1]
+                    val content = chMatch.groupValues[2]
+                    val bgColor = try { Color(hex.toLong(16) or 0xFF000000).copy(alpha = 0.3f) } catch (_: Exception) { PxColors.Primary.copy(alpha = 0.3f) }
+                    remaining = remaining.substring(chMatch.range.last + 1)
+                    pushStyle(SpanStyle(background = bgColor))
+                    appendInlineParsed(content)
+                    pop()
+                }
+                tcOpenMatch != null && tcOpenMatch.range.first == 0 -> {
+                    val hex = tcOpenMatch.groupValues[1]
+                    val fgColor = try { Color(hex.toLong(16) or 0xFF000000) } catch (_: Exception) { PxColors.OnSurface }
+                    remaining = remaining.substring(tcOpenMatch.range.last + 1)
+                    val closeIdx = textColorClosePreviewRegex.find(remaining)
+                    val content = if (closeIdx != null) remaining.substring(0, closeIdx.range.first) else ""
+                    remaining = if (closeIdx != null) remaining.substring(closeIdx.range.last + 1) else ""
+                    pushStyle(SpanStyle(color = fgColor))
+                    appendInlineParsed(content)
+                    pop()
+                }
+                fsOpenMatch != null && fsOpenMatch.range.first == 0 -> {
+                    val size = try { fsOpenMatch.groupValues[1].toInt().sp } catch (_: Exception) { 16.sp }
+                    remaining = remaining.substring(fsOpenMatch.range.last + 1)
+                    val closeIdx = fontSizeClosePreviewRegex.find(remaining)
+                    val content = if (closeIdx != null) remaining.substring(0, closeIdx.range.first) else ""
+                    remaining = if (closeIdx != null) remaining.substring(closeIdx.range.last + 1) else ""
+                    pushStyle(SpanStyle(fontSize = size))
+                    appendInlineParsed(content)
+                    pop()
+                }
+                tcCloseMatch != null && tcCloseMatch.range.first == 0 -> {
+                    remaining = remaining.substring(tcCloseMatch.range.last + 1)
+                }
+                fsCloseMatch != null && fsCloseMatch.range.first == 0 -> {
+                    remaining = remaining.substring(fsCloseMatch.range.last + 1)
+                }
+                else -> {
+                    val nextTag = Regex("""==color:|\\{color:|\\{size:|\\{/color}|\\{/size}""").find(remaining)
+                    val segment = if (nextTag != null) remaining.substring(0, nextTag.range.first) else remaining
+                    appendInlineParsed(segment)
+                    remaining = if (nextTag != null) remaining.substring(nextTag.range.first) else ""
+                }
+            }
+        }
+    }
+
+    private fun AnnotatedString.Builder.appendInlineParsed(text: String) {
         val inline = PdfInlineRenderer()
         val segments = inline.parseInline(text)
         for (seg in segments) {
@@ -256,6 +372,22 @@ object PreviewModeRenderer {
                     color = Color(0xFF569CD6),
                     textDecoration = TextDecoration.Underline
                 ))
+            }
+            if (PdfInlineRenderer.Style.HIGHLIGHT in seg.styles) {
+                styles.add(SpanStyle(
+                    background = PxColors.Primary.copy(alpha = 0.3f)
+                ))
+            }
+            if (seg.textColorHex != null) {
+                val color = try { Color(seg.textColorHex.toLong(16) or 0xFF000000) } catch (_: Exception) { PxColors.OnSurface }
+                styles.add(SpanStyle(color = color))
+            }
+            if (seg.fontSize != null) {
+                styles.add(SpanStyle(fontSize = seg.fontSize.sp))
+            }
+            if (seg.highlightColorHex != null) {
+                val color = try { Color(seg.highlightColorHex.toLong(16) or 0xFF000000).copy(alpha = 0.3f) } catch (_: Exception) { PxColors.Primary.copy(alpha = 0.3f) }
+                styles.add(SpanStyle(background = color))
             }
             for (style in styles) pushStyle(style)
             append(seg.text)

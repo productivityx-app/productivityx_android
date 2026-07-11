@@ -4,6 +4,7 @@ sealed class PdfBlock {
     data class Heading(val level: Int, val text: String) : PdfBlock()
     data class Paragraph(val text: String) : PdfBlock()
     data class BulletItem(val text: String, val indent: Int = 0) : PdfBlock()
+    data class TaskItem(val checked: Boolean, val text: String, val indent: Int = 0) : PdfBlock()
     data class OrderedItem(val number: Int, val text: String, val indent: Int = 0) : PdfBlock()
     data class Blockquote(val text: String) : PdfBlock()
     data class CodeBlock(val code: String, val language: String = "") : PdfBlock()
@@ -55,6 +56,12 @@ object PdfMarkdownBlockParser {
                     blocks.add(PdfBlock.Blockquote(quoteLines.joinToString(" ")))
                 }
 
+                trimmed.startsWith("- [") -> {
+                    val checked = trimmed.length > 4 && trimmed[3] == 'x'
+                    val text = trimmed.substring(trimmed.indexOf(']') + 1).trim()
+                    blocks.add(PdfBlock.TaskItem(checked, text))
+                    i++
+                }
                 trimmed.startsWith("- ") || trimmed.startsWith("* ") -> {
                     val text = trimmed.removePrefix("- ").removePrefix("* ").trim()
                     blocks.add(PdfBlock.BulletItem(text))

@@ -17,7 +17,9 @@ object PdfGenerator {
     ): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
             val doc = PdfDocument()
-            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
+            val pageWidth = 595
+            val pageHeight = 842
+            val pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
             val margin = 50f
             val engine = PdfEngine(doc, pageInfo, margin)
 
@@ -35,6 +37,7 @@ object PdfGenerator {
                 when (block) {
                     is PdfBlock.Heading -> blockRenderer.renderHeading(block)
                     is PdfBlock.Paragraph -> blockRenderer.renderParagraph(block)
+                    is PdfBlock.TaskItem -> blockRenderer.renderTaskItem(block)
                     is PdfBlock.BulletItem -> blockRenderer.renderBulletItem(block)
                     is PdfBlock.OrderedItem -> blockRenderer.renderOrderedItem(block)
                     is PdfBlock.Blockquote -> blockRenderer.renderBlockquote(block)
@@ -48,11 +51,6 @@ object PdfGenerator {
                         }
                     }
                 }
-            }
-
-            if (imageUrls.isNotEmpty()) {
-                engine.addVerticalSpace(16f)
-                blockRenderer.renderImageGallery(imageUrls, imageHandler)
             }
 
             engine.addFooter()
