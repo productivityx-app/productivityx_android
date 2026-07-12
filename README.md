@@ -1,308 +1,436 @@
-# productivityx-android
+<div align="center">
 
-**Repository description:** Offline-first native Android client for ProductivityX built with Jetpack Compose. Feature-sliced clean architecture — full auth lifecycle, profile management (first/last name, avatar, preferences), notes with Markdown and tagging, tasks with kanban and subtasks, calendar events with recurrence, Pomodoro foreground service with notifications, persisted AI conversations with SSE streaming, unified search with local FTS4 fallback, and a WorkManager-powered outbox sync engine. Targets API 26+.
+<img src="images/logo_circle.png" alt="ProductivityX Logo" width="120" />
+
+# ProductivityX for Android
+
+**Production-grade offline-first productivity ecosystem**
+
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.0-blue?logo=kotlin)](https://kotlinlang.org)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-green?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+[![API](https://img.shields.io/badge/API-24%2B-brightgreen)](https://developer.android.com/about/versions/nougat-android-70)
+[![License](https://img.shields.io/badge/License-Non--Commercial-red)](LICENSE)
+[![Backend](https://img.shields.io/badge/Backend-Spring%20Boot%204-orange)](https://github.com/productivityx-app/productivityx_backend)
+
+[Report Bug](https://github.com/productivityx-app/productivityx_android/issues) · [Download APK](https://github.com/productivityx-app/productivityx_android/releases) · [Web App](https://productivityx.vercel.app)
+
+</div>
 
 ---
 
-## Stack
+## Overview
 
-| Layer | Technology | Version |
-| --- | --- | --- |
-| UI  | Jetpack Compose BOM | **2026.03.00** |
-| Navigation | Navigation Compose | **2.9.7** |
-| DI  | Hilt | **2.59** |
-| DI (Compose) | Hilt Navigation Compose | **1.3.0** |
-| Network | Retrofit2 | **2.11.x** |
-| HTTP client | OkHttp3 | **4.12.x** |
-| JSON | Kotlinx Serialization | **1.10.0** |
-| Async | Coroutines + Flow | **1.10.x** |
-| Local DB | Room | **2.7.x** |
-| Background sync | WorkManager | **2.10.x** |
-| Real-time | OkHttp WebSocket | included |
-| Images | Coil 3 | **3.x** |
-| Secure storage | DataStore Preferences | **1.1.x** |
-| Encrypted storage | EncryptedSharedPreferences | **1.1.x** |
-| Markdown rendering | Compose-Markdown (Mikepenz) | latest stable |
-| Lifecycle | Lifecycle ViewModel Compose | **2.9.x** |
-| Build | AGP | **9.0.x** |
-| Language | Kotlin | **2.3.20** |
-| Min SDK | Android 8.0 | **26** |
-| Target SDK | Android 15 | **35** |
+ProductivityX Android is the native mobile client for the ProductivityX productivity ecosystem. Built entirely with **Jetpack Compose** and **Clean Architecture**, it delivers a fully offline-first experience where the local Room database serves as the single source of truth. Every write operation queues changes in an outbox pattern, and a WorkManager-powered sync engine pushes them to the server when connectivity is available.
 
-> **Coil 3:** Import from `io.coil-kt.coil3:coil-compose`. Use `AsyncImage()` — not the deprecated `rememberImagePainter` from v2.
-> **AGP 9:** `org.jetbrains.kotlin.android` is built into AGP 9. Hilt 2.59+ is required for AGP 9 compatibility. Use KSP instead of KAPT for all annotation processing.
+This is not a CRUD wrapper. It's a complete productivity suite — notes with a rich text editor and PDF export, tasks with kanban boards and subtasks, a calendar with recurring events, a Pomodoro timer with foreground service persistence, AI conversations with SSE streaming, and a unified search engine across all features.
+
+---
+
+## Demo
+
+<div align="center">
+
+[![ProductivityX Android Demo](https://img.shields.io/badge/Watch-YouTube%20Demo-red?style=for-the-badge&logo=youtube)](https://youtu.be/MkjT6QjkL_U)
+
+</div>
+
+<div align="center">
+
+[![Demo Video](https://img.youtube.com/vi/MkjT6QjkL_U/maxresdefault.jpg)](https://youtu.be/MkjT6QjkL_U)
+
+</div>
+
+---
+
+## Screenshot Gallery
+
+<table>
+  <tr>
+    <td align="center"><img src="images/Android/dashboard.png" alt="Dashboard" width="240" /><br/><b>Dashboard</b></td>
+    <td align="center"><img src="images/Android/notes.png" alt="Notes" width="240" /><br/><b>Notes</b></td>
+    <td align="center"><img src="images/Android/notes%20editor.png" alt="Note Editor" width="240" /><br/><b>Rich Text Editor</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/Android/tasks.png" alt="Tasks" width="240" /><br/><b>Tasks</b></td>
+    <td align="center"><img src="images/Android/add%20task.png" alt="Add Task" width="240" /><br/><b>Task Management</b></td>
+    <td align="center"><img src="images/Android/Events.png" alt="Events" width="240" /><br/><b>Calendar Events</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/Android/add%20event.png" alt="Add Event" width="240" /><br/><b>Create Event</b></td>
+    <td align="center"><img src="images/Android/pomodoro.png" alt="Pomodoro" width="240" /><br/><b>Pomodoro Timer</b></td>
+    <td align="center"><img src="images/Android/pomodoro%20sessions%20finished.png" alt="Pomodoro Stats" width="240" /><br/><b>Session Complete</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/Android/pomodoro%20session%20history.png" alt="Session History" width="240" /><br/><b>Session History</b></td>
+    <td align="center"><img src="images/Android/profile%20and%20main%20settings.png" alt="Profile & Settings" width="240" /><br/><b>Profile & Settings</b></td>
+  </tr>
+</table>
+
+---
+
+## Features
+
+- [x] **Notes** — Rich text editor, Markdown rendering, PDF generation, pin/unpin, folders, tags, templates, trash & restore
+- [x] **Tasks** — Kanban board, subtasks, priorities, due dates, drag reorder, statistics, trash & restore
+- [x] **Calendar** — Month/week/day views, recurring events (RRULE), all-day events, reminders, color coding
+- [x] **Pomodoro Timer** — Foreground service, configurable durations, ambient sounds, focus mode, session history & stats
+- [x] **AI Assistant** — SSE streaming conversations, multiple conversations, action blocks (create task/note/event)
+- [x] **Unified Search** — Full-text search across notes, tasks, and events
+- [x] **Offline-First Sync** — Delta sync, outbox pattern, conflict resolution, WorkManager background sync
+- [x] **Authentication** — Register, login, email verification (OTP + magic link), forgot/reset password, token refresh
+- [x] **Profile & Settings** — Edit profile, avatar upload, preferences sync, app theme, notifications
+- [x] **Multi-Language** — 19 languages including RTL support
+- [x] **Home Widgets** — Task list, Pomodoro timer, Quick note widgets
+- [x] **Quick Settings Tiles** — Timer toggle, Quick note, Focus mode tiles
+- [x] **Voice Commands** — Speech recognition for hands-free interaction
+- [x] **Deep Linking** — Email verification and password reset via deep links
+
+---
+
+## Engineering Highlights
+
+| Capability | Implementation |
+|---|---|
+| **Offline-first architecture** | Room DB as single source of truth. Every write queues to `sync_queue` table. WorkManager `SyncWorker` drains the outbox on network availability with delta sync. |
+| **Conflict resolution** | Dual version system: business `version` field for client conflict detection + server-side `updatedAt` last-write-wins via `ConflictResolver`. |
+| **Silent token refresh** | OkHttp `TokenRefreshInterceptor` catches 401, calls `/auth/refresh` synchronously, updates encrypted `TokenStorage`, retries the original request — transparent to all call sites. |
+| **Foreground service timer** | `PomodoroForegroundService` manages timer state as `StateFlow<TimerState>`. UI binds via `ServiceConnection`. Persistent notification with Play/Pause/Skip actions. |
+| **SSE streaming** | OkHttp `EventSource` collects AI tokens into `StateFlow<String>`. Chat UI re-renders incrementally as each token arrives. |
+| **PDF generation** | Custom `PdfEngine` with `PdfBlockRenderer`, `PdfInlineRenderer`, `PdfTableRenderer`, `PdfImageHandler`. Full Markdown-to-PDF rendering pipeline. |
+| **WebSocket real-time** | `WebSocketManager` subscribes to `/topic/notes`, `/topic/tasks`, `/topic/events` for server-pushed updates. |
+| **Encrypted storage** | `SecurityCrypto` EncryptedSharedPreferences for token storage. SHA-256 hashed tokens in transit. |
+| **Modular DI** | 15 Hilt modules — 7 core (Network, Database, Storage, Worker, WebSocket, Sync, Alarm) + 8 feature-specific. |
+
+---
+
+## Project Statistics
+
+<table>
+  <tr>
+    <td align="center"><b>~78,700</b><br/>Lines of Code</td>
+    <td align="center"><b>359</b><br/>Kotlin Files</td>
+    <td align="center"><b>31</b><br/>ViewModels</td>
+    <td align="center"><b>27</b><br/>Repositories</td>
+  </tr>
+  <tr>
+    <td align="center"><b>20</b><br/>UseCases</td>
+    <td align="center"><b>12</b><br/>DB Entities</td>
+    <td align="center"><b>36+</b><br/>Compose Screens</td>
+    <td align="center"><b>64</b><br/>API Endpoints</td>
+  </tr>
+  <tr>
+    <td align="center"><b>50+</b><br/>Nav Routes</td>
+    <td align="center"><b>19</b><br/>Languages</td>
+    <td align="center"><b>15</b><br/>Hilt Modules</td>
+    <td align="center"><b>12</b><br/>DB Tables</td>
+  </tr>
+</table>
+
+| Metric | Value |
+|---|---|
+| **Total Kotlin files** | 359 (0 Java) |
+| **Lines of code (Kotlin + XML)** | +50K |
+| **Activities** | 2 (`MainActivity`, `VoiceCommandActivity`) |
+| **Fragments** | 0 (100% Compose) |
+| **ViewModels** | 31 |
+| **Repository interfaces** | 14 |
+| **Repository implementations** | 13 |
+| **UseCase classes** | 20 |
+| **Room entities** | 12 (12 tables) |
+| **DAO interfaces** | 10 |
+| **Compose screens** | 36+ |
+| **Navigation routes** | 50+ |
+| **Hilt DI modules** | 15 |
+| **Foreground services** | 1 (`PomodoroForegroundService`) |
+| **Tile services** | 3 (Timer, Quick Note, Focus Mode) |
+| **Home screen widgets** | 3 (Task List, Pomodoro, Quick Note) |
+| **Workers** | 1 (`SyncWorker`) |
+| **API endpoints consumed** | 64 |
+| **WebSocket topics** | 4 (`/ws`, notes, tasks, events) |
+| **Supported languages** | 19 |
+| **Database migrations** | 3 (v3 → v4 → v5 → v6, DB at v7) |
 
 ---
 
 ## Architecture
 
-Clean architecture with unidirectional data flow and feature-sliced modules. **Local DB is the single source of truth.** The UI never reads directly from the network.
+```mermaid
+graph TD
+    UI["🖥️ Jetpack Compose UI<br/>Material 3 · Navigation Compose"]
+    VM["🧠 ViewModels<br/>31 · UiState + UiEvent"]
+    UC["⚙️ UseCases<br/>20 · Single-responsibility operators"]
+    RI["📂 Repository Interfaces<br/>14 · Domain contracts"]
+    RD["💾 Repository Implementations<br/>13 · Data layer"]
+    DB["🗄️ Room Database<br/>12 tables · v7 · Flow"]
+    API["🌐 Retrofit API<br/>11 services · 64 endpoints"]
+    WS["📡 WebSocket<br/>Real-time updates"]
+    SSE["📨 SSE Client<br/>AI streaming"]
+    SW["🔄 SyncWorker<br/>Outbox · Delta sync"]
+    ST["🔐 TokenStorage<br/>Encrypted · SHA-256"]
 
-```
-Composable / Screen
-    ↕ StateFlow / collectAsStateWithLifecycle
-ViewModel  →  UiState sealed class (Loading | Success<T> | Error)
-    ↕ suspend / Flow
-UseCase  (single public operator fun, one responsibility)
-    ↕
-Repository interface  (domain layer)
-    ↕                       ↕
-RemoteDataSource           LocalDataSource
-(Retrofit)                 (Room)
-         ↑
-    SyncWorker drains sync_queue, posts to remote, updates sync_status
-```
-
-No cross-feature imports. Features share only domain models declared in `core`.
-
----
-
-## Offline-First Contract
-
-Every write in `RepositoryImpl` follows this exact pattern:
-
-```kotlin
-suspend fun createNote(note: Note): Note {
-    val entity = note.toEntity().copy(
-        syncStatus = PENDING,
-        pendingOperation = CREATE
-    )
-    noteDao.insert(entity)
-    syncQueueDao.insert(
-        SyncQueueEntity(entityType = "NOTE", entityId = note.id, operation = CREATE, payload = note.toJson())
-    )
-    syncWorker.triggerImmediate()
-    return note // UI updates from the Room Flow immediately
-}
+    UI --> VM
+    VM --> UC
+    UC --> RI
+    RI --> RD
+    RD --> DB
+    RD --> API
+    RD --> SW
+    RD --> ST
+    API --> WS
+    API --> SSE
+    SW --> API
+    DB --> |"Flow"| UI
 ```
 
-`SyncWorker` runs on `Constraints(NetworkType.CONNECTED)`. It drains the outbox periodically (15 min) and reactively (on network reconnect). On conflicts, `ConflictResolver` applies last-write-wins by `updatedAt`. Unresolvable conflicts are surfaced to the user.
+### Clean Architecture Layers
+
+```mermaid
+graph LR
+    subgraph "Presentation"
+        Screens["Screens"]
+        ViewModels["ViewModels"]
+        UiState["UiState / UiEvent"]
+    end
+    subgraph "Domain"
+        UseCases["UseCases"]
+        Models["Domain Models"]
+        RepoInterfaces["Repository Interfaces"]
+    end
+    subgraph "Data"
+        RepoImpl["Repository Impls"]
+        DAOs["Room DAOs"]
+        APIServices["Retrofit Services"]
+        Mappers["Entity ↔ Model Mappers"]
+    end
+    subgraph "Core"
+        DI["Hilt Modules"]
+        Network["OkHttp / Auth Interceptors"]
+        Database["AppDatabase"]
+        Sync["SyncWorker · Outbox"]
+        Storage["TokenStorage · DataStore"]
+    end
+
+    Screens --> ViewModels
+    ViewModels --> UseCases
+    UseCases --> RepoInterfaces
+    RepoInterfaces --> RepoImpl
+    RepoImpl --> DAOs
+    RepoImpl --> APIServices
+```
+
+### Feature Modules
+
+```mermaid
+graph TD
+    subgraph "Features"
+        AUTH["🔐 Auth"]
+        HOME["🏠 Home"]
+        NOTES["📝 Notes"]
+        TASKS["✅ Tasks"]
+        EVENTS["📅 Events"]
+        POMO["🍅 Pomodoro"]
+        AI["🤖 AI"]
+        SEARCH["🔍 Search"]
+        SETTINGS["⚙️ Settings"]
+    end
+
+    AUTH --> HOME
+    HOME --> NOTES
+    HOME --> TASKS
+    HOME --> EVENTS
+    HOME --> POMO
+    HOME --> AI
+    HOME --> SEARCH
+    HOME --> SETTINGS
+```
 
 ---
 
-## Auth Screens
+## Technology Stack
 
-| Screen | Route | Notes |
-| --- | --- | --- |
-| Splash | `splash` | Checks token validity, routes to onboarding or home |
-| Onboarding | `onboarding` | Shown once on first install, skippable |
-| Login | `auth/login` |     |
-| Register | `auth/register` | Multi-step: identifier → personal info → password → verify |
-| Verify email | `auth/verify-email` | Deep link target from email, 6-digit OTP |
-| Forgot password | `auth/forgot-password` |     |
-| Reset password | `auth/reset-password` | Deep link target from email |
-
----
-
-## Key Behaviours
-
-**Silent token refresh:** `TokenRefreshInterceptor` (OkHttp `Authenticator`) catches 401, calls `/auth/refresh` synchronously, updates `TokenStorage`, retries the original request. Completely transparent to all call sites.
-
-**Auto-save notes:** `NoteEditorViewModel` debounces content changes 1.5s before dispatching `UpdateNoteUseCase`. Local Room entity updates immediately; outbox handles remote sync asynchronously.
-
-**Pomodoro foreground service:** Timer state lives in `PomodoroForegroundService` as a `StateFlow<TimerState>`. The UI composable binds to this flow via `ServiceConnection`. On session end, a completion notification fires on a dedicated `NotificationChannel`. Persistent notification exposes Play/Pause/Skip actions via `PendingIntent`.
-
-**AI streaming:** SSE tokens collected from `EventSource` and appended to a `StateFlow<String>` in `AiViewModel`. Chat bubble reads this flow and re-renders incrementally as each token arrives. On stream completion, full message is persisted locally and synced.
-
-**Tasks swipe gestures:** `SwipeToDismissBox` — swipe right reveals green complete action, swipe left reveals red delete action. Both trigger their respective use cases.
-
-**Sync status indicator:** Small dot in the top bar reflects `PENDING` (amber), `SYNCING` (blue pulse), `SYNCED` (green), `CONFLICT` (red). Tapping it opens a sync status sheet.
-
-**Deep links:** Verify email and reset password flows are reachable via `productivityx://auth/verify-email?token=<token>` and `productivityx://auth/reset-password?token=<token>`. Declared in `AndroidManifest.xml`.
+| Layer | Technology | Version |
+|---|---|---|
+| **Language** | Kotlin | 2.0.21 |
+| **UI** | Jetpack Compose + Material 3 | BOM 2024.12.01 |
+| **Navigation** | Navigation Compose | 2.8.5 |
+| **DI** | Hilt (Dagger) | 2.52 |
+| **Networking** | Retrofit + OkHttp | 2.11.0 / 4.12.0 |
+| **Database** | Room | 2.6.1 |
+| **Background** | WorkManager | 2.10.0 |
+| **Images** | Coil 3 | 3.0.4 |
+| **Storage** | DataStore + Security Crypto | 1.1.1 / 1.1.0-alpha06 |
+| **Markdown** | Compose Markdown Renderer | 0.31.0 |
+| **Serialization** | Kotlinx Serialization | 1.7.3 |
+| **Lifecycle** | ViewModel Compose + Runtime | 2.8.7 |
+| **Build** | AGP + KSP | 8.7.3 / 2.0.21-1.0.28 |
+| **Min SDK** | Android 7.0 (API 24) | — |
+| **Target SDK** | Android 15 (API 35) | — |
+| **Compile SDK** | API 36 | — |
+| **JVM Target** | 17 | — |
 
 ---
 
-## Design System
+## Folder Structure
 
-Defined in `core/ui/theme/`. Identical tokens to the Desktop client — consistency enforced at the token level.
-
-| Token | Value |
-| --- | --- |
-| Primary | `#6366F1` (Indigo-500) |
-| Secondary | `#8B5CF6` (Violet-500) |
-| Background | `#0F0F14` |
-| Surface | `#1A1A24` |
-| Surface Variant | `#252533` |
-| Error | `#EF4444` |
-| Success | `#22C55E` |
-| Warning | `#F59E0B` |
-| Corner radius — cards | 12dp |
-| Corner radius — buttons | 8dp |
-| Font | Nunito (Regular, Medium, SemiBold, Bold) |
-| Min touch target | 48×48dp |
+```
+app/src/main/java/com/oussama_chatri/productivityx/
+├── MainActivity.kt
+├── ProductivityXApp.kt
+│
+├── core/                              # Shared infrastructure
+│   ├── alarm/                         # AlarmScheduler, BootReceiver
+│   ├── data/                          # DataExportImport, Encryption
+│   ├── db/                            # AppDatabase, Converters, Migrations
+│   ├── di/                            # Hilt modules (Network, Database, Storage, ...)
+│   ├── enums/                         # Shared enumerations
+│   ├── network/                       # Interceptors, NetworkMonitor, SyncGuard
+│   ├── notifications/                 # NotificationHelper, Channels
+│   ├── storage/                       # TokenStorage, PreferencesDataStore
+│   ├── sync/                          # SyncWorker, OutboxProcessor, DeltaSyncManager
+│   ├── ui/                            # Theme, Components, Navigation, Widgets, Voice
+│   ├── util/                          # Extensions, DateTimeUtils, Resource
+│   └── websocket/                     # WebSocketManager
+│
+└── features/                          # Feature modules (each: data/domain/presentation)
+    ├── ai/                            # AI chat · SSE streaming
+    ├── auth/                          # Login, Register, Verify, Reset
+    ├── events/                        # Calendar, CRUD, Recurrence
+    ├── home/                          # Dashboard, Widgets
+    ├── notes/                         # Rich editor, Markdown, PDF, Tags, Folders
+    ├── pomodoro/                      # Timer, Foreground service, Ambient sounds
+    ├── search/                        # Unified cross-feature search
+    ├── settings/                      # Profile, Preferences, Password
+    └── tasks/                         # Kanban, Subtasks, Statistics
+```
 
 ---
 
-## Configuration
+## Platform Architecture
 
-Add to `local.properties` (excluded from git):
+### Offline-First Synchronization
+
+```mermaid
+sequenceDiagram
+    participant UI as UI Layer
+    participant Repo as Repository
+    participant DB as Room DB
+    participant Queue as Sync Queue
+    participant Worker as SyncWorker
+    participant Server as Backend API
+
+    UI->>Repo: Create/Update/Delete
+    Repo->>DB: Write with syncStatus = PENDING
+    Repo->>Queue: Insert SyncQueueEntity
+    Repo->>Worker: Trigger immediate sync
+    Worker->>Server: Delta sync (pull changes since last cursor)
+    Server-->>Worker: Changed entities
+    Worker->>DB: Upsert + update syncStatus = SYNCED
+    DB-->>UI: Flow emissions update UI
+```
+
+### Conflict Resolution
+
+| Scenario | Resolution |
+|---|---|
+| **Same entity, different fields** | Merge — apply both changes |
+| **Same field, different values** | Last-write-wins by `updatedAt` timestamp |
+| **Client has PENDING, server has newer** | Server wins, local updated |
+| **Unresolvable conflict** | Surfaced to user via sync status indicator |
+
+### Database Schema
+
+```
+┌─────────────────────────────────────────────────┐
+│                  productivityx.db (v7)            │
+├─────────────────────────────────────────────────┤
+│  notes        │ note_tags       │ tags           │
+│  note_folders │ note_templates  │ note_links     │
+│  tasks        │ events          │ pomodoro_*     │
+│  conversations│ messages        │ sync_queue     │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Android Studio Hedgehog (2023.1.1) or later
+- JDK 17
+- Android SDK 36
+- Physical device or emulator (API 24+)
+
+### Configuration
+
+Create `local.properties` in the project root:
 
 ```properties
-BASE_URL=https://your-railway-backend.up.railway.app/
-WS_URL=wss://your-railway-backend.up.railway.app/ws
+BASE_URL=https://your-backend-url/
+WS_URL=wss://your-backend-url/ws
 ```
 
-Inject via `buildConfigField` in `app/build.gradle.kts`:
-
-```kotlin
-val localProps = Properties().apply {
-    load(rootProject.file("local.properties").inputStream())
-}
-
-android {
-    buildFeatures { buildConfig = true }
-    defaultConfig {
-        buildConfigField("String", "BASE_URL", "\"${localProps["BASE_URL"]}\"")
-        buildConfigField("String", "WS_URL",   "\"${localProps["WS_URL"]}\"")
-    }
-}
-```
-
----
-
-## Building
-
-**Debug APK:**
+### Build & Run
 
 ```bash
+# Debug build
 ./gradlew assembleDebug
-```
 
-**Release APK:**
-
-Configure signing in `app/build.gradle.kts`:
-
-```kotlin
-signingConfigs {
-    create("release") {
-        storeFile     = file(localProps["KEYSTORE_PATH"] as String)
-        storePassword = localProps["KEYSTORE_PASSWORD"] as String
-        keyAlias      = localProps["KEY_ALIAS"] as String
-        keyPassword   = localProps["KEY_PASSWORD"] as String
-    }
-}
-```
-
-```bash
+# Release build (requires signing config)
 ./gradlew assembleRelease
 ```
 
 Output: `app/build/outputs/apk/release/app-release.apk`
 
----
+### Download
 
-## Dependencies — `gradle/libs.versions.toml`
-
-```toml
-[versions]
-kotlin = "2.3.20"
-agp = "9.0.0"
-compose-bom = "2026.03.00"
-navigation-compose = "2.9.7"
-hilt = "2.59"
-hilt-navigation-compose = "1.3.0"
-retrofit = "2.11.0"
-okhttp = "4.12.0"
-kotlinx-serialization = "1.10.0"
-kotlinx-coroutines = "1.10.0"
-room = "2.7.0"
-workmanager = "2.10.0"
-coil = "3.1.0"
-datastore = "1.1.2"
-security-crypto = "1.1.0-alpha06"
-compose-markdown = "0.5.7"
-lifecycle = "2.9.0"
-ksp = "2.3.20-1.0.32"
-
-[libraries]
-# Compose
-compose-bom                 = { module = "androidx.compose:compose-bom",              version.ref = "compose-bom" }
-compose-ui                  = { module = "androidx.compose.ui:ui" }
-compose-ui-graphics         = { module = "androidx.compose.ui:ui-graphics" }
-compose-ui-tooling          = { module = "androidx.compose.ui:ui-tooling" }
-compose-ui-tooling-preview  = { module = "androidx.compose.ui:ui-tooling-preview" }
-compose-ui-test-junit4      = { module = "androidx.compose.ui:ui-test-junit4" }
-compose-ui-test-manifest    = { module = "androidx.compose.ui:ui-test-manifest" }
-compose-material3           = { module = "androidx.compose.material3:material3" }
-compose-material-icons      = { module = "androidx.compose.material:material-icons-extended" }
-compose-animation           = { module = "androidx.compose.animation:animation" }
-compose-foundation          = { module = "androidx.compose.foundation:foundation" }
-activity-compose            = { module = "androidx.activity:activity-compose" }
-navigation-compose          = { module = "androidx.navigation:navigation-compose",    version.ref = "navigation-compose" }
-
-# DI — Hilt
-hilt-android                = { module = "com.google.dagger:hilt-android",            version.ref = "hilt" }
-hilt-compiler               = { module = "com.google.dagger:hilt-android-compiler",   version.ref = "hilt" }
-hilt-navigation-compose     = { module = "androidx.hilt:hilt-navigation-compose",    version.ref = "hilt-navigation-compose" }
-hilt-work                   = { module = "androidx.hilt:hilt-work",                   version = "1.3.0" }
-hilt-work-compiler          = { module = "androidx.hilt:hilt-compiler",               version = "1.3.0" }
-
-# Networking
-retrofit                    = { module = "com.squareup.retrofit2:retrofit",            version.ref = "retrofit" }
-retrofit-converter-gson     = { module = "com.squareup.retrofit2:converter-gson",     version.ref = "retrofit" }
-okhttp                      = { module = "com.squareup.okhttp3:okhttp",               version.ref = "okhttp" }
-okhttp-logging              = { module = "com.squareup.okhttp3:logging-interceptor",  version.ref = "okhttp" }
-okhttp-sse                  = { module = "com.squareup.okhttp3:okhttp-sse",           version.ref = "okhttp" }
-
-# Serialization & Async
-kotlinx-serialization-json  = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-kotlinx-coroutines-android  = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android",  version.ref = "kotlinx-coroutines" }
-kotlinx-coroutines-test     = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test",     version.ref = "kotlinx-coroutines" }
-
-# Room
-room-runtime                = { module = "androidx.room:room-runtime",  version.ref = "room" }
-room-compiler               = { module = "androidx.room:room-compiler", version.ref = "room" }
-room-ktx                    = { module = "androidx.room:room-ktx",      version.ref = "room" }
-room-testing                = { module = "androidx.room:room-testing",  version.ref = "room" }
-
-# WorkManager
-workmanager                 = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
-
-# Images
-coil-compose                = { module = "io.coil-kt.coil3:coil-compose",         version.ref = "coil" }
-coil-network-okhttp         = { module = "io.coil-kt.coil3:coil-network-okhttp",  version.ref = "coil" }
-
-# Storage
-datastore-preferences       = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
-security-crypto             = { module = "androidx.security:security-crypto",        version.ref = "security-crypto" }
-
-# Markdown
-compose-markdown            = { module = "com.mikepenz:multiplatform-markdown-renderer-m3", version.ref = "compose-markdown" }
-
-# Lifecycle
-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-lifecycle-runtime-compose   = { module = "androidx.lifecycle:lifecycle-runtime-compose",   version.ref = "lifecycle" }
-lifecycle-runtime-ktx       = { module = "androidx.lifecycle:lifecycle-runtime-ktx",       version.ref = "lifecycle" }
-
-# Core
-core-ktx                    = { module = "androidx.core:core-ktx",         version = "1.16.0" }
-splashscreen                = { module = "androidx.core:core-splashscreen", version = "1.0.1" }
-
-# Testing
-junit                       = { module = "junit:junit",                         version = "4.13.2" }
-junit-android               = { module = "androidx.test.ext:junit",             version = "1.2.1" }
-espresso                    = { module = "androidx.test.espresso:espresso-core", version = "3.6.1" }
-mockk                       = { module = "io.mockk:mockk",                      version = "1.13.13" }
-
-[plugins]
-android-application  = { id = "com.android.application",                        version.ref = "agp" }
-kotlin-android       = { id = "org.jetbrains.kotlin.android",                    version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization",       version.ref = "kotlin" }
-kotlin-compose       = { id = "org.jetbrains.kotlin.plugin.compose",             version.ref = "kotlin" }
-hilt                 = { id = "com.google.dagger.hilt.android",                  version.ref = "hilt" }
-ksp                  = { id = "com.google.devtools.ksp",                         version.ref = "ksp" }
-```
+Download the latest APK from [GitHub Releases](https://github.com/productivityx-app/productivityx_android/releases).
 
 ---
 
 ## Testing
 
 ```bash
-# Unit tests (JVM, fast)
+# Unit tests (JVM)
 ./gradlew test
 
-# Instrumented tests (device or emulator required)
+# Instrumented tests (device/emulator)
 ./gradlew connectedAndroidTest
 ```
 
-ViewModels tested with `kotlinx-coroutines-test` and MockK. Repository tests use an in-memory Room database. UI tests use Compose's `ComposeTestRule`.
+Tests use `kotlinx-coroutines-test` + MockK for ViewModels, in-memory Room for repositories, and `ComposeTestRule` for UI.
+
+---
+
+## Roadmap
+
+- [ ] Push notifications with Firebase Cloud Messaging
+- [ ] Biometric authentication (fingerprint/face)
+- [ ] Tablet-optimized layouts
+- [ ] Home screen widget improvements
+- [ ] Offline AI model support
+- [ ] Data export to various formats
+- [ ] Recurring task support
+- [ ] Task time tracking integration
+- [ ] Collaborative notes (real-time co-editing)
+- [ ] Wear OS companion app
+
+---
+
+## License
+
+This project is licensed under the **Non-Commercial Source Available License**.
+
+You may view, study, learn from, and modify the source code for personal, educational, research, and evaluation purposes. **Commercial use is strictly prohibited** without prior written permission.
+
+See [LICENSE](LICENSE) for full details.
+
+---
+
+<div align="center">
+
+**Built with precision by [Oussama Chatri](https://github.com/osamachatri)**
+
+[ProductivityX](https://github.com/productivityx-app) · [Android](https://github.com/productivityx-app/productivityx_android) · [Backend](https://github.com/productivityx-app/productivityx_backend) · [Web](https://github.com/productivityx-app/productivityx_web)
+
+</div>
