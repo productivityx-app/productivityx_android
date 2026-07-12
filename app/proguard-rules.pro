@@ -27,17 +27,50 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# ── Gson ──────────────────────────────────────────────────────────────
+-keepattributes Signature
+-keep class com.google.gson.** { *; }
+-keep class com.google.gson.stream.** { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Keep fields annotated with @SerializedName (CRITICAL for Retrofit/Gson)
+-keepclassmembers,allowobfuscation,allowshrinking class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.TypeAdapter
+-keep,allowobfuscation,allowshrinking class * implements com.google.gson.TypeAdapterFactory
+-keep,allowobfuscation,allowshrinking class * implements com.google.gson.JsonSerializer
+-keep,allowobfuscation,allowshrinking class * implements com.google.gson.JsonDeserializer
+
+# ── Retrofit ──────────────────────────────────────────────────────────
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+
+-keep,allowobfuscation,allowshrinking interface retrofit2.Call
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+-keepclasseswithmembers,allowshrinking,allowobfuscation class * {
+    @retrofit2.http.* <methods>;
+}
+
+# ── App DTOs (ALL features) ────────────────────────────────────────
+-keep class com.oussama_chatri.productivityx.features.auth.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.settings.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.ai.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.tasks.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.notes.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.events.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.pomodoro.data.remote.dto.** { *; }
+-keep class com.oussama_chatri.productivityx.features.search.data.remote.dto.** { *; }
+
+# Generic API wrapper
+-keep class com.oussama_chatri.productivityx.core.network.ApiResponse { *; }
+-keep class com.oussama_chatri.productivityx.core.network.ApiResponse$* { *; }
+
+# Delta sync (parsed via direct Gson, not Retrofit)
+-keep class com.oussama_chatri.productivityx.core.sync.DeltaSyncEnvelope { *; }
+-keep class com.oussama_chatri.productivityx.core.sync.DeltaSyncData { *; }
+
+# Export/import payload (serialized via direct Gson)
+-keep class com.oussama_chatri.productivityx.core.data.ExportPayload { *; }
